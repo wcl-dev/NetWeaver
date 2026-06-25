@@ -46,11 +46,18 @@ NetWeaver/
 - 每筆關鍵宣稱掛 `source_ids`，且 `sources[].url` 必須真實可查。
 - 誠實標記 `confidence`（high / medium / low）。
 
-## 資料來源（v1）
+## 資料來源
 
-- **政府公開報告**：國家安全局 (NSB)
-- **公民社會研究**：IORG 台灣資訊環境研究中心、Doublethink Lab 台灣民主實驗室
-- **國際平台／研究單位**：Meta、Google/Mandiant、Graphika 等揭露報告
+每筆行為者、事件、關係的關鍵宣稱都掛 `source_ids`，前端會顯示來源連結供查證（目前共 74 筆來源）。主要取自：
+
+- **政府公開報告**：國家安全局 (NSB)、美國司法部 (DOJ)
+- **台灣公民社會研究／數位調查**：
+  - IORG 台灣資訊環境研究中心（敘事分類、月報具名放大者）
+  - Doublethink Lab 台灣民主實驗室（CIB 網絡、GoLaxy、China Index）
+  - **FactLink 數位素養實驗室**（數位調查／OSINT——東部戰區融媒體宣傳網絡、蝴蝶攻擊、中國對日敘事、暗網假文件 hack-and-leak 等案例）
+- **國際平台威脅報告**：Meta、Google／Mandiant（GLASSBRIDGE / HaiEnergy / DRAGONBRIDGE）、Microsoft MTAC
+- **國際研究機構**：Graphika、ASPI、Citizen Lab（PAPERWALL）、Recorded Future、Global Taiwan Institute、Vanderbilt（GoLaxy 文件）、CyberCX
+- **新聞媒體佐證**：報導者、自由時報、中央社、CNBC、紐約時報、ProPublica 等
 
 ## 後續擴充方向（roadmap）
 

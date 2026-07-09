@@ -113,7 +113,7 @@ Operator（責任行為者）
 
 1. **Grounding-first**：每個宣稱都錨定到來源逐字 span，抽不出→不上（杜絕幻覺攻擊者）。
 2. **框架鎖**：一律渲染成「〔某報告〕指出 X」，永不是 NetWeaver 自己說 X；生成後 critic 打回 agentive/指控語氣。
-3. **反升級**：用語不得強過來源；STIX **永不輸出 `attributed-to`**。
+3. **反升級**：用語不得強過來源；STIX **預設不輸出 `attributed-to`**（僅來源明確歸因＋人工閘時輸出，見 [STIX-PROFILE.md §7](STIX-PROFILE.md)）。
 4. **來源信任閘**：只收 allowlist 上的可信發布者。
 5. **信心規則**：`high` 需多來源或一級來源；規則化、可解釋，非憑感覺。
 6. **完整性 CI 閘**：參照完整、雙向一致、無孤兒、連結健康（沿用現有腳本）。
@@ -136,8 +136,8 @@ Operator（責任行為者）
 
 - **IMS 框架**：把 `cib-network` 品牌化為 NetWeaver 的 Information Manipulation Set（＝我們「歸類不定罪」姿態，正好對上 EEAS/VIGINUM 共識）。
 - **Exposure Matrix 四級 tier**（低成本高價值，可先做）：官方/國家控制/國家連結/國家對齊，由 `category`＋`confidence`＋邊型衍生；**tier 4「不可歸因」正好給 `local-named` 一個標準化理由**。
-- **STIX 2.1 ＋ DAD-CDM 匯出**（互通階段）：唯讀 export adapter，UUIDv5 穩定 id。**護欄：`operated-by`/`runs` 永不映成 STIX `attributed-to`**，否則「記錄非指控」在匯出邊界崩潰。
-- **DISARM TTP**（最後）：掛在 Event 上，不硬塞給實體。
+- **STIX 2.1 ＋ DAD-CDM 匯出**（互通階段）：唯讀 export adapter，UUIDv5 穩定 id。**護欄：預設用中性邊 `related-to` 分組（Campaign→IMS）；`attributed-to` 僅用於來源明確歸因＋人工閘；`operated-by`/`runs` 永不自動映成 STIX `attributed-to`**（詳見 [STIX-PROFILE.md §7](STIX-PROFILE.md)），否則「記錄非指控」在匯出邊界崩潰。
+- **DISARM TTP**（最後）：掛在 Campaign／行動（STIX `campaign`）上，不硬塞給實體。
 
 ---
 

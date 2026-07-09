@@ -95,9 +95,9 @@
 | NetWeaver v1 | STIX 2.1 / DAD-CDM | DISARM |
 |---|---|---|
 | Entity (cib-network) | `intrusion-set` / Information Manipulation Set | — |
-| Entity (state-organ, tech-vendor…) | `threat-actor` / `identity` | — |
+| Entity (state-organ, tech-vendor…) | `identity`（預設）／`threat-actor`（證據支持惡意操作意圖時） | — |
 | Entity (state-media, content-farm) | Channel SDO (DAD-CDM 擴充) | — |
-| Event | `campaign` / `incident` | — |
+| Event（行動） | `campaign` | — |
 | Narrative | Narrative SDO (DAD-CDM 擴充) | — |
 | Relation | `relationship` (SRO) | — |
 | （未來）TTP 標記 | `attack-pattern` | TA*/T* ID |

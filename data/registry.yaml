@@ -1,0 +1,172 @@
+# NetWeaver 來源登錄檔 (Source Registry)
+#
+# 這是「人工策展的來源 allowlist」——系統的信任落點。
+# NetWeaver 只轉述此清單上可信發布者已公開點名的內容（記錄非指控）。
+# 新增來源＝人的決策；每個 entry 一次核可、長期監控。詳見 docs/ARCHITECTURE.md §1、§5。
+#
+# 欄位：
+#   id        唯一識別
+#   org       發布者名稱
+#   tier      A=一級（政府/平台/主力研究）｜B=佐證（研究/新聞）｜C=對手方原始素材（僅存證，不當事實）
+#   type      gov-report | platform-threat-report | research | factcheck | academic | news | takedown-dataset | state-media
+#   url       首頁或 feed
+#   license   gov-open | cc-by | cc-by-sa | cite-with-attribution | ngo-restricted | platform-terms | all-rights-reserved
+#   mode      feed(RSS/API 自動) | scrape(索引頁/序號) | manual(人工觸發＋自動存證) | special
+#   cadence   偵測節奏
+#   note      為何核可／相關性
+
+# ─────────────────────────────────────────────────────────────
+# 本輪新核可（2026-07，經人工審定）— 11 個
+# ─────────────────────────────────────────────────────────────
+sources:
+  - id: openai
+    org: "OpenAI — Threat Intelligence"
+    tier: A
+    type: platform-threat-report
+    url: "https://openai.com/index/disrupting-malicious-ai-uses/"
+    license: all-rights-reserved   # 只取事實＋引文，連出去看原文
+    mode: manual                    # 季度 PDF，低頻，人工觸發＋自動存證
+    cadence: on-alert
+    added: "2026-07"
+    note: "AI 濫用季報，點名多個中國操作（如 Sneer Review 涉台、Uncle Spam、VAGue Focus，代號待入庫核對）；補『生成式 AI 在認知作戰』軸，屬工具被濫用的平台方一級來源。"
+
+  - id: anthropic
+    org: "Anthropic — Threat Intelligence"
+    tier: A
+    type: platform-threat-report
+    url: "https://www.anthropic.com/news"   # 篩 threat/misuse 標籤
+    license: all-rights-reserved
+    mode: manual
+    cadence: on-alert
+    added: "2026-07"
+    note: "AI 濫用報告＋首例 AI 主導的中國國家級網攻＋『influence-as-a-service』（Claude 當 orchestrator）。偏 cyber/misuse，FIMI 佔比小但同屬 AI 濫用軸、一級。"
+
+  - id: x-io-archive
+    org: "X/Twitter — State-Backed Information Operations Archive"
+    tier: A
+    type: takedown-dataset
+    url: "https://archive.org/details/X_Twitter_Information_Operations"   # 官方停更，用存檔
+    license: platform-terms         # 帳號證據層，個資雜湊
+    mode: special
+    cadence: on-alert
+    added: "2026-07"
+    note: "歷史 state-backed takedown 帳號/貼文資料（黃金證據層）。日後作為『帳號證據層』匯入，非敘述來源。"
+
+  - id: dfrlab
+    org: "DFRLab (Atlantic Council)"
+    tier: A
+    type: research
+    url: "https://dfrlab.org/"
+    license: cite-with-attribution
+    mode: feed
+    cadence: daily
+    added: "2026-07"
+    note: "主力 IO 研究機構，含 FIMI／IMS 方法論與對台、對日中國行動。目前重大遺漏，優先納入。"
+
+  - id: tfc-taiwan
+    org: "台灣事實查核中心 Taiwan FactCheck Center"
+    tier: A
+    type: factcheck
+    url: "https://tfc-taiwan.org.tw/"
+    license: cite-with-attribution
+    mode: feed
+    cadence: daily
+    added: "2026-07"
+    note: "在地具名查核，常涉中國假訊息；補 IORG／FactLink 的在地一級來源。"
+
+  - id: newsguard
+    org: "NewsGuard"
+    tier: B
+    type: research
+    url: "https://www.newsguardtech.com/"
+    license: ngo-restricted         # 部分 gated／商用
+    mode: manual
+    cadence: on-alert
+    added: "2026-07"
+    note: "追蹤 AI 造假新聞網站與親中網絡（GLASSBRIDGE／PAPERWALL 類）。"
+
+  - id: asd-hamilton
+    org: "Alliance for Securing Democracy / Hamilton 2.0 (GMF)"
+    tier: B
+    type: research
+    url: "https://securingdemocracy.gmfus.org/"
+    license: cite-with-attribution
+    mode: feed
+    cadence: weekly
+    added: "2026-07"
+    note: "追蹤國家媒體、外交官敘事（含中國）的 dashboard；敘事層佐證。"
+
+  - id: clemson-mfh
+    org: "Clemson Media Forensics Hub"
+    tier: B
+    type: academic
+    url: "https://www.clemson.edu/centers-institutes/watt/hub/"
+    license: cite-with-attribution
+    mode: manual
+    cadence: on-alert
+    added: "2026-07"
+    note: "Spamouflage／中國 IO 專研（Linvill & Warren）。"
+
+  - id: sio-archive
+    org: "Stanford Internet Observatory (archived)"
+    tier: B
+    type: academic
+    url: "https://github.com/stanfordio/publications"
+    license: cite-with-attribution
+    mode: manual
+    cadence: on-alert
+    added: "2026-07"
+    note: "已停運；歷史 takedown 分析，僅供引用。"
+
+  - id: jfc-japan
+    org: "Japan Fact-check Center (JFC)"
+    tier: B
+    type: factcheck
+    url: "https://factcheckcenter.jp/"
+    license: cite-with-attribution
+    mode: feed
+    cadence: daily
+    added: "2026-07"
+    note: "對日中國敘事查核；印太對日軸。"
+
+  - id: odni
+    org: "US ODNI — Annual Threat Assessment"
+    tier: A
+    type: gov-report
+    url: "https://www.odni.gov/"
+    license: gov-open
+    mode: manual
+    cadence: yearly
+    added: "2026-07"
+    note: "官方年度威脅評估，點名中國影響作戰。"
+
+# ─────────────────────────────────────────────────────────────
+# 既有已在使用（已隱含核可，資料集 data/db.js 已引用）
+# ─────────────────────────────────────────────────────────────
+existing:
+  tier_A:
+    - "國家安全局 NSB (nsb.gov.tw) — gov-report"
+    - "IORG 台灣資訊環境研究中心 (iorg.tw) — research/factcheck"
+    - "Doublethink Lab 台灣民主實驗室 (medium.com/doublethinklab) — research"
+    - "FactLink 數位素養實驗室 (factlink.tw) — research/OSINT"
+    - "Meta — Adversarial Threat Reports — platform-threat-report"
+    - "Google TAG / Mandiant — platform-threat-report"
+    - "Microsoft Threat Analysis Center (MTAC) — platform-threat-report"
+    - "Graphika — research"
+    - "ASPI (含 The Strategist) — research"
+    - "Citizen Lab (U. Toronto) — academic"
+    - "US DOJ — gov-report"
+    - "Vanderbilt Institute of National Security — academic"
+  tier_B:
+    - "Recorded Future (News / Insikt Group)"
+    - "Global Taiwan Institute (GTI)"
+    - "Institute for Strategic Dialogue (ISD)"
+    - "CyberCX"
+    - "ChinaPower (CSIS) / Jamestown Foundation / Lowy Institute / HRW / ProPublica"
+    - "報導者 The Reporter / 自由時報 / 中央社 CNA / Focus Taiwan / TVBS / 風傳媒 Storm / Taiwan Gazette / Taipei Times / CNBC / NYT"
+  tier_C:   # 對手方原始素材，僅存證為敘事證據，永不當事實
+    - "環球時報 Global Times / 中國官媒 — state-media"
+    - "Wikipedia — reference only（僅背景，非主來源）"
+
+# 暫緩（未納入本輪）：TikTok Transparency（漏報中國）、Cloudflare/LinkedIn/Reddit、
+# EU DisinfoLab/EUvsDisinfo（以俄為主）、MyGoPen/Cofacts（資料層日後）、Rappler/SEA（擴張後期）。

@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "NetWeaver STIX-lite 抽取契約",
+  "description": "LLM 抽取的目標形狀（語意層）。serializer 再補 UUID/SRO/必填欄→合法 STIX 2.1。見 docs/STIX-PROFILE.md。",
+  "type": "object",
+  "required": ["report", "objects", "relationships"],
+  "properties": {
+    "report": {
+      "type": "object",
+      "required": ["name", "url", "org", "published"],
+      "properties": {
+        "name": {"type": "string"},
+        "url": {"type": "string"},
+        "org": {"type": "string"},
+        "published": {"type": "string"},
+        "type": {"type": "string"}
+      }
+    },
+    "objects": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["tmp_id", "kind"],
+        "properties": {
+          "tmp_id": {"type": "string"},
+          "kind": {"enum": ["campaign","intrusion-set","threat-actor","identity","location","tool","infrastructure","x-dad-narrative","x-dad-channel","x-dad-media-content","x-dad-event","url","ipv4-addr","email-addr","domain-name"]},
+          "name": {"type": "string"},
+          "description": {"type": "string"},
+          "first_seen": {"type": "string"},
+          "aliases": {"type": "array", "items": {"type": "string"}},
+          "identity_class": {"type": "string"},
+          "country": {"type": "string"},
+          "channel_type": {"type": "string"},
+          "content_type": {"type": "string"},
+          "value": {"type": "string"},
+          "confidence": {"enum": ["low","medium","high"]},
+          "evidence": {"type": "array", "items": {"$ref": "#/$defs/evidence"}}
+        }
+      }
+    },
+    "relationships": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["source", "type", "target"],
+        "properties": {
+          "source": {"type": "string"},
+          "type": {"enum": ["related-to","uses","targets","attributed-to","x-dad-publishes","x-dad-amplifies","x-dad-leverages"]},
+          "target": {"type": "string"},
+          "note": {"type": "string"},
+          "confidence": {"enum": ["low","medium","high"]},
+          "evidence": {"type": "array", "items": {"$ref": "#/$defs/evidence"}}
+        }
+      }
+    }
+  },
+  "$defs": {
+    "evidence": {
+      "type": "object",
+      "required": ["quote", "source_url"],
+      "properties": {
+        "quote": {"type": "string"},
+        "source_url": {"type": "string"},
+        "hedge": {"type": "string"},
+        "span": {}
+      }
+    }
+  }
+}

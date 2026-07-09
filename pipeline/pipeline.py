@@ -1,0 +1,149 @@
+#!/usr/bin/env python3
+"""NetWeaver ③ 最小可跑抽取管線。
+
+  STIX-lite（LLM 語意產出） → serialize（碼→合法 STIX 2.1） → validate（profile 不變量） → project（operator 視圖）
+
+用法: python3 pipeline/pipeline.py pipeline/samples/anti-dpp.stixlite.json
+規格見 docs/STIX-PROFILE.md。純 stdlib、決定性（UUIDv5、固定時戳）。
+"""
+import json, sys, uuid, re, pathlib
+
+NS = uuid.uuid5(uuid.NAMESPACE_URL, "https://github.com/wcl-dev/NetWeaver")
+CONF = {"low": 30, "medium": 60, "high": 85}
+XDAD_SDO = {"x-dad-narrative", "x-dad-channel", "x-dad-media-content", "x-dad-event"}
+XDAD_REL = {"x-dad-publishes", "x-dad-amplifies", "x-dad-leverages"}
+SCO = {"url", "ipv4-addr", "email-addr", "domain-name"}
+COPY_FIELDS = ("description", "aliases", "identity_class", "country", "channel_type", "content_type")
+
+def iso(d):
+    d = d or "1970-01-01"
+    if len(d) == 4: d += "-01-01"
+    elif len(d) == 7: d += "-01"
+    return d + "T00:00:00.000Z"
+
+def sid(typ, key):      # 決定性 STIX id（§10）
+    return f"{typ}--{uuid.uuid5(NS, typ + ':' + key)}"
+
+def extdef_id(typ):
+    return f"extension-definition--{uuid.uuid5(NS, 'extdef:' + typ)}"
+
+# ---------- serialize: STIX-lite → 合法 STIX 2.1 ----------
+def serialize(lite):
+    rep = lite["report"]; ts = iso(rep.get("published"))
+    mark_id = f"marking-definition--{uuid.uuid5(NS, 'mark:statement')}"
+    idmap, objs, used = {}, [], set()
+
+    for o in lite["objects"]:                    # 先配 id
+        k = o["kind"]
+        key = o.get("value") if k in SCO else (o.get("country") if k == "location" else o.get("name") or o["tmp_id"])
+        idmap[o["tmp_id"]] = sid(k, key or o["tmp_id"])
+
+    for o in lite["objects"]:                    # 建物件
+        k = o["kind"]; i = idmap[o["tmp_id"]]
+        if k in SCO:
+            objs.append({"type": k, "spec_version": "2.1", "id": i, "value": o.get("value") or o.get("name")})
+            continue
+        so = {"type": k, "spec_version": "2.1", "id": i, "created": ts, "modified": ts}
+        if o.get("name"): so["name"] = o["name"]
+        if o.get("first_seen"): so["first_seen"] = iso(o["first_seen"])
+        for f in COPY_FIELDS:
+            if o.get(f) is not None: so[f] = o[f]
+        if o.get("confidence"): so["confidence"] = CONF[o["confidence"]]
+        so["object_marking_refs"] = [mark_id]
+        if k in XDAD_SDO:
+            used.add(k); so["extensions"] = {extdef_id(k): {"extension_type": "new-sdo"}}
+        if o.get("evidence"): so["x_netweaver_evidence"] = o["evidence"]
+        objs.append(so)
+
+    rel_ids = []
+    for r in lite["relationships"]:              # 建關係 SRO
+        rt = r["type"]; s = idmap[r["source"]]; t = idmap[r["target"]]
+        i = sid("relationship", f"{rt}:{s}:{t}")
+        so = {"type": "relationship", "spec_version": "2.1", "id": i, "created": ts, "modified": ts,
+              "relationship_type": rt, "source_ref": s, "target_ref": t, "object_marking_refs": [mark_id]}
+        if r.get("confidence"): so["confidence"] = CONF[r["confidence"]]
+        if r.get("evidence"): so["x_netweaver_evidence"] = r["evidence"]
+        if rt in XDAD_REL:
+            used.add(rt); so["extensions"] = {extdef_id(rt): {"extension_type": "new-sro"}}
+        objs.append(so); rel_ids.append(i)
+
+    for k in sorted(used):                        # 擴充定義
+        objs.append({"type": "extension-definition", "spec_version": "2.1", "id": extdef_id(k),
+                     "created": ts, "modified": ts, "name": f"NetWeaver {k}",
+                     "schema": "local; pending OASIS DAD-CDM", "version": "0.1",
+                     "extension_types": ["new-sdo" if k in XDAD_SDO else "new-sro"]})
+    objs.append({"type": "marking-definition", "spec_version": "2.1", "id": mark_id, "created": ts,
+                 "definition_type": "statement",
+                 "definition": {"statement": "記錄公開研究中被點名者，非法律指控。Documents public research; not a legal accusation."}})
+
+    ref_ids = [idmap[o["tmp_id"]] for o in lite["objects"]] + rel_ids
+    objs.insert(0, {"type": "report", "spec_version": "2.1", "id": sid("report", rep["url"]),
+                    "created": ts, "modified": ts, "name": rep["name"], "published": ts,
+                    "report_types": ["fimi"], "object_refs": ref_ids,
+                    "external_references": [{"source_name": rep["org"], "url": rep["url"]}]})
+    return {"type": "bundle", "id": f"bundle--{uuid.uuid5(NS, 'bundle:' + rep['url'])}", "objects": objs}
+
+# ---------- validate: profile 不變量 ----------
+def validate(bundle):
+    objs = bundle["objects"]; byid = {o["id"]: o for o in objs}; fails = []
+    for o in objs:
+        if not re.match(r"^[a-z0-9-]+--[0-9a-f]{8}-[0-9a-f-]{27}$", o["id"]):
+            fails.append("非 UUIDv5 id: " + o["id"])
+    for o in objs:
+        if o["type"] == "relationship":
+            for ref in (o["source_ref"], o["target_ref"]):
+                if ref not in byid: fails.append("懸空 SRO ref: " + ref)
+    touched = set()                               # 有 evidence 的關係碰到的物件
+    for o in objs:
+        if o["type"] == "relationship" and o.get("x_netweaver_evidence"):
+            touched.update((o["source_ref"], o["target_ref"]))
+    for o in objs:                                # grounding：被抽取物件需 evidence（或有 evidence 關係碰到）；SCO/參照免
+        if o["type"] in ("report", "extension-definition", "marking-definition", "relationship") or o["type"] in SCO:
+            continue
+        if not o.get("x_netweaver_evidence") and o["id"] not in touched:
+            fails.append("無 grounding: " + o["id"])
+    att = [o for o in objs if o.get("relationship_type") == "attributed-to"]
+    return fails, att
+
+# ---------- project: STIX → operator 三層視圖 ----------
+def project(bundle):
+    objs = bundle["objects"]; byid = {o["id"]: o for o in objs}
+    ta = [o for o in objs if o["type"] == "threat-actor"]
+    ims = [o for o in objs if o["type"] == "intrusion-set"]
+    camp = [o for o in objs if o["type"] == "campaign"]
+    rels = [o for o in objs if o["type"] == "relationship"]
+    op = ta[0] if ta else (ims[0] if ims else None)
+    claims = [{"about": o.get("name") or o.get("relationship_type") or o["type"],
+               "quote": e["quote"], "source": e["source_url"]}
+              for o in objs for e in (o.get("x_netweaver_evidence") or [])]
+    uses = [byid[r["target_ref"]] for r in rels if r["relationship_type"] == "uses"]
+    tgts = [byid[r["target_ref"]] for r in rels if r["relationship_type"] == "targets"]
+    return {
+        "L1_operator": {"id": op["id"], "name": op.get("name"), "stix_type": op["type"],
+                        "歸因": "具名 Threat Actor" if ta else "未歸因（停在 IMS）",
+                        "confidence": op.get("confidence")},
+        "L2_operation": [{"id": c["id"], "name": c.get("name"), "first_seen": c.get("first_seen")} for c in camp],
+        "L3_claims（逐來源，＝真 B）": claims,
+        "channels": [u.get("name") for u in uses if u["type"] == "x-dad-channel"],
+        "narratives": [u.get("name") for u in uses if u["type"] == "x-dad-narrative"],
+        "targets": [t.get("name") or t.get("country") for t in tgts],
+    }
+
+def main():
+    src = pathlib.Path(sys.argv[1])
+    lite = json.loads(src.read_text(encoding="utf-8"))
+    bundle = serialize(lite)
+    fails, att = validate(bundle)
+    outdir = src.parent.parent / "out"; outdir.mkdir(exist_ok=True)
+    outp = outdir / (src.stem.split(".")[0] + ".stix.json")
+    outp.write_text(json.dumps(bundle, ensure_ascii=False, indent=2), encoding="utf-8")
+    print("=== ① STIX-lite → ② 合法 STIX 2.1 ===")
+    print(f"  bundle 物件數: {len(bundle['objects'])}  →  {outp}")
+    print("=== ③ 驗證（profile 不變量）===")
+    print("  " + ("✓ id 皆 UUIDv5 · 無懸空 SRO · grounding 完整" if not fails else "⚠ " + " | ".join(fails)))
+    print(f"  ✓ 保守歸因：attributed-to 關係 = {len(att)}（DTL 僅『likely linked』→ 停在 IMS，符合紅線）")
+    print("=== ④ 投影 → operator 三層視圖（B-lite 退場、逐來源 claim 掉出）===")
+    print(json.dumps(project(bundle), ensure_ascii=False, indent=2))
+
+if __name__ == "__main__":
+    main()

@@ -7,9 +7,9 @@
  */
 window.NETWEAVER_DB = {
   "meta": {
-    "version": "0.3.0",
+    "version": "0.3.1",
     "updated": "2026-06",
-    "note": "57 行為者 / 33 事件 / 74 來源 / 35 敘事，整理自 NSB、IORG、Doublethink Lab、Mandiant/Google、Meta、Graphika、ASPI 等公開報告。"
+    "note": "57 行為者 / 33 事件 / 69 來源 / 35 敘事，整理自 NSB、IORG、Doublethink Lab、FactLink、Mandiant/Google、Meta、Graphika、ASPI、Citizen Lab 等公開報告與數位調查。"
   },
   "entities": [
     {
@@ -282,7 +282,7 @@ window.NETWEAVER_DB = {
       ],
       "source_ids": [
         "src-meta-2023",
-        "src-doj-2023",
+        "src-doj-912",
         "src-nsb-2026",
         "src-record-spamouflage"
       ],
@@ -596,8 +596,7 @@ window.NETWEAVER_DB = {
         "src-mandiant-haienergy-2022",
         "src-mandiant-haienergy-2023",
         "src-google-glassbridge",
-        "src-nsb-2026",
-        "src-mandiant-haienergy"
+        "src-nsb-2026"
       ],
       "confidence": "high"
     },
@@ -787,11 +786,10 @@ window.NETWEAVER_DB = {
         "src-graphika-spamouflage",
         "src-meta-2023",
         "src-record-spamouflage",
-        "src-google-dragonbridge",
+        "src-google-dragonbridge-2024",
         "src-nsb-2026",
         "src-graphika-americans",
         "src-meta-q3-2023",
-        "src-google-dragonbridge-2024",
         "src-mtac-2024",
         "src-rf-empire-dragon",
         "src-aspi-2024",
@@ -2303,7 +2301,7 @@ window.NETWEAVER_DB = {
       "source_ids": [
         "src-dtl-multiverse",
         "src-mtac-2024",
-        "src-aspi-2024election",
+        "src-aspi-2024",
         "src-iorg-usskep1",
         "src-nsb-2026",
         "src-nsb-2025",
@@ -2845,7 +2843,9 @@ window.NETWEAVER_DB = {
         "mps"
       ],
       "source_ids": [
-        "src-nsb-2026"
+        "src-nsb-2026",
+        "src-taipei-times-nsb-2026",
+        "src-storm-nsb-2026"
       ],
       "confidence": "high"
     },
@@ -2963,10 +2963,10 @@ window.NETWEAVER_DB = {
   "sources": [
     {
       "id": "src-nsb-2026",
-      "title": "Analysis of China's Cognitive Warfare Tactics Against Taiwan in 2025 / 2024年中共爭訊傳散態樣分析",
-      "org": "NSB (台灣國家安全局)",
-      "url": "https://www.nsb.gov.tw/zh/assets/documents/新聞稿/2024年中共爭訊傳散態樣分析(報告全文)-中文.pdf",
-      "date": "2025-01",
+      "title": "2025 年中共對臺認知作戰操作手法分析 / Analysis of China's Cognitive Warfare Tactics Against Taiwan in 2025",
+      "org": "國家安全局 National Security Bureau (NSB), Taiwan",
+      "url": "https://www.nsb.gov.tw/zh/assets/documents/%E6%96%B0%E8%81%9E%E7%A8%BF/023b202c-8bc9-4b19-a8eb-c0d0b5809f99.pdf",
+      "date": "2026-01-10",
       "type": "gov-report"
     },
     {
@@ -3024,14 +3024,6 @@ window.NETWEAVER_DB = {
       "url": "https://about.fb.com/news/2023/08/raising-online-defenses/",
       "date": "2023-08",
       "type": "platform-report"
-    },
-    {
-      "id": "src-doj-2023",
-      "title": "34 Officers of People's Republic of China National Police Charged with Perpetrating Transnational Repression",
-      "org": "US Department of Justice (EDNY)",
-      "url": "https://www.justice.gov/usao-edny/pr/34-officers-peoples-republic-china-national-police-charged-perpetrating-transnational",
-      "date": "2023-04",
-      "type": "gov-report"
     },
     {
       "id": "src-record-spamouflage",
@@ -3162,14 +3154,6 @@ window.NETWEAVER_DB = {
       "type": "ngo-report"
     },
     {
-      "id": "src-google-dragonbridge",
-      "title": "Google disrupted DRAGONBRIDGE activity in Q1 2024",
-      "org": "Google Threat Analysis Group",
-      "url": "https://blog.google/threat-analysis-group/google-disrupted-dragonbridge-activity-q1-2024/",
-      "date": "2024-06",
-      "type": "platform-report"
-    },
-    {
       "id": "src-dtl-impersonation",
       "title": "Inauthentic Accounts Impersonate Taiwanese to Attack Political Party",
       "org": "Doublethink Lab",
@@ -3290,14 +3274,6 @@ window.NETWEAVER_DB = {
       "type": "platform-report"
     },
     {
-      "id": "src-aspi-2024election",
-      "title": "As Taiwan voted, Beijing spammed AI avatars, faked paternity tests and 'leaked' documents",
-      "org": "ASPI (The Strategist)",
-      "url": "https://www.aspistrategist.org.au/as-taiwan-voted-beijing-spammed-ai-avatars-faked-paternity-tests-and-leaked-fake-documents/",
-      "date": "2024-01",
-      "type": "ngo-report"
-    },
-    {
       "id": "src-iorg-usskep1",
       "title": "疑美論和它們的產地 / US Skepticism Narratives and Where They Come From",
       "org": "IORG",
@@ -3338,20 +3314,12 @@ window.NETWEAVER_DB = {
       "type": "gov-report"
     },
     {
-      "id": "src-nsb-2026-zh",
-      "title": "2025 年中共對臺認知作戰操作手法分析（中文版）",
-      "org": "國家安全局 National Security Bureau (NSB), Taiwan",
-      "url": "https://www.nsb.gov.tw/zh/assets/documents/%E6%96%B0%E8%81%9E%E7%A8%BF/023b202c-8bc9-4b19-a8eb-c0d0b5809f99.pdf",
-      "date": "2026-01-10",
-      "type": "gov-report"
-    },
-    {
       "id": "src-vanderbilt-golaxy-2025",
-      "title": "The GoLaxy Documents",
-      "org": "Vanderbilt University, Institute of National Security (USA)",
+      "title": "范德堡智庫揭露 GoLaxy 對台 AI 資訊操作文件（中央社報導）",
+      "org": "中央社 CNA",
       "url": "https://www.cna.com.tw/news/aopl/202508060159.aspx",
       "date": "2025-08-06",
-      "type": "academic"
+      "type": "news"
     },
     {
       "id": "src-taipei-times-nsb-2026",
@@ -3479,14 +3447,6 @@ window.NETWEAVER_DB = {
       "org": "Meta",
       "url": "https://nuari.org/hubfs/Meta%20Adversarial%20Threat%20Report%20May%202025.pdf",
       "date": "2025-05-31",
-      "type": "platform-report"
-    },
-    {
-      "id": "src-mandiant-haienergy",
-      "title": "Pro-PRC HaiEnergy Campaign Leverages U.S. News Websites and Infrastructure Linked to Shanghai Haixun",
-      "org": "Google / Mandiant Threat Intelligence",
-      "url": "https://cloud.google.com/blog/topics/threat-intelligence/pro-prc-haienergy-us-news/",
-      "date": "2023-07-24",
       "type": "platform-report"
     },
     {
@@ -3862,7 +3822,7 @@ window.NETWEAVER_DB = {
       "name_en": "Calls for Taiwan to 'surrender'",
       "summary_zh": "DRAGONBRIDGE 散布解放軍軍事影片並呼籲蔡英文及其盟友『投降』，營造軍事威懾與失敗主義氛圍。",
       "source_ids": [
-        "src-google-dragonbridge"
+        "src-google-dragonbridge-2024"
       ],
       "parent": "nar-prc-fimi-taiwan"
     },

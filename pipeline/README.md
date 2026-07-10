@@ -6,11 +6,12 @@
 ## 流程
 
 ```
-② ingest ─▶ ① extract(LLM) ─▶ derive(碼) ─▶ serialize ─▶ validate ─▶ project ─▶ compile→db.js
- RSS/快照     mention＋逐字述詞    判斷層        合法STIX      不變量       operator三層   前端真B
+② ingest ─▶ filter(碼) ─▶ ① extract(LLM) ─▶ derive(碼) ─▶ serialize ─▶ validate ─▶ project ─▶ compile→db.js
+ RSS/快照    相關性閘        mention＋逐字述詞    判斷層        合法STIX      不變量       operator三層   前端真B
 ```
 
-- **ingest**（`ingest.py`＋`feeds.json`）：讀 feed → 抓 RSS/Atom → 偵測新項目（cursor）→ 落地不可變快照＋provenance manifest（tier/license/hash/discovered_at，`extraction_status=pending`）到 `raw/`。
+- **ingest**（`ingest.py`＋`feeds.json`）：讀 feed → 抓 RSS/Atom → 偵測新項目（cursor）→ 落地不可變快照＋provenance manifest（tier/license/hash/discovered_at，title/summary，`extraction_status=pending`）到 `raw/`。
+- **filter**（`filter.py`）：抽取前的**碼**相關性閘——比對 feed 標題＋摘要 vs 關鍵字（FIMI／中國）＋已知 PRC 行為者清單。相關 → `extraction_status=ready`；否則 `filtered-out`。**模型不參與此篩選**（延續碼判斷），清單可調。比對標題＋摘要而非整頁，避開新聞網站 chrome 造成的誤收。
 - **extract**（`extract.py`）：landed 報告文字 → LLM（forced JSON schema）→ `mentions＋逐字 predicate＋引文`。**碼端 span-check**：引文對不上原文即丟（擋幻覺）。**provider-agnostic**（見下）。
 - **derive**（`derive.py`）：碼的判斷層——`coarse_type→kind`（詞庫＋registry 查表）、`predicate→relation`（反升級 ladder）、`confidence`（rubric）、`歸因`（控制述詞＋信心→attributed-to，人工閘）、`role`。
 - **serialize / validate / project**（`pipeline.py`）：STIX-lite → 合法 STIX 2.1（UUIDv5、`x-dad-*` 擴充、marking）→ 驗證 profile 不變量 → 投影成 operator 三層。
@@ -21,6 +22,9 @@
 ```bash
 # ② 抓來源、落地快照（再跑只抓更新）
 python3 pipeline/ingest.py
+
+# 相關性閘（碼）：標記 ready / filtered-out，只讓相關項目進 ③
+python3 pipeline/filter.py
 
 # 端到端測試（extract→derive→serialize→project）；provider 由環境變數決定（預設地端 Ollama）
 python3 pipeline/extract.py
@@ -63,6 +67,7 @@ NW_LLM_PROVIDER=openai NW_LLM_BASE_URL=https://api.openai.com NW_LLM_MODEL=gpt-.
 pipeline/
 ├── feeds.json               # ② ingest feed 設定（RSS 子集）
 ├── ingest.py                # ② 抓 feed→落地快照＋manifest（cursor）
+├── filter.py                # 相關性閘（碼）：標題＋摘要 vs 關鍵字/PRC 行為者
 ├── extraction.schema.json   # 模型抽取契約（mentions＋assertions）
 ├── extract.py               # ① LLM 抽取 client（provider-agnostic）＋span-check
 ├── derive.py                # 碼的判斷層（ladder/rubric/registry）
@@ -76,6 +81,7 @@ pipeline/
 
 ## 下一步
 
-- **relevance 過濾**：ingest 落地全部；抽取前用碼（關鍵字/實體比對）篩「中國認知作戰」相關，模型不 gate。
+- **串成迴圈**：`ingest → 挑 ready → extract → derive → compile` 一鍵／排程自動跑。
+- **filter 精修**：關鍵字／行為者清單擴充；必要時加正文（非 chrome）抽取以提升 recall。
 - **抽取品質**：few-shot／換模型（如台灣微調 Llama-Breeze）／輕量微調——碼層不動。
 - **serializer 補完**：官方 DISARM bundle 引用、對照 STIX 官方 schema、實體解析與 `modified` 版本化。

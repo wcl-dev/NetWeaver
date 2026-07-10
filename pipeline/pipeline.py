@@ -113,17 +113,24 @@ def project(bundle):
     camp = [o for o in objs if o["type"] == "campaign"]
     rels = [o for o in objs if o["type"] == "relationship"]
     op = ta[0] if ta else (ims[0] if ims else None)
+    if op is None:                                # 供應商/公司型：取 campaign related-to 的 identity 當 operator
+        for r in rels:
+            if r["relationship_type"] in ("related-to", "attributed-to"):
+                t = byid.get(r["target_ref"])
+                if t and t["type"] == "identity": op = t; break
+    attributed = any(r["relationship_type"] == "attributed-to" for r in rels)
     claims = [{"about": o.get("name") or o.get("relationship_type") or o["type"],
                "quote": e["quote"], "source": e["source_url"]}
               for o in objs for e in (o.get("x_netweaver_evidence") or [])]
     uses = [byid[r["target_ref"]] for r in rels if r["relationship_type"] == "uses"]
     tgts = [byid[r["target_ref"]] for r in rels if r["relationship_type"] == "targets"]
     return {
-        "L1_operator": {"id": op["id"], "name": op.get("name"), "stix_type": op["type"],
-                        "歸因": "具名 Threat Actor" if ta else "未歸因（停在 IMS）",
-                        "confidence": op.get("confidence")},
-        "L2_operation": [{"id": c["id"], "name": c.get("name"), "first_seen": c.get("first_seen")} for c in camp],
-        "L3_claims（逐來源，＝真 B）": claims,
+        "operator": {"id": op["id"] if op else None, "name": op.get("name") if op else None,
+                     "stix_type": op["type"] if op else None,
+                     "attribution": "具名（attributed-to，需人工確認）" if attributed else "未歸因（停在 IMS/identity）",
+                     "confidence": op.get("confidence") if op else None},
+        "operations": [{"id": c["id"], "name": c.get("name"), "first_seen": c.get("first_seen")} for c in camp],
+        "claims": claims,
         "channels": [u.get("name") for u in uses if u["type"] == "x-dad-channel"],
         "narratives": [u.get("name") for u in uses if u["type"] == "x-dad-narrative"],
         "targets": [t.get("name") or t.get("country") for t in tgts],
@@ -141,9 +148,12 @@ def main():
     print(f"  bundle 物件數: {len(bundle['objects'])}  →  {outp}")
     print("=== ③ 驗證（profile 不變量）===")
     print("  " + ("✓ id 皆 UUIDv5 · 無懸空 SRO · grounding 完整" if not fails else "⚠ " + " | ".join(fails)))
-    print(f"  ✓ 保守歸因：attributed-to 關係 = {len(att)}（DTL 僅『likely linked』→ 停在 IMS，符合紅線）")
-    print("=== ④ 投影 → operator 三層視圖（B-lite 退場、逐來源 claim 掉出）===")
-    print(json.dumps(project(bundle), ensure_ascii=False, indent=2))
+    print(f"  歸因閘：attributed-to 關係 = {len(att)}" + ("（0＝停在 IMS，符合紅線）" if not att else "（>0＝來源明確歸因 → 需人工確認）"))
+    p = project(bundle)
+    print("=== ④ 投影 → operator 三層視圖（逐來源 claim ＝ 真 B）===")
+    print(json.dumps({"L1_operator": p["operator"], "L2_operation": p["operations"],
+                      "L3_claims": p["claims"], "channels": p["channels"],
+                      "narratives": p["narratives"], "targets": p["targets"]}, ensure_ascii=False, indent=2))
 
 if __name__ == "__main__":
     main()

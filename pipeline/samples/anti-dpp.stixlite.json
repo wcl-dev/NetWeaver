@@ -18,6 +18,7 @@
     {
       "tmp_id": "ims", "kind": "intrusion-set",
       "name": "假冒台灣人反民進黨帳號網絡",
+      "nw_ref": "anti-dpp-impersonation",
       "aliases": ["Anti-DPP Taiwanese-Impersonation Network"], "confidence": "medium",
       "evidence": [{ "quote": "DTL assesses the network can likely be linked to the PRC", "source_url": "https://medium.com/doublethinklab/inauthentic-accounts-impersonate-taiwanese-to-attack-political-party-c7d04d5e1e13", "hedge": "assessed-likely" }]
     },

@@ -410,7 +410,29 @@ window.NETWEAVER_DB = {
         "src-vanderbilt-golaxy-2025",
         "src-nyt-golaxy"
       ],
-      "confidence": "high"
+      "confidence": "high",
+      "claims": [
+        {
+          "text": "3,692 virtual personas operable across 12 platforms",
+          "source_id": "src-dtl-golaxy",
+          "about": "GoLaxy AI 影響力作業（對台 2024 大選）"
+        },
+        {
+          "text": "GoLaxy built detailed profiles of 170+ Taiwanese political figures",
+          "source_id": "src-dtl-golaxy",
+          "about": "中科天璣 GoLaxy"
+        },
+        {
+          "text": "the campaign was run using GoLaxy's AI-driven smart propaganda system",
+          "source_id": "src-dtl-golaxy",
+          "about": "related-to"
+        },
+        {
+          "text": "weekly monitoring of 600,000+ Taiwan-related items during the 2024 election",
+          "source_id": "src-dtl-golaxy",
+          "about": "targets"
+        }
+      ]
     },
     {
       "id": "meiya-pico",
@@ -798,7 +820,39 @@ window.NETWEAVER_DB = {
         "src-meta-q1-2025",
         "src-dtl-multiverse"
       ],
-      "confidence": "high"
+      "confidence": "high",
+      "claims": [
+        {
+          "text": "龍橋（Dragonbridge）為公安部僱用的網路水軍，於全球逾180個社群平臺、以逾20種語言進行影響力操作",
+          "source_id": "src-nsb-2026",
+          "about": "Dragonbridge 對台認知作戰（NSB 2025）"
+        },
+        {
+          "text": "龍橋（Dragonbridge）為公安部僱用的網路水軍",
+          "source_id": "src-nsb-2026",
+          "about": "Spamouflage"
+        },
+        {
+          "text": "公安部運用龍橋（Dragonbridge）網軍對台散布爭訊",
+          "source_id": "src-nsb-2026",
+          "about": "公安部 Ministry of Public Security"
+        },
+        {
+          "text": "Dragonbridge 跨逾180個平台的行動",
+          "source_id": "src-nsb-2026",
+          "about": "related-to"
+        },
+        {
+          "text": "龍橋（Dragonbridge）為公安部僱用之網路水軍",
+          "source_id": "src-nsb-2026",
+          "about": "attributed-to"
+        },
+        {
+          "text": "針對台灣議題散布不實訊息",
+          "source_id": "src-nsb-2026",
+          "about": "targets"
+        }
+      ]
     },
     {
       "id": "anti-dpp-impersonation",
@@ -842,7 +896,54 @@ window.NETWEAVER_DB = {
       "source_ids": [
         "src-dtl-impersonation"
       ],
-      "confidence": "high"
+      "confidence": "high",
+      "claims": [
+        {
+          "text": "51 inauthentic accounts impersonating Taiwanese posted content attacking the DPP",
+          "source_id": "src-dtl-impersonation",
+          "about": "假冒台灣人反民進黨 Threads 帳號行動（2024–2025）"
+        },
+        {
+          "text": "DTL assesses the network can likely be linked to the PRC",
+          "source_id": "src-dtl-impersonation",
+          "about": "假冒台灣人反民進黨帳號網絡"
+        },
+        {
+          "text": "275 near-identical posts of the 我是台灣人我反綠 type",
+          "source_id": "src-dtl-impersonation",
+          "about": "我是台灣人我反綠"
+        },
+        {
+          "text": "44 of 51 accounts reused photos of Taiwanese and some Thai/Malaysian influencers; simplified-Chinese slips and a Hong Kong phone number appeared",
+          "source_id": "src-dtl-impersonation",
+          "about": "Threads 假冒帳號群（51）"
+        },
+        {
+          "text": "the operation was run by the network of 51 accounts",
+          "source_id": "src-dtl-impersonation",
+          "about": "related-to"
+        },
+        {
+          "text": "posts pushed the 我是台灣人我反綠 narrative",
+          "source_id": "src-dtl-impersonation",
+          "about": "uses"
+        },
+        {
+          "text": "operated via 51 inauthentic Threads accounts",
+          "source_id": "src-dtl-impersonation",
+          "about": "uses"
+        },
+        {
+          "text": "targeting Taiwanese audiences",
+          "source_id": "src-dtl-impersonation",
+          "about": "targets"
+        },
+        {
+          "text": "attacking the Democratic Progressive Party (DPP)",
+          "source_id": "src-dtl-impersonation",
+          "about": "targets"
+        }
+      ]
     },
     {
       "id": "magaflage",

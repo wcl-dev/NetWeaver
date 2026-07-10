@@ -1,0 +1,178 @@
+{
+  "type": "bundle",
+  "id": "bundle--55a5126f-3353-580d-8f34-2b9474b1c103",
+  "objects": [
+    {
+      "type": "report",
+      "spec_version": "2.1",
+      "id": "report--673876c8-4469-5a34-afca-a9dc901f8e66",
+      "created": "2026-01-01T00:00:00.000Z",
+      "modified": "2026-01-01T00:00:00.000Z",
+      "name": "2025 年中共對臺認知作戰操作手法分析",
+      "published": "2026-01-01T00:00:00.000Z",
+      "report_types": [
+        "fimi"
+      ],
+      "object_refs": [
+        "campaign--c1ddf8b9-9bd8-5f0f-b5da-fca351302622",
+        "intrusion-set--e2b77b7d-320c-511b-b836-069be233aab5",
+        "threat-actor--310d9776-3868-5f1e-b59d-2801718644a4",
+        "location--0a4b075b-ef1a-5836-8ff6-c3c42010953e",
+        "relationship--2227b98a-3ab5-5f42-8609-4e0b0a2586f0",
+        "relationship--ef46b974-0ecd-505a-97b7-86afec7bb1b4",
+        "relationship--fde56b52-8dae-58d6-9a69-c7544f750d7e"
+      ],
+      "external_references": [
+        {
+          "source_name": "國家安全局 National Security Bureau (NSB), Taiwan",
+          "url": "https://www.nsb.gov.tw/zh/assets/documents/%E6%96%B0%E8%81%9E%E7%A8%BF/023b202c-8bc9-4b19-a8eb-c0d0b5809f99.pdf"
+        }
+      ]
+    },
+    {
+      "type": "campaign",
+      "spec_version": "2.1",
+      "id": "campaign--c1ddf8b9-9bd8-5f0f-b5da-fca351302622",
+      "created": "2026-01-01T00:00:00.000Z",
+      "modified": "2026-01-01T00:00:00.000Z",
+      "name": "Dragonbridge 對台認知作戰（NSB 2025）",
+      "first_seen": "2019-01-01T00:00:00.000Z",
+      "description": "公安部運用的網軍在全球逾180個平台、20多種語言散布不實訊息，含對台議題。",
+      "confidence": 85,
+      "object_marking_refs": [
+        "marking-definition--30837352-4bcb-536d-ab32-86f489a09985"
+      ],
+      "x_netweaver_evidence": [
+        {
+          "quote": "龍橋（Dragonbridge）為公安部僱用的網路水軍，於全球逾180個社群平臺、以逾20種語言進行影響力操作",
+          "source_url": "https://www.nsb.gov.tw/zh/assets/documents/%E6%96%B0%E8%81%9E%E7%A8%BF/023b202c-8bc9-4b19-a8eb-c0d0b5809f99.pdf",
+          "hedge": "official-attribution"
+        }
+      ]
+    },
+    {
+      "type": "intrusion-set",
+      "spec_version": "2.1",
+      "id": "intrusion-set--e2b77b7d-320c-511b-b836-069be233aab5",
+      "created": "2026-01-01T00:00:00.000Z",
+      "modified": "2026-01-01T00:00:00.000Z",
+      "name": "Spamouflage",
+      "aliases": [
+        "Dragonbridge",
+        "龍橋"
+      ],
+      "confidence": 85,
+      "object_marking_refs": [
+        "marking-definition--30837352-4bcb-536d-ab32-86f489a09985"
+      ],
+      "x_netweaver_evidence": [
+        {
+          "quote": "龍橋（Dragonbridge）為公安部僱用的網路水軍",
+          "source_url": "https://www.nsb.gov.tw/zh/assets/documents/%E6%96%B0%E8%81%9E%E7%A8%BF/023b202c-8bc9-4b19-a8eb-c0d0b5809f99.pdf",
+          "hedge": "official-attribution"
+        }
+      ]
+    },
+    {
+      "type": "threat-actor",
+      "spec_version": "2.1",
+      "id": "threat-actor--310d9776-3868-5f1e-b59d-2801718644a4",
+      "created": "2026-01-01T00:00:00.000Z",
+      "modified": "2026-01-01T00:00:00.000Z",
+      "name": "公安部 Ministry of Public Security",
+      "confidence": 85,
+      "object_marking_refs": [
+        "marking-definition--30837352-4bcb-536d-ab32-86f489a09985"
+      ],
+      "x_netweaver_evidence": [
+        {
+          "quote": "公安部運用龍橋（Dragonbridge）網軍對台散布爭訊",
+          "source_url": "https://www.nsb.gov.tw/zh/assets/documents/%E6%96%B0%E8%81%9E%E7%A8%BF/023b202c-8bc9-4b19-a8eb-c0d0b5809f99.pdf",
+          "hedge": "official-attribution"
+        }
+      ]
+    },
+    {
+      "type": "location",
+      "spec_version": "2.1",
+      "id": "location--0a4b075b-ef1a-5836-8ff6-c3c42010953e",
+      "created": "2026-01-01T00:00:00.000Z",
+      "modified": "2026-01-01T00:00:00.000Z",
+      "country": "TW",
+      "object_marking_refs": [
+        "marking-definition--30837352-4bcb-536d-ab32-86f489a09985"
+      ]
+    },
+    {
+      "type": "relationship",
+      "spec_version": "2.1",
+      "id": "relationship--2227b98a-3ab5-5f42-8609-4e0b0a2586f0",
+      "created": "2026-01-01T00:00:00.000Z",
+      "modified": "2026-01-01T00:00:00.000Z",
+      "relationship_type": "related-to",
+      "source_ref": "campaign--c1ddf8b9-9bd8-5f0f-b5da-fca351302622",
+      "target_ref": "intrusion-set--e2b77b7d-320c-511b-b836-069be233aab5",
+      "object_marking_refs": [
+        "marking-definition--30837352-4bcb-536d-ab32-86f489a09985"
+      ],
+      "x_netweaver_evidence": [
+        {
+          "quote": "Dragonbridge 跨逾180個平台的行動",
+          "source_url": "https://www.nsb.gov.tw/zh/assets/documents/%E6%96%B0%E8%81%9E%E7%A8%BF/023b202c-8bc9-4b19-a8eb-c0d0b5809f99.pdf",
+          "hedge": "reported"
+        }
+      ]
+    },
+    {
+      "type": "relationship",
+      "spec_version": "2.1",
+      "id": "relationship--ef46b974-0ecd-505a-97b7-86afec7bb1b4",
+      "created": "2026-01-01T00:00:00.000Z",
+      "modified": "2026-01-01T00:00:00.000Z",
+      "relationship_type": "attributed-to",
+      "source_ref": "intrusion-set--e2b77b7d-320c-511b-b836-069be233aab5",
+      "target_ref": "threat-actor--310d9776-3868-5f1e-b59d-2801718644a4",
+      "object_marking_refs": [
+        "marking-definition--30837352-4bcb-536d-ab32-86f489a09985"
+      ],
+      "confidence": 85,
+      "x_netweaver_evidence": [
+        {
+          "quote": "龍橋（Dragonbridge）為公安部僱用之網路水軍",
+          "source_url": "https://www.nsb.gov.tw/zh/assets/documents/%E6%96%B0%E8%81%9E%E7%A8%BF/023b202c-8bc9-4b19-a8eb-c0d0b5809f99.pdf",
+          "hedge": "official-attribution"
+        }
+      ]
+    },
+    {
+      "type": "relationship",
+      "spec_version": "2.1",
+      "id": "relationship--fde56b52-8dae-58d6-9a69-c7544f750d7e",
+      "created": "2026-01-01T00:00:00.000Z",
+      "modified": "2026-01-01T00:00:00.000Z",
+      "relationship_type": "targets",
+      "source_ref": "campaign--c1ddf8b9-9bd8-5f0f-b5da-fca351302622",
+      "target_ref": "location--0a4b075b-ef1a-5836-8ff6-c3c42010953e",
+      "object_marking_refs": [
+        "marking-definition--30837352-4bcb-536d-ab32-86f489a09985"
+      ],
+      "x_netweaver_evidence": [
+        {
+          "quote": "針對台灣議題散布不實訊息",
+          "source_url": "https://www.nsb.gov.tw/zh/assets/documents/%E6%96%B0%E8%81%9E%E7%A8%BF/023b202c-8bc9-4b19-a8eb-c0d0b5809f99.pdf",
+          "hedge": "reported"
+        }
+      ]
+    },
+    {
+      "type": "marking-definition",
+      "spec_version": "2.1",
+      "id": "marking-definition--30837352-4bcb-536d-ab32-86f489a09985",
+      "created": "2026-01-01T00:00:00.000Z",
+      "definition_type": "statement",
+      "definition": {
+        "statement": "記錄公開研究中被點名者，非法律指控。Documents public research; not a legal accusation."
+      }
+    }
+  ]
+}

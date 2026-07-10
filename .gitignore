@@ -1,3 +1,5 @@
 .DS_Store
 *.log
 node_modules/
+pipeline/raw/
+pipeline/ingest_state.json

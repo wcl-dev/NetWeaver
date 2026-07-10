@@ -14,11 +14,11 @@
         "fimi"
       ],
       "object_refs": [
-        "campaign--00427491-e51d-5ccb-a487-b2a810101a9f",
-        "identity--3a126627-0ab7-5177-88bd-7b4d172a8f98",
+        "campaign--2c2f8989-0e45-571a-972e-0e2d55d94c64",
+        "identity--41446fd3-de58-575f-83b8-6aacbd5022b1",
         "location--0a4b075b-ef1a-5836-8ff6-c3c42010953e",
-        "relationship--5f3f3cd8-8ca2-5352-bb48-aac081cb2c1b",
-        "relationship--6c63a9bc-1c89-54b1-8782-1faf7dc64a3a"
+        "relationship--237c3c2e-4f99-5280-a431-492d7c8c2818",
+        "relationship--bf23a910-04fe-502c-b224-02dd66d9230c"
       ],
       "external_references": [
         {
@@ -30,41 +30,36 @@
     {
       "type": "campaign",
       "spec_version": "2.1",
-      "id": "campaign--00427491-e51d-5ccb-a487-b2a810101a9f",
+      "id": "campaign--2c2f8989-0e45-571a-972e-0e2d55d94c64",
       "created": "2026-03-01T00:00:00.000Z",
       "modified": "2026-03-01T00:00:00.000Z",
-      "name": "GoLaxy AI 影響力作業（對台 2024 大選）",
-      "first_seen": "2024-01-01T00:00:00.000Z",
-      "description": "以 AI 虛擬人物跨平台運作，對台側寫政治人物並每週監測選情。",
-      "confidence": 85,
+      "name": "GoLaxy AI 影響力作業（2024 大選）",
+      "confidence": 60,
       "object_marking_refs": [
         "marking-definition--30837352-4bcb-536d-ab32-86f489a09985"
       ],
       "x_netweaver_evidence": [
         {
           "quote": "3,692 virtual personas operable across 12 platforms",
-          "source_url": "https://medium.com/doublethinklab/the-rise-of-ai-in-prc-influence-operations-nine-takeaways-from-the-golaxy-documents-2d6617a753e5",
-          "hedge": "leaked-doc"
+          "source_url": "https://medium.com/doublethinklab/the-rise-of-ai-in-prc-influence-operations-nine-takeaways-from-the-golaxy-documents-2d6617a753e5"
         }
       ]
     },
     {
       "type": "identity",
       "spec_version": "2.1",
-      "id": "identity--3a126627-0ab7-5177-88bd-7b4d172a8f98",
+      "id": "identity--41446fd3-de58-575f-83b8-6aacbd5022b1",
       "created": "2026-03-01T00:00:00.000Z",
       "modified": "2026-03-01T00:00:00.000Z",
-      "name": "中科天璣 GoLaxy",
-      "identity_class": "organization",
-      "confidence": 85,
+      "name": "GoLaxy",
+      "confidence": 60,
       "object_marking_refs": [
         "marking-definition--30837352-4bcb-536d-ab32-86f489a09985"
       ],
       "x_netweaver_evidence": [
         {
           "quote": "GoLaxy built detailed profiles of 170+ Taiwanese political figures",
-          "source_url": "https://medium.com/doublethinklab/the-rise-of-ai-in-prc-influence-operations-nine-takeaways-from-the-golaxy-documents-2d6617a753e5",
-          "hedge": "leaked-doc"
+          "source_url": "https://medium.com/doublethinklab/the-rise-of-ai-in-prc-influence-operations-nine-takeaways-from-the-golaxy-documents-2d6617a753e5"
         }
       ]
     },
@@ -82,40 +77,40 @@
     {
       "type": "relationship",
       "spec_version": "2.1",
-      "id": "relationship--5f3f3cd8-8ca2-5352-bb48-aac081cb2c1b",
+      "id": "relationship--237c3c2e-4f99-5280-a431-492d7c8c2818",
       "created": "2026-03-01T00:00:00.000Z",
       "modified": "2026-03-01T00:00:00.000Z",
       "relationship_type": "related-to",
-      "source_ref": "campaign--00427491-e51d-5ccb-a487-b2a810101a9f",
-      "target_ref": "identity--3a126627-0ab7-5177-88bd-7b4d172a8f98",
+      "source_ref": "campaign--2c2f8989-0e45-571a-972e-0e2d55d94c64",
+      "target_ref": "identity--41446fd3-de58-575f-83b8-6aacbd5022b1",
       "object_marking_refs": [
         "marking-definition--30837352-4bcb-536d-ab32-86f489a09985"
       ],
+      "confidence": 60,
       "x_netweaver_evidence": [
         {
           "quote": "the campaign was run using GoLaxy's AI-driven smart propaganda system",
-          "source_url": "https://medium.com/doublethinklab/the-rise-of-ai-in-prc-influence-operations-nine-takeaways-from-the-golaxy-documents-2d6617a753e5",
-          "hedge": "leaked-doc"
+          "source_url": "https://medium.com/doublethinklab/the-rise-of-ai-in-prc-influence-operations-nine-takeaways-from-the-golaxy-documents-2d6617a753e5"
         }
       ]
     },
     {
       "type": "relationship",
       "spec_version": "2.1",
-      "id": "relationship--6c63a9bc-1c89-54b1-8782-1faf7dc64a3a",
+      "id": "relationship--bf23a910-04fe-502c-b224-02dd66d9230c",
       "created": "2026-03-01T00:00:00.000Z",
       "modified": "2026-03-01T00:00:00.000Z",
       "relationship_type": "targets",
-      "source_ref": "campaign--00427491-e51d-5ccb-a487-b2a810101a9f",
+      "source_ref": "campaign--2c2f8989-0e45-571a-972e-0e2d55d94c64",
       "target_ref": "location--0a4b075b-ef1a-5836-8ff6-c3c42010953e",
       "object_marking_refs": [
         "marking-definition--30837352-4bcb-536d-ab32-86f489a09985"
       ],
+      "confidence": 60,
       "x_netweaver_evidence": [
         {
           "quote": "weekly monitoring of 600,000+ Taiwan-related items during the 2024 election",
-          "source_url": "https://medium.com/doublethinklab/the-rise-of-ai-in-prc-influence-operations-nine-takeaways-from-the-golaxy-documents-2d6617a753e5",
-          "hedge": "leaked-doc"
+          "source_url": "https://medium.com/doublethinklab/the-rise-of-ai-in-prc-influence-operations-nine-takeaways-from-the-golaxy-documents-2d6617a753e5"
         }
       ]
     },

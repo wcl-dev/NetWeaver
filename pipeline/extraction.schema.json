@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "NetWeaver 抽取契約（模型輸出）",
+  "description": "模型只做『忠實抽取』：surface mention＋粗略型別＋逐字引文＋逐字述詞。分類/關係型別/信心/歸因/去重全由 derive.py 的碼決定 → 換模型也穩。",
+  "type": "object",
+  "required": ["report", "mentions", "assertions"],
+  "properties": {
+    "report": {
+      "type": "object",
+      "required": ["name", "url", "org", "published", "type"],
+      "properties": {
+        "name": {"type": "string"}, "url": {"type": "string"}, "org": {"type": "string"},
+        "published": {"type": "string"},
+        "type": {"enum": ["gov-report", "platform-report", "academic", "ngo-report", "news"]}
+      }
+    },
+    "mentions": {
+      "type": "array",
+      "description": "報告中提到的實體，逐字 surface＋粗略型別（低變異，不做最終分類）。",
+      "items": {
+        "type": "object",
+        "required": ["tmp_id", "surface", "coarse_type"],
+        "properties": {
+          "tmp_id": {"type": "string"},
+          "surface": {"type": "string", "description": "名稱如原文所寫"},
+          "coarse_type": {"enum": ["person", "org", "network", "account", "website", "media", "narrative", "operation", "tool", "infrastructure", "place", "url", "domain"]},
+          "country": {"type": "string"},
+          "quote": {"type": "string", "description": "支持此 mention 的逐字原文"},
+          "source_url": {"type": "string"}
+        }
+      }
+    },
+    "assertions": {
+      "type": "array",
+      "description": "實體間關係，模型只給『逐字述詞』(predicate) 與引文；不選 STIX 關係型別（那由 ladder 在碼決定）。",
+      "items": {
+        "type": "object",
+        "required": ["subject", "predicate", "object"],
+        "properties": {
+          "subject": {"type": "string"},
+          "predicate": {"type": "string", "description": "來源的逐字動詞片語"},
+          "object": {"type": "string"},
+          "quote": {"type": "string"},
+          "source_url": {"type": "string"}
+        }
+      }
+    }
+  }
+}

@@ -9,6 +9,7 @@ import json, sys, pathlib, importlib.util
 _here = pathlib.Path(__file__).resolve().parent
 spec = importlib.util.spec_from_file_location("pipe", str(_here / "pipeline.py"))
 pipe = importlib.util.module_from_spec(spec); spec.loader.exec_module(pipe)
+REG = pipe._derive_mod().load_registry()   # 判斷層查表用（載一次）
 
 DBP = _here.parent / "data" / "db.js"
 src = DBP.read_text(encoding="utf-8")
@@ -19,11 +20,12 @@ ent = {e["id"]: e for e in db["entities"]}
 
 patched = []
 for sp in sys.argv[1:]:
-    lite = json.loads(pathlib.Path(sp).read_text(encoding="utf-8"))
-    nw_ref = next((o.get("nw_ref") for o in lite["objects"] if o.get("nw_ref")), None)
+    extr = json.loads(pathlib.Path(sp).read_text(encoding="utf-8"))
+    bundle, sl, _ = pipe.stix_from_extraction(extr, REG)
+    nw_ref = next((o.get("nw_ref") for o in sl["objects"] if o.get("nw_ref")), None)
     if not nw_ref or nw_ref not in ent:
         print(f"  ⚠ {pathlib.Path(sp).name}: nw_ref={nw_ref} 不在 db.js，略過"); continue
-    rec = pipe.project(pipe.serialize(lite))
+    rec = pipe.project(bundle)
     claims, miss = [], 0
     for c in rec["claims"]:
         sid = url2sid.get(c["source"])

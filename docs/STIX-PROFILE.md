@@ -112,6 +112,21 @@ x_netweaver_evidence: [
 
 ---
 
+## 6.5 模型抽取 · 碼判斷（換模型也穩）
+
+**原則**：模型只做「忠實抽取」，所有「判斷」在碼——換模型只影響「抽到哪些句子」，不影響下游結構。
+
+- **模型輸出（extraction 契約，`pipeline/extraction.schema.json`）**：`mentions`（surface＋粗略型別 coarse_type＋逐字引文）＋`assertions`（subject＋**逐字述詞 predicate**＋object＋引文）。模型**不**選分類、關係型別、信心、歸因。
+- **碼判斷（`pipeline/derive.py`）**：
+  - `coarse_type → kind`（詞庫表）；已知實體查 **registry** 沿用登錄的分類／origin／role。
+  - **述詞 → 關係**：反升級 **ladder**（逐字述詞比對，取最弱一致；預設 `related-to`）。例：`僱用／operated by`→`operated-by`；`linked to／likely`→`related-to`；`供應`→`supplies-tech-to`；`放大`→`amplifies`；`針對`→`targets`。
+  - **信心 rubric**：`tier(來源型別) ＋ 佐證數 − hedge`；gov/platform/academic=3、ngo=2、news=1；含「likely／疑似／研判」等 hedge 詞 −1；≥4 high、≥2 medium、else low。
+  - **歸因**：控制述詞（`operated-by`/`runs`）＋信心≥medium → 建 `attributed-to`（需人工閘）＋控制方升 `threat-actor`；否則停在 IMS。
+  - **role**：由關係推導（`amplifies`→放大者、`supplies-tech-to`→協力者、否則攻擊者）或沿用登錄。
+- **模型剩下、且不可免的**：找出相關句子＋逐字引用＋標粗略型別。三招穩住：**逐字 span-check**（引文對不上原文即丟）、**多模型交集**、**要「抽取」不要「生成」**。
+
+決策全部可迴歸測試（golden：同一 extraction 永遠 derive 出同一結構）。管線：extraction（模型）→ `derive.py`（碼）→ STIX-lite → serialize → 合法 STIX。
+
 ## 7. 保守歸因規則（紅線的機器版）
 
 1. **Campaign 預設 `related-to` IMS**（中性分組，無歸因語義）——不用 `attributed-to`，與 [ARCHITECTURE.md](ARCHITECTURE.md) 一致。

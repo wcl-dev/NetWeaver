@@ -141,21 +141,34 @@ def project(bundle):
         "targets": [t.get("name") or t.get("country") for t in tgts],
     }
 
+def _derive_mod():                                  # 以路徑載入 derive.py（免 sys.path 問題）
+    import importlib.util
+    p = pathlib.Path(__file__).resolve().parent / "derive.py"
+    spec = importlib.util.spec_from_file_location("derive", str(p))
+    m = importlib.util.module_from_spec(spec); spec.loader.exec_module(m); return m
+
+def stix_from_extraction(extr, reg=None):           # extraction → derive（碼判斷）→ 合法 STIX
+    D = _derive_mod(); reg = reg if reg is not None else D.load_registry()
+    sl, log = D.derive(extr, reg)
+    return serialize(sl), sl, log
+
 def main():
     src = pathlib.Path(sys.argv[1])
-    lite = json.loads(src.read_text(encoding="utf-8"))
-    bundle = serialize(lite)
+    extr = json.loads(src.read_text(encoding="utf-8"))
+    bundle, sl, log = stix_from_extraction(extr)
     fails, att = validate(bundle)
     outdir = src.parent.parent / "out"; outdir.mkdir(exist_ok=True)
     outp = outdir / (src.stem.split(".")[0] + ".stix.json")
     outp.write_text(json.dumps(bundle, ensure_ascii=False, indent=2), encoding="utf-8")
-    print("=== ① STIX-lite → ② 合法 STIX 2.1 ===")
+    print("=== ① 模型抽取 → ② 碼判斷（derive；模型不做分類/評分/歸因，換模型也穩）===")
+    for l in log: print("  · " + l)
+    print("=== ③ serialize → 合法 STIX 2.1 ===")
     print(f"  bundle 物件數: {len(bundle['objects'])}  →  {outp}")
-    print("=== ③ 驗證（profile 不變量）===")
+    print("=== ④ 驗證（profile 不變量）===")
     print("  " + ("✓ id 皆 UUIDv5 · 無懸空 SRO · grounding 完整" if not fails else "⚠ " + " | ".join(fails)))
-    print(f"  歸因閘：attributed-to 關係 = {len(att)}" + ("（0＝停在 IMS，符合紅線）" if not att else "（>0＝來源明確歸因 → 需人工確認）"))
+    print(f"  歸因閘（碼判）：attributed-to = {len(att)}" + ("（停在 IMS）" if not att else "（明確歸因 → 需人工確認）"))
     p = project(bundle)
-    print("=== ④ 投影 → operator 三層視圖（逐來源 claim ＝ 真 B）===")
+    print("=== ⑤ 投影 → operator 三層（逐來源 claim ＝ 真 B）===")
     print(json.dumps({"L1_operator": p["operator"], "L2_operation": p["operations"],
                       "L3_claims": p["claims"], "channels": p["channels"],
                       "narratives": p["narratives"], "targets": p["targets"]}, ensure_ascii=False, indent=2))

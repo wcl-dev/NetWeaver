@@ -413,12 +413,12 @@ window.NETWEAVER_DB = {
         {
           "text": "3,692 virtual personas operable across 12 platforms",
           "source_id": "src-dtl-golaxy",
-          "about": "GoLaxy AI 影響力作業（對台 2024 大選）"
+          "about": "GoLaxy AI 影響力作業（2024 大選）"
         },
         {
           "text": "GoLaxy built detailed profiles of 170+ Taiwanese political figures",
           "source_id": "src-dtl-golaxy",
-          "about": "中科天璣 GoLaxy"
+          "about": "GoLaxy"
         },
         {
           "text": "the campaign was run using GoLaxy's AI-driven smart propaganda system",
@@ -814,7 +814,7 @@ window.NETWEAVER_DB = {
         {
           "text": "於全球逾180個社群平臺、以逾20種語言進行影響力操作",
           "source_id": "src-nsb-2026",
-          "about": "Dragonbridge 對台認知作戰（NSB 2025）"
+          "about": "Dragonbridge 對台認知作戰"
         },
         {
           "text": "龍橋（Dragonbridge）為公安部僱用的網路水軍",
@@ -825,6 +825,11 @@ window.NETWEAVER_DB = {
           "text": "針對台灣議題散布不實訊息",
           "source_id": "src-nsb-2026",
           "about": "targets"
+        },
+        {
+          "text": "Dragonbridge 跨逾180個平台的對台行動",
+          "source_id": "src-nsb-2026",
+          "about": "related-to"
         }
       ]
     },
@@ -874,7 +879,7 @@ window.NETWEAVER_DB = {
         {
           "text": "51 inauthentic accounts impersonating Taiwanese posted content attacking the DPP",
           "source_id": "src-dtl-impersonation",
-          "about": "假冒台灣人反民進黨 Threads 帳號行動（2024–2025）"
+          "about": "假冒台灣人反民進黨 Threads 行動"
         },
         {
           "text": "DTL assesses the network can likely be linked to the PRC",
@@ -887,14 +892,9 @@ window.NETWEAVER_DB = {
           "about": "我是台灣人我反綠"
         },
         {
-          "text": "44 of 51 accounts reused photos of Taiwanese and some Thai/Malaysian influencers; simplified-Chinese slips and a Hong Kong phone number appeared",
+          "text": "44 of 51 accounts reused photos of Taiwanese influencers",
           "source_id": "src-dtl-impersonation",
-          "about": "Threads 假冒帳號群（51）"
-        },
-        {
-          "text": "the operation was run by the network of 51 accounts",
-          "source_id": "src-dtl-impersonation",
-          "about": "related-to"
+          "about": "Threads 假冒帳號群"
         },
         {
           "text": "posts pushed the 我是台灣人我反綠 narrative",
@@ -907,14 +907,14 @@ window.NETWEAVER_DB = {
           "about": "uses"
         },
         {
-          "text": "targeting Taiwanese audiences",
+          "text": "attacking the Democratic Progressive Party (DPP)",
           "source_id": "src-dtl-impersonation",
           "about": "targets"
         },
         {
-          "text": "attacking the Democratic Progressive Party (DPP)",
+          "text": "the operation was run by the network of 51 accounts",
           "source_id": "src-dtl-impersonation",
-          "about": "targets"
+          "about": "related-to"
         }
       ]
     },

@@ -823,7 +823,7 @@ window.NETWEAVER_DB = {
       "confidence": "high",
       "claims": [
         {
-          "text": "龍橋（Dragonbridge）為公安部僱用的網路水軍，於全球逾180個社群平臺、以逾20種語言進行影響力操作",
+          "text": "於全球逾180個社群平臺、以逾20種語言進行影響力操作",
           "source_id": "src-nsb-2026",
           "about": "Dragonbridge 對台認知作戰（NSB 2025）"
         },
@@ -831,21 +831,6 @@ window.NETWEAVER_DB = {
           "text": "龍橋（Dragonbridge）為公安部僱用的網路水軍",
           "source_id": "src-nsb-2026",
           "about": "Spamouflage"
-        },
-        {
-          "text": "公安部運用龍橋（Dragonbridge）網軍對台散布爭訊",
-          "source_id": "src-nsb-2026",
-          "about": "公安部 Ministry of Public Security"
-        },
-        {
-          "text": "Dragonbridge 跨逾180個平台的行動",
-          "source_id": "src-nsb-2026",
-          "about": "related-to"
-        },
-        {
-          "text": "龍橋（Dragonbridge）為公安部僱用之網路水軍",
-          "source_id": "src-nsb-2026",
-          "about": "attributed-to"
         },
         {
           "text": "針對台灣議題散布不實訊息",

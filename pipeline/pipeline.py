@@ -119,9 +119,14 @@ def project(bundle):
                 t = byid.get(r["target_ref"])
                 if t and t["type"] == "identity": op = t; break
     attributed = any(r["relationship_type"] == "attributed-to" for r in rels)
-    claims = [{"about": o.get("name") or o.get("relationship_type") or o["type"],
-               "quote": e["quote"], "source": e["source_url"]}
-              for o in objs for e in (o.get("x_netweaver_evidence") or [])]
+    claims, seen = [], set()                      # 去重：同一（來源 × 正規化引文）只留一次
+    for o in objs:
+        for e in (o.get("x_netweaver_evidence") or []):
+            key = e["source_url"] + "|" + re.sub(r"[\s\W]+", "", e["quote"].lower())
+            if key in seen: continue
+            seen.add(key)
+            claims.append({"about": o.get("name") or o.get("relationship_type") or o["type"],
+                           "quote": e["quote"], "source": e["source_url"]})
     uses = [byid[r["target_ref"]] for r in rels if r["relationship_type"] == "uses"]
     tgts = [byid[r["target_ref"]] for r in rels if r["relationship_type"] == "targets"]
     return {

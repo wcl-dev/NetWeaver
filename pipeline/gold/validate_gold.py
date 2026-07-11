@@ -93,7 +93,7 @@ def check(path):
         pred = req(a, "predicate", f"assertion[{aid}]", errs)
         if pred and q:
             if pred not in q: errs.append(f"assertion[{aid}] predicate 不在自身 quote 內：{pred!r}")
-            elif q.count(pred) > 1: warns.append(f"assertion[{aid}] predicate 在 quote 內出現多次，offset 取第一個")
+            elif q.count(pred) > 1: errs.append(f"assertion[{aid}] predicate 在 quote 內出現 {q.count(pred)} 次（歧義，請縮短 quote）：{pred!r}")
             elif loc: off = q.index(pred); a["predicate_start"], a["predicate_end"] = loc[0] + off, loc[0] + off + len(pred)
         for endk, endgid in (("subject_mid", subj), ("object_mid", obj)):
             mid = req(a, endk, f"assertion[{aid}]", errs)          # 必填：否則會繞過 occurrence containment

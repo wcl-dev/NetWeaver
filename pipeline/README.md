@@ -11,7 +11,11 @@
 ```
 
 - **ingest**（`ingest.py`＋`feeds.json`）：讀 feed → 抓 RSS/Atom → 偵測新項目（cursor）→ 落地不可變快照＋provenance manifest（tier/license/hash/discovered_at，title/summary，`extraction_status=pending`）到 `raw/`。
-- **filter**（`filter.py`）：抽取前的**碼**相關性閘——比對 feed 標題＋摘要 vs 關鍵字（FIMI／中國）＋已知 PRC 行為者清單。相關 → `extraction_status=ready`；否則 `filtered-out`。**模型不參與此篩選**（延續碼判斷），清單可調。比對標題＋摘要而非整頁，避開新聞網站 chrome 造成的誤收。
+- **filter**（`filter.py`）：抽取前的**碼**相關性閘。比對 feed 標題＋摘要（非整頁，避開新聞網站 chrome 誤收）。規則：`強名命中 OR (弱名命中 AND 佐證詞) OR (FIMI詞 AND 中國詞)`。相關 → `extraction_status=ready`，否則 `filtered-out`。**模型不參與**——這是版本化、可 diff、可回歸測試的 **policy table**（詞表＋db 實體表），改規則須讓 `test_filter.py` 全過。
+  - **行為者三層分級**：讀入 `name_en/name_zh/aliases`；長名（CJK≥4 或拉丁長詞）＝strong 獨立命中；短名/縮寫/歧義名（CJK 2-3、TAO/MSS…）＝weak，需 China/FIMI 詞**佐證**才算——擋掉「虎牙」（撞遊戲平台）、州媒常名 op-ed 等誤收，同時接住中文 actor。
+  - **防自我佐證**：佐證詞不得是命中行為者自身或同實體別名（如單一「公安部」不因自己在中國詞表就過關）。
+  - **資料層覆寫**：db.js 實體可選加 `match_tokens:{strong,weak,disabled}`，有就用資料、無則落回自動規則——fork 團隊在**資料層**調判準，不動 pipeline 碼。
+  - **異體字**：NFKC＋casefold＋高頻繁簡對照（非完整簡繁，完整靠別名維護，不引 OpenCC）。
 - **extract**（`extract.py`）：landed 報告文字 → LLM（forced JSON schema）→ `mentions＋逐字 predicate＋引文`。**碼端 span-check**：引文對不上原文即丟（擋幻覺）。**provider-agnostic**（見下）。
 - **derive**（`derive.py`）：碼的判斷層——`coarse_type→kind`（詞庫＋registry 查表）、`predicate→relation`（反升級 ladder）、`confidence`（rubric）、`歸因`（控制述詞＋信心→attributed-to，人工閘）、`role`。
 - **serialize / validate / project**（`pipeline.py`）：STIX-lite → 合法 STIX 2.1（UUIDv5、`x-dad-*` 擴充、marking）→ 驗證 profile 不變量 → 投影成 operator 三層。
@@ -25,6 +29,7 @@ python3 pipeline/ingest.py
 
 # 相關性閘（碼）：標記 ready / filtered-out，只讓相關項目進 ③
 python3 pipeline/filter.py
+python3 pipeline/test_filter.py     # filter 規則的 golden 回歸測試（改清單前後都要綠）
 
 # 端到端測試（extract→derive→serialize→project）；provider 由環境變數決定（預設地端 Ollama）
 python3 pipeline/extract.py
@@ -67,7 +72,8 @@ NW_LLM_PROVIDER=openai NW_LLM_BASE_URL=https://api.openai.com NW_LLM_MODEL=gpt-.
 pipeline/
 ├── feeds.json               # ② ingest feed 設定（RSS 子集）
 ├── ingest.py                # ② 抓 feed→落地快照＋manifest（cursor）
-├── filter.py                # 相關性閘（碼）：標題＋摘要 vs 關鍵字/PRC 行為者
+├── filter.py                # 相關性閘（碼）：三層分級＋防自我佐證＋異體字＋資料層覆寫
+├── test_filter.py           # filter 的 golden 回歸測試（policy table 驗收）
 ├── extraction.schema.json   # 模型抽取契約（mentions＋assertions）
 ├── extract.py               # ① LLM 抽取 client（provider-agnostic）＋span-check
 ├── derive.py                # 碼的判斷層（ladder/rubric/registry）
@@ -82,6 +88,6 @@ pipeline/
 ## 下一步
 
 - **串成迴圈**：`ingest → 挑 ready → extract → derive → compile` 一鍵／排程自動跑。
-- **filter 精修**：關鍵字／行為者清單擴充；必要時加正文（非 chrome）抽取以提升 recall。
+- **filter 精修**：詞表／`match_tokens` 擴充（附測試案例）；terse 中文標題的 recall 可加正文（非 chrome）抽取或高信任來源 override。
 - **抽取品質**：few-shot／換模型（如台灣微調 Llama-Breeze）／輕量微調——碼層不動。
 - **serializer 補完**：官方 DISARM bundle 引用、對照 STIX 官方 schema、實體解析與 `modified` 版本化。

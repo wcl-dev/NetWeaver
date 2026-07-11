@@ -1,0 +1,23 @@
+{
+  "_doc": "gold set 全域 entity namespace（g:）。跨報告重用——同一實體在多篇 gold 必須是同一個 g: id。能對到 ../../data/db.js 既有實體就用 db id、不建 g:。aliases 只收真正同指的名稱，不得放 narrative 字串或合成 display name。契約見 ../../docs/GOLD.md §6。",
+  "entities": {
+    "g:dpp": {
+      "name": "Democratic Progressive Party",
+      "type": "org",
+      "aliases": ["DPP", "民主進步黨", "民進黨"],
+      "note": "受害／目標政黨，非 db.js 收錄的行為者實體"
+    },
+    "g:prc": {
+      "name": "People's Republic of China",
+      "type": "org",
+      "aliases": ["PRC", "China", "中國", "中華人民共和國"],
+      "note": "國家層級；報告多以弱連結（likely linked）指向，標 context_role=suspected-affiliate，不得寫成 sponsor"
+    },
+    "g:narr-oppose-greens": {
+      "name": "I am Taiwanese and I oppose the greens",
+      "type": "narrative",
+      "aliases": ["我是台灣人我反綠"],
+      "note": "反民進黨冒充敘事"
+    }
+  }
+}

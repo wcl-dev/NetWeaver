@@ -1,0 +1,59 @@
+{
+  "_doc": "gold 範例 v0.2（格式示範）。標註者只填逐字 quote/surface；offset 由 validate_gold.py 衍生。契約見 ../../docs/GOLD.md、指引見 GUIDELINES.md。",
+  "kind": "excerpt-fixture",
+  "cleaner_version": "excerpt-from-extract.py-test-v0",
+  "text_sha256": "sha256:c1c81e5dba1746c399325bed97f488d076ec19fa68c980ed1e76ddcac1bc1cc6",
+  "report": {
+    "name": "Inauthentic Accounts Impersonate Taiwanese to Attack Political Party",
+    "url": "https://medium.com/doublethinklab/inauthentic-accounts-impersonate-taiwanese-to-attack-political-party-c7d04d5e1e13",
+    "org": "Doublethink Lab",
+    "published": "2025-07",
+    "type": "ngo-report"
+  },
+  "strata": { "lang": "en", "source": "dtl", "length": "short", "format": "web", "attribution": "hedged" },
+  "cleaned_text": "Doublethink Lab identified 51 inauthentic accounts on Threads impersonating Taiwanese users to attack the Democratic Progressive Party (DPP). Between June 2024 and April 2025 the accounts posted 7,032 times, including 275 near-identical posts of the type 'I am Taiwanese and I oppose the greens'. 44 of the 51 accounts reused photos of Taiwanese influencers. Some posts showed simplified-Chinese characters and one account was linked to a Hong Kong phone number. Doublethink Lab assesses that the network can likely be linked to the PRC.",
+
+  "mentions": [
+    { "mid": "m1", "gid": "anti-dpp-impersonation", "entity_type": "network", "context_role": "actor",
+      "surface": "51 inauthentic accounts",
+      "quote": "51 inauthentic accounts on Threads impersonating Taiwanese users" },
+    { "mid": "m2", "gid": "g:dpp", "entity_type": "org", "context_role": "target",
+      "surface": "Democratic Progressive Party (DPP)",
+      "quote": "attack the Democratic Progressive Party (DPP)" },
+    { "mid": "m3", "gid": "g:narr-oppose-greens", "entity_type": "narrative", "context_role": "narrative",
+      "surface": "I am Taiwanese and I oppose the greens",
+      "quote": "'I am Taiwanese and I oppose the greens'" },
+    { "mid": "m4", "gid": "anti-dpp-impersonation", "entity_type": "network", "context_role": "actor",
+      "surface": "the network",
+      "quote": "the network can likely be linked to the PRC" },
+    { "mid": "m5", "gid": "g:prc", "entity_type": "org", "context_role": "suspected-affiliate",
+      "surface": "the PRC",
+      "quote": "the network can likely be linked to the PRC" },
+    { "mid": "m6", "gid": "anti-dpp-impersonation", "entity_type": "network", "context_role": "actor",
+      "surface": "the accounts",
+      "quote": "the accounts posted 7,032 times" }
+  ],
+
+  "assertions": [
+    { "aid": "a1", "subject": "anti-dpp-impersonation", "predicate": "to attack", "object": "g:dpp",
+      "subject_mid": "m1", "object_mid": "m2",
+      "quote": "51 inauthentic accounts on Threads impersonating Taiwanese users to attack the Democratic Progressive Party (DPP)" },
+    { "aid": "a2", "subject": "anti-dpp-impersonation", "predicate": "posted", "object": "g:narr-oppose-greens",
+      "subject_mid": "m6", "object_mid": "m3",
+      "quote": "the accounts posted 7,032 times, including 275 near-identical posts of the type 'I am Taiwanese and I oppose the greens'" },
+    { "aid": "a3", "subject": "anti-dpp-impersonation", "predicate": "can likely be linked to", "object": "g:prc",
+      "subject_mid": "m4", "object_mid": "m5",
+      "quote": "the network can likely be linked to the PRC" }
+  ],
+
+  "operation_expected": [
+    { "name": "Anti-DPP Taiwanese-Impersonation",
+      "actors": ["anti-dpp-impersonation"],
+      "narratives": ["g:narr-oppose-greens"],
+      "targets": ["g:dpp"],
+      "derive_expected": [
+        { "source": "anti-dpp-impersonation", "relationship_type": "related-to",
+          "target": "g:prc", "attributed_to_expected": false }
+      ] }
+  ]
+}

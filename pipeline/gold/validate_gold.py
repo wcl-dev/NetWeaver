@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """gold 驗證器＋offset 衍生（GOLD.md v0.2）。標註者只填逐字 quote/surface；這裡定位 offset 並查完整性。
 也是未來 eval harness 的 gold 載入器。offset＝Unicode code point、end-exclusive、載入時衍生（非 gold 真相）。
-用法：python3 pipeline/gold/validate_gold.py [gold檔...]（任一錯誤→exit 1）
+用法：python3 pipeline/gold/validate_gold.py [gold檔...]（任一錯誤→exit 1）。多檔時另查跨檔 gid→entity_type 一致。
 """
 import json, re, sys, hashlib, pathlib
 
@@ -28,7 +28,6 @@ def find_all(quote, text):
     return idxs
 
 def locate(quote, text, occ, tag, errs):
-    """→ (start,end) 或 None（並已 append 錯誤）。exact 且唯一/指定 occurrence 才過。"""
     idxs = find_all(quote, text)
     if not idxs:
         if _norm(quote) and _norm(quote) in _norm(text): errs.append(f"{tag} quote 非 exact（需正規化才中）：{quote[:44]!r}")
@@ -45,17 +44,17 @@ def req(obj, key, tag, errs):
 
 def check(path):
     g = json.loads(pathlib.Path(path).read_text(encoding="utf-8"))
-    errs, warns, roles = [], [], {}
-    if "cleaned_text" not in g: return g, [f"{pathlib.Path(path).name} 缺 cleaned_text"], [], {}
+    errs, warns, roles, gid_type = [], [], {}, {}
+    if "cleaned_text" not in g: return g, [f"{pathlib.Path(path).name} 缺 cleaned_text"], [], {}, {}
     text = g["cleaned_text"]; reg = registry(); known = db_ids() | set(reg)
 
-    # 文本雜湊 fail-closed
-    h = "sha256:" + hashlib.sha256(text.encode("utf-8")).hexdigest()
+    if not g.get("cleaner_version"): errs.append("缺 cleaner_version")
+    h = "sha256:" + hashlib.sha256(text.encode("utf-8")).hexdigest()   # 文本雜湊 fail-closed
     stored = g.get("text_sha256")
     if stored in (None, "sha256:PENDING"): errs.append(f"text_sha256 未填（正確值＝{h}）")
     elif stored != h: errs.append(f"text_sha256 不符：檔存 {stored}，實算 {h}")
 
-    ids, gid_type, file_gids = set(), {}, set()          # 全域 id 唯一（mid∪aid）、gid→entity_type 一致、本檔 gid 集
+    ids, file_gids = set(), set()
     mset = {m.get("mid"): m for m in g.get("mentions", [])}
     for m in g.get("mentions", []):
         mid = req(m, "mid", "mention", errs) or "?"
@@ -70,13 +69,13 @@ def check(path):
             if gid in gid_type and gid_type[gid] != et: errs.append(f"gid {gid} 跨 occurrence entity_type 不一致：{gid_type[gid]} vs {et}")
             gid_type.setdefault(gid, et)
             rt = reg.get(gid, {}).get("type")
-            if rt and rt != et: warns.append(f"mention[{mid}] entity_type={et} 與 registry[{gid}].type={rt} 不一致")
+            if rt and rt != et: errs.append(f"mention[{mid}] entity_type={et} 與 registry[{gid}].type={rt} 不一致")   # fail-closed
+        sf = req(m, "surface", f"mention[{mid}]", errs)
         q = req(m, "quote", f"mention[{mid}]", errs)
         if not q: continue
         loc = locate(q, text, m.get("quote_occurrence"), f"mention[{mid}]", errs)
         if not loc: continue
         m["quote_start"], m["quote_end"] = loc
-        sf = m.get("surface")
         if sf and sf not in q: errs.append(f"mention[{mid}] surface 不在自身 quote 內：{sf[:32]!r}")
         elif sf: off = q.index(sf); m["surface_start"], m["surface_end"] = loc[0] + off, loc[0] + off + len(sf)
 
@@ -85,26 +84,31 @@ def check(path):
         if aid in ids: errs.append(f"id 重複：{aid}")
         ids.add(aid)
         subj, obj = req(a, "subject", f"assertion[{aid}]", errs), req(a, "object", f"assertion[{aid}]", errs)
-        for role, gid in (("subject", subj), ("object", obj)):        # 端點須是本檔實體
+        for role, gid in (("subject", subj), ("object", obj)):
             if gid and gid not in file_gids: errs.append(f"assertion[{aid}] {role} gid {gid!r} 不在本檔 mentions")
         q = req(a, "quote", f"assertion[{aid}]", errs)
         loc = locate(q, text, a.get("quote_occurrence"), f"assertion[{aid}]", errs) if q else None
         if loc: a["quote_start"], a["quote_end"] = loc
-        pred = a.get("predicate")
+        pred = req(a, "predicate", f"assertion[{aid}]", errs)
         if pred and q:
             if pred not in q: errs.append(f"assertion[{aid}] predicate 不在自身 quote 內：{pred!r}")
             elif q.count(pred) > 1: warns.append(f"assertion[{aid}] predicate 在 quote 內出現多次，offset 取第一個")
             elif loc: off = q.index(pred); a["predicate_start"], a["predicate_end"] = loc[0] + off, loc[0] + off + len(pred)
-        for endk, endgid in (("subject_mid", subj), ("object_mid", obj)):   # mid↔gid 一致＋surface⊂quote
+        for endk, endgid in (("subject_mid", subj), ("object_mid", obj)):
             mid = a.get(endk)
             if not mid: continue
             if mid not in mset: errs.append(f"assertion[{aid}] {endk}={mid!r} 無對應 mention"); continue
-            if endgid and mset[mid].get("gid") != endgid: errs.append(f"assertion[{aid}] {endk}={mid} 的 gid {mset[mid].get('gid')!r}≠端點 {endgid!r}")
-            sf = mset[mid].get("surface")
-            if sf and q and sf not in q: errs.append(f"assertion[{aid}] {endk} occurrence surface {sf[:24]!r} 不在 assertion quote 內")
+            mm = mset[mid]
+            if endgid and mm.get("gid") != endgid: errs.append(f"assertion[{aid}] {endk}={mid} 的 gid {mm.get('gid')!r}≠端點 {endgid!r}")
+            if loc and "surface_start" in mm:                       # 真 span containment：occurrence 絕對 span ⊂ assertion quote span
+                if not (loc[0] <= mm["surface_start"] and mm["surface_end"] <= loc[1]):
+                    errs.append(f"assertion[{aid}] {endk} occurrence span [{mm['surface_start']},{mm['surface_end']}) 不在 quote span [{loc[0]},{loc[1]}) 內")
 
-    for op in g.get("operation_expected", []):                    # operation_expected schema
+    for op in g.get("operation_expected", []):
         nm = req(op, "name", "operation", errs) or "?"
+        for k in ("actors", "narratives", "targets", "derive_expected"):
+            if k not in op: errs.append(f"operation[{nm}] 缺 {k}")
+        if not op.get("actors"): errs.append(f"operation[{nm}] actors 不可為空")
         for k in ("actors", "narratives", "targets"):
             for gid in op.get(k, []):
                 if gid not in file_gids: errs.append(f"operation[{nm}] {k} 成員 {gid!r} 不在本檔 mentions")
@@ -118,14 +122,18 @@ def check(path):
             for gid in (de.get("source"), de.get("target")):
                 if gid and gid not in known: errs.append(f"operation[{nm}] derive gid 無法解析：{gid!r}")
 
-    for gid in sorted(x for x in file_gids if x):                 # 每個 gid 可解析
+    for gid in sorted(x for x in file_gids if x):
         if gid not in known: errs.append(f"gid 無法解析（不在 db.js 或 registry）：{gid!r}")
-    return g, errs, warns, roles
+    return g, errs, warns, roles, gid_type
 
 def main(paths):
-    total_e = 0
+    total_e, global_gt = 0, {}
     for p in paths:
-        g, errs, warns, roles = check(p)
+        g, errs, warns, roles, gt = check(p)
+        for gid, t in gt.items():                                   # 跨檔 gid→entity_type 一致
+            if gid in global_gt and global_gt[gid] != t:
+                errs.append(f"跨檔 gid {gid} entity_type 不一致：{global_gt[gid]} vs {t}（{pathlib.Path(p).name}）")
+            global_gt.setdefault(gid, t)
         st = g.get("strata", {})
         print(f"── {pathlib.Path(p).name}｜{g.get('kind','?')}｜{st.get('lang','?')}/{st.get('source','?')}/{st.get('attribution','?')}"
               f"｜mentions {len(g.get('mentions',[]))}（{roles}）assertions {len(g.get('assertions',[]))}")

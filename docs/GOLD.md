@@ -52,13 +52,14 @@
 | 欄 | 說明 |
 |---|---|
 | `aid` | 此邊的唯一 id（檔內唯一）|
-| `subject` / `object` | 兩端的 **`gid`**（實體層）；兩端都須是 gold 實體。可選 `subject_mid`/`object_mid` 指定 occurrence 做局部 grounding |
+| `subject` / `object` | 兩端的 **`gid`**（實體層）；兩端都須是 gold 實體 |
+| `subject_mid` / `object_mid` | **必填**：兩端各指一個 occurrence（mention 的 `mid`），其 surface 絕對 span 須落在此 assertion 的 `quote` span 內 |
 | `predicate` | 來源的**逐字動詞片語**（須落在 `quote` 內；必須是原句真正的動詞，`posted` 非 `posts`）|
 | `quote` | 支持此邊的逐字原文（須同時涵蓋能連起兩端的語境）|
 
 **方向有意義**：`A operated-by B` ≠ `B operated-by A`。**hedge 照標**：`can likely be linked to` 仍是一條 assertion，derive 預期停在 `related-to`（不 attributed-to）。**模型不選 STIX 關係型別**——那由 derive 的 ladder 依逐字 predicate 決定。
 
-**occurrence grounding（硬性）**：若填了 `subject_mid`/`object_mid`，assertion 的 `quote` **必須同時涵蓋這兩個 occurrence 的 surface**（validator 檢查）——否則延長 quote。
+**occurrence grounding（硬性）**：`subject_mid`/`object_mid` **必填**，assertion 的 `quote` **必須同時涵蓋這兩個 occurrence 的 surface span**（validator 以絕對 offset 檢查，非字串包含）——否則延長 quote 或改指正確 occurrence。
 **回指（anaphora）**：主詞若在文中以回指詞出現（如 `the accounts`、`the network`），**須為該回指新增一筆 occurrence mention**（自己的 `mid`、共用 `gid`），`subject_mid` 指它；**不得**跨句指向前文的另一 occurrence 而 quote 撐不起。`predicate` 必須是該 assertion `quote` 內的逐字動詞。
 
 ---

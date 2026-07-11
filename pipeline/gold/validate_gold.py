@@ -77,6 +77,7 @@ def check(path):
         if not loc: continue
         m["quote_start"], m["quote_end"] = loc
         if sf and sf not in q: errs.append(f"mention[{mid}] surface 不在自身 quote 內：{sf[:32]!r}")
+        elif sf and q.count(sf) > 1: errs.append(f"mention[{mid}] surface 在自身 quote 內出現 {q.count(sf)} 次（歧義，請縮短 quote）：{sf[:24]!r}")
         elif sf: off = q.index(sf); m["surface_start"], m["surface_end"] = loc[0] + off, loc[0] + off + len(sf)
 
     for a in g.get("assertions", []):
@@ -95,7 +96,7 @@ def check(path):
             elif q.count(pred) > 1: warns.append(f"assertion[{aid}] predicate 在 quote 內出現多次，offset 取第一個")
             elif loc: off = q.index(pred); a["predicate_start"], a["predicate_end"] = loc[0] + off, loc[0] + off + len(pred)
         for endk, endgid in (("subject_mid", subj), ("object_mid", obj)):
-            mid = a.get(endk)
+            mid = req(a, endk, f"assertion[{aid}]", errs)          # 必填：否則會繞過 occurrence containment
             if not mid: continue
             if mid not in mset: errs.append(f"assertion[{aid}] {endk}={mid!r} 無對應 mention"); continue
             mm = mset[mid]
@@ -108,11 +109,13 @@ def check(path):
         nm = req(op, "name", "operation", errs) or "?"
         for k in ("actors", "narratives", "targets", "derive_expected"):
             if k not in op: errs.append(f"operation[{nm}] 缺 {k}")
+            elif not isinstance(op[k], list): errs.append(f"operation[{nm}] {k} 須為 list（得 {type(op[k]).__name__}）")
         if not op.get("actors"): errs.append(f"operation[{nm}] actors 不可為空")
         for k in ("actors", "narratives", "targets"):
-            for gid in op.get(k, []):
+            for gid in (op.get(k) or []) if isinstance(op.get(k), list) else []:
                 if gid not in file_gids: errs.append(f"operation[{nm}] {k} 成員 {gid!r} 不在本檔 mentions")
-        for de in op.get("derive_expected", []):
+        for de in (op.get("derive_expected") or []) if isinstance(op.get("derive_expected"), list) else []:
+            if not isinstance(de, dict): errs.append(f"operation[{nm}] derive_expected 條目須為 object"); continue
             for k in ("source", "relationship_type", "target"):
                 if not de.get(k): errs.append(f"operation[{nm}] derive_expected 缺 {k}")
             if de.get("relationship_type") and de["relationship_type"] not in REL:

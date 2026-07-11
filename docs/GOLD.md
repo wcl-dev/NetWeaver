@@ -1,4 +1,6 @@
-# 抽取 gold 標註契約 v0.2
+# 抽取 gold 標註契約 v0.2（已凍結）
+
+> **狀態：FROZEN**。經 Codex（gpt-5.6-sol）五輪對抗式複審定案，validator 全綠。可開始標註 dev set；改契約須依 §10 變更控制。
 
 **目的**：定義「一個正確的 mention／assertion 是什麼」，讓抽取品質**可量測**（gold set）且**標註者一致**。這是版本化 policy——改契約須同步改 gold 並重跑 harness（同 [filter 的 policy table](../pipeline/filter.py) 精神）。
 

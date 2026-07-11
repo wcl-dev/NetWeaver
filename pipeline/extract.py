@@ -30,7 +30,8 @@ INSTR = (
     "- target country -> 'place'; target political party -> 'org'\n"
     "assertions: subject/object are mention tmp_ids; predicate is the verbatim verb phrase "
     "(e.g. 'operated by', 'run by', 'linked to', 'targeting', 'used'); plus a verbatim quote.\n"
-    "Copy every quote verbatim from the text. Do NOT classify, score, or attribute."
+    "Every mention AND assertion MUST include a verbatim quote copied exactly from the text — "
+    "no paraphrase; an item without a valid verbatim quote is dropped. Do NOT classify, score, or attribute."
 )
 
 def _cfg():
@@ -68,17 +69,21 @@ def call_llm(text):
 
 def _n(s): return re.sub(r"\s+", "", (s or ""))
 
-def span_check(extr, text):                                   # 碼端硬閘：引文對不上原文即丟
+def span_check(extr, text):                                   # 碼端硬閘：引文缺或對不上原文即丟（fail-closed）
     t = _n(text); dropped = []
     keep_m, ids = [], set()
     for m in extr.get("mentions", []):
-        if m.get("quote") and _n(m["quote"]) not in t: dropped.append(("mention", m.get("surface"))); continue
+        q = _n(m.get("quote"))                                # evidence 必填：缺 quote 也丟（封死繞過 grounding 的 bug）
+        if not q: dropped.append(("mention", m.get("surface"), "missing-quote")); continue
+        if q not in t: dropped.append(("mention", m.get("surface"), "bad-quote")); continue
         keep_m.append(m); ids.add(m.get("tmp_id"))
     keep_a = []
     for a in extr.get("assertions", []):
-        if a.get("quote") and _n(a["quote"]) not in t: dropped.append(("assertion", a.get("predicate"))); continue
+        q = _n(a.get("quote"))
+        if not q: dropped.append(("assertion", a.get("predicate"), "missing-quote")); continue
+        if q not in t: dropped.append(("assertion", a.get("predicate"), "bad-quote")); continue
         if a.get("subject") in ids and a.get("object") in ids: keep_a.append(a)
-        else: dropped.append(("dangling", a.get("predicate")))
+        else: dropped.append(("assertion", a.get("predicate"), "dangling"))
     return {"mentions": keep_m, "assertions": keep_a}, dropped
 
 def extract(report_meta, text):

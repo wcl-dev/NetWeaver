@@ -19,13 +19,14 @@
       "description": "報告中提到的實體，逐字 surface＋粗略型別（低變異，不做最終分類）。",
       "items": {
         "type": "object",
-        "required": ["tmp_id", "surface", "coarse_type"],
+        "additionalProperties": false,
+        "required": ["tmp_id", "surface", "coarse_type", "quote"],
         "properties": {
-          "tmp_id": {"type": "string"},
-          "surface": {"type": "string", "description": "名稱如原文所寫"},
+          "tmp_id": {"type": "string", "minLength": 1},
+          "surface": {"type": "string", "minLength": 1, "description": "名稱如原文所寫"},
           "coarse_type": {"enum": ["person", "org", "network", "account", "website", "media", "narrative", "operation", "tool", "infrastructure", "place", "url", "domain"]},
           "country": {"type": "string"},
-          "quote": {"type": "string", "description": "支持此 mention 的逐字原文"},
+          "quote": {"type": "string", "minLength": 1, "description": "支持此 mention 的逐字原文；必填（缺→碼端 span-check 丟）"},
           "source_url": {"type": "string"}
         }
       }
@@ -35,12 +36,13 @@
       "description": "實體間關係，模型只給『逐字述詞』(predicate) 與引文；不選 STIX 關係型別（那由 ladder 在碼決定）。",
       "items": {
         "type": "object",
-        "required": ["subject", "predicate", "object"],
+        "additionalProperties": false,
+        "required": ["subject", "predicate", "object", "quote"],
         "properties": {
-          "subject": {"type": "string"},
-          "predicate": {"type": "string", "description": "來源的逐字動詞片語"},
-          "object": {"type": "string"},
-          "quote": {"type": "string"},
+          "subject": {"type": "string", "minLength": 1},
+          "predicate": {"type": "string", "minLength": 1, "description": "來源的逐字動詞片語"},
+          "object": {"type": "string", "minLength": 1},
+          "quote": {"type": "string", "minLength": 1, "description": "支持此關係的逐字原文；必填（缺→碼端 span-check 丟）"},
           "source_url": {"type": "string"}
         }
       }

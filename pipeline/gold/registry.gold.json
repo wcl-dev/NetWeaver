@@ -49,6 +49,26 @@
     "g:narr-tears-at-scene": { "name": "淚灑現場（情緒引語）", "type": "narrative", "aliases": ["泪洒现场"] },
     "g:narr-sakya-peace": { "name": "吃釋迦就可以推動和平", "type": "narrative", "aliases": ["吃释迦就可以推动和平"] },
     "g:narr-agri-politicized": { "name": "將農產品貿易政治化", "type": "narrative", "aliases": ["将农产品贸易政治化"] },
-    "g:narr-sakya-intolerant": { "name": "連一顆鳳梨釋迦都容不下", "type": "narrative", "aliases": ["连一颗凤梨释迦都容不下"] }
+    "g:narr-sakya-intolerant": { "name": "連一顆鳳梨釋迦都容不下", "type": "narrative", "aliases": ["连一颗凤梨释迦都容不下"] },
+
+    "g:usa": { "name": "United States", "type": "place", "aliases": ["美國", "美国", "美方", "US", "United States"] },
+    "g:peoples-daily": { "name": "People's Daily", "type": "media", "aliases": ["人民日報", "人民日报"], "note": "中共黨媒；引語刊載通道 → amplifier" },
+    "g:china-mofa": { "name": "PRC Ministry of Foreign Affairs", "type": "org", "aliases": ["中国外交部", "中國外交部", "中共外交部"], "note": "官方發言主體 → actor" },
+    "g:narr-us-skepticism": { "name": "疑美論（敘事家族）", "type": "narrative", "aliases": ["疑美論", "疑美論述"], "note": "IORG 分類學總稱；僅使用處標（Q4）" },
+    "g:narr-chaos-source": { "name": "亂源論（美國是戰亂根源）", "type": "narrative", "aliases": ["亂源論"] },
+    "g:narr-false-friend": { "name": "假朋友（美國壓迫盟友獲利）", "type": "narrative", "aliases": ["假朋友"] },
+    "g:narr-us-election-interference": { "name": "美國介入台灣選舉", "type": "narrative", "aliases": ["介入選舉"] },
+    "g:narr-us-china-comanage": { "name": "美中共管台灣", "type": "narrative", "aliases": ["共管台灣"] },
+    "g:narr-us-hegemon-tw-governed": { "name": "美國霸道、台灣受外部治理無法自主", "type": "narrative", "aliases": ["美國霸道、台灣受到外部治理，無法自主的負面形象"] },
+    "g:narr-us-abandons-allies": { "name": "美國將拋棄盟友、不提供實質協助", "type": "narrative", "aliases": ["美國將拋棄盟友，不會提供實質協助"] },
+    "g:narr-us-warmonger-exploiter": { "name": "美國引起戰亂、壓榨拋棄盟友", "type": "narrative", "aliases": ["美國引起戰爭、混亂，壓榨、拋棄盟友的主導形象"] },
+    "g:narr-us-oppressor": { "name": "美國無理霸道的壓迫者", "type": "narrative", "aliases": ["美國無理霸道的壓迫者印象"] },
+    "g:narr-us-democracy-failed": { "name": "美式民主圖利、混亂、失敗", "type": "narrative", "aliases": ["「美式民主」圖利、混亂、失敗"] },
+    "g:narr-anti-world": { "name": "反世界（美國與世界為敵）", "type": "narrative", "aliases": ["反世界"] },
+    "g:narr-victim": { "name": "受害者敘事（victim narrative）", "type": "narrative", "aliases": ["受害者敘事"] },
+    "g:narr-us-tech-bullying": { "name": "美國經濟科技霸凌（小院高牆）", "type": "narrative", "aliases": ["美國大搞经济和科技霸凌，将构筑“小院高墙”的霸凌行径包装成维护“国家安全”"] },
+    "g:narr-us-bandit-logic": { "name": "美國強盜邏輯、濫用國家力量", "type": "narrative", "aliases": ["美国强盗逻辑，滥用国家力量"] },
+    "g:narr-us-double-standard": { "name": "美國雙重標準、破壞自由市場", "type": "narrative", "aliases": ["美国双重标准，破坏自由市场"] },
+    "g:narr-us-hypocrisy": { "name": "美方人權評比虛偽雙標", "type": "narrative", "aliases": ["霸权霸道霸凌的自私本性和说一套做一套的虚伪双标"] }
   }
 }

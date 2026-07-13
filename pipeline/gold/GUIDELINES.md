@@ -63,5 +63,12 @@
 > db 歸併回報：《海峽導報》報社被列為 `haixia-daobao-accounts`（TikTok 帳號叢集）的 alias——會使「關係密切」邊自環；gold 另立 `g:haixia-daobao-paper`，待 db 拆分。
 > derive ladder 待補：「委託」應映射至控制級（operated-by）——見 doc05 O4 derive_expected。
 
+## 裁決紀錄（doc06 校準）
+19. **locative 場域不標**（「In Myanmar,」的國名——targeted 邊已載）；「X-based」複合修飾內的地名不標。
+20. **未具名 operators 與帳號資產拆兩實體**：operators＝person/`actor`、網絡資產＝network/`amplifier`——與規則 15/16 一致，且 operation 節點 actors 有著落；cluster 子集合不另立 gid。
+21. **跨 campaign 連結**（links to two past operations）：collective mention（`suspected-affiliate`）保留、**不建邊**（語法主詞為撰報方）；document-level linking 屬 derive 層。
+22. **role gap 備案**：beneficiary（被支持的受益方，如軍政府）暫不標，列擴充；勿以 amplified-voice 充數。
+> IAA 發現（第二次）：B 把 exec summary 兩句**拼接成一句假引文** → exact-quote 擋下 5 筆。LLM 標註員有「順手改寫」傾向——引文必須複製，驗證器是最後防線。
+
 ## 交件前
 跑 `python3 pipeline/gold/validate_gold.py your.gold.json`——quote 全 exact 命中、gid 都解析得到、surface/predicate 落在 quote 內、無重複 quote 歧義，才算合格。

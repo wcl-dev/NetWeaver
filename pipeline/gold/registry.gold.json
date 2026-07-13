@@ -82,6 +82,16 @@
     "g:narr-pro-china-opinion": { "name": "利中（國際輿論框架）", "type": "narrative", "aliases": ["利中"] },
     "g:narr-demean-taiwan": { "name": "貶臺（國際輿論框架）", "type": "narrative", "aliases": ["貶臺"] },
     "g:guell-herald": { "name": "Guell Herald（假西班牙媒體）", "type": "media", "aliases": ["奎爾先鋒報", "Guell Herald"] },
-    "g:narr-tw-escalates-tension": { "name": "我政府升高臺海緊張", "type": "narrative", "aliases": ["升高臺海緊張"] }
+    "g:narr-tw-escalates-tension": { "name": "我政府升高臺海緊張", "type": "narrative", "aliases": ["升高臺海緊張"] },
+
+    "g:meta-q1-2025-china-network": { "name": "Meta Q1-2025 China-origin CIB network", "type": "network", "aliases": ["157 Facebook accounts"], "note": "157 FB 帳號＋19 Pages＋1 Group＋17 IG；三 cluster（Myanmar/Taiwan/Japan）；amplifier（資產）" },
+    "g:meta-q1-2025-china-operators": { "name": "Meta Q1-2025 China network operators (unnamed)", "type": "person", "aliases": ["The people behind this activity", "The same group"], "note": "未具名操作者；person/actor，與資產網絡分立（規則20）" },
+    "g:meta-q1-2025-account-farm": { "name": "Meta Q1-2025 account farm", "type": "infrastructure", "aliases": ["account farm"] },
+    "g:meta-china-prior-ops-unnamed": { "name": "Meta 先前移除之兩個 China-based operations（2022-09/2024-02）", "type": "network", "aliases": ["two past China-based influence operations"], "note": "collective；跨 campaign 弱連結（links to）→ suspected-affiliate、無邊" },
+    "g:myanmar": { "name": "Myanmar", "type": "place", "aliases": ["緬甸"] },
+    "g:japan-government": { "name": "Government of Japan", "type": "org", "aliases": ["Japan's government", "日本政府"] },
+    "g:mm-civil-resistance": { "name": "Myanmar civil resistance movements", "type": "org", "aliases": ["civil resistance movements"] },
+    "g:narr-mm-end-conflict": { "name": "the need to end the ongoing conflict（緬甸停戰框架）", "type": "narrative", "aliases": ["the need to end the ongoing conflict"] },
+    "g:narr-tw-officials-corrupt": { "name": "Taiwanese politicians and military leaders are corrupt", "type": "narrative", "aliases": ["Taiwanese politicians and military leaders are corrupt"] }
   }
 }

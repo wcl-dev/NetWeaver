@@ -7,7 +7,7 @@ import json, re, sys, hashlib, pathlib
 
 _here = pathlib.Path(__file__).resolve().parent
 _norm = lambda s: re.sub(r"\s+", " ", s or "").strip()
-CTX_ROLES = {"actor", "target", "narrative", "suspected-affiliate", "amplifier"}
+CTX_ROLES = {"actor", "target", "narrative", "suspected-affiliate", "amplifier", "amplified-voice"}
 ETYPES = {"person", "org", "network", "account", "website", "media", "narrative",
           "tool", "infrastructure", "place", "url", "domain"}
 REL = {"related-to", "attributed-to", "operated-by", "runs", "targets", "uses",

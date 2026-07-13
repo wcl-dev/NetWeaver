@@ -7,7 +7,7 @@
 
 ## mention 怎麼標
 - 一個實體**每次出現**都標一筆（各自 `mid`），同一實體共用 `gid`。
-- `entity_type`＝「是什麼」（network/org/narrative/place…）；`context_role`＝「在本文扮演什麼」（actor/target/narrative/suspected-affiliate/amplifier）。**兩者分開**。
+- `entity_type`＝「是什麼」（network/org/narrative/place…）；`context_role`＝「在本文扮演什麼」（actor/target/narrative/suspected-affiliate/amplifier/**amplified-voice**）。**兩者分開**。
 - `surface` 逐字照抄；`quote` 取一段能支持這個 mention 的原句，且 surface 要落在 quote 內。
 
 ### 標 / 不標（正反例）
@@ -26,7 +26,7 @@
 
 ## 最容易不一致的地方（先講好）
 1. **回指**（`the accounts`／`the network`／代名詞）：只在它**明確**回指某已標實體時，才當同一實體的又一 occurrence；模糊就不標。
-2. **actor vs suspected-affiliate**：直接執行者＝actor；被「likely linked / possibly tied」弱連結的（常是 PRC 機關）＝suspected-affiliate。**不要**把弱連結寫成 sponsor。
+2. **actor vs suspected-affiliate vs amplified-voice**：直接執行者＝actor；被「likely linked / possibly tied」弱連結的（常是 PRC 機關）＝suspected-affiliate；**言論被行為者放大的第三方（本地政治人物、名嘴）＝`amplified-voice`**——中性、**不含通敵指控**（紅線！絕不可標成 actor/suspected-affiliate）。可記逐字述詞如「呼應」，碼會判成弱關係。**不要**把弱連結寫成 sponsor。
 3. **narrative vs 一般內容**：只有被當成「被散播的主張/口號」才標 narrative；純敘述事實不是。
 4. **quote 取多長**：夠支持該 mention/兩端即可，別整段複製、也別短到撐不起。
 5. **同一還是兩個實體**：名稱不同但明確同指 → 同一 `gid`（去 registry 查/補）；不確定 → 標新 `g:` 並留 note，adjudication 再併。

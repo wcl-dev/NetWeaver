@@ -13,7 +13,7 @@ LADDER = [
     (r"amplified|echoed|boosted|reposted|cited by|放大|轉發|轉載|引用", "amplifies"),
     (r"target|against|針對|鎖定|攻擊", "targets"),
     (r"\buse[ds]?\b|\bvia\b|使用|透過", "uses"),
-    (r"linked to|associated|tied to|connected|連結|相關|關聯|有往來", "related-to"),
+    (r"linked to|associated|tied to|connected|連結|相關|關聯|有往來|呼應|呼应|附和|唱和", "related-to"),
 ]
 CONTROL = {"operated-by", "runs"}
 KIND = {"operation": "campaign", "network": "intrusion-set", "org": "identity", "person": "identity",

@@ -1,6 +1,6 @@
-# 抽取 gold 標註契約 v0.2（已凍結）
+# 抽取 gold 標註契約 v0.2.1（已凍結）
 
-> **狀態：FROZEN**。經 Codex（gpt-5.6-sol）五輪對抗式複審定案，validator 全綠。可開始標註 dev set；改契約須依 §10 變更控制。
+> **狀態：FROZEN**。經 Codex（gpt-5.6-sol）多輪對抗式複審定案，validator 全綠。可標註 dev set；改契約須依 §10 變更控制。v0.2.1 於標註中新增 `amplified-voice` role（見 §1、§10）。
 
 **目的**：定義「一個正確的 mention／assertion 是什麼」，讓抽取品質**可量測**（gold set）且**標註者一致**。這是版本化 policy——改契約須同步改 gold 並重跑 harness（同 [filter 的 policy table](../pipeline/filter.py) 精神）。
 
@@ -33,7 +33,7 @@
 | `mid` | 此 occurrence 的唯一 id（檔內唯一，如 `m1`）|
 | `gid` | 跨檔 **entity id**：能對到 [db.js](../data/db.js) 既有實體 → 用其 id；否則用 [gold registry](../pipeline/gold/registry.gold.json) 的 `g:<slug>` |
 | `entity_type` | **對齊模型 `coarse_type`**：`person`/`org`/`network`/`account`/`website`/`media`/`narrative`/`tool`/`infrastructure`/`place`/`url`/`domain` |
-| `context_role` | 此實體在本文的角色：`actor`/`target`/`narrative`/`suspected-affiliate`/`amplifier` |
+| `context_role` | 此實體在本文的角色：`actor`/`target`/`narrative`/`suspected-affiliate`/`amplifier`/`amplified-voice` |
 | `surface` | **逐字**如原文所寫（須落在此 mention 的 `quote` 內）|
 | `quote` | 支持此 mention 的**逐字**原文（cleaned_text 的子字串）|
 
@@ -44,6 +44,11 @@
 **entity_type vs context_role 為何要分**：同一 `org` 可能是 actor（施為者）或 target（受害政黨）或 suspected-affiliate（被弱連結的 PRC 機關）——type 描述「是什麼」、role 描述「在本文扮演什麼」，分開才評得公平。
 
 **誰進模型評分**：`entity_type` **對齊模型 `coarse_type`、進模型抽取評分**（模型會輸出 type）。`context_role` 是 **gold 分析欄、模型不輸出、不進 recall 指標**——只供分層切片與 derive 評測。同一 `gid` 的所有 occurrence 應共用同一 `entity_type`（validator 檢查一致性）。
+
+**`amplified-voice`（守紅線的角色）**：言論被 FIMI 行為者放大／轉載的**第三方**（常為被點名的本地政治人物、名嘴），標 `amplified-voice`——**不含通敵指控**。這是「記錄，不指控」紅線的落點。
+- **claim-scoped，非人物永久分類**：此 role 只描述「在本篇/此 claim 中，其言論被放大」；同一人在別篇可能是別的角色。**registry 不得把某人固定成 amplified-voice**（registry 只記身分/別名）。
+- **僅限「只被引用/放大」**：來源**只**證實其言論被引用/放大、**無**任務指派、付費、控制、協調傳散或帳號操作證據時才用。若有上述證據 → 改標 `actor`／`suspected-affiliate`。**嚴禁拿此 role 規避 actor 標記**。
+- **執行時的紅線靠述詞 ladder，不靠 role**：`context_role` 是 gold 評分欄，**derive 執行時看不到它**。真正擋過度歸因的是 derive 的**反升級 ladder**——`呼應`→related-to、`放大`→amplifies 都是**非控制述詞**，只有控制述詞（operated-by/runs）＋信心≥中才建 attributed-to。故即使模型沒有 role 概念，逐字記「呼應/放大」也不會被升級為歸因。（回歸測試見 [pipeline/test_derive_redline.py](../pipeline/test_derive_redline.py)）
 
 ---
 
@@ -149,3 +154,6 @@ validator 額外驗：`surface` 落在其 mention 的 `quote` 內、`predicate` 
 ## 10. 變更控制
 
 改本契約 → 同步改受影響 gold → 重跑 validator/harness。任何「放寬」（如允許 overlap 當命中）須在此明文並附理由。
+
+**變更紀錄**
+- **v0.2.1**（標註中發現）：新增 `context_role=amplified-voice`——被 FIMI 行為者放大的第三方（守「記錄不指控」紅線，見 §1）。由 dev doc 02（中共官媒放大鄭麗文/館長說法）觸發；validator CTX_ROLES 同步。

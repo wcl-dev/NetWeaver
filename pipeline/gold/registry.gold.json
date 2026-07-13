@@ -1,5 +1,5 @@
 {
-  "_doc": "gold set 全域 entity namespace（g:）。跨報告重用——同一實體在多篇 gold 必須是同一個 g: id。能對到 ../../data/db.js 既有實體就用 db id、不建 g:。aliases 只收真正同指的名稱，不得放 narrative 字串或合成 display name。契約見 ../../docs/GOLD.md §6。",
+  "_doc": "gold set 全域 entity namespace（g:）。跨報告重用——同一實體在多篇 gold 必須是同一個 g: id。能對到 ../../data/db.js 既有實體就用 db id、不建 g:。aliases 只收真正同指的名稱，不得放 narrative 字串或合成 display name。registry 的 type 須與 mention entity_type 一致。契約見 ../../docs/GOLD.md §6。",
   "entities": {
     "g:dpp": {
       "name": "Democratic Progressive Party",
@@ -13,11 +13,77 @@
       "aliases": ["PRC", "China", "中國", "中華人民共和國"],
       "note": "國家層級；報告多以弱連結（likely linked）指向，標 context_role=suspected-affiliate，不得寫成 sponsor"
     },
+    "g:ccp": {
+      "name": "Chinese Communist Party",
+      "type": "org",
+      "aliases": ["中共", "CCP", "中國共產黨"],
+      "note": "黨／國家層級 FIMI 施為者；與 g:ccp-state-media（官媒通道）分開"
+    },
+    "g:ccp-state-media": {
+      "name": "PRC state media (collective)",
+      "type": "media",
+      "aliases": ["中共官媒", "官媒"],
+      "note": "中共官方媒體集合；通常為 amplifier 通道，非最終 sponsor"
+    },
+    "g:lai-ching-te": {
+      "name": "Lai Ching-te",
+      "type": "person",
+      "aliases": ["賴清德", "賴總統"],
+      "note": "民進黨籍總統；FIMI 報告中常為被醜化的 target"
+    },
+    "g:japan": {
+      "name": "Japan",
+      "type": "place",
+      "aliases": ["日本"]
+    },
+    "g:philippines": {
+      "name": "Philippines",
+      "type": "place",
+      "aliases": ["菲律賓"]
+    },
     "g:narr-oppose-greens": {
       "name": "I am Taiwanese and I oppose the greens",
       "type": "narrative",
       "aliases": ["我是台灣人我反綠"],
       "note": "反民進黨冒充敘事"
+    },
+    "g:narr-self-abasement": {
+      "name": "賴清德自甘下跪",
+      "type": "narrative",
+      "aliases": ["自甘下跪"],
+      "note": "貶抑賴清德的口號"
+    },
+    "g:narr-kowtow-jp-ph": {
+      "name": "賴清德跪了日菲",
+      "type": "narrative",
+      "aliases": ["跪了日菲"]
+    },
+    "g:narr-help-thieves": {
+      "name": "助賊分海",
+      "type": "narrative",
+      "aliases": ["助贼分海", "助賊分海"]
+    },
+    "g:narr-tw-unwelcome": {
+      "name": "台灣不受國際歡迎",
+      "type": "narrative",
+      "aliases": ["台灣不受國際歡迎的負面形象"]
+    },
+    "g:zheng-li-wen": {
+      "name": "Cheng Li-wen",
+      "type": "person",
+      "aliases": ["鄭麗文"],
+      "note": "國民黨主席。身分記錄；context_role 由各篇 claim 決定（非固定），勿在此釘死角色"
+    },
+    "g:chen-chih-han": {
+      "name": "Chen Chih-han (Kuan Chang)",
+      "type": "person",
+      "aliases": ["陳之漢", "館長"],
+      "note": "網紅。身分記錄；context_role 由各篇 claim 決定（非固定）"
+    },
+    "g:narr-one-china-mainstream": {
+      "name": "多数国家奉行一中政策（一中為國際主流）",
+      "type": "narrative",
+      "aliases": ["多数国家奉行一中政策"]
     }
   }
 }

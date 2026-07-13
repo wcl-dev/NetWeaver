@@ -69,6 +69,19 @@
     "g:narr-us-tech-bullying": { "name": "美國經濟科技霸凌（小院高牆）", "type": "narrative", "aliases": ["美國大搞经济和科技霸凌，将构筑“小院高墙”的霸凌行径包装成维护“国家安全”"] },
     "g:narr-us-bandit-logic": { "name": "美國強盜邏輯、濫用國家力量", "type": "narrative", "aliases": ["美国强盗逻辑，滥用国家力量"] },
     "g:narr-us-double-standard": { "name": "美國雙重標準、破壞自由市場", "type": "narrative", "aliases": ["美国双重标准，破坏自由市场"] },
-    "g:narr-us-hypocrisy": { "name": "美方人權評比虛偽雙標", "type": "narrative", "aliases": ["霸权霸道霸凌的自私本性和说一套做一套的虚伪双标"] }
+    "g:narr-us-hypocrisy": { "name": "美方人權評比虛偽雙標", "type": "narrative", "aliases": ["霸权霸道霸凌的自私本性和说一套做一套的虚伪双标"] },
+
+    "g:narr-military-skepticism": { "name": "疑軍論（敘事家族）", "type": "narrative", "aliases": ["疑軍", "疑軍論"] },
+    "g:narr-lai-skepticism": { "name": "疑賴論（敘事家族）", "type": "narrative", "aliases": ["疑賴", "疑賴論"] },
+    "g:mjib-seized-2024-cluster": { "name": "2024 二合一選舉查獲之境外管理臉書叢集", "type": "network", "aliases": ["40 個臉書人頭帳號"], "note": "調查局查獲：40 帳號＋20 粉專＋YT 頻道，境外人士管理；amplifier（傳散資產）" },
+    "g:roc-military": { "name": "ROC Armed Forces (海/空軍及海巡)", "type": "org", "aliases": ["我海、空軍及海巡官兵", "國軍"], "note": "被偽冒的受害方＝target（非 amplified-voice）" },
+    "g:tw-politicians-unnamed": { "name": "未具名台灣政界人士（集體）", "type": "person", "aliases": ["我國政界人士"], "note": "深偽偽冒受害者＝target；claim-scoped" },
+    "g:narr-pla-blockade-capability": { "name": "共軍具備鎖臺、反制美日介入能力", "type": "narrative", "aliases": ["共軍具備鎖臺、反制美日介入能力"] },
+    "g:narr-us-jp-wont-help": { "name": "美日無意援臺", "type": "narrative", "aliases": ["美日無意援臺"] },
+    "g:haixia-daobao-paper": { "name": "海峽導報（報社）", "type": "media", "aliases": ["海峽導報", "海峽導報社"], "note": "db 將報社列為 haixia-daobao-accounts 的 alias（帳號叢集）——為免關係自環另立；待回報 db 拆分" },
+    "g:narr-pro-china-opinion": { "name": "利中（國際輿論框架）", "type": "narrative", "aliases": ["利中"] },
+    "g:narr-demean-taiwan": { "name": "貶臺（國際輿論框架）", "type": "narrative", "aliases": ["貶臺"] },
+    "g:guell-herald": { "name": "Guell Herald（假西班牙媒體）", "type": "media", "aliases": ["奎爾先鋒報", "Guell Herald"] },
+    "g:narr-tw-escalates-tension": { "name": "我政府升高臺海緊張", "type": "narrative", "aliases": ["升高臺海緊張"] }
   }
 }

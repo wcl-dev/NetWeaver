@@ -55,5 +55,13 @@
 14. **複合述詞拆邊**（「發起、放大」→ 發起、放大兩條邊）；**predicate 不含副詞**（持續/仍傾向/搶著）。
 > IAA 發現：B 曾把原文繁體「美國大搞」轉錄成簡體「美国大搞」→ 被 exact-quote 驗證擋下。**引文必須複製貼上，不可手打**——人也需要 span-check。
 
+## 裁決紀錄（doc05 校準）
+15. **role 依證據強度分級**：來源明示「設立/委託」（控制/任務指派證據）→ `actor`；僅「關係密切」（弱連結）→ `suspected-affiliate`；**被偽冒＝`target`**（身分被盜用≠言論被放大，勿誤用 amplified-voice）。
+16. **被創建的傳散資產**（假媒體、查獲帳號叢集）＝`amplifier`（通道），非 actor；**連動句省略主詞時，邊的主詞＝語法主詞**（海賣創建…推播…炒作…批評 → 主詞都是海賣），不推斷到資產。
+17. **surface 不含引號/書名號**（「」《》）；quote 可含。
+18. 工具/技術（深偽、AI、自動排程）、泛用資產類（異常帳號、假帳號、官方帳號、自媒體、網紅）、內容類名詞（爭訊、官宣內容、影音圖文）→ **不標**（屬 TTP/behavior 擴充範疇）。
+> db 歸併回報：《海峽導報》報社被列為 `haixia-daobao-accounts`（TikTok 帳號叢集）的 alias——會使「關係密切」邊自環；gold 另立 `g:haixia-daobao-paper`，待 db 拆分。
+> derive ladder 待補：「委託」應映射至控制級（operated-by）——見 doc05 O4 derive_expected。
+
 ## 交件前
 跑 `python3 pipeline/gold/validate_gold.py your.gold.json`——quote 全 exact 命中、gid 都解析得到、surface/predicate 落在 quote 內、無重複 quote 歧義，才算合格。

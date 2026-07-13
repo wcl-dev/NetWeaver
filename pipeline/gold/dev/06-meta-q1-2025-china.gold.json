@@ -1,0 +1,25 @@
+{
+  "kind": "dev",
+  "cleaner_version": "normalize-v0",
+  "text_sha256": "sha256:98535e41074d7e78445d19d604b5e8198fc0a808edb74a469188c8e432f82e25",
+  "report": {
+    "name": "Meta First Quarter 2025 Adversarial Threat Report — China-based CIB network",
+    "url": "https://transparency.meta.com/sr/Q1-2025-Adversarial-threat-report/",
+    "org": "Meta",
+    "published": "2025-05",
+    "type": "platform-report"
+  },
+  "strata": {
+    "lang": "en",
+    "source": "meta",
+    "length": "medium",
+    "format": "pdf",
+    "attribution": "clear"
+  },
+  "_note": "取報告的 China 網絡段（Executive summary China bullet ＋ Chapter 01 China），Taiwan 相關且自足；Iran/Romania 段（非中國）不納。China 網絡含三個 target cluster（Myanmar/Taiwan/Japan）＋連結兩個先前 China campaign → 測 operation grouping。",
+  "cleaned_text": "Meta First Quarter 2025 Adversarial Threat Report — China-based CIB network\n\nExecutive summary: In this report, we're sharing threat research into three covert influence operations we disrupted in Q1 of 2025 in China, Iran, and Romania. We detected and removed these campaigns before they were able to build authentic audiences on our apps. China: We removed a network that originated in China that targeted Myanmar, Taiwan, and Japan. We detected and took it down as a result of our internal investigation into suspected CIB activity in the region, before the operators were able to build authentic audiences on our apps. Although the people behind it attempted to conceal their identity and coordination, our investigation found links to two separate China-based influence operations we had previously removed and reported in September 2022 and February 2024.\n\nChina: We removed 157 Facebook accounts, 19 Pages, one Group, and 17 accounts on Instagram for violating our coordinated inauthentic behavior policy. This network originated in China, and targeted Myanmar, Taiwan, and Japan. We disrupted it before it was able to build authentic audiences on our apps.\n\nThe people behind this activity used fake accounts – many of which were detected by our automated systems – to post content, manage Pages, and reach out to others. This operation included three separate clusters of accounts where each targeted a particular country while posing as locals. Some of these accounts used profile photos likely created using artificial intelligence. The same group also operated a so-called account farm creating further fake accounts which we took action against separately.\n\nThese three clusters reposted other people's and their own content in English, Burmese, Mandarin, and Japanese about news and current events in each country they targeted. In Myanmar, they posted about the need to end the ongoing conflict, criticized the civil resistance movements and shared supportive commentary about the military junta. In Japan, the campaign criticized Japan's government and its military ties with the US. In Taiwan, they posted claims that Taiwanese politicians and military leaders are corrupt, and ran Pages claiming to display posts submitted anonymously – in a likely attempt to create the impression of an authentic discourse.\n\nWe found this network as a result of our internal investigation into suspected CIB activity in the region. Although the people behind it attempted to conceal their identity and coordination, our investigation found links to two past China-based influence operations we had removed and reported in September 2022 and February 2024. Presence on Facebook and Instagram: 157 Facebook accounts, 19 Pages, 1 Group, and 17 accounts on Instagram. Followers: About 7,800 accounts followed one or more of these Pages, around 25 users joined this Group, and about 700 users followed one or more of these Instagram accounts.",
+  "mentions": [],
+  "assertions": [],
+  "operation_expected": [],
+  "_annotate": "填 mentions/assertions/operation_expected（見 GUIDELINES.md）。勿改 cleaned_text（改了 sha 不符）。"
+}

@@ -1,89 +1,54 @@
 {
-  "_doc": "gold set 全域 entity namespace（g:）。跨報告重用——同一實體在多篇 gold 必須是同一個 g: id。能對到 ../../data/db.js 既有實體就用 db id、不建 g:。aliases 只收真正同指的名稱，不得放 narrative 字串或合成 display name。registry 的 type 須與 mention entity_type 一致。契約見 ../../docs/GOLD.md §6。",
+  "_doc": "gold set 全域 entity namespace（g:）。跨報告重用——同一實體在多篇 gold 必須是同一個 g: id。能對到 ../../data/db.js 既有實體就用 db id、不建 g:。aliases 只收真正同指的名稱，不得放合成 display name。registry 的 type 須與 mention entity_type 一致。未具名集體用 -unnamed 後綴（claim-scoped，跨文不必同指）。契約見 ../../docs/GOLD.md §6。",
   "entities": {
-    "g:dpp": {
-      "name": "Democratic Progressive Party",
-      "type": "org",
-      "aliases": ["DPP", "民主進步黨", "民進黨"],
-      "note": "受害／目標政黨，非 db.js 收錄的行為者實體"
-    },
-    "g:prc": {
-      "name": "People's Republic of China",
-      "type": "org",
-      "aliases": ["PRC", "China", "中國", "中華人民共和國"],
-      "note": "國家層級；報告多以弱連結（likely linked）指向，標 context_role=suspected-affiliate，不得寫成 sponsor"
-    },
-    "g:ccp": {
-      "name": "Chinese Communist Party",
-      "type": "org",
-      "aliases": ["中共", "CCP", "中國共產黨"],
-      "note": "黨／國家層級 FIMI 施為者；與 g:ccp-state-media（官媒通道）分開"
-    },
-    "g:ccp-state-media": {
-      "name": "PRC state media (collective)",
-      "type": "media",
-      "aliases": ["中共官媒", "官媒"],
-      "note": "中共官方媒體集合；通常為 amplifier 通道，非最終 sponsor"
-    },
-    "g:lai-ching-te": {
-      "name": "Lai Ching-te",
-      "type": "person",
-      "aliases": ["賴清德", "賴總統"],
-      "note": "民進黨籍總統；FIMI 報告中常為被醜化的 target"
-    },
-    "g:japan": {
-      "name": "Japan",
-      "type": "place",
-      "aliases": ["日本"]
-    },
-    "g:philippines": {
-      "name": "Philippines",
-      "type": "place",
-      "aliases": ["菲律賓"]
-    },
-    "g:narr-oppose-greens": {
-      "name": "I am Taiwanese and I oppose the greens",
-      "type": "narrative",
-      "aliases": ["我是台灣人我反綠"],
-      "note": "反民進黨冒充敘事"
-    },
-    "g:narr-self-abasement": {
-      "name": "賴清德自甘下跪",
-      "type": "narrative",
-      "aliases": ["自甘下跪"],
-      "note": "貶抑賴清德的口號"
-    },
-    "g:narr-kowtow-jp-ph": {
-      "name": "賴清德跪了日菲",
-      "type": "narrative",
-      "aliases": ["跪了日菲"]
-    },
-    "g:narr-help-thieves": {
-      "name": "助賊分海",
-      "type": "narrative",
-      "aliases": ["助贼分海", "助賊分海"]
-    },
-    "g:narr-tw-unwelcome": {
-      "name": "台灣不受國際歡迎",
-      "type": "narrative",
-      "aliases": ["台灣不受國際歡迎的負面形象"]
-    },
-    "g:zheng-li-wen": {
-      "name": "Cheng Li-wen",
-      "type": "person",
-      "aliases": ["鄭麗文"],
-      "note": "國民黨主席。身分記錄；context_role 由各篇 claim 決定（非固定），勿在此釘死角色"
-    },
-    "g:chen-chih-han": {
-      "name": "Chen Chih-han (Kuan Chang)",
-      "type": "person",
-      "aliases": ["陳之漢", "館長"],
-      "note": "網紅。身分記錄；context_role 由各篇 claim 決定（非固定）"
-    },
-    "g:narr-one-china-mainstream": {
-      "name": "多数国家奉行一中政策（一中為國際主流）",
-      "type": "narrative",
-      "aliases": ["多数国家奉行一中政策"]
-    }
+    "g:dpp": { "name": "Democratic Progressive Party", "type": "org", "aliases": ["DPP", "民主進步黨", "民進黨", "執政黨"], "note": "受害／目標政黨；「執政黨」於本期文脈明確回指 DPP" },
+    "g:prc": { "name": "People's Republic of China", "type": "org", "aliases": ["PRC", "China", "中國", "中華人民共和國"], "note": "國家層級；弱連結標 suspected-affiliate，不得寫 sponsor" },
+    "g:ccp": { "name": "Chinese Communist Party", "type": "org", "aliases": ["中共", "CCP", "中國共產黨"], "note": "黨／國家層級 FIMI 施為者；與 g:ccp-state-media（官媒通道）分開" },
+    "g:ccp-state-media": { "name": "PRC state media (collective)", "type": "media", "aliases": ["中共官媒", "官媒"], "note": "官方媒體集合；通常為 amplifier 通道" },
+    "g:lai-ching-te": { "name": "Lai Ching-te", "type": "person", "aliases": ["賴清德", "賴總統"], "note": "民進黨籍總統；常為被醜化 target" },
+    "g:japan": { "name": "Japan", "type": "place", "aliases": ["日本", "日"] },
+    "g:philippines": { "name": "Philippines", "type": "place", "aliases": ["菲律賓", "菲"] },
+    "g:taiwan": { "name": "Taiwan", "type": "place", "aliases": ["台灣", "臺灣", "台"], "note": "僅在其本身為攻擊/形塑/併吞對象時標；修飾語不標" },
+    "g:tw-government": { "name": "Government of Taiwan (ROC)", "type": "org", "aliases": ["我國政府", "台灣政府"], "note": "政府機關整體；與執政黨（g:dpp）區分" },
+    "g:china-coast-guard": { "name": "China Coast Guard", "type": "org", "aliases": ["中國海警", "中国海警"] },
+    "g:zheng-li-wen": { "name": "Cheng Li-wen", "type": "person", "aliases": ["鄭麗文"], "note": "國民黨主席。身分記錄；context_role 由各篇 claim 決定（非固定）" },
+    "g:chen-chih-han": { "name": "Chen Chih-han (Kuan Chang)", "type": "person", "aliases": ["陳之漢", "館長"], "note": "網紅。身分記錄；context_role 由各篇 claim 決定" },
+    "g:tw-pundits-unnamed": { "name": "未具名台灣名嘴（集體）", "type": "person", "aliases": ["特定台灣名嘴", "台灣名嘴"], "note": "未具名集體；amplified-voice 為 claim-scoped，跨文不必同指" },
+    "g:tw-moviegoers-unnamed": { "name": "未具名台灣觀眾（集體）", "type": "person", "aliases": ["少數台灣觀眾"], "note": "未具名集體；同上" },
+
+    "g:narr-oppose-greens": { "name": "I am Taiwanese and I oppose the greens", "type": "narrative", "aliases": ["我是台灣人我反綠"], "note": "反民進黨冒充敘事" },
+    "g:narr-self-abasement": { "name": "賴清德自甘下跪", "type": "narrative", "aliases": ["自甘下跪"] },
+    "g:narr-kowtow-jp-ph": { "name": "賴清德跪了日菲", "type": "narrative", "aliases": ["跪了日菲"] },
+    "g:narr-help-thieves": { "name": "助賊分海", "type": "narrative", "aliases": ["助贼分海", "助賊分海"] },
+    "g:narr-tw-unwelcome": { "name": "台灣不受國際歡迎", "type": "narrative", "aliases": ["台灣不受國際歡迎的負面形象"] },
+    "g:narr-one-china-mainstream": { "name": "多数国家奉行一中政策（一中為國際主流）", "type": "narrative", "aliases": ["多数国家奉行一中政策"] },
+    "g:narr-sell-fishermen": { "name": "出賣漁民", "type": "narrative", "aliases": ["出卖渔民"] },
+    "g:narr-forget-ancestors": { "name": "數典忘祖", "type": "narrative", "aliases": ["数典忘祖"] },
+    "g:narr-national-scum": { "name": "民族敗類", "type": "narrative", "aliases": ["民族败类"] },
+    "g:narr-tai-authorities": { "name": "台当局（貶稱框架）", "type": "narrative", "aliases": ["台当局"], "note": "貶稱亦標 narrative（doc02 裁決 Q6）" },
+    "g:narr-dpp-anti-people": { "name": "執政黨不顧民眾利益", "type": "narrative", "aliases": ["執政黨不顧民眾利益、政治考量凌駕民生考量的負面形象"] },
+    "g:narr-same-nation": { "name": "台灣及中國同屬中華民族", "type": "narrative", "aliases": ["台湾及中国同属中华民族"] },
+    "g:narr-jpph-collusion": { "name": "日菲勾連", "type": "narrative", "aliases": ["日菲勾连"] },
+    "g:narr-hammer": { "name": "一意孤行只會求錘得錘", "type": "narrative", "aliases": ["一意孤行只会求锤得锤"] },
+    "g:narr-pla-superior": { "name": "中共軍事實力優越", "type": "narrative", "aliases": ["中共軍事實力優越形象"] },
+    "g:narr-defense-failure": { "name": "國防失敗論（敘事家族）", "type": "narrative", "aliases": ["國防失敗論"], "note": "IORG 分類學標籤；僅在行為者發起/放大/延續的使用處標（doc02 裁決 Q4）" },
+    "g:narr-cg-patrol": { "name": "海警执法巡查（正當化框架）", "type": "narrative", "aliases": ["执法巡查"] },
+    "g:narr-legit-act": { "name": "海上襲擾＝正當行為", "type": "narrative", "aliases": ["正當行為"] },
+    "g:narr-papa-protect": { "name": "爸爸（中共）來保護你", "type": "narrative", "aliases": ["爸爸（指中共）来保护你"] },
+    "g:narr-mainland-backer": { "name": "中國大陸是台灣民眾靠山", "type": "narrative", "aliases": ["中国大陆是台湾民众靠山"] },
+    "g:narr-sellout-vs-protect": { "name": "台灣政府賣台、中國政府護台", "type": "narrative", "aliases": ["台灣政府賣台、中国政府（解放军）護台"], "note": "複合對照說法整體一個 narrative，內部實體不拆標" },
+    "g:narr-restrict-freedom": { "name": "執政黨禁錮民眾行動言論自由", "type": "narrative", "aliases": ["禁锢台湾民众行动和言论自由"] },
+    "g:narr-panda-politicized": { "name": "將熊貓政治化", "type": "narrative", "aliases": ["将熊猫政治化"] },
+    "g:narr-dpp-irrational": { "name": "執政黨不理性反中", "type": "narrative", "aliases": ["執政黨不理性反中的負面形象"] },
+    "g:narr-6000-taibao": { "name": "6000名台胞踴躍參加", "type": "narrative", "aliases": ["6000 名台胞踊跃参加"] },
+    "g:narr-redpanda": { "name": "小熊貓萌化島內民眾", "type": "narrative", "aliases": ["小熊猫萌化岛内民众"] },
+    "g:narr-majority-unsupportive": { "name": "多數台灣民眾不支持政府", "type": "narrative", "aliases": ["多數台灣民眾不支持政府立場的印象"] },
+    "g:narr-both-chinese": { "name": "兩岸人民都是中國人", "type": "narrative", "aliases": ["两岸人民都是中国人"] },
+    "g:narr-moved-to-tears": { "name": "看哭（情緒引語）", "type": "narrative", "aliases": ["看哭"], "note": "被放大的情緒引語亦標 narrative（doc02 裁決 Q6）" },
+    "g:narr-sobbing": { "name": "暴哭（情緒引語）", "type": "narrative", "aliases": ["暴哭"] },
+    "g:narr-tears-at-scene": { "name": "淚灑現場（情緒引語）", "type": "narrative", "aliases": ["泪洒现场"] },
+    "g:narr-sakya-peace": { "name": "吃釋迦就可以推動和平", "type": "narrative", "aliases": ["吃释迦就可以推动和平"] },
+    "g:narr-agri-politicized": { "name": "將農產品貿易政治化", "type": "narrative", "aliases": ["将农产品贸易政治化"] },
+    "g:narr-sakya-intolerant": { "name": "連一顆鳳梨釋迦都容不下", "type": "narrative", "aliases": ["连一颗凤梨释迦都容不下"] }
   }
 }

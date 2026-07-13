@@ -36,5 +36,16 @@
 - 能對到 [../../data/db.js](../../data/db.js) 既有行為者 → 直接用 db id（如 `anti-dpp-impersonation`）。
 - 否則到 [registry.gold.json](registry.gold.json) 查有沒有現成 `g:`（DPP=`g:dpp`、PRC=`g:prc`…）；沒有才新增，**全 gold set 共用同一個**。
 
+## 裁決紀錄（doc02 三方校準：A=Claude、B=Codex、裁決=維運者）——一體適用後續各篇
+1. **並列簡稱**（「弱化日、菲」的日/菲）＝獨立 occurrence，共用該國 gid；**口號內部**的片段仍不拆（「跪了日菲」不拆）。
+2. **載具不標**：被「借」的事件/文本/場合（日菲聯合聲明、電影、雙城/海峽論壇）不是 actor/target/narrative。
+3. **未具名集體**（特定台灣名嘴、少數台灣觀眾）**標** amplified-voice；gid 用 `-unnamed` 後綴，registry 註明「claim-scoped，跨文不必同指」。
+4. **分類學標籤**（國防失敗論、疑美論九類）：**定義處不標**；行為者「發起/放大/延續」的**使用處**標為 narrative（家族）——doc04 大量適用。
+5. **「放大」的受詞**：有具體引語→指向該 narrative（較精準）；無具體引語→指向人（amplified-voice）。
+6. **被引述的貶稱（台当局）、框架詞（正當行為）、情緒引語（看哭/暴哭）都標 narrative**——寧完整勿遺漏（維運者裁定）。
+7. **目的子句不建邊**（「以達成…併吞台灣之政治目的」）；**既遂行為**的逐字動詞片語（實施經濟脅迫）建邊。
+8. **narrative surface 內部的實體字串不另標**（「執政黨不顧民眾利益」裡的執政黨、「賣台護台」裡的解放军）。
+9. 主詞省略的後續子句要建邊：quote 往前延伸到含主詞；若 predicate 因此在 quote 內重複（歧義）→ 不建邊、記 notes。
+
 ## 交件前
 跑 `python3 pipeline/gold/validate_gold.py your.gold.json`——quote 全 exact 命中、gid 都解析得到、surface/predicate 落在 quote 內、無重複 quote 歧義，才算合格。

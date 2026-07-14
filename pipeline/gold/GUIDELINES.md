@@ -70,5 +70,12 @@
 22. **role gap 備案**：beneficiary（被支持的受益方，如軍政府）暫不標，列擴充；勿以 amplified-voice 充數。
 > IAA 發現（第二次）：B 把 exec summary 兩句**拼接成一句假引文** → exact-quote 擋下 5 筆。LLM 標註員有「順手改寫」傾向——引文必須複製，驗證器是最後防線。
 
+## 裁決紀錄（doc01 校準）
+23. **規則 16 例外**：來源明指網絡為「threat actor」→ 網絡＝`actor`（DTL 把網絡當行為者講；Meta 是人/資產分開講）。**hypothesized operators＝suspected-affiliate**（「hypothesize」＝未證實，不得 actor）；其 operated-by 邊帶 hedge → derive 期望**不歸因**。
+24. **內容主詞折衷**：僅「已識別 narrative 的 occurrence」（含回指如「5 posts」）可作邊主詞（`narr—opposed→target`）；**泛內容名詞**（political narratives、divisive content）**不標**。攻擊關係其餘由 target role 承載。
+25. **predicate 副詞細則**：修辭/程度副詞（directly、持續、搶著）去除；**認知 hedge（likely）保留在述詞內**（can likely be linked to／are likely part of）——derive 靠它判信心。
+26. **不標**：反制言論（用戶指出盜圖）；被引用的第三方研究者（Street Corner Sociology＝視同撰報方）；被推銷的商業網站（受益方，規則 22）；bot 失誤軼事（indicator 層）。
+> amplified-voice 誤用第三次（B 給 sex dating websites）——僅限「言論被放大的第三方」，受益方勿用。
+
 ## 交件前
 跑 `python3 pipeline/gold/validate_gold.py your.gold.json`——quote 全 exact 命中、gid 都解析得到、surface/predicate 落在 quote 內、無重複 quote 歧義，才算合格。

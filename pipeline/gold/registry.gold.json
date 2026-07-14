@@ -92,6 +92,14 @@
     "g:japan-government": { "name": "Government of Japan", "type": "org", "aliases": ["Japan's government", "日本政府"] },
     "g:mm-civil-resistance": { "name": "Myanmar civil resistance movements", "type": "org", "aliases": ["civil resistance movements"] },
     "g:narr-mm-end-conflict": { "name": "the need to end the ongoing conflict（緬甸停戰框架）", "type": "narrative", "aliases": ["the need to end the ongoing conflict"] },
-    "g:narr-tw-officials-corrupt": { "name": "Taiwanese politicians and military leaders are corrupt", "type": "narrative", "aliases": ["Taiwanese politicians and military leaders are corrupt"] }
+    "g:narr-tw-officials-corrupt": { "name": "Taiwanese politicians and military leaders are corrupt", "type": "narrative", "aliases": ["Taiwanese politicians and military leaders are corrupt"] },
+
+    "g:impersonation-photo-victims-unnamed": { "name": "盜圖冒用受害者（台灣/亞洲網紅等，集體）", "type": "person", "aliases": ["Taiwanese or other Asian influencers", "female influencers", "Asian women"], "note": "被盜照片以偽造人設之受害者＝target；claim-scoped 集體" },
+    "g:amplification-providers-unnamed": { "name": "amplification service providers（假說中的操盤商）", "type": "org", "aliases": ["amplification service providers"], "note": "DTL hypothesize（未證實）→ suspected-affiliate；operated-by 邊帶 hedge → derive 期望不歸因" },
+    "g:narr-protest-dpp": { "name": "號召抗議民進黨政府", "type": "narrative", "aliases": ["protest against the DPP government"] },
+    "g:narr-oppose-ccp": { "name": "oppose the CCP（反綠句式變體）", "type": "narrative", "aliases": ["oppose the CCP"], "note": "與我反綠同句式、疑製造對立之變體" },
+    "g:threads-larger-network-unnamed": { "name": "Threads 上更大的不實帳號群（未具名）", "type": "network", "aliases": ["a larger group of inauthentic accounts"] },
+    "g:ifh-network-unnamed": { "name": "influence-for-hire 上位網絡（未具名）", "type": "network", "aliases": ["'influence for hire' network"] },
+    "g:dtl-x-ifh-network": { "name": "DTL 先前於 X 識別之網絡（未具名）", "type": "network", "aliases": ["a network we have identified earlier on X"] }
   }
 }

@@ -34,7 +34,7 @@ python3 pipeline/test_filter.py     # filter 規則的 golden 回歸測試（改
 # 端到端測試（extract→derive→serialize→project）；provider 由環境變數決定（預設地端 Ollama）
 python3 pipeline/extract.py
 
-# 7 篇 gold dev 真實模型基線（chunked、可續跑、輸出不進 Git）
+# 7 篇 gold dev 真實模型基線（chunked、可續跑、請求快取／輸出不進 Git）
 NW_LLM_MODEL=qwen2.5:7b NW_LLM_TIMEOUT=180 python3 pipeline/eval_model.py
 
 # scorer 完美／退化／對抗式自測
@@ -59,6 +59,11 @@ python3 pipeline/compile_to_db.py pipeline/samples/*.extraction.json
 | `NW_LLM_BASE_URL` | `http://localhost:11434` | 端點基底 |
 | `NW_LLM_MODEL` | `gemma4:12b-it-qat` | 模型名 |
 | `NW_LLM_API_KEY` | — | 雲端/相容端點金鑰 |
+| `NW_LLM_TIMEOUT` | `600` | 單次 request timeout（秒） |
+| `NW_LLM_CACHE_DIR` | — | 可選的成功 JSON request cache；含原文，敏感資料勿啟用 |
+| `NW_LLM_CACHE_SALT` | — | 模型 alias／server revision 變更時設新值，強制舊 cache miss |
+
+`eval_model.py` 預設將快取放在 ignored 的 `eval_runs/.request_cache`，使未改變的模型 requests 可在評測迭代間重用；加 `--no-request-cache` 可做 cold run 或避免原文落盤。
 
 ```bash
 # 雲端範例

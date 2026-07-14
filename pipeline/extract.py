@@ -9,10 +9,12 @@
   NW_LLM_MODEL      模型名                 （預設 gemma4:12b-it-qat）
   NW_LLM_API_KEY    金鑰（雲端/相容端點用）
   NW_LLM_TIMEOUT    單次請求秒數           （預設 600）
+  NW_LLM_CACHE_DIR  成功回應的內容雜湊快取目錄（未設即停用）
+  NW_LLM_CACHE_SALT 模型 alias／server revision 變更時用來強制 miss
   → 地端零設定即跑；雲端：NW_LLM_PROVIDER=openai NW_LLM_BASE_URL=https://api.openai.com NW_LLM_MODEL=… NW_LLM_API_KEY=…
 用法：python3 pipeline/extract.py   （__main__ 為端到端測試）
 """
-import json, urllib.request, pathlib, re, sys, os
+import hashlib, json, urllib.request, pathlib, re, sys, os
 import copy
 
 _here = pathlib.Path(__file__).resolve().parent
@@ -23,7 +25,7 @@ FORMAT = {"type": "object", "additionalProperties": False, "required": ["mention
 for section in ("mentions", "assertions"):
     # source_url 是可信 metadata，由 extract() 依 report_meta 補；不讓模型生成或幻覺。
     FORMAT["properties"][section]["items"]["properties"].pop("source_url", None)
-PROMPT_VERSION = "v14-all-surface-occurrences"
+PROMPT_VERSION = "v19-deterministic-request-cache"
 FEWSHOT_EN_TEXT = "The Red Group operated fake accounts targeting Taiwan."
 FEWSHOT_EN = {
     "mentions": [
@@ -115,7 +117,7 @@ def _cfg():
             os.environ.get("NW_LLM_MODEL", "gemma4:12b-it-qat"),
             os.environ.get("NW_LLM_API_KEY", ""))
 
-def _call_messages(messages, fmt):
+def _call_messages_uncached(messages, fmt):
     provider, base, model, key = _cfg()
     if provider == "ollama":                                  # 地端原生（grammar-forced schema，最嚴）
         url = base + "/api/chat"
@@ -141,6 +143,42 @@ def _call_messages(messages, fmt):
         m = re.search(r"\{.*\}", content, re.S)               # 模型偶爾包 ```json/多餘文字 → 取第一個平衡物件
         if m: return json.loads(m.group(0))
         raise SystemExit("✗ 模型回應非 JSON：\n" + (content or "")[:800])
+
+_CACHE_STATS = {"request_cache_hits": 0, "request_cache_misses": 0}
+
+def reset_cache_stats():
+    for key in _CACHE_STATS:
+        _CACHE_STATS[key] = 0
+
+def cache_stats():
+    return dict(_CACHE_STATS)
+
+def _call_messages(messages, fmt):
+    cache_dir = os.environ.get("NW_LLM_CACHE_DIR")
+    if not cache_dir:
+        return _call_messages_uncached(messages, fmt)
+    provider, base, model, key = _cfg()
+    request = {"cache_version": 1, "provider": provider, "base_url": base, "model": model,
+               "credential_fingerprint": hashlib.sha256(key.encode("utf-8")).hexdigest() if key else "",
+               "cache_salt": os.environ.get("NW_LLM_CACHE_SALT", ""),
+               "messages": messages, "format": fmt}
+    digest = hashlib.sha256(json.dumps(request, ensure_ascii=False, sort_keys=True,
+                                       separators=(",", ":")).encode("utf-8")).hexdigest()
+    directory = pathlib.Path(cache_dir)
+    path = directory / digest[:2] / (digest + ".json")
+    try:
+        cached = json.loads(path.read_text(encoding="utf-8"))
+    except (FileNotFoundError, OSError, json.JSONDecodeError):
+        _CACHE_STATS["request_cache_misses"] += 1
+    else:
+        _CACHE_STATS["request_cache_hits"] += 1
+        return cached
+    response = _call_messages_uncached(messages, fmt)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    temporary = path.with_name(f"{path.name}.{os.getpid()}.tmp")
+    temporary.write_text(json.dumps(response, ensure_ascii=False), encoding="utf-8")
+    os.replace(temporary, path)
+    return response
 
 def _fewshot(text):
     cjk = len(re.findall(r"[\u3400-\u9fff]", text))
@@ -223,12 +261,14 @@ def call_llm_two_stage(text, diagnostics=None):
             window_diags.append({"window": wi, "error": f"{type(exc).__name__}: {exc}", "kept": 0})
             continue
         checked, drops = span_check({"mentions": mentions, "assertions": raw.get("assertions", [])}, text)
-        window_diags.append({"window": wi, "raw": raw, "drops": drops, "kept": len(checked["assertions"])})
+        window_diags.append({"window": wi, "raw": raw, "drops": drops,
+                             "kept": len(checked["assertions"])})
         for a in checked["assertions"]:
             key = (a.get("subject"), a.get("predicate"), a.get("object"), a.get("quote"))
             if key not in seen_a: assertions.append(a); seen_a.add(key)
     if diagnostics is not None:
         diagnostics.append({"stage": "assertions", "kept": len(assertions), "windows": len(windows),
+                            "calls": len(windows),
                             "window_results": window_diags})
     return {"mentions": mentions, "assertions": assertions}
 

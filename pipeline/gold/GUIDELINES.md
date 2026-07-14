@@ -85,5 +85,12 @@
 > **關係型別缺口（role gap #4，重要）**：現有 context_role 無法表達「supplier/customer/collaborator/partner」等**商業/供應鏈關係**。暫以 actor role＋operation 成員承載、逐字邊補強；建議未來於資料模型另設 relation attribute（非 context_role）。
 > **歸因梯度四級**（供 derive 評測）：originated-in→related-to（doc06）｜hypothesized operated-by→不歸因（doc01）｜委託 gov-tier→operated-by+attributed（doc05）｜**明確 operated by db-actor→attributed 最強**（doc03）。
 
+## 裁決紀錄（doc07 校準・收官）
+31. **可信報告的 firm attribution → attributed-to**：`We attribute X to Y based on [evidence]` 的『We』是 **epistemic frame 非 actor**，建 `X —attribute→ Y`、derive_expected attributed_to=TRUE（人工閘）。與 rule21 區隔：rule21 是「our investigation found links to [其他案]」的**弱 cross-link**（不建邊）；此處是**對當前主案的明確歸因**（建邊）。判準＝有無明確歸因語言＋證據。
+32. **明示非歸因**（`cannot currently attribute X to Y`）：不建正向 attributed-to 邊，改建可得的弱關係邊（draws-content-from→related-to），derive_expected attributed_to=FALSE；保留 mention(suspected-affiliate)。**同一篇可同時有 TRUE 與 FALSE 兩端**（doc07 Haimai vs Times Newswire）。
+33. **官媒＝amplifier 非 amplified-voice**：被 FIMI 網絡轉載的 PRC 官媒（CGTN/Global Times）是**對齊行為者的通道**，非中性第三方；amplified-voice 僅限被冒用/放大的無辜第三方。
+> db 合併回報 ×2：HaiEnergy（campaign）是 db `haixun`（firm）的 alias→型別衝突，拆 g:haienergy；Times Newswire 是 db `haimai` 的 alias 但 doc07 明示無法歸因→拆 g:times-newswire。
+> **歸因梯度五級全（收官）**：related-to(originated-in, doc06)｜不歸因(hypothesized, doc01)｜FALSE(cannot-attribute, doc07)｜operated-by+attributed(委託, doc05)｜attributed 最強(db-actor operated, doc03)＋**firm report attribution TRUE(doc07 Haimai)**。
+
 ## 交件前
 跑 `python3 pipeline/gold/validate_gold.py your.gold.json`——quote 全 exact 命中、gid 都解析得到、surface/predicate 落在 quote 內、無重複 quote 歧義，才算合格。

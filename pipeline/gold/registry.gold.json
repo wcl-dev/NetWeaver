@@ -118,6 +118,16 @@
     "g:tpp": { "name": "Taiwan People's Party", "type": "org", "aliases": ["Taiwan People's Party", "TPP", "台灣民眾黨", "民眾黨"] },
     "g:new-party-tw": { "name": "New Party (Taiwan)", "type": "org", "aliases": ["New Party", "新黨"] },
     "g:npsu-tw": { "name": "Non-Partisan Solidarity Union", "type": "org", "aliases": ["Non-Partisan Solidarity Union", "無黨團結聯盟"] },
-    "g:kaohsiung": { "name": "Kaohsiung", "type": "place", "aliases": ["Kaohsiung", "高雄"] }
+    "g:kaohsiung": { "name": "Kaohsiung", "type": "place", "aliases": ["Kaohsiung", "高雄"] },
+
+    "g:paperwall": { "name": "PAPERWALL（123 假地方新聞站網絡）", "type": "network", "aliases": ["PAPERWALL", "network of at least 123 websites"], "note": "Citizen Lab 明確歸因 Haimai（firm attribution → attributed-to）" },
+    "g:haienergy": { "name": "HaiEnergy（Mandiant 2022 揭露之影響行動）", "type": "network", "aliases": ["HaiEnergy"], "note": "db haixun 的 alias——但此為 campaign(network)、Haixun 為 firm(org)，型別衝突故拆分；待回報 db" },
+    "g:times-newswire": { "name": "Times Newswire", "type": "org", "aliases": ["Times Newswire"], "note": "內容源；db haimai 有 alias『Times Newswire 營運商』，但 doc07 明示『cannot attribute to PAPERWALL operators』→ 拆分保守；待回報 db" },
+    "g:narr-pro-beijing-disinfo": { "name": "親北京 disinformation（PAPERWALL）", "type": "narrative", "aliases": ["pro-Beijing disinformation"] },
+    "g:narr-pro-beijing-content": { "name": "親北京政治內容（Times Newswire seeds）", "type": "narrative", "aliases": ["pro-Beijing political content"] },
+    "g:narr-yan-rumor-maker": { "name": "Yan Limeng is a complete rumor maker（人身攻擊文）", "type": "narrative", "aliases": ["Yan Limeng is a complete rumor maker"] },
+    "g:li-meng-yan": { "name": "Li-Meng Yan（閻麗夢）", "type": "person", "aliases": ["Li-Meng Yan", "閻麗夢"], "note": "被 PAPERWALL 人身攻擊的 target" },
+    "g:tsai-ing-wen": { "name": "Tsai Ing-wen（蔡英文）", "type": "person", "aliases": ["Tsai Ing-wen", "蔡英文"] },
+    "g:li-hongzhi": { "name": "Li Hongzhi（李洪志）", "type": "person", "aliases": ["Li Hongzhi", "李洪志"], "note": "法輪功創辦人；被 Times Newswire 攻擊文 target" }
   }
 }

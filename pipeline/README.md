@@ -34,6 +34,12 @@ python3 pipeline/test_filter.py     # filter 規則的 golden 回歸測試（改
 # 端到端測試（extract→derive→serialize→project）；provider 由環境變數決定（預設地端 Ollama）
 python3 pipeline/extract.py
 
+# 7 篇 gold dev 真實模型基線（chunked、可續跑、輸出不進 Git）
+NW_LLM_MODEL=qwen2.5:7b NW_LLM_TIMEOUT=180 python3 pipeline/eval_model.py
+
+# scorer 完美／退化／對抗式自測
+python3 pipeline/eval_extract.py
+
 # 單一 extraction 樣本 → STIX＋投影（看碼的決策記錄）
 python3 pipeline/pipeline.py pipeline/samples/spamouflage.extraction.json
 

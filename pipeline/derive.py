@@ -16,7 +16,7 @@ LADDER = [
     (r"linked to|associated|tied to|connected|連結|相關|關聯|有往來|呼應|呼应|附和|唱和", "related-to"),
 ]
 CONTROL = {"operated-by", "runs"}
-KIND = {"operation": "campaign", "network": "intrusion-set", "org": "identity", "person": "identity",
+KIND = {"network": "intrusion-set", "org": "identity", "person": "identity",
         "account": "x-dad-channel", "website": "x-dad-channel", "media": "x-dad-channel",
         "narrative": "x-dad-narrative", "tool": "tool", "infrastructure": "infrastructure",
         "place": "location", "url": "url", "domain": "domain-name"}

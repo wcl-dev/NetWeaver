@@ -146,9 +146,9 @@ validator 額外驗：`surface` 落在其 mention 的 `quote` 內、`predicate` 
 
 ---
 
-## 9. 待辦（凍結 harness 前必解）
+## 9. 待辦
 
-- **extract.py／schema 仍要模型抽 operation**（[extract.py](../pipeline/extract.py) `INSTR`、schema `coarse_type` 含 `operation`）——與 §0「operation 碼組裝」衝突，跑 harness 前須同步（改 prompt 不抽 operation ＋ derive 補 operation 組裝）。
+- **operation 已自模型契約移除**：`extract.py` prompt 與 schema 不再接受 operation mention；後續須設計明確的 document-level grouping 輸入再由 derive 組裝，禁止從全文 actor×narrative×target 猜笛卡兒積。
 - chunk offset 以全文件為基準、保存 chunk boundaries；跨 chunk 關係需 document-level linking。
 
 ## 10. 變更控制

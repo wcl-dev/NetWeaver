@@ -24,7 +24,7 @@
         "properties": {
           "tmp_id": {"type": "string", "minLength": 1},
           "surface": {"type": "string", "minLength": 1, "description": "名稱如原文所寫"},
-          "coarse_type": {"enum": ["person", "org", "network", "account", "website", "media", "narrative", "operation", "tool", "infrastructure", "place", "url", "domain"]},
+          "coarse_type": {"enum": ["person", "org", "network", "account", "website", "media", "narrative", "tool", "infrastructure", "place", "url", "domain"]},
           "country": {"type": "string"},
           "quote": {"type": "string", "minLength": 1, "description": "支持此 mention 的逐字原文；必填（缺→碼端 span-check 丟）"},
           "source_url": {"type": "string"}

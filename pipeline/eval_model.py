@@ -57,7 +57,8 @@ def main():
         meta_path = pred_path.with_suffix(".meta.json")
         print(f"[{i}/{len(golds)}] 抽取 {gold_path.name}（{len(gold['cleaned_text'])} chars）…", flush=True)
         try:
-            pred = extract.call_llm_chunked(gold["cleaned_text"], args.chunk_chars, args.chunk_overlap)
+            diagnostics = []
+            pred = extract.call_llm_chunked(gold["cleaned_text"], args.chunk_chars, args.chunk_overlap, diagnostics)
         except (Exception, SystemExit) as exc:
             # 留下非 JSON prediction，讓 scorer 將 json_ok 計為 false；sidecar 保存診斷。
             pred_path.write_text("", encoding="utf-8")
@@ -72,9 +73,13 @@ def main():
             print(f"          失敗 {type(exc).__name__}: {exc}（{elapsed:.1f}s）；繼續下一篇", flush=True)
             continue
         pred_path.write_text(json.dumps(pred, ensure_ascii=False, indent=2), encoding="utf-8")
+        pred_path.with_suffix(".trace.json").write_text(json.dumps(diagnostics, ensure_ascii=False, indent=2), encoding="utf-8")
         elapsed = time.monotonic() - started
+        partial_errors = [stage.get("error") for chunk in diagnostics for stage in chunk.get("stages", []) if stage.get("error")]
         meta_path.write_text(json.dumps({"provider": provider, "model": model, "prompt_version": extract.PROMPT_VERSION,
-                                         "status": "ok", "elapsed_seconds": round(elapsed, 3),
+                                         "status": "partial-error" if partial_errors else "ok",
+                                         "partial_errors": partial_errors,
+                                         "elapsed_seconds": round(elapsed, 3),
                                          "chunk_chars": args.chunk_chars, "chunk_overlap": args.chunk_overlap,
                                          "mentions": len(pred.get("mentions", [])),
                                          "assertions": len(pred.get("assertions", []))}, ensure_ascii=False, indent=2), encoding="utf-8")

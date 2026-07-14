@@ -29,7 +29,17 @@ qwen v4 分篇 strict edge F1：doc03 = 0.10，其餘 = 0。長文已能以 chun
 
 ## 下一個實驗
 
-1. 把 assertion 拆成兩階段：先抽 grounded mentions，再只允許從已抽 mention tmp_id 間選邊。
-2. assertion prompt 加「predicate 必須可用 Python `predicate in quote` 驗證」的反例，禁止輸出關係標籤。
-3. 對 chunk overlap、跨 chunk entity merge 與 document-level linking 加獨立評測。
-4. v4 dev 調整穩定後才建立 20–30 篇 locked test set；不得拿 dev prompt gains 當泛化結論。
+v5–v10 已把 assertion 拆成多階段：actor／entity／narrative mentions 分別抽取並 exact-ground，合併後以動態 tmp_id enum 抽 assertion；assertion 只看 compact exact claim windows，predicate 仍須通過 `predicate in quote`。離線回歸已覆蓋端點 enum、partial failure、claim window、chunk namespace／dedupe 與 dangling 防護。
+
+v10 `actor-entity-narrative-passes` 的完整模型基線待跑：
+
+```bash
+NW_LLM_MODEL=qwen2.5:7b NW_LLM_TIMEOUT=180 \
+  python3 pipeline/eval_model.py
+```
+
+後續仍須：
+
+1. 比較 v10 與 v4 的 strict edge macro-F1、stage success rate 與總延遲。
+2. 對 chunk overlap、跨 chunk entity merge 與 document-level linking 加評測。
+3. dev 調整穩定後才建立 20–30 篇 locked test set；不得拿 dev prompt gains 當泛化結論。

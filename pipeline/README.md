@@ -96,4 +96,5 @@ pipeline/
 - **串成迴圈**：`ingest → 挑 ready → extract → derive → compile` 一鍵／排程自動跑。
 - **filter 精修**：詞表／`match_tokens` 擴充（附測試案例）；terse 中文標題的 recall 可加正文（非 chrome）抽取或高信任來源 override。
 - **抽取品質**：few-shot／換模型（如台灣微調 Llama-Breeze）／輕量微調——碼層不動。
+- **目前評測路徑**：actor／entity／narrative mention 分 pass → exact grounding → compact claim windows assertion；基線與重跑方式見 `../docs/EVAL.md`。
 - **serializer 補完**：官方 DISARM bundle 引用、對照 STIX 官方 schema、實體解析與 `modified` 版本化。

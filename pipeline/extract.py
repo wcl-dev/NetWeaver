@@ -23,7 +23,7 @@ FORMAT = {"type": "object", "additionalProperties": False, "required": ["mention
 for section in ("mentions", "assertions"):
     # source_url 是可信 metadata，由 extract() 依 report_meta 補；不讓模型生成或幻覺。
     FORMAT["properties"][section]["items"]["properties"].pop("source_url", None)
-PROMPT_VERSION = "v4-adaptive-fewshot-chunks"
+PROMPT_VERSION = "v10-actor-entity-narrative-passes"
 FEWSHOT_EN_TEXT = "The Red Group operated fake accounts targeting Taiwan."
 FEWSHOT_EN = {
     "mentions": [
@@ -65,6 +65,49 @@ INSTR = (
     "no paraphrase; an item without a valid verbatim quote is dropped. Do NOT classify, score, or attribute. "
     "The report arrives in a separate user message. Never quote or extract any text from these instructions."
 )
+MENTION_INSTR = (
+    "Extract every occurrence of relevant FIMI actors, account clusters, organizations, people, narratives, "
+    "targets, sites, tools, infrastructure, places, URLs, and domains. Output ONLY JSON per the schema. "
+    "Each surface and quote must be copied character-for-character from the report. The surface must occur "
+    "inside its quote. Include repeated occurrences when they participate in different claims. Do not extract "
+    "the report publisher/researcher or a hosting platform merely because it hosts content. Do not extract "
+    "operations/campaign nodes. Never copy text from these instructions or examples."
+)
+ENTITY_MENTION_INSTR = (
+    "Find every person, organization, government/political group, media actor, account/network, website, target, "
+    "tool, infrastructure, place, URL, and domain occurrence in REPORT TEXT. Output ONLY JSON. Extract exact noun "
+    "phrases that are grammatical actors or objects, including generic phrases such as state media or 中共官媒. "
+    "Repeat occurrences used in different sentences. surface and quote must be exact REPORT TEXT substrings and "
+    "surface must be inside quote. Exclude the report title, publisher/researcher, hosting platform, slogans, claims, "
+    "issue labels, and campaign/operation concepts. Never copy instructions."
+)
+NARRATIVE_MENTION_INSTR = (
+    "Extract every occurrence of a narrative, slogan, promoted claim, or quoted characterization in this FIMI "
+    "report. Output ONLY JSON per the schema and set coarse_type='narrative'. Prefer the exact words being pushed "
+    "such as quoted slogans or explicit propositions. Do not label a report title, forum/event name, technology, "
+    "person, organization, country, or broad issue topic as a narrative. surface and quote must be exact report "
+    "substrings, with surface inside quote. Repeat occurrences used in different claims. Never copy instructions "
+    "or examples."
+)
+ACTOR_MENTION_INSTR = (
+    "Extract every exact occurrence of the grammatical actor/agent that performs an action in REPORT TEXT. "
+    "Actors may be proper names or common noun phrases for governments, political groups, state media, companies, "
+    "networks, accounts, or people; include short recurring agents such as 中共 when they are the sentence subject. "
+    "Output ONLY JSON. Use person/org/network/account/website/media as coarse_type. surface must be the exact actor "
+    "noun phrase, and quote must be an exact REPORT TEXT substring containing that surface. Repeat each occurrence "
+    "that acts in a different claim. Do not extract report titles, targets, narratives, issue topics, publishers, "
+    "researchers, or hosting platforms. Never copy an instruction term unless it occurs in REPORT TEXT."
+)
+ASSERTION_INSTR = (
+    "Extract directed assertions from the supplied CLAIM WINDOWS. Output ONLY JSON per the schema. Each window "
+    "contains an exact REPORT TEXT substring and only candidate mentions grounded inside it. "
+    "subject and object must be candidate tmp_ids. The quote must be copied character-for-character from the "
+    "report and must contain both candidate surfaces in the claimed relation context. predicate must be the "
+    "shortest verb phrase copied character-for-character from that same quote; never output a relation label, "
+    "translation, tense change, or paraphrase. If no such exact assertion exists, output an empty assertions "
+    "array. Never copy text from instructions, examples, or the candidate JSON into quote/predicate unless it "
+    "also appears verbatim in REPORT TEXT."
+)
 
 def _cfg():
     return (os.environ.get("NW_LLM_PROVIDER", "ollama"),
@@ -72,23 +115,17 @@ def _cfg():
             os.environ.get("NW_LLM_MODEL", "gemma4:12b-it-qat"),
             os.environ.get("NW_LLM_API_KEY", ""))
 
-def call_llm(text):
+def _call_messages(messages, fmt):
     provider, base, model, key = _cfg()
-    cjk = len(re.findall(r"[\u3400-\u9fff]", text))
-    few_text, few = (FEWSHOT_ZH_TEXT, FEWSHOT_ZH) if cjk > len(text) * 0.08 else (FEWSHOT_EN_TEXT, FEWSHOT_EN)
-    messages = [{"role": "system", "content": INSTR},
-                {"role": "user", "content": "REPORT TEXT (extract only from this text):\n" + few_text},
-                {"role": "assistant", "content": json.dumps(few, ensure_ascii=False)},
-                {"role": "user", "content": "REPORT TEXT (extract only from this text):\n" + text}]
     if provider == "ollama":                                  # 地端原生（grammar-forced schema，最嚴）
         url = base + "/api/chat"
-        body = {"model": model, "stream": False, "options": {"temperature": 0}, "format": FORMAT,
+        body = {"model": model, "stream": False, "options": {"temperature": 0}, "format": fmt,
                 "messages": messages}
         headers = {"Content-Type": "application/json"}; path = ("message", "content")
     else:                                                     # OpenAI 相容（OpenAI / vLLM / LM Studio / Together / Ollama /v1…）
         url = base + "/v1/chat/completions"
         body = {"model": model, "temperature": 0,
-                "response_format": {"type": "json_schema", "json_schema": {"name": "extraction", "schema": FORMAT}},
+                "response_format": {"type": "json_schema", "json_schema": {"name": "extraction", "schema": fmt}},
                 "messages": messages}
         headers = {"Content-Type": "application/json", "Authorization": "Bearer " + key}
         path = ("choices", 0, "message", "content")
@@ -104,6 +141,81 @@ def call_llm(text):
         m = re.search(r"\{.*\}", content, re.S)               # 模型偶爾包 ```json/多餘文字 → 取第一個平衡物件
         if m: return json.loads(m.group(0))
         raise SystemExit("✗ 模型回應非 JSON：\n" + (content or "")[:800])
+
+def _fewshot(text):
+    cjk = len(re.findall(r"[\u3400-\u9fff]", text))
+    return (FEWSHOT_ZH_TEXT, FEWSHOT_ZH) if cjk > len(text) * 0.08 else (FEWSHOT_EN_TEXT, FEWSHOT_EN)
+
+def call_llm(text):
+    """相容用單階段抽取；正式評測與 extract() 使用 call_llm_two_stage。"""
+    few_text, few = _fewshot(text)
+    messages = [{"role": "system", "content": INSTR},
+                {"role": "user", "content": "REPORT TEXT (extract only from this text):\n" + few_text},
+                {"role": "assistant", "content": json.dumps(few, ensure_ascii=False)},
+                {"role": "user", "content": "REPORT TEXT (extract only from this text):\n" + text}]
+    return _call_messages(messages, FORMAT)
+
+def call_llm_two_stage(text, diagnostics=None):
+    """分別抽實體與敘事 mentions、grounding 合併，再以動態 tmp_id enum 抽 assertions。"""
+    few_text, few = _fewshot(text)
+    mention_format = {"type": "object", "additionalProperties": False, "required": ["mentions"],
+                      "properties": {"mentions": copy.deepcopy(FORMAT["properties"]["mentions"])}}
+    entity_few = [m for m in few["mentions"] if m["coarse_type"] != "narrative"]
+    narrative_few = [m for m in few["mentions"] if m["coarse_type"] == "narrative"]
+    mention_sets = []
+    for prefix, instruction, examples in (("a", ACTOR_MENTION_INSTR, []),
+                                           ("e", ENTITY_MENTION_INSTR, entity_few),
+                                           ("n", NARRATIVE_MENTION_INSTR, narrative_few)):
+        messages = [{"role": "system", "content": instruction}]
+        if prefix == "n":
+            messages.extend([
+                {"role": "user", "content": "REPORT TEXT:\n" + few_text},
+                {"role": "assistant", "content": json.dumps({"mentions": examples}, ensure_ascii=False)},
+            ])
+        messages.append({"role": "user", "content": "REPORT TEXT:\n" + text})
+        raw = _call_messages(messages, mention_format)
+        grounded, drops = span_check({"mentions": raw.get("mentions", []), "assertions": []}, text)
+        if diagnostics is not None:
+            diagnostics.append({"stage": f"mentions-{prefix}", "raw": raw, "drops": drops,
+                                "kept": len(grounded["mentions"])})
+        mention_sets.append((prefix, grounded["mentions"]))
+    mentions, seen_m = [], set()
+    for prefix, items in mention_sets:
+        for m in items:
+            key = (m.get("surface"), m.get("coarse_type"), m.get("quote"), m.get("quote_occurrence"))
+            if key in seen_m: continue
+            seen_m.add(key)
+            mentions.append({**m, "tmp_id": f"{prefix}_{m.get('tmp_id') or len(mentions) + 1}"})
+    ids = [m.get("tmp_id") for m in mentions if m.get("tmp_id")]
+    if not ids: return {"mentions": [], "assertions": []}
+
+    assertion_items = copy.deepcopy(FORMAT["properties"]["assertions"])
+    assertion_items["items"]["properties"]["subject"] = {"enum": ids}
+    assertion_items["items"]["properties"]["object"] = {"enum": ids}
+    assertion_format = {"type": "object", "additionalProperties": False, "required": ["assertions"],
+                        "properties": {"assertions": assertion_items}}
+    windows = claim_windows(text, mentions)
+    if not windows:
+        return {"mentions": mentions, "assertions": []}
+    few_windows = claim_windows(few_text, few["mentions"])
+    assertion_messages = [
+        {"role": "system", "content": ASSERTION_INSTR},
+        {"role": "user", "content": "CLAIM WINDOWS:\n" + json.dumps(few_windows, ensure_ascii=False)},
+        {"role": "assistant", "content": json.dumps({"assertions": few["assertions"]}, ensure_ascii=False)},
+        {"role": "user", "content": "CLAIM WINDOWS:\n" + json.dumps(windows, ensure_ascii=False)},
+    ]
+    try:
+        raw_a = _call_messages(assertion_messages, assertion_format)
+    except (Exception, SystemExit) as exc:
+        if diagnostics is not None:
+            diagnostics.append({"stage": "assertions", "error": f"{type(exc).__name__}: {exc}",
+                                "kept": 0, "windows": len(windows)})
+        return {"mentions": mentions, "assertions": []}
+    checked, drops = span_check({"mentions": mentions, "assertions": raw_a.get("assertions", [])}, text)
+    if diagnostics is not None:
+        diagnostics.append({"stage": "assertions", "raw": raw_a, "drops": drops,
+                            "kept": len(checked["assertions"]), "windows": len(windows)})
+    return checked
 
 def split_text(text, max_chars=2400, overlap=240):
     """原文不正規化的決定性切塊；優先在換行/句尾斷開，保留少量 overlap。"""
@@ -124,12 +236,44 @@ def split_text(text, max_chars=2400, overlap=240):
         start = max(start + 1, end - overlap)
     return chunks
 
-def call_llm_chunked(text, max_chars=2400, overlap=240):
+def claim_windows(text, mentions):
+    """切成 exact 句／行，只保留含至少兩個 grounded mention quote 的 assertion 候選窗。"""
+    ends, i = [], 0
+    while i < len(text):
+        ch = text[i]
+        if ch in "。！？!?\n" or (ch == "." and (i + 1 == len(text) or text[i + 1].isspace())):
+            j = i + 1
+            while j < len(text) and text[j] == "\n": j += 1
+            ends.append(j); i = j; continue
+        i += 1
+    if not ends or ends[-1] < len(text): ends.append(len(text))
+    windows, start = [], 0
+    for end in ends:
+        window = text[start:end]
+        by_surface = {}
+        for m in mentions:
+            q = m.get("quote", "")
+            if q and q in window:
+                sf = m.get("surface")
+                candidate = {k: m.get(k) for k in ("tmp_id", "surface")}
+                if sf not in by_surface or m.get("coarse_type") == "narrative":
+                    by_surface[sf] = candidate
+        candidates = list(by_surface.values())
+        if len({m["tmp_id"] for m in candidates}) >= 2:
+            windows.append({"text": window, "candidates": candidates})
+        start = end
+    return windows
+
+def call_llm_chunked(text, max_chars=2400, overlap=240, diagnostics=None):
     """逐 chunk 抽取並合併；tmp_id 加 namespace，重疊區的完全相同項目去重。"""
     merged_m, merged_a, mention_key_to_id = [], [], {}
     seen_a = set()
     for ci, chunk in enumerate(split_text(text, max_chars, overlap), 1):
-        pred = call_llm(chunk); local_to_global = {}
+        chunk_diagnostics = [] if diagnostics is not None else None
+        pred = call_llm_two_stage(chunk, chunk_diagnostics); local_to_global = {}
+        if diagnostics is not None:
+            diagnostics.append({"chunk": ci, "start": text.find(chunk), "length": len(chunk),
+                                "stages": chunk_diagnostics})
         for m in pred.get("mentions", []):
             key = (m.get("surface"), m.get("coarse_type"), m.get("quote"), m.get("quote_occurrence"))
             gid = mention_key_to_id.get(key)
@@ -165,7 +309,7 @@ def span_check(extr, text):                                   # 碼端硬閘：�
     return {"mentions": keep_m, "assertions": keep_a}, dropped
 
 def extract(report_meta, text):
-    raw = call_llm(text)
+    raw = call_llm_two_stage(text)
     for m in raw.get("mentions", []): m.setdefault("source_url", report_meta["url"])
     for a in raw.get("assertions", []): a.setdefault("source_url", report_meta["url"])
     checked, dropped = span_check(raw, text)

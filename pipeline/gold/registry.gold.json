@@ -100,6 +100,24 @@
     "g:narr-oppose-ccp": { "name": "oppose the CCP（反綠句式變體）", "type": "narrative", "aliases": ["oppose the CCP"], "note": "與我反綠同句式、疑製造對立之變體" },
     "g:threads-larger-network-unnamed": { "name": "Threads 上更大的不實帳號群（未具名）", "type": "network", "aliases": ["a larger group of inauthentic accounts"] },
     "g:ifh-network-unnamed": { "name": "influence-for-hire 上位網絡（未具名）", "type": "network", "aliases": ["'influence for hire' network"] },
-    "g:dtl-x-ifh-network": { "name": "DTL 先前於 X 識別之網絡（未具名）", "type": "network", "aliases": ["a network we have identified earlier on X"] }
+    "g:dtl-x-ifh-network": { "name": "DTL 先前於 X 識別之網絡（未具名）", "type": "network", "aliases": ["a network we have identified earlier on X"] },
+
+    "g:golaxy-accounts": { "name": "GoLaxy 操作的 persona bot 帳號（未具名）", "type": "account", "aliases": ["seven account handles", "these accounts", "persona bots"], "note": "GoLaxy operated＝控制證據 → attributed-to 測例（歸因梯度頂端）" },
+    "g:ict-cas": { "name": "Institute of Computing Technology, CAS (ICT CAS)", "type": "org", "aliases": ["Institute of Computing Technology at the Chinese Academy of Sciences (ICT CAS)", "ICT CAS", "Institute of Computing Technology (ICT)"], "note": "GoLaxy 母體/孵化機構 → suspected-affiliate（淵源非現行控制）" },
+    "g:gopro-system": { "name": "GoLaxy Smart Propaganda System (GoPro)", "type": "infrastructure", "aliases": ["GoLaxy Smart Propaganda System GoPro", "GoPro"], "note": "具名 FIMI 系統（非 rule18 泛工具）" },
+    "g:cn-propaganda-dept": { "name": "Central Propaganda Department (CCP)", "type": "org", "aliases": ["Central Propaganda Department", "中央宣傳部", "中宣部"] },
+    "g:cmc-stc": { "name": "Science and Technology Commission of the Central Military Commission (CMC STC)", "type": "org", "aliases": ["Science and Technology Commission of the Central Military Commission", "Science and Technology Department of the Central Military Commission (CMC STC)", "中央軍委科技委"] },
+    "g:sugon": { "name": "Sugon (中科曙光)", "type": "org", "aliases": ["Sugon"], "note": "PLA linked；資助 GoLaxy" },
+    "g:sdic": { "name": "State Development and Investment Corporation (SDIC)", "type": "org", "aliases": ["State Development and Investment Corporation (SDIC)", "SDIC", "國投"] },
+    "g:zhongke-ruijian": { "name": "Beijing Zhongke Ruijian Technology", "type": "org", "aliases": ["Beijing Zhongke Ruijian Technology", "中科睿鑑"] },
+    "g:china-digital-video": { "name": "China Digital Video", "type": "org", "aliases": ["China digital Video"] },
+    "g:guangming-daily": { "name": "Guangming Daily", "type": "media", "aliases": ["Guangming Daily", "光明日報"] },
+    "g:base-311": { "name": "Base 311 (PLA Unit 61716)", "type": "org", "aliases": ["Base 311", "PLA Unit 61716", "61716部隊", "311基地"], "note": "福州；督導對台心理戰" },
+    "g:taiwan-knowledge-graph": { "name": "GoLaxy 涉T知识图谱（Taiwan knowledge graph）", "type": "infrastructure", "aliases": ["Taiwan knowledge graph", "涉T知识图谱"] },
+    "g:kmt": { "name": "Kuomintang", "type": "org", "aliases": ["Kuomintang", "KMT", "中國國民黨", "國民黨"] },
+    "g:tpp": { "name": "Taiwan People's Party", "type": "org", "aliases": ["Taiwan People's Party", "TPP", "台灣民眾黨", "民眾黨"] },
+    "g:new-party-tw": { "name": "New Party (Taiwan)", "type": "org", "aliases": ["New Party", "新黨"] },
+    "g:npsu-tw": { "name": "Non-Partisan Solidarity Union", "type": "org", "aliases": ["Non-Partisan Solidarity Union", "無黨團結聯盟"] },
+    "g:kaohsiung": { "name": "Kaohsiung", "type": "place", "aliases": ["Kaohsiung", "高雄"] }
   }
 }

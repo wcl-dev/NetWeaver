@@ -77,5 +77,13 @@
 26. **不標**：反制言論（用戶指出盜圖）；被引用的第三方研究者（Street Corner Sociology＝視同撰報方）；被推銷的商業網站（受益方，規則 22）；bot 失誤軼事（indicator 層）。
 > amplified-voice 誤用第三次（B 給 sex dating websites）——僅限「言論被放大的第三方」，受益方勿用。
 
+## 裁決紀錄（doc03 校準）
+27. **具名 FIMI 系統/基礎設施＝infrastructure/amplifier**（GoPro、涉T知识图谱）——非 rule18 泛工具（rule18 只排除泛用技法如 AI/自動排程）。
+28. **母體/孵化機構＝suspected-affiliate**（ICT CAS）——「spun off from」是淵源非現行控制。
+29. **db 收錄的生態成員維持 actor**：夥伴/客戶/供應商若已是 db actor（Meiya Pico/iFlytek/CAC/MSS/TAO）不降級為 suspected-affiliate（會與 db 矛盾、低估已證實成員）；新 g: 公司同理標 actor。**公司內部結構的逐字邊**（controlled-by/subsidiary-of/collaborations-with）照建。
+30. **內部動機/自辯不標 narrative**（Xi「亮劍」號召、US-orchestrated IO、Xinjiang 人權）——archive 記「對外散播的 FIMI 敘事」，不記行為者的內部 justification。
+> **關係型別缺口（role gap #4，重要）**：現有 context_role 無法表達「supplier/customer/collaborator/partner」等**商業/供應鏈關係**。暫以 actor role＋operation 成員承載、逐字邊補強；建議未來於資料模型另設 relation attribute（非 context_role）。
+> **歸因梯度四級**（供 derive 評測）：originated-in→related-to（doc06）｜hypothesized operated-by→不歸因（doc01）｜委託 gov-tier→operated-by+attributed（doc05）｜**明確 operated by db-actor→attributed 最強**（doc03）。
+
 ## 交件前
 跑 `python3 pipeline/gold/validate_gold.py your.gold.json`——quote 全 exact 命中、gid 都解析得到、surface/predicate 落在 quote 內、無重複 quote 歧義，才算合格。

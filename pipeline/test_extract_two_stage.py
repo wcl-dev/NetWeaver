@@ -19,10 +19,11 @@ def fake(messages, fmt):
             {"tmp_id": "m3", "surface": "Taiwan", "coarse_type": "place", "quote": "targeting Taiwan"},
             {"tmp_id": "bad", "surface": "Beijing", "coarse_type": "place", "quote": "targeting Taiwan"},
         ]}
-    assert fmt["properties"]["assertions"]["items"]["properties"]["subject"]["enum"] == ["e_m1", "e_m2", "e_m3"]
+    ids = fmt["properties"]["assertions"]["items"]["properties"]["subject"]["enum"]
+    assert ids == ["e1", "e2", "e3"]
     return {"assertions": [
-        {"subject": "e_m1", "predicate": "operated", "object": "e_m2", "quote": "Red Group operated fake accounts"},
-        {"subject": "e_m2", "predicate": "targets", "object": "e_m3", "quote": "fake accounts targeting Taiwan"},
+        {"subject": "e1", "predicate": "operated", "object": "e2", "quote": "Red Group operated fake accounts"},
+        {"subject": "e2", "predicate": "targeting", "object": "e3", "quote": "fake accounts targeting Taiwan"},
     ]}
 
 extract._call_messages = fake
@@ -31,7 +32,7 @@ try:
 finally:
     extract._call_messages = original
 
-assert [m["tmp_id"] for m in pred["mentions"]] == ["e_m1", "e_m2", "e_m3"]
-assert len(pred["assertions"]) == 1 and pred["assertions"][0]["predicate"] == "operated"
+assert [m["tmp_id"] for m in pred["mentions"]] == ["e1", "e2", "e3"]
+assert [a["predicate"] for a in pred["assertions"]] == ["operated", "targeting"]
 assert len(calls) == 4
 print("extract two-stage：通過（mention 先 grounding、端點 enum、predicate exact）")

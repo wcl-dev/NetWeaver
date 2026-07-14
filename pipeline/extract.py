@@ -23,7 +23,7 @@ FORMAT = {"type": "object", "additionalProperties": False, "required": ["mention
 for section in ("mentions", "assertions"):
     # source_url 是可信 metadata，由 extract() 依 report_meta 補；不讓模型生成或幻覺。
     FORMAT["properties"][section]["items"]["properties"].pop("source_url", None)
-PROMPT_VERSION = "v10-actor-entity-narrative-passes"
+PROMPT_VERSION = "v14-all-surface-occurrences"
 FEWSHOT_EN_TEXT = "The Red Group operated fake accounts targeting Taiwan."
 FEWSHOT_EN = {
     "mentions": [
@@ -173,49 +173,64 @@ def call_llm_two_stage(text, diagnostics=None):
                 {"role": "assistant", "content": json.dumps({"mentions": examples}, ensure_ascii=False)},
             ])
         messages.append({"role": "user", "content": "REPORT TEXT:\n" + text})
-        raw = _call_messages(messages, mention_format)
+        try:
+            raw = _call_messages(messages, mention_format)
+        except (Exception, SystemExit) as exc:
+            if diagnostics is not None:
+                diagnostics.append({"stage": f"mentions-{prefix}",
+                                    "error": f"{type(exc).__name__}: {exc}", "kept": 0})
+            mention_sets.append((prefix, []))
+            continue
         grounded, drops = span_check({"mentions": raw.get("mentions", []), "assertions": []}, text)
         if diagnostics is not None:
             diagnostics.append({"stage": f"mentions-{prefix}", "raw": raw, "drops": drops,
                                 "kept": len(grounded["mentions"])})
+        grounded["mentions"] = expand_surface_occurrences(grounded["mentions"], text)
         mention_sets.append((prefix, grounded["mentions"]))
     mentions, seen_m = [], set()
+    serial = {"a": 0, "e": 0, "n": 0}
     for prefix, items in mention_sets:
         for m in items:
             key = (m.get("surface"), m.get("coarse_type"), m.get("quote"), m.get("quote_occurrence"))
             if key in seen_m: continue
             seen_m.add(key)
-            mentions.append({**m, "tmp_id": f"{prefix}_{m.get('tmp_id') or len(mentions) + 1}"})
+            serial[prefix] += 1
+            mentions.append({**m, "tmp_id": f"{prefix}{serial[prefix]}"})
     ids = [m.get("tmp_id") for m in mentions if m.get("tmp_id")]
     if not ids: return {"mentions": [], "assertions": []}
 
-    assertion_items = copy.deepcopy(FORMAT["properties"]["assertions"])
-    assertion_items["items"]["properties"]["subject"] = {"enum": ids}
-    assertion_items["items"]["properties"]["object"] = {"enum": ids}
-    assertion_format = {"type": "object", "additionalProperties": False, "required": ["assertions"],
-                        "properties": {"assertions": assertion_items}}
     windows = claim_windows(text, mentions)
     if not windows:
         return {"mentions": mentions, "assertions": []}
     few_windows = claim_windows(few_text, few["mentions"])
-    assertion_messages = [
-        {"role": "system", "content": ASSERTION_INSTR},
-        {"role": "user", "content": "CLAIM WINDOWS:\n" + json.dumps(few_windows, ensure_ascii=False)},
-        {"role": "assistant", "content": json.dumps({"assertions": few["assertions"]}, ensure_ascii=False)},
-        {"role": "user", "content": "CLAIM WINDOWS:\n" + json.dumps(windows, ensure_ascii=False)},
-    ]
-    try:
-        raw_a = _call_messages(assertion_messages, assertion_format)
-    except (Exception, SystemExit) as exc:
-        if diagnostics is not None:
-            diagnostics.append({"stage": "assertions", "error": f"{type(exc).__name__}: {exc}",
-                                "kept": 0, "windows": len(windows)})
-        return {"mentions": mentions, "assertions": []}
-    checked, drops = span_check({"mentions": mentions, "assertions": raw_a.get("assertions", [])}, text)
+    assertions, seen_a, window_diags = [], set(), []
+    for wi, window in enumerate(windows, 1):
+        window_ids = [m["tmp_id"] for m in window["candidates"]]
+        assertion_items = copy.deepcopy(FORMAT["properties"]["assertions"])
+        assertion_items["items"]["properties"]["subject"] = {"enum": window_ids}
+        assertion_items["items"]["properties"]["object"] = {"enum": window_ids}
+        assertion_format = {"type": "object", "additionalProperties": False, "required": ["assertions"],
+                            "properties": {"assertions": assertion_items}}
+        messages = [
+            {"role": "system", "content": ASSERTION_INSTR},
+            {"role": "user", "content": "CLAIM WINDOWS:\n" + json.dumps(few_windows, ensure_ascii=False)},
+            {"role": "assistant", "content": json.dumps({"assertions": few["assertions"]}, ensure_ascii=False)},
+            {"role": "user", "content": "CLAIM WINDOWS:\n" + json.dumps([window], ensure_ascii=False)},
+        ]
+        try:
+            raw = _call_messages(messages, assertion_format)
+        except (Exception, SystemExit) as exc:
+            window_diags.append({"window": wi, "error": f"{type(exc).__name__}: {exc}", "kept": 0})
+            continue
+        checked, drops = span_check({"mentions": mentions, "assertions": raw.get("assertions", [])}, text)
+        window_diags.append({"window": wi, "raw": raw, "drops": drops, "kept": len(checked["assertions"])})
+        for a in checked["assertions"]:
+            key = (a.get("subject"), a.get("predicate"), a.get("object"), a.get("quote"))
+            if key not in seen_a: assertions.append(a); seen_a.add(key)
     if diagnostics is not None:
-        diagnostics.append({"stage": "assertions", "raw": raw_a, "drops": drops,
-                            "kept": len(checked["assertions"]), "windows": len(windows)})
-    return checked
+        diagnostics.append({"stage": "assertions", "kept": len(assertions), "windows": len(windows),
+                            "window_results": window_diags})
+    return {"mentions": mentions, "assertions": assertions}
 
 def split_text(text, max_chars=2400, overlap=240):
     """原文不正規化的決定性切塊；優先在換行/句尾斷開，保留少量 overlap。"""
@@ -236,8 +251,8 @@ def split_text(text, max_chars=2400, overlap=240):
         start = max(start + 1, end - overlap)
     return chunks
 
-def claim_windows(text, mentions):
-    """切成 exact 句／行，只保留含至少兩個 grounded mention quote 的 assertion 候選窗。"""
+def sentence_windows(text):
+    """回傳覆蓋原文的 exact 句／行窗。"""
     ends, i = [], 0
     while i < len(text):
         ch = text[i]
@@ -249,7 +264,37 @@ def claim_windows(text, mentions):
     if not ends or ends[-1] < len(text): ends.append(len(text))
     windows, start = [], 0
     for end in ends:
-        window = text[start:end]
+        windows.append(text[start:end]); start = end
+    return windows
+
+def expand_surface_occurrences(seed_mentions, text):
+    """只展開模型已辨識 surface 的原文 occurrence；不注入新名稱。"""
+    surface_types = {}
+    for m in seed_mentions:
+        if m.get("surface"): surface_types.setdefault((m["surface"], m.get("coarse_type")), None)
+    expanded = []
+    for surface, coarse_type in surface_types:
+        for window in sentence_windows(text):
+            start = 0
+            for match in re.finditer(r"[，,；;]", window):
+                clause = window[start:match.end()].strip(); start = match.end()
+                if clause and clause.count(surface) == 1:
+                    expanded.append({"tmp_id": "pending", "surface": surface, "coarse_type": coarse_type,
+                                     "quote": clause})
+            clause = window[start:].strip()
+            if clause and clause.count(surface) == 1:
+                expanded.append({"tmp_id": "pending", "surface": surface, "coarse_type": coarse_type,
+                                 "quote": clause})
+    return expanded or seed_mentions
+
+def expand_actor_occurrences(actor_mentions, text):
+    """向後相容名稱。"""
+    return expand_surface_occurrences(actor_mentions, text)
+
+def claim_windows(text, mentions):
+    """切成 exact 句／行，只保留含至少兩個 grounded mention quote 的 assertion 候選窗。"""
+    windows = []
+    for window in sentence_windows(text):
         by_surface = {}
         for m in mentions:
             q = m.get("quote", "")
@@ -261,7 +306,6 @@ def claim_windows(text, mentions):
         candidates = list(by_surface.values())
         if len({m["tmp_id"] for m in candidates}) >= 2:
             windows.append({"text": window, "candidates": candidates})
-        start = end
     return windows
 
 def call_llm_chunked(text, max_chars=2400, overlap=240, diagnostics=None):

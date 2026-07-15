@@ -16,7 +16,7 @@
   → 地端零設定即跑；雲端：NW_LLM_PROVIDER=openai NW_LLM_BASE_URL=https://api.openai.com NW_LLM_MODEL=… NW_LLM_API_KEY=…
 用法：python3 pipeline/extract.py   （__main__ 為端到端測試）
 """
-import hashlib, json, urllib.request, pathlib, re, sys, os
+import hashlib, json, urllib.request, pathlib, re, sys, os, time
 import copy
 
 _here = pathlib.Path(__file__).resolve().parent
@@ -27,7 +27,7 @@ FORMAT = {"type": "object", "additionalProperties": False, "required": ["mention
 for section in ("mentions", "assertions"):
     # source_url 是可信 metadata，由 extract() 依 report_meta 補；不讓模型生成或幻覺。
     FORMAT["properties"][section]["items"]["properties"].pop("source_url", None)
-PROMPT_VERSION = "v21-json-optional-null-normalization"
+PROMPT_VERSION = "v22-observable-budgeted-runs"
 FEWSHOT_EN_TEXT = "The Red Group operated fake accounts targeting Taiwan."
 FEWSHOT_EN = {
     "mentions": [
@@ -137,6 +137,81 @@ def extraction_variant():
     think_name = str(think).lower()
     return f"{PROMPT_VERSION}-{_output_mode()}-think-{think_name}"
 
+class ExtractionBudgetExceeded(RuntimeError):
+    """文件級時間／cold-call 額度已用完；呼叫端應保存 partial checkpoint。"""
+
+class ExtractionRun:
+    """單篇抽取的 budget、進度事件與 request telemetry。"""
+    def __init__(self, doc_timeout=None, max_cold_calls=None, progress=None):
+        self.started = time.monotonic()
+        self.doc_timeout = float(doc_timeout) if doc_timeout and float(doc_timeout) > 0 else None
+        self.max_cold_calls = int(max_cold_calls) if max_cold_calls and int(max_cold_calls) > 0 else None
+        self.progress = progress
+        self.cold_calls = 0
+        self.cache_hits = 0
+        self.events = []
+        self.budget_reason = None
+        self.chunk = None
+        self.total_chunks = None
+
+    def elapsed(self):
+        return time.monotonic() - self.started
+
+    def emit(self, event, **details):
+        item = {"event": event, "elapsed_seconds": round(self.elapsed(), 3), **details}
+        self.events.append(item)
+        if self.progress:
+            self.progress(item)
+        return item
+
+    def _exhaust(self, reason):
+        if not self.budget_reason:
+            self.budget_reason = reason
+        if not any(event["event"] == "budget_exhausted" for event in self.events):
+            self.emit("budget_exhausted", reason=reason, cold_calls=self.cold_calls)
+        raise ExtractionBudgetExceeded(reason)
+
+    def begin_cold_request(self, stage, default_timeout):
+        if self.doc_timeout is not None:
+            remaining = self.doc_timeout - self.elapsed()
+            if remaining <= 0:
+                self._exhaust("doc-timeout")
+        else:
+            remaining = None
+        if self.max_cold_calls is not None and self.cold_calls >= self.max_cold_calls:
+            self._exhaust("max-cold-calls")
+        self.cold_calls += 1
+        timeout = min(default_timeout, remaining) if remaining is not None else default_timeout
+        self.emit("request_start", stage=stage, chunk=self.chunk, total_chunks=self.total_chunks,
+                  cold_call=self.cold_calls, timeout_seconds=round(timeout, 3))
+        return max(timeout, 0.001)
+
+    def cache_hit(self, stage):
+        self.cache_hits += 1
+        self.emit("request_cache_hit", stage=stage, chunk=self.chunk, total_chunks=self.total_chunks,
+                  cache_hit=self.cache_hits)
+
+    def request_done(self, stage, elapsed, telemetry):
+        self.emit("request_done", stage=stage, chunk=self.chunk, total_chunks=self.total_chunks,
+                  cold_call=self.cold_calls, request_seconds=round(elapsed, 3), **telemetry)
+
+    def request_error(self, stage, elapsed, exc, telemetry=None):
+        if self.doc_timeout is not None and self.elapsed() >= self.doc_timeout:
+            self.budget_reason = self.budget_reason or "doc-timeout"
+        self.emit("request_error", stage=stage, chunk=self.chunk, total_chunks=self.total_chunks,
+                  cold_call=self.cold_calls, request_seconds=round(elapsed, 3),
+                  error=f"{type(exc).__name__}: {exc}", **(telemetry or {}))
+        if self.budget_reason:
+            self._exhaust(self.budget_reason)
+
+    def summary(self):
+        completed = [event for event in self.events if event["event"] in {"request_done", "request_error"}]
+        return {"elapsed_seconds": round(self.elapsed(), 3), "cold_calls": self.cold_calls,
+                "cache_hits": self.cache_hits, "budget_reason": self.budget_reason,
+                "prompt_tokens": sum(event.get("prompt_tokens", 0) for event in completed),
+                "completion_tokens": sum(event.get("completion_tokens", 0) for event in completed),
+                "model_total_seconds": round(sum(event.get("model_total_seconds", 0) for event in completed), 3)}
+
 def _messages_with_schema(messages, fmt):
     """JSON mode 無 grammar constraint，將同一份 schema 明示在 prompt；不改動呼叫端資料。"""
     prepared = copy.deepcopy(messages)
@@ -242,12 +317,29 @@ def _parse_and_validate(content, fmt, normalize_optional_nulls=False):
         raise ValueError("模型 JSON 不符合 schema：" + "；".join(errors[:8]))
     return result
 
-def _call_messages_uncached(messages, fmt):
+def _response_telemetry(resp, provider):
+    if provider == "ollama":
+        nanos = lambda key: round(resp.get(key, 0) / 1_000_000_000, 3)
+        return {"prompt_tokens": resp.get("prompt_eval_count", 0),
+                "completion_tokens": resp.get("eval_count", 0),
+                "model_total_seconds": nanos("total_duration"),
+                "load_seconds": nanos("load_duration"),
+                "prompt_eval_seconds": nanos("prompt_eval_duration"),
+                "generation_seconds": nanos("eval_duration")}
+    usage = resp.get("usage", {})
+    return {"prompt_tokens": usage.get("prompt_tokens", 0),
+            "completion_tokens": usage.get("completion_tokens", 0),
+            "total_tokens": usage.get("total_tokens", 0)}
+
+def _call_messages_uncached(messages, fmt, timeout=None, telemetry=None):
+    provider, _, _, _ = _cfg()
     url, body, headers, path = _request_spec(messages, fmt)
     req = urllib.request.Request(url, data=json.dumps(body).encode("utf-8"), headers=headers)
-    timeout = float(os.environ.get("NW_LLM_TIMEOUT", "600"))
+    timeout = timeout if timeout is not None else float(os.environ.get("NW_LLM_TIMEOUT", "600"))
     with urllib.request.urlopen(req, timeout=timeout) as r:
         resp = json.loads(r.read())
+    if telemetry is not None:
+        telemetry.update(_response_telemetry(resp, provider))
     content = resp
     for k in path: content = content[k]
     return _parse_and_validate(content, fmt, normalize_optional_nulls=_output_mode() == "json")
@@ -261,10 +353,26 @@ def reset_cache_stats():
 def cache_stats():
     return dict(_CACHE_STATS)
 
-def _call_messages(messages, fmt):
+def _cold_call(messages, fmt, run=None, stage="llm"):
+    default_timeout = float(os.environ.get("NW_LLM_TIMEOUT", "600"))
+    timeout = run.begin_cold_request(stage, default_timeout) if run else default_timeout
+    telemetry, started = {}, time.monotonic()
+    try:
+        response = (_call_messages_uncached(messages, fmt) if run is None else
+                    _call_messages_uncached(messages, fmt, timeout=timeout, telemetry=telemetry))
+    except (Exception, SystemExit) as exc:
+        if run:
+            run.request_error(stage, time.monotonic() - started, exc, telemetry)
+        raise
+    if run:
+        run.request_done(stage, time.monotonic() - started, telemetry)
+    return response
+
+def _call_messages(messages, fmt, run=None, stage="llm"):
     cache_dir = os.environ.get("NW_LLM_CACHE_DIR")
     if not cache_dir:
-        return _call_messages_uncached(messages, fmt)
+        _CACHE_STATS["request_cache_misses"] += 1
+        return _cold_call(messages, fmt, run, stage)
     provider, base, model, key = _cfg()
     request = {"cache_version": 2, "provider": provider, "base_url": base, "model": model,
                "credential_fingerprint": hashlib.sha256(key.encode("utf-8")).hexdigest() if key else "",
@@ -281,8 +389,10 @@ def _call_messages(messages, fmt):
         _CACHE_STATS["request_cache_misses"] += 1
     else:
         _CACHE_STATS["request_cache_hits"] += 1
+        if run:
+            run.cache_hit(stage)
         return cached
-    response = _call_messages_uncached(messages, fmt)
+    response = _cold_call(messages, fmt, run, stage)
     path.parent.mkdir(parents=True, exist_ok=True)
     temporary = path.with_name(f"{path.name}.{os.getpid()}.tmp")
     temporary.write_text(json.dumps(response, ensure_ascii=False), encoding="utf-8")
@@ -302,7 +412,10 @@ def call_llm(text):
                 {"role": "user", "content": "REPORT TEXT (extract only from this text):\n" + text}]
     return _call_messages(messages, FORMAT)
 
-def call_llm_two_stage(text, diagnostics=None):
+def _run_call(messages, fmt, run, stage):
+    return _call_messages(messages, fmt) if run is None else _call_messages(messages, fmt, run=run, stage=stage)
+
+def call_llm_two_stage(text, diagnostics=None, run=None):
     """分別抽實體與敘事 mentions、grounding 合併，再以動態 tmp_id enum 抽 assertions。"""
     few_text, few = _fewshot(text)
     mention_format = {"type": "object", "additionalProperties": False, "required": ["mentions"],
@@ -321,7 +434,12 @@ def call_llm_two_stage(text, diagnostics=None):
             ])
         messages.append({"role": "user", "content": "REPORT TEXT:\n" + text})
         try:
-            raw = _call_messages(messages, mention_format)
+            raw = _run_call(messages, mention_format, run, f"mentions-{prefix}")
+        except ExtractionBudgetExceeded as exc:
+            if diagnostics is not None:
+                diagnostics.append({"stage": f"mentions-{prefix}", "budget_exhausted": str(exc), "kept": 0})
+            mention_sets.append((prefix, []))
+            break
         except (Exception, SystemExit) as exc:
             if diagnostics is not None:
                 diagnostics.append({"stage": f"mentions-{prefix}",
@@ -345,12 +463,17 @@ def call_llm_two_stage(text, diagnostics=None):
             mentions.append({**m, "tmp_id": f"{prefix}{serial[prefix]}"})
     ids = [m.get("tmp_id") for m in mentions if m.get("tmp_id")]
     if not ids: return {"mentions": [], "assertions": []}
+    if run is not None and run.budget_reason:
+        return {"mentions": mentions, "assertions": []}
 
     windows = claim_windows(text, mentions)
     if not windows:
         return {"mentions": mentions, "assertions": []}
     few_windows = claim_windows(few_text, few["mentions"])
     assertions, seen_a, window_diags = [], set(), []
+    if run is not None:
+        run.emit("assertion_plan", chunk=run.chunk, total_chunks=run.total_chunks, windows=len(windows))
+    calls = 0
     for wi, window in enumerate(windows, 1):
         window_ids = [m["tmp_id"] for m in window["candidates"]]
         assertion_items = copy.deepcopy(FORMAT["properties"]["assertions"])
@@ -365,8 +488,13 @@ def call_llm_two_stage(text, diagnostics=None):
             {"role": "user", "content": "CLAIM WINDOWS:\n" + json.dumps([window], ensure_ascii=False)},
         ]
         try:
-            raw = _call_messages(messages, assertion_format)
+            raw = _run_call(messages, assertion_format, run, f"assertion-{wi}/{len(windows)}")
+            calls += 1
+        except ExtractionBudgetExceeded as exc:
+            window_diags.append({"window": wi, "budget_exhausted": str(exc), "kept": 0})
+            break
         except (Exception, SystemExit) as exc:
+            calls += 1
             window_diags.append({"window": wi, "error": f"{type(exc).__name__}: {exc}", "kept": 0})
             continue
         checked, drops = span_check({"mentions": mentions, "assertions": raw.get("assertions", [])}, text)
@@ -377,7 +505,7 @@ def call_llm_two_stage(text, diagnostics=None):
             if key not in seen_a: assertions.append(a); seen_a.add(key)
     if diagnostics is not None:
         diagnostics.append({"stage": "assertions", "kept": len(assertions), "windows": len(windows),
-                            "calls": len(windows),
+                            "calls": calls, "budget_exhausted": run.budget_reason if run else None,
                             "window_results": window_diags})
     return {"mentions": mentions, "assertions": assertions}
 
@@ -457,15 +585,24 @@ def claim_windows(text, mentions):
             windows.append({"text": window, "candidates": candidates})
     return windows
 
-def call_llm_chunked(text, max_chars=2400, overlap=240, diagnostics=None):
+def call_llm_chunked(text, max_chars=2400, overlap=240, diagnostics=None, run=None, on_chunk=None):
     """逐 chunk 抽取並合併；tmp_id 加 namespace，重疊區的完全相同項目去重。"""
     merged_m, merged_a, mention_key_to_id = [], [], {}
     seen_a = set()
-    for ci, chunk in enumerate(split_text(text, max_chars, overlap), 1):
+    chunks = split_text(text, max_chars, overlap)
+    if run is not None:
+        run.total_chunks = len(chunks)
+    for ci, chunk in enumerate(chunks, 1):
+        if run is not None:
+            run.chunk = ci
+            run.emit("chunk_start", chunk=ci, total_chunks=len(chunks), length=len(chunk))
         chunk_diagnostics = [] if diagnostics is not None else None
-        pred = call_llm_two_stage(chunk, chunk_diagnostics); local_to_global = {}
+        pred = (call_llm_two_stage(chunk, chunk_diagnostics) if run is None else
+                call_llm_two_stage(chunk, chunk_diagnostics, run=run))
+        local_to_global = {}
         if diagnostics is not None:
             diagnostics.append({"chunk": ci, "start": text.find(chunk), "length": len(chunk),
+                                "complete": not bool(run and run.budget_reason),
                                 "stages": chunk_diagnostics})
         for m in pred.get("mentions", []):
             key = (m.get("surface"), m.get("coarse_type"), m.get("quote"), m.get("quote_occurrence"))
@@ -480,6 +617,15 @@ def call_llm_chunked(text, max_chars=2400, overlap=240, diagnostics=None):
             aa = {**a, "subject": subject, "object": obj}
             key = (subject, a.get("predicate"), obj, a.get("quote"), a.get("quote_occurrence"))
             if key not in seen_a: merged_a.append(aa); seen_a.add(key)
+        snapshot = {"mentions": copy.deepcopy(merged_m), "assertions": copy.deepcopy(merged_a)}
+        if run is not None:
+            run.emit("chunk_done", chunk=ci, total_chunks=len(chunks),
+                     mentions=len(merged_m), assertions=len(merged_a),
+                     complete=not bool(run.budget_reason))
+        if on_chunk is not None:
+            on_chunk(snapshot, diagnostics, ci, len(chunks), run)
+        if run is not None and run.budget_reason:
+            break
     return {"mentions": merged_m, "assertions": merged_a}
 
 def span_check(extr, text):                                   # 碼端硬閘：引文缺或對不上原文即丟（fail-closed）

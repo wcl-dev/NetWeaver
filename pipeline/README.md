@@ -68,8 +68,12 @@ python3 pipeline/compile_to_db.py pipeline/samples/*.extraction.json
 | `NW_LLM_THINK` | `false` | Ollama thinking 控制：`false`／`true`／`low`／`medium`／`high` |
 | `NW_LLM_CACHE_DIR` | — | 可選的成功 JSON request cache；含原文，敏感資料勿啟用 |
 | `NW_LLM_CACHE_SALT` | — | 模型 alias／server revision 變更時設新值，強制舊 cache miss |
+| `NW_EVAL_DOC_TIMEOUT` | `600` | 單篇 wall-clock budget（秒）；剩餘時間也會限制下一個 request timeout，`0` 停用 |
+| `NW_EVAL_MAX_COLD_CALLS` | `0` | 單篇真正模型 calls 上限；cache hits 不計，`0` 停用 |
 
 `eval_model.py` 預設將快取放在 ignored 的 `eval_runs/.request_cache`，使未改變的模型 requests 可在評測迭代間重用；加 `--no-request-cache` 可做 cold run 或避免原文落盤。輸出目錄與快取 key 都會區分 output mode／thinking。`json` fallback 只會把 schema 已知且非必填的 `null` 正規化成省略欄位，其餘缺欄、未知欄位、錯誤 enum／型別仍拒絕。
+
+評測執行會逐 request 顯示 chunk／stage、cold call 編號、timeout、耗時與 token 數；每個 chunk 後原子寫入 `.checkpoint.json`。達到文件時間或 cold-call budget 時，partial prediction 留在 checkpoint、metadata 標成 `budget-exhausted`，不寫正式 `.pred.json`、不納入 aggregate。重跑時成功 requests 由 cache 命中且不扣 cold-call 額度，會自然繼續到後續 stages。逐 request 明細在 `.telemetry.json`。
 
 ```bash
 # 雲端範例

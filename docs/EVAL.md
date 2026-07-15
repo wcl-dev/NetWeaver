@@ -21,9 +21,17 @@ NW_LLM_MODEL=qwen2.5:7b python3 pipeline/eval_model.py --no-request-cache
 # Gemma 4 QAT 相容路徑；--match 可重複指定
 NW_LLM_MODEL=gemma4:12b-it-qat NW_LLM_OUTPUT_MODE=json NW_LLM_THINK=false \
   python3 pipeline/eval_model.py --match 01-dtl-anti-dpp --match 05-nsb-cognitive-2024
+
+# 單篇最多 10 分鐘；可再限制真正模型 calls（cache hits 不計）
+NW_EVAL_DOC_TIMEOUT=600 NW_EVAL_MAX_COLD_CALLS=24 \
+  python3 pipeline/eval_model.py --match 03-dtl-golaxy
 ```
 
 `eval_model.py` 依模型、`PROMPT_VERSION`、output mode 與 thinking 隔離輸出；單篇錯誤會寫空 prediction（scorer 計 `json_ok=false`）與 `.error.txt`，不會中止整批。每篇 `.meta.json` 記錄完整 variant、chunk 設定、耗時、logical LLM calls、cache hits/misses 與 partial-error 狀態。快取 key 含 provider、base URL、model、credential fingerprint、messages、schema、output mode 與 thinking；任一 request 內容改變即 miss，只寫成功解析的 JSON。模型 alias／server revision 變更時應更新 `NW_LLM_CACHE_SALT`。快取含 report text，敏感資料應用 `--no-request-cache`。
+
+v22 起預設單篇 wall-clock budget 為 600 秒；CLI `--doc-timeout`／`--max-cold-calls`（或 `NW_EVAL_DOC_TIMEOUT`／`NW_EVAL_MAX_COLD_CALLS`）可覆寫，`0` 表示停用。每個 request 都即時寫 `.telemetry.json`（stage、耗時、prompt/completion tokens、Ollama load/prompt/generation duration），每個 chunk 完成即寫 `.checkpoint.json`。budget 用完時保留 partial checkpoint、`.meta.json` 標記 `budget-exhausted`，但不產生正式 prediction，也不進 scorer aggregate；重跑會利用 request cache 續向後執行。
+
+Gemma v22 真實單-call telemetry smoke（doc02 actor pass）：總耗時 62.1s，prompt 1,126 tokens、completion 789 tokens；Ollama 分解為 load 4.9s、prompt eval 3.1s、generation 54.1s。約 87% 模型時間花在生成長 JSON，確認主要成本不是載入或 prompt ingestion；`max-cold-calls=1` 隨後正確停止並保存 23 mentions checkpoint，未啟動 assertion fan-out、未進 scorer。
 
 ## dev baselines（2026-07-14～15）
 
@@ -67,7 +75,7 @@ trace 顯示 JSON v20 最常見失敗是 optional `country:null` 使整個 menti
 
 ## 下一個實驗
 
-v5–v14 已把 assertion 拆成多階段：actor／entity／narrative mentions 分別抽取並 exact-ground，合併後以動態 tmp_id enum 抽 assertion；assertion 只看 compact exact claim windows，predicate 仍須通過 `predicate in quote`。v19 對完全相同的 request 做決定性快取；v20–v21 補 output mode／thinking 控制、回應 schema validator 與窄幅 optional-null 正規化。離線回歸已覆蓋端點 enum、partial failure、claim window、chunk namespace／dedupe、dangling 防護、schema/json body、thinking 與 cache 隔離。
+v5–v14 已把 assertion 拆成多階段：actor／entity／narrative mentions 分別抽取並 exact-ground，合併後以動態 tmp_id enum 抽 assertion；assertion 只看 compact exact claim windows，predicate 仍須通過 `predicate in quote`。v19 對完全相同的 request 做決定性快取；v20–v21 補 output mode／thinking 控制、回應 schema validator 與窄幅 optional-null 正規化；v22 加入 request telemetry、文件 budget 與 chunk checkpoint。離線回歸已覆蓋端點 enum、partial failure、claim window、chunk namespace／dedupe、dangling 防護、schema/json body、thinking、cold-only budget 與 cache 隔離。
 
 目前完整基線重跑：
 

@@ -60,7 +60,7 @@ python3 pipeline/compile_to_db.py pipeline/samples/*.extraction.json
 | 變數 | 預設 | 說明 |
 |---|---|---|
 | `NW_LLM_PROVIDER` | `ollama` | `ollama`（地端原生，grammar-forced）｜`openai`（OpenAI 相容） |
-| `NW_LLM_BASE_URL` | `http://localhost:11434` | 端點基底 |
+| `NW_LLM_BASE_URL` | `http://localhost:11434` | 端點基底；OpenAI 相容端可給 service root、`.../v1` 或 Google `.../v1beta/openai` |
 | `NW_LLM_MODEL` | `gemma4:12b-it-qat` | 模型名 |
 | `NW_LLM_API_KEY` | — | 雲端/相容端點金鑰 |
 | `NW_LLM_TIMEOUT` | `600` | 單次 request timeout（秒） |
@@ -80,6 +80,10 @@ python3 pipeline/compile_to_db.py pipeline/samples/*.extraction.json
 # 雲端範例
 NW_LLM_PROVIDER=openai NW_LLM_BASE_URL=https://api.openai.com NW_LLM_MODEL=gpt-... NW_LLM_API_KEY=sk-... \
   python3 pipeline/extract.py
+
+# Gemini API 的 OpenAI 相容端點；model id 須以實際 production 設定為準
+NW_LLM_PROVIDER=openai NW_LLM_BASE_URL=https://generativelanguage.googleapis.com/v1beta/openai \
+NW_LLM_MODEL=gemini-... NW_LLM_API_KEY=... python3 pipeline/eval_model.py
 ```
 
 ## 示範重點

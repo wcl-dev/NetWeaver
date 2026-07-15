@@ -238,6 +238,12 @@ def _messages_with_schema(messages, fmt):
         prepared.insert(0, {"role": "system", "content": instruction})
     return prepared
 
+def _openai_chat_url(base):
+    """Accept both service roots and OpenAI-compatible versioned base URLs."""
+    if base.endswith(("/v1", "/openai")):
+        return base + "/chat/completions"
+    return base + "/v1/chat/completions"
+
 def _request_spec(messages, fmt):
     provider, base, model, key = _cfg()
     mode = _output_mode()
@@ -249,7 +255,7 @@ def _request_spec(messages, fmt):
                 "messages": prepared}
         headers = {"Content-Type": "application/json"}; path = ("message", "content")
     else:                                                     # OpenAI 相容（OpenAI / vLLM / LM Studio / Together / Ollama /v1…）
-        url = base + "/v1/chat/completions"
+        url = _openai_chat_url(base)
         body = {"model": model, "temperature": 0,
                 "response_format": ({"type": "json_schema",
                                      "json_schema": {"name": "extraction", "schema": fmt}}

@@ -9,6 +9,7 @@ import extract
 original_mode = os.environ.get("NW_LLM_OUTPUT_MODE")
 original_think = os.environ.get("NW_LLM_THINK")
 original_provider = os.environ.get("NW_LLM_PROVIDER")
+original_base_url = os.environ.get("NW_LLM_BASE_URL")
 
 SCHEMA = {"type": "object", "additionalProperties": False, "required": ["items"],
           "properties": {"items": {"type": "array", "items": {
@@ -57,15 +58,26 @@ try:
     except ValueError as exc:
         assert "$.extra" in str(exc)
 
+    os.environ["NW_LLM_PROVIDER"] = "openai"
+    os.environ["NW_LLM_BASE_URL"] = "https://generativelanguage.googleapis.com/v1beta/openai/"
+    gemini_url, _, _, _ = extract._request_spec(MESSAGES, SCHEMA)
+    assert gemini_url == "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions"
+    os.environ["NW_LLM_BASE_URL"] = "https://api.openai.com"
+    openai_url, _, _, _ = extract._request_spec(MESSAGES, SCHEMA)
+    assert openai_url == "https://api.openai.com/v1/chat/completions"
+    os.environ["NW_LLM_BASE_URL"] = "http://localhost:8000/v1"
+    versioned_url, _, _, _ = extract._request_spec(MESSAGES, SCHEMA)
+    assert versioned_url == "http://localhost:8000/v1/chat/completions"
+
     schema_variant = extract.extraction_variant()
     os.environ["NW_LLM_OUTPUT_MODE"] = "schema"
     assert schema_variant != extract.extraction_variant()
 finally:
     for name, value in (("NW_LLM_OUTPUT_MODE", original_mode), ("NW_LLM_THINK", original_think),
-                        ("NW_LLM_PROVIDER", original_provider)):
+                        ("NW_LLM_PROVIDER", original_provider), ("NW_LLM_BASE_URL", original_base_url)):
         if value is None:
             os.environ.pop(name, None)
         else:
             os.environ[name] = value
 
-print("extract output modes：通過（schema/json、think:false、outer strict＋item 級隔離）")
+print("extract output modes：通過（schema/json、think:false、versioned base、outer strict＋item 隔離）")

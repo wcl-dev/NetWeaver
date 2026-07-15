@@ -59,6 +59,16 @@ try:
     except extract.ExtractionBudgetExceeded:
         pass
     assert expired.cold_calls == 0 and expired.budget_reason == "doc-timeout"
+
+    quota = extract.ExtractionRun(max_assertion_windows=6)
+    quota.total_chunks, quota.chunk = 4, 1
+    assert quota.assertion_window_quota(10) == 2
+    quota.reserve_assertion_windows(2)
+    quota.chunk = 2
+    assert quota.assertion_window_quota(10) == 2
+    quota.reserve_assertion_windows(2)
+    quota.chunk = 4
+    assert quota.assertion_window_quota(10) == 2
 finally:
     extract._call_messages_uncached = original_uncached
     if original_cache_dir is None:
@@ -71,4 +81,4 @@ telemetry = extract._response_telemetry({"prompt_eval_count": 12, "eval_count": 
                                          "eval_duration": 1_250_000_000}, "ollama")
 assert telemetry["prompt_tokens"] == 12 and telemetry["completion_tokens"] == 7
 assert telemetry["model_total_seconds"] == 2.5 and telemetry["generation_seconds"] == 1.25
-print("extract budget：通過（cold-only 額度、partial 保留、cache resume、Ollama telemetry）")
+print("extract budget：通過（cold-only 額度、partial 保留、cache resume、跨 chunk window 配額、telemetry）")

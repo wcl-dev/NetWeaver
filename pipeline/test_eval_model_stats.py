@@ -16,6 +16,8 @@ assert eval_model.trace_stats(trace) == {
     "llm_calls": 8,
     "mention_calls": 3,
     "assertion_windows": 5,
+    "assertion_windows_selected": 5,
+    "assertion_windows_skipped": 0,
     "assertion_calls": 5,
 }
 assert eval_model.diagnostic_errors(trace) == ["TimeoutError: entity", "TimeoutError: assertion"]

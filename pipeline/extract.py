@@ -27,7 +27,7 @@ FORMAT = {"type": "object", "additionalProperties": False, "required": ["mention
 for section in ("mentions", "assertions"):
     # source_url 是可信 metadata，由 extract() 依 report_meta 補；不讓模型生成或幻覺。
     FORMAT["properties"][section]["items"]["properties"].pop("source_url", None)
-PROMPT_VERSION = "v22-observable-budgeted-runs"
+PROMPT_VERSION = "v23-ranked-assertion-fanout"
 FEWSHOT_EN_TEXT = "The Red Group operated fake accounts targeting Taiwan."
 FEWSHOT_EN = {
     "mentions": [
@@ -142,15 +142,18 @@ class ExtractionBudgetExceeded(RuntimeError):
 
 class ExtractionRun:
     """單篇抽取的 budget、進度事件與 request telemetry。"""
-    def __init__(self, doc_timeout=None, max_cold_calls=None, progress=None):
+    def __init__(self, doc_timeout=None, max_cold_calls=None, max_assertion_windows=None, progress=None):
         self.started = time.monotonic()
         self.doc_timeout = float(doc_timeout) if doc_timeout and float(doc_timeout) > 0 else None
         self.max_cold_calls = int(max_cold_calls) if max_cold_calls and int(max_cold_calls) > 0 else None
+        self.max_assertion_windows = (int(max_assertion_windows)
+                                      if max_assertion_windows and int(max_assertion_windows) > 0 else None)
         self.progress = progress
         self.cold_calls = 0
         self.cache_hits = 0
         self.events = []
         self.budget_reason = None
+        self.assertion_windows_used = 0
         self.chunk = None
         self.total_chunks = None
 
@@ -204,10 +207,22 @@ class ExtractionRun:
         if self.budget_reason:
             self._exhaust(self.budget_reason)
 
+    def assertion_window_quota(self, available):
+        if self.max_assertion_windows is None:
+            return available
+        remaining = max(0, self.max_assertion_windows - self.assertion_windows_used)
+        chunks_left = max(1, (self.total_chunks or 1) - (self.chunk or 1) + 1)
+        fair_share = (remaining + chunks_left - 1) // chunks_left
+        return min(available, fair_share)
+
+    def reserve_assertion_windows(self, count):
+        self.assertion_windows_used += count
+
     def summary(self):
         completed = [event for event in self.events if event["event"] in {"request_done", "request_error"}]
         return {"elapsed_seconds": round(self.elapsed(), 3), "cold_calls": self.cold_calls,
                 "cache_hits": self.cache_hits, "budget_reason": self.budget_reason,
+                "assertion_windows_used": self.assertion_windows_used,
                 "prompt_tokens": sum(event.get("prompt_tokens", 0) for event in completed),
                 "completion_tokens": sum(event.get("completion_tokens", 0) for event in completed),
                 "model_total_seconds": round(sum(event.get("model_total_seconds", 0) for event in completed), 3)}
@@ -471,10 +486,15 @@ def call_llm_two_stage(text, diagnostics=None, run=None):
         return {"mentions": mentions, "assertions": []}
     few_windows = claim_windows(few_text, few["mentions"])
     assertions, seen_a, window_diags = [], set(), []
+    limit = run.assertion_window_quota(len(windows)) if run is not None else len(windows)
+    selected_windows = select_claim_windows(windows, mentions, limit)
     if run is not None:
-        run.emit("assertion_plan", chunk=run.chunk, total_chunks=run.total_chunks, windows=len(windows))
+        run.reserve_assertion_windows(len(selected_windows))
+    if run is not None:
+        run.emit("assertion_plan", chunk=run.chunk, total_chunks=run.total_chunks, windows=len(windows),
+                 selected=len(selected_windows), skipped=len(windows) - len(selected_windows))
     calls = 0
-    for wi, window in enumerate(windows, 1):
+    for selected_order, (wi, window, priority) in enumerate(selected_windows, 1):
         window_ids = [m["tmp_id"] for m in window["candidates"]]
         assertion_items = copy.deepcopy(FORMAT["properties"]["assertions"])
         assertion_items["items"]["properties"]["subject"] = {"enum": window_ids}
@@ -488,23 +508,30 @@ def call_llm_two_stage(text, diagnostics=None, run=None):
             {"role": "user", "content": "CLAIM WINDOWS:\n" + json.dumps([window], ensure_ascii=False)},
         ]
         try:
-            raw = _run_call(messages, assertion_format, run, f"assertion-{wi}/{len(windows)}")
+            raw = _run_call(messages, assertion_format, run,
+                            f"assertion-{selected_order}/{len(selected_windows)}[window-{wi}]")
             calls += 1
         except ExtractionBudgetExceeded as exc:
-            window_diags.append({"window": wi, "budget_exhausted": str(exc), "kept": 0})
+            window_diags.append({"window": wi, "selected_order": selected_order, "priority": priority,
+                                 "budget_exhausted": str(exc), "kept": 0})
             break
         except (Exception, SystemExit) as exc:
             calls += 1
-            window_diags.append({"window": wi, "error": f"{type(exc).__name__}: {exc}", "kept": 0})
+            window_diags.append({"window": wi, "selected_order": selected_order, "priority": priority,
+                                 "error": f"{type(exc).__name__}: {exc}", "kept": 0})
             continue
         checked, drops = span_check({"mentions": mentions, "assertions": raw.get("assertions", [])}, text)
-        window_diags.append({"window": wi, "raw": raw, "drops": drops,
+        window_diags.append({"window": wi, "selected_order": selected_order, "priority": priority,
+                             "raw": raw, "drops": drops,
                              "kept": len(checked["assertions"])})
         for a in checked["assertions"]:
             key = (a.get("subject"), a.get("predicate"), a.get("object"), a.get("quote"))
             if key not in seen_a: assertions.append(a); seen_a.add(key)
     if diagnostics is not None:
         diagnostics.append({"stage": "assertions", "kept": len(assertions), "windows": len(windows),
+                            "selected_windows": len(selected_windows),
+                            "skipped_windows": len(windows) - len(selected_windows),
+                            "selected_indices": [index for index, _, _ in selected_windows],
                             "calls": calls, "budget_exhausted": run.budget_reason if run else None,
                             "window_results": window_diags})
     return {"mentions": mentions, "assertions": assertions}
@@ -584,6 +611,43 @@ def claim_windows(text, mentions):
         if len({m["tmp_id"] for m in candidates}) >= 2:
             windows.append({"text": window, "candidates": candidates})
     return windows
+
+_RELATION_CUE = re.compile(
+    r"operat|run by|direct|control|hire|use[ds]?|amplif|echo|boost|repost|target|attack|link|"
+    r"connect|steal|stole|"
+    r"運用|操控|指揮|經營|放大|轉發|轉載|引用|針對|鎖定|攻擊|偽冒|營造|渲染|擴散|"
+    r"推宣|散播|傳散|設立|創建|委託|推播|炒作|批評|引導|關係密切",
+    re.I,
+)
+_ACTOR_TYPES = {"person", "org", "network", "account", "website", "media"}
+
+def select_claim_windows(windows, mentions, limit=None):
+    """在有上限時穩定排序 relation-rich windows；無上限時保持原順序與既有行為。"""
+    indexed = list(enumerate(windows, 1))
+    if limit is None or limit >= len(indexed):
+        return [(index, window, None) for index, window in indexed]
+    if limit <= 0:
+        return []
+    types = {mention.get("tmp_id"): mention.get("coarse_type") for mention in mentions}
+    ranked = []
+    for index, window in indexed:
+        text = window["text"]
+        candidate_types = {types.get(candidate.get("tmp_id")) for candidate in window["candidates"]}
+        has_actor = bool(candidate_types & _ACTOR_TYPES)
+        has_narrative = "narrative" in candidate_types
+        has_place = "place" in candidate_types
+        tier = 4 if has_actor and has_narrative else 3 if has_actor and has_place else 2 if has_actor else 1 if has_narrative else 0
+        cue = bool(_RELATION_CUE.search(text))
+        candidates = len(window["candidates"])
+        compact = 2 <= candidates <= 5
+        stripped = text.strip()
+        title_like = index == 1 and not re.search(r"[。.!?！？]", stripped)
+        reporting_context = bool(re.search(r"\bwe\b|我們|本局|本研究|研究團隊", text, re.I))
+        forensic_context = bool(re.search(r"phone number|電話號碼|手機號碼|login|登入", text, re.I))
+        priority = (int(not title_like), int(not forensic_context), int(cue),
+                    int(not reporting_context), tier, int(compact), -abs(candidates - 3), -len(text))
+        ranked.append((index, window, priority))
+    return sorted(ranked, key=lambda item: tuple(-value for value in item[2]) + (item[0],))[:limit]
 
 def call_llm_chunked(text, max_chars=2400, overlap=240, diagnostics=None, run=None, on_chunk=None):
     """逐 chunk 抽取並合併；tmp_id 加 namespace，重疊區的完全相同項目去重。"""

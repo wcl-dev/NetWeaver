@@ -25,11 +25,17 @@ NW_LLM_MODEL=gemma4:12b-it-qat NW_LLM_OUTPUT_MODE=json NW_LLM_THINK=false \
 # 單篇最多 10 分鐘；可再限制真正模型 calls（cache hits 不計）
 NW_EVAL_DOC_TIMEOUT=600 NW_EVAL_MAX_COLD_CALLS=24 \
   python3 pipeline/eval_model.py --match 03-dtl-golaxy
+
+# 實驗性 fan-out 上限；跨 chunk 分配後優先保留 relation-rich windows
+NW_EVAL_MAX_ASSERTION_WINDOWS=12 \
+  python3 pipeline/eval_model.py --match 01-dtl-anti-dpp
 ```
 
 `eval_model.py` 依模型、`PROMPT_VERSION`、output mode 與 thinking 隔離輸出；單篇錯誤會寫空 prediction（scorer 計 `json_ok=false`）與 `.error.txt`，不會中止整批。每篇 `.meta.json` 記錄完整 variant、chunk 設定、耗時、logical LLM calls、cache hits/misses 與 partial-error 狀態。快取 key 含 provider、base URL、model、credential fingerprint、messages、schema、output mode 與 thinking；任一 request 內容改變即 miss，只寫成功解析的 JSON。模型 alias／server revision 變更時應更新 `NW_LLM_CACHE_SALT`。快取含 report text，敏感資料應用 `--no-request-cache`。
 
 v22 起預設單篇 wall-clock budget 為 600 秒；CLI `--doc-timeout`／`--max-cold-calls`（或 `NW_EVAL_DOC_TIMEOUT`／`NW_EVAL_MAX_COLD_CALLS`）可覆寫，`0` 表示停用。每個 request 都即時寫 `.telemetry.json`（stage、耗時、prompt/completion tokens、Ollama load/prompt/generation duration），每個 chunk 完成即寫 `.checkpoint.json`。budget 用完時保留 partial checkpoint、`.meta.json` 標記 `budget-exhausted`，但不產生正式 prediction，也不進 scorer aggregate；重跑會利用 request cache 續向後執行。
+
+v23 加入 `--max-assertion-windows`／`NW_EVAL_MAX_ASSERTION_WINDOWS`。上限是單篇總額，會依剩餘 chunk 公平分配，再用明示關係詞、actor/narrative/place 組合、候選密度及 title/reporting/forensic context 做決定性排序。輸出使用獨立 `-awN` variant，trace/meta 記錄 total／selected／skipped；`0` 表示停用，目前仍是預設，避免 3 篇 dev A/B 被誤當泛化證據。
 
 Gemma v22 真實單-call telemetry smoke（doc02 actor pass）：總耗時 62.1s，prompt 1,126 tokens、completion 789 tokens；Ollama 分解為 load 4.9s、prompt eval 3.1s、generation 54.1s。約 87% 模型時間花在生成長 JSON，確認主要成本不是載入或 prompt ingestion；`max-cold-calls=1` 隨後正確停止並保存 23 mentions checkpoint，未啟動 assertion fan-out、未進 scorer。
 
@@ -71,11 +77,21 @@ JSON v20 完成的三篇 smoke 為 doc01／02／05；macro edge F1 0.21、micro 
 
 trace 顯示 JSON v20 最常見失敗是 optional `country:null` 使整個 mention pass 不合 schema。v21 只做窄幅、schema-guided 正規化：已知且非 required 的 null 欄位等價省略；required null、未知欄位、錯誤型別／enum 仍拒絕。doc01 因此由 7 mentions／0 assertions 回升至 94／14，edge F1 由 0 升至 0.15；同時暴露 over-extraction（mention precision 0.19、typed F1 0.08）與 39 calls／526s 的 fan-out 成本。
 
-結論：Gemma 4 12B QAT 是比 qwen 更值得保留的**語意 proxy**，但目前不是 prod Gemini Flash 的效能 proxy，也還不能設為 pipeline 預設。下一輪應先限制輸出／候選 fan-out、處理單一 invalid item 不拖垮整個 pass 的診斷策略，再做 7-doc cold baseline；不得把這次 3-doc smoke 當泛化結果。
+v23 warm-cache fan-out A/B 固定沿用相同 cached mention/window responses，因此只驗證選窗品質與呼叫數，不是 cold latency 測量：
+
+| 文件 | 完整 windows → selected | assertions | gold edge hits | strict edge F1 | 結果 |
+|---|---:|---:|---:|---:|---|
+| doc01 | 27 → 12 | 14 → 8 | 2 → 2 | 0.15 → **0.20** | 保住兩個 hits、移除 FP |
+| doc02 | 8 → 6 | 13 → 13 | 2 → 2 | 0.10 → **0.10** | 無退化 |
+| doc05 | 11 → 6 | 15 → 13 | 10 → 10 | 0.54 → **0.57** | 保住 hits、移除 2 FP |
+
+三篇合計 assertion windows 46 → 24（少 48%），既有 gold hits 全保留；但仍須完整 7-doc cold baseline 與 locked test 才能決定預設上限。
+
+結論：Gemma 4 12B QAT 是比 qwen 更值得保留的**語意 proxy**，但目前不是 prod Gemini Flash 的效能 proxy，也還不能設為 pipeline 預設。fan-out 上限已有不退化的三篇 dev 護欄，下一輪應做完整 7-doc cold baseline、處理單一 invalid item 不拖垮整個 pass，再用同一 gold 跑 prod Gemini Flash；不得把這次 3-doc smoke 當泛化結果。
 
 ## 下一個實驗
 
-v5–v14 已把 assertion 拆成多階段：actor／entity／narrative mentions 分別抽取並 exact-ground，合併後以動態 tmp_id enum 抽 assertion；assertion 只看 compact exact claim windows，predicate 仍須通過 `predicate in quote`。v19 對完全相同的 request 做決定性快取；v20–v21 補 output mode／thinking 控制、回應 schema validator 與窄幅 optional-null 正規化；v22 加入 request telemetry、文件 budget 與 chunk checkpoint。離線回歸已覆蓋端點 enum、partial failure、claim window、chunk namespace／dedupe、dangling 防護、schema/json body、thinking、cold-only budget 與 cache 隔離。
+v5–v14 已把 assertion 拆成多階段：actor／entity／narrative mentions 分別抽取並 exact-ground，合併後以動態 tmp_id enum 抽 assertion；assertion 只看 compact exact claim windows，predicate 仍須通過 `predicate in quote`。v19 對完全相同的 request 做決定性快取；v20–v21 補 output mode／thinking 控制、回應 schema validator 與窄幅 optional-null 正規化；v22 加入 request telemetry、文件 budget 與 chunk checkpoint；v23 加入跨 chunk 配額與 relation-rich window 排序。離線回歸已覆蓋端點 enum、partial failure、claim window、chunk namespace／dedupe、dangling 防護、schema/json body、thinking、cold-only budget、window quota 與 cache 隔離。
 
 目前完整基線重跑：
 
@@ -86,8 +102,8 @@ NW_LLM_MODEL=qwen2.5:7b NW_LLM_TIMEOUT=180 \
 
 後續仍須：
 
-1. 降低 cold-run windowwise assertion 成本／長文延遲；已知 naive batching、本機並行、去 overlap 都會傷品質或吞吐。
+1. 用 `--max-assertion-windows` 跑完整 7-doc cold baseline，確認三篇 warm-cache A/B 的品質與呼叫數改善可泛化；已知 naive batching、本機並行、去 overlap 都會傷品質或吞吐。
 2. 對 chunk overlap、跨 chunk entity merge 與 document-level linking 加評測。
 3. 改善 coarse type（v14 typed mention F1 僅 0.21）與尚未命中的 doc01/doc03/doc06。
 4. dev 調整穩定後建立 20–30 篇 locked test set；不得拿 dev prompt gains 當泛化結論。
-5. Gemma 路徑先降 assertion fan-out／設定輸出預算，再跑完整 cold baseline；prod Gemini Flash 另做同 gold 的雲端基線，不能以 Ollama latency 外推。
+5. Gemma 完整 cold baseline 後，prod Gemini Flash 另做同 gold 的雲端基線；不能以 Ollama latency 外推。

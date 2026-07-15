@@ -43,7 +43,8 @@ def progress_message(event):
     if kind == "request_error":
         return f"          [{chunk}] {event['stage']} ✗ {event['error']}（{event['request_seconds']:.1f}s）"
     if kind == "assertion_plan":
-        return f"          [{chunk}] assertion windows={event['windows']}"
+        return (f"          [{chunk}] assertion windows={event['selected']}/{event['windows']} selected"
+                + (f"，skip={event['skipped']}" if event["skipped"] else ""))
     if kind == "chunk_done":
         suffix = "（partial）" if not event.get("complete", True) else ""
         return f"          [{chunk}] checkpoint {event['mentions']} mentions / {event['assertions']} assertions{suffix}"
@@ -72,10 +73,16 @@ def trace_stats(diagnostics):
     mention_calls = sum(str(stage.get("stage", "")).startswith("mentions-") and
                         not stage.get("budget_exhausted") for stage in stages)
     assertion_windows = sum(stage.get("windows", 0) for stage in stages if stage.get("stage") == "assertions")
+    assertion_selected = sum(stage.get("selected_windows", stage.get("windows", 0))
+                             for stage in stages if stage.get("stage") == "assertions")
+    assertion_skipped = sum(stage.get("skipped_windows", 0)
+                            for stage in stages if stage.get("stage") == "assertions")
     assertion_calls = sum(stage.get("calls", 0) for stage in stages if stage.get("stage") == "assertions")
     return {"llm_calls": mention_calls + assertion_calls,
             "mention_calls": mention_calls,
             "assertion_windows": assertion_windows,
+            "assertion_windows_selected": assertion_selected,
+            "assertion_windows_skipped": assertion_skipped,
             "assertion_calls": assertion_calls}
 
 
@@ -95,6 +102,9 @@ def main():
                     help="單篇 wall-clock budget 秒數；0 表示停用（預設 600）")
     ap.add_argument("--max-cold-calls", type=int, default=int(os.environ.get("NW_EVAL_MAX_COLD_CALLS", "0")),
                     help="單篇真正模型 calls 上限；cache hits 不計，0 表示停用")
+    ap.add_argument("--max-assertion-windows", type=int,
+                    default=int(os.environ.get("NW_EVAL_MAX_ASSERTION_WINDOWS", "0")),
+                    help="單篇 assertion windows 上限；跨 chunk 配額＋relation-rich 排序，0 表示停用")
     args = ap.parse_args()
 
     if not args.no_request_cache and not os.environ.get("NW_LLM_CACHE_DIR"):
@@ -102,6 +112,8 @@ def main():
 
     provider, base, model, _ = extract._cfg()
     variant = extract.extraction_variant()
+    if args.max_assertion_windows > 0:
+        variant += f"-aw{args.max_assertion_windows}"
     output_mode, think = extract._output_mode(), extract._think_setting()
     out_dir = args.out_dir or HERE / "eval_runs" / f"{safe_name(model)}_{variant}"
     out_dir.mkdir(parents=True, exist_ok=True)
@@ -138,7 +150,8 @@ def main():
             if message:
                 print(message, flush=True)
 
-        run = extract.ExtractionRun(args.doc_timeout, args.max_cold_calls, progress)
+        run = extract.ExtractionRun(doc_timeout=args.doc_timeout, max_cold_calls=args.max_cold_calls,
+                                    max_assertion_windows=args.max_assertion_windows, progress=progress)
         diagnostics = []
         def checkpoint(prediction, trace, completed_chunk, total_chunks, context):
             write_json_atomic(checkpoint_path, {
@@ -200,6 +213,7 @@ def main():
                                "partial_errors": partial_errors,
                                "elapsed_seconds": round(elapsed, 3), "doc_timeout": args.doc_timeout,
                                "max_cold_calls": args.max_cold_calls,
+                               "max_assertion_windows": args.max_assertion_windows,
                                "chunk_chars": args.chunk_chars, "chunk_overlap": args.chunk_overlap,
                                "checkpoint": str(checkpoint_path), "run": summary, **stats})
             print(f"          額度用完：{run.budget_reason}，partial {len(pred.get('mentions', []))} mentions / "
@@ -208,13 +222,16 @@ def main():
         write_json_atomic(pred_path, pred)
         write_json_atomic(trace_path, diagnostics)
         write_json_atomic(telemetry_path, {"status": "complete", "summary": summary, "events": events})
+        window_limited = stats["assertion_windows_skipped"] > 0
+        status = "partial-error" if partial_errors else "window-limited" if window_limited else "ok"
         write_json_atomic(meta_path, {"provider": provider, "model": model,
                                       "prompt_version": extract.PROMPT_VERSION, "variant": variant,
                                       "output_mode": output_mode, "think": think,
-                                      "status": "partial-error" if partial_errors else "ok",
+                                      "status": status, "window_limited": window_limited,
                                       "partial_errors": partial_errors,
                                       "elapsed_seconds": round(elapsed, 3), "doc_timeout": args.doc_timeout,
                                       "max_cold_calls": args.max_cold_calls,
+                                      "max_assertion_windows": args.max_assertion_windows,
                                       "chunk_chars": args.chunk_chars, "chunk_overlap": args.chunk_overlap,
                                       "mentions": len(pred.get("mentions", [])),
                                       "assertions": len(pred.get("assertions", [])),

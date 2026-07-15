@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """對 gold dev set 跑真實模型抽取，保存 raw prediction，再呼叫 scorer。
 
-輸出預設放 pipeline/eval_runs/<model>/，可中斷續跑；加 --force 才覆寫。
+輸出預設放 pipeline/eval_runs/<model>_<variant>/，可中斷續跑；加 --force 才覆寫。
 模型/provider 沿用 extract.py 的 NW_LLM_* 環境變數。
 """
 import argparse
@@ -56,7 +56,8 @@ def main():
     ap.add_argument("--no-request-cache", action="store_true",
                     help="停用 eval_runs/.request_cache 的逐 request 成功回應快取")
     ap.add_argument("--limit", type=int, help="只跑前 N 篇（smoke test 用）")
-    ap.add_argument("--match", help="只跑檔名含此字串的 gold（smoke test 用）")
+    ap.add_argument("--match", action="append",
+                    help="只跑檔名含此字串的 gold；可重複指定（smoke test 用）")
     ap.add_argument("--chunk-chars", type=int, default=int(os.environ.get("NW_EVAL_CHUNK_CHARS", "2400")))
     ap.add_argument("--chunk-overlap", type=int, default=int(os.environ.get("NW_EVAL_CHUNK_OVERLAP", "240")))
     args = ap.parse_args()
@@ -65,18 +66,20 @@ def main():
         os.environ["NW_LLM_CACHE_DIR"] = str(HERE / "eval_runs" / ".request_cache")
 
     provider, base, model, _ = extract._cfg()
-    out_dir = args.out_dir or HERE / "eval_runs" / f"{safe_name(model)}_{extract.PROMPT_VERSION}"
+    variant = extract.extraction_variant()
+    output_mode, think = extract._output_mode(), extract._think_setting()
+    out_dir = args.out_dir or HERE / "eval_runs" / f"{safe_name(model)}_{variant}"
     out_dir.mkdir(parents=True, exist_ok=True)
     golds = sorted(args.gold_dir.glob("*.gold.json"))
     if args.match:
-        golds = [p for p in golds if args.match in p.name]
+        golds = [p for p in golds if any(match in p.name for match in args.match)]
     if args.limit is not None:
         golds = golds[:args.limit]
     if not golds:
         raise SystemExit(f"找不到 gold：{args.gold_dir}")
 
     pairs = []
-    print(f"模型基線：provider={provider} model={model} prompt={extract.PROMPT_VERSION} docs={len(golds)} out={out_dir}", flush=True)
+    print(f"模型基線：provider={provider} model={model} variant={variant} docs={len(golds)} out={out_dir}", flush=True)
     for i, gold_path in enumerate(golds, 1):
         pred_path = out_dir / gold_path.name.replace(".gold.json", ".pred.json")
         pairs.append((gold_path, pred_path))
@@ -98,7 +101,9 @@ def main():
                 f"{type(exc).__name__}: {exc}\n", encoding="utf-8"
             )
             elapsed = time.monotonic() - started
-            meta_path.write_text(json.dumps({"provider": provider, "model": model, "prompt_version": extract.PROMPT_VERSION,
+            meta_path.write_text(json.dumps({"provider": provider, "model": model,
+                                             "prompt_version": extract.PROMPT_VERSION, "variant": variant,
+                                             "output_mode": output_mode, "think": think,
                                              "status": "error", "error_type": type(exc).__name__,
                                              "elapsed_seconds": round(elapsed, 3), "chunk_chars": args.chunk_chars,
                                              "chunk_overlap": args.chunk_overlap}, ensure_ascii=False, indent=2), encoding="utf-8")
@@ -109,7 +114,9 @@ def main():
         elapsed = time.monotonic() - started
         partial_errors = diagnostic_errors(diagnostics)
         stats = {**trace_stats(diagnostics), **extract.cache_stats()}
-        meta_path.write_text(json.dumps({"provider": provider, "model": model, "prompt_version": extract.PROMPT_VERSION,
+        meta_path.write_text(json.dumps({"provider": provider, "model": model,
+                                         "prompt_version": extract.PROMPT_VERSION, "variant": variant,
+                                         "output_mode": output_mode, "think": think,
                                          "status": "partial-error" if partial_errors else "ok",
                                          "partial_errors": partial_errors,
                                          "elapsed_seconds": round(elapsed, 3),

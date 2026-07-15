@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""LLM 抽取 client（provider-agnostic）：報告文字 → LLM（forced JSON schema）→ mentions＋逐字述詞。
+"""LLM 抽取 client（provider-agnostic）：報告文字 → LLM（結構化 JSON）→ mentions＋逐字述詞。
 
 模型只做忠實抽取；碼端 span-check（引文對不上原文即丟）擋幻覺。純 stdlib（urllib）。
 
@@ -9,6 +9,8 @@
   NW_LLM_MODEL      模型名                 （預設 gemma4:12b-it-qat）
   NW_LLM_API_KEY    金鑰（雲端/相容端點用）
   NW_LLM_TIMEOUT    單次請求秒數           （預設 600）
+  NW_LLM_OUTPUT_MODE schema | json          （預設 schema；json 為相容 fallback）
+  NW_LLM_THINK      false | true | low | medium | high（預設 false；Ollama 用）
   NW_LLM_CACHE_DIR  成功回應的內容雜湊快取目錄（未設即停用）
   NW_LLM_CACHE_SALT 模型 alias／server revision 變更時用來強制 miss
   → 地端零設定即跑；雲端：NW_LLM_PROVIDER=openai NW_LLM_BASE_URL=https://api.openai.com NW_LLM_MODEL=… NW_LLM_API_KEY=…
@@ -25,7 +27,7 @@ FORMAT = {"type": "object", "additionalProperties": False, "required": ["mention
 for section in ("mentions", "assertions"):
     # source_url 是可信 metadata，由 extract() 依 report_meta 補；不讓模型生成或幻覺。
     FORMAT["properties"][section]["items"]["properties"].pop("source_url", None)
-PROMPT_VERSION = "v19-deterministic-request-cache"
+PROMPT_VERSION = "v21-json-optional-null-normalization"
 FEWSHOT_EN_TEXT = "The Red Group operated fake accounts targeting Taiwan."
 FEWSHOT_EN = {
     "mentions": [
@@ -117,32 +119,138 @@ def _cfg():
             os.environ.get("NW_LLM_MODEL", "gemma4:12b-it-qat"),
             os.environ.get("NW_LLM_API_KEY", ""))
 
-def _call_messages_uncached(messages, fmt):
+def _output_mode():
+    mode = os.environ.get("NW_LLM_OUTPUT_MODE", "schema").strip().lower()
+    if mode not in {"schema", "json"}:
+        raise ValueError("NW_LLM_OUTPUT_MODE 必須是 schema 或 json")
+    return mode
+
+def _think_setting():
+    raw = os.environ.get("NW_LLM_THINK", "false").strip().lower()
+    if raw in {"false", "0", "no", "off", "none"}: return False
+    if raw in {"true", "1", "yes", "on"}: return True
+    if raw in {"low", "medium", "high"}: return raw
+    raise ValueError("NW_LLM_THINK 必須是 false、true、low、medium 或 high")
+
+def extraction_variant():
+    think = _think_setting()
+    think_name = str(think).lower()
+    return f"{PROMPT_VERSION}-{_output_mode()}-think-{think_name}"
+
+def _messages_with_schema(messages, fmt):
+    """JSON mode 無 grammar constraint，將同一份 schema 明示在 prompt；不改動呼叫端資料。"""
+    prepared = copy.deepcopy(messages)
+    instruction = ("Return exactly one JSON object matching this JSON Schema. Do not add markdown or commentary:\n"
+                   + json.dumps(fmt, ensure_ascii=False, separators=(",", ":")))
+    if prepared and prepared[0].get("role") == "system":
+        prepared[0]["content"] = prepared[0].get("content", "") + "\n\n" + instruction
+    else:
+        prepared.insert(0, {"role": "system", "content": instruction})
+    return prepared
+
+def _request_spec(messages, fmt):
     provider, base, model, key = _cfg()
-    if provider == "ollama":                                  # 地端原生（grammar-forced schema，最嚴）
+    mode = _output_mode()
+    prepared = messages if mode == "schema" else _messages_with_schema(messages, fmt)
+    if provider == "ollama":
         url = base + "/api/chat"
-        body = {"model": model, "stream": False, "options": {"temperature": 0}, "format": fmt,
-                "messages": messages}
+        body = {"model": model, "stream": False, "think": _think_setting(),
+                "options": {"temperature": 0}, "format": fmt if mode == "schema" else "json",
+                "messages": prepared}
         headers = {"Content-Type": "application/json"}; path = ("message", "content")
     else:                                                     # OpenAI 相容（OpenAI / vLLM / LM Studio / Together / Ollama /v1…）
         url = base + "/v1/chat/completions"
         body = {"model": model, "temperature": 0,
-                "response_format": {"type": "json_schema", "json_schema": {"name": "extraction", "schema": fmt}},
-                "messages": messages}
+                "response_format": ({"type": "json_schema",
+                                     "json_schema": {"name": "extraction", "schema": fmt}}
+                                    if mode == "schema" else {"type": "json_object"}),
+                "messages": prepared}
         headers = {"Content-Type": "application/json", "Authorization": "Bearer " + key}
         path = ("choices", 0, "message", "content")
+    return url, body, headers, path
+
+def _json_type_matches(value, expected):
+    checks = {"object": lambda v: isinstance(v, dict),
+              "array": lambda v: isinstance(v, list),
+              "string": lambda v: isinstance(v, str),
+              "integer": lambda v: isinstance(v, int) and not isinstance(v, bool),
+              "number": lambda v: isinstance(v, (int, float)) and not isinstance(v, bool),
+              "boolean": lambda v: isinstance(v, bool),
+              "null": lambda v: v is None}
+    return checks.get(expected, lambda _v: True)(value)
+
+def validate_json_schema(value, schema, path="$"):
+    """驗證抽取契約會用到的 JSON Schema 子集，回傳可診斷的錯誤清單。"""
+    errors = []
+    if "enum" in schema and value not in schema["enum"]:
+        errors.append(f"{path}: {value!r} 不在 enum")
+    expected = schema.get("type")
+    if expected and not _json_type_matches(value, expected):
+        return errors + [f"{path}: 預期 {expected}，得到 {type(value).__name__}"]
+    if isinstance(value, dict):
+        properties = schema.get("properties", {})
+        for name in schema.get("required", []):
+            if name not in value: errors.append(f"{path}.{name}: 缺少必填欄位")
+        if schema.get("additionalProperties") is False:
+            for name in value.keys() - properties.keys():
+                errors.append(f"{path}.{name}: 不允許的欄位")
+        for name, child in value.items():
+            if name in properties:
+                errors.extend(validate_json_schema(child, properties[name], f"{path}.{name}"))
+    elif isinstance(value, list) and "items" in schema:
+        for index, child in enumerate(value):
+            errors.extend(validate_json_schema(child, schema["items"], f"{path}[{index}]"))
+    elif isinstance(value, str) and len(value) < schema.get("minLength", 0):
+        errors.append(f"{path}: 長度小於 {schema['minLength']}")
+    return errors
+
+def _drop_optional_nulls(value, schema):
+    """JSON fallback 常把未填 optional field 寫成 null；等價正規化為省略欄位。"""
+    if isinstance(value, dict):
+        properties, required = schema.get("properties", {}), set(schema.get("required", []))
+        normalized = {}
+        for name, child in value.items():
+            child_schema = properties.get(name)
+            if child is None and child_schema is not None and name not in required:
+                continue
+            normalized[name] = _drop_optional_nulls(child, child_schema or {})
+        return normalized
+    if isinstance(value, list) and "items" in schema:
+        return [_drop_optional_nulls(child, schema["items"]) for child in value]
+    return value
+
+def _parse_and_validate(content, fmt, normalize_optional_nulls=False):
+    if not isinstance(content, str) or not content.strip():
+        raise ValueError("模型回應 content 為空")
+    try:
+        result = json.loads(content)
+    except json.JSONDecodeError as initial:
+        result = None
+        decoder = json.JSONDecoder()
+        for match in re.finditer(r"\{", content):
+            try:
+                result, _ = decoder.raw_decode(content[match.start():])
+                break
+            except json.JSONDecodeError:
+                continue
+        if result is None:
+            raise ValueError("模型回應非 JSON：\n" + content[:800]) from initial
+    if normalize_optional_nulls:
+        result = _drop_optional_nulls(result, fmt)
+    errors = validate_json_schema(result, fmt)
+    if errors:
+        raise ValueError("模型 JSON 不符合 schema：" + "；".join(errors[:8]))
+    return result
+
+def _call_messages_uncached(messages, fmt):
+    url, body, headers, path = _request_spec(messages, fmt)
     req = urllib.request.Request(url, data=json.dumps(body).encode("utf-8"), headers=headers)
     timeout = float(os.environ.get("NW_LLM_TIMEOUT", "600"))
     with urllib.request.urlopen(req, timeout=timeout) as r:
         resp = json.loads(r.read())
     content = resp
     for k in path: content = content[k]
-    try:
-        return json.loads(content)
-    except json.JSONDecodeError:
-        m = re.search(r"\{.*\}", content, re.S)               # 模型偶爾包 ```json/多餘文字 → 取第一個平衡物件
-        if m: return json.loads(m.group(0))
-        raise SystemExit("✗ 模型回應非 JSON：\n" + (content or "")[:800])
+    return _parse_and_validate(content, fmt, normalize_optional_nulls=_output_mode() == "json")
 
 _CACHE_STATS = {"request_cache_hits": 0, "request_cache_misses": 0}
 
@@ -158,9 +266,10 @@ def _call_messages(messages, fmt):
     if not cache_dir:
         return _call_messages_uncached(messages, fmt)
     provider, base, model, key = _cfg()
-    request = {"cache_version": 1, "provider": provider, "base_url": base, "model": model,
+    request = {"cache_version": 2, "provider": provider, "base_url": base, "model": model,
                "credential_fingerprint": hashlib.sha256(key.encode("utf-8")).hexdigest() if key else "",
                "cache_salt": os.environ.get("NW_LLM_CACHE_SALT", ""),
+               "output_mode": _output_mode(), "think": _think_setting(),
                "messages": messages, "format": fmt}
     digest = hashlib.sha256(json.dumps(request, ensure_ascii=False, sort_keys=True,
                                        separators=(",", ":")).encode("utf-8")).hexdigest()

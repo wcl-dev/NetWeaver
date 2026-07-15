@@ -16,7 +16,7 @@
   - **防自我佐證**：佐證詞不得是命中行為者自身或同實體別名（如單一「公安部」不因自己在中國詞表就過關）。
   - **資料層覆寫**：db.js 實體可選加 `match_tokens:{strong,weak,disabled}`，有就用資料、無則落回自動規則——fork 團隊在**資料層**調判準，不動 pipeline 碼。
   - **異體字**：NFKC＋casefold＋高頻繁簡對照（非完整簡繁，完整靠別名維護，不引 OpenCC）。
-- **extract**（`extract.py`）：landed 報告文字 → LLM（forced JSON schema）→ `mentions＋逐字 predicate＋引文`。**碼端 span-check**：引文對不上原文即丟（擋幻覺）。**provider-agnostic**（見下）。
+- **extract**（`extract.py`）：landed 報告文字 → LLM（JSON schema；可切 JSON fallback）→ `mentions＋逐字 predicate＋引文`。**碼端 schema validation＋span-check**：欄位或引文不合約即 fail-closed（擋格式漂移／幻覺）。**provider-agnostic**（見下）。
 - **derive**（`derive.py`）：碼的判斷層——`coarse_type→kind`（詞庫＋registry 查表）、`predicate→relation`（反升級 ladder）、`confidence`（rubric）、`歸因`（控制述詞＋信心→attributed-to，人工閘）、`role`。
 - **serialize / validate / project**（`pipeline.py`）：STIX-lite → 合法 STIX 2.1（UUIDv5、`x-dad-*` 擴充、marking）→ 驗證 profile 不變量 → 投影成 operator 三層。
 - **compile**（`compile_to_db.py`）：把投影 claims 併入 `../data/db.js`（B-lite→真 B 逐筆升級）。
@@ -36,6 +36,10 @@ python3 pipeline/extract.py
 
 # 7 篇 gold dev 真實模型基線（chunked、可續跑、請求快取／輸出不進 Git）
 NW_LLM_MODEL=qwen2.5:7b NW_LLM_TIMEOUT=180 python3 pipeline/eval_model.py
+
+# Gemma 4 QAT：Ollama 明確關閉 thinking；JSON fallback 仍由碼端驗 schema
+NW_LLM_MODEL=gemma4:12b-it-qat NW_LLM_OUTPUT_MODE=json NW_LLM_THINK=false \
+  python3 pipeline/eval_model.py --match 02-iorg-monthly-2026-06
 
 # scorer 完美／退化／對抗式自測
 python3 pipeline/eval_extract.py
@@ -60,10 +64,12 @@ python3 pipeline/compile_to_db.py pipeline/samples/*.extraction.json
 | `NW_LLM_MODEL` | `gemma4:12b-it-qat` | 模型名 |
 | `NW_LLM_API_KEY` | — | 雲端/相容端點金鑰 |
 | `NW_LLM_TIMEOUT` | `600` | 單次 request timeout（秒） |
+| `NW_LLM_OUTPUT_MODE` | `schema` | `schema`＝端點 constrained schema；`json`＝JSON mode＋prompt schema＋碼端驗證 |
+| `NW_LLM_THINK` | `false` | Ollama thinking 控制：`false`／`true`／`low`／`medium`／`high` |
 | `NW_LLM_CACHE_DIR` | — | 可選的成功 JSON request cache；含原文，敏感資料勿啟用 |
 | `NW_LLM_CACHE_SALT` | — | 模型 alias／server revision 變更時設新值，強制舊 cache miss |
 
-`eval_model.py` 預設將快取放在 ignored 的 `eval_runs/.request_cache`，使未改變的模型 requests 可在評測迭代間重用；加 `--no-request-cache` 可做 cold run 或避免原文落盤。
+`eval_model.py` 預設將快取放在 ignored 的 `eval_runs/.request_cache`，使未改變的模型 requests 可在評測迭代間重用；加 `--no-request-cache` 可做 cold run 或避免原文落盤。輸出目錄與快取 key 都會區分 output mode／thinking。`json` fallback 只會把 schema 已知且非必填的 `null` 正規化成省略欄位，其餘缺欄、未知欄位、錯誤 enum／型別仍拒絕。
 
 ```bash
 # 雲端範例
@@ -75,7 +81,7 @@ NW_LLM_PROVIDER=openai NW_LLM_BASE_URL=https://api.openai.com NW_LLM_MODEL=gpt-.
 
 - **保守歸因（紅線）**：述詞「likely linked」→ 碼判 related-to、停在 IMS；述詞「僱用/operated by」→ 碼判 operated-by＋信心≥中 → 建 attributed-to（人工閘）。**同一套碼、跨模型一致。**
 - **claims＝真 B**：投影 L3 就是逐來源、附引文的 claim 卡。
-- **地端可行**：`extract.py` 已用地端 gemma4 端到端驗證（forced JSON＋span-check 生效）；資料不出網。
+- **地端可行但非效能等價**：`extract.py` 已用地端 Gemma 4 QAT 驗證 schema／JSON fallback＋span-check；品質在部分文件優於 qwen，但目前 12B cold run 為數分鐘且長文 fan-out 高，不是 Gemini Flash 的 latency proxy。詳見 `../docs/EVAL.md`。
 
 ## 檔案
 

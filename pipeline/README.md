@@ -86,7 +86,7 @@ NW_LLM_PROVIDER=openai NW_LLM_BASE_URL=https://api.openai.com NW_LLM_MODEL=gpt-.
 
 - **保守歸因（紅線）**：述詞「likely linked」→ 碼判 related-to、停在 IMS；述詞「僱用/operated by」→ 碼判 operated-by＋信心≥中 → 建 attributed-to（人工閘）。**同一套碼、跨模型一致。**
 - **claims＝真 B**：投影 L3 就是逐來源、附引文的 claim 卡。
-- **地端可行但非效能等價**：`extract.py` 已用地端 Gemma 4 QAT 驗證 schema／JSON fallback＋span-check；品質在部分文件優於 qwen，但目前 12B cold run 為數分鐘且長文 fan-out 高，不是 Gemini Flash 的 latency proxy。詳見 `../docs/EVAL.md`。
+- **地端可行但非效能等價**：Gemma 4 QAT v23 完整 7-doc cold baseline 為 mention F1 0.41、strict edge F1 0.17，但三輪累計 90.5 分鐘且有 2 篇 item-level partial errors；12B Ollama 不是 Gemini Flash 的 latency proxy。詳見 `../docs/EVAL.md`。
 
 ## 檔案
 

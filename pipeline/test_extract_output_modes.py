@@ -43,6 +43,20 @@ try:
     assert extract.validate_json_schema({"items": [], "extra": True}, SCHEMA)
     assert extract.validate_json_schema({}, SCHEMA)
 
+    mixed = {"items": [valid["items"][0],
+                       {"kind": "invented", "text": "bad enum"},
+                       {"kind": "target", "text": "Taiwan", "extra": True}]}
+    tolerant = extract._parse_and_validate(json.dumps(mixed), SCHEMA, item_error_field="items")
+    assert tolerant == valid and len(tolerant.schema_item_drops) == 2
+    assert "不在 enum" in tolerant.schema_item_drops[0]["error"]
+    assert "不允許的欄位" in tolerant.schema_item_drops[1]["error"]
+    try:
+        extract._parse_and_validate(json.dumps({**mixed, "extra": True}), SCHEMA,
+                                    item_error_field="items")
+        raise AssertionError("outer schema error 不可被 item tolerance 吞掉")
+    except ValueError as exc:
+        assert "$.extra" in str(exc)
+
     schema_variant = extract.extraction_variant()
     os.environ["NW_LLM_OUTPUT_MODE"] = "schema"
     assert schema_variant != extract.extraction_variant()
@@ -54,4 +68,4 @@ finally:
         else:
             os.environ[name] = value
 
-print("extract output modes：通過（schema/json、think:false、fallback schema validation）")
+print("extract output modes：通過（schema/json、think:false、outer strict＋item 級隔離）")

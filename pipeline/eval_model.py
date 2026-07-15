@@ -36,10 +36,13 @@ def progress_message(event):
         return (f"          [{chunk}] {event['stage']} → cold #{event['cold_call']} "
                 f"(timeout≤{event['timeout_seconds']:.1f}s)")
     if kind == "request_cache_hit":
-        return f"          [{chunk}] {event['stage']} → cache hit"
+        drops = event.get("schema_item_drops", 0)
+        return f"          [{chunk}] {event['stage']} → cache hit" + (f"，drop {drops} invalid item(s)" if drops else "")
     if kind == "request_done":
         tokens = f"，tokens {event.get('prompt_tokens', 0)}+{event.get('completion_tokens', 0)}"
-        return f"          [{chunk}] {event['stage']} ✓ {event['request_seconds']:.1f}s{tokens}"
+        drops = event.get("schema_item_drops", 0)
+        return (f"          [{chunk}] {event['stage']} ✓ {event['request_seconds']:.1f}s{tokens}"
+                + (f"，drop {drops} invalid item(s)" if drops else ""))
     if kind == "request_error":
         return f"          [{chunk}] {event['stage']} ✗ {event['error']}（{event['request_seconds']:.1f}s）"
     if kind == "assertion_plan":

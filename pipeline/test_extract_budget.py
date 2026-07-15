@@ -10,7 +10,7 @@ original_uncached = extract._call_messages_uncached
 original_cache_dir = os.environ.get("NW_LLM_CACHE_DIR")
 calls = 0
 
-def fake_uncached(messages, fmt, timeout=None, telemetry=None):
+def fake_uncached(messages, fmt, timeout=None, telemetry=None, item_error_field=None):
     global calls
     calls += 1
     if telemetry is not None:

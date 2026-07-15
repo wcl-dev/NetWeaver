@@ -6,7 +6,7 @@ TEXT = "Red Group operated fake accounts targeting Taiwan."
 calls = []
 original = extract._call_messages
 
-def fake(messages, fmt):
+def fake(messages, fmt, **_kwargs):
     calls.append((messages, fmt))
     if "mentions" in fmt["properties"]:
         if "set coarse_type='narrative'" in messages[0]["content"]:

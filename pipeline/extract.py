@@ -27,7 +27,7 @@ FORMAT = {"type": "object", "additionalProperties": False, "required": ["mention
 for section in ("mentions", "assertions"):
     # source_url 是可信 metadata，由 extract() 依 report_meta 補；不讓模型生成或幻覺。
     FORMAT["properties"][section]["items"]["properties"].pop("source_url", None)
-PROMPT_VERSION = "v23-ranked-assertion-fanout"
+PROMPT_VERSION = "v24-item-tolerant-mentions"
 FEWSHOT_EN_TEXT = "The Red Group operated fake accounts targeting Taiwan."
 FEWSHOT_EN = {
     "mentions": [
@@ -189,10 +189,10 @@ class ExtractionRun:
                   cold_call=self.cold_calls, timeout_seconds=round(timeout, 3))
         return max(timeout, 0.001)
 
-    def cache_hit(self, stage):
+    def cache_hit(self, stage, schema_item_drops=0):
         self.cache_hits += 1
         self.emit("request_cache_hit", stage=stage, chunk=self.chunk, total_chunks=self.total_chunks,
-                  cache_hit=self.cache_hits)
+                  cache_hit=self.cache_hits, schema_item_drops=schema_item_drops)
 
     def request_done(self, stage, elapsed, telemetry):
         self.emit("request_done", stage=stage, chunk=self.chunk, total_chunks=self.total_chunks,
@@ -309,7 +309,13 @@ def _drop_optional_nulls(value, schema):
         return [_drop_optional_nulls(child, schema["items"]) for child in value]
     return value
 
-def _parse_and_validate(content, fmt, normalize_optional_nulls=False):
+class LLMResponse(dict):
+    """Schema-valid response plus item-level validation diagnostics kept outside model JSON."""
+    def __init__(self, value, schema_item_drops=None):
+        super().__init__(value)
+        self.schema_item_drops = list(schema_item_drops or [])
+
+def _parse_and_validate(content, fmt, normalize_optional_nulls=False, item_error_field=None):
     if not isinstance(content, str) or not content.strip():
         raise ValueError("模型回應 content 為空")
     try:
@@ -327,10 +333,30 @@ def _parse_and_validate(content, fmt, normalize_optional_nulls=False):
             raise ValueError("模型回應非 JSON：\n" + content[:800]) from initial
     if normalize_optional_nulls:
         result = _drop_optional_nulls(result, fmt)
-    errors = validate_json_schema(result, fmt)
+    if item_error_field is None:
+        errors = validate_json_schema(result, fmt)
+        if errors:
+            raise ValueError("模型 JSON 不符合 schema：" + "；".join(errors[:8]))
+        return result
+
+    array_schema = fmt.get("properties", {}).get(item_error_field)
+    if not isinstance(array_schema, dict) or array_schema.get("type") != "array" or "items" not in array_schema:
+        raise ValueError(f"item_error_field={item_error_field!r} 不是 schema array")
+    outer_schema = copy.deepcopy(fmt)
+    outer_schema["properties"][item_error_field]["items"] = {}
+    errors = validate_json_schema(result, outer_schema)
     if errors:
         raise ValueError("模型 JSON 不符合 schema：" + "；".join(errors[:8]))
-    return result
+    kept, drops = [], []
+    for index, item in enumerate(result[item_error_field]):
+        item_errors = validate_json_schema(item, array_schema["items"],
+                                           f"$.{item_error_field}[{index}]")
+        if item_errors:
+            drops.append({"index": index, "error": "；".join(item_errors[:8])})
+        else:
+            kept.append(item)
+    result[item_error_field] = kept
+    return LLMResponse(result, schema_item_drops=drops)
 
 def _response_telemetry(resp, provider):
     if provider == "ollama":
@@ -346,7 +372,7 @@ def _response_telemetry(resp, provider):
             "completion_tokens": usage.get("completion_tokens", 0),
             "total_tokens": usage.get("total_tokens", 0)}
 
-def _call_messages_uncached(messages, fmt, timeout=None, telemetry=None):
+def _call_messages_uncached(messages, fmt, timeout=None, telemetry=None, item_error_field=None):
     provider, _, _, _ = _cfg()
     url, body, headers, path = _request_spec(messages, fmt)
     req = urllib.request.Request(url, data=json.dumps(body).encode("utf-8"), headers=headers)
@@ -357,7 +383,11 @@ def _call_messages_uncached(messages, fmt, timeout=None, telemetry=None):
         telemetry.update(_response_telemetry(resp, provider))
     content = resp
     for k in path: content = content[k]
-    return _parse_and_validate(content, fmt, normalize_optional_nulls=_output_mode() == "json")
+    result = _parse_and_validate(content, fmt, normalize_optional_nulls=_output_mode() == "json",
+                                 item_error_field=item_error_field)
+    if telemetry is not None:
+        telemetry["schema_item_drops"] = len(getattr(result, "schema_item_drops", []))
+    return result
 
 _CACHE_STATS = {"request_cache_hits": 0, "request_cache_misses": 0}
 
@@ -368,13 +398,17 @@ def reset_cache_stats():
 def cache_stats():
     return dict(_CACHE_STATS)
 
-def _cold_call(messages, fmt, run=None, stage="llm"):
+def _cold_call(messages, fmt, run=None, stage="llm", item_error_field=None):
     default_timeout = float(os.environ.get("NW_LLM_TIMEOUT", "600"))
     timeout = run.begin_cold_request(stage, default_timeout) if run else default_timeout
     telemetry, started = {}, time.monotonic()
     try:
-        response = (_call_messages_uncached(messages, fmt) if run is None else
-                    _call_messages_uncached(messages, fmt, timeout=timeout, telemetry=telemetry))
+        if run is None:
+            response = (_call_messages_uncached(messages, fmt) if item_error_field is None else
+                        _call_messages_uncached(messages, fmt, item_error_field=item_error_field))
+        else:
+            response = _call_messages_uncached(messages, fmt, timeout=timeout, telemetry=telemetry,
+                                               item_error_field=item_error_field)
     except (Exception, SystemExit) as exc:
         if run:
             run.request_error(stage, time.monotonic() - started, exc, telemetry)
@@ -383,34 +417,61 @@ def _cold_call(messages, fmt, run=None, stage="llm"):
         run.request_done(stage, time.monotonic() - started, telemetry)
     return response
 
-def _call_messages(messages, fmt, run=None, stage="llm"):
+_CACHE_ENTRY_MARKER = "netweaver-validated-response-v1"
+
+def _cache_path(directory, request):
+    digest = hashlib.sha256(json.dumps(request, ensure_ascii=False, sort_keys=True,
+                                       separators=(",", ":")).encode("utf-8")).hexdigest()
+    return directory / digest[:2] / (digest + ".json")
+
+def _cache_decode(value):
+    if isinstance(value, dict) and value.get("cache_entry") == _CACHE_ENTRY_MARKER:
+        return LLMResponse(value["response"], schema_item_drops=value.get("schema_item_drops", []))
+    return value
+
+def _cache_encode(value):
+    drops = getattr(value, "schema_item_drops", [])
+    if drops:
+        return {"cache_entry": _CACHE_ENTRY_MARKER, "response": dict(value),
+                "schema_item_drops": drops}
+    return value
+
+def _call_messages(messages, fmt, run=None, stage="llm", item_error_field=None):
     cache_dir = os.environ.get("NW_LLM_CACHE_DIR")
     if not cache_dir:
         _CACHE_STATS["request_cache_misses"] += 1
-        return _cold_call(messages, fmt, run, stage)
+        return _cold_call(messages, fmt, run, stage, item_error_field=item_error_field)
     provider, base, model, key = _cfg()
     request = {"cache_version": 2, "provider": provider, "base_url": base, "model": model,
                "credential_fingerprint": hashlib.sha256(key.encode("utf-8")).hexdigest() if key else "",
                "cache_salt": os.environ.get("NW_LLM_CACHE_SALT", ""),
                "output_mode": _output_mode(), "think": _think_setting(),
                "messages": messages, "format": fmt}
-    digest = hashlib.sha256(json.dumps(request, ensure_ascii=False, sort_keys=True,
-                                       separators=(",", ":")).encode("utf-8")).hexdigest()
     directory = pathlib.Path(cache_dir)
-    path = directory / digest[:2] / (digest + ".json")
-    try:
-        cached = json.loads(path.read_text(encoding="utf-8"))
-    except (FileNotFoundError, OSError, json.JSONDecodeError):
-        _CACHE_STATS["request_cache_misses"] += 1
-    else:
+    requests = []
+    if item_error_field is not None:
+        request = {**request, "item_error_field": item_error_field}
+    requests.append(request)
+    if item_error_field is not None:
+        # v23 以前的 cache entry 是整份 strict-schema 驗證成功後才寫入，可安全沿用。
+        requests.append({key: value for key, value in request.items() if key != "item_error_field"})
+    path = _cache_path(directory, requests[0])
+    for candidate_index, candidate in enumerate(requests):
+        try:
+            cached = _cache_decode(json.loads(_cache_path(directory, candidate).read_text(encoding="utf-8")))
+        except (FileNotFoundError, OSError, json.JSONDecodeError, KeyError, TypeError):
+            continue
+        if candidate_index > 0 and validate_json_schema(cached, fmt):
+            continue
         _CACHE_STATS["request_cache_hits"] += 1
         if run:
-            run.cache_hit(stage)
+            run.cache_hit(stage, schema_item_drops=len(getattr(cached, "schema_item_drops", [])))
         return cached
-    response = _cold_call(messages, fmt, run, stage)
+    _CACHE_STATS["request_cache_misses"] += 1
+    response = _cold_call(messages, fmt, run, stage, item_error_field=item_error_field)
     path.parent.mkdir(parents=True, exist_ok=True)
     temporary = path.with_name(f"{path.name}.{os.getpid()}.tmp")
-    temporary.write_text(json.dumps(response, ensure_ascii=False), encoding="utf-8")
+    temporary.write_text(json.dumps(_cache_encode(response), ensure_ascii=False), encoding="utf-8")
     os.replace(temporary, path)
     return response
 
@@ -427,8 +488,11 @@ def call_llm(text):
                 {"role": "user", "content": "REPORT TEXT (extract only from this text):\n" + text}]
     return _call_messages(messages, FORMAT)
 
-def _run_call(messages, fmt, run, stage):
-    return _call_messages(messages, fmt) if run is None else _call_messages(messages, fmt, run=run, stage=stage)
+def _run_call(messages, fmt, run, stage, item_error_field=None):
+    if run is None:
+        return (_call_messages(messages, fmt) if item_error_field is None else
+                _call_messages(messages, fmt, item_error_field=item_error_field))
+    return _call_messages(messages, fmt, run=run, stage=stage, item_error_field=item_error_field)
 
 def call_llm_two_stage(text, diagnostics=None, run=None):
     """分別抽實體與敘事 mentions、grounding 合併，再以動態 tmp_id enum 抽 assertions。"""
@@ -449,7 +513,8 @@ def call_llm_two_stage(text, diagnostics=None, run=None):
             ])
         messages.append({"role": "user", "content": "REPORT TEXT:\n" + text})
         try:
-            raw = _run_call(messages, mention_format, run, f"mentions-{prefix}")
+            raw = _run_call(messages, mention_format, run, f"mentions-{prefix}",
+                            item_error_field="mentions")
         except ExtractionBudgetExceeded as exc:
             if diagnostics is not None:
                 diagnostics.append({"stage": f"mentions-{prefix}", "budget_exhausted": str(exc), "kept": 0})
@@ -461,9 +526,11 @@ def call_llm_two_stage(text, diagnostics=None, run=None):
                                     "error": f"{type(exc).__name__}: {exc}", "kept": 0})
             mention_sets.append((prefix, []))
             continue
+        schema_item_drops = getattr(raw, "schema_item_drops", [])
         grounded, drops = span_check({"mentions": raw.get("mentions", []), "assertions": []}, text)
         if diagnostics is not None:
-            diagnostics.append({"stage": f"mentions-{prefix}", "raw": raw, "drops": drops,
+            diagnostics.append({"stage": f"mentions-{prefix}", "raw": raw,
+                                "schema_item_drops": schema_item_drops, "drops": drops,
                                 "kept": len(grounded["mentions"])})
         grounded["mentions"] = expand_surface_occurrences(grounded["mentions"], text)
         mention_sets.append((prefix, grounded["mentions"]))

@@ -6,7 +6,7 @@ TEXT = "Red Group operated fake accounts targeting Taiwan."
 original = extract._call_messages
 calls = 0
 
-def fake(messages, fmt):
+def fake(messages, fmt, **_kwargs):
     global calls
     calls += 1
     if "mentions" in fmt["properties"]:
@@ -14,10 +14,10 @@ def fake(messages, fmt):
             raise TimeoutError("fixture")
         if "set coarse_type='narrative'" in messages[0]["content"]:
             return {"mentions": []}
-        return {"mentions": [
+        return extract.LLMResponse({"mentions": [
             {"tmp_id": "x", "surface": "Red Group", "coarse_type": "org", "quote": "Red Group operated fake accounts"},
             {"tmp_id": "y", "surface": "fake accounts", "coarse_type": "network", "quote": "operated fake accounts targeting Taiwan"},
-        ]}
+        ]}, [{"index": 2, "error": "$.mentions[2].coarse_type: 'platform' 不在 enum"}])
     return {"assertions": [
         {"subject": "e1", "predicate": "operated", "object": "e2", "quote": "Red Group operated fake accounts"}
     ]}
@@ -31,4 +31,5 @@ finally:
 
 assert len(pred["mentions"]) == 2 and len(pred["assertions"]) == 1
 assert trace[0]["stage"] == "mentions-a" and "TimeoutError" in trace[0]["error"]
-print("extract partial failure：通過（單 pass timeout 保留其餘 mentions/assertions）")
+assert trace[1]["schema_item_drops"][0]["index"] == 2
+print("extract partial failure：通過（pass timeout＋invalid item 都保留其餘結果）")

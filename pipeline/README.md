@@ -16,7 +16,7 @@
   - **防自我佐證**：佐證詞不得是命中行為者自身或同實體別名（如單一「公安部」不因自己在中國詞表就過關）。
   - **資料層覆寫**：db.js 實體可選加 `match_tokens:{strong,weak,disabled}`，有就用資料、無則落回自動規則——fork 團隊在**資料層**調判準，不動 pipeline 碼。
   - **異體字**：NFKC＋casefold＋高頻繁簡對照（非完整簡繁，完整靠別名維護，不引 OpenCC）。
-- **extract**（`extract.py`）：landed 報告文字 → LLM（JSON schema；可切 JSON fallback）→ `mentions＋逐字 predicate＋引文`。**碼端 schema validation＋span-check**：欄位或引文不合約即 fail-closed（擋格式漂移／幻覺）。**provider-agnostic**（見下）。
+- **extract**（`extract.py`）：landed 報告文字 → LLM（JSON schema；可切 JSON fallback）→ `mentions＋逐字 predicate＋引文`。**碼端 schema validation＋span-check**：外層／JSON 錯誤仍整份 fail-closed；mention array 逐 item 驗證，非法 item 精確記錄／丟棄而保留合法 items；引文不合約同樣丟棄（擋格式漂移／幻覺）。**provider-agnostic**（見下）。
 - **derive**（`derive.py`）：碼的判斷層——`coarse_type→kind`（詞庫＋registry 查表）、`predicate→relation`（反升級 ladder）、`confidence`（rubric）、`歸因`（控制述詞＋信心→attributed-to，人工閘）、`role`。
 - **serialize / validate / project**（`pipeline.py`）：STIX-lite → 合法 STIX 2.1（UUIDv5、`x-dad-*` 擴充、marking）→ 驗證 profile 不變量 → 投影成 operator 三層。
 - **compile**（`compile_to_db.py`）：把投影 claims 併入 `../data/db.js`（B-lite→真 B 逐筆升級）。

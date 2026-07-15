@@ -13,10 +13,13 @@ original_think = os.environ.get("NW_LLM_THINK")
 calls = 0
 
 
-def fake(messages, fmt):
+def fake(messages, fmt, item_error_field=None):
     global calls
     calls += 1
-    return {"sequence": calls, "messages": len(messages), "schema": sorted(fmt)}
+    response = {"sequence": calls, "messages": len(messages), "schema": sorted(fmt)}
+    if item_error_field:
+        return extract.LLMResponse(response, [{"index": 2, "error": "fixture invalid item"}])
+    return response
 
 
 with tempfile.TemporaryDirectory() as cache_dir:
@@ -30,6 +33,14 @@ with tempfile.TemporaryDirectory() as cache_dir:
         messages = [{"role": "user", "content": "same"}]
         first = extract._call_messages(messages, {"type": "object"})
         second = extract._call_messages(messages, {"type": "object"})
+        tolerant_first = extract._call_messages([{"role": "user", "content": "tolerant"}],
+                                                {"type": "object"}, item_error_field="items")
+        tolerant_second = extract._call_messages([{"role": "user", "content": "tolerant"}],
+                                                 {"type": "object"}, item_error_field="items")
+        legacy = extract._call_messages([{"role": "user", "content": "legacy-strict"}],
+                                        {"type": "object"})
+        legacy_fallback = extract._call_messages([{"role": "user", "content": "legacy-strict"}],
+                                                 {"type": "object"}, item_error_field="items")
         changed = extract._call_messages(messages, {"type": "array"})
         os.environ["NW_LLM_OUTPUT_MODE"] = "json"
         json_mode = extract._call_messages(messages, {"type": "object"})
@@ -56,6 +67,9 @@ with tempfile.TemporaryDirectory() as cache_dir:
         else:
             os.environ["NW_LLM_THINK"] = original_think
 
-assert first == second and all(value != first for value in (changed, json_mode, thinking, salted)) and calls == 5
-assert extract.cache_stats() == {"request_cache_hits": 1, "request_cache_misses": 5}
-print("extract request cache：通過（schema／output mode／thinking／revision 皆隔離）")
+assert first == second and tolerant_first == tolerant_second
+assert tolerant_second.schema_item_drops == [{"index": 2, "error": "fixture invalid item"}]
+assert legacy == legacy_fallback
+assert all(value != first for value in (changed, json_mode, thinking, salted)) and calls == 7
+assert extract.cache_stats() == {"request_cache_hits": 3, "request_cache_misses": 7}
+print("extract request cache：通過（schema／mode／thinking／revision／item diagnostics 皆隔離）")

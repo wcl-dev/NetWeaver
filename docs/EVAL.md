@@ -50,6 +50,7 @@ Gemma v22 真實單-call telemetry smoke（doc02 actor pass）：總耗時 62.1s
 | gemma4:12b-it-qat／v20 JSON、think=false | 3（01/02/05） | 0.36 | 0.42 | **0.21** | 0.65 | 1.00 | 初步語意較強但三篇皆 partial-error；doc01 被 optional null 大幅傷害 |
 | gemma4:12b-it-qat／v21 JSON optional-null normalize | doc01 | 0.29 | **0.75** | **0.15** | **1.00** | 1.00 | null 修復有效；但 526s、precision/type 仍差 |
 | gemma4:12b-it-qat／v23 ranked fan-out、aw12 | 7 | **0.41** | **0.81** | **0.17** | 0.82 | **1.00** | 完整 cold baseline；三輪／累計 90.5m，2 篇 partial-error |
+| gemma4:12b-it-qat／v24 item-tolerant、aw12 | 7 replay | **0.41** | **0.83** | **0.17** | 0.82 | **1.00** | 合法 v23 cache replay＋只 cold 補 invalid passes；整 pass failure 已隔離 |
 
 qwen v4 分篇 strict edge F1：doc03 = 0.10，其餘 = 0。qwen v14 分篇 edge F1：doc02 0.06、doc04 0.14、doc05 0.30、doc07 0.11，其餘 0；micro edge F1 = 0.11。v14 的逐字 occurrence 展開消除了 duplicate tmp_id／ambiguity drop，mention pass 與 assertion window 各自 fail-closed；單一 mention pass timeout 會保留其餘成功 pass。
 
@@ -106,23 +107,33 @@ v23 warm-cache fan-out A/B 固定沿用相同 cached mention/window responses，
 
 可恢復執行解決了「10 分鐘後整篇白跑」：doc02 第 2 輪只補 1 個 request（18.6s），doc03 第 3 輪也只補 1 個 request（8.1s）。但 invalid response 不進 cache；doc07 chunk 3 actor pass 兩輪都穩定產生同一個缺 `surface`／多 `source` 的壞 item，各浪費約 2 分鐘。另見 doc01 的 `platform` enum、doc07 的 `country` enum。下一個最高優先不是再調 window cap，而是讓 mention array 能逐 item 驗證：保留合法 items、精確記錄並丟棄非法 items，仍維持 required／unknown／enum fail-closed 的 item 級契約。
 
-結論：Gemma 4 12B QAT 是比 qwen 更值得保留的**語意 proxy**，但目前不是 prod Gemini Flash 的效能 proxy，也還不能設為 pipeline 預設。完整 7-doc baseline 證明 edge 品質高於 qwen v14，也證明 12B 本機 latency、over-extraction 與 item-level schema failure 仍不適合 production。下一輪先處理單一 invalid item 不拖垮整個 pass，再用同一 gold 跑 prod Gemini Flash；不能以 Ollama latency 外推 production。
+### v24 mention item 隔離
+
+v24 已實作上述修正。JSON parse、top-level required／additional properties、`mentions` 必須為 array 等外層契約仍整份 fail-closed；只有 array 內的 mention objects 個別驗證。單一 item 的 required／unknown field／enum／type 錯誤會把該 item 丟棄並寫入 trace、telemetry、meta `partial_errors`，其餘合法 items 繼續 grounding。assertion response 維持整窗 strict schema，未放寬端點或 predicate 契約。
+
+request cache key 會區分 item policy；舊 cache 只有整份 strict validation 成功才會寫入，因此 v24 可安全 fallback 重用。含 item drops 的新 cache entry 另存 diagnostics envelope，cache hit 仍會重現 `partial-error`，不會把降級結果偽裝成 clean run。
+
+真實 doc07 smoke 重現兩個原 failure：chunk 3 actor 現在 `drop 1` 並保留 19 grounded mentions；chunk 4 narrative 同樣 `drop 1` 並保留 9。完整 7-doc cache-backed replay 只 cold 補先前 invalid passes：macro mention F1 0.41 持平、entity recall 0.81 → 0.83、strict edge F1 0.17 持平、predicate exact 0.82 持平。分篇變化：doc01 mention F1 0.29 → 0.32、entity recall 0.75 → 0.92、edge 0.20 持平；doc07 mention F1 0.27 → 0.25、entity recall 0.93 持平、edge 0.07 → 0.08。可靠性改善且總體主指標無退化，但多保留的合法 mentions 仍會暴露既有 over-extraction，不能把 replay 當新的 cold latency baseline。
+
+結論：Gemma 4 12B QAT 是比 qwen 更值得保留的**語意 proxy**，但目前不是 prod Gemini Flash 的效能 proxy，也還不能設為 pipeline 預設。完整 7-doc baseline 證明 edge 品質高於 qwen v14；v24 也已隔離 item-level schema failure，但 12B 本機 latency 與 over-extraction 仍不適合 production。下一輪應用同一 gold 跑 prod Gemini Flash；不能以 Ollama latency 外推 production。
 
 ## 下一個實驗
 
-v5–v14 已把 assertion 拆成多階段：actor／entity／narrative mentions 分別抽取並 exact-ground，合併後以動態 tmp_id enum 抽 assertion；assertion 只看 compact exact claim windows，predicate 仍須通過 `predicate in quote`。v19 對完全相同的 request 做決定性快取；v20–v21 補 output mode／thinking 控制、回應 schema validator 與窄幅 optional-null 正規化；v22 加入 request telemetry、文件 budget 與 chunk checkpoint；v23 加入跨 chunk 配額與 relation-rich window 排序。離線回歸已覆蓋端點 enum、partial failure、claim window、chunk namespace／dedupe、dangling 防護、schema/json body、thinking、cold-only budget、window quota 與 cache 隔離。
+v5–v14 已把 assertion 拆成多階段：actor／entity／narrative mentions 分別抽取並 exact-ground，合併後以動態 tmp_id enum 抽 assertion；assertion 只看 compact exact claim windows，predicate 仍須通過 `predicate in quote`。v19 對完全相同的 request 做決定性快取；v20–v21 補 output mode／thinking 控制、回應 schema validator 與窄幅 optional-null 正規化；v22 加入 request telemetry、文件 budget 與 chunk checkpoint；v23 加入跨 chunk 配額與 relation-rich window 排序；v24 將 mention response 改為 outer strict、invalid item 隔離。離線回歸已覆蓋端點 enum、partial failure、claim window、chunk namespace／dedupe、dangling 防護、schema/json body、thinking、cold-only budget、window quota、item diagnostics 與 cache 隔離。
 
-目前完整基線重跑：
+目前 Gemma 完整基線重跑（`NW_LLM_CACHE_SALT` 應換成新的 server revision／run id）：
 
 ```bash
-NW_LLM_MODEL=qwen2.5:7b NW_LLM_TIMEOUT=180 \
-  python3 pipeline/eval_model.py
+NW_LLM_MODEL=gemma4:12b-it-qat NW_LLM_OUTPUT_MODE=json NW_LLM_THINK=false \
+NW_LLM_CACHE_SALT=gemma-v24-cold-YYYYMMDD \
+  python3 pipeline/eval_model.py --doc-timeout 600 --max-cold-calls 24 \
+    --max-assertion-windows 12
 ```
 
 後續仍須：
 
-1. 將 mention response 改成逐 item schema validation：保留合法 items、非法 item 精確診斷／丟棄，避免 doc07 同一壞 item 每輪重耗約 2 分鐘。
+1. 用 prod Gemini Flash 跑同一份 7-doc gold，對比品質、request/token latency 與 schema item drops；模型／版本必須明確記錄，不以「Flash」泛稱。
 2. 對 chunk overlap、跨 chunk entity merge 與 document-level linking 加評測。
 3. 改善 coarse type（v14 typed mention F1 僅 0.21）與尚未命中的 doc01/doc03/doc06。
 4. dev 調整穩定後建立 20–30 篇 locked test set；不得拿 dev prompt gains 當泛化結論。
-5. prod Gemini Flash 另做同 7-doc gold 的雲端基線；不能以 Ollama latency 外推。
+5. 對 doc05 等高變異文件做至少 3 次 fresh-salt cold repetition，報告分數／輸出量分布，不以單次 temperature=0 結果冒充決定性。

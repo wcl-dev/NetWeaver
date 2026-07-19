@@ -6,7 +6,7 @@
   · 自動段：ingest → filter → 對每個 ready doc extract＋derive＋validate＋project。
   · 產出：每篇 extraction 落到 extractions/，並寫一份 **curation queue**（附 operator/claims/來源已策展?/
           actor 已登錄?/是否含 attributed-to/是否通過 validate），交人工審。
-  · compile 進 db.js 維持人工步驟（`compile_to_db.py`，人審過的 extraction 才跑）——守 documented-not-accused
+  · compile 進 db.js 維持人工步驟（`curate.py`：list/show/approve/compile，安全 upsert；人審過才寫）——守 documented-not-accused
     與「新增來源＝人的決策」。自動 compile 的安全化（source-scoped upsert、operator 綁定、歸因閘…）見
     docs/LOOP_BACKLOG.md。
 
@@ -17,7 +17,7 @@
   python3 pipeline/run_loop.py --no-ingest --limit 1    # 跳過抓取，最多抽 1 篇（冷跑控管）
   python3 pipeline/run_loop.py                          # 全跑（含抓網路 feeds）
 """
-import argparse, html, importlib.util, json, pathlib, re, sys
+import argparse, hashlib, html, importlib.util, json, pathlib, re, sys
 from datetime import date, datetime
 from email.utils import parsedate_to_datetime
 
@@ -89,6 +89,18 @@ def load_db():
     db = json.loads(src[i:j + 1])
     return {s["url"] for s in db.get("sources", [])}, {e["id"] for e in db.get("entities", [])}
 
+_ACTOR_KINDS = {"threat-actor", "intrusion-set", "identity"}
+
+def operator_ref(sl, ent_ids):
+    """行動方已登錄 entity 的 nw_ref：只取「是關係 source、且已登錄」者（優先 actor kind）。
+    找不到可信行動方 → None（fail-closed，交 curation）；**不**落回「任一已登錄」，以免把 target/媒體誤當歸屬。"""
+    by_tmp = {o.get("tmp_id"): o for o in sl["objects"]}
+    src_tmps = [r.get("source") for r in sl["relationships"]]
+    acting = [by_tmp[t] for t in src_tmps if t in by_tmp and by_tmp[t].get("nw_ref") in ent_ids]
+    for o in acting:                                         # 1) 行動方＋actor kind
+        if o.get("kind") in _ACTOR_KINDS: return o["nw_ref"]
+    return acting[0]["nw_ref"] if acting else None           # 2) 任一行動方；否則 None（不綁 target）
+
 def load_queue():
     if not QUEUE.exists():
         return {}
@@ -149,13 +161,21 @@ def main():
             outp = outdir / (m["raw_id"] + ".extraction.json")
             outp.write_text(json.dumps(extr, ensure_ascii=False, indent=2), encoding="utf-8")
             # 預設不自動 compile：一律入 curation queue，附人工判斷所需的 readiness 旗標
-            nw_ref = next((o.get("nw_ref") for o in sl["objects"] if o.get("nw_ref") in ent_ids), None)
+            digest = hashlib.sha256(json.dumps(extr, ensure_ascii=False, sort_keys=True)
+                                    .encode("utf-8")).hexdigest()[:16]
+            prev = queue.get(m["raw_id"], {})                # 內容變了（重抽）→ 重置審核；沒變→保留既有決定/note/歸屬
+            same = prev.get("extraction_digest") == digest
+            # 同內容→沿用核准時的歸屬（避免 registry 變動後把舊核准悄悄綁到新 actor；compile 再重算比對）
+            nw_ref = prev.get("actor_registered") if same else operator_ref(sl, ent_ids)
             entry = {"raw_id": m["raw_id"], "source_id": m.get("source_id"), "title": m.get("title"),
                      "url": m.get("url"), "extraction": str(outp.relative_to(_here.parent)),
-                     "operator": rec["operator"].get("name"),
+                     "operator": rec["operator"].get("name"), "extraction_digest": digest,
                      "claims": len(rec.get("claims", [])), "assertions": len(extr.get("assertions", [])),
                      "source_curated": m.get("url") in src_urls, "actor_registered": nw_ref,
-                     "attributed_to": len(att), "valid": not fails}
+                     "attributed_to": len(att), "valid": not fails,
+                     # 審核狀態機（curate.py 用）：pending→approved/rejected/deferred→compiled
+                     "compile_status": prev.get("compile_status", "pending") if same else "pending"}
+            if same and prev.get("note"): entry["note"] = prev["note"]
             queue[m["raw_id"]] = entry
             _write_queue(queue)                              # 先落盤 queue，再標 extracted → crash 時不會「extracted 卻不在 queue」
             m["extraction_status"] = "extracted"
@@ -172,11 +192,14 @@ def main():
     print("\n═══ summary ═══")
     print(f"  ready {summary['ready']}｜抽取 {summary['extracted']}｜無正文 {summary['no_text']}｜失敗 {summary['errors']}")
     if not args.dry_run:
-        ready_to_compile = sum(1 for e in queue.values() if e["source_curated"] and e["actor_registered"]
+        ready_to_compile = sum(1 for e in queue.values()
+                               if e.get("compile_status") in ("pending", "approved")
+                               and e["source_curated"] and e["actor_registered"]
                                and not e["attributed_to"] and e["valid"])
         print(f"  curation queue 共 {len(queue)} 篇（{QUEUE.relative_to(_here.parent)}）；"
               f"其中 source＋actor 皆已策展、無歸因、valid 者 {ready_to_compile} 篇可人工 compile")
-        print(f"  人工 compile：python3 pipeline/compile_to_db.py <審過的 extraction.json…>")
+        print(f"  審核 compile：python3 pipeline/curate.py list ｜ show <id> ｜ approve <id> ｜ compile"
+              f"（安全 upsert；勿用 compile_to_db.py，那會整包覆蓋）")
     return 0
 
 if __name__ == "__main__":

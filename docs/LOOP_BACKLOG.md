@@ -1,27 +1,31 @@
 # 生產迴圈 backlog（run_loop.py 的 production 化）
 
 `pipeline/run_loop.py` 目前是**保守版**：自動化 ingest→filter→extract→derive→validate→project，產出待人工審的
-curation queue（`pipeline/extractions/curation_queue.json`），**預設不自動 compile 進 db.js**。compile 維持人工步驟
-（`compile_to_db.py`，人審過的 extraction 才跑）。
+curation queue（`pipeline/extractions/curation_queue.json`），**預設不自動 compile 進 db.js**。人審與 compile 走
+`pipeline/curate.py`（list/show/approve/compile）——**安全 source-scoped upsert、狀態機、歸因閘、歸屬重算比對**；
+**勿用** `compile_to_db.py`（那會整包覆蓋，僅供樣本）。
 
-以下是 Codex review（2026-07）指出、要「自動 compile 進 db.js」變 production-safe 才需處理的項目。
+以下是 Codex review（2026-07）指出、要「**自動** compile 進 db.js」變 production-safe 才需處理的項目。
 現階段抽取品質 edge F1 ~0.2、且 sources/registry 是人工策展骨幹，自動 compile 尚早，故列 backlog。
 每項落地前逐項 Codex review。
 
+> ✅ **已由 curate.py 落實於人工 compile 路徑**：source-scoped upsert（#1）、狀態機 pending→approved/rejected/deferred→compiled（#3）、
+> attributed-to 需 `--yes`（#4）、歸屬改用 `operator_ref`（行動方已登錄 entity、fail-closed）＋approve 時重算鎖定＋compile 時重算比對（#2）。
+> 下列項目是把這些延伸到**自動** compile 時仍需補的。
+
 ## 必修（開啟自動 compile 前）
 
-1. **claims 改 source-scoped upsert**（`compile_to_db.py`）
-   現為 `ent[nw_ref]["claims"] = claims` **整包覆蓋**——同一 entity 多篇互蓋、蓋掉人工/其他來源 claims、重跑舊篇會倒退。
-   應：以 `source_id` 為單位替換該來源的 claims、保留其他來源，再去重。需測試。
+1. **source-scoped upsert 沿用到自動路徑**（✅ 人工路徑已於 `curate._upsert` 完成）
+   若日後開自動 compile，需沿用同一 upsert（勿回到 `compile_to_db.py` 的整包覆蓋）。
 
-2. **operator 綁定**（run_loop 閘 ＋ compile）🚩 設計決定
-   現以「第一個有 nw_ref 的 object」當歸屬（可能是 target/媒體/個人，非 operator），compile 又把全篇 claims 掛上去。
-   應：用 `project()` 選定的 operator 對應 registry entity；多 actor / 對不上唯一 operator → 送 curation。
-   **要定調**：多 actor 文件 claims 到底掛給誰。
+2. **operator 綁定的邊界**（✅ 人工路徑已用 `operator_ref`＋人工把關）🚩 設計決定
+   `operator_ref` 取「行動方＋已登錄」，找不到 → None → curation。自動路徑要定調：多 actor / operator 不唯一時的策略
+   （目前 fail-closed 交人工）。
 
-3. **curation/compile 狀態持久化**
-   現 queue 依 raw_id upsert 存檔，但無 `compile_status`（pending-curation/pending/compiled/failed）狀態機，
-   人工補 source/actor 後不會自動重評。應加狀態欄＋掃 extracted-but-not-compiled 重評。
+3. **curation/compile 狀態機**（✅ 人工路徑已完成）
+   queue 依 raw_id upsert 存檔，`compile_status` pending→approved/rejected/deferred→compiled；重抽 digest 變自動重置；
+   `approve` 以當下 registry 重投影、鎖定歸屬（defer→補 registry→approve 即重評重綁）。自動路徑若要「掃 extracted-but-not-compiled
+   自動重評」再另議。
 
 4. **attributed-to 人工核可閘** 🚩 政策
    profile 明定 attributed-to 需人工核可（STIX-PROFILE §）。自動 compile 前，含 attributed-to 的 bundle 一律送 curation。

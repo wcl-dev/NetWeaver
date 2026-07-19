@@ -19,7 +19,8 @@
 - **extract**（`extract.py`）：landed 報告文字 → LLM（JSON schema；可切 JSON fallback）→ `mentions＋逐字 predicate＋引文`。**碼端 schema validation＋span-check**：外層／JSON 錯誤仍整份 fail-closed；mention array 逐 item 驗證，非法 item 精確記錄／丟棄而保留合法 items；引文不合約同樣丟棄（擋格式漂移／幻覺）。**provider-agnostic**（見下）。
 - **derive**（`derive.py`）：碼的判斷層——`coarse_type→kind`（詞庫＋registry 查表）、`predicate→relation`（反升級 ladder）、`confidence`（rubric）、`歸因`（控制述詞＋信心→attributed-to，人工閘）、`role`。
 - **serialize / validate / project**（`pipeline.py`）：STIX-lite → 合法 STIX 2.1（UUIDv5、`x-dad-*` 擴充、marking）→ 驗證 profile 不變量 → 投影成 operator 三層。
-- **compile**（`compile_to_db.py`）：把投影 claims 併入 `../data/db.js`（B-lite→真 B 逐筆升級）。
+- **compile**（`compile_to_db.py`）：把投影 claims 併入 `../data/db.js`（B-lite→真 B 逐筆升級）。**樣本用**；整包覆蓋。
+- **loop / curate**（`run_loop.py` / `curate.py`）：`run_loop.py` 冪等編排 ingest→…→project，產出待人工審的 curation queue（預設不自動 compile）；`curate.py`（list/show/approve/compile）是**安全 compile 路徑**——source-scoped upsert（不覆蓋他來源）、狀態機、歸因閘、歸屬（`operator_ref`）重算比對。走迴圈時用 `curate.py`，勿用 `compile_to_db.py`。細節見 `../docs/LOOP_BACKLOG.md`。
 
 ## 跑
 
@@ -105,15 +106,17 @@ pipeline/
 ├── derive.py                # 碼的判斷層（ladder/rubric/registry）
 ├── stixlite.schema.json     # derive 產出的中介 schema
 ├── pipeline.py              # serialize / validate / project（＋stix_from_extraction）
-├── compile_to_db.py         # 投影 claims → data/db.js
+├── compile_to_db.py         # 投影 claims → data/db.js（樣本用；整包覆蓋。迴圈請用 curate.py）
+├── run_loop.py              # 冪等編排 ingest→…→project；產出待審 curation queue（預設不自動 compile）
+├── curate.py                # 審核 CLI：list/show/approve/compile（安全 upsert／狀態機／歸因閘／歸屬重算）
 ├── samples/*.extraction.json# 3 份 extraction 樣本（歸因梯度對照）
 └── out/                     # 產出的合法 STIX bundle（範例）
-# raw/、ingest_state.json 為執行期產物（.gitignore）
+# raw/、extractions/、ingest_state.json 為執行期產物（.gitignore）
 ```
 
 ## 下一步
 
-- **串成迴圈**：`ingest → 挑 ready → extract → derive → compile` 一鍵／排程自動跑。
+- **迴圈已成形**（`run_loop.py`）：`ingest → filter → extract → derive → validate → project` 一鍵冪等跑，產出待審 curation queue；人審＋安全 compile 走 `curate.py`。待補見 `../docs/LOOP_BACKLOG.md`（自動 compile、readability 正文、排程等）。
 - **filter 精修**：詞表／`match_tokens` 擴充（附測試案例）；terse 中文標題的 recall 可加正文（非 chrome）抽取或高信任來源 override。
 - **抽取品質**：few-shot／換模型（如台灣微調 Llama-Breeze）／輕量微調——碼層不動。
 - **目前評測路徑**：actor／entity／narrative mention 分 pass → exact grounding → compact claim windows assertion；基線與重跑方式見 `../docs/EVAL.md`。

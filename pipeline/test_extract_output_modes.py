@@ -58,6 +58,22 @@ try:
     except ValueError as exc:
         assert "$.extra" in str(exc)
 
+    # 窄版 unwrap：裸單一 item 物件（非 {items:[...]}）→ 包成陣列、標 schema_repaired
+    bare = extract._parse_and_validate(json.dumps({"kind": "actor", "text": "Red Group"}), SCHEMA,
+                                       item_error_field="items")
+    assert bare == valid and bare.schema_repaired is True
+    normal = extract._parse_and_validate(json.dumps(valid), SCHEMA, item_error_field="items")
+    assert normal.schema_repaired is False                       # 正常陣列不誤標
+    try:                                                          # 裸物件但非合法 item → 仍 raise（不亂包）
+        extract._parse_and_validate(json.dumps({"foo": "bar"}), SCHEMA, item_error_field="items")
+        raise AssertionError("非合法 item 的裸物件不可被 unwrap 吞掉")
+    except ValueError as exc:
+        assert "缺少必填欄位" in str(exc)
+    # 裸 item 帶 optional null（json mode 常見）：須先依 item schema 正規化再 unwrap（Codex review #3）
+    bare_null = extract._parse_and_validate(json.dumps({"kind": "actor", "text": "Red Group", "optional": None}),
+                                            nullable_schema, normalize_optional_nulls=True, item_error_field="items")
+    assert bare_null == valid and bare_null.schema_repaired is True
+
     os.environ["NW_LLM_PROVIDER"] = "openai"
     os.environ["NW_LLM_BASE_URL"] = "https://generativelanguage.googleapis.com/v1beta/openai/"
     gemini_url, _, _, _ = extract._request_spec(MESSAGES, SCHEMA)

@@ -189,10 +189,10 @@ class ExtractionRun:
                   cold_call=self.cold_calls, timeout_seconds=round(timeout, 3))
         return max(timeout, 0.001)
 
-    def cache_hit(self, stage, schema_item_drops=0):
+    def cache_hit(self, stage, schema_item_drops=0, schema_repaired=False):
         self.cache_hits += 1
         self.emit("request_cache_hit", stage=stage, chunk=self.chunk, total_chunks=self.total_chunks,
-                  cache_hit=self.cache_hits, schema_item_drops=schema_item_drops)
+                  cache_hit=self.cache_hits, schema_item_drops=schema_item_drops, schema_repaired=schema_repaired)
 
     def request_done(self, stage, elapsed, telemetry):
         self.emit("request_done", stage=stage, chunk=self.chunk, total_chunks=self.total_chunks,
@@ -317,9 +317,10 @@ def _drop_optional_nulls(value, schema):
 
 class LLMResponse(dict):
     """Schema-valid response plus item-level validation diagnostics kept outside model JSON."""
-    def __init__(self, value, schema_item_drops=None):
+    def __init__(self, value, schema_item_drops=None, schema_repaired=False):
         super().__init__(value)
         self.schema_item_drops = list(schema_item_drops or [])
+        self.schema_repaired = schema_repaired
 
 def _parse_and_validate(content, fmt, normalize_optional_nulls=False, item_error_field=None):
     if not isinstance(content, str) or not content.strip():
@@ -348,6 +349,16 @@ def _parse_and_validate(content, fmt, normalize_optional_nulls=False, item_error
     array_schema = fmt.get("properties", {}).get(item_error_field)
     if not isinstance(array_schema, dict) or array_schema.get("type") != "array" or "items" not in array_schema:
         raise ValueError(f"item_error_field={item_error_field!r} 不是 schema array")
+    # 窄版 unwrap：模型偶爾回「裸單一 item 物件」而非 {field:[...]}（json mode 常見 schema 漂移）。
+    # 僅當該裸物件（依 item schema 正規化 optional null 後）本身通過 item schema 時包成陣列——
+    # 不猜欄位、不吞未知結構（Codex review）。注意 line 340 的 normalize 用的是 outer fmt，對裸物件無效，
+    # 故此處以 item schema 再正規化一次候選。
+    schema_repaired = False
+    if isinstance(result, dict) and item_error_field not in result:
+        candidate = _drop_optional_nulls(result, array_schema["items"]) if normalize_optional_nulls else result
+        if not validate_json_schema(candidate, array_schema["items"]):
+            result = {item_error_field: [candidate]}
+            schema_repaired = True
     outer_schema = copy.deepcopy(fmt)
     outer_schema["properties"][item_error_field]["items"] = {}
     errors = validate_json_schema(result, outer_schema)
@@ -362,7 +373,7 @@ def _parse_and_validate(content, fmt, normalize_optional_nulls=False, item_error
         else:
             kept.append(item)
     result[item_error_field] = kept
-    return LLMResponse(result, schema_item_drops=drops)
+    return LLMResponse(result, schema_item_drops=drops, schema_repaired=schema_repaired)
 
 def _response_telemetry(resp, provider):
     if provider == "ollama":
@@ -393,6 +404,7 @@ def _call_messages_uncached(messages, fmt, timeout=None, telemetry=None, item_er
                                  item_error_field=item_error_field)
     if telemetry is not None:
         telemetry["schema_item_drops"] = len(getattr(result, "schema_item_drops", []))
+        telemetry["schema_repaired"] = getattr(result, "schema_repaired", False)
     return result
 
 _CACHE_STATS = {"request_cache_hits": 0, "request_cache_misses": 0}
@@ -432,14 +444,16 @@ def _cache_path(directory, request):
 
 def _cache_decode(value):
     if isinstance(value, dict) and value.get("cache_entry") == _CACHE_ENTRY_MARKER:
-        return LLMResponse(value["response"], schema_item_drops=value.get("schema_item_drops", []))
+        return LLMResponse(value["response"], schema_item_drops=value.get("schema_item_drops", []),
+                           schema_repaired=value.get("schema_repaired", False))
     return value
 
 def _cache_encode(value):
     drops = getattr(value, "schema_item_drops", [])
-    if drops:
+    repaired = getattr(value, "schema_repaired", False)
+    if drops or repaired:
         return {"cache_entry": _CACHE_ENTRY_MARKER, "response": dict(value),
-                "schema_item_drops": drops}
+                "schema_item_drops": drops, "schema_repaired": repaired}
     return value
 
 def _call_messages(messages, fmt, run=None, stage="llm", item_error_field=None):
@@ -471,7 +485,8 @@ def _call_messages(messages, fmt, run=None, stage="llm", item_error_field=None):
             continue
         _CACHE_STATS["request_cache_hits"] += 1
         if run:
-            run.cache_hit(stage, schema_item_drops=len(getattr(cached, "schema_item_drops", [])))
+            run.cache_hit(stage, schema_item_drops=len(getattr(cached, "schema_item_drops", [])),
+                          schema_repaired=getattr(cached, "schema_repaired", False))
         return cached
     _CACHE_STATS["request_cache_misses"] += 1
     response = _cold_call(messages, fmt, run, stage, item_error_field=item_error_field)

@@ -233,14 +233,25 @@
       "name": "中共軍事實力優越",
       "type": "narrative",
       "aliases": [
-        "中共軍事實力優越形象"
+        "中共軍事實力優越形象",
+        "中國軍力強盛",
+        "中國展現軍事實力",
+        "中國軍事實力",
+        "解放軍軍容強盛",
+        "共軍軍事強大",
+        "解放軍的軍事實力"
       ]
     },
     "g:narr-defense-failure": {
       "name": "國防失敗論（敘事家族）",
       "type": "narrative",
       "aliases": [
-        "國防失敗論"
+        "國防失敗論",
+        "台灣軍力薄弱",
+        "台灣軍方薄弱無力",
+        "台軍雷達根本沒有發現",
+        "台灣軍方無能",
+        "國軍防禦能力不足"
       ],
       "note": "IORG 分類學標籤；僅在行為者發起/放大/延續的使用處標（doc02 裁決 Q4）"
     },
@@ -551,22 +562,31 @@
       "name": "未具名台灣政界人士（集體）",
       "type": "person",
       "aliases": [
-        "我國政界人士"
+        "我國政界人士",
+        "政治人物"
       ],
-      "note": "深偽偽冒受害者＝target；claim-scoped"
+      "note": "claim-scoped；doc05 深偽偽冒時為 target，本篇言論被引述時為 amplified-voice"
     },
     "g:narr-pla-blockade-capability": {
       "name": "共軍具備鎖臺、反制美日介入能力",
       "type": "narrative",
       "aliases": [
-        "共軍具備鎖臺、反制美日介入能力"
+        "共軍具備鎖臺、反制美日介入能力",
+        "今次軍演的區域距離台灣更近，展現出圍島鏈條愈勒愈緊",
+        "今次演習其一更是要切斷台灣的海上能源線",
+        "堵塞台獨尋求外援通道"
       ]
     },
     "g:narr-us-jp-wont-help": {
       "name": "美日無意援臺",
       "type": "narrative",
       "aliases": [
-        "美日無意援臺"
+        "美日無意援臺",
+        "美國與日本束手旁觀",
+        "台灣這快有事了，日本都沒來",
+        "日本不會幫忙",
+        "台灣在國際上終究無援",
+        "台灣孤立的國際關係"
       ]
     },
     "g:haixia-daobao-paper": {
@@ -1038,7 +1058,12 @@
       "aliases": [
         "無人機拍攝到台北101",
         "無人機拍到台北101",
-        "無人機飛到台北101"
+        "無人機飛到台北101",
+        "無人機飛越台北101",
+        "無人機逼近",
+        "進逼",
+        "俯瞰",
+        "解放軍無人機俯瞰台北101大廈"
       ],
       "note": "正義使命軍演主力宣傳攻擊敘事"
     },
@@ -1475,6 +1500,129 @@
         "解放軍新聞傳播中心"
       ],
       "note": "中國軍號上級單位；本篇按軍媒通道標 amplifier"
+    },
+    "g:wang-ping-chung": {
+      "name": "Wang Ping-chung",
+      "type": "person",
+      "aliases": [
+        "王炳忠"
+      ],
+      "note": "本篇僅記錄其言論被引用，context_role=amplified-voice，不含行為歸因"
+    },
+    "g:su-chi": {
+      "name": "Su Chi",
+      "type": "person",
+      "aliases": [
+        "蘇起"
+      ],
+      "note": "本篇僅記錄其舊節目發言被對台帳號挖出放大，context_role=amplified-voice"
+    },
+    "g:hong-kong-01": {
+      "name": "Hong Kong 01",
+      "type": "media",
+      "aliases": [
+        "香港01"
+      ],
+      "note": "本篇具名香港親中建制派媒體，轉貼並擴散解放軍宣傳資訊"
+    },
+    "g:narr-taiwan-within-easy-reach": {
+      "name": "台灣如入無人之境、唾手可得",
+      "type": "narrative",
+      "aliases": [
+        "無人機如入無人之境",
+        "逛台灣如逛後花園，唾手可得",
+        "只差登陸",
+        "東部戰區都登島了"
+      ]
+    },
+    "g:narr-taiwan-panicked-by-exercise": {
+      "name": "軍演使全台陷入震撼恐慌",
+      "type": "narrative",
+      "aliases": [
+        "全島震撼",
+        "上有軍機壓境，下有緊急停電，使得台灣民眾手足無措",
+        "解放軍臨境時，可能對於台灣民生經濟造成的恐慌"
+      ]
+    },
+    "g:narr-prc-aircraft-over-taiwan": {
+      "name": "中國戰機已飛到台灣上空",
+      "type": "narrative",
+      "aliases": [
+        "中國戰機飛到台灣上空，已然實現",
+        "中國戰機飛到台灣上空"
+      ]
+    },
+    "g:narr-wz8-missions-near-taiwan": {
+      "name": "無偵8很可能已在東海和台島上空執行任務",
+      "type": "narrative",
+      "aliases": [
+        "美軍認為無偵8很可能已經在東海和台島上空執行過任務"
+      ]
+    },
+    "g:narr-us-subs-intercepted": {
+      "name": "三艘美軍核潛艇被解放軍攔截",
+      "type": "narrative",
+      "aliases": [
+        "解放軍海報中3艘美軍核潛艇被攔截"
+      ]
+    },
+    "g:narr-pla-poster-info-rich": {
+      "name": "解放軍海報資訊量很大",
+      "type": "narrative",
+      "aliases": [
+        "解放軍海報資訊量很大"
+      ],
+      "note": "被散播的宣傳性 hashtag／評價框架；依 doc02 規則 6 收錄"
+    },
+    "g:narr-gas-carriers-cannot-dock": {
+      "name": "天然氣貨輪無法如期靠岸",
+      "type": "narrative",
+      "aliases": [
+        "天然氣貨輪無法如期靠岸"
+      ]
+    },
+    "g:narr-us-only-wants-tsmc": {
+      "name": "美國只要台積電",
+      "type": "narrative",
+      "aliases": [
+        "美國只要台積電"
+      ]
+    },
+    "g:narr-pla-electronic-jamming": {
+      "name": "共軍對演習範圍內雷達實施電子干擾",
+      "type": "narrative",
+      "aliases": [
+        "共軍對演習範圍內的雷達實施了電子干擾"
+      ]
+    },
+    "g:narr-metro-attack-linked-dpp": {
+      "name": "台北捷運攻擊事件與執政黨有關",
+      "type": "narrative",
+      "aliases": [
+        "該事件與執政黨"
+      ]
+    },
+    "g:narr-bluebird-disinformation": {
+      "name": "青鳥造謠",
+      "type": "narrative",
+      "aliases": [
+        "青鳥造謠"
+      ]
+    },
+    "g:narr-exercise-targets-independence": {
+      "name": "正義使命針對台獨而非全體台灣人",
+      "type": "narrative",
+      "aliases": [
+        "針對台獨，而非全體台灣人"
+      ]
+    },
+    "g:narr-heping-power-plant-photo": {
+      "name": "眺望和平火力發電廠",
+      "type": "narrative",
+      "aliases": [
+        "眺望和平火力發電廠"
+      ],
+      "note": "2022 圍台軍演期間由新華社發布、後經查證為造假的照片主張"
     }
   }
 }

@@ -168,5 +168,10 @@ existing:
     - "環球時報 Global Times / 中國官媒 — state-media"
     - "Wikipedia — reference only（僅背景，非主來源）"
 
+# 跨領域 canary feed（2026-07 納入 feeds.json，非台灣-中國記錄簿主來源）：
+#   DisinfoLab（disinfo.eu/publications，歐/俄為主；實測該 feed 目前 0 item）、
+#   NewsGuard Reality Check（newsguardrealitycheck.com，美國/選舉 misinfo）
+#   —— 用途：觀察 ingest/filter 對跨領域內容的行為（其內容非台灣-中國，filter 會擋、不進記錄簿）。
+#   註：真正的 generalization test set 應為固定 fixture＋預期判斷，非 live feed；此處只是 canary。
 # 暫緩（未納入本輪）：TikTok Transparency（漏報中國）、Cloudflare/LinkedIn/Reddit、
-# EU DisinfoLab/EUvsDisinfo（以俄為主）、MyGoPen/Cofacts（資料層日後）、Rappler/SEA（擴張後期）。
+# EUvsDisinfo（以俄為主）、MyGoPen/Cofacts（資料層日後）、Rappler/SEA（擴張後期）。

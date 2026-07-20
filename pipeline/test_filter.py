@@ -22,6 +22,20 @@ CASES = [
     ("簡體 generic·fimi+china", "中共透过网军协同散布假讯息干预台湾选举", True),
 ]
 
+# classify（title+summary 主政策；正文只認 fimi∧china 補救）：(說明, title+summary, body, 期望 relevant, 期望 on 含 body?)
+CLASSIFY_CASES = [
+    ("稀薄摘要漏判、正文 fimi+china 補救",
+     "How China Carries Out Information Operations", "China ran coordinated inauthentic accounts spreading disinformation to influence Taiwan.", True, True),
+    ("正文單次 strong actor（非 fimi 語境）→ 不放行（防長文誤判）",
+     "Analysis of PLA personnel reshuffle in the Eastern Theater", "The article notes 玉淵譚天 once in a footnote about media outlets; the piece is about personnel.", False, False),
+    ("正文同時含 actor＋fimi＋china → 仍以 fimi∧china 放行（不被 decide actor 優先序擋）",
+     "Some off-topic headline", "China ran a network including 玉淵譚天 spreading coordinated disinformation targeting Taiwan.", True, True),
+    ("title+summary 已相關 → 不看正文",
+     "無界集團經營假帳號網絡鎖定台灣選舉", "irrelevant body text", True, False),
+    ("無正文 → 退回 title+summary（不相關）",
+     "Latvian forestry company restoring systems after ransomware", "", False, False),
+]
+
 def run():
     M = F.load()
     bad = []
@@ -30,7 +44,15 @@ def run():
         ok = (rel == exp)
         print(f"  {'PASS' if ok else 'FAIL'}  期望{'相關' if exp else '略過'}／得{'相關' if rel else '略過'}（{reason}）  {desc}")
         if not ok: bad.append(desc)
-    print(f"→ {len(CASES) - len(bad)}/{len(CASES)} 通過。" + ("" if not bad else f"  失敗：{bad}"))
+    for desc, ts, body, exp, exp_body in CLASSIFY_CASES:
+        rel, reason, _det, on = F.relevance(ts, body, M)
+        used_body = "body" in on
+        ok = (rel == exp and used_body == exp_body)
+        print(f"  {'PASS' if ok else 'FAIL'}  [classify] 期望{'相關' if exp else '略過'}/{'用正文' if exp_body else '不用正文'}"
+              f"／得{'相關' if rel else '略過'}（{reason}/{on}）  {desc}")
+        if not ok: bad.append("classify:" + desc)
+    total = len(CASES) + len(CLASSIFY_CASES)
+    print(f"→ {total - len(bad)}/{total} 通過。" + ("" if not bad else f"  失敗：{bad}"))
     return 1 if bad else 0
 
 if __name__ == "__main__":

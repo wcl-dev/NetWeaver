@@ -7,6 +7,7 @@ _h = pathlib.Path(__file__).resolve().parent
 _s = importlib.util.spec_from_file_location("ingest", str(_h / "ingest.py"))
 ing = importlib.util.module_from_spec(_s); _s.loader.exec_module(ing)
 
+_REAL_FETCH = ing.fetch                                       # 真 fetch（其他測試會 monkeypatch ing.fetch）
 CASES = []
 def case(fn): CASES.append(fn); return fn
 
@@ -76,6 +77,52 @@ def test_manual_rejects_bad_source_id():
             ing._manual("http://x", args, "t"); assert False, f"應拒：{bad}"
         except SystemExit:
             pass
+
+@case
+def test_fetch_retries_transient_not_4xx():
+    import urllib.error
+    orig_open, orig_sleep = ing.urllib.request.urlopen, ing.time.sleep
+    ing.time.sleep = lambda s: None                          # 免等 backoff
+    calls = {"n": 0}
+    class _R:
+        def read(self, n=None): return b"ok body"
+        def __enter__(self): return self
+        def __exit__(self, *a): return False
+    def flaky(req, timeout=25):
+        calls["n"] += 1
+        if calls["n"] < 2: raise urllib.error.URLError("transient")
+        return _R()
+    def http403(req, timeout=25):
+        calls["n"] += 1; raise urllib.error.HTTPError("http://x", 403, "Forbidden", {}, None)
+    try:
+        ing.urllib.request.urlopen = flaky
+        assert _REAL_FETCH("http://x", retries=2) == b"ok body" and calls["n"] == 2, "transient 應重試成功"
+        calls["n"] = 0; ing.urllib.request.urlopen = http403
+        try:
+            _REAL_FETCH("http://x", retries=2); assert False
+        except urllib.error.HTTPError:
+            pass
+        assert calls["n"] == 1, "4xx（如 Medium 403）不該重試"
+        # 5xx：重試；第 3 次成功
+        calls["n"] = 0
+        def http503_then_ok(req, timeout=25):
+            calls["n"] += 1
+            if calls["n"] < 3: raise urllib.error.HTTPError("http://x", 503, "Unavailable", {}, None)
+            return _R()
+        ing.urllib.request.urlopen = http503_then_ok
+        assert _REAL_FETCH("http://x", retries=2) == b"ok body" and calls["n"] == 3, "5xx 應重試"
+        # 5xx 耗盡 → 重拋
+        calls["n"] = 0
+        def http503(req, timeout=25):
+            calls["n"] += 1; raise urllib.error.HTTPError("http://x", 503, "Unavailable", {}, None)
+        ing.urllib.request.urlopen = http503
+        try:
+            _REAL_FETCH("http://x", retries=2); assert False
+        except urllib.error.HTTPError:
+            pass
+        assert calls["n"] == 3, "retries=2 → 共 3 次嘗試"
+    finally:
+        ing.urllib.request.urlopen, ing.time.sleep = orig_open, orig_sleep
 
 def main():
     for fn in CASES:

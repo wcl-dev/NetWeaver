@@ -6,7 +6,7 @@
   python3 pipeline/ingest.py [--limit N]                          # RSS：抓 feeds.json（每源上限 N，預設 2）
   python3 pipeline/ingest.py --url URL --source-id ID [--org …]   # 非 RSS 手動觸發（PDF/HTML，status=ready）
 """
-import argparse, json, urllib.request, urllib.parse, importlib.util, pathlib, hashlib, re
+import argparse, json, time, urllib.request, urllib.parse, urllib.error, importlib.util, pathlib, hashlib, re
 from datetime import datetime, timezone
 import xml.etree.ElementTree as ET
 
@@ -24,15 +24,26 @@ UA = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 Chrome/
 
 _MAX_FETCH = 25_000_000                                       # 下載大小上限（防 DoS）
 
-def fetch(url, timeout=25):
+def fetch(url, timeout=25, retries=2):
     if urllib.parse.urlparse(url).scheme not in ("http", "https"):   # 只允許 http(s)（拒 file:/ 等）
         raise ValueError(f"只允許 http(s) URL：{url}")
     req = urllib.request.Request(url, headers={"User-Agent": UA, "Accept": "application/rss+xml, application/xml, text/html;q=0.8"})
-    with urllib.request.urlopen(req, timeout=timeout) as r:
-        data = r.read(_MAX_FETCH + 1)                          # 讀 limit+1：超限即拒，不靜默截斷
-        if len(data) > _MAX_FETCH:
-            raise ValueError(f"下載超過 {_MAX_FETCH} bytes 上限")
-        return data
+    last = None
+    for attempt in range(retries + 1):
+        try:
+            with urllib.request.urlopen(req, timeout=timeout) as r:
+                data = r.read(_MAX_FETCH + 1)                  # 讀 limit+1：超限即拒，不靜默截斷
+                if len(data) > _MAX_FETCH:
+                    raise ValueError(f"下載超過 {_MAX_FETCH} bytes 上限")
+                return data
+        except urllib.error.HTTPError as e:
+            if not (500 <= e.code < 600): raise               # 只有 5xx 才重試；4xx（Medium 403）/3xx 直接 raise
+            last = e
+        except (urllib.error.URLError, TimeoutError, OSError) as e:
+            last = e                                          # 連線/超時 → 重試
+        if attempt < retries:
+            time.sleep(1.5 * (attempt + 1))                   # backoff
+    raise last
 
 def parse_feed(xml_bytes):
     items = []

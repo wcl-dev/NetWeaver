@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """relevance 過濾閘（碼，非模型）：抽取前，對 ingest 落地的 pending 項目判「中國認知作戰／FIMI 相關」。
 LLM 不決定 relevance——由版本化、可審查、可回歸測試的「詞表＋實體表」決定（policy table）。改規則須讓 test_filter.py 全過。
-比對 feed 標題＋摘要（非整頁，避開新聞網站 chrome 誤收）。用法：python3 pipeline/filter.py
+主政策比對 feed 標題＋摘要（strict）；若有 readability 正文側車（.txt，已去 chrome），僅在標題摘要漏判時、
+以**保守的 fimi∧china 共現**補救（不採正文單次 actor 命中，避免長文誤判）。用法：python3 pipeline/filter.py
 """
 import json, re, pathlib, unicodedata
 
@@ -95,6 +96,20 @@ def decide(text, M):
         return True, "fimi+china", {"fimi": sorted(fimi)[:4], "china": sorted(china)[:4]}
     return False, "no-match", {"fimi": sorted(fimi)[:3], "china": sorted(china)[:3], "weak": sorted(weak_hit)[:3]}
 
+def relevance(ts, body, M):
+    """主政策＝title+summary（strict，含 strong/weak actor）；不相關時，正文**只認 fimi∧china 共現**補救
+    （不採正文單次 actor 命中，避免長文任意位置共現的誤判）。回 (relevant, reason, detail, on)。"""
+    rel, reason, det = decide(ts, M)
+    if rel:
+        return rel, reason, det, "title+summary"
+    if body:                                                 # 正文只認 fimi∧china 共現——直接判詞類，不吃 decide() 的 actor 優先序
+        Tb = canon(body)
+        fimi_b = sorted(t for t in M["fimi"] if t and t in Tb)
+        china_b = sorted(t for t in M["china"] if t and t in Tb)
+        if fimi_b and china_b:                               # strong/weak actor 單次命中仍不放行；需 FIMI∧China 同在正文
+            return True, "fimi+china(body)", {"fimi": fimi_b[:4], "china": china_b[:4]}, "title+summary+body(fimi∧china)"
+    return rel, reason, det, "title+summary"
+
 def main():
     M = load()
     manifests = sorted(RAW.glob("*/*.json"))
@@ -103,8 +118,11 @@ def main():
     for mp in manifests:
         m = json.loads(mp.read_text(encoding="utf-8"))
         if m.get("extraction_status") not in ("pending", None): continue
-        text = ((m.get("title") or "") + " " + (m.get("summary") or "")).strip()
-        rel, reason, det = decide(text, M)
+        ts = ((m.get("title") or "") + " " + (m.get("summary") or "")).strip()
+        txt = mp.with_suffix("").with_suffix(".txt")          # ingest 落地的 readability 正文（已去 chrome）
+        body = txt.read_text(encoding="utf-8", errors="ignore") if txt.exists() else ""
+        rel, reason, det, on = relevance(ts, body, M)
+        det["on"] = on
         m["relevance"] = {"relevant": rel, "reason": reason, **det}
         m["extraction_status"] = "ready" if rel else "filtered-out"
         mp.write_text(json.dumps(m, ensure_ascii=False, indent=2), encoding="utf-8")

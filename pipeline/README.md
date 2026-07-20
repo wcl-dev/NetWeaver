@@ -11,7 +11,7 @@
 ```
 
 - **ingest**（`ingest.py`＋`feeds.json`）：讀 feed → 抓 RSS/Atom → 偵測新項目（cursor）→ 落地不可變快照＋provenance manifest 到 `raw/`（`extraction_status=pending`）。**落地即抽正文**存 `<hash>.txt` 側車（`textextract`：readability HTML／pdftotext PDF）。非 RSS 來源用 `--url --source-id`（registry `mode: manual`，status=ready）——支援 PDF（magic bytes 偵測）與需登入外的一次性報告。
-- **filter**（`filter.py`）：抽取前的**碼**相關性閘。比對 feed 標題＋摘要（非整頁，避開新聞網站 chrome 誤收）。規則：`強名命中 OR (弱名命中 AND 佐證詞) OR (FIMI詞 AND 中國詞)`。相關 → `extraction_status=ready`，否則 `filtered-out`。**模型不參與**——這是版本化、可 diff、可回歸測試的 **policy table**（詞表＋db 實體表），改規則須讓 `test_filter.py` 全過。
+- **filter**（`filter.py`）：抽取前的**碼**相關性閘。主政策比對 feed 標題＋摘要：`強名命中 OR (弱名命中 AND 佐證詞) OR (FIMI詞 AND 中國詞)`。**若標題摘要漏判、且有 readability 正文側車（`.txt`，已去 chrome），則以保守的 `FIMI詞 AND 中國詞` 共現補救**（正文不採 actor 單次命中，避免長文任意位置誤收；仍不吃原始整頁 chrome）。相關 → `extraction_status=ready`，否則 `filtered-out`。**模型不參與**——這是版本化、可 diff、可回歸測試的 **policy table**（詞表＋db 實體表），改規則須讓 `test_filter.py` 全過。
   - **行為者三層分級**：讀入 `name_en/name_zh/aliases`；長名（CJK≥4 或拉丁長詞）＝strong 獨立命中；短名/縮寫/歧義名（CJK 2-3、TAO/MSS…）＝weak，需 China/FIMI 詞**佐證**才算——擋掉「虎牙」（撞遊戲平台）、州媒常名 op-ed 等誤收，同時接住中文 actor。
   - **防自我佐證**：佐證詞不得是命中行為者自身或同實體別名（如單一「公安部」不因自己在中國詞表就過關）。
   - **資料層覆寫**：db.js 實體可選加 `match_tokens:{strong,weak,disabled}`，有就用資料、無則落回自動規則——fork 團隊在**資料層**調判準，不動 pipeline 碼。

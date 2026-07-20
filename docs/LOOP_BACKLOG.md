@@ -57,3 +57,13 @@ curation queue（`pipeline/extractions/curation_queue.json`），**預設不自�
 - **撞名升級**：`derive.norm` 共用，但漏繁簡／全半形／Unicode casefold／同形異碼、且 `A-B` vs `AB` 可能誤擋 → 升 `NFKC+casefold`、繁簡/fuzzy 僅 warn-only（不硬擋）。
 - **db.js loader 一致性**：`derive`/`run_loop`/`curate.load_db` 讀取仍用 `rindex("}")` 找結尾（`curate.save_db` 僅寫入端用 `raw_decode` 定位；`register` load＋save 全用 `raw_decode`）。若 db.js footer 日後含 `{}`，上述用 `rindex` 的 loader 都須改 `raw_decode`。
 - `fsync` 檔案與目錄、寫失敗清 temp、保留 mode/備份。
+
+## textextract / ingest backlog（非 RSS 納入）
+
+`textextract.py`（readability HTML＋pdftotext PDF＋charset 偵測）＋ ingest `--url` manual 模式已上線；已做：標籤堆疊容錯錯配、Big5/cp950 解碼、連結密度閘（main 外）、PDF return-code fail-closed、下載/輸出大小上限、http(s)-only、source-id kebab 防路徑逸出、落地清舊快照、resolve_text 用 manifest.snapshot。待補：
+
+- **manual metadata 由 registry 回填/校驗**：目前 `--org/--tier/--license/--type` 由 flag 給、可缺漏；應驗 `--source-id` 在 registry.yaml 有登錄、`mode: manual`，並回填 metadata/type（人工 URL 直接 ready、跳過 filter 已合理，另記 `relevance.reason=manual-trigger`）。
+- **PDF 不可信輸入強化**：poppler 有 CVE 史；對外部/agent 來源建議低權限/sandbox/resource-limit 執行 pdftotext，並持續更新。掃描版（無文字層）→ 回空、退回人工 .txt（現況）。
+- **SSRF（若日後服務/agent 化）**：現只擋非 http(s)；服務化須再擋 redirects 到 loopback/private/link-local IP。
+- **PDF 偵測**：magic 只看前 5 bytes、`.pdf` URL 回 HTML 錯誤頁會誤判；可搭配前 1024 bytes＋Content-Type＋HTML signature。
+- **readability 邊界**：表格 `<td>` 分隔、`<main>` 內含 nav、class/id/位置訊號可再細化；連結清單在 main 內不套密度閘（現況信任 main）。

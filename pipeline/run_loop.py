@@ -11,13 +11,13 @@
     docs/LOOP_BACKLOG.md。
 
 冪等：只處理 extraction_status=='ready'；抽完轉 'extracted'（不重做）；curation queue 依 raw_id upsert 持久化。
-失敗不擋全批。文字來源：raw/<src>/<hash>.txt（優先，非空）> clean_html(<hash>.html) > 無則跳過。
+失敗不擋全批。文字來源：raw/<src>/<hash>.txt（優先，非空）> textextract 現抽快照 .html/.pdf（readability/pdftotext）> 無則跳過。
 用法：
   python3 pipeline/run_loop.py --no-ingest --dry-run    # 只列會做什麼，不呼叫 LLM、不改檔
   python3 pipeline/run_loop.py --no-ingest --limit 1    # 跳過抓取，最多抽 1 篇（冷跑控管）
   python3 pipeline/run_loop.py                          # 全跑（含抓網路 feeds）
 """
-import argparse, hashlib, html, importlib.util, json, pathlib, re, sys
+import argparse, hashlib, importlib.util, json, pathlib, re, sys
 from datetime import date, datetime
 from email.utils import parsedate_to_datetime
 
@@ -52,31 +52,28 @@ def _norm_published(s):
     except Exception:
         return None
 
-def clean_html(raw_bytes):
-    """最小 HTML→正文：去 script/style、去標籤、unescape、壓白。粗略（保留 nav/footer），日後可換 readability 級。"""
-    try:
-        s = raw_bytes.decode("utf-8", "ignore")
-    except Exception:
-        return ""
-    s = re.sub(r"(?is)<(script|style|noscript|template)[^>]*>.*?</\1>", " ", s)
-    s = re.sub(r"(?is)<!--.*?-->", " ", s)
-    s = re.sub(r"(?is)<(br|/p|/div|/li|/h[1-6])\b[^>]*>", "\n", s)
-    s = re.sub(r"(?s)<[^>]+>", " ", s)
-    s = html.unescape(s)
-    s = re.sub(r"[ \t ]+", " ", s)
-    return "\n".join(line.strip() for line in s.splitlines() if line.strip()).strip()
+_tx = _load("textextract")                                   # readability/pdf 正文抽取（ingest 落地時已抽 .txt；此為 fallback）
 
-def resolve_text(mp):
-    """依序取正文：非空 .txt 側車 > clean_html(快照) > 無。回 (text, kind)。空 .txt 會 fall back 到 HTML。"""
+def resolve_text(mp, m):
+    """依序取正文：非空 .txt 側車（ingest 落地或人工提供）> manifest 記錄的快照現抽（textextract readability/pdftotext）> 無。
+    自動抽取品質不足（太短/nav-only）視同 no-text → 送 curation/skip，不餵雜訊。回 (text, kind)。"""
     stem = mp.with_suffix("")
     txt = stem.with_suffix(".txt")
     if txt.exists():
-        t = txt.read_text(encoding="utf-8").strip()
-        if t: return t, "txt-sidecar"
-    htmlp = stem.with_suffix(".html")
-    if htmlp.exists():
-        c = clean_html(htmlp.read_bytes())
-        if c: return c, "html-clean"
+        t = txt.read_text(encoding="utf-8", errors="ignore").strip()
+        if t: return t, "txt-sidecar"                        # 人工/ingest 明示提供，非空即用（不套品質閘）
+    def _from(snap):
+        t, kind = _tx.extract_text(snap)
+        return (t, f"extract-{kind}") if _tx.is_quality(t) else ("", f"low-quality-{kind}")
+    if "snapshot" in m:                                      # 有 snapshot 欄位（含明確 null）→ 只信它，不回退猜測
+        snap_name = m["snapshot"]
+        if snap_name and not str(snap_name).startswith("fetch"):
+            snap = mp.parent / pathlib.Path(str(snap_name)).name   # 限 basename → 防 ../ 逸出
+            if snap.exists(): return _from(snap)
+        return "", "no-text"                                 # 欄位存在但 null/缺檔/fetch-failed → no-text（不讀殘檔）
+    for e in (".html", ".htm", ".pdf"):                      # 舊 manifest（無 snapshot 欄位）才回退副檔名猜測
+        snap = stem.with_suffix(e)
+        if snap.exists(): return _from(snap)
     return "", "no-text"
 
 def report_meta(m):
@@ -130,7 +127,7 @@ def main():
 
     if not args.no_ingest and not args.dry_run:
         print("═══ ② ingest ═══")
-        saved = sys.argv[:]                                  # ingest 於 import 時 int(sys.argv[1])；隔離掉本腳本的 flag
+        saved = sys.argv[:]                                  # ingest.main 用 argparse 讀 sys.argv；隔離掉本腳本的 flag
         try: sys.argv = ["ingest"]; _load("ingest").main()
         finally: sys.argv = saved
     if not args.dry_run:
@@ -148,7 +145,7 @@ def main():
     for mp, m in ready:
         tag = f"[{m.get('source_id')}] {(m.get('title') or '')[:44]}"
         try:
-            text, kind = resolve_text(mp)
+            text, kind = resolve_text(mp, m)
             if not text:
                 summary["no_text"] += 1; print(f"  · 跳過（{kind}）{tag}"); continue
             if args.dry_run:

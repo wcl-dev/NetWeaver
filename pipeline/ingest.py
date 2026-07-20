@@ -2,9 +2,11 @@
 """② 來源 ingest（MVP）：讀 feeds.json → 抓 RSS/Atom → 偵測新項目（cursor）→ 落地 provenance manifest（＋盡力存 raw 快照）。
 
 「live」＝持續監控來源＋落地不可變快照；快照＝真相源（原網頁 404 也可重現）。落地項目 extraction_status=pending，待 ③ 抽取。
-純 stdlib（urllib＋xml.etree）。用法：python3 pipeline/ingest.py [每源上限，預設 2]
+純 stdlib（urllib＋xml.etree）。用法：
+  python3 pipeline/ingest.py [--limit N]                          # RSS：抓 feeds.json（每源上限 N，預設 2）
+  python3 pipeline/ingest.py --url URL --source-id ID [--org …]   # 非 RSS 手動觸發（PDF/HTML，status=ready）
 """
-import json, urllib.request, pathlib, hashlib, sys, re
+import argparse, json, urllib.request, urllib.parse, importlib.util, pathlib, hashlib, re
 from datetime import datetime, timezone
 import xml.etree.ElementTree as ET
 
@@ -12,15 +14,25 @@ def clean(s, cap=1500):                                       # feed 摘要常�
     return re.sub(r"\s+", " ", re.sub(r"(?s)<[^>]+>", " ", s or "")).strip()[:cap]
 
 _here = pathlib.Path(__file__).resolve().parent
+def _load(n):
+    s = importlib.util.spec_from_file_location(n, str(_here / (n + ".py")))
+    m = importlib.util.module_from_spec(s); s.loader.exec_module(m); return m
+tx = _load("textextract")                                    # 落地即抽正文（readability/pdf）→ .txt 側車
 FEEDS = json.loads((_here / "feeds.json").read_text(encoding="utf-8"))["sources"]
 RAW = _here / "raw"; STATE = _here / "ingest_state.json"
-LIMIT = int(sys.argv[1]) if len(sys.argv) > 1 else 2          # 每源本次最多落地幾個新項目（MVP 節流）
 UA = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 Chrome/124.0 Safari/537.36"
 
+_MAX_FETCH = 25_000_000                                       # 下載大小上限（防 DoS）
+
 def fetch(url, timeout=25):
+    if urllib.parse.urlparse(url).scheme not in ("http", "https"):   # 只允許 http(s)（拒 file:/ 等）
+        raise ValueError(f"只允許 http(s) URL：{url}")
     req = urllib.request.Request(url, headers={"User-Agent": UA, "Accept": "application/rss+xml, application/xml, text/html;q=0.8"})
     with urllib.request.urlopen(req, timeout=timeout) as r:
-        return r.read()
+        data = r.read(_MAX_FETCH + 1)                          # 讀 limit+1：超限即拒，不靜默截斷
+        if len(data) > _MAX_FETCH:
+            raise ValueError(f"下載超過 {_MAX_FETCH} bytes 上限")
+        return data
 
 def parse_feed(xml_bytes):
     items = []
@@ -44,18 +56,68 @@ def parse_feed(xml_bytes):
                           "summary": (it.findtext(A + "summary") or it.findtext(A + "content") or "").strip()})
     return items
 
+def _land(d, h, manifest):
+    """抓 URL → 偵測 PDF/HTML → 存快照 → textextract 抽正文存 .txt 側車 → 回填 manifest（fail-closed，不擋全批）。"""
+    for e in (".html", ".htm", ".pdf", ".txt"):               # 清舊快照/側車：型別改變或品質下降不留殘檔
+        old = d / (h + e)
+        if old.exists(): old.unlink()
+    try:
+        raw = fetch(manifest["url"])
+    except Exception:
+        manifest["snapshot"] = "fetch-failed（保留 metadata，可重試）"; return
+    is_pdf = manifest["url"].lower().split("?")[0].endswith(".pdf") or raw[:5] == b"%PDF-"
+    ext = ".pdf" if is_pdf else ".html"
+    (d / (h + ext)).write_bytes(raw)
+    manifest["content_hash"] = "sha256:" + hashlib.sha256(raw).hexdigest()
+    manifest["snapshot"] = h + ext
+    text, kind = tx.extract_text(d / (h + ext))               # 落地即抽正文
+    if tx.is_quality(text):
+        (d / (h + ".txt")).write_text(text, encoding="utf-8")
+        manifest["text_chars"] = len(text)
+    else:
+        manifest["text_note"] = f"正文抽取不足（{kind}，{len(text)} chars）——可人工補 .txt 側車"
+
+def _manual(url, args, now):
+    """非 RSS 手動觸發（registry mode: manual）：抓單一 URL（HTML/PDF）落地，status=ready（人工觸發＝已判定相關）。"""
+    if not args.source_id: raise SystemExit("--url 需搭配 --source-id")
+    sid = args.source_id
+    if not re.fullmatch(r"[a-z0-9]+(-[a-z0-9]+)*", sid):      # 嚴格 kebab-case：防路徑逸出（sid 會成為 raw/<sid>）
+        raise SystemExit(f"--source-id 須嚴格 kebab-case（防路徑逸出）：{sid}")
+    h = hashlib.sha256((sid + "|" + url).encode()).hexdigest()[:16]
+    d = RAW / sid; d.mkdir(parents=True, exist_ok=True)
+    manifest = {"raw_id": h, "source_id": sid, "org": args.org, "tier": args.tier, "license": args.license,
+                "title": args.title or url, "summary": "", "url": url, "guid": url,
+                "published": args.published, "discovered_at": now, "content_hash": None,
+                "mode": "manual", "extraction_status": "ready",
+                "relevance": {"relevant": True, "reason": "manual-trigger"}}
+    _land(d, h, manifest)
+    (d / (h + ".json")).write_text(json.dumps(manifest, ensure_ascii=False, indent=2), encoding="utf-8")
+    tail = (f"正文 {manifest['text_chars']} chars" if manifest.get("text_chars") else manifest.get("text_note", "無正文"))
+    print(f"✓ manual 落地 {sid}/{h}（{manifest.get('snapshot', 'fetch-failed')}）｜status=ready｜{tail}")
+    print("→ 已 ready（人工觸發＝相關）；直接 run_loop 抽取。新來源記得 register.py add-source 對映。")
+    return 0
+
 def main():
-    state = json.loads(STATE.read_text(encoding="utf-8")) if STATE.exists() else {}
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--limit", type=int, default=2, help="RSS 每源本次最多落地新項目數")
+    ap.add_argument("--url", help="非 RSS 手動觸發：抓單一 URL（HTML/PDF）落地為 ready")
+    ap.add_argument("--source-id", dest="source_id"); ap.add_argument("--org"); ap.add_argument("--tier")
+    ap.add_argument("--title"); ap.add_argument("--published")
+    ap.add_argument("--license", default="cite-with-attribution")
+    args = ap.parse_args()
     now = datetime.now(timezone.utc).isoformat()
+    if args.url:
+        return _manual(args.url, args, now)
+    state = json.loads(STATE.read_text(encoding="utf-8")) if STATE.exists() else {}
     total = 0
-    print(f"② ingest（每源上限 {LIMIT}）")
+    print(f"② ingest（每源上限 {args.limit}）")
     for s in FEEDS:
         seen = set(state.get(s["id"], []))
         try:
             items = parse_feed(fetch(s["feed_url"]))
         except Exception as e:
             print(f"  ⚠ {s['id']}: feed 取用失敗（{type(e).__name__}）"); continue
-        new = [it for it in items if it["guid"] and it["guid"] not in seen][:LIMIT]
+        new = [it for it in items if it["guid"] and it["guid"] not in seen][:args.limit]
         for it in new:
             h = hashlib.sha256((s["id"] + "|" + it["guid"]).encode()).hexdigest()[:16]
             d = RAW / s["id"]; d.mkdir(parents=True, exist_ok=True)
@@ -63,19 +125,15 @@ def main():
                         "license": s.get("license"), "title": it["title"], "summary": clean(it.get("summary")),
                         "url": it["link"], "guid": it["guid"], "published": it["published"], "discovered_at": now,
                         "content_hash": None, "extraction_status": "pending"}
-            try:                                             # 盡力抓內文快照（真相源）
-                html = fetch(it["link"])
-                (d / (h + ".html")).write_bytes(html)
-                manifest["content_hash"] = "sha256:" + hashlib.sha256(html).hexdigest()
-            except Exception:
-                manifest["snapshot"] = "fetch-failed（保留 metadata，可重試）"
+            _land(d, h, manifest)                             # 抓快照＋抽 .txt 正文側車
             (d / (h + ".json")).write_text(json.dumps(manifest, ensure_ascii=False, indent=2), encoding="utf-8")
             seen.add(it["guid"])
         state[s["id"]] = list(seen)
         print(f"  ✓ {s['id']}: feed {len(items)} 項 → 本次新落地 {len(new)}")
         total += len(new)
     STATE.write_text(json.dumps(state, ensure_ascii=False, indent=2), encoding="utf-8")
-    print(f"→ 共新落地 {total} 項到 pipeline/raw/<source>/；每項含 provenance manifest（source/tier/license/hash/discovered_at），extraction_status=pending，待 ③ 抽取。再跑一次只會抓「更新的」項目（cursor）。")
+    print(f"→ 共新落地 {total} 項到 pipeline/raw/<source>/（落地即抽 .txt 正文側車，供 ③ readability）；再跑只抓更新項（cursor）。")
+    return 0
 
 if __name__ == "__main__":
-    main()
+    raise SystemExit(main())

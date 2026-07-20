@@ -59,7 +59,7 @@ def load_pred(path, text):
         p = json.loads(pathlib.Path(path).read_text(encoding="utf-8"))
     except Exception:
         comp["json_ok"] = False
-        return {"mentions": [], "asserts": [], "id2gidspan": {}, "drops": {}, "comp": comp,
+        return {"mentions": [], "asserts": [], "id2span": {}, "drops": {}, "comp": comp,
                 "n_m_raw": 0, "n_a_raw": 0, "n_m_ground": 0, "n_a_ground": 0}
     comp["n_m_raw"] = len(p.get("mentions", [])); comp["n_a_raw"] = len(p.get("assertions", []))
     pm, id2span, seen, drops = [], {}, set(), {"missing-quote": 0, "bad-quote": 0, "surface-not-in-quote": 0, "ambiguous": 0}
@@ -114,41 +114,56 @@ def score_doc(gold, pred):
     for pm in P:
         k = (pm["s"], pm["e"]); avail = [gi for gi in gexact.get(k, []) if gi not in used]
         if avail: used.add(avail[0]); tp_ex += 1
-    # tmp_id→gid（用 overlap 配對）＋ entity-level
-    tmp2gid = {}
-    for pi, gi in match.items():
-        if P[pi]["tmp_id"] is not None: tmp2gid.setdefault(P[pi]["tmp_id"], G[gi]["gid"])
-    covered = {G[gi]["gid"] for gi in match.values()}
-    # assertion strict（逐筆、不去重；未映射端點的 grounded assertion 算 FP）
-    gold_by_pair = {}
-    for s, o, pr in gold["asserts"]: gold_by_pair.setdefault((s, o), []).append(pr)
-    pred_by_pair, n_pred_mapped = {}, 0
+    covered = {G[gi]["gid"] for gi in match.values()}          # entity-R 仍用 overlap 1-1
+    # ── 邊評分：assertion-to-assertion 最大匹配（取代原「沿用全域 mention 1-1」——那會讓較短 mention
+    #    搶走 gold occurrence、使真命中的邊假陰性，如 doc1「東部戰區融媒體」被「東部戰區」搶走）──
+    # tmp_id → gold gids：僅取**最高 IoU**的 gold（可並列），many-to-one（多個 pred 可映同一 gold、不搶佔），
+    #   但不採「所有相交」以免端點候選過寬而虛假匹配（Codex review）
+    tmp2gids = {}
+    for pm in P:
+        t = pm["tmp_id"]
+        if t is None: continue
+        best, gids = 0.0, set()
+        for gm in G:
+            iou = _iou(pm, gm)
+            if iou > best: best, gids = iou, {gm["gid"]}
+            elif iou == best and iou > 0: gids.add(gm["gid"])
+        if gids: tmp2gids[t] = gids
+    # pred 邊：端點 grounding fail-closed（兩端 mention span 須落在 assertion quote 的**同一**出現範圍內，
+    #          即 quote 真的同時涵蓋兩端——契約同 gold 的 span-containment）→ 未支持者丟、不進 precision 分母；
+    #          grounded 但端點映不到任何 gold gid 者留作 FP（如「研究團隊」主詞邊）
+    id2span = pred["id2span"]
+    pred_edges, edge_drop = [], 0
     for a in pred["asserts"]:
-        sg, og = tmp2gid.get(a.get("subject")), tmp2gid.get(a.get("object"))
-        if sg and og: pred_by_pair.setdefault((sg, og), []).append(a.get("predicate", "")); n_pred_mapped += 1
-    tp_e = pred_exact = 0
-    for k, gplist in gold_by_pair.items():
-        pplist = pred_by_pair.get(k, [])
-        m = min(len(gplist), len(pplist)); tp_e += m
-        gc = list(gplist);
-        for pp in pplist:
-            if pp in gc: pred_exact += 1; gc.remove(pp)        # 述詞 exact（配對內貪婪）
-    n_pred_assert = len(pred["asserts"])                        # 含未映射 → FP，計入 precision 分母
-    n_gold_assert = len(gold["asserts"])
-    # topology（unique 有向 pair）
-    gt, ptop = set(gold_by_pair), set(pred_by_pair)
-    tp_top = len(gt & ptop)
+        ss, oss = id2span.get(a.get("subject")), id2span.get(a.get("object"))
+        q = a.get("quote", "")
+        grounded = ss and oss and any(
+            qs <= ss[0] and ss[1] <= qs + len(q) and qs <= oss[0] and oss[1] <= qs + len(q)
+            for qs in _find_all(q, gold["text"]))
+        if not grounded: edge_drop += 1; continue                # dangling 端點 or quote 未涵蓋兩端
+        pred_edges.append((tmp2gids.get(a.get("subject"), set()),
+                           tmp2gids.get(a.get("object"), set()), a.get("predicate", "")))
+    gold_edges = list(gold["asserts"])                          # (sg, og, pred) 逐筆、不去重
+    n_pred_assert, n_gold_assert = len(pred_edges), len(gold_edges)
+    def _edge_match(strict):                                    # pred→gold 最大基數（每條至多配一次）
+        adj = [[gi for gi, (sg, og, gp) in enumerate(gold_edges)
+                if sg in psg and og in pog and (not strict or gp == pp)]
+               for (psg, pog, pp) in pred_edges]
+        return len(_kuhn(adj, len(pred_edges)))
+    tp_e = _edge_match(True)                                    # ★ 有向端點＋predicate exact
+    tp_relaxed = _edge_match(False)                             # 僅端點（無 predicate）
     return {
         "mention_ov": _prf(tp_ov, len(P), len(G)) + (tp_ov, len(P), len(G)),
         "mention_ex": _prf(tp_ex, len(P), len(G)) + (tp_ex,),
         "typed": _prf(typed_tp, len(P), len(G)),
         "entity_R": (len(covered) / len(gold["gids"])) if gold["gids"] else None,
         "edge": _prf(tp_e, n_pred_assert, n_gold_assert) + (tp_e, n_pred_assert, n_gold_assert),
-        "pred_exact": (pred_exact / tp_e) if tp_e else None,
-        "topology": _prf(tp_top, len(ptop), len(gt)),
+        "edge_relaxed": _prf(tp_relaxed, n_pred_assert, n_gold_assert),
+        "pred_exact": (tp_e / tp_relaxed) if tp_relaxed else None,   # 端點命中中、predicate 也 exact 的比例
         "raw_mention_R": (tp_ov / len(G)) if G else None,       # 註：目前 raw≈post（未做 ungated），佔位
         "grounding": {"m_raw": pred["n_m_raw"], "m_kept": pred["n_m_ground"],
-                      "a_raw": pred["n_a_raw"], "a_kept": pred["n_a_ground"], "drops": pred["drops"]},
+                      "a_raw": pred["n_a_raw"], "a_kept": pred["n_a_ground"],
+                      "a_edge": len(pred_edges), "a_edge_drop": edge_drop, "drops": pred["drops"]},
         "comp": pred["comp"],
         "_micro": {"m_tp": tp_ov, "m_np": len(P), "m_ng": len(G),
                    "e_tp": tp_e, "e_np": n_pred_assert, "e_ng": n_gold_assert},
@@ -167,9 +182,9 @@ def run(pairs):
         print(f"   mention overlap P={mo[0]:.2f} R={fmt(mo[1])} F1={fmt(mo[2])}｜exact F1={fmt(ex[2])}"
               f"｜typed F1={fmt(r['typed'][2])}｜entity-R={fmt(r['entity_R'])}  ({mo[3]}/{mo[5]} gold, {mo[4]} pred)")
         print(f"   edge strict P={ed[0]:.2f} R={fmt(ed[1])} F1={fmt(ed[2])}｜pred-exact={fmt(r['pred_exact'])}"
-              f"｜topology F1={fmt(r['topology'][2])}  ({ed[3]}/{ed[5]} gold, {ed[4]} pred)")
+              f"｜relaxed(endpoint) F1={fmt(r['edge_relaxed'][2])}  ({ed[3]}/{ed[5]} gold, {ed[4]} pred)")
         g = r["grounding"]; c = r["comp"]
-        print(f"   grounding m {g['m_kept']}/{g['m_raw']} a {g['a_kept']}/{g['a_raw']}  drops={g['drops']}  json_ok={c['json_ok']} dup_tmp={c['dup_tmp_id']}")
+        print(f"   grounding m {g['m_kept']}/{g['m_raw']} a {g['a_kept']}/{g['a_raw']}→edge {g['a_edge']}(drop {g['a_edge_drop']})  drops={g['drops']}  json_ok={c['json_ok']} dup_tmp={c['dup_tmp_id']}")
     mac = {"mention_ov_F1": _avg([r["mention_ov"][2] for r in rows]),
            "mention_ex_F1": _avg([r["mention_ex"][2] for r in rows]),
            "typed_F1": _avg([r["typed"][2] for r in rows]),
@@ -240,12 +255,21 @@ def selftest():
     if pB["n_m_ground"] != 0 or pB["drops"].get("bad-quote", 0) < 1 or pB["drops"].get("surface-not-in-quote", 0) < 1:
         fails.append(f"幻覺／未錨定 mention 未擋（kept={pB['n_m_ground']}）")
     if len(pB["asserts"]) != 0: fails.append("assertion 缺 quote 未擋")
-    # pred C：未映射端點的 grounded assertion → 應計 FP（precision<1），不消失
+    # pred C：dangling 端點（object p9 無對應 mention）→ grounding fail-closed 丟棄（不進分母，非 FP）
     predC = {"mentions": [{"tmp_id": "p1", "surface": "GoLaxy team", "coarse_type": "org", "quote": "The GoLaxy team operated fake accounts"}],
              "assertions": [{"subject": "p1", "predicate": "boost", "object": "p9", "quote": "boost Beijing narratives widely"}]}
     rC = score_doc(load_gold(str(gp)), load_pred(W(predC), text))
-    if rC["edge"][0] != 0.0: fails.append(f"未映射端點 assertion 未計 FP（edge P={rC['edge'][0]}，應=0）")
-    print(f"   多重邊 TP={rA['edge'][3]}（應2）｜幻覺/未錨定擋後 kept={pB['n_m_ground']}（應0）、assert kept={len(pB['asserts'])}（應0）｜未映射 edge P={rC['edge'][0]}（應0）")
+    if rC["edge"][4] != 0 or rC["grounding"]["a_edge_drop"] < 1:
+        fails.append(f"dangling 端點未 fail-closed 丟（pred邊={rC['edge'][4]}、drop={rC['grounding']['a_edge_drop']}）")
+    # pred D：端點皆存在且 grounded，但 object 映不到任何 gold gid → 應留成 FP（分母=1、TP=0、P=0）
+    predD = {"mentions": [{"tmp_id": "p1", "surface": "GoLaxy team", "coarse_type": "org", "quote": "The GoLaxy team operated fake accounts"},
+                          {"tmp_id": "p2", "surface": "fake accounts", "coarse_type": "network", "quote": "The GoLaxy team operated fake accounts"}],
+             "assertions": [{"subject": "p1", "predicate": "operated", "object": "p2", "quote": "The GoLaxy team operated fake accounts"}]}
+    rD = score_doc(load_gold(str(gp)), load_pred(W(predD), text))
+    if not (rD["edge"][4] == 1 and rD["edge"][3] == 0 and rD["edge"][0] == 0.0):
+        fails.append(f"grounded 但未映射端點未計 FP（pred邊={rD['edge'][4]}、TP={rD['edge'][3]}、P={rD['edge'][0]}）")
+    print(f"   多重邊 TP={rA['edge'][3]}（應2）｜幻覺/未錨定擋後 kept={pB['n_m_ground']}（應0）、assert kept={len(pB['asserts'])}（應0）"
+          f"｜dangling 丟={rC['edge'][4]==0}｜未映射 FP: 分母={rD['edge'][4]} TP={rD['edge'][3]} P={rD['edge'][0]}")
 
     print(f"\n{'✓ 全部自測通過' if not fails else '✗ 自測失敗：' + str(fails)}")
     return 0 if not fails else 1

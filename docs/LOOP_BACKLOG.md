@@ -46,3 +46,14 @@ curation queue（`pipeline/extractions/curation_queue.json`），**預設不自�
 - `--limit` 改 discovery-time FIFO；no-text/error 前排項目的 backoff，避免餓死後項。
 - 排程重疊時的單例鎖與原子寫檔（若上排程則升為必修）。
 - 保存 extract 的 dropped/diagnostics；「全 mention passes 失敗＝空抽取」視為 error/retry 而非 extracted。
+
+## register.py backlog（補 source/actor 工具）
+
+`register.py`（add-source／add-actor／suggest）目前是**單人 CLI**。已做：enum/URL/date/FK 驗證、逐文件 source id、
+撞名（共用 `derive.norm`）、safe upsert-free 寫檔（唯一 temp、保後綴、寫前自驗）、suggest 現算 operator_ref＋threaded id＋
+`shlex` quoting、governance warn（registry∪db 已信任出版方）。待補：
+
+- **register↔curate 並行寫入的 CAS/lock**（目前唯一 temp 只防半檔、不防 lost update；單人 CLI 暫可，若多人/排程須加讀取-hash CAS 或檔鎖）。
+- **撞名升級**：`derive.norm` 共用，但漏繁簡／全半形／Unicode casefold／同形異碼、且 `A-B` vs `AB` 可能誤擋 → 升 `NFKC+casefold`、繁簡/fuzzy 僅 warn-only（不硬擋）。
+- **db.js loader 一致性**：`derive`/`run_loop`/`curate.load_db` 讀取仍用 `rindex("}")` 找結尾（`curate.save_db` 僅寫入端用 `raw_decode` 定位；`register` load＋save 全用 `raw_decode`）。若 db.js footer 日後含 `{}`，上述用 `rindex` 的 loader 都須改 `raw_decode`。
+- `fsync` 檔案與目錄、寫失敗清 temp、保留 mode/備份。

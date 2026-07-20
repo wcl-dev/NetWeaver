@@ -20,7 +20,7 @@
 - **derive**（`derive.py`）：碼的判斷層——`coarse_type→kind`（詞庫＋registry 查表）、`predicate→relation`（反升級 ladder）、`confidence`（rubric）、`歸因`（控制述詞＋信心→attributed-to，人工閘）、`role`。
 - **serialize / validate / project**（`pipeline.py`）：STIX-lite → 合法 STIX 2.1（UUIDv5、`x-dad-*` 擴充、marking）→ 驗證 profile 不變量 → 投影成 operator 三層。
 - **compile**（`compile_to_db.py`）：把投影 claims 併入 `../data/db.js`（B-lite→真 B 逐筆升級）。**樣本用**；整包覆蓋。
-- **loop / curate**（`run_loop.py` / `curate.py`）：`run_loop.py` 冪等編排 ingest→…→project，產出待人工審的 curation queue（預設不自動 compile）；`curate.py`（list/show/approve/compile）是**安全 compile 路徑**——source-scoped upsert（不覆蓋他來源）、狀態機、歸因閘、歸屬（`operator_ref`）重算比對。走迴圈時用 `curate.py`，勿用 `compile_to_db.py`。細節見 `../docs/LOOP_BACKLOG.md`。
+- **loop / curate**（`run_loop.py` / `curate.py`）：`run_loop.py` 冪等編排 ingest→…→project，產出待人工審的 curation queue（預設不自動 compile）；`curate.py`（list/show/approve/compile）是**安全 compile 路徑**——source-scoped upsert（不覆蓋他來源）、狀態機、歸因閘、歸屬（`operator_ref`）重算比對。走迴圈時用 `curate.py`，勿用 `compile_to_db.py`。curate `defer`（新來源/新 actor）→ `register.py`（add-source/add-actor；有 `suggest` 印預填指令）補進骨幹 → 回 `curate approve/compile` 閉環。細節見 `../docs/LOOP_BACKLOG.md`。
 
 ## 跑
 
@@ -109,6 +109,7 @@ pipeline/
 ├── compile_to_db.py         # 投影 claims → data/db.js（樣本用；整包覆蓋。迴圈請用 curate.py）
 ├── run_loop.py              # 冪等編排 ingest→…→project；產出待審 curation queue（預設不自動 compile）
 ├── curate.py                # 審核 CLI：list/show/approve/compile（安全 upsert／狀態機／歸因閘／歸屬重算）
+├── register.py              # 補 source/actor 進 db.js：add-source/add-actor/suggest（enum/URL/FK 驗證、防撞名）
 ├── samples/*.extraction.json# 3 份 extraction 樣本（歸因梯度對照）
 └── out/                     # 產出的合法 STIX bundle（範例）
 # raw/、extractions/、ingest_state.json 為執行期產物（.gitignore）

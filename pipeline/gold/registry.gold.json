@@ -1,133 +1,1480 @@
 {
   "_doc": "gold set 全域 entity namespace（g:）。跨報告重用——同一實體在多篇 gold 必須是同一個 g: id。能對到 ../../data/db.js 既有實體就用 db id、不建 g:。aliases 只收真正同指的名稱，不得放合成 display name。registry 的 type 須與 mention entity_type 一致。未具名集體用 -unnamed 後綴（claim-scoped，跨文不必同指）。契約見 ../../docs/GOLD.md §6。",
   "entities": {
-    "g:dpp": { "name": "Democratic Progressive Party", "type": "org", "aliases": ["DPP", "民主進步黨", "民進黨", "執政黨"], "note": "受害／目標政黨；「執政黨」於本期文脈明確回指 DPP" },
-    "g:prc": { "name": "People's Republic of China", "type": "org", "aliases": ["PRC", "China", "中國", "中華人民共和國"], "note": "國家層級；弱連結標 suspected-affiliate，不得寫 sponsor" },
-    "g:ccp": { "name": "Chinese Communist Party", "type": "org", "aliases": ["中共", "CCP", "中國共產黨"], "note": "黨／國家層級 FIMI 施為者；與 g:ccp-state-media（官媒通道）分開" },
-    "g:ccp-state-media": { "name": "PRC state media (collective)", "type": "media", "aliases": ["中共官媒", "官媒"], "note": "官方媒體集合；通常為 amplifier 通道" },
-    "g:lai-ching-te": { "name": "Lai Ching-te", "type": "person", "aliases": ["賴清德", "賴總統"], "note": "民進黨籍總統；常為被醜化 target" },
-    "g:japan": { "name": "Japan", "type": "place", "aliases": ["日本", "日"] },
-    "g:philippines": { "name": "Philippines", "type": "place", "aliases": ["菲律賓", "菲"] },
-    "g:taiwan": { "name": "Taiwan", "type": "place", "aliases": ["台灣", "臺灣", "台"], "note": "僅在其本身為攻擊/形塑/併吞對象時標；修飾語不標" },
-    "g:tw-government": { "name": "Government of Taiwan (ROC)", "type": "org", "aliases": ["我國政府", "台灣政府"], "note": "政府機關整體；與執政黨（g:dpp）區分" },
-    "g:china-coast-guard": { "name": "China Coast Guard", "type": "org", "aliases": ["中國海警", "中国海警"] },
-    "g:zheng-li-wen": { "name": "Cheng Li-wen", "type": "person", "aliases": ["鄭麗文"], "note": "國民黨主席。身分記錄；context_role 由各篇 claim 決定（非固定）" },
-    "g:chen-chih-han": { "name": "Chen Chih-han (Kuan Chang)", "type": "person", "aliases": ["陳之漢", "館長"], "note": "網紅。身分記錄；context_role 由各篇 claim 決定" },
-    "g:tw-pundits-unnamed": { "name": "未具名台灣名嘴（集體）", "type": "person", "aliases": ["特定台灣名嘴", "台灣名嘴"], "note": "未具名集體；amplified-voice 為 claim-scoped，跨文不必同指" },
-    "g:tw-moviegoers-unnamed": { "name": "未具名台灣觀眾（集體）", "type": "person", "aliases": ["少數台灣觀眾"], "note": "未具名集體；同上" },
-
-    "g:narr-oppose-greens": { "name": "I am Taiwanese and I oppose the greens", "type": "narrative", "aliases": ["我是台灣人我反綠"], "note": "反民進黨冒充敘事" },
-    "g:narr-self-abasement": { "name": "賴清德自甘下跪", "type": "narrative", "aliases": ["自甘下跪"] },
-    "g:narr-kowtow-jp-ph": { "name": "賴清德跪了日菲", "type": "narrative", "aliases": ["跪了日菲"] },
-    "g:narr-help-thieves": { "name": "助賊分海", "type": "narrative", "aliases": ["助贼分海", "助賊分海"] },
-    "g:narr-tw-unwelcome": { "name": "台灣不受國際歡迎", "type": "narrative", "aliases": ["台灣不受國際歡迎的負面形象"] },
-    "g:narr-one-china-mainstream": { "name": "多数国家奉行一中政策（一中為國際主流）", "type": "narrative", "aliases": ["多数国家奉行一中政策"] },
-    "g:narr-sell-fishermen": { "name": "出賣漁民", "type": "narrative", "aliases": ["出卖渔民"] },
-    "g:narr-forget-ancestors": { "name": "數典忘祖", "type": "narrative", "aliases": ["数典忘祖"] },
-    "g:narr-national-scum": { "name": "民族敗類", "type": "narrative", "aliases": ["民族败类"] },
-    "g:narr-tai-authorities": { "name": "台当局（貶稱框架）", "type": "narrative", "aliases": ["台当局"], "note": "貶稱亦標 narrative（doc02 裁決 Q6）" },
-    "g:narr-dpp-anti-people": { "name": "執政黨不顧民眾利益", "type": "narrative", "aliases": ["執政黨不顧民眾利益、政治考量凌駕民生考量的負面形象"] },
-    "g:narr-same-nation": { "name": "台灣及中國同屬中華民族", "type": "narrative", "aliases": ["台湾及中国同属中华民族"] },
-    "g:narr-jpph-collusion": { "name": "日菲勾連", "type": "narrative", "aliases": ["日菲勾连"] },
-    "g:narr-hammer": { "name": "一意孤行只會求錘得錘", "type": "narrative", "aliases": ["一意孤行只会求锤得锤"] },
-    "g:narr-pla-superior": { "name": "中共軍事實力優越", "type": "narrative", "aliases": ["中共軍事實力優越形象"] },
-    "g:narr-defense-failure": { "name": "國防失敗論（敘事家族）", "type": "narrative", "aliases": ["國防失敗論"], "note": "IORG 分類學標籤；僅在行為者發起/放大/延續的使用處標（doc02 裁決 Q4）" },
-    "g:narr-cg-patrol": { "name": "海警执法巡查（正當化框架）", "type": "narrative", "aliases": ["执法巡查"] },
-    "g:narr-legit-act": { "name": "海上襲擾＝正當行為", "type": "narrative", "aliases": ["正當行為"] },
-    "g:narr-papa-protect": { "name": "爸爸（中共）來保護你", "type": "narrative", "aliases": ["爸爸（指中共）来保护你"] },
-    "g:narr-mainland-backer": { "name": "中國大陸是台灣民眾靠山", "type": "narrative", "aliases": ["中国大陆是台湾民众靠山"] },
-    "g:narr-sellout-vs-protect": { "name": "台灣政府賣台、中國政府護台", "type": "narrative", "aliases": ["台灣政府賣台、中国政府（解放军）護台"], "note": "複合對照說法整體一個 narrative，內部實體不拆標" },
-    "g:narr-restrict-freedom": { "name": "執政黨禁錮民眾行動言論自由", "type": "narrative", "aliases": ["禁锢台湾民众行动和言论自由"] },
-    "g:narr-panda-politicized": { "name": "將熊貓政治化", "type": "narrative", "aliases": ["将熊猫政治化"] },
-    "g:narr-dpp-irrational": { "name": "執政黨不理性反中", "type": "narrative", "aliases": ["執政黨不理性反中的負面形象"] },
-    "g:narr-6000-taibao": { "name": "6000名台胞踴躍參加", "type": "narrative", "aliases": ["6000 名台胞踊跃参加"] },
-    "g:narr-redpanda": { "name": "小熊貓萌化島內民眾", "type": "narrative", "aliases": ["小熊猫萌化岛内民众"] },
-    "g:narr-majority-unsupportive": { "name": "多數台灣民眾不支持政府", "type": "narrative", "aliases": ["多數台灣民眾不支持政府立場的印象"] },
-    "g:narr-both-chinese": { "name": "兩岸人民都是中國人", "type": "narrative", "aliases": ["两岸人民都是中国人"] },
-    "g:narr-moved-to-tears": { "name": "看哭（情緒引語）", "type": "narrative", "aliases": ["看哭"], "note": "被放大的情緒引語亦標 narrative（doc02 裁決 Q6）" },
-    "g:narr-sobbing": { "name": "暴哭（情緒引語）", "type": "narrative", "aliases": ["暴哭"] },
-    "g:narr-tears-at-scene": { "name": "淚灑現場（情緒引語）", "type": "narrative", "aliases": ["泪洒现场"] },
-    "g:narr-sakya-peace": { "name": "吃釋迦就可以推動和平", "type": "narrative", "aliases": ["吃释迦就可以推动和平"] },
-    "g:narr-agri-politicized": { "name": "將農產品貿易政治化", "type": "narrative", "aliases": ["将农产品贸易政治化"] },
-    "g:narr-sakya-intolerant": { "name": "連一顆鳳梨釋迦都容不下", "type": "narrative", "aliases": ["连一颗凤梨释迦都容不下"] },
-
-    "g:usa": { "name": "United States", "type": "place", "aliases": ["美國", "美国", "美方", "US", "United States"] },
-    "g:peoples-daily": { "name": "People's Daily", "type": "media", "aliases": ["人民日報", "人民日报"], "note": "中共黨媒；引語刊載通道 → amplifier" },
-    "g:china-mofa": { "name": "PRC Ministry of Foreign Affairs", "type": "org", "aliases": ["中国外交部", "中國外交部", "中共外交部"], "note": "官方發言主體 → actor" },
-    "g:narr-us-skepticism": { "name": "疑美論（敘事家族）", "type": "narrative", "aliases": ["疑美論", "疑美論述"], "note": "IORG 分類學總稱；僅使用處標（Q4）" },
-    "g:narr-chaos-source": { "name": "亂源論（美國是戰亂根源）", "type": "narrative", "aliases": ["亂源論"] },
-    "g:narr-false-friend": { "name": "假朋友（美國壓迫盟友獲利）", "type": "narrative", "aliases": ["假朋友"] },
-    "g:narr-us-election-interference": { "name": "美國介入台灣選舉", "type": "narrative", "aliases": ["介入選舉"] },
-    "g:narr-us-china-comanage": { "name": "美中共管台灣", "type": "narrative", "aliases": ["共管台灣"] },
-    "g:narr-us-hegemon-tw-governed": { "name": "美國霸道、台灣受外部治理無法自主", "type": "narrative", "aliases": ["美國霸道、台灣受到外部治理，無法自主的負面形象"] },
-    "g:narr-us-abandons-allies": { "name": "美國將拋棄盟友、不提供實質協助", "type": "narrative", "aliases": ["美國將拋棄盟友，不會提供實質協助"] },
-    "g:narr-us-warmonger-exploiter": { "name": "美國引起戰亂、壓榨拋棄盟友", "type": "narrative", "aliases": ["美國引起戰爭、混亂，壓榨、拋棄盟友的主導形象"] },
-    "g:narr-us-oppressor": { "name": "美國無理霸道的壓迫者", "type": "narrative", "aliases": ["美國無理霸道的壓迫者印象"] },
-    "g:narr-us-democracy-failed": { "name": "美式民主圖利、混亂、失敗", "type": "narrative", "aliases": ["「美式民主」圖利、混亂、失敗"] },
-    "g:narr-anti-world": { "name": "反世界（美國與世界為敵）", "type": "narrative", "aliases": ["反世界"] },
-    "g:narr-victim": { "name": "受害者敘事（victim narrative）", "type": "narrative", "aliases": ["受害者敘事"] },
-    "g:narr-us-tech-bullying": { "name": "美國經濟科技霸凌（小院高牆）", "type": "narrative", "aliases": ["美國大搞经济和科技霸凌，将构筑“小院高墙”的霸凌行径包装成维护“国家安全”"] },
-    "g:narr-us-bandit-logic": { "name": "美國強盜邏輯、濫用國家力量", "type": "narrative", "aliases": ["美国强盗逻辑，滥用国家力量"] },
-    "g:narr-us-double-standard": { "name": "美國雙重標準、破壞自由市場", "type": "narrative", "aliases": ["美国双重标准，破坏自由市场"] },
-    "g:narr-us-hypocrisy": { "name": "美方人權評比虛偽雙標", "type": "narrative", "aliases": ["霸权霸道霸凌的自私本性和说一套做一套的虚伪双标"] },
-
-    "g:narr-military-skepticism": { "name": "疑軍論（敘事家族）", "type": "narrative", "aliases": ["疑軍", "疑軍論"] },
-    "g:narr-lai-skepticism": { "name": "疑賴論（敘事家族）", "type": "narrative", "aliases": ["疑賴", "疑賴論"] },
-    "g:mjib-seized-2024-cluster": { "name": "2024 二合一選舉查獲之境外管理臉書叢集", "type": "network", "aliases": ["40 個臉書人頭帳號"], "note": "調查局查獲：40 帳號＋20 粉專＋YT 頻道，境外人士管理；amplifier（傳散資產）" },
-    "g:roc-military": { "name": "ROC Armed Forces (海/空軍及海巡)", "type": "org", "aliases": ["我海、空軍及海巡官兵", "國軍"], "note": "被偽冒的受害方＝target（非 amplified-voice）" },
-    "g:tw-politicians-unnamed": { "name": "未具名台灣政界人士（集體）", "type": "person", "aliases": ["我國政界人士"], "note": "深偽偽冒受害者＝target；claim-scoped" },
-    "g:narr-pla-blockade-capability": { "name": "共軍具備鎖臺、反制美日介入能力", "type": "narrative", "aliases": ["共軍具備鎖臺、反制美日介入能力"] },
-    "g:narr-us-jp-wont-help": { "name": "美日無意援臺", "type": "narrative", "aliases": ["美日無意援臺"] },
-    "g:haixia-daobao-paper": { "name": "海峽導報（報社）", "type": "media", "aliases": ["海峽導報", "海峽導報社"], "note": "db 將報社列為 haixia-daobao-accounts 的 alias（帳號叢集）——為免關係自環另立；待回報 db 拆分" },
-    "g:narr-pro-china-opinion": { "name": "利中（國際輿論框架）", "type": "narrative", "aliases": ["利中"] },
-    "g:narr-demean-taiwan": { "name": "貶臺（國際輿論框架）", "type": "narrative", "aliases": ["貶臺"] },
-    "g:guell-herald": { "name": "Guell Herald（假西班牙媒體）", "type": "media", "aliases": ["奎爾先鋒報", "Guell Herald"] },
-    "g:narr-tw-escalates-tension": { "name": "我政府升高臺海緊張", "type": "narrative", "aliases": ["升高臺海緊張"] },
-
-    "g:meta-q1-2025-china-network": { "name": "Meta Q1-2025 China-origin CIB network", "type": "network", "aliases": ["157 Facebook accounts"], "note": "157 FB 帳號＋19 Pages＋1 Group＋17 IG；三 cluster（Myanmar/Taiwan/Japan）；amplifier（資產）" },
-    "g:meta-q1-2025-china-operators": { "name": "Meta Q1-2025 China network operators (unnamed)", "type": "person", "aliases": ["The people behind this activity", "The same group"], "note": "未具名操作者；person/actor，與資產網絡分立（規則20）" },
-    "g:meta-q1-2025-account-farm": { "name": "Meta Q1-2025 account farm", "type": "infrastructure", "aliases": ["account farm"] },
-    "g:meta-china-prior-ops-unnamed": { "name": "Meta 先前移除之兩個 China-based operations（2022-09/2024-02）", "type": "network", "aliases": ["two past China-based influence operations"], "note": "collective；跨 campaign 弱連結（links to）→ suspected-affiliate、無邊" },
-    "g:myanmar": { "name": "Myanmar", "type": "place", "aliases": ["緬甸"] },
-    "g:japan-government": { "name": "Government of Japan", "type": "org", "aliases": ["Japan's government", "日本政府"] },
-    "g:mm-civil-resistance": { "name": "Myanmar civil resistance movements", "type": "org", "aliases": ["civil resistance movements"] },
-    "g:narr-mm-end-conflict": { "name": "the need to end the ongoing conflict（緬甸停戰框架）", "type": "narrative", "aliases": ["the need to end the ongoing conflict"] },
-    "g:narr-tw-officials-corrupt": { "name": "Taiwanese politicians and military leaders are corrupt", "type": "narrative", "aliases": ["Taiwanese politicians and military leaders are corrupt"] },
-
-    "g:impersonation-photo-victims-unnamed": { "name": "盜圖冒用受害者（台灣/亞洲網紅等，集體）", "type": "person", "aliases": ["Taiwanese or other Asian influencers", "female influencers", "Asian women"], "note": "被盜照片以偽造人設之受害者＝target；claim-scoped 集體" },
-    "g:amplification-providers-unnamed": { "name": "amplification service providers（假說中的操盤商）", "type": "org", "aliases": ["amplification service providers"], "note": "DTL hypothesize（未證實）→ suspected-affiliate；operated-by 邊帶 hedge → derive 期望不歸因" },
-    "g:narr-protest-dpp": { "name": "號召抗議民進黨政府", "type": "narrative", "aliases": ["protest against the DPP government"] },
-    "g:narr-oppose-ccp": { "name": "oppose the CCP（反綠句式變體）", "type": "narrative", "aliases": ["oppose the CCP"], "note": "與我反綠同句式、疑製造對立之變體" },
-    "g:threads-larger-network-unnamed": { "name": "Threads 上更大的不實帳號群（未具名）", "type": "network", "aliases": ["a larger group of inauthentic accounts"] },
-    "g:ifh-network-unnamed": { "name": "influence-for-hire 上位網絡（未具名）", "type": "network", "aliases": ["'influence for hire' network"] },
-    "g:dtl-x-ifh-network": { "name": "DTL 先前於 X 識別之網絡（未具名）", "type": "network", "aliases": ["a network we have identified earlier on X"] },
-
-    "g:golaxy-accounts": { "name": "GoLaxy 操作的 persona bot 帳號（未具名）", "type": "account", "aliases": ["seven account handles", "these accounts", "persona bots"], "note": "GoLaxy operated＝控制證據 → attributed-to 測例（歸因梯度頂端）" },
-    "g:ict-cas": { "name": "Institute of Computing Technology, CAS (ICT CAS)", "type": "org", "aliases": ["Institute of Computing Technology at the Chinese Academy of Sciences (ICT CAS)", "ICT CAS", "Institute of Computing Technology (ICT)"], "note": "GoLaxy 母體/孵化機構 → suspected-affiliate（淵源非現行控制）" },
-    "g:gopro-system": { "name": "GoLaxy Smart Propaganda System (GoPro)", "type": "infrastructure", "aliases": ["GoLaxy Smart Propaganda System GoPro", "GoPro"], "note": "具名 FIMI 系統（非 rule18 泛工具）" },
-    "g:cn-propaganda-dept": { "name": "Central Propaganda Department (CCP)", "type": "org", "aliases": ["Central Propaganda Department", "中央宣傳部", "中宣部"] },
-    "g:cmc-stc": { "name": "Science and Technology Commission of the Central Military Commission (CMC STC)", "type": "org", "aliases": ["Science and Technology Commission of the Central Military Commission", "Science and Technology Department of the Central Military Commission (CMC STC)", "中央軍委科技委"] },
-    "g:sugon": { "name": "Sugon (中科曙光)", "type": "org", "aliases": ["Sugon"], "note": "PLA linked；資助 GoLaxy" },
-    "g:sdic": { "name": "State Development and Investment Corporation (SDIC)", "type": "org", "aliases": ["State Development and Investment Corporation (SDIC)", "SDIC", "國投"] },
-    "g:zhongke-ruijian": { "name": "Beijing Zhongke Ruijian Technology", "type": "org", "aliases": ["Beijing Zhongke Ruijian Technology", "中科睿鑑"] },
-    "g:china-digital-video": { "name": "China Digital Video", "type": "org", "aliases": ["China digital Video"] },
-    "g:guangming-daily": { "name": "Guangming Daily", "type": "media", "aliases": ["Guangming Daily", "光明日報"] },
-    "g:base-311": { "name": "Base 311 (PLA Unit 61716)", "type": "org", "aliases": ["Base 311", "PLA Unit 61716", "61716部隊", "311基地"], "note": "福州；督導對台心理戰" },
-    "g:taiwan-knowledge-graph": { "name": "GoLaxy 涉T知识图谱（Taiwan knowledge graph）", "type": "infrastructure", "aliases": ["Taiwan knowledge graph", "涉T知识图谱"] },
-    "g:kmt": { "name": "Kuomintang", "type": "org", "aliases": ["Kuomintang", "KMT", "中國國民黨", "國民黨"] },
-    "g:tpp": { "name": "Taiwan People's Party", "type": "org", "aliases": ["Taiwan People's Party", "TPP", "台灣民眾黨", "民眾黨"] },
-    "g:new-party-tw": { "name": "New Party (Taiwan)", "type": "org", "aliases": ["New Party", "新黨"] },
-    "g:npsu-tw": { "name": "Non-Partisan Solidarity Union", "type": "org", "aliases": ["Non-Partisan Solidarity Union", "無黨團結聯盟"] },
-    "g:kaohsiung": { "name": "Kaohsiung", "type": "place", "aliases": ["Kaohsiung", "高雄"] },
-
-    "g:paperwall": { "name": "PAPERWALL（123 假地方新聞站網絡）", "type": "network", "aliases": ["PAPERWALL", "network of at least 123 websites"], "note": "Citizen Lab 明確歸因 Haimai（firm attribution → attributed-to）" },
-    "g:haienergy": { "name": "HaiEnergy（Mandiant 2022 揭露之影響行動）", "type": "network", "aliases": ["HaiEnergy"], "note": "db haixun 的 alias——但此為 campaign(network)、Haixun 為 firm(org)，型別衝突故拆分；待回報 db" },
-    "g:times-newswire": { "name": "Times Newswire", "type": "org", "aliases": ["Times Newswire"], "note": "內容源；db haimai 有 alias『Times Newswire 營運商』，但 doc07 明示『cannot attribute to PAPERWALL operators』→ 拆分保守；待回報 db" },
-    "g:narr-pro-beijing-disinfo": { "name": "親北京 disinformation（PAPERWALL）", "type": "narrative", "aliases": ["pro-Beijing disinformation"] },
-    "g:narr-pro-beijing-content": { "name": "親北京政治內容（Times Newswire seeds）", "type": "narrative", "aliases": ["pro-Beijing political content"] },
-    "g:narr-yan-rumor-maker": { "name": "Yan Limeng is a complete rumor maker（人身攻擊文）", "type": "narrative", "aliases": ["Yan Limeng is a complete rumor maker"] },
-    "g:li-meng-yan": { "name": "Li-Meng Yan（閻麗夢）", "type": "person", "aliases": ["Li-Meng Yan", "閻麗夢"], "note": "被 PAPERWALL 人身攻擊的 target" },
-    "g:tsai-ing-wen": { "name": "Tsai Ing-wen（蔡英文）", "type": "person", "aliases": ["Tsai Ing-wen", "蔡英文"] },
-    "g:li-hongzhi": { "name": "Li Hongzhi（李洪志）", "type": "person", "aliases": ["Li Hongzhi", "李洪志"], "note": "法輪功創辦人；被 Times Newswire 攻擊文 target" }
+    "g:dpp": {
+      "name": "Democratic Progressive Party",
+      "type": "org",
+      "aliases": [
+        "DPP",
+        "民主進步黨",
+        "民進黨",
+        "執政黨"
+      ],
+      "note": "受害／目標政黨；「執政黨」於本期文脈明確回指 DPP"
+    },
+    "g:prc": {
+      "name": "People's Republic of China",
+      "type": "org",
+      "aliases": [
+        "PRC",
+        "China",
+        "中國",
+        "中華人民共和國"
+      ],
+      "note": "國家層級；弱連結標 suspected-affiliate，不得寫 sponsor"
+    },
+    "g:ccp": {
+      "name": "Chinese Communist Party",
+      "type": "org",
+      "aliases": [
+        "中共",
+        "CCP",
+        "中國共產黨"
+      ],
+      "note": "黨／國家層級 FIMI 施為者；與 g:ccp-state-media（官媒通道）分開"
+    },
+    "g:ccp-state-media": {
+      "name": "PRC state media (collective)",
+      "type": "media",
+      "aliases": [
+        "中共官媒",
+        "官媒"
+      ],
+      "note": "官方媒體集合；通常為 amplifier 通道"
+    },
+    "g:lai-ching-te": {
+      "name": "Lai Ching-te",
+      "type": "person",
+      "aliases": [
+        "賴清德",
+        "賴總統"
+      ],
+      "note": "民進黨籍總統；常為被醜化 target"
+    },
+    "g:japan": {
+      "name": "Japan",
+      "type": "place",
+      "aliases": [
+        "日本",
+        "日"
+      ]
+    },
+    "g:philippines": {
+      "name": "Philippines",
+      "type": "place",
+      "aliases": [
+        "菲律賓",
+        "菲"
+      ]
+    },
+    "g:taiwan": {
+      "name": "Taiwan",
+      "type": "place",
+      "aliases": [
+        "台灣",
+        "臺灣",
+        "台"
+      ],
+      "note": "僅在其本身為攻擊/形塑/併吞對象時標；修飾語不標"
+    },
+    "g:tw-government": {
+      "name": "Government of Taiwan (ROC)",
+      "type": "org",
+      "aliases": [
+        "我國政府",
+        "台灣政府"
+      ],
+      "note": "政府機關整體；與執政黨（g:dpp）區分"
+    },
+    "g:china-coast-guard": {
+      "name": "China Coast Guard",
+      "type": "org",
+      "aliases": [
+        "中國海警",
+        "中国海警"
+      ]
+    },
+    "g:zheng-li-wen": {
+      "name": "Cheng Li-wen",
+      "type": "person",
+      "aliases": [
+        "鄭麗文"
+      ],
+      "note": "國民黨主席。身分記錄；context_role 由各篇 claim 決定（非固定）"
+    },
+    "g:chen-chih-han": {
+      "name": "Chen Chih-han (Kuan Chang)",
+      "type": "person",
+      "aliases": [
+        "陳之漢",
+        "館長"
+      ],
+      "note": "網紅。身分記錄；context_role 由各篇 claim 決定"
+    },
+    "g:tw-pundits-unnamed": {
+      "name": "未具名台灣名嘴（集體）",
+      "type": "person",
+      "aliases": [
+        "特定台灣名嘴",
+        "台灣名嘴"
+      ],
+      "note": "未具名集體；amplified-voice 為 claim-scoped，跨文不必同指"
+    },
+    "g:tw-moviegoers-unnamed": {
+      "name": "未具名台灣觀眾（集體）",
+      "type": "person",
+      "aliases": [
+        "少數台灣觀眾"
+      ],
+      "note": "未具名集體；同上"
+    },
+    "g:narr-oppose-greens": {
+      "name": "I am Taiwanese and I oppose the greens",
+      "type": "narrative",
+      "aliases": [
+        "我是台灣人我反綠"
+      ],
+      "note": "反民進黨冒充敘事"
+    },
+    "g:narr-self-abasement": {
+      "name": "賴清德自甘下跪",
+      "type": "narrative",
+      "aliases": [
+        "自甘下跪"
+      ]
+    },
+    "g:narr-kowtow-jp-ph": {
+      "name": "賴清德跪了日菲",
+      "type": "narrative",
+      "aliases": [
+        "跪了日菲"
+      ]
+    },
+    "g:narr-help-thieves": {
+      "name": "助賊分海",
+      "type": "narrative",
+      "aliases": [
+        "助贼分海",
+        "助賊分海"
+      ]
+    },
+    "g:narr-tw-unwelcome": {
+      "name": "台灣不受國際歡迎",
+      "type": "narrative",
+      "aliases": [
+        "台灣不受國際歡迎的負面形象"
+      ]
+    },
+    "g:narr-one-china-mainstream": {
+      "name": "多数国家奉行一中政策（一中為國際主流）",
+      "type": "narrative",
+      "aliases": [
+        "多数国家奉行一中政策"
+      ]
+    },
+    "g:narr-sell-fishermen": {
+      "name": "出賣漁民",
+      "type": "narrative",
+      "aliases": [
+        "出卖渔民"
+      ]
+    },
+    "g:narr-forget-ancestors": {
+      "name": "數典忘祖",
+      "type": "narrative",
+      "aliases": [
+        "数典忘祖"
+      ]
+    },
+    "g:narr-national-scum": {
+      "name": "民族敗類",
+      "type": "narrative",
+      "aliases": [
+        "民族败类"
+      ]
+    },
+    "g:narr-tai-authorities": {
+      "name": "台当局（貶稱框架）",
+      "type": "narrative",
+      "aliases": [
+        "台当局"
+      ],
+      "note": "貶稱亦標 narrative（doc02 裁決 Q6）"
+    },
+    "g:narr-dpp-anti-people": {
+      "name": "執政黨不顧民眾利益",
+      "type": "narrative",
+      "aliases": [
+        "執政黨不顧民眾利益、政治考量凌駕民生考量的負面形象"
+      ]
+    },
+    "g:narr-same-nation": {
+      "name": "台灣及中國同屬中華民族",
+      "type": "narrative",
+      "aliases": [
+        "台湾及中国同属中华民族"
+      ]
+    },
+    "g:narr-jpph-collusion": {
+      "name": "日菲勾連",
+      "type": "narrative",
+      "aliases": [
+        "日菲勾连"
+      ]
+    },
+    "g:narr-hammer": {
+      "name": "一意孤行只會求錘得錘",
+      "type": "narrative",
+      "aliases": [
+        "一意孤行只会求锤得锤"
+      ]
+    },
+    "g:narr-pla-superior": {
+      "name": "中共軍事實力優越",
+      "type": "narrative",
+      "aliases": [
+        "中共軍事實力優越形象"
+      ]
+    },
+    "g:narr-defense-failure": {
+      "name": "國防失敗論（敘事家族）",
+      "type": "narrative",
+      "aliases": [
+        "國防失敗論"
+      ],
+      "note": "IORG 分類學標籤；僅在行為者發起/放大/延續的使用處標（doc02 裁決 Q4）"
+    },
+    "g:narr-cg-patrol": {
+      "name": "海警执法巡查（正當化框架）",
+      "type": "narrative",
+      "aliases": [
+        "执法巡查"
+      ]
+    },
+    "g:narr-legit-act": {
+      "name": "海上襲擾＝正當行為",
+      "type": "narrative",
+      "aliases": [
+        "正當行為"
+      ]
+    },
+    "g:narr-papa-protect": {
+      "name": "爸爸（中共）來保護你",
+      "type": "narrative",
+      "aliases": [
+        "爸爸（指中共）来保护你"
+      ]
+    },
+    "g:narr-mainland-backer": {
+      "name": "中國大陸是台灣民眾靠山",
+      "type": "narrative",
+      "aliases": [
+        "中国大陆是台湾民众靠山"
+      ]
+    },
+    "g:narr-sellout-vs-protect": {
+      "name": "台灣政府賣台、中國政府護台",
+      "type": "narrative",
+      "aliases": [
+        "台灣政府賣台、中国政府（解放军）護台"
+      ],
+      "note": "複合對照說法整體一個 narrative，內部實體不拆標"
+    },
+    "g:narr-restrict-freedom": {
+      "name": "執政黨禁錮民眾行動言論自由",
+      "type": "narrative",
+      "aliases": [
+        "禁锢台湾民众行动和言论自由"
+      ]
+    },
+    "g:narr-panda-politicized": {
+      "name": "將熊貓政治化",
+      "type": "narrative",
+      "aliases": [
+        "将熊猫政治化"
+      ]
+    },
+    "g:narr-dpp-irrational": {
+      "name": "執政黨不理性反中",
+      "type": "narrative",
+      "aliases": [
+        "執政黨不理性反中的負面形象"
+      ]
+    },
+    "g:narr-6000-taibao": {
+      "name": "6000名台胞踴躍參加",
+      "type": "narrative",
+      "aliases": [
+        "6000 名台胞踊跃参加"
+      ]
+    },
+    "g:narr-redpanda": {
+      "name": "小熊貓萌化島內民眾",
+      "type": "narrative",
+      "aliases": [
+        "小熊猫萌化岛内民众"
+      ]
+    },
+    "g:narr-majority-unsupportive": {
+      "name": "多數台灣民眾不支持政府",
+      "type": "narrative",
+      "aliases": [
+        "多數台灣民眾不支持政府立場的印象"
+      ]
+    },
+    "g:narr-both-chinese": {
+      "name": "兩岸人民都是中國人",
+      "type": "narrative",
+      "aliases": [
+        "两岸人民都是中国人"
+      ]
+    },
+    "g:narr-moved-to-tears": {
+      "name": "看哭（情緒引語）",
+      "type": "narrative",
+      "aliases": [
+        "看哭"
+      ],
+      "note": "被放大的情緒引語亦標 narrative（doc02 裁決 Q6）"
+    },
+    "g:narr-sobbing": {
+      "name": "暴哭（情緒引語）",
+      "type": "narrative",
+      "aliases": [
+        "暴哭"
+      ]
+    },
+    "g:narr-tears-at-scene": {
+      "name": "淚灑現場（情緒引語）",
+      "type": "narrative",
+      "aliases": [
+        "泪洒现场"
+      ]
+    },
+    "g:narr-sakya-peace": {
+      "name": "吃釋迦就可以推動和平",
+      "type": "narrative",
+      "aliases": [
+        "吃释迦就可以推动和平"
+      ]
+    },
+    "g:narr-agri-politicized": {
+      "name": "將農產品貿易政治化",
+      "type": "narrative",
+      "aliases": [
+        "将农产品贸易政治化"
+      ]
+    },
+    "g:narr-sakya-intolerant": {
+      "name": "連一顆鳳梨釋迦都容不下",
+      "type": "narrative",
+      "aliases": [
+        "连一颗凤梨释迦都容不下"
+      ]
+    },
+    "g:usa": {
+      "name": "United States",
+      "type": "place",
+      "aliases": [
+        "美國",
+        "美国",
+        "美方",
+        "US",
+        "United States"
+      ]
+    },
+    "g:peoples-daily": {
+      "name": "People's Daily",
+      "type": "media",
+      "aliases": [
+        "人民日報"
+      ]
+    },
+    "g:china-mofa": {
+      "name": "PRC Ministry of Foreign Affairs",
+      "type": "org",
+      "aliases": [
+        "中国外交部",
+        "中國外交部",
+        "中共外交部"
+      ],
+      "note": "官方發言主體 → actor"
+    },
+    "g:narr-us-skepticism": {
+      "name": "疑美論（敘事家族）",
+      "type": "narrative",
+      "aliases": [
+        "疑美論",
+        "疑美論述"
+      ],
+      "note": "IORG 分類學總稱；僅使用處標（Q4）"
+    },
+    "g:narr-chaos-source": {
+      "name": "亂源論（美國是戰亂根源）",
+      "type": "narrative",
+      "aliases": [
+        "亂源論"
+      ]
+    },
+    "g:narr-false-friend": {
+      "name": "假朋友（美國壓迫盟友獲利）",
+      "type": "narrative",
+      "aliases": [
+        "假朋友"
+      ]
+    },
+    "g:narr-us-election-interference": {
+      "name": "美國介入台灣選舉",
+      "type": "narrative",
+      "aliases": [
+        "介入選舉"
+      ]
+    },
+    "g:narr-us-china-comanage": {
+      "name": "美中共管台灣",
+      "type": "narrative",
+      "aliases": [
+        "共管台灣"
+      ]
+    },
+    "g:narr-us-hegemon-tw-governed": {
+      "name": "美國霸道、台灣受外部治理無法自主",
+      "type": "narrative",
+      "aliases": [
+        "美國霸道、台灣受到外部治理，無法自主的負面形象"
+      ]
+    },
+    "g:narr-us-abandons-allies": {
+      "name": "美國將拋棄盟友、不提供實質協助",
+      "type": "narrative",
+      "aliases": [
+        "美國將拋棄盟友，不會提供實質協助"
+      ]
+    },
+    "g:narr-us-warmonger-exploiter": {
+      "name": "美國引起戰亂、壓榨拋棄盟友",
+      "type": "narrative",
+      "aliases": [
+        "美國引起戰爭、混亂，壓榨、拋棄盟友的主導形象"
+      ]
+    },
+    "g:narr-us-oppressor": {
+      "name": "美國無理霸道的壓迫者",
+      "type": "narrative",
+      "aliases": [
+        "美國無理霸道的壓迫者印象"
+      ]
+    },
+    "g:narr-us-democracy-failed": {
+      "name": "美式民主圖利、混亂、失敗",
+      "type": "narrative",
+      "aliases": [
+        "「美式民主」圖利、混亂、失敗"
+      ]
+    },
+    "g:narr-anti-world": {
+      "name": "反世界（美國與世界為敵）",
+      "type": "narrative",
+      "aliases": [
+        "反世界"
+      ]
+    },
+    "g:narr-victim": {
+      "name": "受害者敘事（victim narrative）",
+      "type": "narrative",
+      "aliases": [
+        "受害者敘事"
+      ]
+    },
+    "g:narr-us-tech-bullying": {
+      "name": "美國經濟科技霸凌（小院高牆）",
+      "type": "narrative",
+      "aliases": [
+        "美國大搞经济和科技霸凌，将构筑“小院高墙”的霸凌行径包装成维护“国家安全”"
+      ]
+    },
+    "g:narr-us-bandit-logic": {
+      "name": "美國強盜邏輯、濫用國家力量",
+      "type": "narrative",
+      "aliases": [
+        "美国强盗逻辑，滥用国家力量"
+      ]
+    },
+    "g:narr-us-double-standard": {
+      "name": "美國雙重標準、破壞自由市場",
+      "type": "narrative",
+      "aliases": [
+        "美国双重标准，破坏自由市场"
+      ]
+    },
+    "g:narr-us-hypocrisy": {
+      "name": "美方人權評比虛偽雙標",
+      "type": "narrative",
+      "aliases": [
+        "霸权霸道霸凌的自私本性和说一套做一套的虚伪双标"
+      ]
+    },
+    "g:narr-military-skepticism": {
+      "name": "疑軍論（敘事家族）",
+      "type": "narrative",
+      "aliases": [
+        "疑軍",
+        "疑軍論"
+      ]
+    },
+    "g:narr-lai-skepticism": {
+      "name": "疑賴論（敘事家族）",
+      "type": "narrative",
+      "aliases": [
+        "疑賴",
+        "疑賴論"
+      ]
+    },
+    "g:mjib-seized-2024-cluster": {
+      "name": "2024 二合一選舉查獲之境外管理臉書叢集",
+      "type": "network",
+      "aliases": [
+        "40 個臉書人頭帳號"
+      ],
+      "note": "調查局查獲：40 帳號＋20 粉專＋YT 頻道，境外人士管理；amplifier（傳散資產）"
+    },
+    "g:roc-military": {
+      "name": "ROC Armed Forces (海/空軍及海巡)",
+      "type": "org",
+      "aliases": [
+        "我海、空軍及海巡官兵",
+        "國軍"
+      ],
+      "note": "被偽冒的受害方＝target（非 amplified-voice）"
+    },
+    "g:tw-politicians-unnamed": {
+      "name": "未具名台灣政界人士（集體）",
+      "type": "person",
+      "aliases": [
+        "我國政界人士"
+      ],
+      "note": "深偽偽冒受害者＝target；claim-scoped"
+    },
+    "g:narr-pla-blockade-capability": {
+      "name": "共軍具備鎖臺、反制美日介入能力",
+      "type": "narrative",
+      "aliases": [
+        "共軍具備鎖臺、反制美日介入能力"
+      ]
+    },
+    "g:narr-us-jp-wont-help": {
+      "name": "美日無意援臺",
+      "type": "narrative",
+      "aliases": [
+        "美日無意援臺"
+      ]
+    },
+    "g:haixia-daobao-paper": {
+      "name": "海峽導報（報社）",
+      "type": "media",
+      "aliases": [
+        "海峽導報",
+        "海峽導報社"
+      ],
+      "note": "db 將報社列為 haixia-daobao-accounts 的 alias（帳號叢集）——為免關係自環另立；待回報 db 拆分"
+    },
+    "g:narr-pro-china-opinion": {
+      "name": "利中（國際輿論框架）",
+      "type": "narrative",
+      "aliases": [
+        "利中"
+      ]
+    },
+    "g:narr-demean-taiwan": {
+      "name": "貶臺（國際輿論框架）",
+      "type": "narrative",
+      "aliases": [
+        "貶臺"
+      ]
+    },
+    "g:guell-herald": {
+      "name": "Guell Herald（假西班牙媒體）",
+      "type": "media",
+      "aliases": [
+        "奎爾先鋒報",
+        "Guell Herald"
+      ]
+    },
+    "g:narr-tw-escalates-tension": {
+      "name": "我政府升高臺海緊張",
+      "type": "narrative",
+      "aliases": [
+        "升高臺海緊張"
+      ]
+    },
+    "g:meta-q1-2025-china-network": {
+      "name": "Meta Q1-2025 China-origin CIB network",
+      "type": "network",
+      "aliases": [
+        "157 Facebook accounts"
+      ],
+      "note": "157 FB 帳號＋19 Pages＋1 Group＋17 IG；三 cluster（Myanmar/Taiwan/Japan）；amplifier（資產）"
+    },
+    "g:meta-q1-2025-china-operators": {
+      "name": "Meta Q1-2025 China network operators (unnamed)",
+      "type": "person",
+      "aliases": [
+        "The people behind this activity",
+        "The same group"
+      ],
+      "note": "未具名操作者；person/actor，與資產網絡分立（規則20）"
+    },
+    "g:meta-q1-2025-account-farm": {
+      "name": "Meta Q1-2025 account farm",
+      "type": "infrastructure",
+      "aliases": [
+        "account farm"
+      ]
+    },
+    "g:meta-china-prior-ops-unnamed": {
+      "name": "Meta 先前移除之兩個 China-based operations（2022-09/2024-02）",
+      "type": "network",
+      "aliases": [
+        "two past China-based influence operations"
+      ],
+      "note": "collective；跨 campaign 弱連結（links to）→ suspected-affiliate、無邊"
+    },
+    "g:myanmar": {
+      "name": "Myanmar",
+      "type": "place",
+      "aliases": [
+        "緬甸"
+      ]
+    },
+    "g:japan-government": {
+      "name": "Government of Japan",
+      "type": "org",
+      "aliases": [
+        "Japan's government",
+        "日本政府"
+      ]
+    },
+    "g:mm-civil-resistance": {
+      "name": "Myanmar civil resistance movements",
+      "type": "org",
+      "aliases": [
+        "civil resistance movements"
+      ]
+    },
+    "g:narr-mm-end-conflict": {
+      "name": "the need to end the ongoing conflict（緬甸停戰框架）",
+      "type": "narrative",
+      "aliases": [
+        "the need to end the ongoing conflict"
+      ]
+    },
+    "g:narr-tw-officials-corrupt": {
+      "name": "Taiwanese politicians and military leaders are corrupt",
+      "type": "narrative",
+      "aliases": [
+        "Taiwanese politicians and military leaders are corrupt"
+      ]
+    },
+    "g:impersonation-photo-victims-unnamed": {
+      "name": "盜圖冒用受害者（台灣/亞洲網紅等，集體）",
+      "type": "person",
+      "aliases": [
+        "Taiwanese or other Asian influencers",
+        "female influencers",
+        "Asian women"
+      ],
+      "note": "被盜照片以偽造人設之受害者＝target；claim-scoped 集體"
+    },
+    "g:amplification-providers-unnamed": {
+      "name": "amplification service providers（假說中的操盤商）",
+      "type": "org",
+      "aliases": [
+        "amplification service providers"
+      ],
+      "note": "DTL hypothesize（未證實）→ suspected-affiliate；operated-by 邊帶 hedge → derive 期望不歸因"
+    },
+    "g:narr-protest-dpp": {
+      "name": "號召抗議民進黨政府",
+      "type": "narrative",
+      "aliases": [
+        "protest against the DPP government"
+      ]
+    },
+    "g:narr-oppose-ccp": {
+      "name": "oppose the CCP（反綠句式變體）",
+      "type": "narrative",
+      "aliases": [
+        "oppose the CCP"
+      ],
+      "note": "與我反綠同句式、疑製造對立之變體"
+    },
+    "g:threads-larger-network-unnamed": {
+      "name": "Threads 上更大的不實帳號群（未具名）",
+      "type": "network",
+      "aliases": [
+        "a larger group of inauthentic accounts"
+      ]
+    },
+    "g:ifh-network-unnamed": {
+      "name": "influence-for-hire 上位網絡（未具名）",
+      "type": "network",
+      "aliases": [
+        "'influence for hire' network"
+      ]
+    },
+    "g:dtl-x-ifh-network": {
+      "name": "DTL 先前於 X 識別之網絡（未具名）",
+      "type": "network",
+      "aliases": [
+        "a network we have identified earlier on X"
+      ]
+    },
+    "g:golaxy-accounts": {
+      "name": "GoLaxy 操作的 persona bot 帳號（未具名）",
+      "type": "account",
+      "aliases": [
+        "seven account handles",
+        "these accounts",
+        "persona bots"
+      ],
+      "note": "GoLaxy operated＝控制證據 → attributed-to 測例（歸因梯度頂端）"
+    },
+    "g:ict-cas": {
+      "name": "Institute of Computing Technology, CAS (ICT CAS)",
+      "type": "org",
+      "aliases": [
+        "Institute of Computing Technology at the Chinese Academy of Sciences (ICT CAS)",
+        "ICT CAS",
+        "Institute of Computing Technology (ICT)"
+      ],
+      "note": "GoLaxy 母體/孵化機構 → suspected-affiliate（淵源非現行控制）"
+    },
+    "g:gopro-system": {
+      "name": "GoLaxy Smart Propaganda System (GoPro)",
+      "type": "infrastructure",
+      "aliases": [
+        "GoLaxy Smart Propaganda System GoPro",
+        "GoPro"
+      ],
+      "note": "具名 FIMI 系統（非 rule18 泛工具）"
+    },
+    "g:cn-propaganda-dept": {
+      "name": "Central Propaganda Department (CCP)",
+      "type": "org",
+      "aliases": [
+        "Central Propaganda Department",
+        "中央宣傳部",
+        "中宣部"
+      ]
+    },
+    "g:cmc-stc": {
+      "name": "Science and Technology Commission of the Central Military Commission (CMC STC)",
+      "type": "org",
+      "aliases": [
+        "Science and Technology Commission of the Central Military Commission",
+        "Science and Technology Department of the Central Military Commission (CMC STC)",
+        "中央軍委科技委"
+      ]
+    },
+    "g:sugon": {
+      "name": "Sugon (中科曙光)",
+      "type": "org",
+      "aliases": [
+        "Sugon"
+      ],
+      "note": "PLA linked；資助 GoLaxy"
+    },
+    "g:sdic": {
+      "name": "State Development and Investment Corporation (SDIC)",
+      "type": "org",
+      "aliases": [
+        "State Development and Investment Corporation (SDIC)",
+        "SDIC",
+        "國投"
+      ]
+    },
+    "g:zhongke-ruijian": {
+      "name": "Beijing Zhongke Ruijian Technology",
+      "type": "org",
+      "aliases": [
+        "Beijing Zhongke Ruijian Technology",
+        "中科睿鑑"
+      ]
+    },
+    "g:china-digital-video": {
+      "name": "China Digital Video",
+      "type": "org",
+      "aliases": [
+        "China digital Video"
+      ]
+    },
+    "g:guangming-daily": {
+      "name": "Guangming Daily",
+      "type": "media",
+      "aliases": [
+        "Guangming Daily",
+        "光明日報"
+      ]
+    },
+    "g:base-311": {
+      "name": "Base 311 (PLA Unit 61716)",
+      "type": "org",
+      "aliases": [
+        "Base 311",
+        "PLA Unit 61716",
+        "61716部隊",
+        "311基地"
+      ],
+      "note": "福州；督導對台心理戰"
+    },
+    "g:taiwan-knowledge-graph": {
+      "name": "GoLaxy 涉T知识图谱（Taiwan knowledge graph）",
+      "type": "infrastructure",
+      "aliases": [
+        "Taiwan knowledge graph",
+        "涉T知识图谱"
+      ]
+    },
+    "g:kmt": {
+      "name": "Kuomintang",
+      "type": "org",
+      "aliases": [
+        "Kuomintang",
+        "KMT",
+        "中國國民黨",
+        "國民黨"
+      ]
+    },
+    "g:tpp": {
+      "name": "Taiwan People's Party",
+      "type": "org",
+      "aliases": [
+        "Taiwan People's Party",
+        "TPP",
+        "台灣民眾黨",
+        "民眾黨"
+      ]
+    },
+    "g:new-party-tw": {
+      "name": "New Party (Taiwan)",
+      "type": "org",
+      "aliases": [
+        "New Party",
+        "新黨"
+      ]
+    },
+    "g:npsu-tw": {
+      "name": "Non-Partisan Solidarity Union",
+      "type": "org",
+      "aliases": [
+        "Non-Partisan Solidarity Union",
+        "無黨團結聯盟"
+      ]
+    },
+    "g:kaohsiung": {
+      "name": "Kaohsiung",
+      "type": "place",
+      "aliases": [
+        "Kaohsiung",
+        "高雄"
+      ]
+    },
+    "g:paperwall": {
+      "name": "PAPERWALL（123 假地方新聞站網絡）",
+      "type": "network",
+      "aliases": [
+        "PAPERWALL",
+        "network of at least 123 websites"
+      ],
+      "note": "Citizen Lab 明確歸因 Haimai（firm attribution → attributed-to）"
+    },
+    "g:haienergy": {
+      "name": "HaiEnergy（Mandiant 2022 揭露之影響行動）",
+      "type": "network",
+      "aliases": [
+        "HaiEnergy"
+      ],
+      "note": "db haixun 的 alias——但此為 campaign(network)、Haixun 為 firm(org)，型別衝突故拆分；待回報 db"
+    },
+    "g:times-newswire": {
+      "name": "Times Newswire",
+      "type": "org",
+      "aliases": [
+        "Times Newswire"
+      ],
+      "note": "內容源；db haimai 有 alias『Times Newswire 營運商』，但 doc07 明示『cannot attribute to PAPERWALL operators』→ 拆分保守；待回報 db"
+    },
+    "g:narr-pro-beijing-disinfo": {
+      "name": "親北京 disinformation（PAPERWALL）",
+      "type": "narrative",
+      "aliases": [
+        "pro-Beijing disinformation"
+      ]
+    },
+    "g:narr-pro-beijing-content": {
+      "name": "親北京政治內容（Times Newswire seeds）",
+      "type": "narrative",
+      "aliases": [
+        "pro-Beijing political content"
+      ]
+    },
+    "g:narr-yan-rumor-maker": {
+      "name": "Yan Limeng is a complete rumor maker（人身攻擊文）",
+      "type": "narrative",
+      "aliases": [
+        "Yan Limeng is a complete rumor maker"
+      ]
+    },
+    "g:li-meng-yan": {
+      "name": "Li-Meng Yan（閻麗夢）",
+      "type": "person",
+      "aliases": [
+        "Li-Meng Yan",
+        "閻麗夢"
+      ],
+      "note": "被 PAPERWALL 人身攻擊的 target"
+    },
+    "g:tsai-ing-wen": {
+      "name": "Tsai Ing-wen（蔡英文）",
+      "type": "person",
+      "aliases": [
+        "Tsai Ing-wen",
+        "蔡英文"
+      ]
+    },
+    "g:li-hongzhi": {
+      "name": "Li Hongzhi（李洪志）",
+      "type": "person",
+      "aliases": [
+        "Li Hongzhi",
+        "李洪志"
+      ],
+      "note": "法輪功創辦人；被 Times Newswire 攻擊文 target"
+    },
+    "g:pla": {
+      "name": "People's Liberation Army",
+      "type": "org",
+      "aliases": [
+        "解放軍",
+        "中國人民解放軍",
+        "共軍",
+        "PLA"
+      ],
+      "note": "中共軍隊；與黨 g:ccp、政工 pla-pwd 區分"
+    },
+    "g:xinhua": {
+      "name": "Xinhua News Agency",
+      "type": "media",
+      "aliases": [
+        "新華社",
+        "Xinhua"
+      ],
+      "note": "官媒通道 amplifier"
+    },
+    "g:china-mil-hao": {
+      "name": "China Military Number (Weibo)",
+      "type": "account",
+      "aliases": [
+        "中國軍號"
+      ],
+      "note": "解放軍新聞傳播中心轄下微博帳號"
+    },
+    "g:pla-daily": {
+      "name": "PLA Daily",
+      "type": "media",
+      "aliases": [
+        "解放軍報"
+      ]
+    },
+    "g:sina-military": {
+      "name": "Sina Military",
+      "type": "account",
+      "aliases": [
+        "新浪軍事"
+      ],
+      "note": "State-Linked 大V"
+    },
+    "g:taihai-shike": {
+      "name": "Taihai Shike",
+      "type": "media",
+      "aliases": [
+        "台海時刻"
+      ],
+      "note": "福建對台媒體"
+    },
+    "g:fujian-network": {
+      "name": "福建對台媒體網絡（集合）",
+      "type": "network",
+      "aliases": [
+        "福建網絡",
+        "福建媒體",
+        "福建媒體與網絡"
+      ],
+      "note": "對台傳散通道 amplifier"
+    },
+    "g:taiwan-military": {
+      "name": "Taiwan Armed Forces",
+      "type": "org",
+      "aliases": [
+        "台灣國軍",
+        "台軍",
+        "台灣軍方",
+        "國軍"
+      ],
+      "note": "被負面宣傳的 target"
+    },
+    "g:tw-retired-generals-unnamed": {
+      "name": "未具名台灣退休將領（集體）",
+      "type": "person",
+      "aliases": [
+        "台灣退休將領",
+        "退休將領"
+      ],
+      "note": "amplified-voice；claim-scoped，跨文不必同指"
+    },
+    "g:narr-drone-taipei101": {
+      "name": "無人機拍到台北101",
+      "type": "narrative",
+      "aliases": [
+        "無人機拍攝到台北101",
+        "無人機拍到台北101",
+        "無人機飛到台北101"
+      ],
+      "note": "正義使命軍演主力宣傳攻擊敘事"
+    },
+    "g:narr-so-close": {
+      "name": "這麼近那麼美，隨時到台北",
+      "type": "narrative",
+      "aliases": [
+        "這麼近那麼美，隨時到台北"
+      ]
+    },
+    "g:russia-today": {
+      "name": "Russia Today",
+      "type": "media",
+      "aliases": [
+        "今日俄羅斯"
+      ],
+      "note": "俄羅斯官媒微博帳號；本篇為央視內容的 amplifier"
+    },
+    "g:beijing-time": {
+      "name": "Beijing Time",
+      "type": "media",
+      "aliases": [
+        "北京時間"
+      ],
+      "note": "北京廣播電視台新媒體品牌"
+    },
+    "g:beijing-radio-tv": {
+      "name": "Beijing Radio & Television Station",
+      "type": "media",
+      "aliases": [
+        "北京廣播電視台"
+      ]
+    },
+    "g:direct-news": {
+      "name": "Direct News",
+      "type": "media",
+      "aliases": [
+        "直新聞"
+      ],
+      "note": "深圳廣電集團新媒體品牌"
+    },
+    "g:shenzhen-media-group": {
+      "name": "Shenzhen Media Group",
+      "type": "media",
+      "aliases": [
+        "深圳廣電集團"
+      ]
+    },
+    "g:shi-yi-pla": {
+      "name": "Shi Yi (PLA Eastern Theater Command spokesperson)",
+      "type": "person",
+      "aliases": [
+        "施毅"
+      ]
+    },
+    "g:li-xi-pla": {
+      "name": "Li Xi (PLA Eastern Theater Command spokesperson)",
+      "type": "person",
+      "aliases": [
+        "李熹"
+      ]
+    },
+    "g:meng-xiangqing": {
+      "name": "Meng Xiangqing",
+      "type": "person",
+      "aliases": [
+        "孟祥青"
+      ],
+      "note": "官媒採訪的中共國防大學軍事專家；本篇僅按被放大發言標 amplifier"
+    },
+    "g:zhang-chi-defense": {
+      "name": "Zhang Chi (PRC military expert)",
+      "type": "person",
+      "aliases": [
+        "張弛"
+      ],
+      "note": "官媒採訪的軍事專家；本篇僅按被放大發言標 amplifier"
+    },
+    "g:fu-zhengnan": {
+      "name": "Fu Zhengnan",
+      "type": "person",
+      "aliases": [
+        "付征南"
+      ],
+      "note": "官媒採訪的中國軍事學院副研究員；本篇僅按被放大發言標 amplifier"
+    },
+    "g:li-jian-naval": {
+      "name": "Li Jian (PRC naval researcher)",
+      "type": "person",
+      "aliases": [
+        "李劍"
+      ],
+      "note": "官媒採訪的海軍研究院研究員；本篇僅按被放大發言標 amplifier"
+    },
+    "g:experts-unnamed": {
+      "name": "未具名專家（本篇 claim-scoped）",
+      "type": "person",
+      "aliases": [
+        "專家"
+      ],
+      "note": "amplified-voice；claim-scoped，跨文不必同指"
+    },
+    "g:prc-military-blogger-accounts-unnamed": {
+      "name": "未具名中國軍事博主／對台帳號（本篇集合）",
+      "type": "account",
+      "aliases": [
+        "媒體和民間軍事博主",
+        "這些帳號"
+      ],
+      "note": "傳散資產集合 amplifier；claim-scoped，跨文不必同指"
+    },
+    "g:taiwan-public": {
+      "name": "Taiwan public",
+      "type": "person",
+      "aliases": [
+        "台灣民眾"
+      ],
+      "note": "本篇威嚇宣傳的 target 集體"
+    },
+    "g:mainland-public": {
+      "name": "Mainland Chinese public",
+      "type": "person",
+      "aliases": [
+        "大陸民眾"
+      ],
+      "note": "本篇民族情緒操弄的 target 集體"
+    },
+    "g:narr-righteous-arrow": {
+      "name": "正義之箭",
+      "type": "narrative",
+      "aliases": [
+        "正義之箭"
+      ],
+      "note": "正義使命軍演主題海報口號"
+    },
+    "g:narr-righteous-shield": {
+      "name": "正義之盾",
+      "type": "narrative",
+      "aliases": [
+        "正義之盾"
+      ],
+      "note": "正義使命軍演主題海報口號"
+    },
+    "g:narr-righteous-hammer": {
+      "name": "正義之錘",
+      "type": "narrative",
+      "aliases": [
+        "正義之錘"
+      ],
+      "note": "正義使命軍演主題海報口號"
+    },
+    "g:narr-righteous-horse": {
+      "name": "正義之馬",
+      "type": "narrative",
+      "aliases": [
+        "正義之馬"
+      ],
+      "note": "正義使命軍演主題海報口號"
+    },
+    "g:narr-joint-forces-cut-independence": {
+      "name": "联武群戈斩独道",
+      "type": "narrative",
+      "aliases": [
+        "联武群戈斩独道"
+      ],
+      "note": "正義使命軍演 AI 影片口號"
+    },
+    "g:narr-military-gap-independence": {
+      "name": "軍力代差和以謀獨",
+      "type": "narrative",
+      "aliases": [
+        "軍力代差和以謀獨"
+      ],
+      "note": "正義使命軍演主題海報口號"
+    },
+    "g:narr-double-tail-scorpion": {
+      "name": "無人機被認定為雙尾蠍",
+      "type": "narrative",
+      "aliases": [
+        "雙尾蠍"
+      ],
+      "note": "媒體與民間軍事博主延伸認定的無人機型號敘事"
+    },
+    "g:narr-drone-decapitation": {
+      "name": "無人機斬首計畫",
+      "type": "narrative",
+      "aliases": [
+        "無人機斬首計畫"
+      ],
+      "note": "文中明指為帳號虛擬出的威懾敘事"
+    },
+    "g:narr-circumnavigation-route": {
+      "name": "無人機繞台路線",
+      "type": "narrative",
+      "aliases": [
+        "繞台路線"
+      ],
+      "note": "文中明指為帳號虛擬出的威懾敘事"
+    },
+    "g:narr-battlefield-strait-lights": {
+      "name": "沙場風雨兩岸燈",
+      "type": "narrative",
+      "aliases": [
+        "沙場風雨兩岸燈"
+      ],
+      "note": "東部戰區融媒體中心發布之 MV 口號／敘事"
+    },
+    "g:zhenjiang-minsheng-channel": {
+      "name": "Zhenjiang Minsheng Channel",
+      "type": "media",
+      "aliases": [
+        "鎮江民生頻道"
+      ]
+    },
+    "g:zhejiang-daily": {
+      "name": "Zhejiang Daily",
+      "type": "media",
+      "aliases": [
+        "浙江日報"
+      ]
+    },
+    "g:the-paper": {
+      "name": "The Paper",
+      "type": "media",
+      "aliases": [
+        "澎湃新聞"
+      ]
+    },
+    "g:xuanhan-rongmei": {
+      "name": "Xuanhan Integrated Media",
+      "type": "media",
+      "aliases": [
+        "宣漢融媒"
+      ]
+    },
+    "g:dongjing-news": {
+      "name": "Dongjing News",
+      "type": "media",
+      "aliases": [
+        "動静新聞",
+        "動靜新聞"
+      ],
+      "note": "原文同篇出現簡繁異體，明確同指"
+    },
+    "g:nanhu-fabu": {
+      "name": "Nanhu Fabu",
+      "type": "account",
+      "aliases": [
+        "南湖發布"
+      ]
+    },
+    "g:xinghua-dabai": {
+      "name": "Xinghua Dabai",
+      "type": "account",
+      "aliases": [
+        "星話大白"
+      ]
+    },
+    "g:pingshan-police": {
+      "name": "Pingshan Police account",
+      "type": "account",
+      "aliases": [
+        "屏山公安"
+      ]
+    },
+    "g:tongling-etdz-police-online": {
+      "name": "Tongling ETDZ Police Online",
+      "type": "account",
+      "aliases": [
+        "銅陵經開公安在線"
+      ]
+    },
+    "g:shandong-high-court": {
+      "name": "Shandong High Court account",
+      "type": "account",
+      "aliases": [
+        "山東高法"
+      ]
+    },
+    "g:muchuan-police": {
+      "name": "Muchuan Police account",
+      "type": "account",
+      "aliases": [
+        "沐川公安"
+      ]
+    },
+    "g:qingchun-longquanyi": {
+      "name": "Qingchun Longquanyi",
+      "type": "account",
+      "aliases": [
+        "青春龍泉驛"
+      ]
+    },
+    "g:pingan-jinyang": {
+      "name": "Ping'an Jinyang",
+      "type": "account",
+      "aliases": [
+        "平安金陽"
+      ]
+    },
+    "g:nanning-evening-news": {
+      "name": "Nanning Evening News",
+      "type": "media",
+      "aliases": [
+        "南寧晚報"
+      ]
+    },
+    "g:qianjiang-evening-news": {
+      "name": "Qianjiang Evening News",
+      "type": "media",
+      "aliases": [
+        "錢江晚報"
+      ]
+    },
+    "g:southern-weekly": {
+      "name": "Southern Weekly",
+      "type": "media",
+      "aliases": [
+        "南方週末"
+      ]
+    },
+    "g:toutiao-news": {
+      "name": "Toutiao News account",
+      "type": "account",
+      "aliases": [
+        "頭條新聞"
+      ]
+    },
+    "g:first-live": {
+      "name": "First Live",
+      "type": "media",
+      "aliases": [
+        "第一現場"
+      ]
+    },
+    "g:mashang-information": {
+      "name": "Mashang Information",
+      "type": "media",
+      "aliases": [
+        "馬上資訊"
+      ]
+    },
+    "g:fujian-daily": {
+      "name": "Fujian Daily",
+      "type": "media",
+      "aliases": [
+        "福建日報"
+      ]
+    },
+    "g:beijing-news": {
+      "name": "The Beijing News",
+      "type": "media",
+      "aliases": [
+        "新京報"
+      ]
+    },
+    "g:everything-ganges-water": {
+      "name": "Everything Ganges Water",
+      "type": "account",
+      "aliases": [
+        "包容萬物恆河水"
+      ]
+    },
+    "g:taiwan-bit": {
+      "name": "Taiwan Bit",
+      "type": "account",
+      "aliases": [
+        "台灣那點事兒"
+      ]
+    },
+    "g:tashi-delek-bead-collection": {
+      "name": "Tashi Delek · Tianzhu Collection",
+      "type": "account",
+      "aliases": [
+        "扎西德勒·天珠收藏"
+      ]
+    },
+    "g:pepper-bro-microrecord": {
+      "name": "Pepper Bro Microrecord",
+      "type": "account",
+      "aliases": [
+        "椒哥微記錄"
+      ]
+    },
+    "g:aerospace-all-aspects": {
+      "name": "Aerospace All Aspects",
+      "type": "account",
+      "aliases": [
+        "航天面面觀"
+      ]
+    },
+    "g:changchun-xiaofeng": {
+      "name": "Changchun-Xiaofeng",
+      "type": "account",
+      "aliases": [
+        "長春-小風"
+      ]
+    },
+    "g:baihe-laodeng": {
+      "name": "Baihe-Laodeng",
+      "type": "account",
+      "aliases": [
+        "白鶴-老鄧"
+      ]
+    },
+    "g:social-platform-accounts-unnamed": {
+      "name": "未具名多社群平台帳號（本篇集合）",
+      "type": "account",
+      "aliases": [
+        "多社群平台眾多帳號"
+      ],
+      "note": "amplifier；claim-scoped，跨文不必同指"
+    },
+    "g:local-broadcast-new-media-unnamed": {
+      "name": "未具名中國地方廣電新媒體（本篇集合）",
+      "type": "network",
+      "aliases": [
+        "新媒體"
+      ],
+      "note": "引用、轉播看台海與台灣名嘴節目片段的 amplifier；claim-scoped"
+    },
+    "g:pla-information-support-dept": {
+      "name": "PLA Information Support Department",
+      "type": "org",
+      "aliases": [
+        "解放軍信息支援部"
+      ],
+      "note": "原文所稱過去執行宣傳之解放軍單位"
+    },
+    "g:pla-news-communication-center": {
+      "name": "PLA News Communication Center",
+      "type": "org",
+      "aliases": [
+        "解放軍新聞傳播中心"
+      ],
+      "note": "中國軍號上級單位；本篇按軍媒通道標 amplifier"
+    }
   }
 }

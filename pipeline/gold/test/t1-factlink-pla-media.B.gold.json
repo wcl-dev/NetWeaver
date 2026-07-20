@@ -1,0 +1,3047 @@
+{
+  "_annotate": "填 mentions/assertions/operation_expected（見 GUIDELINES.md）。只填逐字 quote/surface，offset 由 validate_gold.py 算。勿改 cleaned_text（改了 sha 不符）。",
+  "kind": "test",
+  "cleaner_version": "normalize-v0",
+  "text_sha256": "sha256:43704a8c50173ec54547025e5e0c8b91d18b0cd0c9f8366e641895f3d4d251c8",
+  "report": {
+    "name": "6700筆軍演資料揭露 東部戰區融媒體的宣傳網絡全貌",
+    "url": "https://www.factlink.tw/p/pla-weibo-analysis",
+    "org": "FactLink 數位素養實驗室",
+    "published": "2026-04",
+    "type": "ngo-report"
+  },
+  "strata": {
+    "lang": "zh",
+    "source": "factlink",
+    "length": "medium",
+    "format": "html",
+    "attribution": "clear"
+  },
+  "cleaned_text": "6700筆軍演資料揭露 東部戰區融媒體的宣傳網絡全貌\nFactLink 數位素養實驗室\nApr 29, 2026\n作者：FactLink 李惟平、陳慧敏、馬麗昕；台灣民主實驗室 Jerry Yu、Copper Tung 資料協力：台灣民主實驗室（Doublethink Lab）提供FIMI Intelligence Dashboard 技術協力：資安院分析師曾仲毅、政治大學創新國際學院助理教授卞中佩\n2025年12月底，中共解放軍對台灣發動名為「正義使命」的軍事演習。這是中共自2022年美國眾議院長裴洛西訪台後，短短三年內第七度發動圍台軍演。在軍演中，除了軍事作戰單位發動演練外，東部戰區融媒體中心更發動「資訊宣傳戰」。\nFactLink和Doublethink Lab研究團隊（以下稱研究團隊），透過「正義使命」軍演，掌握解放軍如何發動軍演中的資訊宣傳戰，並試圖解析被外界稱為「中央廚房」素材的東部戰區融媒體中心機制。1\n本研究有三點發現：\n觀察1：軍演的宣傳，是東部戰區融媒體中心是透過官媒、地方媒體、社群帳號等不同行動者組成的宣傳網絡發動。從網絡關係圖可見，東部戰區融媒體中心發動，央視等行動者會運用既有網絡來發動宣傳。僅有特定敘事主題可見特定行動者「使用同一素材製作不同文本」，再協同不同層次的行動者齊力發動傳播。\n觀察2：軍演的敘事有劇本，東部戰區融媒體首先發布主題海報、AI短視頻、歷次演習畫面，搭配官媒製播的軍事專家訪談；當日演習畫面是在演習第一、二天的中午過後釋出；第三日未釋出新演習畫面，宣傳力度已減，轉為習近平跨年祝賀，融媒體以MV做結尾。其中，對台的福建媒體和對台帳號提供台灣國軍負面宣傳、台政治名嘴評論。\n觀察3：東部戰區融媒體中心在正義使命軍演，以「無人機拍攝到台北101」影像為宣傳攻擊主力，以「易懂」話題恫嚇民心，而對軍事專家來說，這段影像不具威懾力，更缺乏情資價值。顯示解放軍動作頻仍，台灣民眾必須加強對「軍演」資訊的分辨與識讀能力，準確解讀軍演情資。\n喜歡我們的分析嗎？歡迎支持贊助FactLink\n東部戰區融媒體中心扮演的角色\n解放軍在2022年8月裴洛西訪台之行後，發動大規模圍台軍演，進入對台軍事施壓新階段。進入2023年，時任總統蔡英文、副總統賴清德外訪期間時，中共皆發動軍演施壓；2024年後，東部戰區融媒體中心開始主責軍演宣傳工作，並為演習命名，除有一次未命名軍演外，另發動聯合利劍A、聯合利劍B軍演，2025年則有海峽雷霆2025-A以及正義使命。\n東部戰區融媒體中心到底是什麼樣的單位？鑽研解放軍宣傳的國防大學老師指出，軍演期間是由解放軍軍事作戰幹部負責操演，後勤、裝備單位配合演習工作，宣傳則交給政治工作部門。東部戰區融媒體中心是政治工作單位，任務是結合傳統媒體、自媒體和新媒體來發動宣傳。政治工作部門的角色巧妙，既要負責宣傳軍演，也需把共產黨指令貫徹到解放軍。\n東部戰區融媒體中心從2024年聯合利劍A、B軍演以來，明顯主導軍演期間的宣傳與輿論工作。國防大學新聞系教授傅文成觀察，過去一般是由總政治部加上解放軍信息支援部執行宣傳，東部戰區融媒體中心主責宣傳，宣傳工作比過去更能貼近台灣脈絡，操作也更精密、細膩。\n東部戰區融媒體中心被外界稱為「中央廚房」，本研究透過「正義使命」軍演的宣傳網絡分析與敘事時序分析，以拆解「東部戰區融媒體中心」如何發動正義使命宣傳工作，讓我們來看這個所謂「中央廚房」的上菜機制。\n6,700筆資料揭露：正義使命軍演宣傳網絡運作全貌\n正義使命軍演是由中共解放軍東部戰區發言人施毅在2025年12月29日早上7點30分宣布開始，由東部戰區、新華社受權發布演訓公告和示意圖，央視亦發布相關新聞。直到2025年12月31日東部戰區新聞發言人李熹宣布演訓結束。\n本研究的資料聚焦於東部戰區宣布「正義使命」軍演至軍演結束後之期間，自2025年12月28日至2026年1月5日。研究團隊蒐集微博（Weibo）的相關資料，以分析中國社群媒體平台對該軍演之敘事建構與傳播模式；在台灣輿論面向，則以Threads與YouTube作為主要資料來源，以了解不同平台之討論脈絡與訊息擴散情形。關鍵字包含：正义使命、解放军、东部战区、演习、无人机、正義使命、解放軍、東部戰區、演習和無人機，共收集6,924筆資料，再排除新華社宣佈軍演開始之前的不相關貼文，共得到6,747筆資料，以此資料進行後續分析。\n為了解析東部戰區融媒體中心的「中央廚房」宣傳網絡，研究團隊觀察到軍演期間的宣傳文本和主題有高度相似性，首先將收集來的貼文或影片說明資料共6,747筆，做相似性比對，方法是 將文字轉為向量，再設定以相似性0.8為閾值，高於0.8者 便分類成同一組，並排除與軍演無關內容，最後可得到392組文本，再進一步檢視傳播同一組文本的帳號。\n此研究同時參考 EEAS 對境外資訊操弄與干預的威脅者分類架構 (FIMI Architecture) 將傳播帳號分作四類：官方 (Official State)、官方控制 (State-Controlled)、與官方有關連 (State-Linked)、立場與官方一致 (State-Aligned)，以及其他則不在這四類的帳號。\n一張網絡圖看懂正義使命軍演 誰在放大中國官方敘事\n在網絡圖中，傳播帳號以不同顏色代表為「帳號類別」，紅色為官方帳號 (State Official)、橘色是官方控制帳號 (State-Controlled)、黃色是官方有關聯的帳號 (State-Linked)、藍色是官方一致的帳號 (State-Aligned)，灰色則表示針對關鍵字發文次數不足三次或Threads上的個人帳號。為了避免可能的Threads真人帳號遭到不必要的騷擾，已將網絡圖上的Threads帳號名稱改以去識別化的流水號呈現。 網絡圖的線條為同一組相似文本，以箭頭指向性來表示發文先後順序，帳號的圓圈越大，表示其內容被其他帳號使用的次數愈多。連結愈粗表示兩帳號間出現內容相似度高的次數愈多，連結線條為紅色表示在Weibo、連結線條為紫色表示在YouTube，連結線條為灰色則表示在Threads。\n透過正義使命軍演的宣傳網絡圖，研究團隊可以觀察到：\n內容被其他帳號使用次數較高的行動者：一是東部戰區，二是中國官媒如央視新聞、環球時報、環球網、央廣軍事，三是與官方有關的帳號 (State-Linked)，如新浪軍事、觀察者網。\n研究團隊觀察到，解放軍新聞傳播中心轄下微博帳號「中國軍號」的貼文經常被其他官媒與社群帳號採用，但未反映於本次網絡圖中。主要是中國軍號內容多以短影音與影像形式被轉用，且其發文文字較為獨特。因此，研究團隊將透過接下來的敘事分析，補充中國軍號在資訊宣傳中的角色。\n透過網絡分析可大致看出宣傳管道順序，第一層由東部戰區發動，並由第二層央視新聞、環球時報、央廣軍事等官媒宣傳，再由第三或第四層的地方公安、地方融媒體、媒體新媒體品牌、高影響力帳號接續放大官方敘事。\n檢視392組文本資料所顯示的指向網絡時可發現，東部戰區發布的貼文，有13個媒體和大V共同轉分享，包括央視新聞、央廣軍事、鎮江民生頻道、央廣軍事、環球時報、浙江日報、澎湃新聞、宣漢融媒、新浪軍事、動静新聞、南湖發布、看看新聞Knews和星話大白等。\n央視新聞發布的13則報導文本，有26個帳號轉發，官方單位有屏山公安、銅陵經開公安在線、山東高法、沐川公安、青春龍泉驛和平安金陽；媒體有動靜新聞、新浪軍事、南寧晚報、錢江晚報、南方週末、頭條新聞、第一現場、馬上資訊、看台海、福建日報、環球時報和新京報；大V有星話大白、包容萬物恆河水、台灣那點事兒、扎西德勒·天珠收藏、椒哥微記錄、航天面面觀、長春-小風、白鶴-老鄧。\n玉淵潭天為央視融媒體品牌，在網絡圖中與央視沒有指向關係，顯示兩個品牌之間分工明確，刻意不轉傳，各自扮演不同角色；《觀察者網》除了作為發布者外，也擴散轉發來自玉淵潭天這類被視為與中國官媒關係緊密的大V的內容。\n在網絡圖雖可見到俄羅斯官媒《今日俄羅斯》微博帳號，但沒有看到固定的轉發群組，在對台軍演未見扮演凸顯的特定角色，發文主要是轉分享央視新聞、綜整中共官方訊息。\n喜歡我們的分析嗎？歡迎支持贊助FactLink\n拆解東部戰區融媒體怎麼說故事\n研究團隊進一步針對正義軍演宣傳中的「主要行動者」發文進行敘事內容分析。\n主要行動者在此研究報告指的是產出軍演宣傳原始內容的帳號。依據文本相似性資料、關係網絡分析來確認主要行動者，包括：東部戰區；軍方媒體如中國軍號、解放軍報；中央官媒如新華社、央視、央視軍事、人民日報、央廣軍事；以及與對台議題高度相關的福建媒體，如看台海、台海時刻，另亦納入引用次數較高的觀察者網。\n研究團隊按照演習時間，整理出正義使命軍演的敘事劇本，如下：\n研究團隊觀察東部戰區融媒體中心和主要行動者的協作與分工，得到幾點觀察：\n主題海報＋專家講評先行　演習畫面未到先鋪陳\n東部戰區融媒體中心扮演「中央廚房」，推出正義之箭、正義之盾、正義之錘、正義之馬等主題海報，推出AI短影片、搭配海報主題的歷次演習畫面，在當日演習畫面尚未傳回之前，用以遞補宣傳檔期。比如，演習首日（12月29日）早上，推出正義之箭、正義之盾海報之外，歷次演習畫面集結演習視頻、AI視頻「联武群戈斩独道」等；演習第二日（12月30日）早上，則有正義之錘、主题海報「軍力代差和以謀獨」海報。\n除了東部戰區發言人的官宣之外，央視、環球時報、新華社等特定官媒採訪中共特定軍事專家來點評演習，是演習畫面尚未製播之前的關鍵宣傳素材。專家限定為中共國防大學教授孟祥青、張弛、中國軍事學院副研究員付征南、海軍研究院研究員李劍等，專家影片由其他媒體和社群帳號轉發；福建媒體與網絡則以台灣政治名嘴和台灣退休將領的發言來「點評」軍演。\n「無人機拍攝台北101」影像：宣傳戰的攻擊主線\n國防大學新聞系教授傅文成觀察，東部戰區融媒體中心發動軍演宣傳時，會挑選特定敘事主題作為宣傳的主力攻擊，主力攻擊敘事可見從中央官媒、地方媒體到社群的不同行動者齊力發動。從過去經驗也可推測，東部戰區融媒體中心在軍演前已透過協調會議，做好設定攻擊敘事主題來做協同發動。然而，並非東部戰區融媒體中心的每則素材或發文都被全力推播。\n正義使命軍演的主力宣傳攻擊是「無人機拍到台北101」敘事。央視在2025年12月29日晚間7點新聞聯播時，於新聞播報中穿插「無人機拍攝到台北101」畫面。當晚7-9點之間，中國軍號、央視新聞、東部戰區、多社群平台眾多帳號等也共同發動此主題。\n此影像敘事包含四種文本：央視和央視軍事採用手機直立畫面；中國軍號以無人機起飛影像作為開頭；東部戰區在「這麼近那麼美，隨時到台北」影像中穿插一張台北101照；此外，網路論壇和社群平台流傳所謂「無人機拍攝到的台北地形全景圖」。隨後，中國地方融媒體、媒體新媒體、微博博主帳號、論壇貼文，共同放大渲染，同時話題亦吸引台灣媒體跟進報導，台灣網友查證討論。\n資安院分析師戴毓辰協助比對上述文本的「台北101」影像，這四種文本影像疊合後完全相符，觀測到文本畫面左下的時間秒數，不同文本顯示的秒數略有不同，可推測東部戰區、央視、中國軍號等三個主要行動者，透過早已炮製的「共同素材」，自行加工與發揮為宣傳影像。\n研究團隊採訪國防安全研究院研究員沈明室、關注解放軍公開情報圖資的溫約瑟均指出，這段影像不具有軍事情資威脅，但卻顯示出東部戰區融媒體中心在決定「宣傳攻擊」敘事時，看中的是恫嚇威脅民眾的政治宣傳效果。\n主行動者分工清晰：官媒、軍媒與地方網絡各司其職\n觀察軍演宣傳的關係網絡圖和敘事分析，東部戰區融媒體和主要行動者之間各有分工：\n東部戰區融媒體所製作的「演習畫面」素材，提供給央視、人民日報、中國軍號、環球日報等媒體使用，素材會同步打上「東部戰區」藍白符號。這些中央媒體作為主要行動者，原本就有各自的網絡協力轉發、傳播。\n央視除了發布東部戰區融媒體的素材，另外以專家專訪點評、新聞聯播等節目，提供宣傳支援，成為被轉發次數最高的引用者。\n環球時報，另引述中共外交部，並從國際關係角度提供評論、新聞和圖卡。\n中國軍號和解放軍報，會有起床號、熄燈號，提供解放軍觀點的宣傳素材。\n福建網絡提供台灣軍方凸槌訊息、台灣軍方驅離錄音、台灣政治名嘴和退休將領點評等「台灣」觀點。\n中共地方媒體的新媒體品牌，比如北京時間（北京廣播電視台）、直新聞（深圳廣電集團）透過博主型記者主播講述軍演新聞與介紹主題海報意義。值得注意的是，中共特定幾個地方廣電媒體的「新媒體」，引用、轉播「看台海」和特定台媒的台灣名嘴節目片段，對內來宣傳軍演。\n微博的軍事博主、對台帳號渲染、放大官方敘事，增添敘事細節。以「無人機」敘事為例，官方未曾提及「雙尾蠍」，但媒體和民間軍事博主透過中國軍號畫面，反搜認定為雙尾蠍，文章延伸介紹「雙尾蠍」功能，甚至虛擬出無人機斬首計畫、繞台路線。這些帳號甚至引用台媒名嘴、專家的片段批評台軍和台灣執政黨、稱讚解放軍強大。\n宣傳攻勢第三日轉弱　未釋出新演習畫面\n儘管東部戰區新聞發言人是在2025年12月31日晚間六點宣布結束演習，但演習第三日（12月31日）的宣傳工作已不見任何更新的演習畫面。東部戰區融媒體中心在第三日發布的是前兩日演習畫面和「沙場風雨兩岸燈」MV，解放軍報刊登的是12月30日於福州平潭拍攝的遠程火箭砲實彈射擊照片集與文字報導。\n央視當晚的新聞聯播則為習近平新年賀詞，軍事新聞關注的是慶賀解放軍報70週年、香港部隊人事訊息、火箭軍建軍十週年等無關對台軍演訊息，翌日為元旦，並沒有對台軍演的相關訊息。\n小結\n至2025年底為止，中共已對台發動七次軍演。東部戰區融媒體中心作為政治工作的宣傳單位，亦在當中操練宣傳戰、輿論戰，以發揮對台的威懾作用，企圖弱化台灣民眾抵抗意志，並宣示軍事威脅行動的合法性。本研究以正義使命軍演為案例，嘗試拆解東部戰區融媒體中心的軍演敘事劇本，掌握融媒體中心如何透過與中央官媒、地方媒體、新媒體、社群帳號協力，以及挑選特定的敘事，對台灣民眾發動恫嚇，並對大陸民眾操弄民族情緒，以支持解放軍的演習動員。\n東部戰區融媒體中心的「宣傳」敘事觀點，有其政治宣傳目的。透過中國官媒和社群網路輿論烘托渲染的敘事，主要目的是對台灣民眾營造軍演鄰近的威嚇感，但不見得是解放軍軍演真正的威脅所在。當解放軍把軍演和擾台的動作頻仍，台灣民眾必須加強對「軍演」資訊的分辨與識讀能力，準確解讀軍演的情資，才能過濾虛假放大的宣傳恫嚇。\n喜歡我們的分析嗎？歡迎支持贊助FactLink",
+  "operation_expected": [],
+  "mentions": [
+    {
+      "mid": "m001",
+      "gid": "g:pla",
+      "entity_type": "org",
+      "context_role": "actor",
+      "surface": "中共解放軍",
+      "quote": "2025年12月底，中共解放軍對台灣發動名為「正義使命」的軍事演習。"
+    },
+    {
+      "mid": "m002",
+      "gid": "g:taiwan",
+      "entity_type": "place",
+      "context_role": "target",
+      "surface": "台灣",
+      "quote": "2025年12月底，中共解放軍對台灣發動名為「正義使命」的軍事演習。"
+    },
+    {
+      "mid": "m003",
+      "gid": "g:fujian-network",
+      "entity_type": "network",
+      "context_role": "amplifier",
+      "surface": "福建媒體",
+      "quote": "其中，對台的福建媒體和對台帳號提供台灣國軍負面宣傳、台政治名嘴評論。"
+    },
+    {
+      "mid": "m004",
+      "gid": "g:taiwan-military",
+      "entity_type": "org",
+      "context_role": "target",
+      "surface": "台灣國軍",
+      "quote": "其中，對台的福建媒體和對台帳號提供台灣國軍負面宣傳、台政治名嘴評論。"
+    },
+    {
+      "mid": "m005",
+      "gid": "g:fujian-network",
+      "entity_type": "network",
+      "context_role": "amplifier",
+      "surface": "福建媒體",
+      "quote": "其中，對台的福建媒體和對台帳號提供台灣國軍負面宣傳、台政治名嘴評論。"
+    },
+    {
+      "mid": "m006",
+      "gid": "g:tw-pundits-unnamed",
+      "entity_type": "person",
+      "context_role": "amplified-voice",
+      "surface": "台政治名嘴",
+      "quote": "其中，對台的福建媒體和對台帳號提供台灣國軍負面宣傳、台政治名嘴評論。"
+    },
+    {
+      "mid": "m007",
+      "gid": "g:ccp-state-media",
+      "entity_type": "media",
+      "context_role": "amplifier",
+      "surface": "其他官媒",
+      "quote": "研究團隊觀察到，解放軍新聞傳播中心轄下微博帳號「中國軍號」的貼文經常被其他官媒與社群帳號採用，但未反映於本次網絡圖中。"
+    },
+    {
+      "mid": "m008",
+      "gid": "g:china-mil-hao",
+      "entity_type": "account",
+      "context_role": "amplifier",
+      "surface": "中國軍號",
+      "quote": "研究團隊觀察到，解放軍新聞傳播中心轄下微博帳號「中國軍號」的貼文經常被其他官媒與社群帳號採用，但未反映於本次網絡圖中。"
+    },
+    {
+      "mid": "m009",
+      "gid": "yuyuantantian",
+      "entity_type": "account",
+      "context_role": "amplifier",
+      "surface": "玉淵潭天",
+      "quote": "玉淵潭天為央視融媒體品牌"
+    },
+    {
+      "mid": "m010",
+      "gid": "cmg-cctv",
+      "entity_type": "media",
+      "context_role": "amplifier",
+      "surface": "央視",
+      "quote": "玉淵潭天為央視融媒體品牌"
+    },
+    {
+      "mid": "m011",
+      "gid": "guancha",
+      "entity_type": "media",
+      "context_role": "amplifier",
+      "surface": "觀察者網",
+      "quote": "《觀察者網》除了作為發布者外，也擴散轉發來自玉淵潭天這類被視為與中國官媒關係緊密的大V的內容"
+    },
+    {
+      "mid": "m012",
+      "gid": "yuyuantantian",
+      "entity_type": "account",
+      "context_role": "amplifier",
+      "surface": "玉淵潭天",
+      "quote": "《觀察者網》除了作為發布者外，也擴散轉發來自玉淵潭天這類被視為與中國官媒關係緊密的大V的內容"
+    },
+    {
+      "mid": "m013",
+      "gid": "guancha",
+      "entity_type": "media",
+      "context_role": "amplifier",
+      "surface": "觀察者網",
+      "quote": "《觀察者網》除了作為發布者外，也擴散轉發來自玉淵潭天這類被視為與中國官媒關係緊密的大V的內容"
+    },
+    {
+      "mid": "m014",
+      "gid": "yuyuantantian",
+      "entity_type": "account",
+      "context_role": "amplifier",
+      "surface": "玉淵潭天",
+      "quote": "《觀察者網》除了作為發布者外，也擴散轉發來自玉淵潭天這類被視為與中國官媒關係緊密的大V的內容"
+    },
+    {
+      "mid": "m015",
+      "gid": "g:russia-today",
+      "entity_type": "media",
+      "context_role": "amplifier",
+      "surface": "今日俄羅斯",
+      "quote": "在網絡圖雖可見到俄羅斯官媒《今日俄羅斯》微博帳號，但沒有看到固定的轉發群組，在對台軍演未見扮演凸顯的特定角色，發文主要是轉分享央視新聞、綜整中共官方訊息。"
+    },
+    {
+      "mid": "m016",
+      "gid": "cmg-cctv",
+      "entity_type": "media",
+      "context_role": "amplifier",
+      "surface": "央視新聞",
+      "quote": "在網絡圖雖可見到俄羅斯官媒《今日俄羅斯》微博帳號，但沒有看到固定的轉發群組，在對台軍演未見扮演凸顯的特定角色，發文主要是轉分享央視新聞、綜整中共官方訊息。"
+    },
+    {
+      "mid": "m017",
+      "gid": "etc-fusion-media",
+      "entity_type": "org",
+      "context_role": "actor",
+      "surface": "東部戰區融媒體中心",
+      "quote": "東部戰區融媒體中心扮演「中央廚房」，推出正義之箭、正義之盾、正義之錘、正義之馬等主題海報"
+    },
+    {
+      "mid": "m018",
+      "gid": "g:narr-righteous-arrow",
+      "entity_type": "narrative",
+      "context_role": "narrative",
+      "surface": "正義之箭",
+      "quote": "東部戰區融媒體中心扮演「中央廚房」，推出正義之箭、正義之盾、正義之錘、正義之馬等主題海報"
+    },
+    {
+      "mid": "m019",
+      "gid": "etc-fusion-media",
+      "entity_type": "org",
+      "context_role": "actor",
+      "surface": "東部戰區融媒體中心",
+      "quote": "東部戰區融媒體中心扮演「中央廚房」，推出正義之箭、正義之盾、正義之錘、正義之馬等主題海報"
+    },
+    {
+      "mid": "m020",
+      "gid": "g:narr-righteous-shield",
+      "entity_type": "narrative",
+      "context_role": "narrative",
+      "surface": "正義之盾",
+      "quote": "東部戰區融媒體中心扮演「中央廚房」，推出正義之箭、正義之盾、正義之錘、正義之馬等主題海報"
+    },
+    {
+      "mid": "m021",
+      "gid": "etc-fusion-media",
+      "entity_type": "org",
+      "context_role": "actor",
+      "surface": "東部戰區融媒體中心",
+      "quote": "東部戰區融媒體中心扮演「中央廚房」，推出正義之箭、正義之盾、正義之錘、正義之馬等主題海報"
+    },
+    {
+      "mid": "m022",
+      "gid": "g:narr-righteous-hammer",
+      "entity_type": "narrative",
+      "context_role": "narrative",
+      "surface": "正義之錘",
+      "quote": "東部戰區融媒體中心扮演「中央廚房」，推出正義之箭、正義之盾、正義之錘、正義之馬等主題海報"
+    },
+    {
+      "mid": "m023",
+      "gid": "etc-fusion-media",
+      "entity_type": "org",
+      "context_role": "actor",
+      "surface": "東部戰區融媒體中心",
+      "quote": "東部戰區融媒體中心扮演「中央廚房」，推出正義之箭、正義之盾、正義之錘、正義之馬等主題海報"
+    },
+    {
+      "mid": "m024",
+      "gid": "g:narr-righteous-horse",
+      "entity_type": "narrative",
+      "context_role": "narrative",
+      "surface": "正義之馬",
+      "quote": "東部戰區融媒體中心扮演「中央廚房」，推出正義之箭、正義之盾、正義之錘、正義之馬等主題海報"
+    },
+    {
+      "mid": "m025",
+      "gid": "cmg-cctv",
+      "entity_type": "media",
+      "context_role": "amplifier",
+      "surface": "央視",
+      "quote": "央視在2025年12月29日晚間7點新聞聯播時，於新聞播報中穿插「無人機拍攝到台北101」畫面。"
+    },
+    {
+      "mid": "m026",
+      "gid": "g:narr-drone-taipei101",
+      "entity_type": "narrative",
+      "context_role": "narrative",
+      "surface": "無人機拍攝到台北101",
+      "quote": "央視在2025年12月29日晚間7點新聞聯播時，於新聞播報中穿插「無人機拍攝到台北101」畫面。"
+    },
+    {
+      "mid": "m027",
+      "gid": "g:china-mil-hao",
+      "entity_type": "account",
+      "context_role": "amplifier",
+      "surface": "中國軍號",
+      "quote": "當晚7-9點之間，中國軍號、央視新聞、東部戰區、多社群平台眾多帳號等也共同發動此主題。"
+    },
+    {
+      "mid": "m028",
+      "gid": "g:narr-drone-taipei101",
+      "entity_type": "narrative",
+      "context_role": "narrative",
+      "surface": "此主題",
+      "quote": "當晚7-9點之間，中國軍號、央視新聞、東部戰區、多社群平台眾多帳號等也共同發動此主題。"
+    },
+    {
+      "mid": "m029",
+      "gid": "cmg-cctv",
+      "entity_type": "media",
+      "context_role": "amplifier",
+      "surface": "央視新聞",
+      "quote": "當晚7-9點之間，中國軍號、央視新聞、東部戰區、多社群平台眾多帳號等也共同發動此主題。"
+    },
+    {
+      "mid": "m030",
+      "gid": "g:narr-drone-taipei101",
+      "entity_type": "narrative",
+      "context_role": "narrative",
+      "surface": "此主題",
+      "quote": "當晚7-9點之間，中國軍號、央視新聞、東部戰區、多社群平台眾多帳號等也共同發動此主題。"
+    },
+    {
+      "mid": "m031",
+      "gid": "etc-fusion-media",
+      "entity_type": "org",
+      "context_role": "actor",
+      "surface": "東部戰區",
+      "quote": "當晚7-9點之間，中國軍號、央視新聞、東部戰區、多社群平台眾多帳號等也共同發動此主題。"
+    },
+    {
+      "mid": "m032",
+      "gid": "g:narr-drone-taipei101",
+      "entity_type": "narrative",
+      "context_role": "narrative",
+      "surface": "此主題",
+      "quote": "當晚7-9點之間，中國軍號、央視新聞、東部戰區、多社群平台眾多帳號等也共同發動此主題。"
+    },
+    {
+      "mid": "m033",
+      "gid": "etc-fusion-media",
+      "entity_type": "org",
+      "context_role": "actor",
+      "surface": "東部戰區融媒體",
+      "quote": "東部戰區融媒體所製作的「演習畫面」素材，提供給央視、人民日報、中國軍號、環球日報等媒體使用，素材會同步打上「東部戰區」藍白符號。"
+    },
+    {
+      "mid": "m034",
+      "gid": "cmg-cctv",
+      "entity_type": "media",
+      "context_role": "amplifier",
+      "surface": "央視",
+      "quote": "東部戰區融媒體所製作的「演習畫面」素材，提供給央視、人民日報、中國軍號、環球日報等媒體使用，素材會同步打上「東部戰區」藍白符號。"
+    },
+    {
+      "mid": "m035",
+      "gid": "etc-fusion-media",
+      "entity_type": "org",
+      "context_role": "actor",
+      "surface": "東部戰區融媒體",
+      "quote": "東部戰區融媒體所製作的「演習畫面」素材，提供給央視、人民日報、中國軍號、環球日報等媒體使用，素材會同步打上「東部戰區」藍白符號。"
+    },
+    {
+      "mid": "m036",
+      "gid": "g:peoples-daily",
+      "entity_type": "media",
+      "context_role": "amplifier",
+      "surface": "人民日報",
+      "quote": "東部戰區融媒體所製作的「演習畫面」素材，提供給央視、人民日報、中國軍號、環球日報等媒體使用，素材會同步打上「東部戰區」藍白符號。"
+    },
+    {
+      "mid": "m037",
+      "gid": "etc-fusion-media",
+      "entity_type": "org",
+      "context_role": "actor",
+      "surface": "東部戰區融媒體",
+      "quote": "東部戰區融媒體所製作的「演習畫面」素材，提供給央視、人民日報、中國軍號、環球日報等媒體使用，素材會同步打上「東部戰區」藍白符號。"
+    },
+    {
+      "mid": "m038",
+      "gid": "g:china-mil-hao",
+      "entity_type": "account",
+      "context_role": "amplifier",
+      "surface": "中國軍號",
+      "quote": "東部戰區融媒體所製作的「演習畫面」素材，提供給央視、人民日報、中國軍號、環球日報等媒體使用，素材會同步打上「東部戰區」藍白符號。"
+    },
+    {
+      "mid": "m039",
+      "gid": "etc-fusion-media",
+      "entity_type": "org",
+      "context_role": "actor",
+      "surface": "東部戰區融媒體",
+      "quote": "東部戰區融媒體所製作的「演習畫面」素材，提供給央視、人民日報、中國軍號、環球日報等媒體使用，素材會同步打上「東部戰區」藍白符號。"
+    },
+    {
+      "mid": "m040",
+      "gid": "global-times",
+      "entity_type": "media",
+      "context_role": "amplifier",
+      "surface": "環球日報",
+      "quote": "東部戰區融媒體所製作的「演習畫面」素材，提供給央視、人民日報、中國軍號、環球日報等媒體使用，素材會同步打上「東部戰區」藍白符號。"
+    },
+    {
+      "mid": "m041",
+      "gid": "cmg-cctv",
+      "entity_type": "media",
+      "context_role": "amplifier",
+      "surface": "央視",
+      "quote": "央視除了發布東部戰區融媒體的素材，另外以專家專訪點評、新聞聯播等節目，提供宣傳支援，成為被轉發次數最高的引用者。"
+    },
+    {
+      "mid": "m042",
+      "gid": "etc-fusion-media",
+      "entity_type": "org",
+      "context_role": "actor",
+      "surface": "東部戰區融媒體",
+      "quote": "央視除了發布東部戰區融媒體的素材，另外以專家專訪點評、新聞聯播等節目，提供宣傳支援，成為被轉發次數最高的引用者。"
+    },
+    {
+      "mid": "m043",
+      "gid": "global-times",
+      "entity_type": "media",
+      "context_role": "amplifier",
+      "surface": "環球時報",
+      "quote": "環球時報，另引述中共外交部，並從國際關係角度提供評論、新聞和圖卡。"
+    },
+    {
+      "mid": "m044",
+      "gid": "g:china-mofa",
+      "entity_type": "org",
+      "context_role": "actor",
+      "surface": "中共外交部",
+      "quote": "環球時報，另引述中共外交部，並從國際關係角度提供評論、新聞和圖卡。"
+    },
+    {
+      "mid": "m045",
+      "gid": "g:fujian-network",
+      "entity_type": "network",
+      "context_role": "amplifier",
+      "surface": "福建網絡",
+      "quote": "福建網絡提供台灣軍方凸槌訊息"
+    },
+    {
+      "mid": "m046",
+      "gid": "g:taiwan-military",
+      "entity_type": "org",
+      "context_role": "target",
+      "surface": "台灣軍方",
+      "quote": "福建網絡提供台灣軍方凸槌訊息"
+    },
+    {
+      "mid": "m047",
+      "gid": "g:fujian-network",
+      "entity_type": "network",
+      "context_role": "amplifier",
+      "surface": "福建網絡",
+      "quote": "福建網絡提供台灣軍方凸槌訊息、台灣軍方驅離錄音、台灣政治名嘴和退休將領點評等「台灣」觀點。"
+    },
+    {
+      "mid": "m048",
+      "gid": "g:tw-pundits-unnamed",
+      "entity_type": "person",
+      "context_role": "amplified-voice",
+      "surface": "台灣政治名嘴",
+      "quote": "福建網絡提供台灣軍方凸槌訊息、台灣軍方驅離錄音、台灣政治名嘴和退休將領點評等「台灣」觀點。"
+    },
+    {
+      "mid": "m049",
+      "gid": "g:fujian-network",
+      "entity_type": "network",
+      "context_role": "amplifier",
+      "surface": "福建網絡",
+      "quote": "福建網絡提供台灣軍方凸槌訊息、台灣軍方驅離錄音、台灣政治名嘴和退休將領點評等「台灣」觀點。"
+    },
+    {
+      "mid": "m050",
+      "gid": "g:tw-retired-generals-unnamed",
+      "entity_type": "person",
+      "context_role": "amplified-voice",
+      "surface": "退休將領",
+      "quote": "福建網絡提供台灣軍方凸槌訊息、台灣軍方驅離錄音、台灣政治名嘴和退休將領點評等「台灣」觀點。"
+    },
+    {
+      "mid": "m051",
+      "gid": "g:prc-military-blogger-accounts-unnamed",
+      "entity_type": "account",
+      "context_role": "amplifier",
+      "surface": "媒體和民間軍事博主",
+      "quote": "但媒體和民間軍事博主透過中國軍號畫面，反搜認定為雙尾蠍"
+    },
+    {
+      "mid": "m052",
+      "gid": "g:narr-double-tail-scorpion",
+      "entity_type": "narrative",
+      "context_role": "narrative",
+      "surface": "雙尾蠍",
+      "quote": "但媒體和民間軍事博主透過中國軍號畫面，反搜認定為雙尾蠍"
+    },
+    {
+      "mid": "m053",
+      "gid": "g:prc-military-blogger-accounts-unnamed",
+      "entity_type": "account",
+      "context_role": "amplifier",
+      "surface": "這些帳號",
+      "quote": "這些帳號甚至引用台媒名嘴、專家的片段批評台軍和台灣執政黨、稱讚解放軍強大。"
+    },
+    {
+      "mid": "m054",
+      "gid": "g:tw-pundits-unnamed",
+      "entity_type": "person",
+      "context_role": "amplified-voice",
+      "surface": "台媒名嘴",
+      "quote": "這些帳號甚至引用台媒名嘴、專家的片段批評台軍和台灣執政黨、稱讚解放軍強大。"
+    },
+    {
+      "mid": "m055",
+      "gid": "g:prc-military-blogger-accounts-unnamed",
+      "entity_type": "account",
+      "context_role": "amplifier",
+      "surface": "這些帳號",
+      "quote": "這些帳號甚至引用台媒名嘴、專家的片段批評台軍和台灣執政黨、稱讚解放軍強大。"
+    },
+    {
+      "mid": "m056",
+      "gid": "g:experts-unnamed",
+      "entity_type": "person",
+      "context_role": "amplified-voice",
+      "surface": "專家",
+      "quote": "這些帳號甚至引用台媒名嘴、專家的片段批評台軍和台灣執政黨、稱讚解放軍強大。"
+    },
+    {
+      "mid": "m057",
+      "gid": "g:prc-military-blogger-accounts-unnamed",
+      "entity_type": "account",
+      "context_role": "amplifier",
+      "surface": "這些帳號",
+      "quote": "這些帳號甚至引用台媒名嘴、專家的片段批評台軍和台灣執政黨、稱讚解放軍強大。"
+    },
+    {
+      "mid": "m058",
+      "gid": "g:taiwan-military",
+      "entity_type": "org",
+      "context_role": "target",
+      "surface": "台軍",
+      "quote": "這些帳號甚至引用台媒名嘴、專家的片段批評台軍和台灣執政黨、稱讚解放軍強大。"
+    },
+    {
+      "mid": "m059",
+      "gid": "g:prc-military-blogger-accounts-unnamed",
+      "entity_type": "account",
+      "context_role": "amplifier",
+      "surface": "這些帳號",
+      "quote": "這些帳號甚至引用台媒名嘴、專家的片段批評台軍和台灣執政黨、稱讚解放軍強大。"
+    },
+    {
+      "mid": "m060",
+      "gid": "g:dpp",
+      "entity_type": "org",
+      "context_role": "target",
+      "surface": "台灣執政黨",
+      "quote": "這些帳號甚至引用台媒名嘴、專家的片段批評台軍和台灣執政黨、稱讚解放軍強大。"
+    },
+    {
+      "mid": "m061",
+      "gid": "g:prc-military-blogger-accounts-unnamed",
+      "entity_type": "account",
+      "context_role": "amplifier",
+      "surface": "這些帳號",
+      "quote": "這些帳號甚至引用台媒名嘴、專家的片段批評台軍和台灣執政黨、稱讚解放軍強大。"
+    },
+    {
+      "mid": "m062",
+      "gid": "g:narr-pla-superior",
+      "entity_type": "narrative",
+      "context_role": "narrative",
+      "surface": "解放軍強大",
+      "quote": "這些帳號甚至引用台媒名嘴、專家的片段批評台軍和台灣執政黨、稱讚解放軍強大。"
+    },
+    {
+      "mid": "m063",
+      "gid": "etc-fusion-media",
+      "entity_type": "org",
+      "context_role": "actor",
+      "surface": "東部戰區融媒體中心",
+      "quote": "東部戰區融媒體中心在第三日發布的是前兩日演習畫面和「沙場風雨兩岸燈」MV，解放軍報刊登的是12月30日於福州平潭拍攝的遠程火箭砲實彈射擊照片集與文字報導。"
+    },
+    {
+      "mid": "m064",
+      "gid": "g:narr-battlefield-strait-lights",
+      "entity_type": "narrative",
+      "context_role": "narrative",
+      "surface": "沙場風雨兩岸燈",
+      "quote": "東部戰區融媒體中心在第三日發布的是前兩日演習畫面和「沙場風雨兩岸燈」MV，解放軍報刊登的是12月30日於福州平潭拍攝的遠程火箭砲實彈射擊照片集與文字報導。"
+    },
+    {
+      "mid": "m065",
+      "gid": "g:ccp",
+      "entity_type": "org",
+      "context_role": "actor",
+      "surface": "中共",
+      "quote": "至2025年底為止，中共已對台發動七次軍演。"
+    },
+    {
+      "mid": "m066",
+      "gid": "g:taiwan",
+      "entity_type": "place",
+      "context_role": "target",
+      "surface": "台",
+      "quote": "至2025年底為止，中共已對台發動七次軍演。"
+    },
+    {
+      "mid": "m067",
+      "gid": "etc-fusion-media",
+      "entity_type": "org",
+      "context_role": "actor",
+      "surface": "融媒體中心",
+      "quote": "掌握融媒體中心如何透過與中央官媒、地方媒體、新媒體、社群帳號協力，以及挑選特定的敘事，對台灣民眾發動恫嚇，並對大陸民眾操弄民族情緒，以支持解放軍的演習動員。"
+    },
+    {
+      "mid": "m068",
+      "gid": "g:taiwan-public",
+      "entity_type": "person",
+      "context_role": "target",
+      "surface": "台灣民眾",
+      "quote": "掌握融媒體中心如何透過與中央官媒、地方媒體、新媒體、社群帳號協力，以及挑選特定的敘事，對台灣民眾發動恫嚇，並對大陸民眾操弄民族情緒，以支持解放軍的演習動員。"
+    },
+    {
+      "mid": "m069",
+      "gid": "etc-fusion-media",
+      "entity_type": "org",
+      "context_role": "actor",
+      "surface": "融媒體中心",
+      "quote": "掌握融媒體中心如何透過與中央官媒、地方媒體、新媒體、社群帳號協力，以及挑選特定的敘事，對台灣民眾發動恫嚇，並對大陸民眾操弄民族情緒，以支持解放軍的演習動員。"
+    },
+    {
+      "mid": "m070",
+      "gid": "g:mainland-public",
+      "entity_type": "person",
+      "context_role": "target",
+      "surface": "大陸民眾",
+      "quote": "掌握融媒體中心如何透過與中央官媒、地方媒體、新媒體、社群帳號協力，以及挑選特定的敘事，對台灣民眾發動恫嚇，並對大陸民眾操弄民族情緒，以支持解放軍的演習動員。"
+    },
+    {
+      "mid": "m071",
+      "gid": "cmg-cctv",
+      "entity_type": "media",
+      "context_role": "amplifier",
+      "surface": "央視新聞",
+      "quote": "檢視392組文本資料所顯示的指向網絡時可發現，東部戰區發布的貼文，有13個媒體和大V共同轉分享，包括央視新聞、央廣軍事、鎮江民生頻道、央廣軍事、環球時報、浙江日報、澎湃新聞、宣漢融媒、新浪軍事、動静新聞、南湖發布、看看新聞Knews和星話大白等。"
+    },
+    {
+      "mid": "m072",
+      "gid": "etc-fusion-media",
+      "entity_type": "org",
+      "context_role": "actor",
+      "surface": "東部戰區",
+      "quote": "檢視392組文本資料所顯示的指向網絡時可發現，東部戰區發布的貼文，有13個媒體和大V共同轉分享，包括央視新聞、央廣軍事、鎮江民生頻道、央廣軍事、環球時報、浙江日報、澎湃新聞、宣漢融媒、新浪軍事、動静新聞、南湖發布、看看新聞Knews和星話大白等。"
+    },
+    {
+      "mid": "m073",
+      "gid": "global-times",
+      "entity_type": "media",
+      "context_role": "amplifier",
+      "surface": "環球時報",
+      "quote": "檢視392組文本資料所顯示的指向網絡時可發現，東部戰區發布的貼文，有13個媒體和大V共同轉分享，包括央視新聞、央廣軍事、鎮江民生頻道、央廣軍事、環球時報、浙江日報、澎湃新聞、宣漢融媒、新浪軍事、動静新聞、南湖發布、看看新聞Knews和星話大白等。"
+    },
+    {
+      "mid": "m074",
+      "gid": "etc-fusion-media",
+      "entity_type": "org",
+      "context_role": "actor",
+      "surface": "東部戰區",
+      "quote": "檢視392組文本資料所顯示的指向網絡時可發現，東部戰區發布的貼文，有13個媒體和大V共同轉分享，包括央視新聞、央廣軍事、鎮江民生頻道、央廣軍事、環球時報、浙江日報、澎湃新聞、宣漢融媒、新浪軍事、動静新聞、南湖發布、看看新聞Knews和星話大白等。"
+    },
+    {
+      "mid": "m075",
+      "gid": "g:sina-military",
+      "entity_type": "account",
+      "context_role": "amplifier",
+      "surface": "新浪軍事",
+      "quote": "檢視392組文本資料所顯示的指向網絡時可發現，東部戰區發布的貼文，有13個媒體和大V共同轉分享，包括央視新聞、央廣軍事、鎮江民生頻道、央廣軍事、環球時報、浙江日報、澎湃新聞、宣漢融媒、新浪軍事、動静新聞、南湖發布、看看新聞Knews和星話大白等。"
+    },
+    {
+      "mid": "m076",
+      "gid": "etc-fusion-media",
+      "entity_type": "org",
+      "context_role": "actor",
+      "surface": "東部戰區",
+      "quote": "檢視392組文本資料所顯示的指向網絡時可發現，東部戰區發布的貼文，有13個媒體和大V共同轉分享，包括央視新聞、央廣軍事、鎮江民生頻道、央廣軍事、環球時報、浙江日報、澎湃新聞、宣漢融媒、新浪軍事、動静新聞、南湖發布、看看新聞Knews和星話大白等。"
+    },
+    {
+      "mid": "m077",
+      "gid": "kankan-news",
+      "entity_type": "media",
+      "context_role": "amplifier",
+      "surface": "看看新聞Knews",
+      "quote": "檢視392組文本資料所顯示的指向網絡時可發現，東部戰區發布的貼文，有13個媒體和大V共同轉分享，包括央視新聞、央廣軍事、鎮江民生頻道、央廣軍事、環球時報、浙江日報、澎湃新聞、宣漢融媒、新浪軍事、動静新聞、南湖發布、看看新聞Knews和星話大白等。"
+    },
+    {
+      "mid": "m078",
+      "gid": "etc-fusion-media",
+      "entity_type": "org",
+      "context_role": "actor",
+      "surface": "東部戰區",
+      "quote": "檢視392組文本資料所顯示的指向網絡時可發現，東部戰區發布的貼文，有13個媒體和大V共同轉分享，包括央視新聞、央廣軍事、鎮江民生頻道、央廣軍事、環球時報、浙江日報、澎湃新聞、宣漢融媒、新浪軍事、動静新聞、南湖發布、看看新聞Knews和星話大白等。"
+    },
+    {
+      "mid": "m079",
+      "gid": "g:sina-military",
+      "entity_type": "account",
+      "context_role": "amplifier",
+      "surface": "新浪軍事",
+      "quote": "央視新聞發布的13則報導文本，有26個帳號轉發，官方單位有屏山公安、銅陵經開公安在線、山東高法、沐川公安、青春龍泉驛和平安金陽；媒體有動靜新聞、新浪軍事、南寧晚報、錢江晚報、南方週末、頭條新聞、第一現場、馬上資訊、看台海、福建日報、環球時報和新京報；大V有星話大白、包容萬物恆河水、台灣那點事兒、扎西德勒·天珠收藏、椒哥微記錄、航天面面觀、長春-小風、白鶴-老鄧。"
+    },
+    {
+      "mid": "m080",
+      "gid": "cmg-cctv",
+      "entity_type": "media",
+      "context_role": "amplifier",
+      "surface": "央視新聞",
+      "quote": "央視新聞發布的13則報導文本，有26個帳號轉發，官方單位有屏山公安、銅陵經開公安在線、山東高法、沐川公安、青春龍泉驛和平安金陽；媒體有動靜新聞、新浪軍事、南寧晚報、錢江晚報、南方週末、頭條新聞、第一現場、馬上資訊、看台海、福建日報、環球時報和新京報；大V有星話大白、包容萬物恆河水、台灣那點事兒、扎西德勒·天珠收藏、椒哥微記錄、航天面面觀、長春-小風、白鶴-老鄧。"
+    },
+    {
+      "mid": "m081",
+      "gid": "global-times",
+      "entity_type": "media",
+      "context_role": "amplifier",
+      "surface": "環球時報",
+      "quote": "央視新聞發布的13則報導文本，有26個帳號轉發，官方單位有屏山公安、銅陵經開公安在線、山東高法、沐川公安、青春龍泉驛和平安金陽；媒體有動靜新聞、新浪軍事、南寧晚報、錢江晚報、南方週末、頭條新聞、第一現場、馬上資訊、看台海、福建日報、環球時報和新京報；大V有星話大白、包容萬物恆河水、台灣那點事兒、扎西德勒·天珠收藏、椒哥微記錄、航天面面觀、長春-小風、白鶴-老鄧。"
+    },
+    {
+      "mid": "m082",
+      "gid": "cmg-cctv",
+      "entity_type": "media",
+      "context_role": "amplifier",
+      "surface": "央視新聞",
+      "quote": "央視新聞發布的13則報導文本，有26個帳號轉發，官方單位有屏山公安、銅陵經開公安在線、山東高法、沐川公安、青春龍泉驛和平安金陽；媒體有動靜新聞、新浪軍事、南寧晚報、錢江晚報、南方週末、頭條新聞、第一現場、馬上資訊、看台海、福建日報、環球時報和新京報；大V有星話大白、包容萬物恆河水、台灣那點事兒、扎西德勒·天珠收藏、椒哥微記錄、航天面面觀、長春-小風、白鶴-老鄧。"
+    },
+    {
+      "mid": "m083",
+      "gid": "g:ccp",
+      "entity_type": "org",
+      "context_role": "actor",
+      "surface": "中共",
+      "quote": "這是中共自2022年美國眾議院長裴洛西訪台後，短短三年內第七度發動圍台軍演。"
+    },
+    {
+      "mid": "m084",
+      "gid": "etc-fusion-media",
+      "entity_type": "org",
+      "context_role": "actor",
+      "surface": "東部戰區融媒體中心",
+      "quote": "在軍演中，除了軍事作戰單位發動演練外，東部戰區融媒體中心更發動「資訊宣傳戰」。"
+    },
+    {
+      "mid": "m085",
+      "gid": "g:pla",
+      "entity_type": "org",
+      "context_role": "actor",
+      "surface": "解放軍",
+      "quote": "FactLink和Doublethink Lab研究團隊（以下稱研究團隊），透過「正義使命」軍演，掌握解放軍如何發動軍演中的資訊宣傳戰，並試圖解析被外界稱為「中央廚房」素材的東部戰區融媒體中心機制。"
+    },
+    {
+      "mid": "m086",
+      "gid": "etc-fusion-media",
+      "entity_type": "org",
+      "context_role": "actor",
+      "surface": "東部戰區融媒體中心",
+      "quote": "FactLink和Doublethink Lab研究團隊（以下稱研究團隊），透過「正義使命」軍演，掌握解放軍如何發動軍演中的資訊宣傳戰，並試圖解析被外界稱為「中央廚房」素材的東部戰區融媒體中心機制。"
+    },
+    {
+      "mid": "m087",
+      "gid": "etc-fusion-media",
+      "entity_type": "org",
+      "context_role": "actor",
+      "surface": "東部戰區融媒體中心",
+      "quote": "觀察1：軍演的宣傳，是東部戰區融媒體中心是透過官媒、地方媒體、社群帳號等不同行動者組成的宣傳網絡發動。"
+    },
+    {
+      "mid": "m088",
+      "gid": "g:ccp-state-media",
+      "entity_type": "media",
+      "context_role": "amplifier",
+      "surface": "官媒",
+      "quote": "觀察1：軍演的宣傳，是東部戰區融媒體中心是透過官媒、地方媒體、社群帳號等不同行動者組成的宣傳網絡發動。"
+    },
+    {
+      "mid": "m089",
+      "gid": "etc-fusion-media",
+      "entity_type": "org",
+      "context_role": "actor",
+      "surface": "東部戰區融媒體中心",
+      "quote": "從網絡關係圖可見，東部戰區融媒體中心發動，央視等行動者會運用既有網絡來發動宣傳。"
+    },
+    {
+      "mid": "m090",
+      "gid": "cmg-cctv",
+      "entity_type": "media",
+      "context_role": "amplifier",
+      "surface": "央視",
+      "quote": "從網絡關係圖可見，東部戰區融媒體中心發動，央視等行動者會運用既有網絡來發動宣傳。"
+    },
+    {
+      "mid": "m091",
+      "gid": "etc-fusion-media",
+      "entity_type": "org",
+      "context_role": "actor",
+      "surface": "東部戰區融媒體",
+      "quote": "觀察2：軍演的敘事有劇本，東部戰區融媒體首先發布主題海報、AI短視頻、歷次演習畫面，搭配官媒製播的軍事專家訪談；當日演習畫面是在演習第一、二天的中午過後釋出；第三日未釋出新演習畫面，宣傳力度已減，轉為習近平跨年祝賀，融媒體以MV做結尾。"
+    },
+    {
+      "mid": "m092",
+      "gid": "g:ccp-state-media",
+      "entity_type": "media",
+      "context_role": "amplifier",
+      "surface": "官媒",
+      "quote": "觀察2：軍演的敘事有劇本，東部戰區融媒體首先發布主題海報、AI短視頻、歷次演習畫面，搭配官媒製播的軍事專家訪談；當日演習畫面是在演習第一、二天的中午過後釋出；第三日未釋出新演習畫面，宣傳力度已減，轉為習近平跨年祝賀，融媒體以MV做結尾。"
+    },
+    {
+      "mid": "m093",
+      "gid": "etc-fusion-media",
+      "entity_type": "org",
+      "context_role": "actor",
+      "surface": "東部戰區融媒體中心",
+      "quote": "觀察3：東部戰區融媒體中心在正義使命軍演，以「無人機拍攝到台北101」影像為宣傳攻擊主力，以「易懂」話題恫嚇民心，而對軍事專家來說，這段影像不具威懾力，更缺乏情資價值。"
+    },
+    {
+      "mid": "m094",
+      "gid": "g:narr-drone-taipei101",
+      "entity_type": "narrative",
+      "context_role": "narrative",
+      "surface": "無人機拍攝到台北101",
+      "quote": "觀察3：東部戰區融媒體中心在正義使命軍演，以「無人機拍攝到台北101」影像為宣傳攻擊主力，以「易懂」話題恫嚇民心，而對軍事專家來說，這段影像不具威懾力，更缺乏情資價值。"
+    },
+    {
+      "mid": "m095",
+      "gid": "g:narr-drone-taipei101",
+      "entity_type": "narrative",
+      "context_role": "narrative",
+      "surface": "這段影像",
+      "quote": "觀察3：東部戰區融媒體中心在正義使命軍演，以「無人機拍攝到台北101」影像為宣傳攻擊主力，以「易懂」話題恫嚇民心，而對軍事專家來說，這段影像不具威懾力，更缺乏情資價值。"
+    },
+    {
+      "mid": "m096",
+      "gid": "g:pla",
+      "entity_type": "org",
+      "context_role": "actor",
+      "surface": "解放軍",
+      "quote": "解放軍在2022年8月裴洛西訪台之行後，發動大規模圍台軍演，進入對台軍事施壓新階段。"
+    },
+    {
+      "mid": "m097",
+      "gid": "g:ccp",
+      "entity_type": "org",
+      "context_role": "actor",
+      "surface": "中共",
+      "quote": "進入2023年，時任總統蔡英文、副總統賴清德外訪期間時，中共皆發動軍演施壓；2024年後，東部戰區融媒體中心開始主責軍演宣傳工作，並為演習命名，除有一次未命名軍演外，另發動聯合利劍A、聯合利劍B軍演，2025年則有海峽雷霆2025-A以及正義使命。"
+    },
+    {
+      "mid": "m098",
+      "gid": "etc-fusion-media",
+      "entity_type": "org",
+      "context_role": "actor",
+      "surface": "東部戰區融媒體中心",
+      "quote": "進入2023年，時任總統蔡英文、副總統賴清德外訪期間時，中共皆發動軍演施壓；2024年後，東部戰區融媒體中心開始主責軍演宣傳工作，並為演習命名，除有一次未命名軍演外，另發動聯合利劍A、聯合利劍B軍演，2025年則有海峽雷霆2025-A以及正義使命。"
+    },
+    {
+      "mid": "m099",
+      "gid": "etc-fusion-media",
+      "entity_type": "org",
+      "context_role": "actor",
+      "surface": "東部戰區融媒體中心",
+      "quote": "東部戰區融媒體中心到底是什麼樣的單位？"
+    },
+    {
+      "mid": "m100",
+      "gid": "g:pla",
+      "entity_type": "org",
+      "context_role": "actor",
+      "surface": "解放軍",
+      "quote": "鑽研解放軍宣傳的國防大學老師指出，軍演期間是由"
+    },
+    {
+      "mid": "m101",
+      "gid": "g:pla",
+      "entity_type": "org",
+      "context_role": "actor",
+      "surface": "解放軍",
+      "quote": "宣傳的國防大學老師指出，軍演期間是由解放軍軍事作戰幹部負責操演，後勤、裝備單位配合演習工作，宣傳則交給政治工作部門。"
+    },
+    {
+      "mid": "m102",
+      "gid": "etc-fusion-media",
+      "entity_type": "org",
+      "context_role": "actor",
+      "surface": "東部戰區融媒體中心",
+      "quote": "東部戰區融媒體中心是政治工作單位，任務是結合傳統媒體、自媒體和新媒體來發動宣傳。"
+    },
+    {
+      "mid": "m103",
+      "gid": "g:pla",
+      "entity_type": "org",
+      "context_role": "actor",
+      "surface": "解放軍",
+      "quote": "政治工作部門的角色巧妙，既要負責宣傳軍演，也需把共產黨指令貫徹到解放軍。"
+    },
+    {
+      "mid": "m104",
+      "gid": "etc-fusion-media",
+      "entity_type": "org",
+      "context_role": "actor",
+      "surface": "東部戰區融媒體中心",
+      "quote": "東部戰區融媒體中心從2024年聯合利劍A、B軍演以來，明顯主導軍演期間的宣傳與輿論工作。"
+    },
+    {
+      "mid": "m105",
+      "gid": "pla-pwd",
+      "entity_type": "org",
+      "context_role": "actor",
+      "surface": "總政治部",
+      "quote": "國防大學新聞系教授傅文成觀察，過去一般是由總政治部加上解放軍信息支援部執行宣傳，東部戰區融媒體中心主責宣傳，宣傳工作比過去更能貼近台灣脈絡，操作也更精密、細膩。"
+    },
+    {
+      "mid": "m107",
+      "gid": "etc-fusion-media",
+      "entity_type": "org",
+      "context_role": "actor",
+      "surface": "東部戰區融媒體中心",
+      "quote": "國防大學新聞系教授傅文成觀察，過去一般是由總政治部加上解放軍信息支援部執行宣傳，東部戰區融媒體中心主責宣傳，宣傳工作比過去更能貼近台灣脈絡，操作也更精密、細膩。"
+    },
+    {
+      "mid": "m108",
+      "gid": "etc-fusion-media",
+      "entity_type": "org",
+      "context_role": "actor",
+      "surface": "東部戰區融媒體中心",
+      "quote": "東部戰區融媒體中心被外界稱為「中央廚房」，本研究透過「正義使命」軍演的宣傳網絡分析與敘事時序分析，以拆解「"
+    },
+    {
+      "mid": "m109",
+      "gid": "etc-fusion-media",
+      "entity_type": "org",
+      "context_role": "actor",
+      "surface": "東部戰區融媒體中心",
+      "quote": "被外界稱為「中央廚房」，本研究透過「正義使命」軍演的宣傳網絡分析與敘事時序分析，以拆解「東部戰區融媒體中心」如何發動正義使命宣傳工作，讓我們來看這個所謂「中央廚房」的上菜機制。"
+    },
+    {
+      "mid": "m110",
+      "gid": "g:pla",
+      "entity_type": "org",
+      "context_role": "actor",
+      "surface": "中共解放軍",
+      "quote": "正義使命軍演是由中共解放軍東部戰區發言人施毅在2025年12月29日早上7點30分宣布開始，由東部戰區、新華社受權發布演訓公告和示意圖，央視亦發布相關新聞。"
+    },
+    {
+      "mid": "m111",
+      "gid": "etc-fusion-media",
+      "entity_type": "org",
+      "context_role": "actor",
+      "surface": "東部戰區",
+      "quote": "正義使命軍演是由中共解放軍東部戰區發言人施毅在2025年12月29日早上7點30分宣布開始，由"
+    },
+    {
+      "mid": "m112",
+      "gid": "g:shi-yi-pla",
+      "entity_type": "person",
+      "context_role": "actor",
+      "surface": "施毅",
+      "quote": "正義使命軍演是由中共解放軍東部戰區發言人施毅在2025年12月29日早上7點30分宣布開始，由東部戰區、新華社受權發布演訓公告和示意圖，央視亦發布相關新聞。"
+    },
+    {
+      "mid": "m113",
+      "gid": "etc-fusion-media",
+      "entity_type": "org",
+      "context_role": "actor",
+      "surface": "東部戰區",
+      "quote": "發言人施毅在2025年12月29日早上7點30分宣布開始，由東部戰區、新華社受權發布演訓公告和示意圖，央視亦發布相關新聞。"
+    },
+    {
+      "mid": "m114",
+      "gid": "g:xinhua",
+      "entity_type": "media",
+      "context_role": "amplifier",
+      "surface": "新華社",
+      "quote": "正義使命軍演是由中共解放軍東部戰區發言人施毅在2025年12月29日早上7點30分宣布開始，由東部戰區、新華社受權發布演訓公告和示意圖，央視亦發布相關新聞。"
+    },
+    {
+      "mid": "m115",
+      "gid": "cmg-cctv",
+      "entity_type": "media",
+      "context_role": "amplifier",
+      "surface": "央視",
+      "quote": "正義使命軍演是由中共解放軍東部戰區發言人施毅在2025年12月29日早上7點30分宣布開始，由東部戰區、新華社受權發布演訓公告和示意圖，央視亦發布相關新聞。"
+    },
+    {
+      "mid": "m116",
+      "gid": "etc-fusion-media",
+      "entity_type": "org",
+      "context_role": "actor",
+      "surface": "東部戰區",
+      "quote": "直到2025年12月31日東部戰區新聞發言人李熹宣布演訓結束。"
+    },
+    {
+      "mid": "m117",
+      "gid": "g:li-xi-pla",
+      "entity_type": "person",
+      "context_role": "actor",
+      "surface": "李熹",
+      "quote": "直到2025年12月31日東部戰區新聞發言人李熹宣布演訓結束。"
+    },
+    {
+      "mid": "m118",
+      "gid": "etc-fusion-media",
+      "entity_type": "org",
+      "context_role": "actor",
+      "surface": "東部戰區",
+      "quote": "內容被其他帳號使用次數較高的行動者：一是東部戰區，二是中國官媒如央視新聞、環球時報、環球網、央廣軍事，三是與官方有關的帳號 (State-Linked)，如新浪軍事、觀察者網。"
+    },
+    {
+      "mid": "m119",
+      "gid": "g:ccp-state-media",
+      "entity_type": "media",
+      "context_role": "amplifier",
+      "surface": "中國官媒",
+      "quote": "內容被其他帳號使用次數較高的行動者：一是東部戰區，二是中國官媒如央視新聞、環球時報、環球網、央廣軍事，三是與官方有關的帳號 (State-Linked)，如新浪軍事、觀察者網。"
+    },
+    {
+      "mid": "m120",
+      "gid": "cmg-cctv",
+      "entity_type": "media",
+      "context_role": "amplifier",
+      "surface": "央視新聞",
+      "quote": "內容被其他帳號使用次數較高的行動者：一是東部戰區，二是中國官媒如央視新聞、環球時報、環球網、央廣軍事，三是與官方有關的帳號 (State-Linked)，如新浪軍事、觀察者網。"
+    },
+    {
+      "mid": "m121",
+      "gid": "global-times",
+      "entity_type": "media",
+      "context_role": "amplifier",
+      "surface": "環球時報",
+      "quote": "內容被其他帳號使用次數較高的行動者：一是東部戰區，二是中國官媒如央視新聞、環球時報、環球網、央廣軍事，三是與官方有關的帳號 (State-Linked)，如新浪軍事、觀察者網。"
+    },
+    {
+      "mid": "m122",
+      "gid": "global-times",
+      "entity_type": "media",
+      "context_role": "amplifier",
+      "surface": "環球網",
+      "quote": "內容被其他帳號使用次數較高的行動者：一是東部戰區，二是中國官媒如央視新聞、環球時報、環球網、央廣軍事，三是與官方有關的帳號 (State-Linked)，如新浪軍事、觀察者網。"
+    },
+    {
+      "mid": "m123",
+      "gid": "cmg-cctv",
+      "entity_type": "media",
+      "context_role": "amplifier",
+      "surface": "央廣軍事",
+      "quote": "內容被其他帳號使用次數較高的行動者：一是東部戰區，二是中國官媒如央視新聞、環球時報、環球網、央廣軍事，三是與官方有關的帳號 (State-Linked)，如新浪軍事、觀察者網。"
+    },
+    {
+      "mid": "m124",
+      "gid": "g:sina-military",
+      "entity_type": "account",
+      "context_role": "amplifier",
+      "surface": "新浪軍事",
+      "quote": "內容被其他帳號使用次數較高的行動者：一是東部戰區，二是中國官媒如央視新聞、環球時報、環球網、央廣軍事，三是與官方有關的帳號 (State-Linked)，如新浪軍事、觀察者網。"
+    },
+    {
+      "mid": "m125",
+      "gid": "guancha",
+      "entity_type": "media",
+      "context_role": "amplifier",
+      "surface": "觀察者網",
+      "quote": "內容被其他帳號使用次數較高的行動者：一是東部戰區，二是中國官媒如央視新聞、環球時報、環球網、央廣軍事，三是與官方有關的帳號 (State-Linked)，如新浪軍事、觀察者網。"
+    },
+    {
+      "mid": "m127",
+      "gid": "g:china-mil-hao",
+      "entity_type": "account",
+      "context_role": "amplifier",
+      "surface": "中國軍號",
+      "quote": "主要是中國軍號內容多以短影音與影像形式被轉用，且其發文文字較為獨特。"
+    },
+    {
+      "mid": "m128",
+      "gid": "g:china-mil-hao",
+      "entity_type": "account",
+      "context_role": "amplifier",
+      "surface": "中國軍號",
+      "quote": "因此，研究團隊將透過接下來的敘事分析，補充中國軍號在資訊宣傳中的角色。"
+    },
+    {
+      "mid": "m129",
+      "gid": "etc-fusion-media",
+      "entity_type": "org",
+      "context_role": "actor",
+      "surface": "東部戰區",
+      "quote": "透過網絡分析可大致看出宣傳管道順序，第一層由東部戰區發動，並由第二層央視新聞、環球時報、央廣軍事等官媒宣傳，再由第三或第四層的地方公安、地方融媒體、媒體新媒體品牌、高影響力帳號接續放大官方敘事。"
+    },
+    {
+      "mid": "m130",
+      "gid": "cmg-cctv",
+      "entity_type": "media",
+      "context_role": "amplifier",
+      "surface": "央視新聞",
+      "quote": "透過網絡分析可大致看出宣傳管道順序，第一層由東部戰區發動，並由第二層央視新聞、環球時報、央廣軍事等官媒宣傳，再由第三或第四層的地方公安、地方融媒體、媒體新媒體品牌、高影響力帳號接續放大官方敘事。"
+    },
+    {
+      "mid": "m131",
+      "gid": "global-times",
+      "entity_type": "media",
+      "context_role": "amplifier",
+      "surface": "環球時報",
+      "quote": "透過網絡分析可大致看出宣傳管道順序，第一層由東部戰區發動，並由第二層央視新聞、環球時報、央廣軍事等官媒宣傳，再由第三或第四層的地方公安、地方融媒體、媒體新媒體品牌、高影響力帳號接續放大官方敘事。"
+    },
+    {
+      "mid": "m132",
+      "gid": "cmg-cctv",
+      "entity_type": "media",
+      "context_role": "amplifier",
+      "surface": "央廣軍事",
+      "quote": "透過網絡分析可大致看出宣傳管道順序，第一層由東部戰區發動，並由第二層央視新聞、環球時報、央廣軍事等官媒宣傳，再由第三或第四層的地方公安、地方融媒體、媒體新媒體品牌、高影響力帳號接續放大官方敘事。"
+    },
+    {
+      "mid": "m133",
+      "gid": "g:ccp-state-media",
+      "entity_type": "media",
+      "context_role": "amplifier",
+      "surface": "官媒",
+      "quote": "透過網絡分析可大致看出宣傳管道順序，第一層由東部戰區發動，並由第二層央視新聞、環球時報、央廣軍事等官媒宣傳，再由第三或第四層的地方公安、地方融媒體、媒體新媒體品牌、高影響力帳號接續放大官方敘事。"
+    },
+    {
+      "mid": "m134",
+      "gid": "cmg-cctv",
+      "entity_type": "media",
+      "context_role": "amplifier",
+      "surface": "央廣軍事",
+      "quote": "本資料所顯示的指向網絡時可發現，東部戰區發布的貼文，有13個媒體和大V共同轉分享，包括央視新聞、央廣軍事、鎮江民生頻道、"
+    },
+    {
+      "mid": "m135",
+      "gid": "cmg-cctv",
+      "entity_type": "media",
+      "context_role": "amplifier",
+      "surface": "央廣軍事",
+      "quote": "、鎮江民生頻道、央廣軍事、環球時報、浙江日報、澎湃新聞、宣漢融媒、新浪軍事、動静新聞、南湖發布、看看新聞Knews和星話"
+    },
+    {
+      "mid": "m136",
+      "gid": "cmg-cctv",
+      "entity_type": "media",
+      "context_role": "amplifier",
+      "surface": "看台海",
+      "quote": "央視新聞發布的13則報導文本，有26個帳號轉發，官方單位有屏山公安、銅陵經開公安在線、山東高法、沐川公安、青春龍泉驛和平安金陽；媒體有動靜新聞、新浪軍事、南寧晚報、錢江晚報、南方週末、頭條新聞、第一現場、馬上資訊、看台海、福建日報、環球時報和新京報；大V有星話大白、包容萬物恆河水、台灣那點事兒、扎西德勒·天珠收藏、椒哥微記錄、航天面面觀、長春-小風、白鶴-老鄧。"
+    },
+    {
+      "mid": "m137",
+      "gid": "cmg-cctv",
+      "entity_type": "media",
+      "context_role": "amplifier",
+      "surface": "央視",
+      "quote": "融媒體品牌，在網絡圖中與央視沒有指向關係，顯示兩個品牌之間分工明確，刻意不轉傳，各自扮演不同角色；《觀察者網》除了作為發布者"
+    },
+    {
+      "mid": "m138",
+      "gid": "g:ccp-state-media",
+      "entity_type": "media",
+      "context_role": "amplifier",
+      "surface": "中國官媒",
+      "quote": "玉淵潭天為央視融媒體品牌，在網絡圖中與央視沒有指向關係，顯示兩個品牌之間分工明確，刻意不轉傳，各自扮演不同角色；《觀察者網》除了作為發布者外，也擴散轉發來自玉淵潭天這類被視為與中國官媒關係緊密的大V的內容。"
+    },
+    {
+      "mid": "m139",
+      "gid": "g:ccp-state-media",
+      "entity_type": "media",
+      "context_role": "amplifier",
+      "surface": "官媒",
+      "quote": "在網絡圖雖可見到俄羅斯官媒《今日俄羅斯》微博帳號，但沒有看到固定的轉發群組，在對台軍演未見扮演凸顯的特定角色，發文主要是轉分享央視新聞、綜整中共官方訊息。"
+    },
+    {
+      "mid": "m140",
+      "gid": "g:ccp",
+      "entity_type": "org",
+      "context_role": "actor",
+      "surface": "中共",
+      "quote": "在網絡圖雖可見到俄羅斯官媒《今日俄羅斯》微博帳號，但沒有看到固定的轉發群組，在對台軍演未見扮演凸顯的特定角色，發文主要是轉分享央視新聞、綜整中共官方訊息。"
+    },
+    {
+      "mid": "m141",
+      "gid": "etc-fusion-media",
+      "entity_type": "org",
+      "context_role": "actor",
+      "surface": "東部戰區",
+      "quote": "依據文本相似性資料、關係網絡分析來確認主要行動者，包括：東部戰區；軍方媒體如中國軍號、解放軍報；中央官媒如新華社、央視、央視軍事、人民日報、央廣軍事；以及與對台議題高度相關的福建媒體，如看台海、台海時刻，另亦納入引用次數較高的觀察者網。"
+    },
+    {
+      "mid": "m142",
+      "gid": "g:china-mil-hao",
+      "entity_type": "account",
+      "context_role": "amplifier",
+      "surface": "中國軍號",
+      "quote": "依據文本相似性資料、關係網絡分析來確認主要行動者，包括：東部戰區；軍方媒體如中國軍號、解放軍報；中央官媒如新華社、央視、央視軍事、人民日報、央廣軍事；以及與對台議題高度相關的福建媒體，如看台海、台海時刻，另亦納入引用次數較高的觀察者網。"
+    },
+    {
+      "mid": "m143",
+      "gid": "g:pla-daily",
+      "entity_type": "media",
+      "context_role": "amplifier",
+      "surface": "解放軍報",
+      "quote": "依據文本相似性資料、關係網絡分析來確認主要行動者，包括：東部戰區；軍方媒體如中國軍號、解放軍報；中央官媒如新華社、央視、央視軍事、人民日報、央廣軍事；以及與對台議題高度相關的福建媒體，如看台海、台海時刻，另亦納入引用次數較高的觀察者網。"
+    },
+    {
+      "mid": "m144",
+      "gid": "g:ccp-state-media",
+      "entity_type": "media",
+      "context_role": "amplifier",
+      "surface": "中央官媒",
+      "quote": "依據文本相似性資料、關係網絡分析來確認主要行動者，包括：東部戰區；軍方媒體如中國軍號、解放軍報；中央官媒如新華社、央視、央視軍事、人民日報、央廣軍事；以及與對台議題高度相關的福建媒體，如看台海、台海時刻，另亦納入引用次數較高的觀察者網。"
+    },
+    {
+      "mid": "m145",
+      "gid": "g:xinhua",
+      "entity_type": "media",
+      "context_role": "amplifier",
+      "surface": "新華社",
+      "quote": "依據文本相似性資料、關係網絡分析來確認主要行動者，包括：東部戰區；軍方媒體如中國軍號、解放軍報；中央官媒如新華社、央視、央視軍事、人民日報、央廣軍事；以及與對台議題高度相關的福建媒體，如看台海、台海時刻，另亦納入引用次數較高的觀察者網。"
+    },
+    {
+      "mid": "m146",
+      "gid": "cmg-cctv",
+      "entity_type": "media",
+      "context_role": "amplifier",
+      "surface": "央視",
+      "quote": "、關係網絡分析來確認主要行動者，包括：東部戰區；軍方媒體如中國軍號、解放軍報；中央官媒如新華社、央視、"
+    },
+    {
+      "mid": "m147",
+      "gid": "cmg-cctv",
+      "entity_type": "media",
+      "context_role": "amplifier",
+      "surface": "央視軍事",
+      "quote": "依據文本相似性資料、關係網絡分析來確認主要行動者，包括：東部戰區；軍方媒體如中國軍號、解放軍報；中央官媒如新華社、央視、央視軍事、人民日報、央廣軍事；以及與對台議題高度相關的福建媒體，如看台海、台海時刻，另亦納入引用次數較高的觀察者網。"
+    },
+    {
+      "mid": "m148",
+      "gid": "g:peoples-daily",
+      "entity_type": "media",
+      "context_role": "amplifier",
+      "surface": "人民日報",
+      "quote": "依據文本相似性資料、關係網絡分析來確認主要行動者，包括：東部戰區；軍方媒體如中國軍號、解放軍報；中央官媒如新華社、央視、央視軍事、人民日報、央廣軍事；以及與對台議題高度相關的福建媒體，如看台海、台海時刻，另亦納入引用次數較高的觀察者網。"
+    },
+    {
+      "mid": "m149",
+      "gid": "cmg-cctv",
+      "entity_type": "media",
+      "context_role": "amplifier",
+      "surface": "央廣軍事",
+      "quote": "依據文本相似性資料、關係網絡分析來確認主要行動者，包括：東部戰區；軍方媒體如中國軍號、解放軍報；中央官媒如新華社、央視、央視軍事、人民日報、央廣軍事；以及與對台議題高度相關的福建媒體，如看台海、台海時刻，另亦納入引用次數較高的觀察者網。"
+    },
+    {
+      "mid": "m150",
+      "gid": "g:fujian-network",
+      "entity_type": "network",
+      "context_role": "amplifier",
+      "surface": "福建媒體",
+      "quote": "依據文本相似性資料、關係網絡分析來確認主要行動者，包括：東部戰區；軍方媒體如中國軍號、解放軍報；中央官媒如新華社、央視、央視軍事、人民日報、央廣軍事；以及與對台議題高度相關的福建媒體，如看台海、台海時刻，另亦納入引用次數較高的觀察者網。"
+    },
+    {
+      "mid": "m151",
+      "gid": "cmg-cctv",
+      "entity_type": "media",
+      "context_role": "amplifier",
+      "surface": "看台海",
+      "quote": "依據文本相似性資料、關係網絡分析來確認主要行動者，包括：東部戰區；軍方媒體如中國軍號、解放軍報；中央官媒如新華社、央視、央視軍事、人民日報、央廣軍事；以及與對台議題高度相關的福建媒體，如看台海、台海時刻，另亦納入引用次數較高的觀察者網。"
+    },
+    {
+      "mid": "m152",
+      "gid": "g:taihai-shike",
+      "entity_type": "media",
+      "context_role": "amplifier",
+      "surface": "台海時刻",
+      "quote": "依據文本相似性資料、關係網絡分析來確認主要行動者，包括：東部戰區；軍方媒體如中國軍號、解放軍報；中央官媒如新華社、央視、央視軍事、人民日報、央廣軍事；以及與對台議題高度相關的福建媒體，如看台海、台海時刻，另亦納入引用次數較高的觀察者網。"
+    },
+    {
+      "mid": "m153",
+      "gid": "guancha",
+      "entity_type": "media",
+      "context_role": "amplifier",
+      "surface": "觀察者網",
+      "quote": "依據文本相似性資料、關係網絡分析來確認主要行動者，包括：東部戰區；軍方媒體如中國軍號、解放軍報；中央官媒如新華社、央視、央視軍事、人民日報、央廣軍事；以及與對台議題高度相關的福建媒體，如看台海、台海時刻，另亦納入引用次數較高的觀察者網。"
+    },
+    {
+      "mid": "m154",
+      "gid": "etc-fusion-media",
+      "entity_type": "org",
+      "context_role": "actor",
+      "surface": "東部戰區融媒體中心",
+      "quote": "研究團隊觀察東部戰區融媒體中心和主要行動者的協作與分工，得到幾點觀察："
+    },
+    {
+      "mid": "m155",
+      "gid": "g:narr-righteous-arrow",
+      "entity_type": "narrative",
+      "context_role": "narrative",
+      "surface": "正義之箭",
+      "quote": "比如，演習首日（12月29日）早上，推出正義之箭、正義之盾海報之外，歷次演習畫面集結演習視頻、AI視頻「联武群戈斩独道」等；演習第二日（12月30日）早上，則有正義之錘、主题海報「軍力代差和以謀獨」海報。"
+    },
+    {
+      "mid": "m156",
+      "gid": "g:narr-righteous-shield",
+      "entity_type": "narrative",
+      "context_role": "narrative",
+      "surface": "正義之盾",
+      "quote": "比如，演習首日（12月29日）早上，推出正義之箭、正義之盾海報之外，歷次演習畫面集結演習視頻、AI視頻「联武群戈斩独道」等；演習第二日（12月30日）早上，則有正義之錘、主题海報「軍力代差和以謀獨」海報。"
+    },
+    {
+      "mid": "m157",
+      "gid": "g:narr-joint-forces-cut-independence",
+      "entity_type": "narrative",
+      "context_role": "narrative",
+      "surface": "联武群戈斩独道",
+      "quote": "比如，演習首日（12月29日）早上，推出正義之箭、正義之盾海報之外，歷次演習畫面集結演習視頻、AI視頻「联武群戈斩独道」等；演習第二日（12月30日）早上，則有正義之錘、主题海報「軍力代差和以謀獨」海報。"
+    },
+    {
+      "mid": "m158",
+      "gid": "g:narr-righteous-hammer",
+      "entity_type": "narrative",
+      "context_role": "narrative",
+      "surface": "正義之錘",
+      "quote": "比如，演習首日（12月29日）早上，推出正義之箭、正義之盾海報之外，歷次演習畫面集結演習視頻、AI視頻「联武群戈斩独道」等；演習第二日（12月30日）早上，則有正義之錘、主题海報「軍力代差和以謀獨」海報。"
+    },
+    {
+      "mid": "m159",
+      "gid": "g:narr-military-gap-independence",
+      "entity_type": "narrative",
+      "context_role": "narrative",
+      "surface": "軍力代差和以謀獨",
+      "quote": "比如，演習首日（12月29日）早上，推出正義之箭、正義之盾海報之外，歷次演習畫面集結演習視頻、AI視頻「联武群戈斩独道」等；演習第二日（12月30日）早上，則有正義之錘、主题海報「軍力代差和以謀獨」海報。"
+    },
+    {
+      "mid": "m160",
+      "gid": "etc-fusion-media",
+      "entity_type": "org",
+      "context_role": "actor",
+      "surface": "東部戰區",
+      "quote": "除了東部戰區發言人的官宣之外，央視、環球時報、新華社等特定官媒採訪中共特定軍事專家來點評演習，是演習畫面尚未製播之前的關鍵宣傳素材。"
+    },
+    {
+      "mid": "m161",
+      "gid": "cmg-cctv",
+      "entity_type": "media",
+      "context_role": "amplifier",
+      "surface": "央視",
+      "quote": "除了東部戰區發言人的官宣之外，央視、環球時報、新華社等特定官媒採訪中共特定軍事專家來點評演習，是演習畫面尚未製播之前的關鍵宣傳素材。"
+    },
+    {
+      "mid": "m162",
+      "gid": "global-times",
+      "entity_type": "media",
+      "context_role": "amplifier",
+      "surface": "環球時報",
+      "quote": "除了東部戰區發言人的官宣之外，央視、環球時報、新華社等特定官媒採訪中共特定軍事專家來點評演習，是演習畫面尚未製播之前的關鍵宣傳素材。"
+    },
+    {
+      "mid": "m163",
+      "gid": "g:xinhua",
+      "entity_type": "media",
+      "context_role": "amplifier",
+      "surface": "新華社",
+      "quote": "除了東部戰區發言人的官宣之外，央視、環球時報、新華社等特定官媒採訪中共特定軍事專家來點評演習，是演習畫面尚未製播之前的關鍵宣傳素材。"
+    },
+    {
+      "mid": "m164",
+      "gid": "g:ccp-state-media",
+      "entity_type": "media",
+      "context_role": "amplifier",
+      "surface": "特定官媒",
+      "quote": "除了東部戰區發言人的官宣之外，央視、環球時報、新華社等特定官媒採訪中共特定軍事專家來點評演習，是演習畫面尚未製播之前的關鍵宣傳素材。"
+    },
+    {
+      "mid": "m165",
+      "gid": "g:meng-xiangqing",
+      "entity_type": "person",
+      "context_role": "amplified-voice",
+      "surface": "孟祥青",
+      "quote": "專家限定為中共國防大學教授孟祥青、張弛、中國軍事學院副研究員付征南、海軍研究院研究員李劍等，專家影片由其他媒體和社群帳號轉發；福建媒體與網絡則以台灣政治名嘴和台灣退休將領的發言來「點評」軍演。"
+    },
+    {
+      "mid": "m166",
+      "gid": "g:zhang-chi-defense",
+      "entity_type": "person",
+      "context_role": "amplified-voice",
+      "surface": "張弛",
+      "quote": "專家限定為中共國防大學教授孟祥青、張弛、中國軍事學院副研究員付征南、海軍研究院研究員李劍等，專家影片由其他媒體和社群帳號轉發；福建媒體與網絡則以台灣政治名嘴和台灣退休將領的發言來「點評」軍演。"
+    },
+    {
+      "mid": "m167",
+      "gid": "g:fu-zhengnan",
+      "entity_type": "person",
+      "context_role": "amplified-voice",
+      "surface": "付征南",
+      "quote": "專家限定為中共國防大學教授孟祥青、張弛、中國軍事學院副研究員付征南、海軍研究院研究員李劍等，專家影片由其他媒體和社群帳號轉發；福建媒體與網絡則以台灣政治名嘴和台灣退休將領的發言來「點評」軍演。"
+    },
+    {
+      "mid": "m168",
+      "gid": "g:li-jian-naval",
+      "entity_type": "person",
+      "context_role": "amplified-voice",
+      "surface": "李劍",
+      "quote": "專家限定為中共國防大學教授孟祥青、張弛、中國軍事學院副研究員付征南、海軍研究院研究員李劍等，專家影片由其他媒體和社群帳號轉發；福建媒體與網絡則以台灣政治名嘴和台灣退休將領的發言來「點評」軍演。"
+    },
+    {
+      "mid": "m169",
+      "gid": "g:fujian-network",
+      "entity_type": "network",
+      "context_role": "amplifier",
+      "surface": "福建媒體與網絡",
+      "quote": "專家限定為中共國防大學教授孟祥青、張弛、中國軍事學院副研究員付征南、海軍研究院研究員李劍等，專家影片由其他媒體和社群帳號轉發；福建媒體與網絡則以台灣政治名嘴和台灣退休將領的發言來「點評」軍演。"
+    },
+    {
+      "mid": "m170",
+      "gid": "g:tw-pundits-unnamed",
+      "entity_type": "person",
+      "context_role": "amplified-voice",
+      "surface": "台灣政治名嘴",
+      "quote": "專家限定為中共國防大學教授孟祥青、張弛、中國軍事學院副研究員付征南、海軍研究院研究員李劍等，專家影片由其他媒體和社群帳號轉發；福建媒體與網絡則以台灣政治名嘴和台灣退休將領的發言來「點評」軍演。"
+    },
+    {
+      "mid": "m171",
+      "gid": "g:tw-retired-generals-unnamed",
+      "entity_type": "person",
+      "context_role": "amplified-voice",
+      "surface": "台灣退休將領",
+      "quote": "專家限定為中共國防大學教授孟祥青、張弛、中國軍事學院副研究員付征南、海軍研究院研究員李劍等，專家影片由其他媒體和社群帳號轉發；福建媒體與網絡則以台灣政治名嘴和台灣退休將領的發言來「點評」軍演。"
+    },
+    {
+      "mid": "m172",
+      "gid": "etc-fusion-media",
+      "entity_type": "org",
+      "context_role": "actor",
+      "surface": "東部戰區融媒體中心",
+      "quote": "國防大學新聞系教授傅文成觀察，東部戰區融媒體中心發動軍演宣傳時，會挑選特定敘事主題作為宣傳的主力攻擊，主力攻擊敘事可見從中央官媒、地方媒體到社群的不同行動者齊力發動。"
+    },
+    {
+      "mid": "m173",
+      "gid": "g:ccp-state-media",
+      "entity_type": "media",
+      "context_role": "amplifier",
+      "surface": "中央官媒",
+      "quote": "國防大學新聞系教授傅文成觀察，東部戰區融媒體中心發動軍演宣傳時，會挑選特定敘事主題作為宣傳的主力攻擊，主力攻擊敘事可見從中央官媒、地方媒體到社群的不同行動者齊力發動。"
+    },
+    {
+      "mid": "m174",
+      "gid": "etc-fusion-media",
+      "entity_type": "org",
+      "context_role": "actor",
+      "surface": "東部戰區融媒體中心",
+      "quote": "從過去經驗也可推測，東部戰區融媒體中心在軍演前已透過協調會議，做好設定攻擊敘事主題來做協同發動。"
+    },
+    {
+      "mid": "m175",
+      "gid": "etc-fusion-media",
+      "entity_type": "org",
+      "context_role": "actor",
+      "surface": "東部戰區融媒體中心",
+      "quote": "然而，並非東部戰區融媒體中心的每則素材或發文都被全力推播。"
+    },
+    {
+      "mid": "m176",
+      "gid": "g:narr-drone-taipei101",
+      "entity_type": "narrative",
+      "context_role": "narrative",
+      "surface": "無人機拍到台北101",
+      "quote": "正義使命軍演的主力宣傳攻擊是「無人機拍到台北101」敘事。"
+    },
+    {
+      "mid": "m177",
+      "gid": "g:narr-drone-taipei101",
+      "entity_type": "narrative",
+      "context_role": "narrative",
+      "surface": "此影像敘事",
+      "quote": "此影像敘事包含四種文本：央視和央視軍事採用手機直立畫面；中國軍號以無人機起飛影像作為開頭；東部戰區在「這麼近那麼美，隨時到台北」影像中穿插一張台北101照；此外，網路論壇和社群平台流傳所謂「無人機拍攝到的台北地形全景圖」。"
+    },
+    {
+      "mid": "m178",
+      "gid": "cmg-cctv",
+      "entity_type": "media",
+      "context_role": "amplifier",
+      "surface": "央視",
+      "quote": "此影像敘事包含四種文本：央視和"
+    },
+    {
+      "mid": "m179",
+      "gid": "cmg-cctv",
+      "entity_type": "media",
+      "context_role": "amplifier",
+      "surface": "央視軍事",
+      "quote": "此影像敘事包含四種文本：央視和央視軍事採用手機直立畫面；中國軍號以無人機起飛影像作為開頭；東部戰區在「這麼近那麼美，隨時到台北」影像中穿插一張台北101照；此外，網路論壇和社群平台流傳所謂「無人機拍攝到的台北地形全景圖」。"
+    },
+    {
+      "mid": "m180",
+      "gid": "g:china-mil-hao",
+      "entity_type": "account",
+      "context_role": "amplifier",
+      "surface": "中國軍號",
+      "quote": "此影像敘事包含四種文本：央視和央視軍事採用手機直立畫面；中國軍號以無人機起飛影像作為開頭；東部戰區在「這麼近那麼美，隨時到台北」影像中穿插一張台北101照；此外，網路論壇和社群平台流傳所謂「無人機拍攝到的台北地形全景圖」。"
+    },
+    {
+      "mid": "m181",
+      "gid": "etc-fusion-media",
+      "entity_type": "org",
+      "context_role": "actor",
+      "surface": "東部戰區",
+      "quote": "此影像敘事包含四種文本：央視和央視軍事採用手機直立畫面；中國軍號以無人機起飛影像作為開頭；東部戰區在「這麼近那麼美，隨時到台北」影像中穿插一張台北101照；此外，網路論壇和社群平台流傳所謂「無人機拍攝到的台北地形全景圖」。"
+    },
+    {
+      "mid": "m182",
+      "gid": "g:narr-so-close",
+      "entity_type": "narrative",
+      "context_role": "narrative",
+      "surface": "這麼近那麼美，隨時到台北",
+      "quote": "此影像敘事包含四種文本：央視和央視軍事採用手機直立畫面；中國軍號以無人機起飛影像作為開頭；東部戰區在「這麼近那麼美，隨時到台北」影像中穿插一張台北101照；此外，網路論壇和社群平台流傳所謂「無人機拍攝到的台北地形全景圖」。"
+    },
+    {
+      "mid": "m183",
+      "gid": "g:narr-drone-taipei101",
+      "entity_type": "narrative",
+      "context_role": "narrative",
+      "surface": "無人機拍攝到的台北地形全景圖",
+      "quote": "此影像敘事包含四種文本：央視和央視軍事採用手機直立畫面；中國軍號以無人機起飛影像作為開頭；東部戰區在「這麼近那麼美，隨時到台北」影像中穿插一張台北101照；此外，網路論壇和社群平台流傳所謂「無人機拍攝到的台北地形全景圖」。"
+    },
+    {
+      "mid": "m184",
+      "gid": "etc-fusion-media",
+      "entity_type": "org",
+      "context_role": "actor",
+      "surface": "東部戰區",
+      "quote": "資安院分析師戴毓辰協助比對上述文本的「台北101」影像，這四種文本影像疊合後完全相符，觀測到文本畫面左下的時間秒數，不同文本顯示的秒數略有不同，可推測東部戰區、央視、中國軍號等三個主要行動者，透過早已炮製的「共同素材」，自行加工與發揮為宣傳影像。"
+    },
+    {
+      "mid": "m185",
+      "gid": "cmg-cctv",
+      "entity_type": "media",
+      "context_role": "amplifier",
+      "surface": "央視",
+      "quote": "資安院分析師戴毓辰協助比對上述文本的「台北101」影像，這四種文本影像疊合後完全相符，觀測到文本畫面左下的時間秒數，不同文本顯示的秒數略有不同，可推測東部戰區、央視、中國軍號等三個主要行動者，透過早已炮製的「共同素材」，自行加工與發揮為宣傳影像。"
+    },
+    {
+      "mid": "m186",
+      "gid": "g:china-mil-hao",
+      "entity_type": "account",
+      "context_role": "amplifier",
+      "surface": "中國軍號",
+      "quote": "資安院分析師戴毓辰協助比對上述文本的「台北101」影像，這四種文本影像疊合後完全相符，觀測到文本畫面左下的時間秒數，不同文本顯示的秒數略有不同，可推測東部戰區、央視、中國軍號等三個主要行動者，透過早已炮製的「共同素材」，自行加工與發揮為宣傳影像。"
+    },
+    {
+      "mid": "m187",
+      "gid": "g:pla",
+      "entity_type": "org",
+      "context_role": "actor",
+      "surface": "解放軍",
+      "quote": "研究團隊採訪國防安全研究院研究員沈明室、關注解放軍公開情報圖資的溫約瑟均指出，這段影像不具有軍事情資威脅，但卻顯示出東部戰區融媒體中心在決定「宣傳攻擊」敘事時，看中的是恫嚇威脅民眾的政治宣傳效果。"
+    },
+    {
+      "mid": "m188",
+      "gid": "g:narr-drone-taipei101",
+      "entity_type": "narrative",
+      "context_role": "narrative",
+      "surface": "這段影像",
+      "quote": "研究團隊採訪國防安全研究院研究員沈明室、關注解放軍公開情報圖資的溫約瑟均指出，這段影像不具有軍事情資威脅，但卻顯示出東部戰區融媒體中心在決定「宣傳攻擊」敘事時，看中的是恫嚇威脅民眾的政治宣傳效果。"
+    },
+    {
+      "mid": "m189",
+      "gid": "etc-fusion-media",
+      "entity_type": "org",
+      "context_role": "actor",
+      "surface": "東部戰區融媒體中心",
+      "quote": "研究團隊採訪國防安全研究院研究員沈明室、關注解放軍公開情報圖資的溫約瑟均指出，這段影像不具有軍事情資威脅，但卻顯示出東部戰區融媒體中心在決定「宣傳攻擊」敘事時，看中的是恫嚇威脅民眾的政治宣傳效果。"
+    },
+    {
+      "mid": "m190",
+      "gid": "etc-fusion-media",
+      "entity_type": "org",
+      "context_role": "actor",
+      "surface": "東部戰區融媒體",
+      "quote": "觀察軍演宣傳的關係網絡圖和敘事分析，東部戰區融媒體和主要行動者之間各有分工："
+    },
+    {
+      "mid": "m191",
+      "gid": "etc-fusion-media",
+      "entity_type": "org",
+      "context_role": "actor",
+      "surface": "東部戰區",
+      "quote": "體所製作的「演習畫面」素材，提供給央視、人民日報、中國軍號、環球日報等媒體使用，素材會同步打上「東部戰區」藍白符號。"
+    },
+    {
+      "mid": "m192",
+      "gid": "g:china-mil-hao",
+      "entity_type": "account",
+      "context_role": "amplifier",
+      "surface": "中國軍號",
+      "quote": "中國軍號和解放軍報，會有起床號、熄燈號，提供解放軍觀點的宣傳素材。"
+    },
+    {
+      "mid": "m193",
+      "gid": "g:pla-daily",
+      "entity_type": "media",
+      "context_role": "amplifier",
+      "surface": "解放軍報",
+      "quote": "中國軍號和解放軍報，會有起床號、熄燈號，提供解放軍觀點的宣傳素材。"
+    },
+    {
+      "mid": "m194",
+      "gid": "g:pla",
+      "entity_type": "org",
+      "context_role": "actor",
+      "surface": "解放軍",
+      "quote": "報，會有起床號、熄燈號，提供解放軍觀點的宣傳素材。"
+    },
+    {
+      "mid": "m195",
+      "gid": "g:taiwan-military",
+      "entity_type": "org",
+      "context_role": "target",
+      "surface": "台灣軍方",
+      "quote": "凸槌訊息、台灣軍方驅離錄音、台灣政治名嘴和退休將領點評等「台灣」觀點。"
+    },
+    {
+      "mid": "m196",
+      "gid": "g:beijing-time",
+      "entity_type": "media",
+      "context_role": "amplifier",
+      "surface": "北京時間",
+      "quote": "中共地方媒體的新媒體品牌，比如北京時間（北京廣播電視台）、直新聞（深圳廣電集團）透過博主型記者主播講述軍演新聞與介紹主題海報意義。"
+    },
+    {
+      "mid": "m197",
+      "gid": "g:beijing-radio-tv",
+      "entity_type": "media",
+      "context_role": "amplifier",
+      "surface": "北京廣播電視台",
+      "quote": "中共地方媒體的新媒體品牌，比如北京時間（北京廣播電視台）、直新聞（深圳廣電集團）透過博主型記者主播講述軍演新聞與介紹主題海報意義。"
+    },
+    {
+      "mid": "m198",
+      "gid": "g:direct-news",
+      "entity_type": "media",
+      "context_role": "amplifier",
+      "surface": "直新聞",
+      "quote": "中共地方媒體的新媒體品牌，比如北京時間（北京廣播電視台）、直新聞（深圳廣電集團）透過博主型記者主播講述軍演新聞與介紹主題海報意義。"
+    },
+    {
+      "mid": "m199",
+      "gid": "g:shenzhen-media-group",
+      "entity_type": "media",
+      "context_role": "amplifier",
+      "surface": "深圳廣電集團",
+      "quote": "中共地方媒體的新媒體品牌，比如北京時間（北京廣播電視台）、直新聞（深圳廣電集團）透過博主型記者主播講述軍演新聞與介紹主題海報意義。"
+    },
+    {
+      "mid": "m200",
+      "gid": "cmg-cctv",
+      "entity_type": "media",
+      "context_role": "amplifier",
+      "surface": "看台海",
+      "quote": "值得注意的是，中共特定幾個地方廣電媒體的「新媒體」，引用、轉播「看台海」和特定台媒的台灣名嘴節目片段，對內來宣傳軍演。"
+    },
+    {
+      "mid": "m201",
+      "gid": "g:narr-double-tail-scorpion",
+      "entity_type": "narrative",
+      "context_role": "narrative",
+      "surface": "雙尾蠍",
+      "quote": "以「無人機」敘事為例，官方未曾提及「雙尾蠍」，但媒體和民間軍事博主透過中國軍號畫面，反搜認定為"
+    },
+    {
+      "mid": "m202",
+      "gid": "g:china-mil-hao",
+      "entity_type": "account",
+      "context_role": "amplifier",
+      "surface": "中國軍號",
+      "quote": "以「無人機」敘事為例，官方未曾提及「雙尾蠍」，但媒體和民間軍事博主透過中國軍號畫面，反搜認定為雙尾蠍，文章延伸介紹「雙尾蠍」功能，甚至虛擬出無人機斬首計畫、繞台路線。"
+    },
+    {
+      "mid": "m203",
+      "gid": "g:narr-double-tail-scorpion",
+      "entity_type": "narrative",
+      "context_role": "narrative",
+      "surface": "雙尾蠍",
+      "quote": "，文章延伸介紹「雙尾蠍」功能，甚至虛擬出無人機斬首計畫、繞台路線。"
+    },
+    {
+      "mid": "m204",
+      "gid": "g:narr-drone-decapitation",
+      "entity_type": "narrative",
+      "context_role": "narrative",
+      "surface": "無人機斬首計畫",
+      "quote": "以「無人機」敘事為例，官方未曾提及「雙尾蠍」，但媒體和民間軍事博主透過中國軍號畫面，反搜認定為雙尾蠍，文章延伸介紹「雙尾蠍」功能，甚至虛擬出無人機斬首計畫、繞台路線。"
+    },
+    {
+      "mid": "m205",
+      "gid": "g:narr-circumnavigation-route",
+      "entity_type": "narrative",
+      "context_role": "narrative",
+      "surface": "繞台路線",
+      "quote": "以「無人機」敘事為例，官方未曾提及「雙尾蠍」，但媒體和民間軍事博主透過中國軍號畫面，反搜認定為雙尾蠍，文章延伸介紹「雙尾蠍」功能，甚至虛擬出無人機斬首計畫、繞台路線。"
+    },
+    {
+      "mid": "m206",
+      "gid": "etc-fusion-media",
+      "entity_type": "org",
+      "context_role": "actor",
+      "surface": "東部戰區",
+      "quote": "儘管東部戰區新聞發言人是在2025年12月31日晚間六點宣布結束演習，但演習第三日（12月31日）的宣傳工作已不見任何更新的演習畫面。"
+    },
+    {
+      "mid": "m207",
+      "gid": "g:pla-daily",
+      "entity_type": "media",
+      "context_role": "amplifier",
+      "surface": "解放軍報",
+      "quote": "東部戰區融媒體中心在第三日發布的是前兩日演習畫面和「沙場風雨兩岸燈」MV，解放軍報刊登的是12月30日於福州平潭拍攝的遠程火箭砲實彈射擊照片集與文字報導。"
+    },
+    {
+      "mid": "m208",
+      "gid": "cmg-cctv",
+      "entity_type": "media",
+      "context_role": "amplifier",
+      "surface": "央視",
+      "quote": "央視當晚的新聞聯播則為習近平新年賀詞，軍事新聞關注的是慶賀解放軍報70週年、香港部隊人事訊息、火箭軍建軍十週年等無關對台軍演訊息，翌日為元旦，並沒有對台軍演的相關訊息。"
+    },
+    {
+      "mid": "m209",
+      "gid": "g:pla-daily",
+      "entity_type": "media",
+      "context_role": "amplifier",
+      "surface": "解放軍報",
+      "quote": "央視當晚的新聞聯播則為習近平新年賀詞，軍事新聞關注的是慶賀解放軍報70週年、香港部隊人事訊息、火箭軍建軍十週年等無關對台軍演訊息，翌日為元旦，並沒有對台軍演的相關訊息。"
+    },
+    {
+      "mid": "m210",
+      "gid": "etc-fusion-media",
+      "entity_type": "org",
+      "context_role": "actor",
+      "surface": "東部戰區融媒體中心",
+      "quote": "東部戰區融媒體中心作為政治工作的宣傳單位，亦在當中操練宣傳戰、輿論戰，以發揮對台的威懾作用，企圖弱化台灣民眾抵抗意志，並宣示軍事威脅行動的合法性。"
+    },
+    {
+      "mid": "m211",
+      "gid": "g:taiwan-public",
+      "entity_type": "person",
+      "context_role": "target",
+      "surface": "台灣民眾",
+      "quote": "東部戰區融媒體中心作為政治工作的宣傳單位，亦在當中操練宣傳戰、輿論戰，以發揮對台的威懾作用，企圖弱化台灣民眾抵抗意志，並宣示軍事威脅行動的合法性。"
+    },
+    {
+      "mid": "m212",
+      "gid": "etc-fusion-media",
+      "entity_type": "org",
+      "context_role": "actor",
+      "surface": "東部戰區融媒體中心",
+      "quote": "本研究以正義使命軍演為案例，嘗試拆解東部戰區融媒體中心的軍演敘事劇本，掌握融媒體中心如何透過與中央官媒、地方媒體、新媒體、社群帳號協力，以及挑選特定的敘事，對台灣民眾發動恫嚇，並對大陸民眾操弄民族情緒，以支持解放軍的演習動員。"
+    },
+    {
+      "mid": "m213",
+      "gid": "g:ccp-state-media",
+      "entity_type": "media",
+      "context_role": "amplifier",
+      "surface": "中央官媒",
+      "quote": "本研究以正義使命軍演為案例，嘗試拆解東部戰區融媒體中心的軍演敘事劇本，掌握融媒體中心如何透過與中央官媒、地方媒體、新媒體、社群帳號協力，以及挑選特定的敘事，對台灣民眾發動恫嚇，並對大陸民眾操弄民族情緒，以支持解放軍的演習動員。"
+    },
+    {
+      "mid": "m214",
+      "gid": "g:pla",
+      "entity_type": "org",
+      "context_role": "actor",
+      "surface": "解放軍",
+      "quote": "本研究以正義使命軍演為案例，嘗試拆解東部戰區融媒體中心的軍演敘事劇本，掌握融媒體中心如何透過與中央官媒、地方媒體、新媒體、社群帳號協力，以及挑選特定的敘事，對台灣民眾發動恫嚇，並對大陸民眾操弄民族情緒，以支持解放軍的演習動員。"
+    },
+    {
+      "mid": "m215",
+      "gid": "etc-fusion-media",
+      "entity_type": "org",
+      "context_role": "actor",
+      "surface": "東部戰區融媒體中心",
+      "quote": "東部戰區融媒體中心的「宣傳」敘事觀點，有其政治宣傳目的。"
+    },
+    {
+      "mid": "m216",
+      "gid": "g:ccp-state-media",
+      "entity_type": "media",
+      "context_role": "amplifier",
+      "surface": "中國官媒",
+      "quote": "透過中國官媒和社群網路輿論烘托渲染的敘事，主要目的是對台灣民眾營造軍演鄰近的威嚇感，但不見得是解放軍軍演真正的威脅所在。"
+    },
+    {
+      "mid": "m217",
+      "gid": "g:taiwan-public",
+      "entity_type": "person",
+      "context_role": "target",
+      "surface": "台灣民眾",
+      "quote": "透過中國官媒和社群網路輿論烘托渲染的敘事，主要目的是對台灣民眾營造軍演鄰近的威嚇感，但不見得是解放軍軍演真正的威脅所在。"
+    },
+    {
+      "mid": "m218",
+      "gid": "g:pla",
+      "entity_type": "org",
+      "context_role": "actor",
+      "surface": "解放軍",
+      "quote": "透過中國官媒和社群網路輿論烘托渲染的敘事，主要目的是對台灣民眾營造軍演鄰近的威嚇感，但不見得是解放軍軍演真正的威脅所在。"
+    },
+    {
+      "mid": "m219",
+      "gid": "g:narr-drone-taipei101",
+      "entity_type": "narrative",
+      "context_role": "narrative",
+      "surface": "無人機",
+      "quote": "以「無人機」敘事為例"
+    },
+    {
+      "mid": "m220",
+      "gid": "g:zhenjiang-minsheng-channel",
+      "entity_type": "media",
+      "context_role": "amplifier",
+      "surface": "鎮江民生頻道",
+      "quote": "檢視392組文本資料所顯示的指向網絡時可發現，東部戰區發布的貼文，有13個媒體和大V共同轉分享，包括央視新聞、央廣軍事、鎮江民生頻道、央廣軍事、環球時報、浙江日報、澎湃新聞、宣漢融媒、新浪軍事、動静新聞、南湖發布、看看新聞Knews和星話大白等。"
+    },
+    {
+      "mid": "m221",
+      "gid": "etc-fusion-media",
+      "entity_type": "org",
+      "context_role": "actor",
+      "surface": "東部戰區",
+      "quote": "檢視392組文本資料所顯示的指向網絡時可發現，東部戰區發布的貼文，有13個媒體和大V共同轉分享，包括央視新聞、央廣軍事、鎮江民生頻道、央廣軍事、環球時報、浙江日報、澎湃新聞、宣漢融媒、新浪軍事、動静新聞、南湖發布、看看新聞Knews和星話大白等。"
+    },
+    {
+      "mid": "m222",
+      "gid": "g:zhejiang-daily",
+      "entity_type": "media",
+      "context_role": "amplifier",
+      "surface": "浙江日報",
+      "quote": "檢視392組文本資料所顯示的指向網絡時可發現，東部戰區發布的貼文，有13個媒體和大V共同轉分享，包括央視新聞、央廣軍事、鎮江民生頻道、央廣軍事、環球時報、浙江日報、澎湃新聞、宣漢融媒、新浪軍事、動静新聞、南湖發布、看看新聞Knews和星話大白等。"
+    },
+    {
+      "mid": "m223",
+      "gid": "etc-fusion-media",
+      "entity_type": "org",
+      "context_role": "actor",
+      "surface": "東部戰區",
+      "quote": "檢視392組文本資料所顯示的指向網絡時可發現，東部戰區發布的貼文，有13個媒體和大V共同轉分享，包括央視新聞、央廣軍事、鎮江民生頻道、央廣軍事、環球時報、浙江日報、澎湃新聞、宣漢融媒、新浪軍事、動静新聞、南湖發布、看看新聞Knews和星話大白等。"
+    },
+    {
+      "mid": "m224",
+      "gid": "g:the-paper",
+      "entity_type": "media",
+      "context_role": "amplifier",
+      "surface": "澎湃新聞",
+      "quote": "檢視392組文本資料所顯示的指向網絡時可發現，東部戰區發布的貼文，有13個媒體和大V共同轉分享，包括央視新聞、央廣軍事、鎮江民生頻道、央廣軍事、環球時報、浙江日報、澎湃新聞、宣漢融媒、新浪軍事、動静新聞、南湖發布、看看新聞Knews和星話大白等。"
+    },
+    {
+      "mid": "m225",
+      "gid": "etc-fusion-media",
+      "entity_type": "org",
+      "context_role": "actor",
+      "surface": "東部戰區",
+      "quote": "檢視392組文本資料所顯示的指向網絡時可發現，東部戰區發布的貼文，有13個媒體和大V共同轉分享，包括央視新聞、央廣軍事、鎮江民生頻道、央廣軍事、環球時報、浙江日報、澎湃新聞、宣漢融媒、新浪軍事、動静新聞、南湖發布、看看新聞Knews和星話大白等。"
+    },
+    {
+      "mid": "m226",
+      "gid": "g:xuanhan-rongmei",
+      "entity_type": "media",
+      "context_role": "amplifier",
+      "surface": "宣漢融媒",
+      "quote": "檢視392組文本資料所顯示的指向網絡時可發現，東部戰區發布的貼文，有13個媒體和大V共同轉分享，包括央視新聞、央廣軍事、鎮江民生頻道、央廣軍事、環球時報、浙江日報、澎湃新聞、宣漢融媒、新浪軍事、動静新聞、南湖發布、看看新聞Knews和星話大白等。"
+    },
+    {
+      "mid": "m227",
+      "gid": "etc-fusion-media",
+      "entity_type": "org",
+      "context_role": "actor",
+      "surface": "東部戰區",
+      "quote": "檢視392組文本資料所顯示的指向網絡時可發現，東部戰區發布的貼文，有13個媒體和大V共同轉分享，包括央視新聞、央廣軍事、鎮江民生頻道、央廣軍事、環球時報、浙江日報、澎湃新聞、宣漢融媒、新浪軍事、動静新聞、南湖發布、看看新聞Knews和星話大白等。"
+    },
+    {
+      "mid": "m228",
+      "gid": "g:dongjing-news",
+      "entity_type": "media",
+      "context_role": "amplifier",
+      "surface": "動静新聞",
+      "quote": "檢視392組文本資料所顯示的指向網絡時可發現，東部戰區發布的貼文，有13個媒體和大V共同轉分享，包括央視新聞、央廣軍事、鎮江民生頻道、央廣軍事、環球時報、浙江日報、澎湃新聞、宣漢融媒、新浪軍事、動静新聞、南湖發布、看看新聞Knews和星話大白等。"
+    },
+    {
+      "mid": "m229",
+      "gid": "etc-fusion-media",
+      "entity_type": "org",
+      "context_role": "actor",
+      "surface": "東部戰區",
+      "quote": "檢視392組文本資料所顯示的指向網絡時可發現，東部戰區發布的貼文，有13個媒體和大V共同轉分享，包括央視新聞、央廣軍事、鎮江民生頻道、央廣軍事、環球時報、浙江日報、澎湃新聞、宣漢融媒、新浪軍事、動静新聞、南湖發布、看看新聞Knews和星話大白等。"
+    },
+    {
+      "mid": "m230",
+      "gid": "g:nanhu-fabu",
+      "entity_type": "account",
+      "context_role": "amplifier",
+      "surface": "南湖發布",
+      "quote": "檢視392組文本資料所顯示的指向網絡時可發現，東部戰區發布的貼文，有13個媒體和大V共同轉分享，包括央視新聞、央廣軍事、鎮江民生頻道、央廣軍事、環球時報、浙江日報、澎湃新聞、宣漢融媒、新浪軍事、動静新聞、南湖發布、看看新聞Knews和星話大白等。"
+    },
+    {
+      "mid": "m231",
+      "gid": "etc-fusion-media",
+      "entity_type": "org",
+      "context_role": "actor",
+      "surface": "東部戰區",
+      "quote": "檢視392組文本資料所顯示的指向網絡時可發現，東部戰區發布的貼文，有13個媒體和大V共同轉分享，包括央視新聞、央廣軍事、鎮江民生頻道、央廣軍事、環球時報、浙江日報、澎湃新聞、宣漢融媒、新浪軍事、動静新聞、南湖發布、看看新聞Knews和星話大白等。"
+    },
+    {
+      "mid": "m232",
+      "gid": "g:xinghua-dabai",
+      "entity_type": "account",
+      "context_role": "amplifier",
+      "surface": "星話大白",
+      "quote": "檢視392組文本資料所顯示的指向網絡時可發現，東部戰區發布的貼文，有13個媒體和大V共同轉分享，包括央視新聞、央廣軍事、鎮江民生頻道、央廣軍事、環球時報、浙江日報、澎湃新聞、宣漢融媒、新浪軍事、動静新聞、南湖發布、看看新聞Knews和星話大白等。"
+    },
+    {
+      "mid": "m233",
+      "gid": "etc-fusion-media",
+      "entity_type": "org",
+      "context_role": "actor",
+      "surface": "東部戰區",
+      "quote": "檢視392組文本資料所顯示的指向網絡時可發現，東部戰區發布的貼文，有13個媒體和大V共同轉分享，包括央視新聞、央廣軍事、鎮江民生頻道、央廣軍事、環球時報、浙江日報、澎湃新聞、宣漢融媒、新浪軍事、動静新聞、南湖發布、看看新聞Knews和星話大白等。"
+    },
+    {
+      "mid": "m234",
+      "gid": "g:pingshan-police",
+      "entity_type": "account",
+      "context_role": "amplifier",
+      "surface": "屏山公安",
+      "quote": "央視新聞發布的13則報導文本，有26個帳號轉發，官方單位有屏山公安、銅陵經開公安在線、山東高法、沐川公安、青春龍泉驛和平安金陽；媒體有動靜新聞、新浪軍事、南寧晚報、錢江晚報、南方週末、頭條新聞、第一現場、馬上資訊、看台海、福建日報、環球時報和新京報；大V有星話大白、包容萬物恆河水、台灣那點事兒、扎西德勒·天珠收藏、椒哥微記錄、航天面面觀、長春-小風、白鶴-老鄧。"
+    },
+    {
+      "mid": "m235",
+      "gid": "cmg-cctv",
+      "entity_type": "media",
+      "context_role": "amplifier",
+      "surface": "央視新聞",
+      "quote": "央視新聞發布的13則報導文本，有26個帳號轉發，官方單位有屏山公安、銅陵經開公安在線、山東高法、沐川公安、青春龍泉驛和平安金陽；媒體有動靜新聞、新浪軍事、南寧晚報、錢江晚報、南方週末、頭條新聞、第一現場、馬上資訊、看台海、福建日報、環球時報和新京報；大V有星話大白、包容萬物恆河水、台灣那點事兒、扎西德勒·天珠收藏、椒哥微記錄、航天面面觀、長春-小風、白鶴-老鄧。"
+    },
+    {
+      "mid": "m236",
+      "gid": "g:tongling-etdz-police-online",
+      "entity_type": "account",
+      "context_role": "amplifier",
+      "surface": "銅陵經開公安在線",
+      "quote": "央視新聞發布的13則報導文本，有26個帳號轉發，官方單位有屏山公安、銅陵經開公安在線、山東高法、沐川公安、青春龍泉驛和平安金陽；媒體有動靜新聞、新浪軍事、南寧晚報、錢江晚報、南方週末、頭條新聞、第一現場、馬上資訊、看台海、福建日報、環球時報和新京報；大V有星話大白、包容萬物恆河水、台灣那點事兒、扎西德勒·天珠收藏、椒哥微記錄、航天面面觀、長春-小風、白鶴-老鄧。"
+    },
+    {
+      "mid": "m237",
+      "gid": "cmg-cctv",
+      "entity_type": "media",
+      "context_role": "amplifier",
+      "surface": "央視新聞",
+      "quote": "央視新聞發布的13則報導文本，有26個帳號轉發，官方單位有屏山公安、銅陵經開公安在線、山東高法、沐川公安、青春龍泉驛和平安金陽；媒體有動靜新聞、新浪軍事、南寧晚報、錢江晚報、南方週末、頭條新聞、第一現場、馬上資訊、看台海、福建日報、環球時報和新京報；大V有星話大白、包容萬物恆河水、台灣那點事兒、扎西德勒·天珠收藏、椒哥微記錄、航天面面觀、長春-小風、白鶴-老鄧。"
+    },
+    {
+      "mid": "m238",
+      "gid": "g:shandong-high-court",
+      "entity_type": "account",
+      "context_role": "amplifier",
+      "surface": "山東高法",
+      "quote": "央視新聞發布的13則報導文本，有26個帳號轉發，官方單位有屏山公安、銅陵經開公安在線、山東高法、沐川公安、青春龍泉驛和平安金陽；媒體有動靜新聞、新浪軍事、南寧晚報、錢江晚報、南方週末、頭條新聞、第一現場、馬上資訊、看台海、福建日報、環球時報和新京報；大V有星話大白、包容萬物恆河水、台灣那點事兒、扎西德勒·天珠收藏、椒哥微記錄、航天面面觀、長春-小風、白鶴-老鄧。"
+    },
+    {
+      "mid": "m239",
+      "gid": "cmg-cctv",
+      "entity_type": "media",
+      "context_role": "amplifier",
+      "surface": "央視新聞",
+      "quote": "央視新聞發布的13則報導文本，有26個帳號轉發，官方單位有屏山公安、銅陵經開公安在線、山東高法、沐川公安、青春龍泉驛和平安金陽；媒體有動靜新聞、新浪軍事、南寧晚報、錢江晚報、南方週末、頭條新聞、第一現場、馬上資訊、看台海、福建日報、環球時報和新京報；大V有星話大白、包容萬物恆河水、台灣那點事兒、扎西德勒·天珠收藏、椒哥微記錄、航天面面觀、長春-小風、白鶴-老鄧。"
+    },
+    {
+      "mid": "m240",
+      "gid": "g:muchuan-police",
+      "entity_type": "account",
+      "context_role": "amplifier",
+      "surface": "沐川公安",
+      "quote": "央視新聞發布的13則報導文本，有26個帳號轉發，官方單位有屏山公安、銅陵經開公安在線、山東高法、沐川公安、青春龍泉驛和平安金陽；媒體有動靜新聞、新浪軍事、南寧晚報、錢江晚報、南方週末、頭條新聞、第一現場、馬上資訊、看台海、福建日報、環球時報和新京報；大V有星話大白、包容萬物恆河水、台灣那點事兒、扎西德勒·天珠收藏、椒哥微記錄、航天面面觀、長春-小風、白鶴-老鄧。"
+    },
+    {
+      "mid": "m241",
+      "gid": "cmg-cctv",
+      "entity_type": "media",
+      "context_role": "amplifier",
+      "surface": "央視新聞",
+      "quote": "央視新聞發布的13則報導文本，有26個帳號轉發，官方單位有屏山公安、銅陵經開公安在線、山東高法、沐川公安、青春龍泉驛和平安金陽；媒體有動靜新聞、新浪軍事、南寧晚報、錢江晚報、南方週末、頭條新聞、第一現場、馬上資訊、看台海、福建日報、環球時報和新京報；大V有星話大白、包容萬物恆河水、台灣那點事兒、扎西德勒·天珠收藏、椒哥微記錄、航天面面觀、長春-小風、白鶴-老鄧。"
+    },
+    {
+      "mid": "m242",
+      "gid": "g:qingchun-longquanyi",
+      "entity_type": "account",
+      "context_role": "amplifier",
+      "surface": "青春龍泉驛",
+      "quote": "央視新聞發布的13則報導文本，有26個帳號轉發，官方單位有屏山公安、銅陵經開公安在線、山東高法、沐川公安、青春龍泉驛和平安金陽；媒體有動靜新聞、新浪軍事、南寧晚報、錢江晚報、南方週末、頭條新聞、第一現場、馬上資訊、看台海、福建日報、環球時報和新京報；大V有星話大白、包容萬物恆河水、台灣那點事兒、扎西德勒·天珠收藏、椒哥微記錄、航天面面觀、長春-小風、白鶴-老鄧。"
+    },
+    {
+      "mid": "m243",
+      "gid": "cmg-cctv",
+      "entity_type": "media",
+      "context_role": "amplifier",
+      "surface": "央視新聞",
+      "quote": "央視新聞發布的13則報導文本，有26個帳號轉發，官方單位有屏山公安、銅陵經開公安在線、山東高法、沐川公安、青春龍泉驛和平安金陽；媒體有動靜新聞、新浪軍事、南寧晚報、錢江晚報、南方週末、頭條新聞、第一現場、馬上資訊、看台海、福建日報、環球時報和新京報；大V有星話大白、包容萬物恆河水、台灣那點事兒、扎西德勒·天珠收藏、椒哥微記錄、航天面面觀、長春-小風、白鶴-老鄧。"
+    },
+    {
+      "mid": "m244",
+      "gid": "g:pingan-jinyang",
+      "entity_type": "account",
+      "context_role": "amplifier",
+      "surface": "平安金陽",
+      "quote": "央視新聞發布的13則報導文本，有26個帳號轉發，官方單位有屏山公安、銅陵經開公安在線、山東高法、沐川公安、青春龍泉驛和平安金陽；媒體有動靜新聞、新浪軍事、南寧晚報、錢江晚報、南方週末、頭條新聞、第一現場、馬上資訊、看台海、福建日報、環球時報和新京報；大V有星話大白、包容萬物恆河水、台灣那點事兒、扎西德勒·天珠收藏、椒哥微記錄、航天面面觀、長春-小風、白鶴-老鄧。"
+    },
+    {
+      "mid": "m245",
+      "gid": "cmg-cctv",
+      "entity_type": "media",
+      "context_role": "amplifier",
+      "surface": "央視新聞",
+      "quote": "央視新聞發布的13則報導文本，有26個帳號轉發，官方單位有屏山公安、銅陵經開公安在線、山東高法、沐川公安、青春龍泉驛和平安金陽；媒體有動靜新聞、新浪軍事、南寧晚報、錢江晚報、南方週末、頭條新聞、第一現場、馬上資訊、看台海、福建日報、環球時報和新京報；大V有星話大白、包容萬物恆河水、台灣那點事兒、扎西德勒·天珠收藏、椒哥微記錄、航天面面觀、長春-小風、白鶴-老鄧。"
+    },
+    {
+      "mid": "m246",
+      "gid": "g:dongjing-news",
+      "entity_type": "media",
+      "context_role": "amplifier",
+      "surface": "動靜新聞",
+      "quote": "央視新聞發布的13則報導文本，有26個帳號轉發，官方單位有屏山公安、銅陵經開公安在線、山東高法、沐川公安、青春龍泉驛和平安金陽；媒體有動靜新聞、新浪軍事、南寧晚報、錢江晚報、南方週末、頭條新聞、第一現場、馬上資訊、看台海、福建日報、環球時報和新京報；大V有星話大白、包容萬物恆河水、台灣那點事兒、扎西德勒·天珠收藏、椒哥微記錄、航天面面觀、長春-小風、白鶴-老鄧。"
+    },
+    {
+      "mid": "m247",
+      "gid": "cmg-cctv",
+      "entity_type": "media",
+      "context_role": "amplifier",
+      "surface": "央視新聞",
+      "quote": "央視新聞發布的13則報導文本，有26個帳號轉發，官方單位有屏山公安、銅陵經開公安在線、山東高法、沐川公安、青春龍泉驛和平安金陽；媒體有動靜新聞、新浪軍事、南寧晚報、錢江晚報、南方週末、頭條新聞、第一現場、馬上資訊、看台海、福建日報、環球時報和新京報；大V有星話大白、包容萬物恆河水、台灣那點事兒、扎西德勒·天珠收藏、椒哥微記錄、航天面面觀、長春-小風、白鶴-老鄧。"
+    },
+    {
+      "mid": "m248",
+      "gid": "g:nanning-evening-news",
+      "entity_type": "media",
+      "context_role": "amplifier",
+      "surface": "南寧晚報",
+      "quote": "央視新聞發布的13則報導文本，有26個帳號轉發，官方單位有屏山公安、銅陵經開公安在線、山東高法、沐川公安、青春龍泉驛和平安金陽；媒體有動靜新聞、新浪軍事、南寧晚報、錢江晚報、南方週末、頭條新聞、第一現場、馬上資訊、看台海、福建日報、環球時報和新京報；大V有星話大白、包容萬物恆河水、台灣那點事兒、扎西德勒·天珠收藏、椒哥微記錄、航天面面觀、長春-小風、白鶴-老鄧。"
+    },
+    {
+      "mid": "m249",
+      "gid": "cmg-cctv",
+      "entity_type": "media",
+      "context_role": "amplifier",
+      "surface": "央視新聞",
+      "quote": "央視新聞發布的13則報導文本，有26個帳號轉發，官方單位有屏山公安、銅陵經開公安在線、山東高法、沐川公安、青春龍泉驛和平安金陽；媒體有動靜新聞、新浪軍事、南寧晚報、錢江晚報、南方週末、頭條新聞、第一現場、馬上資訊、看台海、福建日報、環球時報和新京報；大V有星話大白、包容萬物恆河水、台灣那點事兒、扎西德勒·天珠收藏、椒哥微記錄、航天面面觀、長春-小風、白鶴-老鄧。"
+    },
+    {
+      "mid": "m250",
+      "gid": "g:qianjiang-evening-news",
+      "entity_type": "media",
+      "context_role": "amplifier",
+      "surface": "錢江晚報",
+      "quote": "央視新聞發布的13則報導文本，有26個帳號轉發，官方單位有屏山公安、銅陵經開公安在線、山東高法、沐川公安、青春龍泉驛和平安金陽；媒體有動靜新聞、新浪軍事、南寧晚報、錢江晚報、南方週末、頭條新聞、第一現場、馬上資訊、看台海、福建日報、環球時報和新京報；大V有星話大白、包容萬物恆河水、台灣那點事兒、扎西德勒·天珠收藏、椒哥微記錄、航天面面觀、長春-小風、白鶴-老鄧。"
+    },
+    {
+      "mid": "m251",
+      "gid": "cmg-cctv",
+      "entity_type": "media",
+      "context_role": "amplifier",
+      "surface": "央視新聞",
+      "quote": "央視新聞發布的13則報導文本，有26個帳號轉發，官方單位有屏山公安、銅陵經開公安在線、山東高法、沐川公安、青春龍泉驛和平安金陽；媒體有動靜新聞、新浪軍事、南寧晚報、錢江晚報、南方週末、頭條新聞、第一現場、馬上資訊、看台海、福建日報、環球時報和新京報；大V有星話大白、包容萬物恆河水、台灣那點事兒、扎西德勒·天珠收藏、椒哥微記錄、航天面面觀、長春-小風、白鶴-老鄧。"
+    },
+    {
+      "mid": "m252",
+      "gid": "g:southern-weekly",
+      "entity_type": "media",
+      "context_role": "amplifier",
+      "surface": "南方週末",
+      "quote": "央視新聞發布的13則報導文本，有26個帳號轉發，官方單位有屏山公安、銅陵經開公安在線、山東高法、沐川公安、青春龍泉驛和平安金陽；媒體有動靜新聞、新浪軍事、南寧晚報、錢江晚報、南方週末、頭條新聞、第一現場、馬上資訊、看台海、福建日報、環球時報和新京報；大V有星話大白、包容萬物恆河水、台灣那點事兒、扎西德勒·天珠收藏、椒哥微記錄、航天面面觀、長春-小風、白鶴-老鄧。"
+    },
+    {
+      "mid": "m253",
+      "gid": "cmg-cctv",
+      "entity_type": "media",
+      "context_role": "amplifier",
+      "surface": "央視新聞",
+      "quote": "央視新聞發布的13則報導文本，有26個帳號轉發，官方單位有屏山公安、銅陵經開公安在線、山東高法、沐川公安、青春龍泉驛和平安金陽；媒體有動靜新聞、新浪軍事、南寧晚報、錢江晚報、南方週末、頭條新聞、第一現場、馬上資訊、看台海、福建日報、環球時報和新京報；大V有星話大白、包容萬物恆河水、台灣那點事兒、扎西德勒·天珠收藏、椒哥微記錄、航天面面觀、長春-小風、白鶴-老鄧。"
+    },
+    {
+      "mid": "m254",
+      "gid": "g:toutiao-news",
+      "entity_type": "account",
+      "context_role": "amplifier",
+      "surface": "頭條新聞",
+      "quote": "央視新聞發布的13則報導文本，有26個帳號轉發，官方單位有屏山公安、銅陵經開公安在線、山東高法、沐川公安、青春龍泉驛和平安金陽；媒體有動靜新聞、新浪軍事、南寧晚報、錢江晚報、南方週末、頭條新聞、第一現場、馬上資訊、看台海、福建日報、環球時報和新京報；大V有星話大白、包容萬物恆河水、台灣那點事兒、扎西德勒·天珠收藏、椒哥微記錄、航天面面觀、長春-小風、白鶴-老鄧。"
+    },
+    {
+      "mid": "m255",
+      "gid": "cmg-cctv",
+      "entity_type": "media",
+      "context_role": "amplifier",
+      "surface": "央視新聞",
+      "quote": "央視新聞發布的13則報導文本，有26個帳號轉發，官方單位有屏山公安、銅陵經開公安在線、山東高法、沐川公安、青春龍泉驛和平安金陽；媒體有動靜新聞、新浪軍事、南寧晚報、錢江晚報、南方週末、頭條新聞、第一現場、馬上資訊、看台海、福建日報、環球時報和新京報；大V有星話大白、包容萬物恆河水、台灣那點事兒、扎西德勒·天珠收藏、椒哥微記錄、航天面面觀、長春-小風、白鶴-老鄧。"
+    },
+    {
+      "mid": "m256",
+      "gid": "g:first-live",
+      "entity_type": "media",
+      "context_role": "amplifier",
+      "surface": "第一現場",
+      "quote": "央視新聞發布的13則報導文本，有26個帳號轉發，官方單位有屏山公安、銅陵經開公安在線、山東高法、沐川公安、青春龍泉驛和平安金陽；媒體有動靜新聞、新浪軍事、南寧晚報、錢江晚報、南方週末、頭條新聞、第一現場、馬上資訊、看台海、福建日報、環球時報和新京報；大V有星話大白、包容萬物恆河水、台灣那點事兒、扎西德勒·天珠收藏、椒哥微記錄、航天面面觀、長春-小風、白鶴-老鄧。"
+    },
+    {
+      "mid": "m257",
+      "gid": "cmg-cctv",
+      "entity_type": "media",
+      "context_role": "amplifier",
+      "surface": "央視新聞",
+      "quote": "央視新聞發布的13則報導文本，有26個帳號轉發，官方單位有屏山公安、銅陵經開公安在線、山東高法、沐川公安、青春龍泉驛和平安金陽；媒體有動靜新聞、新浪軍事、南寧晚報、錢江晚報、南方週末、頭條新聞、第一現場、馬上資訊、看台海、福建日報、環球時報和新京報；大V有星話大白、包容萬物恆河水、台灣那點事兒、扎西德勒·天珠收藏、椒哥微記錄、航天面面觀、長春-小風、白鶴-老鄧。"
+    },
+    {
+      "mid": "m258",
+      "gid": "g:mashang-information",
+      "entity_type": "media",
+      "context_role": "amplifier",
+      "surface": "馬上資訊",
+      "quote": "央視新聞發布的13則報導文本，有26個帳號轉發，官方單位有屏山公安、銅陵經開公安在線、山東高法、沐川公安、青春龍泉驛和平安金陽；媒體有動靜新聞、新浪軍事、南寧晚報、錢江晚報、南方週末、頭條新聞、第一現場、馬上資訊、看台海、福建日報、環球時報和新京報；大V有星話大白、包容萬物恆河水、台灣那點事兒、扎西德勒·天珠收藏、椒哥微記錄、航天面面觀、長春-小風、白鶴-老鄧。"
+    },
+    {
+      "mid": "m259",
+      "gid": "cmg-cctv",
+      "entity_type": "media",
+      "context_role": "amplifier",
+      "surface": "央視新聞",
+      "quote": "央視新聞發布的13則報導文本，有26個帳號轉發，官方單位有屏山公安、銅陵經開公安在線、山東高法、沐川公安、青春龍泉驛和平安金陽；媒體有動靜新聞、新浪軍事、南寧晚報、錢江晚報、南方週末、頭條新聞、第一現場、馬上資訊、看台海、福建日報、環球時報和新京報；大V有星話大白、包容萬物恆河水、台灣那點事兒、扎西德勒·天珠收藏、椒哥微記錄、航天面面觀、長春-小風、白鶴-老鄧。"
+    },
+    {
+      "mid": "m260",
+      "gid": "g:fujian-daily",
+      "entity_type": "media",
+      "context_role": "amplifier",
+      "surface": "福建日報",
+      "quote": "央視新聞發布的13則報導文本，有26個帳號轉發，官方單位有屏山公安、銅陵經開公安在線、山東高法、沐川公安、青春龍泉驛和平安金陽；媒體有動靜新聞、新浪軍事、南寧晚報、錢江晚報、南方週末、頭條新聞、第一現場、馬上資訊、看台海、福建日報、環球時報和新京報；大V有星話大白、包容萬物恆河水、台灣那點事兒、扎西德勒·天珠收藏、椒哥微記錄、航天面面觀、長春-小風、白鶴-老鄧。"
+    },
+    {
+      "mid": "m261",
+      "gid": "cmg-cctv",
+      "entity_type": "media",
+      "context_role": "amplifier",
+      "surface": "央視新聞",
+      "quote": "央視新聞發布的13則報導文本，有26個帳號轉發，官方單位有屏山公安、銅陵經開公安在線、山東高法、沐川公安、青春龍泉驛和平安金陽；媒體有動靜新聞、新浪軍事、南寧晚報、錢江晚報、南方週末、頭條新聞、第一現場、馬上資訊、看台海、福建日報、環球時報和新京報；大V有星話大白、包容萬物恆河水、台灣那點事兒、扎西德勒·天珠收藏、椒哥微記錄、航天面面觀、長春-小風、白鶴-老鄧。"
+    },
+    {
+      "mid": "m262",
+      "gid": "g:beijing-news",
+      "entity_type": "media",
+      "context_role": "amplifier",
+      "surface": "新京報",
+      "quote": "央視新聞發布的13則報導文本，有26個帳號轉發，官方單位有屏山公安、銅陵經開公安在線、山東高法、沐川公安、青春龍泉驛和平安金陽；媒體有動靜新聞、新浪軍事、南寧晚報、錢江晚報、南方週末、頭條新聞、第一現場、馬上資訊、看台海、福建日報、環球時報和新京報；大V有星話大白、包容萬物恆河水、台灣那點事兒、扎西德勒·天珠收藏、椒哥微記錄、航天面面觀、長春-小風、白鶴-老鄧。"
+    },
+    {
+      "mid": "m263",
+      "gid": "cmg-cctv",
+      "entity_type": "media",
+      "context_role": "amplifier",
+      "surface": "央視新聞",
+      "quote": "央視新聞發布的13則報導文本，有26個帳號轉發，官方單位有屏山公安、銅陵經開公安在線、山東高法、沐川公安、青春龍泉驛和平安金陽；媒體有動靜新聞、新浪軍事、南寧晚報、錢江晚報、南方週末、頭條新聞、第一現場、馬上資訊、看台海、福建日報、環球時報和新京報；大V有星話大白、包容萬物恆河水、台灣那點事兒、扎西德勒·天珠收藏、椒哥微記錄、航天面面觀、長春-小風、白鶴-老鄧。"
+    },
+    {
+      "mid": "m264",
+      "gid": "g:xinghua-dabai",
+      "entity_type": "account",
+      "context_role": "amplifier",
+      "surface": "星話大白",
+      "quote": "央視新聞發布的13則報導文本，有26個帳號轉發，官方單位有屏山公安、銅陵經開公安在線、山東高法、沐川公安、青春龍泉驛和平安金陽；媒體有動靜新聞、新浪軍事、南寧晚報、錢江晚報、南方週末、頭條新聞、第一現場、馬上資訊、看台海、福建日報、環球時報和新京報；大V有星話大白、包容萬物恆河水、台灣那點事兒、扎西德勒·天珠收藏、椒哥微記錄、航天面面觀、長春-小風、白鶴-老鄧。"
+    },
+    {
+      "mid": "m265",
+      "gid": "cmg-cctv",
+      "entity_type": "media",
+      "context_role": "amplifier",
+      "surface": "央視新聞",
+      "quote": "央視新聞發布的13則報導文本，有26個帳號轉發，官方單位有屏山公安、銅陵經開公安在線、山東高法、沐川公安、青春龍泉驛和平安金陽；媒體有動靜新聞、新浪軍事、南寧晚報、錢江晚報、南方週末、頭條新聞、第一現場、馬上資訊、看台海、福建日報、環球時報和新京報；大V有星話大白、包容萬物恆河水、台灣那點事兒、扎西德勒·天珠收藏、椒哥微記錄、航天面面觀、長春-小風、白鶴-老鄧。"
+    },
+    {
+      "mid": "m266",
+      "gid": "g:everything-ganges-water",
+      "entity_type": "account",
+      "context_role": "amplifier",
+      "surface": "包容萬物恆河水",
+      "quote": "央視新聞發布的13則報導文本，有26個帳號轉發，官方單位有屏山公安、銅陵經開公安在線、山東高法、沐川公安、青春龍泉驛和平安金陽；媒體有動靜新聞、新浪軍事、南寧晚報、錢江晚報、南方週末、頭條新聞、第一現場、馬上資訊、看台海、福建日報、環球時報和新京報；大V有星話大白、包容萬物恆河水、台灣那點事兒、扎西德勒·天珠收藏、椒哥微記錄、航天面面觀、長春-小風、白鶴-老鄧。"
+    },
+    {
+      "mid": "m267",
+      "gid": "cmg-cctv",
+      "entity_type": "media",
+      "context_role": "amplifier",
+      "surface": "央視新聞",
+      "quote": "央視新聞發布的13則報導文本，有26個帳號轉發，官方單位有屏山公安、銅陵經開公安在線、山東高法、沐川公安、青春龍泉驛和平安金陽；媒體有動靜新聞、新浪軍事、南寧晚報、錢江晚報、南方週末、頭條新聞、第一現場、馬上資訊、看台海、福建日報、環球時報和新京報；大V有星話大白、包容萬物恆河水、台灣那點事兒、扎西德勒·天珠收藏、椒哥微記錄、航天面面觀、長春-小風、白鶴-老鄧。"
+    },
+    {
+      "mid": "m268",
+      "gid": "g:taiwan-bit",
+      "entity_type": "account",
+      "context_role": "amplifier",
+      "surface": "台灣那點事兒",
+      "quote": "央視新聞發布的13則報導文本，有26個帳號轉發，官方單位有屏山公安、銅陵經開公安在線、山東高法、沐川公安、青春龍泉驛和平安金陽；媒體有動靜新聞、新浪軍事、南寧晚報、錢江晚報、南方週末、頭條新聞、第一現場、馬上資訊、看台海、福建日報、環球時報和新京報；大V有星話大白、包容萬物恆河水、台灣那點事兒、扎西德勒·天珠收藏、椒哥微記錄、航天面面觀、長春-小風、白鶴-老鄧。"
+    },
+    {
+      "mid": "m269",
+      "gid": "cmg-cctv",
+      "entity_type": "media",
+      "context_role": "amplifier",
+      "surface": "央視新聞",
+      "quote": "央視新聞發布的13則報導文本，有26個帳號轉發，官方單位有屏山公安、銅陵經開公安在線、山東高法、沐川公安、青春龍泉驛和平安金陽；媒體有動靜新聞、新浪軍事、南寧晚報、錢江晚報、南方週末、頭條新聞、第一現場、馬上資訊、看台海、福建日報、環球時報和新京報；大V有星話大白、包容萬物恆河水、台灣那點事兒、扎西德勒·天珠收藏、椒哥微記錄、航天面面觀、長春-小風、白鶴-老鄧。"
+    },
+    {
+      "mid": "m270",
+      "gid": "g:tashi-delek-bead-collection",
+      "entity_type": "account",
+      "context_role": "amplifier",
+      "surface": "扎西德勒·天珠收藏",
+      "quote": "央視新聞發布的13則報導文本，有26個帳號轉發，官方單位有屏山公安、銅陵經開公安在線、山東高法、沐川公安、青春龍泉驛和平安金陽；媒體有動靜新聞、新浪軍事、南寧晚報、錢江晚報、南方週末、頭條新聞、第一現場、馬上資訊、看台海、福建日報、環球時報和新京報；大V有星話大白、包容萬物恆河水、台灣那點事兒、扎西德勒·天珠收藏、椒哥微記錄、航天面面觀、長春-小風、白鶴-老鄧。"
+    },
+    {
+      "mid": "m271",
+      "gid": "cmg-cctv",
+      "entity_type": "media",
+      "context_role": "amplifier",
+      "surface": "央視新聞",
+      "quote": "央視新聞發布的13則報導文本，有26個帳號轉發，官方單位有屏山公安、銅陵經開公安在線、山東高法、沐川公安、青春龍泉驛和平安金陽；媒體有動靜新聞、新浪軍事、南寧晚報、錢江晚報、南方週末、頭條新聞、第一現場、馬上資訊、看台海、福建日報、環球時報和新京報；大V有星話大白、包容萬物恆河水、台灣那點事兒、扎西德勒·天珠收藏、椒哥微記錄、航天面面觀、長春-小風、白鶴-老鄧。"
+    },
+    {
+      "mid": "m272",
+      "gid": "g:pepper-bro-microrecord",
+      "entity_type": "account",
+      "context_role": "amplifier",
+      "surface": "椒哥微記錄",
+      "quote": "央視新聞發布的13則報導文本，有26個帳號轉發，官方單位有屏山公安、銅陵經開公安在線、山東高法、沐川公安、青春龍泉驛和平安金陽；媒體有動靜新聞、新浪軍事、南寧晚報、錢江晚報、南方週末、頭條新聞、第一現場、馬上資訊、看台海、福建日報、環球時報和新京報；大V有星話大白、包容萬物恆河水、台灣那點事兒、扎西德勒·天珠收藏、椒哥微記錄、航天面面觀、長春-小風、白鶴-老鄧。"
+    },
+    {
+      "mid": "m273",
+      "gid": "cmg-cctv",
+      "entity_type": "media",
+      "context_role": "amplifier",
+      "surface": "央視新聞",
+      "quote": "央視新聞發布的13則報導文本，有26個帳號轉發，官方單位有屏山公安、銅陵經開公安在線、山東高法、沐川公安、青春龍泉驛和平安金陽；媒體有動靜新聞、新浪軍事、南寧晚報、錢江晚報、南方週末、頭條新聞、第一現場、馬上資訊、看台海、福建日報、環球時報和新京報；大V有星話大白、包容萬物恆河水、台灣那點事兒、扎西德勒·天珠收藏、椒哥微記錄、航天面面觀、長春-小風、白鶴-老鄧。"
+    },
+    {
+      "mid": "m274",
+      "gid": "g:aerospace-all-aspects",
+      "entity_type": "account",
+      "context_role": "amplifier",
+      "surface": "航天面面觀",
+      "quote": "央視新聞發布的13則報導文本，有26個帳號轉發，官方單位有屏山公安、銅陵經開公安在線、山東高法、沐川公安、青春龍泉驛和平安金陽；媒體有動靜新聞、新浪軍事、南寧晚報、錢江晚報、南方週末、頭條新聞、第一現場、馬上資訊、看台海、福建日報、環球時報和新京報；大V有星話大白、包容萬物恆河水、台灣那點事兒、扎西德勒·天珠收藏、椒哥微記錄、航天面面觀、長春-小風、白鶴-老鄧。"
+    },
+    {
+      "mid": "m275",
+      "gid": "cmg-cctv",
+      "entity_type": "media",
+      "context_role": "amplifier",
+      "surface": "央視新聞",
+      "quote": "央視新聞發布的13則報導文本，有26個帳號轉發，官方單位有屏山公安、銅陵經開公安在線、山東高法、沐川公安、青春龍泉驛和平安金陽；媒體有動靜新聞、新浪軍事、南寧晚報、錢江晚報、南方週末、頭條新聞、第一現場、馬上資訊、看台海、福建日報、環球時報和新京報；大V有星話大白、包容萬物恆河水、台灣那點事兒、扎西德勒·天珠收藏、椒哥微記錄、航天面面觀、長春-小風、白鶴-老鄧。"
+    },
+    {
+      "mid": "m276",
+      "gid": "g:changchun-xiaofeng",
+      "entity_type": "account",
+      "context_role": "amplifier",
+      "surface": "長春-小風",
+      "quote": "央視新聞發布的13則報導文本，有26個帳號轉發，官方單位有屏山公安、銅陵經開公安在線、山東高法、沐川公安、青春龍泉驛和平安金陽；媒體有動靜新聞、新浪軍事、南寧晚報、錢江晚報、南方週末、頭條新聞、第一現場、馬上資訊、看台海、福建日報、環球時報和新京報；大V有星話大白、包容萬物恆河水、台灣那點事兒、扎西德勒·天珠收藏、椒哥微記錄、航天面面觀、長春-小風、白鶴-老鄧。"
+    },
+    {
+      "mid": "m277",
+      "gid": "cmg-cctv",
+      "entity_type": "media",
+      "context_role": "amplifier",
+      "surface": "央視新聞",
+      "quote": "央視新聞發布的13則報導文本，有26個帳號轉發，官方單位有屏山公安、銅陵經開公安在線、山東高法、沐川公安、青春龍泉驛和平安金陽；媒體有動靜新聞、新浪軍事、南寧晚報、錢江晚報、南方週末、頭條新聞、第一現場、馬上資訊、看台海、福建日報、環球時報和新京報；大V有星話大白、包容萬物恆河水、台灣那點事兒、扎西德勒·天珠收藏、椒哥微記錄、航天面面觀、長春-小風、白鶴-老鄧。"
+    },
+    {
+      "mid": "m278",
+      "gid": "g:baihe-laodeng",
+      "entity_type": "account",
+      "context_role": "amplifier",
+      "surface": "白鶴-老鄧",
+      "quote": "央視新聞發布的13則報導文本，有26個帳號轉發，官方單位有屏山公安、銅陵經開公安在線、山東高法、沐川公安、青春龍泉驛和平安金陽；媒體有動靜新聞、新浪軍事、南寧晚報、錢江晚報、南方週末、頭條新聞、第一現場、馬上資訊、看台海、福建日報、環球時報和新京報；大V有星話大白、包容萬物恆河水、台灣那點事兒、扎西德勒·天珠收藏、椒哥微記錄、航天面面觀、長春-小風、白鶴-老鄧。"
+    },
+    {
+      "mid": "m279",
+      "gid": "cmg-cctv",
+      "entity_type": "media",
+      "context_role": "amplifier",
+      "surface": "央視新聞",
+      "quote": "央視新聞發布的13則報導文本，有26個帳號轉發，官方單位有屏山公安、銅陵經開公安在線、山東高法、沐川公安、青春龍泉驛和平安金陽；媒體有動靜新聞、新浪軍事、南寧晚報、錢江晚報、南方週末、頭條新聞、第一現場、馬上資訊、看台海、福建日報、環球時報和新京報；大V有星話大白、包容萬物恆河水、台灣那點事兒、扎西德勒·天珠收藏、椒哥微記錄、航天面面觀、長春-小風、白鶴-老鄧。"
+    },
+    {
+      "mid": "m280",
+      "gid": "g:social-platform-accounts-unnamed",
+      "entity_type": "account",
+      "context_role": "amplifier",
+      "surface": "多社群平台眾多帳號",
+      "quote": "當晚7-9點之間，中國軍號、央視新聞、東部戰區、多社群平台眾多帳號等也共同發動此主題。"
+    },
+    {
+      "mid": "m281",
+      "gid": "g:narr-drone-taipei101",
+      "entity_type": "narrative",
+      "context_role": "narrative",
+      "surface": "此主題",
+      "quote": "當晚7-9點之間，中國軍號、央視新聞、東部戰區、多社群平台眾多帳號等也共同發動此主題。"
+    },
+    {
+      "mid": "m282",
+      "gid": "g:local-broadcast-new-media-unnamed",
+      "entity_type": "network",
+      "context_role": "amplifier",
+      "surface": "新媒體",
+      "quote": "值得注意的是，中共特定幾個地方廣電媒體的「新媒體」，引用、轉播「看台海」和特定台媒的台灣名嘴節目片段，對內來宣傳軍演。"
+    },
+    {
+      "mid": "m283",
+      "gid": "cmg-cctv",
+      "entity_type": "media",
+      "context_role": "amplifier",
+      "surface": "看台海",
+      "quote": "值得注意的是，中共特定幾個地方廣電媒體的「新媒體」，引用、轉播「看台海」和特定台媒的台灣名嘴節目片段，對內來宣傳軍演。"
+    },
+    {
+      "mid": "m284",
+      "gid": "g:local-broadcast-new-media-unnamed",
+      "entity_type": "network",
+      "context_role": "amplifier",
+      "surface": "新媒體",
+      "quote": "值得注意的是，中共特定幾個地方廣電媒體的「新媒體」，引用、轉播「看台海」和特定台媒的台灣名嘴節目片段，對內來宣傳軍演。"
+    },
+    {
+      "mid": "m285",
+      "gid": "cmg-cctv",
+      "entity_type": "media",
+      "context_role": "amplifier",
+      "surface": "看台海",
+      "quote": "值得注意的是，中共特定幾個地方廣電媒體的「新媒體」，引用、轉播「看台海」和特定台媒的台灣名嘴節目片段，對內來宣傳軍演。"
+    },
+    {
+      "mid": "m286",
+      "gid": "g:local-broadcast-new-media-unnamed",
+      "entity_type": "network",
+      "context_role": "amplifier",
+      "surface": "新媒體",
+      "quote": "值得注意的是，中共特定幾個地方廣電媒體的「新媒體」，引用、轉播「看台海」和特定台媒的台灣名嘴節目片段，對內來宣傳軍演。"
+    },
+    {
+      "mid": "m287",
+      "gid": "g:tw-pundits-unnamed",
+      "entity_type": "person",
+      "context_role": "amplified-voice",
+      "surface": "台灣名嘴",
+      "quote": "值得注意的是，中共特定幾個地方廣電媒體的「新媒體」，引用、轉播「看台海」和特定台媒的台灣名嘴節目片段，對內來宣傳軍演。"
+    },
+    {
+      "mid": "m288",
+      "gid": "g:local-broadcast-new-media-unnamed",
+      "entity_type": "network",
+      "context_role": "amplifier",
+      "surface": "新媒體",
+      "quote": "值得注意的是，中共特定幾個地方廣電媒體的「新媒體」，引用、轉播「看台海」和特定台媒的台灣名嘴節目片段，對內來宣傳軍演。"
+    },
+    {
+      "mid": "m289",
+      "gid": "g:tw-pundits-unnamed",
+      "entity_type": "person",
+      "context_role": "amplified-voice",
+      "surface": "台灣名嘴",
+      "quote": "值得注意的是，中共特定幾個地方廣電媒體的「新媒體」，引用、轉播「看台海」和特定台媒的台灣名嘴節目片段，對內來宣傳軍演。"
+    },
+    {
+      "mid": "m290",
+      "gid": "g:pla-news-communication-center",
+      "entity_type": "org",
+      "context_role": "amplifier",
+      "surface": "解放軍新聞傳播中心",
+      "quote": "研究團隊觀察到，解放軍新聞傳播中心轄下微博帳號「中國軍號」的貼文經常被其他官媒與社群帳號採用，但未反映於本次網絡圖中。"
+    },
+    {
+      "mid": "m291",
+      "gid": "g:china-mil-hao",
+      "entity_type": "account",
+      "context_role": "amplifier",
+      "surface": "中國軍號",
+      "quote": "研究團隊觀察到，解放軍新聞傳播中心轄下微博帳號「中國軍號」的貼文經常被其他官媒與社群帳號採用，但未反映於本次網絡圖中。"
+    },
+    {
+      "mid": "m292",
+      "gid": "g:pla-information-support-dept",
+      "entity_type": "org",
+      "context_role": "actor",
+      "surface": "解放軍信息支援部",
+      "quote": "過去一般是由總政治部加上解放軍信息支援部執行宣傳，東部戰區融媒體中心主責宣傳，宣傳工作比過去更能貼近台灣脈絡，操作也更精密、細膩。"
+    },
+    {
+      "mid": "m293",
+      "gid": "g:prc-military-blogger-accounts-unnamed",
+      "entity_type": "account",
+      "context_role": "amplifier",
+      "surface": "微博的軍事博主、對台帳號",
+      "quote": "微博的軍事博主、對台帳號渲染、放大官方敘事，增添敘事細節。"
+    }
+  ],
+  "assertions": [
+    {
+      "aid": "a001",
+      "subject": "g:pla",
+      "predicate": "發動",
+      "object": "g:taiwan",
+      "subject_mid": "m001",
+      "object_mid": "m002",
+      "quote": "2025年12月底，中共解放軍對台灣發動名為「正義使命」的軍事演習。"
+    },
+    {
+      "aid": "a002",
+      "subject": "g:fujian-network",
+      "predicate": "提供",
+      "object": "g:taiwan-military",
+      "subject_mid": "m003",
+      "object_mid": "m004",
+      "quote": "其中，對台的福建媒體和對台帳號提供台灣國軍負面宣傳、台政治名嘴評論。"
+    },
+    {
+      "aid": "a003",
+      "subject": "g:fujian-network",
+      "predicate": "提供",
+      "object": "g:tw-pundits-unnamed",
+      "subject_mid": "m005",
+      "object_mid": "m006",
+      "quote": "其中，對台的福建媒體和對台帳號提供台灣國軍負面宣傳、台政治名嘴評論。"
+    },
+    {
+      "aid": "a004",
+      "subject": "g:ccp-state-media",
+      "predicate": "採用",
+      "object": "g:china-mil-hao",
+      "subject_mid": "m007",
+      "object_mid": "m008",
+      "quote": "研究團隊觀察到，解放軍新聞傳播中心轄下微博帳號「中國軍號」的貼文經常被其他官媒與社群帳號採用，但未反映於本次網絡圖中。"
+    },
+    {
+      "aid": "a005",
+      "subject": "yuyuantantian",
+      "predicate": "為",
+      "object": "cmg-cctv",
+      "subject_mid": "m009",
+      "object_mid": "m010",
+      "quote": "玉淵潭天為央視融媒體品牌"
+    },
+    {
+      "aid": "a006",
+      "subject": "guancha",
+      "predicate": "擴散",
+      "object": "yuyuantantian",
+      "subject_mid": "m011",
+      "object_mid": "m012",
+      "quote": "《觀察者網》除了作為發布者外，也擴散轉發來自玉淵潭天這類被視為與中國官媒關係緊密的大V的內容"
+    },
+    {
+      "aid": "a007",
+      "subject": "guancha",
+      "predicate": "轉發",
+      "object": "yuyuantantian",
+      "subject_mid": "m013",
+      "object_mid": "m014",
+      "quote": "《觀察者網》除了作為發布者外，也擴散轉發來自玉淵潭天這類被視為與中國官媒關係緊密的大V的內容"
+    },
+    {
+      "aid": "a008",
+      "subject": "g:russia-today",
+      "predicate": "轉分享",
+      "object": "cmg-cctv",
+      "subject_mid": "m015",
+      "object_mid": "m016",
+      "quote": "在網絡圖雖可見到俄羅斯官媒《今日俄羅斯》微博帳號，但沒有看到固定的轉發群組，在對台軍演未見扮演凸顯的特定角色，發文主要是轉分享央視新聞、綜整中共官方訊息。"
+    },
+    {
+      "aid": "a009",
+      "subject": "etc-fusion-media",
+      "predicate": "推出",
+      "object": "g:narr-righteous-arrow",
+      "subject_mid": "m017",
+      "object_mid": "m018",
+      "quote": "東部戰區融媒體中心扮演「中央廚房」，推出正義之箭、正義之盾、正義之錘、正義之馬等主題海報"
+    },
+    {
+      "aid": "a010",
+      "subject": "etc-fusion-media",
+      "predicate": "推出",
+      "object": "g:narr-righteous-shield",
+      "subject_mid": "m019",
+      "object_mid": "m020",
+      "quote": "東部戰區融媒體中心扮演「中央廚房」，推出正義之箭、正義之盾、正義之錘、正義之馬等主題海報"
+    },
+    {
+      "aid": "a011",
+      "subject": "etc-fusion-media",
+      "predicate": "推出",
+      "object": "g:narr-righteous-hammer",
+      "subject_mid": "m021",
+      "object_mid": "m022",
+      "quote": "東部戰區融媒體中心扮演「中央廚房」，推出正義之箭、正義之盾、正義之錘、正義之馬等主題海報"
+    },
+    {
+      "aid": "a012",
+      "subject": "etc-fusion-media",
+      "predicate": "推出",
+      "object": "g:narr-righteous-horse",
+      "subject_mid": "m023",
+      "object_mid": "m024",
+      "quote": "東部戰區融媒體中心扮演「中央廚房」，推出正義之箭、正義之盾、正義之錘、正義之馬等主題海報"
+    },
+    {
+      "aid": "a013",
+      "subject": "cmg-cctv",
+      "predicate": "穿插",
+      "object": "g:narr-drone-taipei101",
+      "subject_mid": "m025",
+      "object_mid": "m026",
+      "quote": "央視在2025年12月29日晚間7點新聞聯播時，於新聞播報中穿插「無人機拍攝到台北101」畫面。"
+    },
+    {
+      "aid": "a014",
+      "subject": "g:china-mil-hao",
+      "predicate": "發動",
+      "object": "g:narr-drone-taipei101",
+      "subject_mid": "m027",
+      "object_mid": "m028",
+      "quote": "當晚7-9點之間，中國軍號、央視新聞、東部戰區、多社群平台眾多帳號等也共同發動此主題。"
+    },
+    {
+      "aid": "a015",
+      "subject": "cmg-cctv",
+      "predicate": "發動",
+      "object": "g:narr-drone-taipei101",
+      "subject_mid": "m029",
+      "object_mid": "m030",
+      "quote": "當晚7-9點之間，中國軍號、央視新聞、東部戰區、多社群平台眾多帳號等也共同發動此主題。"
+    },
+    {
+      "aid": "a016",
+      "subject": "etc-fusion-media",
+      "predicate": "發動",
+      "object": "g:narr-drone-taipei101",
+      "subject_mid": "m031",
+      "object_mid": "m032",
+      "quote": "當晚7-9點之間，中國軍號、央視新聞、東部戰區、多社群平台眾多帳號等也共同發動此主題。"
+    },
+    {
+      "aid": "a017",
+      "subject": "etc-fusion-media",
+      "predicate": "提供",
+      "object": "cmg-cctv",
+      "subject_mid": "m033",
+      "object_mid": "m034",
+      "quote": "東部戰區融媒體所製作的「演習畫面」素材，提供給央視、人民日報、中國軍號、環球日報等媒體使用，素材會同步打上「東部戰區」藍白符號。"
+    },
+    {
+      "aid": "a018",
+      "subject": "etc-fusion-media",
+      "predicate": "提供",
+      "object": "g:peoples-daily",
+      "subject_mid": "m035",
+      "object_mid": "m036",
+      "quote": "東部戰區融媒體所製作的「演習畫面」素材，提供給央視、人民日報、中國軍號、環球日報等媒體使用，素材會同步打上「東部戰區」藍白符號。"
+    },
+    {
+      "aid": "a019",
+      "subject": "etc-fusion-media",
+      "predicate": "提供",
+      "object": "g:china-mil-hao",
+      "subject_mid": "m037",
+      "object_mid": "m038",
+      "quote": "東部戰區融媒體所製作的「演習畫面」素材，提供給央視、人民日報、中國軍號、環球日報等媒體使用，素材會同步打上「東部戰區」藍白符號。"
+    },
+    {
+      "aid": "a020",
+      "subject": "etc-fusion-media",
+      "predicate": "提供",
+      "object": "global-times",
+      "subject_mid": "m039",
+      "object_mid": "m040",
+      "quote": "東部戰區融媒體所製作的「演習畫面」素材，提供給央視、人民日報、中國軍號、環球日報等媒體使用，素材會同步打上「東部戰區」藍白符號。"
+    },
+    {
+      "aid": "a021",
+      "subject": "cmg-cctv",
+      "predicate": "發布",
+      "object": "etc-fusion-media",
+      "subject_mid": "m041",
+      "object_mid": "m042",
+      "quote": "央視除了發布東部戰區融媒體的素材，另外以專家專訪點評、新聞聯播等節目，提供宣傳支援，成為被轉發次數最高的引用者。"
+    },
+    {
+      "aid": "a022",
+      "subject": "global-times",
+      "predicate": "引述",
+      "object": "g:china-mofa",
+      "subject_mid": "m043",
+      "object_mid": "m044",
+      "quote": "環球時報，另引述中共外交部，並從國際關係角度提供評論、新聞和圖卡。"
+    },
+    {
+      "aid": "a023",
+      "subject": "g:fujian-network",
+      "predicate": "提供",
+      "object": "g:taiwan-military",
+      "subject_mid": "m045",
+      "object_mid": "m046",
+      "quote": "福建網絡提供台灣軍方凸槌訊息"
+    },
+    {
+      "aid": "a024",
+      "subject": "g:fujian-network",
+      "predicate": "提供",
+      "object": "g:tw-pundits-unnamed",
+      "subject_mid": "m047",
+      "object_mid": "m048",
+      "quote": "福建網絡提供台灣軍方凸槌訊息、台灣軍方驅離錄音、台灣政治名嘴和退休將領點評等「台灣」觀點。"
+    },
+    {
+      "aid": "a025",
+      "subject": "g:fujian-network",
+      "predicate": "提供",
+      "object": "g:tw-retired-generals-unnamed",
+      "subject_mid": "m049",
+      "object_mid": "m050",
+      "quote": "福建網絡提供台灣軍方凸槌訊息、台灣軍方驅離錄音、台灣政治名嘴和退休將領點評等「台灣」觀點。"
+    },
+    {
+      "aid": "a026",
+      "subject": "g:prc-military-blogger-accounts-unnamed",
+      "predicate": "反搜認定為",
+      "object": "g:narr-double-tail-scorpion",
+      "subject_mid": "m051",
+      "object_mid": "m052",
+      "quote": "但媒體和民間軍事博主透過中國軍號畫面，反搜認定為雙尾蠍"
+    },
+    {
+      "aid": "a027",
+      "subject": "g:prc-military-blogger-accounts-unnamed",
+      "predicate": "引用",
+      "object": "g:tw-pundits-unnamed",
+      "subject_mid": "m053",
+      "object_mid": "m054",
+      "quote": "這些帳號甚至引用台媒名嘴、專家的片段批評台軍和台灣執政黨、稱讚解放軍強大。"
+    },
+    {
+      "aid": "a028",
+      "subject": "g:prc-military-blogger-accounts-unnamed",
+      "predicate": "引用",
+      "object": "g:experts-unnamed",
+      "subject_mid": "m055",
+      "object_mid": "m056",
+      "quote": "這些帳號甚至引用台媒名嘴、專家的片段批評台軍和台灣執政黨、稱讚解放軍強大。"
+    },
+    {
+      "aid": "a029",
+      "subject": "g:prc-military-blogger-accounts-unnamed",
+      "predicate": "批評",
+      "object": "g:taiwan-military",
+      "subject_mid": "m057",
+      "object_mid": "m058",
+      "quote": "這些帳號甚至引用台媒名嘴、專家的片段批評台軍和台灣執政黨、稱讚解放軍強大。"
+    },
+    {
+      "aid": "a030",
+      "subject": "g:prc-military-blogger-accounts-unnamed",
+      "predicate": "批評",
+      "object": "g:dpp",
+      "subject_mid": "m059",
+      "object_mid": "m060",
+      "quote": "這些帳號甚至引用台媒名嘴、專家的片段批評台軍和台灣執政黨、稱讚解放軍強大。"
+    },
+    {
+      "aid": "a031",
+      "subject": "g:prc-military-blogger-accounts-unnamed",
+      "predicate": "稱讚",
+      "object": "g:narr-pla-superior",
+      "subject_mid": "m061",
+      "object_mid": "m062",
+      "quote": "這些帳號甚至引用台媒名嘴、專家的片段批評台軍和台灣執政黨、稱讚解放軍強大。"
+    },
+    {
+      "aid": "a032",
+      "subject": "etc-fusion-media",
+      "predicate": "發布",
+      "object": "g:narr-battlefield-strait-lights",
+      "subject_mid": "m063",
+      "object_mid": "m064",
+      "quote": "東部戰區融媒體中心在第三日發布的是前兩日演習畫面和「沙場風雨兩岸燈」MV，解放軍報刊登的是12月30日於福州平潭拍攝的遠程火箭砲實彈射擊照片集與文字報導。"
+    },
+    {
+      "aid": "a033",
+      "subject": "g:ccp",
+      "predicate": "發動",
+      "object": "g:taiwan",
+      "subject_mid": "m065",
+      "object_mid": "m066",
+      "quote": "至2025年底為止，中共已對台發動七次軍演。"
+    },
+    {
+      "aid": "a034",
+      "subject": "etc-fusion-media",
+      "predicate": "發動恫嚇",
+      "object": "g:taiwan-public",
+      "subject_mid": "m067",
+      "object_mid": "m068",
+      "quote": "掌握融媒體中心如何透過與中央官媒、地方媒體、新媒體、社群帳號協力，以及挑選特定的敘事，對台灣民眾發動恫嚇，並對大陸民眾操弄民族情緒，以支持解放軍的演習動員。"
+    },
+    {
+      "aid": "a035",
+      "subject": "etc-fusion-media",
+      "predicate": "操弄",
+      "object": "g:mainland-public",
+      "subject_mid": "m069",
+      "object_mid": "m070",
+      "quote": "掌握融媒體中心如何透過與中央官媒、地方媒體、新媒體、社群帳號協力，以及挑選特定的敘事，對台灣民眾發動恫嚇，並對大陸民眾操弄民族情緒，以支持解放軍的演習動員。"
+    },
+    {
+      "aid": "a036",
+      "subject": "cmg-cctv",
+      "predicate": "轉分享",
+      "object": "etc-fusion-media",
+      "subject_mid": "m071",
+      "object_mid": "m072",
+      "quote": "檢視392組文本資料所顯示的指向網絡時可發現，東部戰區發布的貼文，有13個媒體和大V共同轉分享，包括央視新聞、央廣軍事、鎮江民生頻道、央廣軍事、環球時報、浙江日報、澎湃新聞、宣漢融媒、新浪軍事、動静新聞、南湖發布、看看新聞Knews和星話大白等。"
+    },
+    {
+      "aid": "a037",
+      "subject": "global-times",
+      "predicate": "轉分享",
+      "object": "etc-fusion-media",
+      "subject_mid": "m073",
+      "object_mid": "m074",
+      "quote": "檢視392組文本資料所顯示的指向網絡時可發現，東部戰區發布的貼文，有13個媒體和大V共同轉分享，包括央視新聞、央廣軍事、鎮江民生頻道、央廣軍事、環球時報、浙江日報、澎湃新聞、宣漢融媒、新浪軍事、動静新聞、南湖發布、看看新聞Knews和星話大白等。"
+    },
+    {
+      "aid": "a038",
+      "subject": "g:sina-military",
+      "predicate": "轉分享",
+      "object": "etc-fusion-media",
+      "subject_mid": "m075",
+      "object_mid": "m076",
+      "quote": "檢視392組文本資料所顯示的指向網絡時可發現，東部戰區發布的貼文，有13個媒體和大V共同轉分享，包括央視新聞、央廣軍事、鎮江民生頻道、央廣軍事、環球時報、浙江日報、澎湃新聞、宣漢融媒、新浪軍事、動静新聞、南湖發布、看看新聞Knews和星話大白等。"
+    },
+    {
+      "aid": "a039",
+      "subject": "kankan-news",
+      "predicate": "轉分享",
+      "object": "etc-fusion-media",
+      "subject_mid": "m077",
+      "object_mid": "m078",
+      "quote": "檢視392組文本資料所顯示的指向網絡時可發現，東部戰區發布的貼文，有13個媒體和大V共同轉分享，包括央視新聞、央廣軍事、鎮江民生頻道、央廣軍事、環球時報、浙江日報、澎湃新聞、宣漢融媒、新浪軍事、動静新聞、南湖發布、看看新聞Knews和星話大白等。"
+    },
+    {
+      "aid": "a040",
+      "subject": "g:sina-military",
+      "predicate": "轉發",
+      "object": "cmg-cctv",
+      "subject_mid": "m079",
+      "object_mid": "m080",
+      "quote": "央視新聞發布的13則報導文本，有26個帳號轉發，官方單位有屏山公安、銅陵經開公安在線、山東高法、沐川公安、青春龍泉驛和平安金陽；媒體有動靜新聞、新浪軍事、南寧晚報、錢江晚報、南方週末、頭條新聞、第一現場、馬上資訊、看台海、福建日報、環球時報和新京報；大V有星話大白、包容萬物恆河水、台灣那點事兒、扎西德勒·天珠收藏、椒哥微記錄、航天面面觀、長春-小風、白鶴-老鄧。"
+    },
+    {
+      "aid": "a041",
+      "subject": "global-times",
+      "predicate": "轉發",
+      "object": "cmg-cctv",
+      "subject_mid": "m081",
+      "object_mid": "m082",
+      "quote": "央視新聞發布的13則報導文本，有26個帳號轉發，官方單位有屏山公安、銅陵經開公安在線、山東高法、沐川公安、青春龍泉驛和平安金陽；媒體有動靜新聞、新浪軍事、南寧晚報、錢江晚報、南方週末、頭條新聞、第一現場、馬上資訊、看台海、福建日報、環球時報和新京報；大V有星話大白、包容萬物恆河水、台灣那點事兒、扎西德勒·天珠收藏、椒哥微記錄、航天面面觀、長春-小風、白鶴-老鄧。"
+    },
+    {
+      "aid": "a042",
+      "subject": "g:zhenjiang-minsheng-channel",
+      "predicate": "轉分享",
+      "object": "etc-fusion-media",
+      "subject_mid": "m220",
+      "object_mid": "m221",
+      "quote": "檢視392組文本資料所顯示的指向網絡時可發現，東部戰區發布的貼文，有13個媒體和大V共同轉分享，包括央視新聞、央廣軍事、鎮江民生頻道、央廣軍事、環球時報、浙江日報、澎湃新聞、宣漢融媒、新浪軍事、動静新聞、南湖發布、看看新聞Knews和星話大白等。"
+    },
+    {
+      "aid": "a043",
+      "subject": "g:zhejiang-daily",
+      "predicate": "轉分享",
+      "object": "etc-fusion-media",
+      "subject_mid": "m222",
+      "object_mid": "m223",
+      "quote": "檢視392組文本資料所顯示的指向網絡時可發現，東部戰區發布的貼文，有13個媒體和大V共同轉分享，包括央視新聞、央廣軍事、鎮江民生頻道、央廣軍事、環球時報、浙江日報、澎湃新聞、宣漢融媒、新浪軍事、動静新聞、南湖發布、看看新聞Knews和星話大白等。"
+    },
+    {
+      "aid": "a044",
+      "subject": "g:the-paper",
+      "predicate": "轉分享",
+      "object": "etc-fusion-media",
+      "subject_mid": "m224",
+      "object_mid": "m225",
+      "quote": "檢視392組文本資料所顯示的指向網絡時可發現，東部戰區發布的貼文，有13個媒體和大V共同轉分享，包括央視新聞、央廣軍事、鎮江民生頻道、央廣軍事、環球時報、浙江日報、澎湃新聞、宣漢融媒、新浪軍事、動静新聞、南湖發布、看看新聞Knews和星話大白等。"
+    },
+    {
+      "aid": "a045",
+      "subject": "g:xuanhan-rongmei",
+      "predicate": "轉分享",
+      "object": "etc-fusion-media",
+      "subject_mid": "m226",
+      "object_mid": "m227",
+      "quote": "檢視392組文本資料所顯示的指向網絡時可發現，東部戰區發布的貼文，有13個媒體和大V共同轉分享，包括央視新聞、央廣軍事、鎮江民生頻道、央廣軍事、環球時報、浙江日報、澎湃新聞、宣漢融媒、新浪軍事、動静新聞、南湖發布、看看新聞Knews和星話大白等。"
+    },
+    {
+      "aid": "a046",
+      "subject": "g:dongjing-news",
+      "predicate": "轉分享",
+      "object": "etc-fusion-media",
+      "subject_mid": "m228",
+      "object_mid": "m229",
+      "quote": "檢視392組文本資料所顯示的指向網絡時可發現，東部戰區發布的貼文，有13個媒體和大V共同轉分享，包括央視新聞、央廣軍事、鎮江民生頻道、央廣軍事、環球時報、浙江日報、澎湃新聞、宣漢融媒、新浪軍事、動静新聞、南湖發布、看看新聞Knews和星話大白等。"
+    },
+    {
+      "aid": "a047",
+      "subject": "g:nanhu-fabu",
+      "predicate": "轉分享",
+      "object": "etc-fusion-media",
+      "subject_mid": "m230",
+      "object_mid": "m231",
+      "quote": "檢視392組文本資料所顯示的指向網絡時可發現，東部戰區發布的貼文，有13個媒體和大V共同轉分享，包括央視新聞、央廣軍事、鎮江民生頻道、央廣軍事、環球時報、浙江日報、澎湃新聞、宣漢融媒、新浪軍事、動静新聞、南湖發布、看看新聞Knews和星話大白等。"
+    },
+    {
+      "aid": "a048",
+      "subject": "g:xinghua-dabai",
+      "predicate": "轉分享",
+      "object": "etc-fusion-media",
+      "subject_mid": "m232",
+      "object_mid": "m233",
+      "quote": "檢視392組文本資料所顯示的指向網絡時可發現，東部戰區發布的貼文，有13個媒體和大V共同轉分享，包括央視新聞、央廣軍事、鎮江民生頻道、央廣軍事、環球時報、浙江日報、澎湃新聞、宣漢融媒、新浪軍事、動静新聞、南湖發布、看看新聞Knews和星話大白等。"
+    },
+    {
+      "aid": "a049",
+      "subject": "g:pingshan-police",
+      "predicate": "轉發",
+      "object": "cmg-cctv",
+      "subject_mid": "m234",
+      "object_mid": "m235",
+      "quote": "央視新聞發布的13則報導文本，有26個帳號轉發，官方單位有屏山公安、銅陵經開公安在線、山東高法、沐川公安、青春龍泉驛和平安金陽；媒體有動靜新聞、新浪軍事、南寧晚報、錢江晚報、南方週末、頭條新聞、第一現場、馬上資訊、看台海、福建日報、環球時報和新京報；大V有星話大白、包容萬物恆河水、台灣那點事兒、扎西德勒·天珠收藏、椒哥微記錄、航天面面觀、長春-小風、白鶴-老鄧。"
+    },
+    {
+      "aid": "a050",
+      "subject": "g:tongling-etdz-police-online",
+      "predicate": "轉發",
+      "object": "cmg-cctv",
+      "subject_mid": "m236",
+      "object_mid": "m237",
+      "quote": "央視新聞發布的13則報導文本，有26個帳號轉發，官方單位有屏山公安、銅陵經開公安在線、山東高法、沐川公安、青春龍泉驛和平安金陽；媒體有動靜新聞、新浪軍事、南寧晚報、錢江晚報、南方週末、頭條新聞、第一現場、馬上資訊、看台海、福建日報、環球時報和新京報；大V有星話大白、包容萬物恆河水、台灣那點事兒、扎西德勒·天珠收藏、椒哥微記錄、航天面面觀、長春-小風、白鶴-老鄧。"
+    },
+    {
+      "aid": "a051",
+      "subject": "g:shandong-high-court",
+      "predicate": "轉發",
+      "object": "cmg-cctv",
+      "subject_mid": "m238",
+      "object_mid": "m239",
+      "quote": "央視新聞發布的13則報導文本，有26個帳號轉發，官方單位有屏山公安、銅陵經開公安在線、山東高法、沐川公安、青春龍泉驛和平安金陽；媒體有動靜新聞、新浪軍事、南寧晚報、錢江晚報、南方週末、頭條新聞、第一現場、馬上資訊、看台海、福建日報、環球時報和新京報；大V有星話大白、包容萬物恆河水、台灣那點事兒、扎西德勒·天珠收藏、椒哥微記錄、航天面面觀、長春-小風、白鶴-老鄧。"
+    },
+    {
+      "aid": "a052",
+      "subject": "g:muchuan-police",
+      "predicate": "轉發",
+      "object": "cmg-cctv",
+      "subject_mid": "m240",
+      "object_mid": "m241",
+      "quote": "央視新聞發布的13則報導文本，有26個帳號轉發，官方單位有屏山公安、銅陵經開公安在線、山東高法、沐川公安、青春龍泉驛和平安金陽；媒體有動靜新聞、新浪軍事、南寧晚報、錢江晚報、南方週末、頭條新聞、第一現場、馬上資訊、看台海、福建日報、環球時報和新京報；大V有星話大白、包容萬物恆河水、台灣那點事兒、扎西德勒·天珠收藏、椒哥微記錄、航天面面觀、長春-小風、白鶴-老鄧。"
+    },
+    {
+      "aid": "a053",
+      "subject": "g:qingchun-longquanyi",
+      "predicate": "轉發",
+      "object": "cmg-cctv",
+      "subject_mid": "m242",
+      "object_mid": "m243",
+      "quote": "央視新聞發布的13則報導文本，有26個帳號轉發，官方單位有屏山公安、銅陵經開公安在線、山東高法、沐川公安、青春龍泉驛和平安金陽；媒體有動靜新聞、新浪軍事、南寧晚報、錢江晚報、南方週末、頭條新聞、第一現場、馬上資訊、看台海、福建日報、環球時報和新京報；大V有星話大白、包容萬物恆河水、台灣那點事兒、扎西德勒·天珠收藏、椒哥微記錄、航天面面觀、長春-小風、白鶴-老鄧。"
+    },
+    {
+      "aid": "a054",
+      "subject": "g:pingan-jinyang",
+      "predicate": "轉發",
+      "object": "cmg-cctv",
+      "subject_mid": "m244",
+      "object_mid": "m245",
+      "quote": "央視新聞發布的13則報導文本，有26個帳號轉發，官方單位有屏山公安、銅陵經開公安在線、山東高法、沐川公安、青春龍泉驛和平安金陽；媒體有動靜新聞、新浪軍事、南寧晚報、錢江晚報、南方週末、頭條新聞、第一現場、馬上資訊、看台海、福建日報、環球時報和新京報；大V有星話大白、包容萬物恆河水、台灣那點事兒、扎西德勒·天珠收藏、椒哥微記錄、航天面面觀、長春-小風、白鶴-老鄧。"
+    },
+    {
+      "aid": "a055",
+      "subject": "g:dongjing-news",
+      "predicate": "轉發",
+      "object": "cmg-cctv",
+      "subject_mid": "m246",
+      "object_mid": "m247",
+      "quote": "央視新聞發布的13則報導文本，有26個帳號轉發，官方單位有屏山公安、銅陵經開公安在線、山東高法、沐川公安、青春龍泉驛和平安金陽；媒體有動靜新聞、新浪軍事、南寧晚報、錢江晚報、南方週末、頭條新聞、第一現場、馬上資訊、看台海、福建日報、環球時報和新京報；大V有星話大白、包容萬物恆河水、台灣那點事兒、扎西德勒·天珠收藏、椒哥微記錄、航天面面觀、長春-小風、白鶴-老鄧。"
+    },
+    {
+      "aid": "a056",
+      "subject": "g:nanning-evening-news",
+      "predicate": "轉發",
+      "object": "cmg-cctv",
+      "subject_mid": "m248",
+      "object_mid": "m249",
+      "quote": "央視新聞發布的13則報導文本，有26個帳號轉發，官方單位有屏山公安、銅陵經開公安在線、山東高法、沐川公安、青春龍泉驛和平安金陽；媒體有動靜新聞、新浪軍事、南寧晚報、錢江晚報、南方週末、頭條新聞、第一現場、馬上資訊、看台海、福建日報、環球時報和新京報；大V有星話大白、包容萬物恆河水、台灣那點事兒、扎西德勒·天珠收藏、椒哥微記錄、航天面面觀、長春-小風、白鶴-老鄧。"
+    },
+    {
+      "aid": "a057",
+      "subject": "g:qianjiang-evening-news",
+      "predicate": "轉發",
+      "object": "cmg-cctv",
+      "subject_mid": "m250",
+      "object_mid": "m251",
+      "quote": "央視新聞發布的13則報導文本，有26個帳號轉發，官方單位有屏山公安、銅陵經開公安在線、山東高法、沐川公安、青春龍泉驛和平安金陽；媒體有動靜新聞、新浪軍事、南寧晚報、錢江晚報、南方週末、頭條新聞、第一現場、馬上資訊、看台海、福建日報、環球時報和新京報；大V有星話大白、包容萬物恆河水、台灣那點事兒、扎西德勒·天珠收藏、椒哥微記錄、航天面面觀、長春-小風、白鶴-老鄧。"
+    },
+    {
+      "aid": "a058",
+      "subject": "g:southern-weekly",
+      "predicate": "轉發",
+      "object": "cmg-cctv",
+      "subject_mid": "m252",
+      "object_mid": "m253",
+      "quote": "央視新聞發布的13則報導文本，有26個帳號轉發，官方單位有屏山公安、銅陵經開公安在線、山東高法、沐川公安、青春龍泉驛和平安金陽；媒體有動靜新聞、新浪軍事、南寧晚報、錢江晚報、南方週末、頭條新聞、第一現場、馬上資訊、看台海、福建日報、環球時報和新京報；大V有星話大白、包容萬物恆河水、台灣那點事兒、扎西德勒·天珠收藏、椒哥微記錄、航天面面觀、長春-小風、白鶴-老鄧。"
+    },
+    {
+      "aid": "a059",
+      "subject": "g:toutiao-news",
+      "predicate": "轉發",
+      "object": "cmg-cctv",
+      "subject_mid": "m254",
+      "object_mid": "m255",
+      "quote": "央視新聞發布的13則報導文本，有26個帳號轉發，官方單位有屏山公安、銅陵經開公安在線、山東高法、沐川公安、青春龍泉驛和平安金陽；媒體有動靜新聞、新浪軍事、南寧晚報、錢江晚報、南方週末、頭條新聞、第一現場、馬上資訊、看台海、福建日報、環球時報和新京報；大V有星話大白、包容萬物恆河水、台灣那點事兒、扎西德勒·天珠收藏、椒哥微記錄、航天面面觀、長春-小風、白鶴-老鄧。"
+    },
+    {
+      "aid": "a060",
+      "subject": "g:first-live",
+      "predicate": "轉發",
+      "object": "cmg-cctv",
+      "subject_mid": "m256",
+      "object_mid": "m257",
+      "quote": "央視新聞發布的13則報導文本，有26個帳號轉發，官方單位有屏山公安、銅陵經開公安在線、山東高法、沐川公安、青春龍泉驛和平安金陽；媒體有動靜新聞、新浪軍事、南寧晚報、錢江晚報、南方週末、頭條新聞、第一現場、馬上資訊、看台海、福建日報、環球時報和新京報；大V有星話大白、包容萬物恆河水、台灣那點事兒、扎西德勒·天珠收藏、椒哥微記錄、航天面面觀、長春-小風、白鶴-老鄧。"
+    },
+    {
+      "aid": "a061",
+      "subject": "g:mashang-information",
+      "predicate": "轉發",
+      "object": "cmg-cctv",
+      "subject_mid": "m258",
+      "object_mid": "m259",
+      "quote": "央視新聞發布的13則報導文本，有26個帳號轉發，官方單位有屏山公安、銅陵經開公安在線、山東高法、沐川公安、青春龍泉驛和平安金陽；媒體有動靜新聞、新浪軍事、南寧晚報、錢江晚報、南方週末、頭條新聞、第一現場、馬上資訊、看台海、福建日報、環球時報和新京報；大V有星話大白、包容萬物恆河水、台灣那點事兒、扎西德勒·天珠收藏、椒哥微記錄、航天面面觀、長春-小風、白鶴-老鄧。"
+    },
+    {
+      "aid": "a062",
+      "subject": "g:fujian-daily",
+      "predicate": "轉發",
+      "object": "cmg-cctv",
+      "subject_mid": "m260",
+      "object_mid": "m261",
+      "quote": "央視新聞發布的13則報導文本，有26個帳號轉發，官方單位有屏山公安、銅陵經開公安在線、山東高法、沐川公安、青春龍泉驛和平安金陽；媒體有動靜新聞、新浪軍事、南寧晚報、錢江晚報、南方週末、頭條新聞、第一現場、馬上資訊、看台海、福建日報、環球時報和新京報；大V有星話大白、包容萬物恆河水、台灣那點事兒、扎西德勒·天珠收藏、椒哥微記錄、航天面面觀、長春-小風、白鶴-老鄧。"
+    },
+    {
+      "aid": "a063",
+      "subject": "g:beijing-news",
+      "predicate": "轉發",
+      "object": "cmg-cctv",
+      "subject_mid": "m262",
+      "object_mid": "m263",
+      "quote": "央視新聞發布的13則報導文本，有26個帳號轉發，官方單位有屏山公安、銅陵經開公安在線、山東高法、沐川公安、青春龍泉驛和平安金陽；媒體有動靜新聞、新浪軍事、南寧晚報、錢江晚報、南方週末、頭條新聞、第一現場、馬上資訊、看台海、福建日報、環球時報和新京報；大V有星話大白、包容萬物恆河水、台灣那點事兒、扎西德勒·天珠收藏、椒哥微記錄、航天面面觀、長春-小風、白鶴-老鄧。"
+    },
+    {
+      "aid": "a064",
+      "subject": "g:xinghua-dabai",
+      "predicate": "轉發",
+      "object": "cmg-cctv",
+      "subject_mid": "m264",
+      "object_mid": "m265",
+      "quote": "央視新聞發布的13則報導文本，有26個帳號轉發，官方單位有屏山公安、銅陵經開公安在線、山東高法、沐川公安、青春龍泉驛和平安金陽；媒體有動靜新聞、新浪軍事、南寧晚報、錢江晚報、南方週末、頭條新聞、第一現場、馬上資訊、看台海、福建日報、環球時報和新京報；大V有星話大白、包容萬物恆河水、台灣那點事兒、扎西德勒·天珠收藏、椒哥微記錄、航天面面觀、長春-小風、白鶴-老鄧。"
+    },
+    {
+      "aid": "a065",
+      "subject": "g:everything-ganges-water",
+      "predicate": "轉發",
+      "object": "cmg-cctv",
+      "subject_mid": "m266",
+      "object_mid": "m267",
+      "quote": "央視新聞發布的13則報導文本，有26個帳號轉發，官方單位有屏山公安、銅陵經開公安在線、山東高法、沐川公安、青春龍泉驛和平安金陽；媒體有動靜新聞、新浪軍事、南寧晚報、錢江晚報、南方週末、頭條新聞、第一現場、馬上資訊、看台海、福建日報、環球時報和新京報；大V有星話大白、包容萬物恆河水、台灣那點事兒、扎西德勒·天珠收藏、椒哥微記錄、航天面面觀、長春-小風、白鶴-老鄧。"
+    },
+    {
+      "aid": "a066",
+      "subject": "g:taiwan-bit",
+      "predicate": "轉發",
+      "object": "cmg-cctv",
+      "subject_mid": "m268",
+      "object_mid": "m269",
+      "quote": "央視新聞發布的13則報導文本，有26個帳號轉發，官方單位有屏山公安、銅陵經開公安在線、山東高法、沐川公安、青春龍泉驛和平安金陽；媒體有動靜新聞、新浪軍事、南寧晚報、錢江晚報、南方週末、頭條新聞、第一現場、馬上資訊、看台海、福建日報、環球時報和新京報；大V有星話大白、包容萬物恆河水、台灣那點事兒、扎西德勒·天珠收藏、椒哥微記錄、航天面面觀、長春-小風、白鶴-老鄧。"
+    },
+    {
+      "aid": "a067",
+      "subject": "g:tashi-delek-bead-collection",
+      "predicate": "轉發",
+      "object": "cmg-cctv",
+      "subject_mid": "m270",
+      "object_mid": "m271",
+      "quote": "央視新聞發布的13則報導文本，有26個帳號轉發，官方單位有屏山公安、銅陵經開公安在線、山東高法、沐川公安、青春龍泉驛和平安金陽；媒體有動靜新聞、新浪軍事、南寧晚報、錢江晚報、南方週末、頭條新聞、第一現場、馬上資訊、看台海、福建日報、環球時報和新京報；大V有星話大白、包容萬物恆河水、台灣那點事兒、扎西德勒·天珠收藏、椒哥微記錄、航天面面觀、長春-小風、白鶴-老鄧。"
+    },
+    {
+      "aid": "a068",
+      "subject": "g:pepper-bro-microrecord",
+      "predicate": "轉發",
+      "object": "cmg-cctv",
+      "subject_mid": "m272",
+      "object_mid": "m273",
+      "quote": "央視新聞發布的13則報導文本，有26個帳號轉發，官方單位有屏山公安、銅陵經開公安在線、山東高法、沐川公安、青春龍泉驛和平安金陽；媒體有動靜新聞、新浪軍事、南寧晚報、錢江晚報、南方週末、頭條新聞、第一現場、馬上資訊、看台海、福建日報、環球時報和新京報；大V有星話大白、包容萬物恆河水、台灣那點事兒、扎西德勒·天珠收藏、椒哥微記錄、航天面面觀、長春-小風、白鶴-老鄧。"
+    },
+    {
+      "aid": "a069",
+      "subject": "g:aerospace-all-aspects",
+      "predicate": "轉發",
+      "object": "cmg-cctv",
+      "subject_mid": "m274",
+      "object_mid": "m275",
+      "quote": "央視新聞發布的13則報導文本，有26個帳號轉發，官方單位有屏山公安、銅陵經開公安在線、山東高法、沐川公安、青春龍泉驛和平安金陽；媒體有動靜新聞、新浪軍事、南寧晚報、錢江晚報、南方週末、頭條新聞、第一現場、馬上資訊、看台海、福建日報、環球時報和新京報；大V有星話大白、包容萬物恆河水、台灣那點事兒、扎西德勒·天珠收藏、椒哥微記錄、航天面面觀、長春-小風、白鶴-老鄧。"
+    },
+    {
+      "aid": "a070",
+      "subject": "g:changchun-xiaofeng",
+      "predicate": "轉發",
+      "object": "cmg-cctv",
+      "subject_mid": "m276",
+      "object_mid": "m277",
+      "quote": "央視新聞發布的13則報導文本，有26個帳號轉發，官方單位有屏山公安、銅陵經開公安在線、山東高法、沐川公安、青春龍泉驛和平安金陽；媒體有動靜新聞、新浪軍事、南寧晚報、錢江晚報、南方週末、頭條新聞、第一現場、馬上資訊、看台海、福建日報、環球時報和新京報；大V有星話大白、包容萬物恆河水、台灣那點事兒、扎西德勒·天珠收藏、椒哥微記錄、航天面面觀、長春-小風、白鶴-老鄧。"
+    },
+    {
+      "aid": "a071",
+      "subject": "g:baihe-laodeng",
+      "predicate": "轉發",
+      "object": "cmg-cctv",
+      "subject_mid": "m278",
+      "object_mid": "m279",
+      "quote": "央視新聞發布的13則報導文本，有26個帳號轉發，官方單位有屏山公安、銅陵經開公安在線、山東高法、沐川公安、青春龍泉驛和平安金陽；媒體有動靜新聞、新浪軍事、南寧晚報、錢江晚報、南方週末、頭條新聞、第一現場、馬上資訊、看台海、福建日報、環球時報和新京報；大V有星話大白、包容萬物恆河水、台灣那點事兒、扎西德勒·天珠收藏、椒哥微記錄、航天面面觀、長春-小風、白鶴-老鄧。"
+    },
+    {
+      "aid": "a072",
+      "subject": "g:social-platform-accounts-unnamed",
+      "predicate": "發動",
+      "object": "g:narr-drone-taipei101",
+      "subject_mid": "m280",
+      "object_mid": "m281",
+      "quote": "當晚7-9點之間，中國軍號、央視新聞、東部戰區、多社群平台眾多帳號等也共同發動此主題。"
+    },
+    {
+      "aid": "a073",
+      "subject": "g:local-broadcast-new-media-unnamed",
+      "predicate": "引用",
+      "object": "cmg-cctv",
+      "subject_mid": "m282",
+      "object_mid": "m283",
+      "quote": "值得注意的是，中共特定幾個地方廣電媒體的「新媒體」，引用、轉播「看台海」和特定台媒的台灣名嘴節目片段，對內來宣傳軍演。"
+    },
+    {
+      "aid": "a074",
+      "subject": "g:local-broadcast-new-media-unnamed",
+      "predicate": "轉播",
+      "object": "cmg-cctv",
+      "subject_mid": "m284",
+      "object_mid": "m285",
+      "quote": "值得注意的是，中共特定幾個地方廣電媒體的「新媒體」，引用、轉播「看台海」和特定台媒的台灣名嘴節目片段，對內來宣傳軍演。"
+    },
+    {
+      "aid": "a075",
+      "subject": "g:local-broadcast-new-media-unnamed",
+      "predicate": "引用",
+      "object": "g:tw-pundits-unnamed",
+      "subject_mid": "m286",
+      "object_mid": "m287",
+      "quote": "值得注意的是，中共特定幾個地方廣電媒體的「新媒體」，引用、轉播「看台海」和特定台媒的台灣名嘴節目片段，對內來宣傳軍演。"
+    },
+    {
+      "aid": "a076",
+      "subject": "g:local-broadcast-new-media-unnamed",
+      "predicate": "轉播",
+      "object": "g:tw-pundits-unnamed",
+      "subject_mid": "m288",
+      "object_mid": "m289",
+      "quote": "值得注意的是，中共特定幾個地方廣電媒體的「新媒體」，引用、轉播「看台海」和特定台媒的台灣名嘴節目片段，對內來宣傳軍演。"
+    },
+    {
+      "aid": "a077",
+      "subject": "g:pla-news-communication-center",
+      "predicate": "轄下",
+      "object": "g:china-mil-hao",
+      "subject_mid": "m290",
+      "object_mid": "m291",
+      "quote": "研究團隊觀察到，解放軍新聞傳播中心轄下微博帳號「中國軍號」的貼文經常被其他官媒與社群帳號採用，但未反映於本次網絡圖中。"
+    }
+  ]
+}

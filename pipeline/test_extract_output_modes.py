@@ -85,6 +85,13 @@ try:
     versioned_url, _, _, _ = extract._request_spec(MESSAGES, SCHEMA)
     assert versioned_url == "http://localhost:8000/v1/chat/completions"
 
+    # NW_LLM_EXTRA_BODY 逃生口：合併進 openai body（如 mlx chat_template_kwargs 關思考）
+    os.environ["NW_LLM_EXTRA_BODY"] = '{"chat_template_kwargs":{"enable_thinking":false}}'
+    _, extra_body, _, _ = extract._request_spec(MESSAGES, SCHEMA)
+    assert extra_body["chat_template_kwargs"] == {"enable_thinking": False}
+    assert extra_body["model"] and extra_body["temperature"] == 0     # 原欄位仍在
+    os.environ.pop("NW_LLM_EXTRA_BODY", None)
+
     schema_variant = extract.extraction_variant()
     os.environ["NW_LLM_OUTPUT_MODE"] = "schema"
     assert schema_variant != extract.extraction_variant()

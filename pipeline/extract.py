@@ -261,6 +261,9 @@ def _request_spec(messages, fmt):
                                      "json_schema": {"name": "extraction", "schema": fmt}}
                                     if mode == "schema" else {"type": "json_object"}),
                 "messages": prepared}
+        extra = os.environ.get("NW_LLM_EXTRA_BODY", "").strip()  # 逃生口：合併進 body（如 mlx 的
+        if extra:                                                # chat_template_kwargs:{enable_thinking:false} 關思考）
+            body.update(json.loads(extra))
         headers = {"Content-Type": "application/json", "Authorization": "Bearer " + key}
         path = ("choices", 0, "message", "content")
     return url, body, headers, path

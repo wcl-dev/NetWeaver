@@ -94,6 +94,20 @@ def derive(extr, reg):
     for o in out:
         if o["kind"] in ("intrusion-set", "identity", "threat-actor", "x-dad-channel"):
             o["_role"] = (o.get("_known") or {}).get("role") or role(o["tmp_id"])
+    # 6) 可發布性（allowlist；documented not accused）：主詞須已登錄實體，且受詞須已登錄或為
+    #    敘事/地點/URL 類「非當事方」；否則 held——主詞未登錄，或受詞是「未登錄的當事方」（會指控未策展對象）。
+    #    held 的關係不進記錄簿，留作 curate/register 迴圈的待登錄佇列（liberal 抽取→人工閘登錄→關係成圖）。
+    NONPARTY = {"x-dad-narrative", "location", "url", "domain-name"}
+    for r in rels:
+        so, to = objs.get(r["source"]), objs.get(r["target"])
+        src_doc = bool(so and so.get("_known"))
+        tgt_doc = bool(to and to.get("_known"))
+        if src_doc and (tgt_doc or (to and to.get("kind") in NONPARTY)):
+            r["publishable"] = True
+        else:
+            r["publishable"] = False
+            r["hold_reason"] = "subject-not-documented" if not src_doc else "object-undocumented-party"
+            log.append(f"held（不發布，待登錄）：{r['type']} — {r['hold_reason']}")
     # 輸出 STIX-lite（清內部 _ 欄，帶 nw_ref）
     sl = {"report": rep, "objects": [], "relationships": [{k: v for k, v in r.items() if not k.startswith("_")} for r in rels]}
     for o in out:

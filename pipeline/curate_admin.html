@@ -77,7 +77,7 @@ async function selectItem(id){
   if(e.error){d.innerHTML=`<div class="msg err">${esc(e.error)}</div>`;return}
   CUR=e;
   const p=e.projected||{};
-  const held=p.held_subjects||[];
+  const held=p.held||[];
   const srcOk=!!e.source_curated;
 
   // 「還差什麼」清單（因 → 果）
@@ -92,19 +92,20 @@ async function selectItem(id){
         <div id="src_slot"></div></div></div>`);
   steps.push(held.length===0
     ? `<div class="step done"><div class="ic">✓</div><div class="body"><div class="what">涉及的單位都已在「單位清單」</div></div></div>`
-    : `<div class="step wait"><div class="ic">•</div><div class="body">
-        <div class="what">有 ${held.length} 個單位還沒進「單位清單」</div>
-        <div class="why"><b>單位清單</b>＝報告在講哪些單位（央視、解放軍…）。這些還沒登記，它們的關係暫時不能發布。點一個來加：</div>
-        <div class="act">${held.map(s=>`<button class="small" onclick="openForm('${esc(s)}')">＋ 加「${esc(s)}」進單位清單</button>`).join('')}</div>
+    : `<div class="step wait"><div class="ic">◦</div><div class="body">
+        <div class="what">有 ${held.length} 個單位還沒登錄（<b>可選</b>，不擋發布）</div>
+        <div class="why">登錄它們，<b>它們的</b>關係才會一起進記錄簿；不登錄就先保留、不影響其他內容發布。
+          <br><b>⚠ 明顯不是單位的（國際媒體、研究員、網友…）直接略過、別登錄。</b>下面電腦已先猜好類別，對就一鍵建：</div>
+        <div class="act">${held.map(h=>`<button class="small" onclick="openForm('${esc(h.name)}','${esc(h.suggest_category)}','${esc(h.suggest_role)}')">＋ 加「${esc(h.name)}」</button>`).join('')}</div>
         <div id="form_slot"></div></div></div>`);
 
-  const canPublish = srcOk && held.length===0;
+  const ready = srcOk;   // 真正的發布門檻＝來源登錄（主要行為者在核可時檢查）；未登錄單位只是「可選」
   d.innerHTML=`
     <h2>${esc(e.title||e.raw_id)}</h2>
     <div class="from">來自報告：<a href="${esc(e.url||'#')}" target="_blank">${esc(e.title||e.url||'')} ↗</a></div>
 
-    <div class="big"><p class="h">這篇要進記錄簿，還差這些</p>
-      <p class="lead">${canPublish?'✅ 都齊了，可以核可發布':'還有 '+((srcOk?0:1)+(held.length?1:0))+' 項要先補'}</p>
+    <div class="big"><p class="h">這篇要進記錄簿的狀態</p>
+      <p class="lead">${ready?('✅ 可以核可並發布'+(held.length?`（另有 ${held.length} 個單位的關係會先保留）`:'')):'⚠ 來源還沒登錄 —— 先補來源這一項'}</p>
       ${steps.join('')}
     </div>
 
@@ -133,7 +134,7 @@ async function selectItem(id){
         </div></details>
     </div>`;
 }
-async function openForm(surface){
+async function openForm(surface, sugCat, sugRole){
   const slot=document.getElementById('form_slot'); if(!slot) return;
   slot.innerHTML=`<div class="hint">先查有沒有已登錄的相似單位…</div>`;
   const sim=await fetch('/api/find-similar?name='+encodeURIComponent(surface)).then(r=>r.json()).catch(()=>[]);
@@ -165,8 +166,10 @@ async function openForm(surface){
     <label style="margin-top:9px">一句話說明它是什麼<textarea id="f_sum" rows="2">${esc(surface)}</textarea></label>
     <label style="margin-top:9px">依據的來源代號（用現有的，逗號分隔）<input id="f_src" placeholder="例：src-factlink-pla"></label>
     <div style="margin-top:11px"><button class="go small" onclick="doReg()">新建這個單位</button>
-      <span class="hint">代號格式、紅線由系統檢查，錯了會提示。</span></div>
+      <span class="hint">電腦已先猜好類別/角色，對就直接建、錯再改。代號需你取。</span></div>
     <div id="regmsg2"></div></div>`;
+  if(sugCat){const el=document.getElementById('f_cat'); if(el) el.value=sugCat;}   // 帶入電腦擬稿
+  if(sugRole){const el=document.getElementById('f_role'); if(el) el.value=sugRole;}
 }
 async function addAlias(id, alias){
   const r=await post('/api/add-alias',{id, alias});

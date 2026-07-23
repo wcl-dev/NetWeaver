@@ -65,16 +65,28 @@ def item_detail(raw_id):
         # held 的主詞 = 待登錄 actor 候選；只留「像單位」的（org/media/network/account/person/website），
         # 濾掉敘事/地點類雜訊（天然氣貨輪、美國只要台積電…不該當單位登錄）
         ACTORLIKE = {"org", "network", "account", "media", "person", "website"}
-        actor_surf = {m["surface"] for m in extr.get("mentions", []) if m.get("coarse_type") in ACTORLIKE}
-        held_subjects = sorted({rr["source"] for rr in rels
-                                if rr["publishable"] is False and rr["hold_reason"] == "subject-not-documented"
-                                and rr["source"] in actor_surf})
+        CAT = {"media": "state-media", "account": "cib-network", "network": "cib-network",
+               "org": "state-organ", "website": "cib-network", "person": "cib-network"}
+        ROLE = {"amplifies": "amplifier", "targets": "attacker", "operated-by": "attacker",
+                "supplies-tech-to": "collaborator", "runs": "attacker"}
+        surf2ct = {m["surface"]: m.get("coarse_type") for m in extr.get("mentions", [])}
+        held_names = sorted({rr["source"] for rr in rels
+                             if rr["publishable"] is False and rr["hold_reason"] == "subject-not-documented"
+                             and surf2ct.get(rr["source"]) in ACTORLIKE})
+        held_subjects = held_names                            # 相容舊欄位
+        held = []                                             # 帶「電腦擬稿」：類別/角色先猜好，人只確認
+        for name in held_names:
+            ct = surf2ct.get(name)
+            reltypes = [rr["type"] for rr in rels if rr["source"] == name]
+            role = next((ROLE[t] for t in reltypes if t in ROLE), "amplifier")
+            held.append({"name": name, "coarse_type": ct,
+                         "suggest_category": CAT.get(ct, "cib-network"), "suggest_role": role})
         out["projected"] = {
             "operator": rec["operator"].get("name"),
             "operator_ref": rl.operator_ref(sl, ent_ids),
             "attributed_to": att, "valid": not fails,
             "claims": [{"about": c["about"], "quote": c["quote"], "source": c["source"]} for c in rec["claims"]],
-            "relationships": rels, "held_subjects": held_subjects,
+            "relationships": rels, "held_subjects": held_subjects, "held": held,
         }
     except Exception as ex:
         out["projected"] = {"error": f"{type(ex).__name__}: {ex}"}

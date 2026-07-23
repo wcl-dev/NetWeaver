@@ -121,12 +121,16 @@ async function selectItem(id){
 
     <div class="big"><p class="h">你的決定</p>
       <div class="decide">
-        <button class="go" onclick="setStatus('approved')" ${canPublish?'':'disabled title="先補完上面的項目"'}>核可（準備發布）</button>
+        <button class="go" onclick="approveAndPublish()">✓ 核可並發布進記錄簿</button>
         <button onclick="setStatus('rejected')">退回（引文不對）</button>
-        ${canPublish?'<button class="go" onclick="publish()">↳ 發布進記錄簿</button>':''}
       </div>
       <div id="decidemsg"></div>
-      <p class="hint" style="margin-top:10px">核可只是點頭；按「發布進記錄簿」才真的寫入。整個過程可隨時 <code>git</code> 還原。</p>
+      <p class="hint" style="margin-top:10px">＝你確認引文沒問題、直接寫進 db.js。若還缺來源/單位，下面會說明。可隨時 <code>git</code> 還原。</p>
+      <details style="margin-top:8px"><summary>進階：分開處理（大量審核時用）</summary>
+        <div class="decide" style="margin-top:8px">
+          <button onclick="setStatus('approved')">只核可（先打勾，不發布）</button>
+          <button onclick="publish()">發布所有已核可的</button>
+        </div></details>
     </div>`;
 }
 async function openForm(surface){
@@ -207,6 +211,14 @@ async function setStatus(s){
 async function publish(){
   const r=await post('/api/compile',{yes:true});
   const m=document.getElementById('decidemsg'); if(m) m.innerHTML=`<div class="msg ${r.ok?'ok':'err'}">${esc(r.msg)}</div>`;
+  loadQueue();
+}
+async function approveAndPublish(){
+  const m=document.getElementById('decidemsg'); if(m) m.innerHTML='<div class="hint">核可中…</div>';
+  const a=await post('/api/set',{raw_id:SEL,status:'approved'});      // 第一步：核可（鎖版本＋找主要行為者）
+  if(!a.ok){ if(m) m.innerHTML=`<div class="msg err">還不能發布：\n${esc(a.msg)}</div>`; return; }
+  const c=await post('/api/compile',{yes:true});                      // 第二步：發布（寫進 db.js）
+  if(m) m.innerHTML=`<div class="msg ${c.ok?'ok':'err'}">${esc(a.msg)}\n${esc(c.msg)}</div>`;
   loadQueue();
 }
 loadAll();

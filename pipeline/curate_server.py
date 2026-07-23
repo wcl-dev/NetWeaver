@@ -1,0 +1,115 @@
+#!/usr/bin/env python3
+"""策展後台（本機）：把 curate.py / register.py 的 CLI 安全邏輯包成瀏覽器操作介面。
+
+不重寫任何判斷——所有動作都轉呼叫既有函式（curate.cmd_set/cmd_compile、register.cmd_add_actor），
+因此紅線、source-scoped upsert、歸因閘、enum 驗證全都沿用。純本機、stdlib、無外部套件；寫的是真 db.js。
+
+用法：python3 pipeline/curate_server.py [--port 8090]，然後瀏覽器開 http://127.0.0.1:8090
+"""
+import argparse, io, json, pathlib, importlib.util, contextlib, types, traceback
+from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
+from urllib.parse import urlparse, parse_qs
+
+_here = pathlib.Path(__file__).resolve().parent
+def _load(n):
+    s = importlib.util.spec_from_file_location(n, str(_here / (n + ".py")))
+    m = importlib.util.module_from_spec(s); s.loader.exec_module(m); return m
+rl = _load("run_loop"); curate = _load("curate"); register = _load("register")
+DERIVE = _load("derive")
+
+def _capture(fn, args_ns):
+    """呼叫 CLI 函式（吃 argparse-like namespace，會 print / 可能 SystemExit）→ 回 (ok, 輸出訊息)。"""
+    buf = io.StringIO()
+    try:
+        with contextlib.redirect_stdout(buf):
+            fn(args_ns)
+        return True, buf.getvalue().strip()
+    except SystemExit as e:                                    # 驗證/安全阻擋 → 訊息即 e
+        return False, (buf.getvalue() + "\n" + str(e)).strip()
+    except Exception as e:
+        return False, buf.getvalue() + "\n" + f"{type(e).__name__}: {e}\n" + traceback.format_exc()
+
+def queue_rows():
+    q = rl.load_queue()
+    return sorted(q.values(), key=lambda e: (e.get("compile_status") != "pending", e.get("raw_id", "")))
+
+def item_detail(raw_id):
+    e = rl.load_queue().get(raw_id)
+    if not e: return {"error": f"queue 無此 raw_id：{raw_id}"}
+    out = {k: e[k] for k in e}
+    try:
+        _su, ent_ids = rl.load_db()
+        sl, rec, extr, att, digest, fails = curate.project_extraction(e["extraction"])
+        reg = DERIVE.load_registry()
+        id2s = {m["tmp_id"]: m["surface"] for m in extr.get("mentions", [])}
+        # 每條 derive 關係的 publishable/held（allowlist 過濾的可視化）
+        rels = []
+        for r in sl.get("relationships", []):
+            rels.append({"source": id2s.get(r["source"], r["source"]), "type": r["type"],
+                         "target": id2s.get(r["target"], r["target"]),
+                         "publishable": r.get("publishable"), "hold_reason": r.get("hold_reason")})
+        # held 的主詞 = 待登錄 actor 候選
+        held_subjects = sorted({rr["source"] for rr in rels
+                                if rr["publishable"] is False and rr["hold_reason"] == "subject-not-documented"})
+        out["projected"] = {
+            "operator": rec["operator"].get("name"),
+            "operator_ref": rl.operator_ref(sl, ent_ids),
+            "attributed_to": att, "valid": not fails,
+            "claims": [{"about": c["about"], "quote": c["quote"], "source": c["source"]} for c in rec["claims"]],
+            "relationships": rels, "held_subjects": held_subjects,
+        }
+    except Exception as ex:
+        out["projected"] = {"error": f"{type(ex).__name__}: {ex}"}
+    return out
+
+def registry_actors():
+    _su, _ids = rl.load_db(); src, i, j, db = curate.load_db()
+    return [{"id": e["id"], "name_zh": e.get("name_zh")} for e in db["entities"]], \
+           [{"id": s["id"], "url": s.get("url")} for s in db["sources"]]
+
+class H(BaseHTTPRequestHandler):
+    def log_message(self, *a): pass
+    def _send(self, code, body, ctype="application/json"):
+        b = body.encode("utf-8") if isinstance(body, str) else body
+        self.send_response(code); self.send_header("Content-Type", ctype)
+        self.send_header("Content-Length", str(len(b))); self.end_headers(); self.wfile.write(b)
+
+    def do_GET(self):
+        u = urlparse(self.path); q = parse_qs(u.query)
+        if u.path == "/": return self._send(200, HTML, "text/html; charset=utf-8")
+        if u.path == "/api/queue": return self._send(200, json.dumps(queue_rows(), ensure_ascii=False))
+        if u.path == "/api/item": return self._send(200, json.dumps(item_detail(q.get("raw_id", [""])[0]), ensure_ascii=False))
+        if u.path == "/api/registry":
+            acts, srcs = registry_actors()
+            return self._send(200, json.dumps({"actors": acts, "sources": srcs}, ensure_ascii=False))
+        return self._send(404, json.dumps({"error": "not found"}))
+
+    def do_POST(self):
+        u = urlparse(self.path)
+        n = int(self.headers.get("Content-Length", 0)); data = json.loads(self.rfile.read(n) or b"{}")
+        if u.path == "/api/set":                               # approve/reject/defer
+            ns = types.SimpleNamespace(raw_id=data["raw_id"], status=data["status"], note=data.get("note"))
+            ok, msg = _capture(curate.cmd_set, ns); return self._send(200, json.dumps({"ok": ok, "msg": msg}, ensure_ascii=False))
+        if u.path == "/api/compile":
+            ns = types.SimpleNamespace(yes=bool(data.get("yes")), dry_run=bool(data.get("dry_run")))
+            ok, msg = _capture(curate.cmd_compile, ns); return self._send(200, json.dumps({"ok": ok, "msg": msg}, ensure_ascii=False))
+        if u.path == "/api/register-actor":
+            ns = types.SimpleNamespace(id=data.get("id"), name_zh=data.get("name_zh"), name_en=data.get("name_en"),
+                                       category=data.get("category"), role=data.get("role"), origin=data.get("origin"),
+                                       summary_zh=data.get("summary_zh"), source_ids=data.get("source_ids"),
+                                       aliases=data.get("aliases"), confidence=data.get("confidence"),
+                                       sensitivity=data.get("sensitivity"))
+            ok, msg = _capture(register.cmd_add_actor, ns); return self._send(200, json.dumps({"ok": ok, "msg": msg}, ensure_ascii=False))
+        return self._send(404, json.dumps({"error": "not found"}))
+
+HTML = (_here / "curate_admin.html").read_text(encoding="utf-8") if (_here / "curate_admin.html").exists() else "<h1>缺 curate_admin.html</h1>"
+
+def main():
+    ap = argparse.ArgumentParser(); ap.add_argument("--port", type=int, default=8090); a = ap.parse_args()
+    srv = ThreadingHTTPServer(("127.0.0.1", a.port), H)
+    print(f"策展後台 → http://127.0.0.1:{a.port}（Ctrl-C 停）")
+    try: srv.serve_forever()
+    except KeyboardInterrupt: print("\n停止")
+
+if __name__ == "__main__":
+    main()

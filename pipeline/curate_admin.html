@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NetWeaver 策展後台</title>
+<style>
+  :root{
+    --bg:#f4f5f3; --panel:#fff; --ink:#1c1e1a; --muted:#6b6f68; --line:#e2e4df;
+    --accent:#2f6f4e; --accent-soft:#e6f0ea;
+    --amber:#9a6a12; --amber-soft:#fbf1dc; --green:#2f6f4e; --green-soft:#e6f0ea;
+    --red:#a4362f; --red-soft:#f8e6e4; --gray:#6b6f68; --gray-soft:#ececea; --blue:#2a5a8c; --blue-soft:#e5eef7;
+  }
+  @media (prefers-color-scheme:dark){:root{
+    --bg:#16181a; --panel:#1e2124; --ink:#e8eae6; --muted:#9aa09a; --line:#2c3033;
+    --accent:#6fbf94; --accent-soft:#1c2c24;
+    --amber-soft:#2a2416; --green-soft:#16241c; --red-soft:#2a1a18; --gray-soft:#24272a; --blue-soft:#16222e;}}
+  *{box-sizing:border-box} html,body{margin:0}
+  body{background:var(--bg); color:var(--ink); font:15px/1.5 -apple-system,"PingFang TC","Noto Sans TC",system-ui,sans-serif}
+  header{display:flex; align-items:baseline; gap:14px; padding:16px 22px; border-bottom:1px solid var(--line); background:var(--panel)}
+  header h1{font-size:17px; margin:0; letter-spacing:.02em}
+  header .sub{color:var(--muted); font-size:12.5px}
+  header .spacer{flex:1}
+  button{font:inherit; cursor:pointer; border:1px solid var(--line); background:var(--panel); color:var(--ink);
+    border-radius:7px; padding:6px 12px; transition:.12s} button:hover{border-color:var(--accent)}
+  button.primary{background:var(--accent); color:#fff; border-color:var(--accent)}
+  button.ghost{background:transparent}
+  .wrap{display:grid; grid-template-columns:340px 1fr; gap:0; height:calc(100vh - 58px)}
+  .col{overflow-y:auto; padding:16px}
+  .col.list{border-right:1px solid var(--line)}
+  .card{background:var(--panel); border:1px solid var(--line); border-radius:10px; padding:12px 13px; margin-bottom:10px; cursor:pointer}
+  .card:hover{border-color:var(--accent)} .card.sel{border-color:var(--accent); box-shadow:0 0 0 2px var(--accent-soft)}
+  .card .t{font-weight:600; font-size:14px; margin-bottom:5px; line-height:1.35}
+  .row{display:flex; gap:6px; flex-wrap:wrap; align-items:center}
+  .badge{font-size:11px; padding:2px 8px; border-radius:20px; font-weight:600; white-space:nowrap}
+  .b-pending{background:var(--amber-soft); color:var(--amber)} .b-approved{background:var(--green-soft); color:var(--green)}
+  .b-rejected{background:var(--red-soft); color:var(--red)} .b-deferred{background:var(--gray-soft); color:var(--gray)}
+  .b-compiled{background:var(--blue-soft); color:var(--blue)}
+  .flag{font-size:11px; color:var(--muted)} .flag.bad{color:var(--red)} .flag.ok{color:var(--green)}
+  .detail h2{font-size:16px; margin:2px 0 2px} .detail .meta{color:var(--muted); font-size:12.5px; margin-bottom:14px}
+  .sect{background:var(--panel); border:1px solid var(--line); border-radius:10px; padding:14px 15px; margin-bottom:14px}
+  .sect h3{font-size:12.5px; text-transform:uppercase; letter-spacing:.06em; color:var(--muted); margin:0 0 10px}
+  .claim{border-left:3px solid var(--accent); padding:2px 0 2px 11px; margin-bottom:11px}
+  .claim .q{font-size:14px} .claim .s{font-size:12px; color:var(--muted); margin-top:3px; word-break:break-all}
+  .claim .ab{font-size:11px; color:var(--accent); font-weight:600}
+  .rel{display:flex; gap:8px; align-items:center; padding:4px 0; font-size:13.5px; border-bottom:1px solid var(--line)}
+  .rel:last-child{border-bottom:0} .rel .arrow{color:var(--muted)} .rel .flex{flex:1}
+  .pill{font-size:10.5px; padding:1px 7px; border-radius:12px; font-weight:600}
+  .pill.pub{background:var(--green-soft); color:var(--green)} .pill.held{background:var(--amber-soft); color:var(--amber)}
+  .actions{display:flex; gap:8px; flex-wrap:wrap; align-items:center; margin-top:6px}
+  input,select,textarea{font:inherit; background:var(--bg); color:var(--ink); border:1px solid var(--line); border-radius:7px; padding:7px 9px}
+  .grid2{display:grid; grid-template-columns:1fr 1fr; gap:9px} .grid2 label{display:flex; flex-direction:column; gap:3px; font-size:12px; color:var(--muted)}
+  .msg{margin-top:10px; padding:9px 11px; border-radius:8px; font-size:13px; white-space:pre-wrap; font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+  .msg.ok{background:var(--green-soft); color:var(--green)} .msg.err{background:var(--red-soft); color:var(--red)}
+  .empty{color:var(--muted); text-align:center; padding:40px 0}
+  .chip{font-size:12px; background:var(--accent-soft); color:var(--accent); border:1px solid var(--accent); border-radius:20px; padding:3px 10px; cursor:pointer}
+</style>
+</head>
+<body>
+<header>
+  <h1>NetWeaver 策展後台</h1>
+  <span class="sub">documented not accused — 每次寫入 db.js 都經人工核可</span>
+  <span class="spacer"></span>
+  <button class="ghost" onclick="loadQueue()">↻ 重整佇列</button>
+  <button onclick="doCompile()">編譯 approved → db.js</button>
+</header>
+<div class="wrap">
+  <div class="col list" id="list"><div class="empty">載入中…</div></div>
+  <div class="col detail" id="detail"><div class="empty">← 從左側選一篇待審項目</div></div>
+</div>
+<script>
+const $ = (h)=>{const d=document.createElement('div');d.innerHTML=h;return d.firstElementChild};
+const esc = (s)=>(s||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+let SEL=null, REG={actors:[],sources:[]};
+
+async function loadQueue(){
+  const [rows] = await Promise.all([fetch('/api/queue').then(r=>r.json()), loadRegistry()]);
+  const L=document.getElementById('list'); L.innerHTML='';
+  if(!rows.length){L.innerHTML='<div class="empty">佇列為空<br><small>（run_loop 尚未產生待審項目）</small></div>';return}
+  rows.forEach(e=>{
+    const st=e.compile_status||'pending';
+    const flags=[
+      e.source_curated?'<span class="flag ok">src✓</span>':'<span class="flag bad">src✗</span>',
+      e.actor_registered?`<span class="flag ok">actor:${esc(e.actor_registered)}</span>`:'<span class="flag bad">actor✗</span>',
+      e.attributed_to?'<span class="flag bad">⚠歸因</span>':'',
+      e.valid?'':'<span class="flag bad">⚠invalid</span>'
+    ].join(' ');
+    const c=$(`<div class="card" data-id="${esc(e.raw_id)}">
+      <div class="t">${esc(e.title||e.raw_id)}</div>
+      <div class="row"><span class="badge b-${st}">${st}</span>
+        <span class="flag">${esc(e.source_id||'')}｜claims ${e.claims}｜edges ${e.assertions}</span></div>
+      <div class="row" style="margin-top:5px">${flags}</div></div>`);
+    c.onclick=()=>selectItem(e.raw_id);
+    if(e.raw_id===SEL) c.classList.add('sel');
+    L.appendChild(c);
+  });
+}
+async function loadRegistry(){ REG=await fetch('/api/registry').then(r=>r.json()); }
+
+async function selectItem(id){
+  SEL=id; document.querySelectorAll('.card').forEach(c=>c.classList.toggle('sel',c.dataset.id===id));
+  const d=document.getElementById('detail'); d.innerHTML='<div class="empty">載入中…</div>';
+  const e=await fetch('/api/item?raw_id='+encodeURIComponent(id)).then(r=>r.json());
+  if(e.error){d.innerHTML=`<div class="msg err">${esc(e.error)}</div>`;return}
+  const p=e.projected||{};
+  const claims=(p.claims||[]).map(c=>`<div class="claim"><div class="ab">${esc(c.about)}</div>
+    <div class="q">「${esc(c.quote)}」</div><div class="s">source: ${esc(c.source)}</div></div>`).join('')||'<span class="flag">（無 claim）</span>';
+  const rels=(p.relationships||[]).map(r=>`<div class="rel"><span>${esc(r.source)}</span>
+    <span class="arrow">—${esc(r.type)}→</span><span class="flex">${esc(r.target)}</span>
+    ${r.publishable?'<span class="pill pub">可發布</span>':`<span class="pill held">held·${esc(r.hold_reason||'')}</span>`}</div>`).join('')||'<span class="flag">（無關係）</span>';
+  const held=(p.held_subjects||[]);
+  const heldChips = held.length? `<div class="sect"><h3>待登錄 actor（held 邊的主詞）</h3>
+     <div class="row">${held.map(s=>`<span class="chip" onclick="prefillActor('${esc(s)}')">＋登錄「${esc(s)}」</span>`).join('')}</div></div>`:'';
+  d.innerHTML=`<div>
+    <h2>${esc(e.title||e.raw_id)}</h2>
+    <div class="meta">${esc(e.source_id||'')}｜operator: ${esc(p.operator||'—')}（歸屬 ${esc(p.operator_ref||'未定')}）｜
+      attributed-to ${p.attributed_to||0}｜valid ${p.valid} ｜ <a href="${esc(e.url||'#')}" target="_blank">原始來源↗</a></div>
+    <div class="sect"><h3>逐來源宣稱（claims）— 審核就是看這些引文對不對</h3>${claims}</div>
+    <div class="sect"><h3>關係（derive 判定 · allowlist 過濾）</h3>${rels}</div>
+    ${heldChips}
+    <div class="sect"><h3>審核決定</h3>
+      <input id="note" placeholder="備註（可空）" style="width:100%;margin-bottom:9px">
+      <div class="actions">
+        <button class="primary" onclick="setStatus('approved')">核可 approve</button>
+        <button onclick="setStatus('deferred')">退回待補 defer</button>
+        <button onclick="setStatus('rejected')">拒絕 reject</button>
+        <span class="flag">approve 後按上方「編譯」才寫進 db.js</span>
+      </div><div id="setmsg"></div></div>
+    <div class="sect"><h3>登錄新 actor（骨幹 · 寫進 db.js）</h3>
+      <div class="grid2">
+        <label>id（kebab-case）<input id="a_id"></label>
+        <label>category<select id="a_cat"><option>state-organ</option><option>tech-vendor</option><option>pr-firm</option><option>content-farm</option><option>cib-network</option><option>state-media</option></select></label>
+        <label>name_zh<input id="a_zh"></label>
+        <label>name_en<input id="a_en"></label>
+        <label>role<select id="a_role"><option>amplifier</option><option>attacker</option><option>collaborator</option></select></label>
+        <label>origin<select id="a_origin"><option>PRC</option><option>TW</option><option>other</option></select></label>
+        <label>aliases（逗號分隔）<input id="a_alias"></label>
+        <label>source-ids（逗號分隔，須已在 db.sources）<input id="a_src"></label>
+      </div>
+      <label style="display:block;margin-top:9px;font-size:12px;color:var(--muted)">summary_zh
+        <textarea id="a_sum" rows="2" style="width:100%"></textarea></label>
+      <div class="actions"><button class="primary" onclick="regActor()">登錄 actor</button>
+        <span class="flag">enum/kebab/紅線由 register.py 驗；登錄後重新 approve 會抓到新 actor</span></div>
+      <div id="regmsg"></div></div>
+  </div>`;
+}
+function prefillActor(surface){
+  document.getElementById('a_zh').value=surface;
+  document.getElementById('a_alias').value=surface;
+  document.getElementById('a_id').value=surface.replace(/[^a-z0-9]+/gi,'-').toLowerCase().replace(/^-|-$/g,'');
+  document.getElementById('a_id').scrollIntoView({behavior:'smooth',block:'center'});
+}
+async function post(url,body){return fetch(url,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)}).then(r=>r.json())}
+async function setStatus(status){
+  const r=await post('/api/set',{raw_id:SEL,status,note:document.getElementById('note').value});
+  showMsg('setmsg',r); loadQueue();
+}
+async function regActor(){
+  const g=id=>document.getElementById(id).value.trim();
+  const r=await post('/api/register-actor',{id:g('a_id'),name_zh:g('a_zh'),name_en:g('a_en'),category:g('a_cat'),
+    role:g('a_role'),origin:g('a_origin'),aliases:g('a_alias'),source_ids:g('a_src'),summary_zh:g('a_sum')});
+  showMsg('regmsg',r); if(r.ok){loadRegistry();}
+}
+async function doCompile(){
+  const r=await post('/api/compile',{yes:true});
+  alert((r.ok?'✓ ':'✗ ')+r.msg); loadQueue(); if(SEL)selectItem(SEL);
+}
+function showMsg(id,r){const el=document.getElementById(id); if(el) el.innerHTML=`<div class="msg ${r.ok?'ok':'err'}">${esc(r.msg||'')}</div>`}
+loadQueue();
+</script>
+</body>
+</html>

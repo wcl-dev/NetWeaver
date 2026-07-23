@@ -150,21 +150,32 @@ def cmd_compile(args):
         target = ent_by_id.get(op_ref)
         if not target:
             skipped.append((rid, f"歸屬 {op_ref} 不在 db.entities（改 defer、先補 registry）")); continue
-        new_claims, miss, sids = [], 0, set()
+        # 每條 claim 掛到它「about」的**已登錄實體**（而非全塞 operator）——避免過度歸屬。
+        # about 非已登錄實體者先略過（held，待該實體登錄再進）；operator 仍為歸屬錨點（上面已驗）。
+        name2ent = {}
+        for ent in db["entities"]:
+            for nm in [ent.get("name_zh"), ent.get("name_en")] + (ent.get("aliases") or []):
+                if nm: name2ent.setdefault(_norm(nm), ent)
+        by_ent, miss, sids, dropped = {}, 0, set(), 0
         for c in rec["claims"]:
-            if not _norm(c.get("quote")): continue           # 空文字 claim 跳過（不算 miss，也不讓 _upsert 誤刪舊 claims）
+            if not _norm(c.get("quote")): continue           # 空文字 claim 跳過（不算 miss）
             sid = url2sid.get(c["source"])
             if not sid: miss += 1; continue
-            sids.add(sid); new_claims.append({"text": c["quote"], "source_id": sid, "about": c["about"]})
+            ae = name2ent.get(_norm(c.get("about")))
+            if not ae: dropped += 1; continue                # about 非已登錄實體 → 不歸屬
+            sids.add(sid)
+            by_ent.setdefault(ae["id"], []).append({"text": c["quote"], "source_id": sid, "about": c["about"]})
         if miss:                                             # 不做 partial：任一 claim 來源未策展 → 整篇跳過
             skipped.append((rid, f"{miss} 條 claim 來源未在 db.sources → 整篇跳過（先補 source 再審）")); continue
-        if not new_claims:
-            skipped.append((rid, "無可寫 claims（空文字或無有效引文）")); continue
+        if not by_ent:
+            skipped.append((rid, f"無可掛 claims（{dropped} 條 about 皆非已登錄實體 → 先登錄相關單位再審）")); continue
+        nclaims, ents_str = sum(len(v) for v in by_ent.values()), "、".join(by_ent)
         if args.dry_run:
-            done.append((rid, target["id"], len(new_claims), "dry-run")); continue
-        total = _upsert(target, new_claims, sids)
+            done.append((rid, ents_str, nclaims, f"dry-run（分掛 {len(by_ent)} 個實體，另 {dropped} 條 about 未登錄略過）")); continue
+        for eid, claims in by_ent.items():
+            _upsert(ent_by_id[eid], claims, sids)
         e["compile_status"] = "compiled"
-        done.append((rid, target["id"], len(new_claims), f"→entity now {total} claims"))
+        done.append((rid, ents_str, nclaims, f"分掛 {len(by_ent)} 個實體，{dropped} 條 about 未登錄略過"))
     if not args.dry_run and done:
         save_db(src, i, db); rl._write_queue(q)
     print("=== compile（安全 upsert；以 source_id 為單位；重算比對，不做 partial）===")

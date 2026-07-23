@@ -133,6 +133,27 @@ def cmd_add_actor(args):
     print(f"✓ 加入 actor {aid}（{name_zh}／{name_en}）→ db.js，共 {len(db['entities'])} 筆")
     return 0
 
+# ---------- add-alias（把新寫法補成既有單位的別名，避免重複建）----------
+def _norm(s): return re.sub(r"[\s\W]+", "", (s or "").lower())
+
+def cmd_add_alias(args):
+    aid = _req(args.id, "id"); alias = _req(args.alias, "alias")
+    src, i, end, db = load_db()
+    ent = next((e for e in db["entities"] if e.get("id") == aid), None)
+    if not ent: raise SystemExit(f"找不到單位 id：{aid}")
+    names = [ent.get("name_zh"), ent.get("name_en")] + (ent.get("aliases") or [])
+    if any(_norm(alias) == _norm(n) for n in names if n):
+        print(f"「{alias}」已是 {aid} 的名稱/別名，不重複加"); return 0
+    owner = {_norm(x): e["id"] for e in db["entities"]
+             for x in [e.get("name_zh"), e.get("name_en")] + (e.get("aliases") or []) if x}
+    other = owner.get(_norm(alias))
+    if other and other != aid:
+        raise SystemExit(f"「{alias}」已屬於別的單位 {other}，不可加到 {aid}（避免混淆）")
+    ent.setdefault("aliases", []).append(alias)
+    save_db(src, i, end, db)
+    print(f"✓ 「{alias}」→ 補為 {aid}（{ent.get('name_zh')}）的別名，現有 {len(ent['aliases'])} 個別名")
+    return 0
+
 # ---------- suggest（讀 deferred queue 條目，印預填指令）----------
 
 def cmd_suggest(args):
@@ -180,6 +201,8 @@ def main():
     p.add_argument("--sensitivity", choices=["domestic-named"])
     p.add_argument("--confidence", default="medium", choices=["high", "medium", "low"])
     p.set_defaults(fn=cmd_add_actor)
+    p = sub.add_parser("add-alias")
+    p.add_argument("--id", required=True); p.add_argument("--alias", required=True); p.set_defaults(fn=cmd_add_alias)
     p = sub.add_parser("suggest"); p.add_argument("raw_id"); p.set_defaults(fn=cmd_suggest)
     args = ap.parse_args(); return args.fn(args)
 

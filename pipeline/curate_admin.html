@@ -4,168 +4,212 @@
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>NetWeaver 策展後台</title>
 <style>
-  :root{
-    --bg:#f4f5f3; --panel:#fff; --ink:#1c1e1a; --muted:#6b6f68; --line:#e2e4df;
-    --accent:#2f6f4e; --accent-soft:#e6f0ea;
-    --amber:#9a6a12; --amber-soft:#fbf1dc; --green:#2f6f4e; --green-soft:#e6f0ea;
-    --red:#a4362f; --red-soft:#f8e6e4; --gray:#6b6f68; --gray-soft:#ececea; --blue:#2a5a8c; --blue-soft:#e5eef7;
-  }
-  @media (prefers-color-scheme:dark){:root{
-    --bg:#16181a; --panel:#1e2124; --ink:#e8eae6; --muted:#9aa09a; --line:#2c3033;
-    --accent:#6fbf94; --accent-soft:#1c2c24;
-    --amber-soft:#2a2416; --green-soft:#16241c; --red-soft:#2a1a18; --gray-soft:#24272a; --blue-soft:#16222e;}}
-  *{box-sizing:border-box} html,body{margin:0}
-  body{background:var(--bg); color:var(--ink); font:15px/1.5 -apple-system,"PingFang TC","Noto Sans TC",system-ui,sans-serif}
-  header{display:flex; align-items:baseline; gap:14px; padding:16px 22px; border-bottom:1px solid var(--line); background:var(--panel)}
-  header h1{font-size:17px; margin:0; letter-spacing:.02em}
-  header .sub{color:var(--muted); font-size:12.5px}
-  header .spacer{flex:1}
-  button{font:inherit; cursor:pointer; border:1px solid var(--line); background:var(--panel); color:var(--ink);
-    border-radius:7px; padding:6px 12px; transition:.12s} button:hover{border-color:var(--accent)}
-  button.primary{background:var(--accent); color:#fff; border-color:var(--accent)}
-  button.ghost{background:transparent}
-  .wrap{display:grid; grid-template-columns:340px 1fr; gap:0; height:calc(100vh - 58px)}
-  .col{overflow-y:auto; padding:16px}
-  .col.list{border-right:1px solid var(--line)}
-  .card{background:var(--panel); border:1px solid var(--line); border-radius:10px; padding:12px 13px; margin-bottom:10px; cursor:pointer}
-  .card:hover{border-color:var(--accent)} .card.sel{border-color:var(--accent); box-shadow:0 0 0 2px var(--accent-soft)}
-  .card .t{font-weight:600; font-size:14px; margin-bottom:5px; line-height:1.35}
-  .row{display:flex; gap:6px; flex-wrap:wrap; align-items:center}
-  .badge{font-size:11px; padding:2px 8px; border-radius:20px; font-weight:600; white-space:nowrap}
-  .b-pending{background:var(--amber-soft); color:var(--amber)} .b-approved{background:var(--green-soft); color:var(--green)}
-  .b-rejected{background:var(--red-soft); color:var(--red)} .b-deferred{background:var(--gray-soft); color:var(--gray)}
-  .b-compiled{background:var(--blue-soft); color:var(--blue)}
-  .flag{font-size:11px; color:var(--muted)} .flag.bad{color:var(--red)} .flag.ok{color:var(--green)}
-  .detail h2{font-size:16px; margin:2px 0 2px} .detail .meta{color:var(--muted); font-size:12.5px; margin-bottom:14px}
-  .sect{background:var(--panel); border:1px solid var(--line); border-radius:10px; padding:14px 15px; margin-bottom:14px}
-  .sect h3{font-size:12.5px; text-transform:uppercase; letter-spacing:.06em; color:var(--muted); margin:0 0 10px}
-  .claim{border-left:3px solid var(--accent); padding:2px 0 2px 11px; margin-bottom:11px}
-  .claim .q{font-size:14px} .claim .s{font-size:12px; color:var(--muted); margin-top:3px; word-break:break-all}
-  .claim .ab{font-size:11px; color:var(--accent); font-weight:600}
-  .rel{display:flex; gap:8px; align-items:center; padding:4px 0; font-size:13.5px; border-bottom:1px solid var(--line)}
-  .rel:last-child{border-bottom:0} .rel .arrow{color:var(--muted)} .rel .flex{flex:1}
-  .pill{font-size:10.5px; padding:1px 7px; border-radius:12px; font-weight:600}
-  .pill.pub{background:var(--green-soft); color:var(--green)} .pill.held{background:var(--amber-soft); color:var(--amber)}
-  .actions{display:flex; gap:8px; flex-wrap:wrap; align-items:center; margin-top:6px}
-  input,select,textarea{font:inherit; background:var(--bg); color:var(--ink); border:1px solid var(--line); border-radius:7px; padding:7px 9px}
-  .grid2{display:grid; grid-template-columns:1fr 1fr; gap:9px} .grid2 label{display:flex; flex-direction:column; gap:3px; font-size:12px; color:var(--muted)}
-  .msg{margin-top:10px; padding:9px 11px; border-radius:8px; font-size:13px; white-space:pre-wrap; font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
-  .msg.ok{background:var(--green-soft); color:var(--green)} .msg.err{background:var(--red-soft); color:var(--red)}
-  .empty{color:var(--muted); text-align:center; padding:40px 0}
-  .chip{font-size:12px; background:var(--accent-soft); color:var(--accent); border:1px solid var(--accent); border-radius:20px; padding:3px 10px; cursor:pointer}
+  :root{--bg:#f4f5f3;--panel:#fff;--ink:#1c1e1a;--muted:#70746c;--line:#e2e4df;
+    --accent:#2f6f4e;--accent-soft:#e6f0ea;--warn:#9a6a12;--warn-soft:#fbf1dc;--ok:#2f6f4e;--red:#a4362f;--red-soft:#f8e6e4;}
+  @media (prefers-color-scheme:dark){:root{--bg:#16181a;--panel:#1e2124;--ink:#e8eae6;--muted:#9aa09a;--line:#2c3033;
+    --accent:#6fbf94;--accent-soft:#1c2c24;--warn:#d9a441;--warn-soft:#2a2416;--ok:#6fbf94;--red:#e08a82;--red-soft:#2a1a18;}}
+  *{box-sizing:border-box}html,body{margin:0}
+  body{background:var(--bg);color:var(--ink);font:15.5px/1.6 -apple-system,"PingFang TC","Noto Sans TC",system-ui,sans-serif}
+  header{padding:15px 22px;border-bottom:1px solid var(--line);background:var(--panel);display:flex;align-items:baseline;gap:12px}
+  header h1{font-size:16px;margin:0} header .sub{color:var(--muted);font-size:12.5px} .spacer{flex:1}
+  button{font:inherit;cursor:pointer;border:1px solid var(--line);background:var(--panel);color:var(--ink);border-radius:8px;padding:8px 14px}
+  button:hover{border-color:var(--accent)} button.go{background:var(--accent);color:#fff;border-color:var(--accent);font-weight:600}
+  button.small{padding:5px 11px;font-size:13px}
+  .wrap{display:grid;grid-template-columns:300px 1fr;height:calc(100vh - 56px)}
+  .col{overflow-y:auto;padding:16px} .list{border-right:1px solid var(--line)}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px;margin-bottom:9px;cursor:pointer}
+  .card:hover{border-color:var(--accent)} .card.sel{border-color:var(--accent);box-shadow:0 0 0 2px var(--accent-soft)}
+  .card .t{font-weight:600;font-size:14px;line-height:1.35}
+  .tag{display:inline-block;font-size:11.5px;padding:2px 9px;border-radius:20px;font-weight:600;margin-top:6px}
+  .tag.wait{background:var(--warn-soft);color:var(--warn)} .tag.done{background:var(--accent-soft);color:var(--accent)}
+  .detail{max-width:720px}
+  .detail h2{font-size:19px;margin:2px 0 4px;line-height:1.3} .detail .from{color:var(--muted);font-size:13px;margin-bottom:20px}
+  .big{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px 20px;margin-bottom:16px}
+  .big > .h{font-size:13px;color:var(--muted);margin:0 0 4px} .big .lead{font-size:16px;font-weight:600;margin:0 0 14px}
+  .step{display:flex;gap:12px;align-items:flex-start;padding:11px 0;border-top:1px solid var(--line)}
+  .step:first-of-type{border-top:0} .step .ic{font-size:18px;line-height:1.5;flex-shrink:0;width:22px;text-align:center}
+  .step .body{flex:1} .step .what{font-weight:600} .step .why{color:var(--muted);font-size:13px;margin-top:2px}
+  .step .act{margin-top:8px;display:flex;gap:8px;flex-wrap:wrap}
+  .wait .ic{color:var(--warn)} .done .ic{color:var(--ok)}
+  .decide{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+  details{margin-bottom:12px} details>summary{cursor:pointer;color:var(--muted);font-size:13.5px;padding:8px 0;user-select:none}
+  .claim{border-left:3px solid var(--line);padding:2px 0 8px 12px;margin:8px 0}
+  .claim .q{font-size:14.5px} .claim .s{font-size:12px;color:var(--muted);margin-top:2px;word-break:break-all}
+  .rel{font-size:14px;padding:5px 0;color:var(--ink)} .rel .muted{color:var(--muted)}
+  .rel .no{color:var(--warn);font-size:12px} .rel .yes{color:var(--ok);font-size:12px}
+  .form{background:var(--bg);border:1px dashed var(--line);border-radius:10px;padding:14px;margin-top:10px}
+  .form .g{display:grid;grid-template-columns:1fr 1fr;gap:10px} .form label{display:flex;flex-direction:column;gap:3px;font-size:12.5px;color:var(--muted)}
+  input,select,textarea{font:inherit;background:var(--panel);color:var(--ink);border:1px solid var(--line);border-radius:7px;padding:8px 9px;width:100%}
+  .hint{font-size:12px;color:var(--muted);margin-top:3px}
+  .msg{margin-top:10px;padding:10px 12px;border-radius:8px;font-size:13.5px;white-space:pre-wrap}
+  .msg.ok{background:var(--accent-soft);color:var(--accent)} .msg.err{background:var(--red-soft);color:var(--red)}
+  .empty{color:var(--muted);text-align:center;padding:48px 12px}
 </style>
 </head>
 <body>
-<header>
-  <h1>NetWeaver 策展後台</h1>
-  <span class="sub">documented not accused — 每次寫入 db.js 都經人工核可</span>
-  <span class="spacer"></span>
-  <button class="ghost" onclick="loadQueue()">↻ 重整佇列</button>
-  <button onclick="doCompile()">編譯 approved → db.js</button>
-</header>
+<header><h1>NetWeaver 策展後台</h1>
+  <span class="sub">電腦先抓 → 你看過點頭 → 才進記錄簿</span>
+  <span class="spacer"></span><button class="small" onclick="loadAll()">↻ 重整</button></header>
 <div class="wrap">
   <div class="col list" id="list"><div class="empty">載入中…</div></div>
-  <div class="col detail" id="detail"><div class="empty">← 從左側選一篇待審項目</div></div>
+  <div class="col"><div class="detail" id="detail"><div class="empty">← 從左邊選一篇來看</div></div></div>
 </div>
 <script>
-const $ = (h)=>{const d=document.createElement('div');d.innerHTML=h;return d.firstElementChild};
-const esc = (s)=>(s||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-let SEL=null, REG={actors:[],sources:[]};
-
+const esc=(s)=>(s||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+let SEL=null, CUR=null;
+async function loadAll(){await loadQueue(); if(SEL) selectItem(SEL);}
 async function loadQueue(){
-  const [rows] = await Promise.all([fetch('/api/queue').then(r=>r.json()), loadRegistry()]);
+  const rows=await fetch('/api/queue').then(r=>r.json());
   const L=document.getElementById('list'); L.innerHTML='';
-  if(!rows.length){L.innerHTML='<div class="empty">佇列為空<br><small>（run_loop 尚未產生待審項目）</small></div>';return}
+  if(!rows.length){L.innerHTML='<div class="empty">目前沒有待審的報告</div>';return}
   rows.forEach(e=>{
-    const st=e.compile_status||'pending';
-    const flags=[
-      e.source_curated?'<span class="flag ok">src✓</span>':'<span class="flag bad">src✗</span>',
-      e.actor_registered?`<span class="flag ok">actor:${esc(e.actor_registered)}</span>`:'<span class="flag bad">actor✗</span>',
-      e.attributed_to?'<span class="flag bad">⚠歸因</span>':'',
-      e.valid?'':'<span class="flag bad">⚠invalid</span>'
-    ].join(' ');
-    const c=$(`<div class="card" data-id="${esc(e.raw_id)}">
-      <div class="t">${esc(e.title||e.raw_id)}</div>
-      <div class="row"><span class="badge b-${st}">${st}</span>
-        <span class="flag">${esc(e.source_id||'')}｜claims ${e.claims}｜edges ${e.assertions}</span></div>
-      <div class="row" style="margin-top:5px">${flags}</div></div>`);
-    c.onclick=()=>selectItem(e.raw_id);
-    if(e.raw_id===SEL) c.classList.add('sel');
-    L.appendChild(c);
+    const done=e.compile_status==='compiled';
+    const c=document.createElement('div'); c.className='card'+(e.raw_id===SEL?' sel':''); c.dataset.id=e.raw_id;
+    c.innerHTML=`<div class="t">${esc(e.title||e.raw_id)}</div>
+      <span class="tag ${done?'done':'wait'}">${done?'已進記錄簿':'待你處理'}</span>`;
+    c.onclick=()=>selectItem(e.raw_id); L.appendChild(c);
   });
 }
-async function loadRegistry(){ REG=await fetch('/api/registry').then(r=>r.json()); }
-
 async function selectItem(id){
   SEL=id; document.querySelectorAll('.card').forEach(c=>c.classList.toggle('sel',c.dataset.id===id));
   const d=document.getElementById('detail'); d.innerHTML='<div class="empty">載入中…</div>';
   const e=await fetch('/api/item?raw_id='+encodeURIComponent(id)).then(r=>r.json());
   if(e.error){d.innerHTML=`<div class="msg err">${esc(e.error)}</div>`;return}
+  CUR=e;
   const p=e.projected||{};
-  const claims=(p.claims||[]).map(c=>`<div class="claim"><div class="ab">${esc(c.about)}</div>
-    <div class="q">「${esc(c.quote)}」</div><div class="s">source: ${esc(c.source)}</div></div>`).join('')||'<span class="flag">（無 claim）</span>';
-  const rels=(p.relationships||[]).map(r=>`<div class="rel"><span>${esc(r.source)}</span>
-    <span class="arrow">—${esc(r.type)}→</span><span class="flex">${esc(r.target)}</span>
-    ${r.publishable?'<span class="pill pub">可發布</span>':`<span class="pill held">held·${esc(r.hold_reason||'')}</span>`}</div>`).join('')||'<span class="flag">（無關係）</span>';
-  const held=(p.held_subjects||[]);
-  const heldChips = held.length? `<div class="sect"><h3>待登錄 actor（held 邊的主詞）</h3>
-     <div class="row">${held.map(s=>`<span class="chip" onclick="prefillActor('${esc(s)}')">＋登錄「${esc(s)}」</span>`).join('')}</div></div>`:'';
-  d.innerHTML=`<div>
+  const held=p.held_subjects||[];
+  const srcOk=!!e.source_curated;
+
+  // 「還差什麼」清單（因 → 果）
+  const steps=[];
+  steps.push(srcOk
+    ? `<div class="step done"><div class="ic">✓</div><div class="body"><div class="what">這篇報告已在「來源清單」</div></div></div>`
+    : `<div class="step wait"><div class="ic">•</div><div class="body">
+        <div class="what">這篇報告還沒進「來源清單」</div>
+        <div class="why"><b>來源清單</b>＝資訊出自哪些可信報告。記錄簿只收清單上報告的內容，這一篇還沒登記過。</div>
+        <div class="why" style="margin-top:4px">${esc(e.url||'')}</div>
+        <div class="act"><button class="small" onclick="openSourceForm()">＋ 登錄這篇來源</button></div>
+        <div id="src_slot"></div></div></div>`);
+  steps.push(held.length===0
+    ? `<div class="step done"><div class="ic">✓</div><div class="body"><div class="what">涉及的單位都已在「單位清單」</div></div></div>`
+    : `<div class="step wait"><div class="ic">•</div><div class="body">
+        <div class="what">有 ${held.length} 個單位還沒進「單位清單」</div>
+        <div class="why"><b>單位清單</b>＝報告在講哪些單位（央視、解放軍…）。這些還沒登記，它們的關係暫時不能發布。點一個來加：</div>
+        <div class="act">${held.map(s=>`<button class="small" onclick="openForm('${esc(s)}')">＋ 加「${esc(s)}」進單位清單</button>`).join('')}</div>
+        <div id="form_slot"></div></div></div>`);
+
+  const canPublish = srcOk && held.length===0;
+  d.innerHTML=`
     <h2>${esc(e.title||e.raw_id)}</h2>
-    <div class="meta">${esc(e.source_id||'')}｜operator: ${esc(p.operator||'—')}（歸屬 ${esc(p.operator_ref||'未定')}）｜
-      attributed-to ${p.attributed_to||0}｜valid ${p.valid} ｜ <a href="${esc(e.url||'#')}" target="_blank">原始來源↗</a></div>
-    <div class="sect"><h3>逐來源宣稱（claims）— 審核就是看這些引文對不對</h3>${claims}</div>
-    <div class="sect"><h3>關係（derive 判定 · allowlist 過濾）</h3>${rels}</div>
-    ${heldChips}
-    <div class="sect"><h3>審核決定</h3>
-      <input id="note" placeholder="備註（可空）" style="width:100%;margin-bottom:9px">
-      <div class="actions">
-        <button class="primary" onclick="setStatus('approved')">核可 approve</button>
-        <button onclick="setStatus('deferred')">退回待補 defer</button>
-        <button onclick="setStatus('rejected')">拒絕 reject</button>
-        <span class="flag">approve 後按上方「編譯」才寫進 db.js</span>
-      </div><div id="setmsg"></div></div>
-    <div class="sect"><h3>登錄新 actor（骨幹 · 寫進 db.js）</h3>
-      <div class="grid2">
-        <label>id（kebab-case）<input id="a_id"></label>
-        <label>category<select id="a_cat"><option>state-organ</option><option>tech-vendor</option><option>pr-firm</option><option>content-farm</option><option>cib-network</option><option>state-media</option></select></label>
-        <label>name_zh<input id="a_zh"></label>
-        <label>name_en<input id="a_en"></label>
-        <label>role<select id="a_role"><option>amplifier</option><option>attacker</option><option>collaborator</option></select></label>
-        <label>origin<select id="a_origin"><option>PRC</option><option>TW</option><option>other</option></select></label>
-        <label>aliases（逗號分隔）<input id="a_alias"></label>
-        <label>source-ids（逗號分隔，須已在 db.sources）<input id="a_src"></label>
+    <div class="from">來自報告：<a href="${esc(e.url||'#')}" target="_blank">${esc(e.title||e.url||'')} ↗</a></div>
+
+    <div class="big"><p class="h">這篇要進記錄簿，還差這些</p>
+      <p class="lead">${canPublish?'✅ 都齊了，可以核可發布':'還有 '+((srcOk?0:1)+(held.length?1:0))+' 項要先補'}</p>
+      ${steps.join('')}
+    </div>
+
+    <details><summary>▸ 看電腦從報告抓到的內容（${(p.claims||[]).length} 句重點、${(p.relationships||[]).length} 條關係）</summary>
+      <div style="padding:6px 2px">
+        <p class="hint">審核就是看這些引文有沒有支持結論。</p>
+        ${(p.relationships||[]).map(r=>`<div class="rel">${esc(r.source)} <span class="muted">—${esc(r.type)}→</span> ${esc(r.target)}
+          ${r.publishable?'<span class="yes">✓可發布</span>':'<span class="no">（等單位登記）</span>'}</div>`).join('')||'<span class="hint">（無）</span>'}
+        <div style="height:10px"></div>
+        ${(p.claims||[]).slice(0,20).map(c=>`<div class="claim"><div class="q">「${esc(c.quote)}」</div><div class="s">出處：${esc(c.source)}</div></div>`).join('')}
+        ${(p.claims||[]).length>20?`<p class="hint">…另有 ${(p.claims||[]).length-20} 句（略）</p>`:''}
       </div>
-      <label style="display:block;margin-top:9px;font-size:12px;color:var(--muted)">summary_zh
-        <textarea id="a_sum" rows="2" style="width:100%"></textarea></label>
-      <div class="actions"><button class="primary" onclick="regActor()">登錄 actor</button>
-        <span class="flag">enum/kebab/紅線由 register.py 驗；登錄後重新 approve 會抓到新 actor</span></div>
-      <div id="regmsg"></div></div>
-  </div>`;
+    </details>
+
+    <div class="big"><p class="h">你的決定</p>
+      <div class="decide">
+        <button class="go" onclick="setStatus('approved')" ${canPublish?'':'disabled title="先補完上面的項目"'}>核可（準備發布）</button>
+        <button onclick="setStatus('rejected')">退回（引文不對）</button>
+        ${canPublish?'<button class="go" onclick="publish()">↳ 發布進記錄簿</button>':''}
+      </div>
+      <div id="decidemsg"></div>
+      <p class="hint" style="margin-top:10px">核可只是點頭；按「發布進記錄簿」才真的寫入。整個過程可隨時 <code>git</code> 還原。</p>
+    </div>`;
 }
-function prefillActor(surface){
-  document.getElementById('a_zh').value=surface;
-  document.getElementById('a_alias').value=surface;
-  document.getElementById('a_id').value=surface.replace(/[^a-z0-9]+/gi,'-').toLowerCase().replace(/^-|-$/g,'');
-  document.getElementById('a_id').scrollIntoView({behavior:'smooth',block:'center'});
+async function openForm(surface){
+  const slot=document.getElementById('form_slot'); if(!slot) return;
+  slot.innerHTML=`<div class="hint">先查有沒有已登錄的相似單位…</div>`;
+  const sim=await fetch('/api/find-similar?name='+encodeURIComponent(surface)).then(r=>r.json()).catch(()=>[]);
+  let simHtml='';
+  if(sim.length){
+    simHtml=`<div class="form" style="border-color:var(--warn)">
+      <div class="what">⚠ 可能已經有這個單位，別重複建：</div>
+      ${sim.map(m=>`<div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:8px 0">
+        <span>已登錄「${esc(m.matched_on)}」<span class="hint">代號 ${esc(m.id)}</span></span>
+        <button class="go small" onclick="addAlias('${esc(m.id)}','${esc(surface)}')">就是它 → 把「${esc(surface)}」設成它的別名</button></div>`).join('')}
+      <div class="hint">都不是同一個？才往下新建 ↓</div><div id="regmsg"></div></div>`;
+  }
+  // 代號：中文名無法自動轉英文，只有含英文才預填，否則留空讓人取（如 hk01、pla）
+  const id=/[a-z]/i.test(surface)? surface.replace(/[^a-z0-9]+/gi,'-').toLowerCase().replace(/^-|-$/g,'').slice(0,40) : '';
+  slot.innerHTML=simHtml+`<div class="form">
+    <div class="g">
+      <label>這是哪種單位？
+        <select id="f_cat"><option value="state-organ">政府/軍方機關</option><option value="state-media">官方媒體</option>
+          <option value="cib-network">帳號網絡</option><option value="tech-vendor">科技廠商</option>
+          <option value="pr-firm">公關公司</option><option value="content-farm">內容農場</option></select></label>
+      <label>它扮演的角色
+        <select id="f_role"><option value="amplifier">放大/轉傳</option><option value="attacker">發動者</option><option value="collaborator">協力者</option></select></label>
+      <label>它是哪一邊的
+        <select id="f_origin"><option value="PRC">中國</option><option value="TW">台灣</option><option value="other">其他</option></select></label>
+      <label>單位代號（自訂英文小寫，如 hk01、pla）<input id="f_id" value="${esc(id)}" placeholder="hk01"></label>
+      <label>中文名<input id="f_zh" value="${esc(surface)}"></label>
+      <label>英文名（可先隨意）<input id="f_en" value="${esc(id)}" placeholder="HK01"></label>
+    </div>
+    <label style="margin-top:9px">一句話說明它是什麼<textarea id="f_sum" rows="2">${esc(surface)}</textarea></label>
+    <label style="margin-top:9px">依據的來源代號（用現有的，逗號分隔）<input id="f_src" placeholder="例：src-factlink-pla"></label>
+    <div style="margin-top:11px"><button class="go small" onclick="doReg()">新建這個單位</button>
+      <span class="hint">代號格式、紅線由系統檢查，錯了會提示。</span></div>
+    <div id="regmsg2"></div></div>`;
 }
-async function post(url,body){return fetch(url,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)}).then(r=>r.json())}
-async function setStatus(status){
-  const r=await post('/api/set',{raw_id:SEL,status,note:document.getElementById('note').value});
-  showMsg('setmsg',r); loadQueue();
+async function addAlias(id, alias){
+  const r=await post('/api/add-alias',{id, alias});
+  const m=document.getElementById('regmsg'); if(m) m.innerHTML=`<div class="msg ${r.ok?'ok':'err'}">${esc(r.msg)}</div>`;
+  if(r.ok) setTimeout(()=>selectItem(SEL),800);   // 認得了 → 該單位從「待登錄」消失
 }
-async function regActor(){
+async function post(u,b){return fetch(u,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(b)}).then(r=>r.json())}
+async function doReg(){
   const g=id=>document.getElementById(id).value.trim();
-  const r=await post('/api/register-actor',{id:g('a_id'),name_zh:g('a_zh'),name_en:g('a_en'),category:g('a_cat'),
-    role:g('a_role'),origin:g('a_origin'),aliases:g('a_alias'),source_ids:g('a_src'),summary_zh:g('a_sum')});
-  showMsg('regmsg',r); if(r.ok){loadRegistry();}
+  const r=await post('/api/register-actor',{id:g('f_id'),name_zh:g('f_zh'),name_en:g('f_en'),category:g('f_cat'),
+    role:g('f_role'),origin:g('f_origin'),summary_zh:g('f_sum'),source_ids:g('f_src')});
+  const m=document.getElementById('regmsg2'); if(m) m.innerHTML=`<div class="msg ${r.ok?'ok':'err'}">${esc(r.msg)}</div>`;
+  if(r.ok) setTimeout(()=>selectItem(SEL),700);   // 成功→重載，該單位從「待補」消失
 }
-async function doCompile(){
+function openSourceForm(){
+  const slot=document.getElementById('src_slot'); if(!slot||!CUR) return;
+  slot.innerHTML=`<div class="form">
+    <label>報告標題<input id="s_title" value="${esc(CUR.title||'')}"></label>
+    <div class="g" style="margin-top:9px">
+      <label>出版方（機構名）<input id="s_org" placeholder="例：FactLink 數位素養實驗室"></label>
+      <label>報告類型
+        <select id="s_type"><option value="ngo-report">民間研究報告</option><option value="gov-report">政府報告</option>
+          <option value="platform-report">平台報告</option><option value="news">新聞</option><option value="academic">學術</option></select></label>
+      <label>發布日期（YYYY-MM-DD）<input id="s_date" placeholder="2026-04-29"></label>
+      <label>網址（自動帶入）<input id="s_url" value="${esc(CUR.url||'')}" readonly></label>
+    </div>
+    <div style="margin-top:11px"><button class="go small" onclick="doRegSource()">登錄這篇來源</button>
+      <span class="hint">出版方不在信任清單會提示（新增來源＝人的決策）。</span></div>
+    <div id="srcmsg"></div></div>`;
+}
+async function doRegSource(){
+  const g=id=>document.getElementById(id).value.trim();
+  const r=await post('/api/register-source',{url:g('s_url'),title:g('s_title'),org:g('s_org'),type:g('s_type'),date:g('s_date')});
+  const m=document.getElementById('srcmsg'); if(m) m.innerHTML=`<div class="msg ${r.ok?'ok':'err'}">${esc(r.msg)}</div>`;
+  if(r.ok) setTimeout(()=>selectItem(SEL),700);
+}
+async function setStatus(s){
+  const r=await post('/api/set',{raw_id:SEL,status:s});
+  const m=document.getElementById('decidemsg'); if(m) m.innerHTML=`<div class="msg ${r.ok?'ok':'err'}">${esc(r.msg)}</div>`;
+  loadQueue();
+}
+async function publish(){
   const r=await post('/api/compile',{yes:true});
-  alert((r.ok?'✓ ':'✗ ')+r.msg); loadQueue(); if(SEL)selectItem(SEL);
+  const m=document.getElementById('decidemsg'); if(m) m.innerHTML=`<div class="msg ${r.ok?'ok':'err'}">${esc(r.msg)}</div>`;
+  loadQueue();
 }
-function showMsg(id,r){const el=document.getElementById(id); if(el) el.innerHTML=`<div class="msg ${r.ok?'ok':'err'}">${esc(r.msg||'')}</div>`}
-loadQueue();
+loadAll();
 </script>
 </body>
 </html>

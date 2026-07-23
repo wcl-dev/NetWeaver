@@ -15,7 +15,19 @@ def _load(n):
     s = importlib.util.spec_from_file_location(n, str(_here / (n + ".py")))
     m = importlib.util.module_from_spec(s); s.loader.exec_module(m); return m
 rl = _load("run_loop"); curate = _load("curate"); register = _load("register")
-DERIVE = _load("derive")
+DERIVE = _load("derive"); FILTER = _load("filter")
+
+def find_similar(name):
+    """找可能是同一個的既有單位：canon（繁簡/標點折疊）後相等或互為子字串（≥2字）。回既有單位供人選『補別名』而非新建。"""
+    cn = FILTER.canon(name)
+    if not cn: return []
+    _s, _i, _j, db = curate.load_db(); out = []
+    for e in db["entities"]:
+        for nm in [e.get("name_zh"), e.get("name_en")] + (e.get("aliases") or []):
+            c = FILTER.canon(nm) if nm else ""
+            if c and (cn == c or (len(cn) >= 2 and len(c) >= 2 and (cn in c or c in cn))):
+                out.append({"id": e["id"], "name_zh": e.get("name_zh"), "matched_on": nm}); break
+    return out
 
 def _capture(fn, args_ns):
     """呼叫 CLI 函式（吃 argparse-like namespace，會 print / 可能 SystemExit）→ 回 (ok, 輸出訊息)。"""
@@ -39,6 +51,8 @@ def item_detail(raw_id):
     out = {k: e[k] for k in e}
     try:
         _su, ent_ids = rl.load_db()
+        _s, _i, _j, _db = curate.load_db()                    # 即時重算來源狀態（db.sources 可能剛被登錄過）
+        out["source_curated"] = e.get("url") in {s.get("url") for s in _db["sources"]}
         sl, rec, extr, att, digest, fails = curate.project_extraction(e["extraction"])
         reg = DERIVE.load_registry()
         id2s = {m["tmp_id"]: m["surface"] for m in extr.get("mentions", [])}
@@ -48,9 +62,13 @@ def item_detail(raw_id):
             rels.append({"source": id2s.get(r["source"], r["source"]), "type": r["type"],
                          "target": id2s.get(r["target"], r["target"]),
                          "publishable": r.get("publishable"), "hold_reason": r.get("hold_reason")})
-        # held 的主詞 = 待登錄 actor 候選
+        # held 的主詞 = 待登錄 actor 候選；只留「像單位」的（org/media/network/account/person/website），
+        # 濾掉敘事/地點類雜訊（天然氣貨輪、美國只要台積電…不該當單位登錄）
+        ACTORLIKE = {"org", "network", "account", "media", "person", "website"}
+        actor_surf = {m["surface"] for m in extr.get("mentions", []) if m.get("coarse_type") in ACTORLIKE}
         held_subjects = sorted({rr["source"] for rr in rels
-                                if rr["publishable"] is False and rr["hold_reason"] == "subject-not-documented"})
+                                if rr["publishable"] is False and rr["hold_reason"] == "subject-not-documented"
+                                and rr["source"] in actor_surf})
         out["projected"] = {
             "operator": rec["operator"].get("name"),
             "operator_ref": rl.operator_ref(sl, ent_ids),
@@ -82,6 +100,8 @@ class H(BaseHTTPRequestHandler):
         if u.path == "/api/registry":
             acts, srcs = registry_actors()
             return self._send(200, json.dumps({"actors": acts, "sources": srcs}, ensure_ascii=False))
+        if u.path == "/api/find-similar":
+            return self._send(200, json.dumps(find_similar(q.get("name", [""])[0]), ensure_ascii=False))
         return self._send(404, json.dumps({"error": "not found"}))
 
     def do_POST(self):
@@ -100,6 +120,13 @@ class H(BaseHTTPRequestHandler):
                                        aliases=data.get("aliases"), confidence=data.get("confidence"),
                                        sensitivity=data.get("sensitivity"))
             ok, msg = _capture(register.cmd_add_actor, ns); return self._send(200, json.dumps({"ok": ok, "msg": msg}, ensure_ascii=False))
+        if u.path == "/api/register-source":
+            ns = types.SimpleNamespace(url=data.get("url"), org=data.get("org"), title=data.get("title"),
+                                       type=data.get("type"), date=data.get("date"), id=data.get("id"))
+            ok, msg = _capture(register.cmd_add_source, ns); return self._send(200, json.dumps({"ok": ok, "msg": msg}, ensure_ascii=False))
+        if u.path == "/api/add-alias":
+            ns = types.SimpleNamespace(id=data.get("id"), alias=data.get("alias"))
+            ok, msg = _capture(register.cmd_add_alias, ns); return self._send(200, json.dumps({"ok": ok, "msg": msg}, ensure_ascii=False))
         return self._send(404, json.dumps({"error": "not found"}))
 
 HTML = (_here / "curate_admin.html").read_text(encoding="utf-8") if (_here / "curate_admin.html").exists() else "<h1>缺 curate_admin.html</h1>"

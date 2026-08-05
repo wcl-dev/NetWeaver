@@ -16,7 +16,7 @@
   → 地端零設定即跑；雲端：NW_LLM_PROVIDER=openai NW_LLM_BASE_URL=https://api.openai.com NW_LLM_MODEL=… NW_LLM_API_KEY=…
 用法：python3 pipeline/extract.py   （__main__ 為端到端測試）
 """
-import hashlib, json, urllib.request, pathlib, re, sys, os, time
+import hashlib, json, urllib.request, urllib.error, pathlib, re, sys, os, time
 import copy
 
 _here = pathlib.Path(__file__).resolve().parent
@@ -397,8 +397,20 @@ def _call_messages_uncached(messages, fmt, timeout=None, telemetry=None, item_er
     url, body, headers, path = _request_spec(messages, fmt)
     req = urllib.request.Request(url, data=json.dumps(body).encode("utf-8"), headers=headers)
     timeout = timeout if timeout is not None else float(os.environ.get("NW_LLM_TIMEOUT", "600"))
-    with urllib.request.urlopen(req, timeout=timeout) as r:
-        resp = json.loads(r.read())
+    retries = int(os.environ.get("NW_LLM_RETRIES", "3"))       # 暫時性錯誤（5xx/429/timeout）重試，指數退避
+    for attempt in range(retries + 1):
+        try:
+            with urllib.request.urlopen(req, timeout=timeout) as r:
+                resp = json.loads(r.read())
+            break
+        except urllib.error.HTTPError as exc:
+            if exc.code in (429, 500, 502, 503, 504) and attempt < retries:
+                time.sleep(2 ** attempt); continue
+            raise
+        except (urllib.error.URLError, TimeoutError):
+            if attempt < retries:
+                time.sleep(2 ** attempt); continue
+            raise
     if telemetry is not None:
         telemetry.update(_response_telemetry(resp, provider))
     content = resp

@@ -111,8 +111,15 @@ def cmd_set(args):
         except Exception as ex:
             raise SystemExit(f"無法投影 extraction：{type(ex).__name__}: {ex}")
         op_ref = rl.operator_ref(sl, ent_ids)
-        if op_ref is None:
-            raise SystemExit(f"{args.raw_id} 無可信歸屬（operator 未登錄或非行動方）→ 請 defer、先補 registry 再 approve")
+        # 放寬：不再硬要 operator。claims 依 about 分掛各實體，只要有「已登錄的相關單位」可掛就能核可。
+        _s, _i, _j, _db = load_db()
+        name2ent = {}
+        for ent in _db["entities"]:
+            for nm in [ent.get("name_zh"), ent.get("name_en")] + (ent.get("aliases") or []):
+                if nm: name2ent.setdefault(_norm(nm), ent)
+        has_target = any(name2ent.get(_norm(c.get("about"))) for c in _rec["claims"])
+        if op_ref is None and not has_target:
+            raise SystemExit(f"{args.raw_id} 沒有任何已登錄的相關單位可掛內容 → 先登錄這篇主要在講的單位，再核可")
         e.update({"actor_registered": op_ref, "extraction_digest": digest,
                   "attributed_to": att, "valid": not fails})
     e["compile_status"] = args.status
@@ -147,11 +154,8 @@ def cmd_compile(args):
         op_ref = rl.operator_ref(sl, ent_ids)                # 重算歸屬並與核准時比對，避免誤綁/骨幹變動
         if op_ref != e.get("actor_registered"):
             skipped.append((rid, f"歸屬與核准時不一致（現 {op_ref}／核准 {e.get('actor_registered')}），需重審")); continue
-        target = ent_by_id.get(op_ref)
-        if not target:
-            skipped.append((rid, f"歸屬 {op_ref} 不在 db.entities（改 defer、先補 registry）")); continue
-        # 每條 claim 掛到它「about」的**已登錄實體**（而非全塞 operator）——避免過度歸屬。
-        # about 非已登錄實體者先略過（held，待該實體登錄再進）；operator 仍為歸屬錨點（上面已驗）。
+        # 放寬：不再要求 operator 在 db.entities。claims 依 about 分掛各已登錄實體（下方 by_ent）；
+        # 若無任何可掛實體，下方以「無可掛 claims」跳過。operator（若有）僅作歸屬參考、非發布門檻。
         name2ent = {}
         for ent in db["entities"]:
             for nm in [ent.get("name_zh"), ent.get("name_en")] + (ent.get("aliases") or []):

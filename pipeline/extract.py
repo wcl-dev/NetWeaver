@@ -132,10 +132,36 @@ def _think_setting():
     if raw in {"low", "medium", "high"}: return raw
     raise ValueError("NW_LLM_THINK 必須是 false、true、low、medium 或 high")
 
+def _extra_body():
+    """`NW_LLM_EXTRA_BODY` 解析後的 dict（OpenAI 相容端點的逃生口，如 Gemini 的 reasoning_effort）。
+
+    注意：`NW_LLM_THINK` 只作用於 ollama 分支；OpenAI 相容端點的思考控制走這裡。
+    """
+    raw = os.environ.get("NW_LLM_EXTRA_BODY", "").strip()
+    if not raw: return {}
+    v = json.loads(raw)
+    if not isinstance(v, dict): raise ValueError("NW_LLM_EXTRA_BODY 必須是 JSON object")
+    return v
+
+def _extra_body_tag():
+    """extra body 的變體標籤——**必須進 variant 與 cache key**。
+
+    否則只改 reasoning_effort 重跑，會寫進同一個輸出目錄（覆蓋前一次 prediction）並命中同一份
+    request cache（回傳前一次的結果），A/B 會靜默得出「沒有差別」的假結論。
+    """
+    xb = _extra_body()
+    if not xb: return ""                                       # 空＝維持既有 variant 名，舊 run/cache 不失效
+    eff = xb.get("reasoning_effort")
+    rest = {k: v for k, v in xb.items() if k != "reasoning_effort"}
+    tag = f"-re-{eff}" if eff else ""
+    if rest:
+        tag += "-xb" + hashlib.sha256(json.dumps(rest, sort_keys=True).encode("utf-8")).hexdigest()[:6]
+    return tag
+
 def extraction_variant():
     think = _think_setting()
     think_name = str(think).lower()
-    return f"{PROMPT_VERSION}-{_output_mode()}-think-{think_name}"
+    return f"{PROMPT_VERSION}-{_output_mode()}-think-{think_name}{_extra_body_tag()}"
 
 class ExtractionBudgetExceeded(RuntimeError):
     """文件級時間／cold-call 額度已用完；呼叫端應保存 partial checkpoint。"""
@@ -261,9 +287,8 @@ def _request_spec(messages, fmt):
                                      "json_schema": {"name": "extraction", "schema": fmt}}
                                     if mode == "schema" else {"type": "json_object"}),
                 "messages": prepared}
-        extra = os.environ.get("NW_LLM_EXTRA_BODY", "").strip()  # 逃生口：合併進 body（如 mlx 的
-        if extra:                                                # chat_template_kwargs:{enable_thinking:false} 關思考）
-            body.update(json.loads(extra))
+        body.update(_extra_body())                               # 逃生口：Gemini reasoning_effort、mlx 的
+                                                                 # chat_template_kwargs 等端點專屬欄位
         headers = {"Content-Type": "application/json", "Authorization": "Bearer " + key}
         path = ("choices", 0, "message", "content")
     return url, body, headers, path
@@ -392,6 +417,30 @@ def _response_telemetry(resp, provider):
             "completion_tokens": usage.get("completion_tokens", 0),
             "total_tokens": usage.get("total_tokens", 0)}
 
+def _retry_delay(exc, attempt):
+    """退避秒數：優先聽端點的 `Retry-After`，否則指數退避。
+
+    免費層的 429 常要求等遠久於 1/2/4 秒的指數退避——照自己的節奏重試只會再被打回，
+    整批評測會被限流洗成無效資料（先前 gemini preview 那跑就是這樣報廢的）。
+    上限預設 60 秒，避免端點給出離譜的值把單篇 budget 卡死。
+    """
+    cap = float(os.environ.get("NW_LLM_RETRY_MAX_SLEEP", "60"))
+    hdr = None
+    try: hdr = (exc.headers or {}).get("Retry-After")
+    except Exception: hdr = None
+    if hdr:
+        hdr = hdr.strip()
+        try: return min(max(float(hdr), 0.0), cap)                # delta-seconds
+        except ValueError: pass
+        try:                                                       # HTTP-date
+            from email.utils import parsedate_to_datetime
+            from datetime import datetime, timezone
+            dt = parsedate_to_datetime(hdr)
+            now = datetime.now(dt.tzinfo) if dt.tzinfo else datetime.now(timezone.utc).replace(tzinfo=None)
+            return min(max((dt - now).total_seconds(), 0.0), cap)
+        except Exception: pass
+    return min(float(2 ** attempt), cap)
+
 def _call_messages_uncached(messages, fmt, timeout=None, telemetry=None, item_error_field=None):
     provider, _, _, _ = _cfg()
     url, body, headers, path = _request_spec(messages, fmt)
@@ -405,7 +454,7 @@ def _call_messages_uncached(messages, fmt, timeout=None, telemetry=None, item_er
             break
         except urllib.error.HTTPError as exc:
             if exc.code in (429, 500, 502, 503, 504) and attempt < retries:
-                time.sleep(2 ** attempt); continue
+                time.sleep(_retry_delay(exc, attempt)); continue
             raise
         except (urllib.error.URLError, TimeoutError):
             if attempt < retries:
@@ -481,6 +530,7 @@ def _call_messages(messages, fmt, run=None, stage="llm", item_error_field=None):
                "credential_fingerprint": hashlib.sha256(key.encode("utf-8")).hexdigest() if key else "",
                "cache_salt": os.environ.get("NW_LLM_CACHE_SALT", ""),
                "output_mode": _output_mode(), "think": _think_setting(),
+               "extra_body": _extra_body(),                     # 端點專屬設定改變＝不同 request，必須 miss
                "messages": messages, "format": fmt}
     directory = pathlib.Path(cache_dir)
     requests = []

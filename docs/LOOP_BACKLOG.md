@@ -27,17 +27,20 @@ curation queue（`pipeline/extractions/curation_queue.json`），**預設不自�
    `approve` 以當下 registry 重投影、鎖定歸屬（defer→補 registry→approve 即重評重綁）。自動路徑若要「掃 extracted-but-not-compiled
    自動重評」再另議。
 
-4. **attributed-to 人工核可閘** 🚩 政策
-   profile 明定 attributed-to 需人工核可（STIX-PROFILE §）。自動 compile 前，含 attributed-to 的 bundle 一律送 curation。
-   （run_loop 已在 queue 標 `attributed_to` 計數，但尚未強制擋自動 compile——因目前根本不自動 compile。）
+4. **attributed-to 人工核可閘**（✅ 已完成 — `curate.auto_gate` 第二道閘）
+   含 attributed-to 的項目一律不自動發布，留在佇列等人逐篇確認（`curate.py compile <raw_id> --yes`）。
+   `--yes` 的效力也已限定在指名的那一篇，不再全域關閘；後台單篇發布按鈕不代按這道閘（介面未呈現歸因資訊）。
 
-5. **URL canonicalization**
-   來源比對用 exact URL match；Medium 等帶 tracking query（`?source=…`），db.sources 無 query → 誤判新來源。
-   應：以策展 source ID 對應，或剝除已知 tracking 參數後的 canonical URL 比對。
-   （現況「誤判新來源→進 curation」是安全的偏保守失敗，故非阻斷。）
+5. **URL canonicalization**（✅ 已完成 — `urlnorm.py`）
+   `source_key()` 剝除追蹤參數（`utm_*`／`source`／`fbclid`…）、統一 scheme／`www.`／預設埠／尾斜線／fragment，
+   **只作比對鍵，不改寫 db 存的 URL**；`url_hash()` 讓 source id 同源。8 個比對點（run_loop／curate／register／
+   curate_server）全部改用同一把鍵，`test_urlnorm.py` 鎖住語意參數不得被剝掉。
+   實測：54 篇 raw 中有 2 篇（Medium `?source=rss----…`）原本被誤判為新來源，現正確對上已登錄 source。
 
-6. **local-named / 敏感 actor 閘** 🚩 政策
-   registry 含台灣媒體/個人。自動 compile 前需界定「本地具名/敏感」不該自動長進記錄簿的規則（可依 entity origin/category）。
+6. **local-named / 敏感 actor 閘**（✅ 政策已定 — `curate.auto_gate`）
+   兩層：①**名冊即閘門**——模型只能在人工登錄的 entity 上填內容，未登錄者一律不落地；
+   ②已登錄但 `sensitivity: domestic-named`（現有 17 筆台灣具名媒體／個人）的實體**仍不自動長內容**，整篇留給人。
+   理由：「曾同意收錄某台灣媒體」≠「同意之後每篇報告自動往它的檔案頁加內容」。
 
 ## 可選優化
 

@@ -51,8 +51,33 @@ Gemma v22 真實單-call telemetry smoke（doc02 actor pass）：總耗時 62.1s
 | gemma4:12b-it-qat／v21 JSON optional-null normalize | doc01 | 0.29 | **0.75** | **0.15** | **1.00** | 1.00 | null 修復有效；但 526s、precision/type 仍差 |
 | gemma4:12b-it-qat／v23 ranked fan-out、aw12 | 7 | **0.41** | **0.81** | **0.17** | 0.82 | **1.00** | 完整 cold baseline；三輪／累計 90.5m，2 篇 partial-error |
 | gemma4:12b-it-qat／v24 item-tolerant、aw12 | 7 replay | **0.41** | **0.83** | **0.17** | 0.82 | **1.00** | 合法 v23 cache replay＋只 cold 補 invalid passes；整 pass failure 已隔離 |
+| **gemini-3.7-flash**／v24 JSON、aw12 | **1（doc05）** | 0.50 | **0.96** | **0.65** | **1.00** | **1.00** | 雲端首測；15 cold calls／29,926 計費 tokens（思考佔 32%）／55.7s。**僅 1 篇短中文單-chunk 文件，不可外推** |
 
 qwen v4 分篇 strict edge F1：doc03 = 0.10，其餘 = 0。qwen v14 分篇 edge F1：doc02 0.06、doc04 0.14、doc05 0.30、doc07 0.11，其餘 0；micro edge F1 = 0.11。v14 的逐字 occurrence 展開消除了 duplicate tmp_id／ambiguity drop，mention pass 與 assertion window 各自 fail-closed；單一 mention pass timeout 會保留其餘成功 pass。
+
+### 2026-08-19 gemini-3.7-flash 單篇測試（共用額度，僅測試用）
+
+同一篇 dev 文件（`05-nsb-cognitive-2024`：中文、1,644 字、單 chunk）、同一評分器、同 aw12 設定下的對照：
+
+| 模型 | mention F1 | entity-R | strict edge F1 | predicate-exact |
+|---|---:|---:|---:|---:|
+| gemini-3.7-flash | 0.50 | **0.96** | **0.65** | **1.00** |
+| gemma4:12b-it-qat v24 | 0.57 | 0.87 | 0.42 | 0.77 |
+| gemma4:12b-it-qat v23 | 0.55 | 0.87 | 0.33 | 0.78 |
+| qwen2.5:7b v14 | 0.44 | 0.22 | 0.00 | — |
+| Mistral-Small-24B | 0.43 | 0.26 | 0.00 | — |
+
+**edge F1 0.65 是本專案歷來最高**（先前 dev 最佳 0.21、locked test 最佳 0.17），且 grounding 零丟棄、
+predicate 逐字全對。mention F1 略低於 gemma 是因為 precision 較低（0.34 vs 0.41）而 recall 較高
+（0.97 vs 0.91）——在本管線這個取捨是划算的：多抽出來的名字會被名冊 allowlist 擋掉（實測約 61% 被丟），
+但漏掉的實體無法補救。
+
+**這一筆不可外推**：單篇、dev、短的中文單-chunk 文件——正是最容易的形狀。長的多-chunk 英文文件
+（doc01／03／07）才是歷來模型退化的地方。locked test 未動（保留留存集）。
+
+**設定發現**：`NW_LLM_THINK` 只作用於 ollama 分支，OpenAI 相容端點的思考控制需經 `NW_LLM_EXTRA_BODY`
+傳 `reasoning_effort`（實測有效）。先前 Gemini run 標記的 `think-false` 皆為無效標籤，實際思考一直開著。
+`NW_LLM_EXTRA_BODY` 現已納入 request cache key 與 variant 名，否則設定 A/B 會互相命中快取而得出假結論。
 
 ### 延遲實驗
 

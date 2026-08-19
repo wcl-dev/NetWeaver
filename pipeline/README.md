@@ -50,6 +50,12 @@ python3 pipeline/pipeline.py pipeline/samples/spamouflage.extraction.json
 
 # 把樣本投影 claims 併入 db.js
 python3 pipeline/compile_to_db.py pipeline/samples/*.extraction.json
+
+# 生產迴圈（自動發布模式）：抽取 → 審名冊 → 自動發布
+python3 pipeline/run_loop.py                     # ingest→…→project，入 curation queue
+python3 pipeline/register.py roster              # 看哪些名字反覆出現卻沒登錄 → 決定要收哪些
+python3 pipeline/curate.py auto --dry-run        # 看會發什麼／什麼留給人
+python3 pipeline/curate.py auto                  # 實際發布
 ```
 
 純 Python stdlib、決定性（同輸入→同 UUID／同輸出）。
@@ -109,8 +115,9 @@ pipeline/
 ├── pipeline.py              # serialize / validate / project（＋stix_from_extraction）
 ├── compile_to_db.py         # 投影 claims → data/db.js（樣本用；整包覆蓋。迴圈請用 curate.py）
 ├── run_loop.py              # 冪等編排 ingest→…→project；產出待審 curation queue（預設不自動 compile）
-├── curate.py                # 審核 CLI：list/show/approve/compile（安全 upsert／狀態機／歸因閘／歸屬重算）
-├── register.py              # 補 source/actor 進 db.js：add-source/add-actor/suggest（enum/URL/FK 驗證、防撞名）
+├── urlnorm.py               # 來源 URL 比對鍵（追蹤參數／scheme／www 不算新來源；id 雜湊同源）
+├── curate.py                # 審核 CLI：list/show/approve/compile/auto（安全 upsert／狀態機／歸因閘／歸屬重算）
+├── register.py              # 補 source/actor 進 db.js：add-source/add-actor/suggest/roster（enum/URL/FK 驗證、防撞名）
 ├── samples/*.extraction.json# 3 份 extraction 樣本（歸因梯度對照）
 └── out/                     # 產出的合法 STIX bundle（範例）
 # raw/、extractions/、ingest_state.json 為執行期產物（.gitignore）
@@ -118,7 +125,8 @@ pipeline/
 
 ## 下一步
 
-- **迴圈已成形**（`run_loop.py`）：`ingest → filter → extract → derive → validate → project` 一鍵冪等跑，產出待審 curation queue；人審＋安全 compile 走 `curate.py`。待補見 `../docs/LOOP_BACKLOG.md`（自動 compile、readability 正文、排程等）。
+- **迴圈已成形**（`run_loop.py`）：`ingest → filter → extract → derive → validate → project` 一鍵冪等跑，產出待審 curation queue；人審＋安全 compile 走 `curate.py`。待補見 `../docs/LOOP_BACKLOG.md`（排程、readability 正文等）。
+- **自動發布（`curate.py auto`）**：**人審名冊、模型填內容**。四道閘全過才自動落地——bundle 合法、無 attributed-to（歸因永遠人工）、出版方已信任、claims 掛得上已登錄實體且非 `sensitivity: domestic-named`。任一不過就留在佇列等人。走的是 `approve`／`compile` 同一條安全路徑，不另開捷徑。人的入口是 `register.py roster`（跨佇列彙總未登錄的行為者候選，依出現篇數排序）。
 - **filter 精修**：詞表／`match_tokens` 擴充（附測試案例）；terse 中文標題的 recall 可加正文（非 chrome）抽取或高信任來源 override。
 - **抽取品質**：few-shot／換模型（如台灣微調 Llama-Breeze）／輕量微調——碼層不動。
 - **目前評測路徑**：actor／entity／narrative mention 分 pass → exact grounding → compact claim windows assertion；基線與重跑方式見 `../docs/EVAL.md`。

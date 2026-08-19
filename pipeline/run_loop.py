@@ -52,7 +52,8 @@ def _norm_published(s):
     except Exception:
         return None
 
-_tx = _load("textextract")                                   # readability/pdf 正文抽取（ingest 落地時已抽 .txt；此為 fallback）
+_tx = _load("textextract")
+_urlnorm = _load("urlnorm")                                  # 來源比對鍵（追蹤參數不算新來源）                                   # readability/pdf 正文抽取（ingest 落地時已抽 .txt；此為 fallback）
 
 def resolve_text(mp, m):
     """依序取正文：非空 .txt 側車（ingest 落地或人工提供）> manifest 記錄的快照現抽（textextract readability/pdftotext）> 無。
@@ -84,7 +85,8 @@ def load_db():
     src = DBP.read_text(encoding="utf-8")
     i = src.index("{", src.index("window.NETWEAVER_DB")); j = src.rindex("}")
     db = json.loads(src[i:j + 1])
-    return {s["url"] for s in db.get("sources", [])}, {e["id"] for e in db.get("entities", [])}
+    return ({_urlnorm.source_key(s.get("url")) for s in db.get("sources", [])},
+            {e["id"] for e in db.get("entities", [])})
 
 _ACTOR_KINDS = {"threat-actor", "intrusion-set", "identity"}
 
@@ -178,7 +180,7 @@ def main():
                      "url": m.get("url"), "extraction": str(outp.relative_to(_here.parent)),
                      "operator": rec["operator"].get("name"), "extraction_digest": digest,
                      "claims": len(rec.get("claims", [])), "assertions": len(extr.get("assertions", [])),
-                     "source_curated": m.get("url") in src_urls, "actor_registered": nw_ref,
+                     "source_curated": _urlnorm.source_key(m.get("url")) in src_urls, "actor_registered": nw_ref,
                      "attributed_to": len(att), "valid": not fails,
                      # 審核狀態機（curate.py 用）：pending→approved/rejected/deferred→compiled
                      "compile_status": prev.get("compile_status", "pending") if same else "pending"}

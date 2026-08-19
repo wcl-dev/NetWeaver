@@ -24,6 +24,7 @@ def _load(n):
     m = importlib.util.module_from_spec(s); s.loader.exec_module(m); return m
 _RL = _load("run_loop")
 _norm = _load("derive").norm                                # 與 derive 共用同一 normalizer（避免撞名判斷漂移）
+_urlnorm = _load("urlnorm")                                 # 與 curate/run_loop 共用同一來源比對鍵
 
 # enum 以 docs/SCHEMA.md ＋ db.js 現有資料為準
 SOURCE_TYPES = {"gov-report", "ngo-report", "platform-report", "news", "academic"}
@@ -70,7 +71,7 @@ def save_db(src, i, end, db):
 
 def _cand_source_id(org_or_src, url, given=None):
     """穩定的逐文件 source id：src-<org slug>-<url hash6>（同出版方多篇不撞）。"""
-    return (given or f"src-{_slug(org_or_src)}-{hashlib.sha256((url or '').encode()).hexdigest()[:6]}").strip()
+    return (given or f"src-{_slug(org_or_src)}-{_urlnorm.url_hash(url)}").strip()
 
 # ---------- add-source ----------
 
@@ -81,8 +82,10 @@ def cmd_add_source(args):
     date = _RL._norm_published(_req(args.date, "date"))
     if not date: raise SystemExit("--date 非合法日期（YYYY[-MM[-DD]]）")
     src, i, end, db = load_db()
-    if any(s.get("url") == url for s in db["sources"]):
-        raise SystemExit(f"url 已存在於 db.sources：{url}")
+    _key = _urlnorm.source_key(url)                      # 正規化後比對：同篇報告帶追蹤參數不得重複登錄
+    _dup = next((s for s in db["sources"] if _urlnorm.source_key(s.get("url")) == _key), None)
+    if _dup:
+        raise SystemExit(f"url 已存在於 db.sources：{_dup.get('id')}（{_dup.get('url')}）")
     sid = _cand_source_id(org, url, args.id)
     if not (sid.startswith("src-") and _KEBAB.match(sid)):
         raise SystemExit(f"source id 須嚴格 src-kebab-case：{sid}")
@@ -161,11 +164,11 @@ def cmd_suggest(args):
     if not e: raise SystemExit(f"queue 無此 raw_id：{args.raw_id}")
     pipe = _load("pipeline")
     _src, _i, _end, db = load_db()
-    src_by_url = {s["url"]: s["id"] for s in db["sources"]}; ent_ids = {x["id"] for x in db["entities"]}
+    src_by_url = _urlnorm.index_by_url(db["sources"]); ent_ids = {x["id"] for x in db["entities"]}
     extr = json.loads((_here.parent / e["extraction"]).read_text(encoding="utf-8"))
     rep = extr.get("report", {}); url = e.get("url")
     print(f"# {args.raw_id}：{e.get('title')}  status={e.get('compile_status')}")
-    existing_sid = src_by_url.get(url)
+    existing_sid = src_by_url.get(_urlnorm.source_key(url))
     cand_sid = _cand_source_id(rep.get("org") or e.get("source_id") or "src", url, existing_sid)
     if not existing_sid:
         print("\n# 缺 source（url 不在 db.sources）→ 核對後執行：")

@@ -52,7 +52,7 @@ def item_detail(raw_id):
     try:
         _su, ent_ids = rl.load_db()
         _s, _i, _j, _db = curate.load_db()                    # 即時重算來源狀態（db.sources 可能剛被登錄過）
-        out["source_curated"] = e.get("url") in {s.get("url") for s in _db["sources"]}
+        out["source_curated"] = curate._urlnorm.source_key(e.get("url")) in curate._urlnorm.index_by_url(_db["sources"])
         sl, rec, extr, att, digest, fails = curate.project_extraction(e["extraction"])
         reg = DERIVE.load_registry()
         id2s = {m["tmp_id"]: m["surface"] for m in extr.get("mentions", [])}
@@ -147,7 +147,7 @@ class H(BaseHTTPRequestHandler):
             except Exception as ex:
                 return self._send(200, json.dumps({"ok": False, "msg": f"讀取失敗：{ex}"}, ensure_ascii=False))
             _s, _i, _j, db = curate.load_db()
-            if e.get("url") not in {s.get("url") for s in db["sources"]}:   # 來源沒登錄 → 自動登錄（人按發布＝已認可此來源）
+            if curate._urlnorm.source_key(e.get("url")) not in curate._urlnorm.index_by_url(db["sources"]):  # 沒登錄 → 自動登錄
                 ns = types.SimpleNamespace(url=rep.get("url") or e.get("url"), org=rep.get("org"),
                                            title=rep.get("name") or e.get("title"),
                                            type=rep.get("type") or "ngo-report", date=rep.get("published"), id=None)

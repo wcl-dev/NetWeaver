@@ -19,6 +19,7 @@ def _load(n):
     s = importlib.util.spec_from_file_location(n, str(_here / (n + ".py")))
     m = importlib.util.module_from_spec(s); s.loader.exec_module(m); return m
 rl = _load("run_loop")
+_urlnorm = _load("urlnorm")
 pipe = _load("pipeline")
 REG = pipe._derive_mod().load_registry()
 DBP = _here.parent / "data" / "db.js"
@@ -164,7 +165,7 @@ def cmd_compile(args):
                              f"非 approved；先 `curate.py approve {only}`")
         print("（無 approved 項目可 compile；先 `curate.py approve <raw_id>`）"); return 0
     src, i, _j, db = load_db()
-    url2sid = {s["url"]: s["id"] for s in db["sources"]}
+    url2sid = _urlnorm.index_by_url(db["sources"])       # 正規化鍵比對：追蹤參數不得被當成新來源
     ent_by_id = {e["id"]: e for e in db["entities"]}; ent_ids = set(ent_by_id)
     done, skipped = [], []
     for e in approved:
@@ -192,7 +193,7 @@ def cmd_compile(args):
         by_ent, miss, sids, dropped = {}, 0, set(), 0
         for c in rec["claims"]:
             if not _norm(c.get("quote")): continue           # 空文字 claim 跳過（不算 miss）
-            sid = url2sid.get(c["source"])
+            sid = url2sid.get(_urlnorm.source_key(c["source"]))
             if not sid: miss += 1; continue
             ae = name2ent.get(_norm(c.get("about")))
             if not ae: dropped += 1; continue                # about 非已登錄實體 → 不歸屬

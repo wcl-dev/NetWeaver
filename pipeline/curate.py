@@ -12,7 +12,7 @@
   python3 pipeline/curate.py approve|reject|defer <raw_id> [--note "…"]
   python3 pipeline/curate.py compile [--yes] [--dry-run]
 """
-import argparse, hashlib, importlib.util, json, pathlib, re
+import argparse, hashlib, importlib.util, json, pathlib, re, types
 
 _here = pathlib.Path(__file__).resolve().parent
 def _load(n):
@@ -148,6 +148,83 @@ def cmd_set(args):
           + (f"（{args.note}）" if args.note else ""))
     return 0
 
+AUTO_SENSITIVE = {"domestic-named"}                       # 這些實體不自動長內容（台灣具名媒體／個人）
+
+def auto_gate(rec, att, fails, source_curated, org, name2ent, publishers):
+    """自動發布的四道閘 → 回 (ok, reason, hits)。
+
+    設計前提：**人審名冊、模型填內容**。名冊（db.entities）與出版方信任是人的決定，模型只能在那個
+    範圍內產生內容；任何會擴張範圍或碰紅線的情形一律不自動化，留在佇列等人。
+    """
+    if fails: return False, f"bundle 不合法（{len(fails)} 項不變量）", []
+    if att: return False, f"含 attributed-to×{att} → 歸因永遠人工核可", []
+    org = (org or "").strip()
+    if not source_curated and org not in publishers:
+        return False, f"出版方「{org or '未知'}」未經 governance 核可 → 先登錄來源", []
+    hits, sens = [], []
+    for c in rec["claims"]:
+        ent = name2ent.get(_norm(c.get("about")))
+        if not ent: continue
+        if ent["id"] not in [h["id"] for h in hits]: hits.append(ent)
+    if not hits:
+        return False, "沒有任何 claim 掛得上已登錄實體 → 先審名冊", []
+    sens = [e["id"] for e in hits if e.get("sensitivity") in AUTO_SENSITIVE]
+    if sens:
+        return False, f"掛到敏感實體（{'、'.join(sens)}）→ 需人工確認", hits
+    return True, f"掛 {len(hits)} 個已登錄實體", hits
+
+def cmd_auto(args):
+    """掃 pending 項目，過閘的自動核可＋發布；其餘留在佇列並記下原因。
+
+    走的是 `cmd_set`／`cmd_compile` 同一條安全路徑（digest 鎖定、歸屬重算比對、source-scoped
+    upsert），不另開捷徑——自動化只是省掉「人按下去」，不是省掉檢查。
+    """
+    reg_mod = _load("register")
+    q = rl.load_queue()
+    pending = [e for e in q.values() if e.get("compile_status") == "pending"]
+    if not pending:
+        print("（無 pending 項目）"); return 0
+    _s, _i, _e, db = load_db()
+    publishers = reg_mod._publishers(db)
+    name2ent = {}
+    for ent in db["entities"]:
+        for nm in [ent.get("name_zh"), ent.get("name_en")] + (ent.get("aliases") or []):
+            if nm: name2ent.setdefault(_norm(nm), ent)
+    published, held = [], []
+    print("=== auto（人審名冊、模型填內容；碰紅線或碰不到名冊者留給人）===")
+    for e in pending:
+        rid = e["raw_id"]
+        try:
+            _sl, rec, extr, att, _digest, fails = project_extraction(e["extraction"])
+        except Exception as ex:
+            held.append((rid, f"投影失敗 {type(ex).__name__}")); continue
+        rep = extr.get("report", {})
+        # 現算來源是否已登錄：queue 的 source_curated 是抽取當下的快照，登錄過後就過期了
+        curated = _urlnorm.source_key(e.get("url")) in _urlnorm.index_by_url(db["sources"])
+        ok, why, _hits = auto_gate(rec, att, fails, curated, rep.get("org"), name2ent, publishers)
+        if not ok:
+            held.append((rid, why)); continue
+        if args.dry_run:
+            published.append((rid, f"dry-run｜{why}"
+                                  + ("" if curated else "；會先自動登錄本篇來源"))); continue
+        try:
+            if not curated:                              # 出版方已經人工信任 → 逐篇來源是機械動作，自動補
+                ns = types.SimpleNamespace(url=rep.get("url") or e.get("url"), org=rep.get("org"),
+                                           title=rep.get("name") or e.get("title"),
+                                           type=rep.get("type") or "ngo-report",
+                                           date=rep.get("published"), id=None)
+                reg_mod.cmd_add_source(ns)
+            cmd_set(types.SimpleNamespace(raw_id=rid, status="approved", note="auto"))
+            cmd_compile(types.SimpleNamespace(raw_id=rid, yes=False, dry_run=False))
+            published.append((rid, why))
+        except SystemExit as ex:
+            held.append((rid, f"發布未過：{ex}"))
+    for rid, why in published: print(f"  ✓ 自動發布 {rid}｜{why}")
+    for rid, why in held:      print(f"  ⟳ 留給人  {rid}｜{why}")
+    print(f"--- 自動發布 {len(published)}｜留給人 {len(held)} ---")
+    if args.dry_run: print("（dry-run：未寫 db.js/queue）")
+    return 0
+
 def cmd_compile(args):
     """compile approved 項目。給 raw_id 就**只**處理該篇。
 
@@ -239,6 +316,8 @@ def main():
     for st in ("approve", "reject", "defer"):
         p = sub.add_parser(st); p.add_argument("raw_id"); p.add_argument("--note")
         p.set_defaults(fn=cmd_set, status={"approve": "approved", "reject": "rejected", "defer": "deferred"}[st])
+    p = sub.add_parser("auto", help="掃 pending：過閘者自動發布，其餘留給人")
+    p.add_argument("--dry-run", action="store_true"); p.set_defaults(fn=cmd_auto)
     p = sub.add_parser("compile"); p.add_argument("raw_id", nargs="?", help="只發布這一篇；省略＝全部 approved")
     p.add_argument("--yes", action="store_true"); p.add_argument("--dry-run", action="store_true")
     p.set_defaults(fn=cmd_compile)

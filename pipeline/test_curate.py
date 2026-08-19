@@ -101,6 +101,70 @@ def test_upsert_empty_new_clears_source():
     cur._upsert(ent, [], {"src-A"})
     assert [c["source_id"] for c in ent["claims"]] == ["src-B"], "同來源舊 claim 應被清空、他來源保留"
 
+# ---- 自動發布閘（人審名冊、模型填內容）----
+
+_ENT_OK   = {"id": "cmg-cctv", "name_zh": "央視"}
+_ENT_SENS = {"id": "cti-tv", "name_zh": "中天", "sensitivity": "domestic-named"}
+_DB = {"entities": [_ENT_OK, _ENT_SENS], "sources": []}
+_N2E = {cur._norm("央視"): _ENT_OK, cur._norm("中天"): _ENT_SENS}
+_PUB = {"FactLink"}
+
+def _rec(*abouts):
+    return {"claims": [{"about": a, "quote": f"{a}發布了內容。", "source": "https://x/y"} for a in abouts]}
+
+def _gate(rec, att=0, fails=(), curated=True, org=None):
+    return cur.auto_gate(rec, att, list(fails), curated, org, _N2E, _PUB)
+
+@case
+def test_auto_gate_publishes_registered_entities():
+    ok, why, hits = _gate(_rec("央視"))
+    assert ok, why
+    assert [h["id"] for h in hits] == ["cmg-cctv"]
+
+@case
+def test_auto_gate_blocks_attribution_redline():
+    # 歸因是專案紅線：不論其他條件多乾淨，含 attributed-to 一律不自動發布
+    ok, why, _ = _gate(_rec("央視"), att=2)
+    assert not ok and "attributed-to" in why, why
+
+@case
+def test_auto_gate_blocks_invalid_bundle():
+    ok, why, _ = _gate(_rec("央視"), fails=["懸空 SRO ref"])
+    assert not ok and "不合法" in why, why
+
+@case
+def test_auto_gate_blocks_when_nothing_hits_roster():
+    # 名冊是唯一閘門：掛不上任何已登錄實體 → 不自動發，改請人審名冊
+    ok, why, hits = _gate(_rec("新華社", "習近平"))
+    assert not ok and "名冊" in why and hits == [], why
+
+@case
+def test_auto_gate_blocks_sensitive_entity():
+    # 「曾同意收錄中天」≠「同意之後每篇報告自動往中天加內容」
+    ok, why, _ = _gate(_rec("中天"))
+    assert not ok and "敏感實體" in why and "cti-tv" in why, why
+
+@case
+def test_auto_gate_blocks_sensitive_even_when_mixed():
+    ok, why, _ = _gate(_rec("央視", "中天"))
+    assert not ok, "只要碰到一個敏感實體就整篇留給人"
+
+@case
+def test_auto_gate_blocks_untrusted_publisher():
+    # 自動化不得引入新出版方——那是 governance 決定
+    ok, why, _ = _gate(_rec("央視"), curated=False, org="某新部落格")
+    assert not ok and "出版方" in why, why
+    ok2, _w2, _ = _gate(_rec("央視"), curated=False, org="FactLink")
+    assert ok2, "已信任出版方的新報告可自動發布（逐篇來源自動補登）"
+    ok3, why3, _ = _gate(_rec("央視"), curated=False)
+    assert not ok3 and "未知" in why3, "查不到出版方時必須留給人，不能因為欄位缺漏就放行"
+
+@case
+def test_auto_gate_allows_curated_source_regardless_of_org_list():
+    # 來源本身已登錄 → 出版方是否在清單上就不再是問題（人早已核可過這筆）
+    ok, why, _ = _gate(_rec("央視"), curated=True, org="某新部落格")
+    assert ok, why
+
 # ---- compile 的發布範圍（替身取代 queue/db IO，不落盤）----
 
 import contextlib, types

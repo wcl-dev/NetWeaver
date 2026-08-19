@@ -191,12 +191,71 @@ def cmd_suggest(args):
     print(f"\n# 補完後：python3 pipeline/curate.py approve {args.raw_id} → python3 pipeline/curate.py compile")
     return 0
 
+_ROSTER_KINDS = _RL._ACTOR_KINDS | {"x-dad-channel"}   # 媒體／帳號＝放大者層，最常需要新登錄
+
+def cmd_roster(args):
+    """跨佇列彙總「尚未登錄的行為者候選」，依出現篇數排序——**審名冊的入口**。
+
+    自動發布模式下，名冊是唯一的人工閘：模型只能在已登錄實體上填內容。所以人要看的不是逐篇 claim，
+    而是「哪些名字反覆出現卻還沒登錄」——出現在越多篇，越可能是真的該收的行為者。
+    統計行為者類物件與**傳播管道**（x-dad-channel——媒體／帳號正是這個專案的放大者層，
+    也是最常需要新登錄的一類）；敘事、地點、工具、報告本身不列入。
+    """
+    pipe = _load("pipeline"); reg = pipe._derive_mod().load_registry()
+    _src, _i, _end, db = load_db()
+    src_by_url = _urlnorm.index_by_url(db["sources"])
+    q = _RL.load_queue()
+    entries = [e for e in q.values()
+               if not args.status or e.get("compile_status") == args.status]
+    agg = {}
+    for e in entries:
+        try:
+            extr = json.loads((_here.parent / e["extraction"]).read_text(encoding="utf-8"))
+            bundle, _sl, _log = pipe.stix_from_extraction(extr, reg)
+        except Exception:
+            continue
+        seen_here = set()
+        for o in bundle["objects"]:
+            name = (o.get("name") or "").strip()
+            if o["type"] not in _ROSTER_KINDS or not name: continue
+            if _norm(name) in reg: continue                      # 已登錄 → 不用審
+            key = _norm(name)
+            a = agg.setdefault(key, {"names": set(), "docs": set(), "ev": 0, "src": set(), "kinds": set()})
+            a["names"].add(name); a["docs"].add(e["raw_id"]); seen_here.add(key)
+            a["kinds"].add("管道" if o["type"] == "x-dad-channel" else "實體")
+            a["ev"] += len(o.get("x_netweaver_evidence") or [])
+            sid = src_by_url.get(_urlnorm.source_key(e.get("url")))
+            if sid: a["src"].add(sid)
+    if not agg:
+        print("（佇列裡沒有未登錄的行為者候選）"); return 0
+    ranked = sorted(agg.values(), key=lambda a: (len(a["docs"]), a["ev"]), reverse=True)
+    print(f"# 未登錄行為者候選（掃 {len(entries)} 篇；依出現篇數→引文數排序）")
+    print(f"{'篇數':>4} {'引文':>4}  {'類型':<4}  名稱")
+    for a in ranked[:args.limit]:
+        print(f"{len(a['docs']):>5} {a['ev']:>5}  {'＋'.join(sorted(a['kinds'])):<4}  "
+              + "／".join(sorted(a["names"])))
+    print("\n# 決定要收的，逐一執行（欄位務必人工確認）：")
+    for a in ranked[:args.top]:
+        nm = sorted(a["names"])[0]
+        print("python3 pipeline/register.py add-actor " + shlex.join(
+            ["--id", "<slug>", "--name-zh", nm, "--name-en", "<English>", "--category", "<state-media|cib-network|...>",
+             "--role", "<attacker|collaborator|amplifier>", "--origin", "<PRC|TW|...>",
+             "--summary-zh", "<一句話>", "--source-ids", ",".join(sorted(a["src"])) or "<src-id>",
+             "--confidence", "medium"]))
+    print("\n# 收完後：python3 pipeline/curate.py auto --dry-run  → 確認無誤再 python3 pipeline/curate.py auto")
+    return 0
+
 def main():
     ap = argparse.ArgumentParser(); sub = ap.add_subparsers(dest="cmd", required=True)
     p = sub.add_parser("add-source")
     p.add_argument("--url", required=True); p.add_argument("--id"); p.add_argument("--org", required=True)
     p.add_argument("--type", required=True); p.add_argument("--title", required=True); p.add_argument("--date", required=True)
     p.set_defaults(fn=cmd_add_source)
+    p = sub.add_parser("roster", help="跨佇列彙總未登錄的行為者候選（審名冊入口）")
+    p.add_argument("--limit", type=int, default=25, help="表格列出前 N 名")
+    p.add_argument("--top", type=int, default=5, help="印出前 N 名的預填 add-actor 指令")
+    p.add_argument("--status", help="只看某個 compile_status（例：pending）")
+    p.set_defaults(fn=cmd_roster)
     p = sub.add_parser("add-actor")
     for f in ("id", "name-zh", "name-en", "category", "role", "origin", "summary-zh", "source-ids"):
         p.add_argument("--" + f, required=True, dest=f.replace("-", "_"))

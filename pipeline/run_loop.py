@@ -98,6 +98,17 @@ def operator_ref(sl, ent_ids):
         if o.get("kind") in _ACTOR_KINDS: return o["nw_ref"]
     return acting[0]["nw_ref"] if acting else None           # 2) 任一行動方；否則 None（不綁 target）
 
+def publication_digest(extr, claims):
+    """審核鎖定的是「**會被發布的內容**」＝模型抽取 ＋ 碼投影出的 claim 引文。
+
+    只鎖 extraction 的話，碼層一改（例如引文擴張成完整句），已核准／已 compiled 的項目會悄悄
+    停在舊內容且無路可回；把投影結果納入 digest，內容一變就會被 compile 的比對擋下要求重審。
+    """
+    payload = {"extraction": extr,
+               "claims": [[c.get("about"), c.get("quote")] for c in (claims or [])]}
+    return hashlib.sha256(json.dumps(payload, ensure_ascii=False, sort_keys=True)
+                          .encode("utf-8")).hexdigest()[:16]
+
 def load_queue():
     if not QUEUE.exists():
         return {}
@@ -151,15 +162,14 @@ def main():
             if args.dry_run:
                 print(f"  → 會抽取（{kind}，{len(text)} chars）{tag}"); continue
             extr, _dropped = ex.extract(report_meta(m), text)
-            bundle, sl, _log = pipe.stix_from_extraction(extr, reg)
+            bundle, sl, _log = pipe.stix_from_extraction(extr, reg)   # derive 只看模型原始 span
             fails, att = pipe.validate(bundle)
-            rec = pipe.project(bundle)
+            rec = pipe.project(bundle, text=text)                      # 引文擴張／宣稱閘只在呈現層
             outdir = EXTRACTIONS / m.get("source_id", "_"); outdir.mkdir(parents=True, exist_ok=True)
             outp = outdir / (m["raw_id"] + ".extraction.json")
             outp.write_text(json.dumps(extr, ensure_ascii=False, indent=2), encoding="utf-8")
             # 預設不自動 compile：一律入 curation queue，附人工判斷所需的 readiness 旗標
-            digest = hashlib.sha256(json.dumps(extr, ensure_ascii=False, sort_keys=True)
-                                    .encode("utf-8")).hexdigest()[:16]
+            digest = publication_digest(extr, rec.get("claims"))
             prev = queue.get(m["raw_id"], {})                # 內容變了（重抽）→ 重置審核；沒變→保留既有決定/note/歸屬
             same = prev.get("extraction_digest") == digest
             # 同內容→沿用核准時的歸屬（避免 registry 變動後把舊核准悄悄綁到新 actor；compile 再重算比對）

@@ -674,6 +674,44 @@ def sentence_windows(text):
         windows.append(text[start:end]); start = end
     return windows
 
+CLAIM_TERMINATORS = "。！？!?.…"                              # 含英文句點：英文來源的正常陳述句不得被閘掉
+_CLOSERS = "」』）〕】》”’\"')]"                                # 句尾引號／括號先剝掉再看終止符
+_EDGE_PUNCT = " \t\n、，,；;：:"                            # 只去分隔標點；句尾「。！？」是內容，不剝
+
+def snap_quote(text, quote, max_chars=200):
+    """把模型給的 exact span 沿原文擴張成完整句（**只供呈現**）。
+
+    模型常只回子句（切在「，」「、」上），直接當 claim 卡會是斷句。這裡用與 assertion 切窗
+    同一套 `sentence_windows` 句界，把 span 補回它所在的整句。
+
+    保守處（寧可留斷句，不可擴到錯句）：
+      · 原文找不到，或**出現多次無法定位**（模型未必附 quote_occurrence）→ 回原引文，不猜。
+      · 擴張後超過 max_chars → 回原引文，不把整段塞進 claim 卡。
+    絕不用於 derive 之前：derive 會從引文找 hedge 詞算 confidence／歸因，擴張過的句子會動到紅線。
+    """
+    q = (quote or "").strip()
+    if not q or not text: return q.strip(_EDGE_PUNCT)
+    if text.count(q) != 1: return q.strip(_EDGE_PUNCT)         # 0＝非本文（樣本/人工）；>1＝定位有歧義
+    i = text.index(q); j, out, pos = i + len(q), [], 0
+    for w in sentence_windows(text):
+        a, b = pos, pos + len(w); pos = b
+        if a < j and b > i: out.append(w)
+        elif out: break                                        # 句窗有序，已越過 span → 收工
+    s = "".join(out).strip()
+    if not s or len(s) > max_chars: return q.strip(_EDGE_PUNCT)
+    return s
+
+def is_claim_span(span):
+    """碼端的宣稱閘：**句尾**決定它是不是宣稱（只在有正文可對照、引文已擴張時才套）。
+
+    剝掉句尾引號／括號後：無終止符 → 章節標題／表格列（「東部戰區融媒體中心扮演的角色」）；
+    以問號收尾 → 提問（「…到底是什麼樣的單位？」）。兩者都不是對世界的宣稱，不進 claim 卡。
+    看句尾而非「整句任一位置有標點」，才不會讓「重要發現！四種手法」這種標題矇混過關。
+    """
+    s = (span or "").rstrip().rstrip(_CLOSERS).rstrip()
+    if not s or s[-1] in "？?": return False
+    return s[-1] in CLAIM_TERMINATORS
+
 def expand_surface_occurrences(seed_mentions, text):
     """只展開模型已辨識 surface 的原文 occurrence；不注入新名稱。"""
     surface_types = {}

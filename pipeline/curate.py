@@ -36,14 +36,24 @@ def save_db(src, i, db):
     tmp = DBP.with_name(DBP.name + ".tmp")
     tmp.write_text(new, encoding="utf-8"); tmp.replace(DBP)  # 原子換檔，避免寫到一半毀檔
 
+def doc_text(relpath):
+    """由 extractions/<src>/<raw_id>.extraction.json ↔ raw/<src>/<raw_id>.json 的路徑對應取正文。
+    取不到就回 ""——退回未擴張的舊行為，不讓 compile 因缺正文而失敗。"""
+    rp = pathlib.Path(relpath)
+    mp = rl.RAW / rp.parent.name / (rp.name.split(".")[0] + ".json")
+    if not mp.exists(): return ""
+    try: return rl.resolve_text(mp, json.loads(mp.read_text(encoding="utf-8")))[0]
+    except Exception: return ""
+
 def project_extraction(relpath):
     """一次讀取 → (sl, project, extr, attributed-to 數, digest, validate fails)。digest／att／validity 都由同一份
     載入內容現算（不吃 queue cache、無 TOCTOU）。"""
     extr = json.loads((_here.parent / relpath).read_text(encoding="utf-8"))
-    digest = hashlib.sha256(json.dumps(extr, ensure_ascii=False, sort_keys=True).encode("utf-8")).hexdigest()[:16]
-    bundle, sl, _ = pipe.stix_from_extraction(extr, REG)
+    text = doc_text(relpath)                                # 有正文才擴張句界／開宣稱閘（呈現層）
+    bundle, sl, _ = pipe.stix_from_extraction(extr, REG)    # derive 只看模型原始 span
     fails, att = pipe.validate(bundle)
-    return sl, pipe.project(bundle), extr, len(att), digest, list(fails)
+    rec = pipe.project(bundle, text=text)
+    return sl, rec, extr, len(att), rl.publication_digest(extr, rec["claims"]), list(fails)
 
 def _upsert(ent, new_claims, source_ids):
     """以 source_id 為單位替換該來源 claims；其他來源/人工 claims **原樣保留**（不去重、不動）。
@@ -101,7 +111,14 @@ def cmd_set(args):
     if args.raw_id not in q: raise SystemExit(f"queue 無此 raw_id：{args.raw_id}")
     e = q[args.raw_id]
     if e.get("compile_status") == "compiled":
-        raise SystemExit(f"{args.raw_id} 已 compiled；如需重審請重跑 loop（內容變動會自動重置為 pending）")
+        # 已發布的項目原則上凍結；唯一例外是「要發布的內容真的變了」（重抽或碼層更新），
+        # 此時擋住反而讓 db.js 永遠停在舊內容——開放重審，且仍要人再按一次 approve。
+        try: _s2, _r2, _e2, _a2, now_digest, _f2 = project_extraction(e["extraction"])
+        except Exception: now_digest = e.get("extraction_digest")
+        if now_digest == e.get("extraction_digest"):
+            raise SystemExit(f"{args.raw_id} 已 compiled 且內容未變；如需重審請重跑 loop")
+        print(f"⚠ {args.raw_id} 已 compiled，但投影內容已變"
+              f"（{e.get('extraction_digest')} → {now_digest}）→ 開放重審")
     if args.status == "approved":
         # approve＝以「當下 registry」重新投影，鎖定歸屬與 digest（compile 據此比對）。
         # 這也是 defer→補 registry→approve 的重綁入口：重審時會抓到新登錄的 actor。
@@ -174,12 +191,21 @@ def cmd_compile(args):
         if not by_ent:
             skipped.append((rid, f"無可掛 claims（{dropped} 條 about 皆非已登錄實體 → 先登錄相關單位再審）")); continue
         nclaims, ents_str = sum(len(v) for v in by_ent.values()), "、".join(by_ent)
+        # 重編時，claim 可能改掛別的實體或被宣稱閘濾掉；只 upsert 有新內容的實體會讓舊實體留下殘影。
+        # 以 source_id 為權威的取代範圍：同來源的舊 claims 一律先清，再寫入本次結果。
+        stale = [ent for ent in db["entities"] if ent["id"] not in by_ent
+                 and any(c.get("source_id") in sids for c in ent.get("claims", []))]
         if args.dry_run:
-            done.append((rid, ents_str, nclaims, f"dry-run（分掛 {len(by_ent)} 個實體，另 {dropped} 條 about 未登錄略過）")); continue
+            note = f"dry-run（分掛 {len(by_ent)} 個實體，另 {dropped} 條 about 未登錄略過"
+            note += f"；清除 {len(stale)} 個實體的同來源舊 claims）" if stale else "）"
+            done.append((rid, ents_str, nclaims, note)); continue
+        for ent in stale:
+            _upsert(ent, [], sids)
         for eid, claims in by_ent.items():
             _upsert(ent_by_id[eid], claims, sids)
         e["compile_status"] = "compiled"
-        done.append((rid, ents_str, nclaims, f"分掛 {len(by_ent)} 個實體，{dropped} 條 about 未登錄略過"))
+        done.append((rid, ents_str, nclaims, f"分掛 {len(by_ent)} 個實體，{dropped} 條 about 未登錄略過"
+                                             + (f"，清除 {len(stale)} 個實體的同來源舊 claims" if stale else "")))
     if not args.dry_run and done:
         save_db(src, i, db); rl._write_queue(q)
     print("=== compile（安全 upsert；以 source_id 為單位；重算比對，不做 partial）===")

@@ -91,6 +91,16 @@ def test_operator_ref_failclosed_not_target():
            "relationships": [{"source": "act", "target": "tgt", "type": "targets"}]}
     assert cur.rl.operator_ref(sl2, {"regTW"}) is None
 
+@case
+def test_upsert_empty_new_clears_source():
+    # 重編時 claim 可能改掛別的實體、或被宣稱閘濾掉；compile 以空集合取代該來源，
+    # 舊 claim 必須清乾淨（否則實體頁會留下上一版的殘影），其他來源不受影響。
+    ent = {"claims": [{"text": "old A1", "source_id": "src-A", "about": "X"},
+                      {"text": "old A2", "source_id": "src-A", "about": "X"},
+                      {"text": "keep B1", "source_id": "src-B", "about": "X"}]}
+    cur._upsert(ent, [], {"src-A"})
+    assert [c["source_id"] for c in ent["claims"]] == ["src-B"], "同來源舊 claim 應被清空、他來源保留"
+
 def main():
     for fn in CASES:
         try:

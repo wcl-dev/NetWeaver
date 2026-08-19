@@ -106,7 +106,13 @@ def validate(bundle):
     return fails, att
 
 # ---------- project: STIX → operator 三層視圖 ----------
-def project(bundle):
+def project(bundle, text=None):
+    """text＝該報告正文時，claim 引文沿原文擴張成完整句並濾掉標題／提問（**純呈現層**）。
+
+    刻意放在 derive 之後：derive 會從引文找 hedge 詞算 confidence／歸因，若在它之前擴張，
+    擴出來的字會反過來動到歸因紅線。STIX bundle 的 evidence 一律保留模型原始 span（忠實記錄），
+    擴張只作用在投影出的 claim 卡。無正文（樣本／人工 extraction）→ 維持原行為。
+    """
     objs = bundle["objects"]; byid = {o["id"]: o for o in objs}
     ta = [o for o in objs if o["type"] == "threat-actor"]
     ims = [o for o in objs if o["type"] == "intrusion-set"]
@@ -119,14 +125,16 @@ def project(bundle):
                 t = byid.get(r["target_ref"])
                 if t and t["type"] == "identity": op = t; break
     attributed = any(r["relationship_type"] == "attributed-to" for r in rels)
-    claims, seen = [], set()                      # 去重：同一（來源 × 正規化引文）只留一次
-    for o in objs:
+    claims, seen = [], set()                      # 去重：同一（物件 × 來源 × 正規化引文）只留一次
+    for o in objs:                                # 含物件：同一句可同時佐證多個實體，不該被別的實體先搶走
         for e in (o.get("x_netweaver_evidence") or []):
-            key = e["source_url"] + "|" + re.sub(r"[\s\W]+", "", e["quote"].lower())
+            quote = _extract_mod().snap_quote(text, e["quote"]) if text else e["quote"]
+            if text and not _extract_mod().is_claim_span(quote): continue
+            key = o["id"] + "|" + e["source_url"] + "|" + re.sub(r"[\s\W]+", "", quote.lower())
             if key in seen: continue
             seen.add(key)
             claims.append({"about": o.get("name") or o.get("relationship_type") or o["type"],
-                           "quote": e["quote"], "source": e["source_url"]})
+                           "quote": quote, "source": e["source_url"]})
     uses = [byid[r["target_ref"]] for r in rels if r["relationship_type"] == "uses"]
     tgts = [byid[r["target_ref"]] for r in rels if r["relationship_type"] == "targets"]
     return {
@@ -140,6 +148,16 @@ def project(bundle):
         "narratives": [u.get("name") for u in uses if u["type"] == "x-dad-narrative"],
         "targets": [t.get("name") or t.get("country") for t in tgts],
     }
+
+_EXTRACT_MOD = None
+def _extract_mod():                                 # 句界／宣稱閘與 assertion 切窗共用同一套規則
+    global _EXTRACT_MOD
+    if _EXTRACT_MOD is None:
+        import importlib.util
+        p = pathlib.Path(__file__).resolve().parent / "extract.py"
+        spec = importlib.util.spec_from_file_location("extract", str(p))
+        m = importlib.util.module_from_spec(spec); spec.loader.exec_module(m); _EXTRACT_MOD = m
+    return _EXTRACT_MOD
 
 def _derive_mod():                                  # 以路徑載入 derive.py（免 sys.path 問題）
     import importlib.util

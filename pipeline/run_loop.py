@@ -100,6 +100,17 @@ def operator_ref(sl, ent_ids):
         if o.get("kind") in _ACTOR_KINDS: return o["nw_ref"]
     return acting[0]["nw_ref"] if acting else None           # 2) 任一行動方；否則 None（不綁 target）
 
+def extraction_provenance(ex):
+    """這份抽取是「誰」做的——provider／model／prompt 變體。**金鑰不記錄。**
+
+    換模型後若記錄簿品質有變化，沒有這個欄位就分不出是模型造成的還是資料造成的，也無法只把
+    某個模型產出的內容撤下來重跑。刻意記在 queue／manifest 而非 extraction JSON——後者會被
+    算進 publication_digest，加欄位會讓所有已發布項目被誤判成「內容變了」而全部重審。
+    """
+    provider, _base, model, _key = ex._cfg()
+    return {"extraction_provider": provider, "extraction_model": model,
+            "extraction_variant": ex.extraction_variant()}
+
 def publication_digest(extr, claims):
     """審核鎖定的是「**會被發布的內容**」＝模型抽取 ＋ 碼投影出的 claim 引文。
 
@@ -181,13 +192,14 @@ def main():
                      "operator": rec["operator"].get("name"), "extraction_digest": digest,
                      "claims": len(rec.get("claims", [])), "assertions": len(extr.get("assertions", [])),
                      "source_curated": _urlnorm.source_key(m.get("url")) in src_urls, "actor_registered": nw_ref,
-                     "attributed_to": len(att), "valid": not fails,
+                     "attributed_to": len(att), "valid": not fails, **extraction_provenance(ex),
                      # 審核狀態機（curate.py 用）：pending→approved/rejected/deferred→compiled
                      "compile_status": prev.get("compile_status", "pending") if same else "pending"}
             if same and prev.get("note"): entry["note"] = prev["note"]
             queue[m["raw_id"]] = entry
             _write_queue(queue)                              # 先落盤 queue，再標 extracted → crash 時不會「extracted 卻不在 queue」
             m["extraction_status"] = "extracted"
+            m.update(extraction_provenance(ex))              # manifest 也留一份（queue 重建也不會遺失）
             mp.write_text(json.dumps(m, ensure_ascii=False, indent=2), encoding="utf-8")
         except (Exception, SystemExit) as e:
             summary["errors"] += 1; print(f"  ✗ 失敗（{type(e).__name__}: {e}）{tag}"); continue

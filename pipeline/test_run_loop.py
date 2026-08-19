@@ -65,13 +65,36 @@ def test_fetch_failed_snapshot_is_no_text():
     t, k = rl.resolve_text(mp, m)
     assert t == "" and k == "no-text"
 
+# ---- 抽取溯源（換模型後才追得出品質變化的來源）----
+
+@case
+def test_extraction_provenance_records_model_not_key():
+    import os, importlib.util
+    def _fresh():
+        sp = importlib.util.spec_from_file_location("extract", str(_h / "extract.py"))
+        m = importlib.util.module_from_spec(sp); sp.loader.exec_module(m); return m
+    saved = {k: os.environ.get(k) for k in
+             ("NW_LLM_PROVIDER", "NW_LLM_MODEL", "NW_LLM_API_KEY", "NW_LLM_EXTRA_BODY")}
+    try:
+        os.environ.update({"NW_LLM_PROVIDER": "openai", "NW_LLM_MODEL": "gemini-3.7-flash",
+                           "NW_LLM_API_KEY": "SUPER-SECRET-KEY",
+                           "NW_LLM_EXTRA_BODY": '{"reasoning_effort": "low"}'})
+        prov = rl.extraction_provenance(_fresh())
+        assert prov["extraction_provider"] == "openai"
+        assert prov["extraction_model"] == "gemini-3.7-flash"
+        assert "re-low" in prov["extraction_variant"], prov          # 設定變體也要留痕
+        assert "SUPER-SECRET-KEY" not in json.dumps(prov), "溯源不得記錄金鑰"
+    finally:
+        for k, v in saved.items():
+            os.environ.pop(k, None) if v is None else os.environ.__setitem__(k, v)
+
 def main():
     for fn in CASES:
         try:
             fn(); print(f"  ✓ {fn.__name__}")
         except AssertionError as e:
             print(f"  ✗ {fn.__name__}：{e}"); return 1
-    print(f"\n全部 {len(CASES)}/{len(CASES)} 綠 ✓（快照優先序：.txt > manifest.snapshot（basename）> 無回退；缺檔/fetch-failed→no-text）")
+    print(f"\n全部 {len(CASES)}/{len(CASES)} 綠 ✓（快照優先序：.txt > manifest.snapshot > 無回退；缺檔/fetch-failed→no-text；抽取溯源不含金鑰）")
     return 0
 
 if __name__ == "__main__":

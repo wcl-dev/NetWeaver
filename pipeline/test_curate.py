@@ -101,13 +101,84 @@ def test_upsert_empty_new_clears_source():
     cur._upsert(ent, [], {"src-A"})
     assert [c["source_id"] for c in ent["claims"]] == ["src-B"], "同來源舊 claim 應被清空、他來源保留"
 
+# ---- compile 的發布範圍（替身取代 queue/db IO，不落盤）----
+
+import contextlib, types
+
+@contextlib.contextmanager
+def _compile_env(entries, att=0):
+    """entries: [(raw_id, compile_status)]。每篇各有自己的 source，claim 都掛到同一個實體。"""
+    queue = {rid: {"raw_id": rid, "extraction": f"x/{rid}.json", "extraction_digest": f"dig-{rid}",
+                   "actor_registered": None, "compile_status": st} for rid, st in entries}
+    db = {"sources": [{"url": f"https://example.org/{rid}", "id": f"src-{rid}"} for rid, _ in entries],
+          "entities": [{"id": "cmg-cctv", "name_zh": "央視", "claims": []}]}
+    saved = []
+    def fake_project(relpath):
+        rid = pathlib.Path(relpath).name.split(".")[0]
+        rec = {"claims": [{"about": "央視", "quote": f"{rid} 的宣稱。",
+                           "source": f"https://example.org/{rid}"}]}
+        return None, rec, {}, att, f"dig-{rid}", []
+    orig = (cur.rl.load_queue, cur.rl._write_queue, cur.rl.operator_ref,
+            cur.load_db, cur.save_db, cur.project_extraction)
+    cur.rl.load_queue = lambda: queue
+    cur.rl._write_queue = lambda q: None
+    cur.rl.operator_ref = lambda sl, ent_ids: None
+    cur.load_db = lambda: ("", 0, 0, db)
+    cur.save_db = lambda src, i, d: saved.append(d)
+    cur.project_extraction = fake_project
+    try: yield queue, db, saved
+    finally:
+        (cur.rl.load_queue, cur.rl._write_queue, cur.rl.operator_ref,
+         cur.load_db, cur.save_db, cur.project_extraction) = orig
+
+@case
+def test_compile_scoped_to_raw_id():
+    # 指名發布只能動到該篇：其他 approved 項目不得被順帶發布（後台單篇「發布」鈕走這條路）
+    with _compile_env([("aaa", "approved"), ("bbb", "approved")]) as (queue, db, saved):
+        cur.cmd_compile(types.SimpleNamespace(raw_id="aaa", yes=False, dry_run=False))
+        assert queue["aaa"]["compile_status"] == "compiled", "指名的那篇要發布"
+        assert queue["bbb"]["compile_status"] == "approved", "其他 approved 項目不得被順帶發布"
+        sids = [c["source_id"] for c in db["entities"][0]["claims"]]
+        assert sids == ["src-aaa"], f"db 只該寫入該篇來源的 claims，實得 {sids}"
+        assert len(saved) == 1
+
+@case
+def test_compile_without_raw_id_still_does_all():
+    # 不給 raw_id → 維持 CLI 既有行為（全部 approved）
+    with _compile_env([("aaa", "approved"), ("bbb", "approved")]) as (queue, db, _s):
+        cur.cmd_compile(types.SimpleNamespace(raw_id=None, yes=False, dry_run=False))
+        assert all(queue[r]["compile_status"] == "compiled" for r in ("aaa", "bbb"))
+        assert sorted(c["source_id"] for c in db["entities"][0]["claims"]) == ["src-aaa", "src-bbb"]
+
+@case
+def test_compile_scoped_attribution_gate_holds():
+    # 歸因紅線：yes=False 時含 attributed-to 的項目不得發布，且要明確失敗（不能讓後台誤判成功）
+    with _compile_env([("aaa", "approved")], att=2) as (queue, db, saved):
+        try:
+            cur.cmd_compile(types.SimpleNamespace(raw_id="aaa", yes=False, dry_run=False))
+            assert False, "含 attributed-to 且未確認時，指名發布必須失敗"
+        except SystemExit as e:
+            assert "attributed-to" in str(e), str(e)
+        assert queue["aaa"]["compile_status"] == "approved" and not saved
+
+@case
+def test_compile_scoped_rejects_unknown_and_unapproved():
+    with _compile_env([("aaa", "pending")]) as (queue, _db, saved):
+        for rid, want in (("zzz", "queue 無此"), ("aaa", "非 approved")):
+            try:
+                cur.cmd_compile(types.SimpleNamespace(raw_id=rid, yes=False, dry_run=False))
+                assert False, f"{rid} 應被擋下"
+            except SystemExit as e:
+                assert want in str(e), str(e)
+        assert not saved
+
 def main():
     for fn in CASES:
         try:
             fn(); print(f"  ✓ {fn.__name__}")
         except AssertionError as e:
             print(f"  ✗ {fn.__name__}：{e}"); return 1
-    print(f"\n全部 {len(CASES)}/{len(CASES)} 綠 ✓（source-scoped upsert：保留其他來源／取代同來源／去重）")
+    print(f"\n全部 {len(CASES)}/{len(CASES)} 綠 ✓（source-scoped upsert＋發布範圍限定：指名只發該篇、歸因閘不外溢）")
     return 0
 
 if __name__ == "__main__":

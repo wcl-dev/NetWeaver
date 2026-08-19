@@ -148,9 +148,20 @@ def cmd_set(args):
     return 0
 
 def cmd_compile(args):
+    """compile approved 項目。給 raw_id 就**只**處理該篇。
+
+    單篇發布（後台一鍵）必須指名，否則會連帶把佇列裡其他 approved 一起發布；`--yes`（歸因人工閘）
+    的效力也就跟著擴散到操作者沒在看的項目上。CLI 不給 raw_id 時維持處理全部 approved 的舊行為。
+    """
     q = rl.load_queue()
-    approved = [e for e in q.values() if e.get("compile_status") == "approved"]
+    only = getattr(args, "raw_id", None)
+    if only and only not in q: raise SystemExit(f"queue 無此 raw_id：{only}")
+    approved = [e for e in q.values() if e.get("compile_status") == "approved"
+                and (only is None or e["raw_id"] == only)]
     if not approved:
+        if only:                                             # 指名卻不能發 → 明確失敗，不要讓呼叫端誤判成功
+            raise SystemExit(f"{only} 目前是 {q[only].get('compile_status', 'pending')}，"
+                             f"非 approved；先 `curate.py approve {only}`")
         print("（無 approved 項目可 compile；先 `curate.py approve <raw_id>`）"); return 0
     src, i, _j, db = load_db()
     url2sid = {s["url"]: s["id"] for s in db["sources"]}
@@ -167,7 +178,8 @@ def cmd_compile(args):
         if fails:                                            # bundle 不合法 → 不 compile
             skipped.append((rid, f"bundle 不合法（{len(fails)} 項不變量），不 compile")); continue
         if att and not args.yes:
-            skipped.append((rid, f"含 attributed-to×{att}，需 --yes（歸因需人工核可）")); continue
+            skipped.append((rid, f"含 attributed-to×{att}，需人工逐篇確認："
+                                 f"`curate.py compile {rid} --yes`（歸因是紅線）")); continue
         op_ref = rl.operator_ref(sl, ent_ids)                # 重算歸屬並與核准時比對，避免誤綁/骨幹變動
         if op_ref != e.get("actor_registered"):
             skipped.append((rid, f"歸屬與核准時不一致（現 {op_ref}／核准 {e.get('actor_registered')}），需重審")); continue
@@ -214,6 +226,8 @@ def cmd_compile(args):
     for rid, why in skipped:
         print(f"  ⟳ {rid} 跳過：{why}")
     if args.dry_run: print("（dry-run：未寫 db.js/queue）")
+    if only and not done:                                    # 指名發布卻沒發成 → 呼叫端（後台）要看到失敗
+        raise SystemExit(f"{only} 未發布：{skipped[0][1] if skipped else '未知原因'}")
     return 0
 
 def main():
@@ -224,7 +238,8 @@ def main():
     for st in ("approve", "reject", "defer"):
         p = sub.add_parser(st); p.add_argument("raw_id"); p.add_argument("--note")
         p.set_defaults(fn=cmd_set, status={"approve": "approved", "reject": "rejected", "defer": "deferred"}[st])
-    p = sub.add_parser("compile"); p.add_argument("--yes", action="store_true"); p.add_argument("--dry-run", action="store_true")
+    p = sub.add_parser("compile"); p.add_argument("raw_id", nargs="?", help="只發布這一篇；省略＝全部 approved")
+    p.add_argument("--yes", action="store_true"); p.add_argument("--dry-run", action="store_true")
     p.set_defaults(fn=cmd_compile)
     args = ap.parse_args()
     return args.fn(args)

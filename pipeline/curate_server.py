@@ -139,6 +139,41 @@ class H(BaseHTTPRequestHandler):
         if u.path == "/api/add-alias":
             ns = types.SimpleNamespace(id=data.get("id"), alias=data.get("alias"))
             ok, msg = _capture(register.cmd_add_alias, ns); return self._send(200, json.dumps({"ok": ok, "msg": msg}, ensure_ascii=False))
+        if u.path == "/api/publish-one":                       # 一鍵：自動補來源 → 核可 → 發布（少步驟）
+            rid = data.get("raw_id"); e = rl.load_queue().get(rid); steps = []
+            if not e: return self._send(200, json.dumps({"ok": False, "msg": "找不到此項"}, ensure_ascii=False))
+            try:
+                _sl, _rec, extr, _a, _d, _f = curate.project_extraction(e["extraction"]); rep = extr.get("report", {})
+            except Exception as ex:
+                return self._send(200, json.dumps({"ok": False, "msg": f"讀取失敗：{ex}"}, ensure_ascii=False))
+            _s, _i, _j, db = curate.load_db()
+            if e.get("url") not in {s.get("url") for s in db["sources"]}:   # 來源沒登錄 → 自動登錄（人按發布＝已認可此來源）
+                ns = types.SimpleNamespace(url=rep.get("url") or e.get("url"), org=rep.get("org"),
+                                           title=rep.get("name") or e.get("title"),
+                                           type=rep.get("type") or "ngo-report", date=rep.get("published"), id=None)
+                ok, m = _capture(register.cmd_add_source, ns); steps.append("① 登錄來源：" + (m or "已登錄"))
+                if not ok: return self._send(200, json.dumps({"ok": False, "msg": "\n".join(steps)}, ensure_ascii=False))
+            else:
+                steps.append("① 來源已在清單")
+            ok, m = _capture(curate.cmd_set, types.SimpleNamespace(raw_id=rid, status="approved", note=None))
+            if not ok:
+                if "歸屬" in m:                                # 白話化最常見的擋點：沒有已登錄的主要單位
+                    steps.append("② 還不能發布 —— 這篇的「主要單位」還沒在名冊。\n"
+                                 "   請在上面把「這篇主要在講的那個單位」加進名冊（雜訊不用理），再按一次即可。")
+                else:
+                    steps.append("② 核可未過：" + m)
+                return self._send(200, json.dumps({"ok": False, "msg": "\n".join(steps)}, ensure_ascii=False))
+            steps.append("② 核可 ✓")
+            # 只發布這一篇（不指名會連帶發布佇列裡其他 approved）；yes=False：本介面沒有呈現歸因
+            # 資訊，按下「發布」不等於操作者知情同意歸因，不能代按這道紅線的閘。
+            ok, m = _capture(curate.cmd_compile, types.SimpleNamespace(raw_id=rid, yes=False, dry_run=False))
+            if not ok and "attributed-to" in m:
+                steps.append("③ 還不能發布 —— 這篇含「歸因」宣稱（指名某單位是幕後操作者）。\n"
+                             "   依專案紅線需逐篇人工確認，請在終端機執行：\n"
+                             f"   python3 pipeline/curate.py compile {rid} --yes")
+            else:
+                steps.append("③ 發布：" + m)
+            return self._send(200, json.dumps({"ok": ok, "msg": "\n".join(steps)}, ensure_ascii=False))
         return self._send(404, json.dumps({"error": "not found"}))
 
 HTML = (_here / "curate_admin.html").read_text(encoding="utf-8") if (_here / "curate_admin.html").exists() else "<h1>缺 curate_admin.html</h1>"

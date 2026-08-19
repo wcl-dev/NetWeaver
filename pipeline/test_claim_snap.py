@@ -74,7 +74,35 @@ HEDGE = "背景說明。某網絡發動宣傳，但研究團隊認為可能與�
 _ = pipeline.project(graded, text=HEDGE)
 assert graded == before, "project 不得改動 bundle（evidence 原始 span／confidence 是 derive 的結果）"
 
-# ⑨ publication_digest 鎖的是「會發布的內容」：碼層改動使投影 claim 變了 → digest 必變 → 需重審
+# ⑨ claim 的 about 必須是可辨識的實體名——型別名／關係名不得洩漏成 about
+ev1 = [{"quote": "央視發布相關新聞。", "source_url": "https://example.org/r"}]
+leak = {"objects": [
+    {"id": "identity--a", "type": "identity", "name": "央視", "x_netweaver_evidence": ev1},
+    {"id": "location--tw", "type": "location", "country": "TW", "x_netweaver_evidence": ev1},   # 無 name
+    {"id": "url--x", "type": "url", "value": "https://x", "x_netweaver_evidence": ev1},         # SCO 無 name
+    {"id": "relationship--r", "type": "relationship", "relationship_type": "related-to",
+     "source_ref": "identity--a", "target_ref": "location--tw", "x_netweaver_evidence": ev1},
+]}
+abouts = [c["about"] for c in pipeline.project(leak)["claims"]]
+assert "location" not in abouts and "related-to" not in abouts and "url" not in abouts, abouts
+assert abouts == ["央視", "央視"], abouts     # 關係的引文掛到主詞，不是掛到關係型別
+
+# 主詞也沒有名字的關係 → 不產生 claim（不能退回型別字串）
+orphan = {"objects": [
+    {"id": "location--tw", "type": "location", "country": "TW"},
+    {"id": "relationship--r", "type": "relationship", "relationship_type": "targets",
+     "source_ref": "location--tw", "target_ref": "location--tw", "x_netweaver_evidence": ev1},
+]}
+assert pipeline.project(orphan)["claims"] == []
+
+# ⑩ 用量統計要含 total_tokens（思考 tokens 藏在 total 裡，是實際計費量）
+run = extract.ExtractionRun()
+run.events.append({"event": "request_done", "prompt_tokens": 100, "completion_tokens": 50, "total_tokens": 400})
+sm = run.summary()
+assert sm["total_tokens"] == 400 and sm["prompt_tokens"] == 100, sm
+assert sm["total_tokens"] > sm["prompt_tokens"] + sm["completion_tokens"], "思考 tokens 必須看得見"
+
+# ⑪ publication_digest 鎖的是「會發布的內容」：碼層改動使投影 claim 變了 → digest 必變 → 需重審
 extr_x = {"mentions": [{"tmp_id": "m1", "surface": "央視", "quote": "央視亦發布相關新聞。"}]}
 d_old = run_loop.publication_digest(extr_x, [{"about": "央視", "quote": "央視亦發布相關新聞，"}])
 d_new = run_loop.publication_digest(extr_x, [{"about": "央視", "quote": "央視亦發布相關新聞。"}])

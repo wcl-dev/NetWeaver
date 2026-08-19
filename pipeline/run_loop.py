@@ -141,6 +141,12 @@ def main():
     ap.add_argument("--no-ingest", action="store_true", help="跳過 ② 抓取，只處理現有 raw/")
     ap.add_argument("--dry-run", action="store_true", help="只列會做什麼；不呼叫 LLM、不改檔")
     ap.add_argument("--limit", type=int, help="本次最多抽 N 篇（冷跑控管；需 >=0）")
+    ap.add_argument("--match", action="append", default=[],
+                    help="只處理 raw_id／source_id／標題含此字串者；可重複指定（對計費端點做受控單篇跑）")
+    # 成本上限：對計費 API 沒有煞車很危險，長文的 mention fan-out 會隨篇幅線性成長
+    ap.add_argument("--doc-timeout", type=float, default=0, help="單篇 wall-clock 秒數上限；0＝不限")
+    ap.add_argument("--max-cold-calls", type=int, default=0, help="單篇真正模型呼叫上限；0＝不限")
+    ap.add_argument("--max-assertion-windows", type=int, default=0, help="單篇 assertion 窗上限；0＝不限")
     args = ap.parse_args()
     if args.limit is not None and args.limit < 0:
         raise SystemExit("--limit 需 >= 0")
@@ -160,6 +166,10 @@ def main():
     manifests = sorted(RAW.glob("*/*.json")) if RAW.exists() else []
     ready = [(mp, json.loads(mp.read_text(encoding="utf-8"))) for mp in manifests]
     ready = [(mp, m) for mp, m in ready if m.get("extraction_status") == "ready"]
+    if args.match:
+        ready = [(mp, m) for mp, m in ready
+                 if any(k in (m.get("raw_id", "") + m.get("source_id", "") + (m.get("title") or ""))
+                        for k in args.match)]
     if args.limit is not None:
         ready = ready[:args.limit]
 
@@ -174,7 +184,13 @@ def main():
                 summary["no_text"] += 1; print(f"  · 跳過（{kind}）{tag}"); continue
             if args.dry_run:
                 print(f"  → 會抽取（{kind}，{len(text)} chars）{tag}"); continue
-            extr, _dropped = ex.extract(report_meta(m), text)
+            # 一律建 run：即使不設上限也要記用量——對計費端點沒有成本能見度是不可接受的
+            run = ex.ExtractionRun(doc_timeout=args.doc_timeout, max_cold_calls=args.max_cold_calls,
+                                   max_assertion_windows=args.max_assertion_windows)
+            extr, _dropped = ex.extract(report_meta(m), text, run=run)
+            usage = {k: run.summary()[k] for k in
+                     ("cold_calls", "cache_hits", "prompt_tokens", "completion_tokens",
+                      "total_tokens", "elapsed_seconds")}
             bundle, sl, _log = pipe.stix_from_extraction(extr, reg)   # derive 只看模型原始 span
             fails, att = pipe.validate(bundle)
             rec = pipe.project(bundle, text=text)                      # 引文擴張／宣稱閘只在呈現層
@@ -193,6 +209,7 @@ def main():
                      "claims": len(rec.get("claims", [])), "assertions": len(extr.get("assertions", [])),
                      "source_curated": _urlnorm.source_key(m.get("url")) in src_urls, "actor_registered": nw_ref,
                      "attributed_to": len(att), "valid": not fails, **extraction_provenance(ex),
+                     "usage": usage,
                      # 審核狀態機（curate.py 用）：pending→approved/rejected/deferred→compiled
                      "compile_status": prev.get("compile_status", "pending") if same else "pending"}
             if same and prev.get("note"): entry["note"] = prev["note"]
@@ -207,7 +224,9 @@ def main():
         flags = (("src✓" if entry["source_curated"] else "src✗") + " "
                  + (f"actor:{nw_ref}" if nw_ref else "actor✗")
                  + (" ⚠attributed" if att else "") + ("" if not fails else " ⚠invalid"))
-        print(f"  ⟳ 抽取 {len(extr.get('mentions',[]))}m/{entry['assertions']}a → curation queue（{flags}）{tag}")
+        print(f"  ⟳ 抽取 {len(extr.get('mentions',[]))}m/{entry['assertions']}a"
+              f"｜{usage['cold_calls']} calls、{usage['total_tokens'] or usage['prompt_tokens']+usage['completion_tokens']:,} tokens"
+              f"、{usage['elapsed_seconds']:.0f}s → curation queue（{flags}）{tag}")
         # queue 於每篇 _write_queue 落盤（crash-safe）；此處不再整批重寫，避免 0 篇時覆寫既有 queue
 
     print("\n═══ summary ═══")

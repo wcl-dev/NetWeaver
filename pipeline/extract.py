@@ -251,6 +251,8 @@ class ExtractionRun:
                 "assertion_windows_used": self.assertion_windows_used,
                 "prompt_tokens": sum(event.get("prompt_tokens", 0) for event in completed),
                 "completion_tokens": sum(event.get("completion_tokens", 0) for event in completed),
+                # total 含端點未逐項列出的思考 tokens——實際計費看這個，不是 prompt+completion
+                "total_tokens": sum(event.get("total_tokens", 0) for event in completed),
                 "model_total_seconds": round(sum(event.get("model_total_seconds", 0) for event in completed), 3)}
 
 def _messages_with_schema(messages, fmt):
@@ -902,8 +904,9 @@ def span_check(extr, text):                                   # 碼端硬閘：�
         else: dropped.append(("assertion", a.get("predicate"), "dangling"))
     return {"mentions": keep_m, "assertions": keep_a}, dropped
 
-def extract(report_meta, text):
-    raw = call_llm_two_stage(text)
+def extract(report_meta, text, run=None):
+    """run＝可選的 ExtractionRun；給了才有時間／呼叫數上限（預設 None＝不設限，行為不變）。"""
+    raw = call_llm_two_stage(text, run=run)
     for m in raw.get("mentions", []): m.setdefault("source_url", report_meta["url"])
     for a in raw.get("assertions", []): a.setdefault("source_url", report_meta["url"])
     checked, dropped = span_check(raw, text)

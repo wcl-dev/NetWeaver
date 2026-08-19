@@ -118,6 +118,18 @@ def validate(bundle):
     return fails, att
 
 # ---------- project: STIX → operator 三層視圖 ----------
+def _claim_about(o, byid):
+    """claim 掛在誰身上——必須是**可辨識的實體名稱**。
+
+    關係物件本身沒有名字，但它的引文講的是「主詞做了什麼」→ 掛到主詞。
+    連名字都沒有的物件（location、SCO）不產生 claim：原本會退回型別字串
+    （"location"、"related-to"），那種 about 永遠對不上名冊，是保證作廢的 claim，
+    只會灌水數字並污染 roster 的候選清單。
+    """
+    if o["type"] == "relationship":
+        return (byid.get(o.get("source_ref")) or {}).get("name")
+    return o.get("name")
+
 def project(bundle, text=None):
     """text＝該報告正文時，claim 引文沿原文擴張成完整句並濾掉標題／提問（**純呈現層**）。
 
@@ -139,14 +151,15 @@ def project(bundle, text=None):
     attributed = any(r["relationship_type"] == "attributed-to" for r in rels)
     claims, seen = [], set()                      # 去重：同一（物件 × 來源 × 正規化引文）只留一次
     for o in objs:                                # 含物件：同一句可同時佐證多個實體，不該被別的實體先搶走
+        about = _claim_about(o, byid)
+        if not about: continue                    # 無可辨識實體名 → 不產生 claim（見 _claim_about）
         for e in (o.get("x_netweaver_evidence") or []):
             quote = _extract_mod().snap_quote(text, e["quote"]) if text else e["quote"]
             if text and not _extract_mod().is_claim_span(quote): continue
             key = o["id"] + "|" + e["source_url"] + "|" + re.sub(r"[\s\W]+", "", quote.lower())
             if key in seen: continue
             seen.add(key)
-            claims.append({"about": o.get("name") or o.get("relationship_type") or o["type"],
-                           "quote": quote, "source": e["source_url"]})
+            claims.append({"about": about, "quote": quote, "source": e["source_url"]})
     uses = [byid[r["target_ref"]] for r in rels if r["relationship_type"] == "uses"]
     tgts = [byid[r["target_ref"]] for r in rels if r["relationship_type"] == "targets"]
     return {

@@ -117,7 +117,8 @@ pipeline/
 ├── run_loop.py              # 冪等編排 ingest→…→project；產出待審 curation queue（預設不自動 compile）
 ├── urlnorm.py               # 來源 URL 比對鍵（追蹤參數／scheme／www 不算新來源；id 雜湊同源）
 ├── curate.py                # 審核 CLI：list/show/approve/compile/auto（安全 upsert／狀態機／歸因閘／歸屬重算）
-├── register.py              # 補 source/actor 進 db.js：add-source/add-actor/suggest/roster（enum/URL/FK 驗證、防撞名）
+├── register.py              # 補 source/actor：add-source/add-actor/suggest/roster/ignore（enum/URL/FK 驗證、防撞名）
+├── ../data/roster_ignore.json # 「決定不收錄」清單（只影響 roster 候選；不隨 db.js 發布到前端）
 ├── samples/*.extraction.json# 3 份 extraction 樣本（歸因梯度對照）
 └── out/                     # 產出的合法 STIX bundle（範例）
 # raw/、extractions/、ingest_state.json 為執行期產物（.gitignore）
@@ -126,6 +127,9 @@ pipeline/
 ## 下一步
 
 - **迴圈已成形**（`run_loop.py`）：`ingest → filter → extract → derive → validate → project` 一鍵冪等跑，產出待審 curation queue；人審＋安全 compile 走 `curate.py`。待補見 `../docs/LOOP_BACKLOG.md`（排程、readability 正文等）。
+- **審名冊（`register.py roster`）**：跨佇列彙總未登錄的行為者候選，依出現篇數排序。判斷過不是行為者的
+  用 `register.py ignore <名字> --reason …` 標記，之後不再列出（`unignore` 可反悔、`--show-ignored` 可檢視）。
+  沒有這份清單，同樣的雜訊每次都會重新冒出來，候選清單很快就沒人想看。
 - **自動發布（`curate.py auto`）**：**人審名冊、模型填內容**。四道閘全過才自動落地——bundle 合法、無 attributed-to（歸因永遠人工）、出版方已信任、claims 掛得上已登錄實體且非 `sensitivity: domestic-named`。任一不過就留在佇列等人。走的是 `approve`／`compile` 同一條安全路徑，不另開捷徑。人的入口是 `register.py roster`（跨佇列彙總未登錄的行為者候選，依出現篇數排序）。
 - **filter 精修**：詞表／`match_tokens` 擴充（附測試案例）；terse 中文標題的 recall 可加正文（非 chrome）抽取或高信任來源 override。
 - **抽取品質**：few-shot／換模型（如台灣微調 Llama-Breeze）／輕量微調——碼層不動。

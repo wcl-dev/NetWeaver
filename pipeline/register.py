@@ -13,6 +13,7 @@
 註：enum 以 docs/SCHEMA.md 為準（與 db.js 現有資料一致）。並行寫入鎖見 docs/LOOP_BACKLOG.md（單人 CLI 暫不擋）。
 """
 import argparse, hashlib, importlib.util, json, os, pathlib, re, shlex
+from datetime import date
 from urllib.parse import urlparse
 
 _here = pathlib.Path(__file__).resolve().parent
@@ -68,6 +69,61 @@ def save_db(src, i, end, db):
     json.JSONDecoder().raw_decode(new, i)                   # 寫前自驗：新內容仍可 parse
     tmp = DBP.with_name(f"{DBP.name}.{os.getpid()}.tmp")    # 唯一 temp，避免與 curate 共用踩檔
     tmp.write_text(new, encoding="utf-8"); tmp.replace(DBP) # 原子換檔、保後綴
+
+IGNORE_PATH = _here.parent / "data" / "roster_ignore.json"
+
+def load_ignore():
+    """讀「決定不收錄」清單 → {正規化名: entry}；檔案不存在＝空清單。
+
+    roster 每次都重新列出所有未登錄的名字。沒有這份清單，判斷過的雜訊（國家、被提及的人物、
+    研究單位）會永遠反覆出現，候選清單很快就沒人想看。
+    刻意不放 `data/db.js`——那份會發布到前端，策展決策不該對外。
+    """
+    if not IGNORE_PATH.exists(): return {}
+    d = json.loads(IGNORE_PATH.read_text(encoding="utf-8"))
+    return {_norm(e["name"]): e for e in d.get("ignored", []) if e.get("name")}
+
+def save_ignore(entries):
+    """原子寫檔；依名稱排序輸出，讓 diff 穩定可讀。"""
+    doc = {"_note": "roster 的「決定不收錄」清單——判斷過不是行為者的名字。"
+                    "只影響 register.py roster 的候選列表，不影響抽取、判斷與發布。",
+           "ignored": sorted(entries.values(), key=lambda e: e["name"])}
+    IGNORE_PATH.parent.mkdir(parents=True, exist_ok=True)
+    tmp = IGNORE_PATH.with_name(f"{IGNORE_PATH.name}.{os.getpid()}.tmp")
+    tmp.write_text(json.dumps(doc, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    tmp.replace(IGNORE_PATH)
+
+def _registered(db, name):
+    """回傳與 name 同名的已登錄實體（比對中英名與別名），沒有則 None。"""
+    for e in db["entities"]:
+        for nm in [e.get("name_zh"), e.get("name_en")] + (e.get("aliases") or []):
+            if nm and _norm(nm) == _norm(name): return e
+    return None
+
+def cmd_ignore(args):
+    """標記某個名字「不是行為者」，之後 roster 不再列出。"""
+    name = (args.name or "").strip()
+    if not name: raise SystemExit("需要名稱")
+    _src, _i, _end, db = load_db()
+    hit = _registered(db, name)
+    if hit:
+        raise SystemExit(f"「{name}」已是登錄實體（{hit['id']}）——要拿掉請改名冊，不是加忽略清單")
+    ent = load_ignore(); key = _norm(name)
+    if key in ent:
+        raise SystemExit(f"「{name}」已在忽略清單（{ent[key].get('reason') or '未註明理由'}）")
+    ent[key] = {"name": name, "reason": (args.reason or "").strip(), "added": date.today().isoformat()}
+    save_ignore(ent)
+    print(f"✓ 已忽略「{name}」" + (f"：{args.reason}" if args.reason else "") + f"｜清單共 {len(ent)} 筆")
+    return 0
+
+def cmd_unignore(args):
+    """從忽略清單移除（重新評估時用）。"""
+    name = (args.name or "").strip()
+    ent = load_ignore(); key = _norm(name)
+    if key not in ent: raise SystemExit(f"「{name}」不在忽略清單")
+    removed = ent.pop(key); save_ignore(ent)
+    print(f"✓ 已移除「{removed['name']}」，roster 會再次列出｜清單剩 {len(ent)} 筆")
+    return 0
 
 def _cand_source_id(org_or_src, url, given=None):
     """穩定的逐文件 source id：src-<org slug>-<url hash6>（同出版方多篇不撞）。"""
@@ -226,10 +282,16 @@ def cmd_roster(args):
             a["ev"] += len(o.get("x_netweaver_evidence") or [])
             sid = src_by_url.get(_urlnorm.source_key(e.get("url")))
             if sid: a["src"].add(sid)
+    ign, hidden = load_ignore(), 0
+    if not args.show_ignored:
+        for k in [k for k in agg if k in ign]:
+            del agg[k]; hidden += 1
     if not agg:
-        print("（佇列裡沒有未登錄的行為者候選）"); return 0
+        print("（佇列裡沒有未登錄的行為者候選）"
+              + (f"；另有 {hidden} 個已標記為不收錄" if hidden else "")); return 0
     ranked = sorted(agg.values(), key=lambda a: (len(a["docs"]), a["ev"]), reverse=True)
-    print(f"# 未登錄行為者候選（掃 {len(entries)} 篇；依出現篇數→引文數排序）")
+    print(f"# 未登錄行為者候選（掃 {len(entries)} 篇；依出現篇數→引文數排序）"
+          + (f"\n# 另有 {hidden} 個已標記為不收錄（--show-ignored 可看）" if hidden else ""))
     print(f"{'篇數':>4} {'引文':>4}  {'類型':<4}  名稱")
     for a in ranked[:args.limit]:
         print(f"{len(a['docs']):>5} {a['ev']:>5}  {'＋'.join(sorted(a['kinds'])):<4}  "
@@ -251,7 +313,12 @@ def main():
     p.add_argument("--url", required=True); p.add_argument("--id"); p.add_argument("--org", required=True)
     p.add_argument("--type", required=True); p.add_argument("--title", required=True); p.add_argument("--date", required=True)
     p.set_defaults(fn=cmd_add_source)
+    p = sub.add_parser("ignore", help="標記某名字不是行為者，roster 不再列出")
+    p.add_argument("name"); p.add_argument("--reason"); p.set_defaults(fn=cmd_ignore)
+    p = sub.add_parser("unignore", help="從忽略清單移除，roster 會再次列出")
+    p.add_argument("name"); p.set_defaults(fn=cmd_unignore)
     p = sub.add_parser("roster", help="跨佇列彙總未登錄的行為者候選（審名冊入口）")
+    p.add_argument("--show-ignored", action="store_true", help="連已標記不收錄的一併列出")
     p.add_argument("--limit", type=int, default=25, help="表格列出前 N 名")
     p.add_argument("--top", type=int, default=5, help="印出前 N 名的預填 add-actor 指令")
     p.add_argument("--status", help="只看某個 compile_status（例：pending）")

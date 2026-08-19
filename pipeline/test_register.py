@@ -21,6 +21,7 @@ def _setup():
     dbp.write_text("window.NETWEAVER_DB = " + json.dumps(db, ensure_ascii=False) + ";\n", encoding="utf-8")
     (d / "registry.yaml").write_text("sources:\n  - org: Org X\n", encoding="utf-8")
     reg.DBP, reg.REGISTRY = dbp, d / "registry.yaml"
+    reg.IGNORE_PATH = d / "roster_ignore.json"      # 不碰真的清單
     return dbp
 
 def src_ns(**kw):
@@ -111,6 +112,42 @@ def test_sensitivity_optional_and_warn():
     with contextlib.redirect_stdout(buf):
         reg.cmd_add_actor(actor_ns(id="dom2", category="commentator", sensitivity=None))
     assert "⚠" in buf.getvalue(), "commentator 未帶 sensitivity 應 warn"
+
+# ---- roster 忽略清單（沒有它，判斷過的雜訊每次都會重新冒出來）----
+
+@case
+def test_ignore_roundtrip_and_persistence():
+    _setup()
+    assert reg.load_ignore() == {}, "檔案不存在時應為空清單"
+    reg.cmd_ignore(argparse.Namespace(name="習近平", reason="被提及的人物，非行為者"))
+    ign = reg.load_ignore()
+    assert reg._norm("習近平") in ign
+    assert ign[reg._norm("習近平")]["reason"] == "被提及的人物，非行為者"
+    assert ign[reg._norm("習近平")]["added"], "要記下判斷日期"
+    reg.cmd_unignore(argparse.Namespace(name="習近平"))
+    assert reg.load_ignore() == {}, "移除後應回到空清單"
+
+@case
+def test_ignore_rejects_duplicate_and_missing():
+    _setup()
+    reg.cmd_ignore(argparse.Namespace(name="中國", reason=None))
+    assert _rejects(reg.cmd_ignore, argparse.Namespace(name="中國", reason=None)), "重複加入應被擋"
+    assert _rejects(reg.cmd_unignore, argparse.Namespace(name="不存在的名字")), "移除不存在的應被擋"
+    assert _rejects(reg.cmd_ignore, argparse.Namespace(name="  ", reason=None)), "空名稱應被擋"
+
+@case
+def test_ignore_refuses_registered_entity():
+    # 已登錄的實體不該被「忽略」——那是矛盾狀態，要拿掉應該改名冊
+    _setup()
+    for nm in ("甲", "Alpha", "AL"):                      # 中文名／英文名／別名都要擋
+        assert _rejects(reg.cmd_ignore, argparse.Namespace(name=nm, reason=None)), f"{nm} 應被擋"
+
+@case
+def test_ignore_matches_across_name_variants():
+    # 用與 derive 相同的 normalizer：大小寫／空白差異視為同一個名字
+    _setup()
+    reg.cmd_ignore(argparse.Namespace(name="Global Times", reason=None))
+    assert reg._norm("global  times") in reg.load_ignore(), "正規化後應視為同一名字"
 
 def main():
     for fn in CASES:

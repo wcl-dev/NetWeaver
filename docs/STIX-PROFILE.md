@@ -16,7 +16,7 @@
 5. **Media Content（貼文/影片/圖片/文章）＝ 擴充 SDO，內連 Observable**。
 6. **歸因保守（紅線）**：預設**不**用 `attributed-to`；Campaign 以中性邊 `related-to` 分組到 IMS。`attributed-to` 只在來源**明確歸因**時、且經人工閘才建立（見 §7）。
 7. **（NetWeaver 追加）Grounding 必備**：每個物件/關係都掛 `x_netweaver_evidence`（來源＋逐字引文），抽不出引文→不建立（見 §5）。
-8. **（NetWeaver 追加）敏感標記**：具名在世在地個人/媒體 → `x_netweaver_sensitivity="local-named"`＋TLP:AMBER，且機器**永不自動建立**（紅線，見 §8）。
+8. **（NetWeaver 追加）敏感標記**：具名在世在地個人/媒體 → `x_netweaver_sensitivity="domestic-named"`＋TLP:AMBER，且機器**永不自動建立**（紅線，見 §8）。
 9. **（NetWeaver 追加）operator 視圖是投影**：STIX 是 Campaign 中心，前端 operator 三層由其投影而來（見 §9）。
 
 ---
@@ -138,12 +138,26 @@ x_netweaver_evidence: [
 
 ---
 
-## 8. 敏感標記 / local-named 紅線
+## 8. 敏感標記 / domestic-named 紅線
 
-- 具名在世在地個人/媒體 → `identity`（class=individual/organization）＋ `x_netweaver_sensitivity="local-named"`。
-- **標記語義分清**：`object_marking_refs` 掛 **TLP:AMBER 僅控分享**；「local-named／禁自動建立」由 `x_netweaver_sensitivity` ＋ 一個自訂 `statement` marking（記編采限制「documented, not accused」）＋ **CI/pipeline 強制**表達，不靠 TLP。
+- 具名在世在地個人/媒體 → `identity`（class=individual/organization）＋ `x_netweaver_sensitivity="domestic-named"`。
+  用詞以 `data/db.js` 的 `entity.sensitivity` 為準（目前 17 筆）；`derive` 沿用登錄值，不自行判斷誰敏感。
+- **標記語義分清**：`object_marking_refs` 掛 **TLP:AMBER 僅控分享**；「domestic-named／禁自動建立」由
+  `x_netweaver_sensitivity` ＋ 一個自訂 `statement` marking（記編采限制「documented, not accused」）＋
+  **管線強制**表達，不靠 TLP。
 - 框架鎖：`description` 僅能是「在〔Report〕中被列為〔Narrative〕的放大者」，不得 agentive/指控語氣。
-- **紅線**：自動管線**無權**建立/修改 `local-named` 物件；只能人刻意新增、發佈前掃一眼（見 [ARCHITECTURE.md §5](ARCHITECTURE.md)）。
+- **紅線**：自動管線**無權**建立/修改 `domestic-named` 物件；只能人刻意新增、發佈前掃一眼
+  （見 [ARCHITECTURE.md §5](ARCHITECTURE.md)）。
+
+### 實作落點（2026-08）
+
+| 保護 | 落在哪 | 說明 |
+|---|---|---|
+| 標記進入中介格式 | `derive.py` → `pipeline.serialize()` | 登錄實體的 `sensitivity` 帶進 STIX-lite，序列化為 `x_netweaver_sensitivity` ＋ TLP:AMBER；TLP 定義物件隨 bundle 附上，不留懸空 ref |
+| 不自動建立敏感實體 | `register.py`（僅人工 CLI） | 機器沒有建立實體的路徑 |
+| 不自動往敏感實體加內容 | `curate.auto_gate()` 第四道閘 | 整篇留在待審佇列，不自動發布 |
+
+回歸測試：`pipeline/test_sensitivity_marking.py`。
 
 ---
 
@@ -167,7 +181,7 @@ STIX 是 Campaign 中心；前端 operator 三層是它的投影。**因預設�
 | `cib-network` | `intrusion-set` (IMS) |
 | `state-organ`／`tech-vendor`／`pr-firm` | **`identity`（預設）**；`threat-actor` 僅證據支持惡意操作意圖時 |
 | `state-media`／`content-farm`／`domestic-amplifier` | `x-dad-channel` |
-| `commentator` | `identity`(individual) ＋ `local-named` gate |
+| `commentator` | `identity`(individual) ＋ `domestic-named` gate |
 | Event（行動） | `campaign` |
 | Narrative | `x-dad-narrative` |
 | Source | `report` ＋ external_reference |
@@ -215,7 +229,7 @@ STIX 是 Campaign 中心；前端 operator 三層是它的投影。**因預設�
 | 現在（v1 profile） | 後期 |
 |---|---|
 | Campaign／IMS／Identity／`x-dad-narrative`／`x-dad-channel`／Report／Observable／Location／Tool／Infra | Threat Actor（僅證據足）、`x-dad-event`、`incident` |
-| grounding(evidence 陣列)、保守歸因(related-to 預設)、local-named 標記、分類別 UUIDv5、confidence 對映 | DISARM TTP 標記（輔助）、Media Content 完整化、官方 DAD-CDM extension ID |
+| grounding(evidence 陣列)、保守歸因(related-to 預設)、domestic-named 標記、分類別 UUIDv5、confidence 對映 | DISARM TTP 標記（輔助）、Media Content 完整化、官方 DAD-CDM extension ID |
 | STIX-lite → 合法 STIX serializer（pin DISARM 版本、x-dad ext-def） | 完整擴充驗證、TAXII/OpenCTI 遞送 |
 
 ---

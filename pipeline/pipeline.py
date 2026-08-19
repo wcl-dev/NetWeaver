@@ -14,6 +14,12 @@ XDAD_SDO = {"x-dad-narrative", "x-dad-channel", "x-dad-media-content", "x-dad-ev
 XDAD_REL = {"x-dad-publishes", "x-dad-amplifies", "x-dad-leverages"}
 SCO = {"url", "ipv4-addr", "email-addr", "domain-name"}
 COPY_FIELDS = ("description", "aliases", "identity_class", "country", "channel_type", "content_type")
+# STIX 2.1 預定義的 TLP:AMBER（固定 id／created，見 STIX 2.1 §7.2.1.4）
+TLP_AMBER_ID = "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
+TLP_AMBER = {"type": "marking-definition", "spec_version": "2.1", "id": TLP_AMBER_ID,
+             "created": "2017-01-20T00:00:00.000Z", "definition_type": "tlp",
+             "name": "TLP:AMBER", "definition": {"tlp": "amber"}}
+SENSITIVE = {"domestic-named"}                # 具名在世在地個人／媒體（STIX-PROFILE §8 紅線）
 
 def iso(d):
     d = d or "1970-01-01"
@@ -32,6 +38,7 @@ def serialize(lite):
     rep = lite["report"]; ts = iso(rep.get("published"))
     mark_id = f"marking-definition--{uuid.uuid5(NS, 'mark:statement')}"
     idmap, objs, used = {}, [], set()
+    tlp_amber_used = False
 
     for o in lite["objects"]:                    # 先配 id
         k = o["kind"]
@@ -50,6 +57,10 @@ def serialize(lite):
             if o.get(f) is not None: so[f] = o[f]
         if o.get("confidence"): so["confidence"] = CONF[o["confidence"]]
         so["object_marking_refs"] = [mark_id]
+        if o.get("sensitivity") in SENSITIVE:     # §8：語義分清——TLP:AMBER 控分享，
+            so["x_netweaver_sensitivity"] = o["sensitivity"]   # 禁自動建立由此欄位＋管線強制表達
+            so["object_marking_refs"].append(TLP_AMBER_ID)
+            tlp_amber_used = True
         if k in XDAD_SDO:
             used.add(k); so["extensions"] = {extdef_id(k): {"extension_type": "new-sdo"}}
         if o.get("evidence"): so["x_netweaver_evidence"] = o["evidence"]
@@ -72,6 +83,7 @@ def serialize(lite):
                      "created": ts, "modified": ts, "name": f"NetWeaver {k}",
                      "schema": "local; pending OASIS DAD-CDM", "version": "0.1",
                      "extension_types": ["new-sdo" if k in XDAD_SDO else "new-sro"]})
+    if tlp_amber_used: objs.append(dict(TLP_AMBER))   # 自帶定義，bundle 保持自足（不留懸空 ref）
     objs.append({"type": "marking-definition", "spec_version": "2.1", "id": mark_id, "created": ts,
                  "definition_type": "statement",
                  "definition": {"statement": "記錄公開研究中被點名者，非法律指控。Documents public research; not a legal accusation."}})

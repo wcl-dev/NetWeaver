@@ -34,7 +34,8 @@
           "content_type": {"type": "string"},
           "value": {"type": "string"},
           "confidence": {"enum": ["low","medium","high"]},
-          "evidence": {"type": "array", "items": {"$ref": "#/$defs/evidence"}}
+          "evidence": {"type": "array", "items": {"$ref": "#/$defs/evidence"}},
+          "sensitivity": {"enum": ["domestic-named"], "description": "沿用 db 登錄值；序列化為 x_netweaver_sensitivity＋TLP:AMBER（見 STIX-PROFILE §8）"}
         }
       }
     },

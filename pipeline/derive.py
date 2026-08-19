@@ -112,6 +112,9 @@ def derive(extr, reg):
     sl = {"report": rep, "objects": [], "relationships": [{k: v for k, v in r.items() if not k.startswith("_")} for r in rels]}
     for o in out:
         oo = {k: v for k, v in o.items() if not k.startswith("_")}
-        if o.get("_known"): oo["nw_ref"] = o["_known"]["id"]
+        if o.get("_known"):
+            oo["nw_ref"] = o["_known"]["id"]
+            # 敏感標記沿用登錄值：紅線要跟著中介格式走，不能只存在於發布層
+            if o["_known"].get("sensitivity"): oo["sensitivity"] = o["_known"]["sensitivity"]
         sl["objects"].append(oo)
     return sl, log

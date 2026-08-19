@@ -124,6 +124,12 @@ pipeline/
 # raw/、extractions/、ingest_state.json 為執行期產物（.gitignore）
 ```
 
+## 交接文件
+
+給團隊看的白話說明（管線概況、人機分工、名冊為什麼是唯一閘門）：[../docs/HANDOVER.html](../docs/HANDOVER.html)。
+直接用瀏覽器開即可；同一份內容也發布於 https://claude.ai/code/artifact/7d823944-5da9-4bda-906a-6b2111f13dec
+（更新時兩邊要一起）。
+
 ## 下一步
 
 - **迴圈已成形**（`run_loop.py`）：`ingest → filter → extract → derive → validate → project` 一鍵冪等跑，產出待審 curation queue；人審＋安全 compile 走 `curate.py`。待補見 `../docs/LOOP_BACKLOG.md`（排程、readability 正文等）。

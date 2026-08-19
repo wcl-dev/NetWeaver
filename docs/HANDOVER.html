@@ -1,0 +1,737 @@
+<title>NetWeaver 人機分工</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600;700&display=swap">
+
+<style>
+  :root {
+    --paper:      #f5f6f8;
+    --surface:    #ffffff;
+    --ink:        #1b2430;
+    --ink-muted:  #5b6672;
+    --ink-faint:  #8a939e;
+    --rule:       #dce0e6;
+    --rule-soft:  #e8ebef;
+    --human:      #8c3a3a;
+    --human-bg:   #f6ecea;
+    --code-bg:    #eef0f3;
+
+    --serif: "Noto Serif TC", "Songti TC", Georgia, serif;
+    --sans:  "Noto Sans TC", "PingFang TC", "Helvetica Neue", Arial, sans-serif;
+    --mono:  "IBM Plex Mono", "SFMono-Regular", Menlo, Consolas, monospace;
+
+    --measure: 34rem;
+    --wide: 60rem;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper:     #14181d;
+      --surface:   #1a1f26;
+      --ink:       #e4e8ed;
+      --ink-muted: #98a3af;
+      --ink-faint: #6d7883;
+      --rule:      #2c333b;
+      --rule-soft: #232931;
+      --human:     #e0857a;
+      --human-bg:  #2b2020;
+      --code-bg:   #21272f;
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper:     #14181d;
+    --surface:   #1a1f26;
+    --ink:       #e4e8ed;
+    --ink-muted: #98a3af;
+    --ink-faint: #6d7883;
+    --rule:      #2c333b;
+    --rule-soft: #232931;
+    --human:     #e0857a;
+    --human-bg:  #2b2020;
+    --code-bg:   #21272f;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.75;
+    margin: 0;
+    padding: 0 1.5rem 6rem;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap { max-width: var(--wide); margin: 0 auto; }
+  .col  { max-width: var(--measure); }
+
+  /* ---------- masthead ---------- */
+  .masthead {
+    border-bottom: 2px solid var(--ink);
+    padding: 3.5rem 0 1.25rem;
+    margin-bottom: 2.5rem;
+  }
+  .eyebrow {
+    font-size: .75rem;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin: 0 0 .75rem;
+    font-weight: 500;
+  }
+  h1 {
+    font-family: var(--serif);
+    font-weight: 700;
+    font-size: clamp(1.9rem, 4.5vw, 2.75rem);
+    line-height: 1.25;
+    letter-spacing: -.01em;
+    text-wrap: balance;
+    margin: 0 0 .6rem;
+  }
+  .standfirst {
+    font-size: 1.0625rem;
+    color: var(--ink-muted);
+    max-width: var(--measure);
+    margin: 0;
+  }
+  .meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .4rem 1.5rem;
+    margin-top: 1.5rem;
+    font-size: .8125rem;
+    color: var(--ink-faint);
+    font-family: var(--mono);
+  }
+
+  /* ---------- sections ---------- */
+  section { margin-top: 3.5rem; }
+  h2 {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: 1.5rem;
+    line-height: 1.35;
+    text-wrap: balance;
+    margin: 0 0 1rem;
+    padding-bottom: .5rem;
+    border-bottom: 1px solid var(--rule);
+  }
+  h3 {
+    font-family: var(--sans);
+    font-weight: 700;
+    font-size: 1.0625rem;
+    margin: 2rem 0 .5rem;
+  }
+  p { margin: 0 0 1rem; max-width: var(--measure); }
+  strong { font-weight: 700; }
+
+  .lead { font-size: 1.0625rem; }
+
+  /* ---------- human marker ---------- */
+  .human { color: var(--human); font-weight: 500; }
+  .tag {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: .6875rem;
+    letter-spacing: .06em;
+    padding: .1rem .45rem;
+    border-radius: 2px;
+    border: 1px solid var(--rule);
+    color: var(--ink-muted);
+    background: var(--surface);
+    white-space: nowrap;
+  }
+  .tag.is-human { color: var(--human); border-color: var(--human); background: var(--human-bg); }
+
+  /* ---------- stage list ---------- */
+  .stages { list-style: none; padding: 0; margin: 1.5rem 0 0; display: grid; gap: 0; }
+  .stages > li {
+    display: grid;
+    grid-template-columns: 2.5rem 5.5rem 1fr;
+    gap: 0 1rem;
+    align-items: baseline;
+    padding: 1rem 0;
+    border-top: 1px solid var(--rule-soft);
+  }
+  .stages > li:last-child { border-bottom: 1px solid var(--rule-soft); }
+  .stage-num {
+    font-family: var(--mono);
+    font-size: .9375rem;
+    color: var(--ink-faint);
+    font-variant-numeric: tabular-nums;
+  }
+  .stage-body { max-width: var(--measure); }
+  .stage-body h3 { margin: 0 0 .25rem; font-size: 1rem; }
+  .stage-body p { margin: 0; color: var(--ink-muted); font-size: .9375rem; }
+
+  @media (max-width: 34rem) {
+    .stages > li { grid-template-columns: 2.25rem 1fr; }
+    .stages > li .tag { grid-column: 2; justify-self: start; margin-bottom: .4rem; }
+    .stage-body { grid-column: 2; }
+  }
+
+  /* ---------- figure ---------- */
+  figure {
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 3px;
+    overflow-x: auto;
+  }
+  figure svg { display: block; max-width: 100%; height: auto; min-width: 30rem; }
+  figcaption {
+    margin-top: 1rem;
+    font-size: .8125rem;
+    line-height: 1.6;
+    color: var(--ink-muted);
+    max-width: var(--measure);
+  }
+
+  /* ---------- table ---------- */
+  .table-wrap { overflow-x: auto; margin: 1.5rem 0; }
+  table { border-collapse: collapse; width: 100%; font-size: .9375rem; min-width: 32rem; }
+  th, td { text-align: left; padding: .7rem .9rem; border-bottom: 1px solid var(--rule-soft); vertical-align: top; }
+  thead th {
+    font-size: .75rem;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    font-weight: 500;
+    border-bottom: 1px solid var(--rule);
+  }
+  td.num { font-family: var(--mono); font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+  /* ---------- code ---------- */
+  code {
+    font-family: var(--mono);
+    font-size: .875em;
+    background: var(--code-bg);
+    padding: .1em .35em;
+    border-radius: 2px;
+  }
+  pre {
+    font-family: var(--mono);
+    font-size: .8125rem;
+    line-height: 1.7;
+    background: var(--code-bg);
+    border: 1px solid var(--rule-soft);
+    border-radius: 3px;
+    padding: .9rem 1rem;
+    overflow-x: auto;
+    margin: 1rem 0;
+  }
+  pre code { background: none; padding: 0; }
+  .cmt { color: var(--ink-faint); }
+
+  /* ---------- callout ---------- */
+  .note {
+    border-left: 3px solid var(--human);
+    background: var(--human-bg);
+    padding: 1rem 1.25rem;
+    margin: 1.5rem 0;
+    border-radius: 0 3px 3px 0;
+    max-width: var(--measure);
+  }
+  .note p:last-child { margin-bottom: 0; }
+  .note-label {
+    font-family: var(--mono);
+    font-size: .6875rem;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--human);
+    display: block;
+    margin-bottom: .35rem;
+  }
+
+  /* ---------- gate list ---------- */
+  .gates { list-style: none; padding: 0; margin: 1.25rem 0; counter-reset: g; }
+  .gates > li {
+    counter-increment: g;
+    position: relative;
+    padding: .6rem 0 .6rem 2.25rem;
+    border-bottom: 1px solid var(--rule-soft);
+    max-width: var(--measure);
+  }
+  .gates > li::before {
+    content: counter(g);
+    position: absolute;
+    left: 0; top: .6rem;
+    width: 1.5rem; height: 1.5rem;
+    border: 1px solid var(--rule);
+    border-radius: 50%;
+    display: grid; place-items: center;
+    font-family: var(--mono); font-size: .75rem;
+    color: var(--ink-muted);
+  }
+
+  ul.plain { padding-left: 1.1rem; max-width: var(--measure); }
+  ul.plain li { margin-bottom: .5rem; }
+
+  footer {
+    margin-top: 4.5rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--rule);
+    font-size: .8125rem;
+    color: var(--ink-faint);
+    max-width: var(--measure);
+  }
+
+  /* SVG：呈現屬性不吃 var()，改由 class 帶入主題色 */
+  .s-human-f { fill: var(--human); }
+  .s-human-s { stroke: var(--human); }
+
+  a { color: inherit; text-decoration-color: var(--ink-faint); text-underline-offset: 2px; }
+  a:focus-visible, li:focus-visible { outline: 2px solid var(--human); outline-offset: 3px; }
+</style>
+
+<div class="wrap">
+
+  <header class="masthead">
+    <p class="eyebrow">交接說明</p>
+    <h1>NetWeaver：人審名冊，機器填內容</h1>
+    <p class="standfirst">
+      這套工具把公開的境外資訊操弄研究報告，自動變成記錄簿上一張張附來源的卡片。
+      但誰可以出現在記錄簿上，永遠由人決定——這份文件說明那條界線畫在哪裡、以及日常要做什麼。
+    </p>
+    <div class="meta">
+      <span>台灣 FIMI 行為者記錄簿</span>
+      <span>已登錄行為者 57 · 來源 71</span>
+      <span>2026-08-19</span>
+    </div>
+  </header>
+
+  <section>
+    <h2>這套工具在做什麼</h2>
+    <p class="lead">
+      它訂閱一批研究機構的公開報告，讀完之後，把「某某單位在某某行動中做了什麼」整理成記錄簿上的條目，
+      每一條都附上原文引用與來源連結。
+    </p>
+    <p>
+      核心原則只有一句：<strong>模型只負責抄，判斷全部由程式碼做。</strong>
+      模型不決定誰是攻擊者、不決定關係強弱、不決定要不要指名歸因——這些都是寫死的規則，
+      有測試鎖著，換一個模型也不會變。
+    </p>
+    <p>
+      而「誰可以進記錄簿」這件事，連程式碼都不決定，由人維護的<strong>名冊</strong>決定。
+    </p>
+  </section>
+
+  <section>
+    <h2>管線的六個步驟</h2>
+
+    <figure>
+      <svg viewBox="0 0 960 300" role="img" aria-label="資料管線流程圖：抓取、篩選、抽取、判斷、掛名冊、發布六個步驟；其中只有抽取由模型執行，篩選與判斷由程式碼執行，掛名冊這一步由人工維護的行為者名冊決定內容能否落地。">
+        <defs>
+          <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="currentColor"/>
+          </marker>
+          <marker id="ah-h" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M 0 0 L 10 5 L 0 10 z" class="s-human-f"/>
+          </marker>
+        </defs>
+
+        <!-- role tags -->
+        <g font-family="IBM Plex Mono, monospace" font-size="11" fill="currentColor" opacity=".55" text-anchor="middle">
+          <text x="85"  y="52">碼</text>
+          <text x="243" y="52">碼</text>
+          <text x="401" y="52">模型</text>
+          <text x="559" y="52">碼</text>
+          <text x="717" y="52">碼</text>
+          <text x="875" y="52">碼</text>
+        </g>
+
+        <!-- stage boxes -->
+        <g fill="none" stroke="currentColor" stroke-width="1.25" opacity=".85">
+          <rect x="19"  y="64" width="132" height="60" rx="3"/>
+          <rect x="177" y="64" width="132" height="60" rx="3"/>
+          <rect x="493" y="64" width="132" height="60" rx="3"/>
+          <rect x="809" y="64" width="132" height="60" rx="3"/>
+        </g>
+        <!-- model stage: doubled stroke to mark the single AI step -->
+        <rect x="335" y="64" width="132" height="60" rx="3" fill="none" stroke="currentColor" stroke-width="2.5"/>
+        <!-- roster gate stage: human colour -->
+        <rect x="651" y="64" width="132" height="60" rx="3" fill="none" class="s-human-s" stroke-width="2.5"/>
+
+        <g font-family="Noto Sans TC, sans-serif" font-size="13" fill="currentColor" text-anchor="middle">
+          <text x="85"  y="92">① 抓取存證</text>
+          <text x="85"  y="111" font-size="11" opacity=".6">RSS · PDF</text>
+          <text x="243" y="92">② 篩相關</text>
+          <text x="243" y="111" font-size="11" opacity=".6">詞表規則</text>
+          <text x="401" y="92">③ 抽取</text>
+          <text x="401" y="111" font-size="11" opacity=".6">逐字抄原文</text>
+          <text x="559" y="92">④ 判斷</text>
+          <text x="559" y="111" font-size="11" opacity=".6">關係 · 信心</text>
+          <text x="717" y="92" class="s-human-f">⑤ 掛名冊</text>
+          <text x="717" y="111" font-size="11" class="s-human-f" opacity=".8">已登錄才留</text>
+          <text x="875" y="92">⑥ 發布</text>
+          <text x="875" y="111" font-size="11" opacity=".6">記錄簿卡片</text>
+        </g>
+
+        <!-- flow arrows -->
+        <g stroke="currentColor" stroke-width="1.25" marker-end="url(#ah)" opacity=".7">
+          <line x1="151" y1="94" x2="171" y2="94"/>
+          <line x1="309" y1="94" x2="329" y2="94"/>
+          <line x1="467" y1="94" x2="487" y2="94"/>
+          <line x1="625" y1="94" x2="645" y2="94"/>
+          <line x1="783" y1="94" x2="803" y2="94"/>
+        </g>
+
+        <!-- roster feeding the gate -->
+        <rect x="641" y="196" width="152" height="52" rx="3" fill="none" class="s-human-s" stroke-width="1.25"/>
+        <g font-family="Noto Sans TC, sans-serif" font-size="12.5" class="s-human-f" text-anchor="middle">
+          <text x="717" y="218">行為者名冊</text>
+          <text x="717" y="236" font-size="11" opacity=".8">人工維護 · 57 筆</text>
+        </g>
+        <line x1="717" y1="196" x2="717" y2="130" class="s-human-s" stroke-width="1.5" marker-end="url(#ah-h)"/>
+        <text x="729" y="166" font-family="Noto Sans TC, sans-serif" font-size="11" class="s-human-f">決定誰能留下</text>
+
+        <!-- dropped branch -->
+        <path d="M 717 124 L 717 158 L 500 158 L 500 186" fill="none" stroke="currentColor" stroke-width="1.25"
+              stroke-dasharray="4 4" opacity=".55" marker-end="url(#ah)"/>
+        <text x="490" y="206" font-family="Noto Sans TC, sans-serif" font-size="11.5" fill="currentColor"
+              opacity=".65" text-anchor="end">掛不上 → 丟棄</text>
+
+        <!-- filter drop -->
+        <path d="M 243 124 L 243 158 L 150 158 L 150 186" fill="none" stroke="currentColor" stroke-width="1.25"
+              stroke-dasharray="4 4" opacity=".55" marker-end="url(#ah)"/>
+        <text x="140" y="206" font-family="Noto Sans TC, sans-serif" font-size="11.5" fill="currentColor"
+              opacity=".65" text-anchor="end">不相關 → 丟棄</text>
+
+        <!-- annotation for the single model step -->
+        <line x1="401" y1="124" x2="401" y2="152" stroke="currentColor" stroke-width="1.25" opacity=".55"/>
+        <text x="401" y="170" font-family="Noto Sans TC, sans-serif" font-size="11.5" fill="currentColor"
+              opacity=".7" text-anchor="middle">整條線唯一的 AI 步驟</text>
+      </svg>
+      <figcaption>
+        六個步驟裡只有第三步用到 AI，而且它只做「把原文裡的名字和句子逐字抄出來」這一件事；
+        抄出來的每一句都會被程式檢查是不是原文一字不差的片段，對不上就丟掉。
+        <span class="human">紅色</span>標示的是人決定的部分——第五步的名冊，是內容能不能留在記錄簿上的唯一閘門。
+      </figcaption>
+    </figure>
+
+    <ol class="stages">
+      <li>
+        <span class="stage-num">①</span><span class="tag">碼</span>
+        <div class="stage-body">
+          <h3>抓取存證</h3>
+          <p>訂閱研究機構的 RSS，有新文章就抓下來存一份原始檔與一份純文字。存下來的東西不會再變，之後查證都對得回去。</p>
+        </div>
+      </li>
+      <li>
+        <span class="stage-num">②</span><span class="tag">碼</span>
+        <div class="stage-body">
+          <h3>篩相關</h3>
+          <p>用詞表判斷這篇跟台灣 FIMI 有沒有關。這一步沒有模型參與，是可以版本控管、可以寫測試的規則表。</p>
+        </div>
+      </li>
+      <li>
+        <span class="stage-num">③</span><span class="tag">模型</span>
+        <div class="stage-body">
+          <h3>抽取</h3>
+          <p>整條線唯一用到 AI 的地方。模型只把原文提到的名字與句子逐字抄出來，不分類、不判斷關係、不決定歸因。</p>
+        </div>
+      </li>
+      <li>
+        <span class="stage-num">④</span><span class="tag">碼</span>
+        <div class="stage-body">
+          <h3>判斷</h3>
+          <p>所有判斷都在這裡，而且是寫死的規則：報告說「僱用」就判為控制關係；說「可能有關」就停在弱關聯、不做歸因。</p>
+        </div>
+      </li>
+      <li>
+        <span class="stage-num">⑤</span><span class="tag is-human">人的名冊</span>
+        <div class="stage-body">
+          <h3>掛名冊</h3>
+          <p>模型抄出來的名字，只有已經登錄在名冊裡的，才會真的出現在記錄簿上。掛不上的整條丟棄。</p>
+        </div>
+      </li>
+      <li>
+        <span class="stage-num">⑥</span><span class="tag">碼</span>
+        <div class="stage-body">
+          <h3>發布</h3>
+          <p>寫進資料檔，前端讀出來成為卡片，每張附來源連結與報告發布日。</p>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <section>
+    <h2>中間格式：為什麼要先變成 STIX</h2>
+    <p>
+      在「④ 判斷」和「⑤ 掛名冊」之間，資料會先被轉成一個固定格式——<strong>STIX 2.1</strong>，
+      資安情報界的標準交換格式。操作這套工具的人不需要知道這一層；
+      但要維護或接手程式碼的人，這是最該先理解的一件事。
+    </p>
+
+    <figure>
+      <svg viewBox="0 0 840 250" role="img" aria-label="沙漏圖：格式各異的研究報告先收斂成同一份 STIX 2.1 bundle，再由它投影出記錄簿前端與其他情報工具可用的資料。">
+        <defs>
+          <marker id="ah3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="currentColor"/>
+          </marker>
+        </defs>
+
+        <g font-family="Noto Sans TC, sans-serif" font-size="12" fill="currentColor" opacity=".55">
+          <text x="30" y="26">來源格式各異</text>
+          <text x="620" y="26">下游各取所需</text>
+        </g>
+
+        <!-- inputs -->
+        <g fill="none" stroke="currentColor" stroke-width="1.25" opacity=".7">
+          <rect x="30" y="42"  width="150" height="42" rx="3"/>
+          <rect x="30" y="102" width="150" height="42" rx="3"/>
+          <rect x="30" y="162" width="150" height="42" rx="3"/>
+        </g>
+        <g font-family="Noto Sans TC, sans-serif" font-size="12.5" fill="currentColor" text-anchor="middle" opacity=".85">
+          <text x="105" y="68">IORG 月報（中文）</text>
+          <text x="105" y="128">Medium 文章（英文）</text>
+          <text x="105" y="188">NSB 報告（PDF）</text>
+        </g>
+
+        <!-- converge -->
+        <g stroke="currentColor" stroke-width="1.25" opacity=".55" marker-end="url(#ah3)" fill="none">
+          <path d="M 180 63  C 250 63, 260 105, 322 118"/>
+          <path d="M 180 123 L 322 123"/>
+          <path d="M 180 183 C 250 183, 260 141, 322 128"/>
+        </g>
+
+        <!-- fixed target -->
+        <rect x="330" y="88" width="180" height="72" rx="3" fill="none" stroke="currentColor" stroke-width="2.5"/>
+        <g font-family="Noto Sans TC, sans-serif" font-size="13.5" fill="currentColor" text-anchor="middle">
+          <text x="420" y="118">STIX 2.1 bundle</text>
+          <text x="420" y="138" font-size="11.5" opacity=".65">固定的靶</text>
+        </g>
+
+        <!-- fan out -->
+        <g stroke="currentColor" stroke-width="1.25" opacity=".55" marker-end="url(#ah3)" fill="none">
+          <path d="M 510 112 C 560 112, 570 76, 612 70"/>
+          <path d="M 510 136 C 560 136, 570 172, 612 178"/>
+        </g>
+
+        <!-- outputs -->
+        <g fill="none" stroke="currentColor" stroke-width="1.25" opacity=".7">
+          <rect x="620" y="48"  width="190" height="44" rx="3"/>
+          <rect x="620" y="156" width="190" height="44" rx="3"/>
+        </g>
+        <g font-family="Noto Sans TC, sans-serif" font-size="12.5" fill="currentColor" text-anchor="middle" opacity=".85">
+          <text x="715" y="70">記錄簿前端</text>
+          <text x="715" y="86" font-size="11" opacity=".7">投影成卡片</text>
+          <text x="715" y="178">其他情報工具</text>
+          <text x="715" y="194" font-size="11" opacity=".7">OpenCTI 等</text>
+        </g>
+
+        <text x="420" y="232" font-family="Noto Sans TC, sans-serif" font-size="11.5"
+              fill="currentColor" opacity=".6" text-anchor="middle">
+          模型瞄的是中間這個固定的靶，不是各自不同的來源，也不是前端的呈現格式
+        </text>
+      </svg>
+      <figcaption>
+        報告格式五花八門。如果讓模型直接抽進自訂結構，換一個模型輸出就變。
+        插一個固定格式當靶，模型才有固定的東西可以瞄，判斷邏輯也才能寫死在程式碼裡而不隨模型漂移。
+      </figcaption>
+    </figure>
+
+    <p>
+      <strong>順帶得到的好處是相容性。</strong>這個格式採 VIGINUM 的 OpenCTI doctrine、
+      OASIS DAD-CDM 方向與 DISARM 框架，不是自己發明的——意思是這批資料可以直接餵給國際上同一套工具鏈。
+    </p>
+    <p>
+      <strong>敏感標記也走這一層。</strong>名冊裡標為敏感的對象，在 bundle 裡會帶上對應標記與
+      TLP:AMBER 分享限制——所以只要 bundle 被匯出給別的系統，那個限制就跟著走，
+      不會只留在我們自己的發布流程裡。
+    </p>
+
+    <div class="note">
+      <span class="note-label">注意</span>
+      <p>
+        目前<strong>迴圈不會把 bundle 存檔</strong>。它在記憶體裡建好、驗證、投影成卡片之後就丟掉，
+        只有抽取結果會留在磁碟上。要拿到實體檔案，得手動對單篇跑
+        <code>python3 pipeline/pipeline.py &lt;extraction.json&gt;</code>。
+      </p>
+      <p>
+        意思是：上面說的相容性與標記隨資料走，<strong>機制已經就位，但還沒被實際用上</strong>——
+        真的要把資料交換出去之前，得先決定要不要讓迴圈把 bundle 留下來。
+      </p>
+    </div>
+
+    <p style="color: var(--ink-muted); font-size: .9375rem;">
+      規格在 <code>docs/STIX-PROFILE.md</code>；<code>pipeline/out/</code> 裡的三份 bundle 是樣本，
+      不是迴圈的產出。
+    </p>
+  </section>
+
+  <section>
+    <h2>人在哪兩個位置</h2>
+    <p>整套流程裡，人只維護兩份清單。</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>清單</th><th>內容</th><th>數量</th><th>人在決定什麼</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>來源名冊</strong></td>
+            <td>你信任的研究機構</td>
+            <td class="num">71</td>
+            <td>「IORG、Doublethink Lab、FactLink 講的話我採信」</td>
+          </tr>
+          <tr>
+            <td><strong>行為者名冊</strong></td>
+            <td>記錄簿收錄的對象</td>
+            <td class="num">57</td>
+            <td>「新華社算 FIMI 行為者，蔡英文不算」</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>
+      登錄一個<strong>來源</strong>接近機械動作——判斷這家發布者可不可信。
+      登錄一個<strong>行為者</strong>才是真正需要判斷力的地方：你等於在說「這個單位屬於台灣 FIMI 行為者記錄簿」，
+      而這本記錄簿會指名真實的媒體與個人。
+    </p>
+  </section>
+
+  <section>
+    <h2>日常怎麼運作</h2>
+    <p class="lead">
+      三段：<span class="human">人審名冊</span> → 手動觸發 → 自動發布，<span class="human">例外留給人</span>。
+    </p>
+
+    <h3><span class="tag is-human">人</span>&nbsp; 第一段：審名冊</h3>
+    <p>模型讀完一批報告後，執行這行，看看有哪些名字反覆出現卻還沒登錄：</p>
+    <pre><code>python3 pipeline/register.py roster</code></pre>
+    <p>它會依「出現在幾篇報告」排序。出現越多篇，越可能是真的該收：</p>
+    <pre><code> 篇數   引文  類型    名稱
+   1    10  管道    中國軍號      <span class="cmt">← 中國官媒，該收</span>
+   1     4  管道    新華社        <span class="cmt">← 該收</span>
+   1     4  實體    中國          <span class="cmt">← 被提到的國家，不該收</span>
+   1     2  實體    習近平        <span class="cmt">← 人物，不該收</span></code></pre>
+    <p>你只做這一題：<strong>哪些該進名冊。</strong>決定要收的，執行它印給你的預填指令。</p>
+    <p>
+      <strong>決定不收的也要記下來</strong>，否則下次跑還會再冒出來一次：
+    </p>
+    <pre><code>python3 pipeline/register.py ignore 習近平 --reason "被提及的人物，非行為者"</code></pre>
+    <p>
+      之後 roster 就不再列出它（表頭仍會標明藏了幾個，不會偷偷消失；反悔用
+      <code>unignore</code>）。少了這一步，同樣的雜訊每次都會重新洗版，清單很快就沒人想看。
+    </p>
+
+    <h3><span class="tag">人下指令</span>&nbsp; 第二段：手動觸發</h3>
+    <pre><code>python3 pipeline/run_loop.py     <span class="cmt"># 抓新報告、讓模型讀</span>
+python3 pipeline/curate.py auto  <span class="cmt"># 檢查閘門、能發的就發</span></code></pre>
+    <p>「手動」的意思是：<strong>沒有排程</strong>，這兩行要人自己下。目前沒有任何背景程式在跑。</p>
+
+    <h3><span class="tag">碼</span>&nbsp; 第三段：自動發布</h3>
+    <p>通過四道閘的，直接寫進記錄簿，不用人看。</p>
+
+    <h3><span class="tag is-human">人</span>&nbsp; 例外：留給人</h3>
+    <p>兩種情形會停下來等人處理，它們會留在待審佇列裡：</p>
+    <div class="note">
+      <span class="note-label">紅線</span>
+      <p><strong>含歸因宣稱的。</strong>「A 單位是 B 行動的幕後操作者」這種指名道姓的宣稱，永遠要人逐篇確認，不管模型多有把握。這是專案規格明定的紅線。</p>
+    </div>
+    <div class="note">
+      <span class="note-label">敏感對象</span>
+      <p><strong>碰到台灣具名媒體或個人的。</strong>名冊裡有 17 筆這類對象。曾經同意收錄它們，不等於同意之後每篇報告都自動往它們的檔案頁加內容。</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>自動發布的四道閘</h2>
+    <ol class="gates">
+      <li>資料結構本身通過驗證</li>
+      <li><strong>沒有歸因宣稱</strong>——有的話整篇留給人</li>
+      <li>出版方是已經核可過的</li>
+      <li>內容掛得上名冊裡的實體，而且那些實體沒有被標為敏感</li>
+    </ol>
+
+    <figure>
+      <svg viewBox="0 0 840 230" role="img" aria-label="漏斗圖：一篇報告投影出 139 條宣稱，其中 86 條因為對象不在名冊裡被丟棄，53 條掛上已登錄實體，去重後成為 45 張記錄簿卡片。">
+        <text x="40" y="30" font-family="Noto Sans TC, sans-serif" font-size="13" fill="currentColor" opacity=".7">
+          模型從一篇報告抽出的 139 條宣稱
+        </text>
+
+        <!-- full bar, split -->
+        <rect x="40" y="44" width="470" height="52" fill="none" stroke="currentColor" stroke-width="1.25"
+              stroke-dasharray="4 4" opacity=".5"/>
+        <rect x="510" y="44" width="290" height="52" fill="none" class="s-human-s" stroke-width="1.5"/>
+
+        <g font-family="Noto Sans TC, sans-serif" font-size="13" fill="currentColor">
+          <text x="275" y="68" text-anchor="middle" opacity=".65">86 條</text>
+          <text x="275" y="86" text-anchor="middle" font-size="11" opacity=".55">對象不在名冊 → 丟棄</text>
+        </g>
+        <g font-family="Noto Sans TC, sans-serif" font-size="13" class="s-human-f">
+          <text x="655" y="68" text-anchor="middle">53 條</text>
+          <text x="655" y="86" text-anchor="middle" font-size="11" opacity=".85">掛上已登錄實體</text>
+        </g>
+
+        <!-- arrow down -->
+        <line x1="655" y1="96" x2="655" y2="134" stroke="currentColor" stroke-width="1.25" opacity=".6"
+              marker-end="url(#ah2)"/>
+        <defs>
+          <marker id="ah2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="currentColor"/>
+          </marker>
+        </defs>
+        <text x="668" y="120" font-family="Noto Sans TC, sans-serif" font-size="11" fill="currentColor" opacity=".6">去除重複</text>
+
+        <!-- final bar -->
+        <rect x="510" y="140" width="246" height="46" fill="none" class="s-human-s" stroke-width="2"/>
+        <g font-family="Noto Sans TC, sans-serif" font-size="13" class="s-human-f">
+          <text x="633" y="161" text-anchor="middle">45 張卡片</text>
+          <text x="633" y="178" text-anchor="middle" font-size="11" opacity=".85">實際出現在記錄簿上</text>
+        </g>
+
+        <text x="40" y="215" font-family="Noto Sans TC, sans-serif" font-size="11.5" fill="currentColor" opacity=".55">
+          長度按比例繪製 · 資料來自一篇 FactLink 軍演宣傳網絡報告的實際處理結果
+        </text>
+      </svg>
+      <figcaption>
+        真正在過濾內容的是名冊，不是逐篇人審——這篇報告有六成的模型產出因為「講的對象沒登錄」而直接丟掉。
+      </figcaption>
+    </figure>
+  </section>
+
+  <section>
+    <h2>為什麼這樣設計</h2>
+    <p>因為<strong>模型不可信，但名冊可信</strong>。</p>
+    <p>
+      模型在測試中大約有一半的產出不在標準答案裡。如果讓它自己決定誰進記錄簿，
+      錯誤會以「某某被列為協力者」的形式對外——這對被點名的真實個人與媒體有實際傷害。
+    </p>
+    <p>
+      但反過來說，模型抽得浮濫其實不要緊，因為名冊會擋掉六成。
+      它<em>漏抽</em>才要緊，那是補不回來的。所以我們容許它多抽，讓名冊當閘門。
+    </p>
+    <p><strong>人做判斷（誰該進記錄簿），機器做勞務（讀報告、抄句子、比對、排版）。</strong></p>
+  </section>
+
+  <section>
+    <h2>目前的限制</h2>
+    <ul class="plain">
+      <li><strong>沒有排程。</strong>兩行指令要人自己下，沒有背景程式在跑。</li>
+      <li><strong>自動發布還沒實戰過。</strong>機制寫好也有測試（21 個測試檔全過），但佇列目前沒有待處理項目，還沒在真實資料上完整跑過一次。下一批報告進來會是第一次。</li>
+      <li><strong>用的是本機模型。</strong>雲端模型測出來明顯更好，但目前那把金鑰是團隊共用、只能用於測試，所以正式流程維持本機模型，品質差一截。要升級需要一把可以跑正式流程的金鑰。</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>接手要記得的三件事</h2>
+    <ol class="gates">
+      <li><strong>名冊是唯一的閘門。</strong>不維護名冊，不是「照舊發布」，而是幾乎什麼都發不出來。</li>
+      <li><strong>歸因永遠人工。</strong>不要為了自動化而把那道閘打開，那是專案規格明定的紅線。</li>
+      <li><strong>發布是可逆的。</strong>每一篇報告的內容以來源為單位整批取代，撤下或重編都不會影響其他來源的資料。</li>
+    </ol>
+  </section>
+
+  <footer>
+    NetWeaver 是概念驗證。記錄的是「在公開研究中被點名的行為者」，不是法律上的指控或定罪；
+    實體間關係屬描述性，未做正式歸因主張。每筆關鍵內容都附上來源，歡迎查證。
+  </footer>
+
+</div>

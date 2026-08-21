@@ -51,6 +51,9 @@ def derive(extr, reg):
         o = {"tmp_id": m["tmp_id"], "kind": kind}
         if kind == "location": o["country"] = m.get("country", "TW")
         else: o["name"] = re.split(r"[／/]", surf)[0].strip()
+        if kind == "identity":                               # 模型已分辨人／組織，別把這個資訊丟掉：
+            o["identity_class"] = ("individual"              # 人名是中性 observable（被提及的對象），
+                                   if m["coarse_type"] == "person" else "organization")  # 不是行為者
         if m.get("quote"): o["evidence"] = [{"quote": m["quote"], "source_url": m["source_url"]}]
         o["_known"] = known
         objs[m["tmp_id"]] = o; out.append(o)

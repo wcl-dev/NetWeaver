@@ -247,6 +247,26 @@ def cmd_suggest(args):
     print(f"\n# 補完後：python3 pipeline/curate.py approve {args.raw_id} → python3 pipeline/curate.py compile")
     return 0
 
+FEEDS_PATH = _here / "feeds.json"
+
+def tracked_publishers():
+    """**主動追蹤**的機構 → 正規化名集合：訂閱其 feed，或列入 registry.yaml 的結構化條目。
+
+    這些是寫報告的**觀察者**，不是被記錄的行為者，不該出現在名冊候選清單裡。
+    刻意不用 `db.sources` 的出版方集合——那份混著對手方原始素材（環球時報自己的社評是物證），
+    用它會把「既是行為者、其產出又當佐證」的對象誤判成觀察者而永遠無法登錄。
+    只做正規化精確比對：追蹤機構的中文別名（如「台灣民主實驗室」）不會命中，那類留給忽略清單。
+    """
+    orgs = set()
+    try:
+        for src in json.loads(FEEDS_PATH.read_text(encoding="utf-8")).get("sources", []):
+            if src.get("org"): orgs.add(src["org"])
+    except Exception: pass
+    if REGISTRY.exists():
+        txt = REGISTRY.read_text(encoding="utf-8")
+        orgs |= {o.strip() for o, _t in re.findall(r'org:\s*"?([^"\n]+?)"?\s*\n\s*tier:\s*([A-C])', txt)}
+    return {_norm(o) for o in orgs if o}
+
 _ROSTER_KINDS = _RL._ACTOR_KINDS | {"x-dad-channel"}   # 媒體／帳號＝放大者層，最常需要新登錄
 
 def cmd_roster(args):
@@ -278,24 +298,36 @@ def cmd_roster(args):
             key = _norm(name)
             a = agg.setdefault(key, {"names": set(), "docs": set(), "ev": 0, "src": set(), "kinds": set()})
             a["names"].add(name); a["docs"].add(e["raw_id"]); seen_here.add(key)
-            a["kinds"].add("管道" if o["type"] == "x-dad-channel" else "實體")
+            a["kinds"].add("管道" if o["type"] == "x-dad-channel"
+                           else "人名" if o.get("identity_class") == "individual" else "機構")
             a["ev"] += len(o.get("x_netweaver_evidence") or [])
             sid = src_by_url.get(_urlnorm.source_key(e.get("url")))
             if sid: a["src"].add(sid)
     ign, hidden = load_ignore(), 0
+    obs, obs_hidden = tracked_publishers(), 0
+    for k in [k for k in agg if k in obs]:                    # 觀察者一律不列（不是判斷題）
+        del agg[k]; obs_hidden += 1
     if not args.show_ignored:
         for k in [k for k in agg if k in ign]:
             del agg[k]; hidden += 1
     if not agg:
         print("（佇列裡沒有未登錄的行為者候選）"
               + (f"；另有 {hidden} 個已標記為不收錄" if hidden else "")); return 0
-    ranked = sorted(agg.values(), key=lambda a: (len(a["docs"]), a["ev"]), reverse=True)
-    print(f"# 未登錄行為者候選（掃 {len(entries)} 篇；依出現篇數→引文數排序）"
-          + (f"\n# 另有 {hidden} 個已標記為不收錄（--show-ignored 可看）" if hidden else ""))
-    print(f"{'篇數':>4} {'引文':>4}  {'類型':<4}  名稱")
-    for a in ranked[:args.limit]:
-        print(f"{len(a['docs']):>5} {a['ev']:>5}  {'＋'.join(sorted(a['kinds'])):<4}  "
-              + "／".join(sorted(a["names"])))
+    def _grp(a): return "人名" if a["kinds"] == {"人名"} else "機構／管道"
+    ranked = sorted(agg.values(), key=lambda a: (_grp(a) == "人名", -len(a["docs"]), -a["ev"]))
+    print(f"# 未登錄行為者候選（掃 {len(entries)} 篇）"
+          + (f"\n# 已濾除：{obs_hidden} 個我們主動追蹤的機構（寫報告的觀察者）" if obs_hidden else "")
+          + (f"\n# 已濾除：{hidden} 個標記為不收錄（--show-ignored 可看）" if hidden else ""))
+    shown, group = ranked[:args.limit], None
+    for a in shown:
+        g = _grp(a)
+        if g != group:
+            group = g
+            n_all = sum(1 for x in ranked if _grp(x) == g)
+            print(f"\n【{g}】{'（這區幾乎都不收——被提及的人物，可整批忽略）' if g == '人名' else ''}"
+                  f"  共 {n_all} 個")
+            print(f"{'篇數':>4} {'引文':>4}  名稱")
+        print(f"{len(a['docs']):>5} {a['ev']:>5}  " + "／".join(sorted(a["names"])))
     print("\n# 決定要收的，逐一執行（欄位務必人工確認）：")
     for a in ranked[:args.top]:
         nm = sorted(a["names"])[0]

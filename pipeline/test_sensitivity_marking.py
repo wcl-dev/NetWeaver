@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""敏感標記紅線（STIX-PROFILE §8）：具名在地個人／媒體必須在中介格式帶標記，不能只存在於發布層。"""
+"""STIX identity 欄位：敏感標記（§8 紅線）與人／組織分類都必須進中介格式，不能只存在於發布層。"""
 import derive, pipeline
 
 REG = derive.load_registry()
@@ -47,4 +47,18 @@ assert not any(o["id"] == pipeline.TLP_AMBER_ID for o in bundle2["objects"]), "�
 fails, _att = pipeline.validate(bundle)
 assert not fails, fails
 
-print("敏感標記：通過（derive 沿用登錄值→序列化出 x_netweaver_sensitivity＋TLP:AMBER，bundle 自足）")
+# ⑥ identity_class：模型已分辨人／組織，這個資訊必須活到 bundle
+#    （人名是被提及的中性對象，不是行為者；名冊審查靠它分組，STIX-PROFILE §2 也要求填）
+extr = {"report": {"name": "t", "url": "https://example.org/r", "org": "o",
+                   "published": "2026", "type": "ngo-report"},
+        "mentions": [{"tmp_id": "p1", "surface": "沈明室", "coarse_type": "person",
+                      "quote": "沈明室指出相關情形。", "source_url": "https://example.org/r"},
+                     {"tmp_id": "o1", "surface": "國防安全研究院", "coarse_type": "org",
+                      "quote": "國防安全研究院發布報告。", "source_url": "https://example.org/r"}],
+        "assertions": []}
+bundle3, _sl3, _l3 = pipeline.stix_from_extraction(extr, REG)
+by = {o["name"]: o for o in bundle3["objects"] if o.get("name")}
+assert by["沈明室"]["identity_class"] == "individual", by["沈明室"]
+assert by["國防安全研究院"]["identity_class"] == "organization", by["國防安全研究院"]
+
+print("敏感標記：通過（sensitivity 沿用登錄值→x_netweaver_sensitivity＋TLP:AMBER；identity_class 分辨人／組織）")

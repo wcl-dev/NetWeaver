@@ -149,6 +149,40 @@ def test_ignore_matches_across_name_variants():
     reg.cmd_ignore(argparse.Namespace(name="Global Times", reason=None))
     assert reg._norm("global  times") in reg.load_ignore(), "正規化後應視為同一名字"
 
+# ---- 觀察者（主動追蹤的機構）不該出現在名冊候選 ----
+
+@case
+def test_tracked_publishers_reads_feeds_and_registry():
+    d = pathlib.Path(tempfile.mkdtemp())
+    (d / "feeds.json").write_text(json.dumps(
+        {"sources": [{"org": "Doublethink Lab", "tier": "A"}, {"org": "Citizen Lab", "tier": "A"}]}),
+        encoding="utf-8")
+    (d / "registry.yaml").write_text(
+        'sources:\n  - id: openai\n    org: "OpenAI — Threat Intelligence"\n    tier: A\n', encoding="utf-8")
+    reg.FEEDS_PATH, reg.REGISTRY = d / "feeds.json", d / "registry.yaml"
+    obs = reg.tracked_publishers()
+    assert reg._norm("Doublethink Lab") in obs and reg._norm("Citizen Lab") in obs, obs
+    assert reg._norm("OpenAI — Threat Intelligence") in obs, "registry 結構化條目也要算"
+
+@case
+def test_tracked_publishers_excludes_adversary_material():
+    # 關鍵：環球時報的社評是「物證」，它是行為者不是觀察者。
+    # 若改用 db.sources 的出版方集合，它會被誤判成觀察者而永遠無法登錄進名冊。
+    d = pathlib.Path(tempfile.mkdtemp())
+    (d / "feeds.json").write_text(json.dumps({"sources": [{"org": "Doublethink Lab", "tier": "A"}]}),
+                                  encoding="utf-8")
+    (d / "registry.yaml").write_text("sources:\n", encoding="utf-8")
+    reg.FEEDS_PATH, reg.REGISTRY = d / "feeds.json", d / "registry.yaml"
+    obs = reg.tracked_publishers()
+    assert reg._norm("Global Times") not in obs, "對手方原始素材的出版方不得被當成觀察者"
+    assert reg._norm("環球時報") not in obs
+
+@case
+def test_tracked_publishers_survives_missing_files():
+    d = pathlib.Path(tempfile.mkdtemp())
+    reg.FEEDS_PATH, reg.REGISTRY = d / "nope.json", d / "nope.yaml"
+    assert reg.tracked_publishers() == set(), "檔案缺失不得炸，回空集合即可"
+
 def main():
     for fn in CASES:
         try:

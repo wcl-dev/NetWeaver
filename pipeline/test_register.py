@@ -165,17 +165,39 @@ def test_tracked_publishers_reads_feeds_and_registry():
     assert reg._norm("OpenAI — Threat Intelligence") in obs, "registry 結構化條目也要算"
 
 @case
-def test_tracked_publishers_excludes_adversary_material():
-    # 關鍵：環球時報的社評是「物證」，它是行為者不是觀察者。
-    # 若改用 db.sources 的出版方集合，它會被誤判成觀察者而永遠無法登錄進名冊。
+def test_tracked_publishers_excludes_tier_c():
+    # 關鍵：環球時報是 tier C（對手方原始素材）——它是行為者，其社評是物證。
+    # 把它算成觀察者會讓它永遠無法登錄進名冊。
     d = pathlib.Path(tempfile.mkdtemp())
-    (d / "feeds.json").write_text(json.dumps({"sources": [{"org": "Doublethink Lab", "tier": "A"}]}),
-                                  encoding="utf-8")
-    (d / "registry.yaml").write_text("sources:\n", encoding="utf-8")
+    (d / "feeds.json").write_text(json.dumps({"sources": []}), encoding="utf-8")
+    (d / "registry.yaml").write_text(
+        'existing:\n  sources:\n'
+        '    - id: dtl\n      org: "Doublethink Lab"\n      tier: A\n      aliases: "台灣民主實驗室"\n'
+        '    - id: globaltimes\n      org: "環球時報 Global Times"\n      tier: C\n'
+        '      aliases: "環球時報, Global Times"\n', encoding="utf-8")
     reg.FEEDS_PATH, reg.REGISTRY = d / "feeds.json", d / "registry.yaml"
     obs = reg.tracked_publishers()
-    assert reg._norm("Global Times") not in obs, "對手方原始素材的出版方不得被當成觀察者"
-    assert reg._norm("環球時報") not in obs
+    assert reg._norm("Doublethink Lab") in obs and reg._norm("台灣民主實驗室") in obs, "別名也要算觀察者"
+    assert reg._norm("環球時報") not in obs and reg._norm("Global Times") not in obs, "tier C 不是觀察者"
+
+@case
+def test_parse_registry_shape():
+    d = pathlib.Path(tempfile.mkdtemp())
+    (d / "registry.yaml").write_text(
+        'sources:\n  - id: a\n    org: "Org A"\n    tier: A\n    aliases: "AA, 甲"\n'
+        '  - id: b\n    org: "Org B"\n    tier: C\n', encoding="utf-8")
+    reg.REGISTRY = d / "registry.yaml"
+    ents = {e["id"]: e for e in reg.parse_registry()}
+    assert set(ents) == {"a", "b"}, ents
+    assert ents["a"]["aliases"] == ["AA", "甲"] and ents["b"]["aliases"] == []
+    assert ents["b"]["tier"] == "C"
+
+@case
+def test_parse_registry_survives_garbage():
+    d = pathlib.Path(tempfile.mkdtemp())
+    (d / "registry.yaml").write_text("這不是 YAML\n  隨便: 東西\n", encoding="utf-8")
+    reg.REGISTRY = d / "registry.yaml"
+    assert reg.parse_registry() == [], "解析不了要回空清單，不能炸掉 roster"
 
 @case
 def test_tracked_publishers_survives_missing_files():

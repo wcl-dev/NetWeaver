@@ -144,29 +144,192 @@ sources:
 # 既有已在使用（已隱含核可，資料集 data/db.js 已引用）
 # ─────────────────────────────────────────────────────────────
 existing:
-  tier_A:
-    - "國家安全局 NSB (nsb.gov.tw) — gov-report"
-    - "IORG 台灣資訊環境研究中心 (iorg.tw) — research/factcheck"
-    - "Doublethink Lab 台灣民主實驗室 (medium.com/doublethinklab) — research"
-    - "FactLink 數位素養實驗室 (factlink.tw) — research/OSINT"
-    - "Meta — Adversarial Threat Reports — platform-threat-report"
-    - "Google TAG / Mandiant — platform-threat-report"
-    - "Microsoft Threat Analysis Center (MTAC) — platform-threat-report"
-    - "Graphika — research"
-    - "ASPI (含 The Strategist) — research"
-    - "Citizen Lab (U. Toronto) — academic"
-    - "US DOJ — gov-report"
-    - "Vanderbilt Institute of National Security — academic"
-  tier_B:
-    - "Recorded Future (News / Insikt Group)"
-    - "Global Taiwan Institute (GTI)"
-    - "Institute for Strategic Dialogue (ISD)"
-    - "CyberCX"
-    - "ChinaPower (CSIS) / Jamestown Foundation / Lowy Institute / HRW / ProPublica"
-    - "報導者 The Reporter / 自由時報 / 中央社 CNA / Focus Taiwan / TVBS / 風傳媒 Storm / Taiwan Gazette / Taipei Times / CNBC / NYT"
-  tier_C:   # 對手方原始素材，僅存證為敘事證據，永不當事實
-    - "環球時報 Global Times / 中國官媒 — state-media"
-    - "Wikipedia — reference only（僅背景，非主來源）"
+  # 既有已在使用（已隱含核可，data/db.js 已引用）。2026-08 由自由文字清單升級為結構化條目，
+  # 讓機器讀得到「誰是觀察者、誰是佐證」；原始行保留在各條目的 from 欄位。
+  sources:
+    - id: nsb
+      org: "國家安全局 NSB"
+      tier: A
+      type: gov-report
+      url: "https://www.nsb.gov.tw"
+      aliases: "國家安全局, NSB"
+      from: "國家安全局 NSB (nsb.gov.tw) — gov-report"
+    - id: iorg
+      org: "IORG 台灣資訊環境研究中心"
+      tier: A
+      type: research
+      url: "https://iorg.tw"
+      aliases: "IORG, 台灣資訊環境研究中心"
+      from: "IORG 台灣資訊環境研究中心 (iorg.tw) — research/factcheck"
+    - id: dtl
+      org: "Doublethink Lab"
+      tier: A
+      type: research
+      url: "https://medium.com/doublethinklab"
+      aliases: "Doublethink Lab, 台灣民主實驗室"
+      from: "Doublethink Lab 台灣民主實驗室 (medium.com/doublethinklab) — research"
+    - id: factlink
+      org: "FactLink 數位素養實驗室"
+      tier: A
+      type: research
+      url: "https://factlink.tw"
+      aliases: "FactLink, 數位素養實驗室"
+      from: "FactLink 數位素養實驗室 (factlink.tw) — research/OSINT"
+    - id: meta-atr
+      org: "Meta — Adversarial Threat Reports"
+      tier: A
+      type: platform-threat-report
+      aliases: "Meta"
+      from: "Meta — Adversarial Threat Reports — platform-threat-report"
+    - id: google-tag
+      org: "Google TAG / Mandiant"
+      tier: A
+      type: platform-threat-report
+      aliases: "Google TAG, Mandiant"
+      from: "Google TAG / Mandiant — platform-threat-report"
+    - id: mtac
+      org: "Microsoft Threat Analysis Center (MTAC)"
+      tier: A
+      type: platform-threat-report
+      aliases: "MTAC, Microsoft Threat Analysis Center"
+      from: "Microsoft Threat Analysis Center (MTAC) — platform-threat-report"
+    - id: graphika
+      org: "Graphika"
+      tier: A
+      type: research
+      from: "Graphika — research"
+    - id: aspi
+      org: "ASPI"
+      tier: A
+      type: research
+      aliases: "ASPI, The Strategist, ASPI The Strategist"
+      from: "ASPI (含 The Strategist) — research"
+    - id: citizenlab
+      org: "Citizen Lab"
+      tier: A
+      type: academic
+      aliases: "Citizen Lab"
+      from: "Citizen Lab (U. Toronto) — academic"
+    - id: us-doj
+      org: "US DOJ"
+      tier: A
+      type: gov-report
+      aliases: "US DOJ, DOJ"
+      from: "US DOJ — gov-report"
+    - id: vanderbilt
+      org: "Vanderbilt Institute of National Security"
+      tier: A
+      type: academic
+      from: "Vanderbilt Institute of National Security — academic"
+    - id: recorded-future
+      org: "Recorded Future"
+      tier: B
+      aliases: "Recorded Future, Recorded Future News, Insikt Group"
+      from: "Recorded Future (News / Insikt Group)"
+    - id: gti
+      org: "Global Taiwan Institute"
+      tier: B
+      aliases: "Global Taiwan Institute, GTI"
+      from: "Global Taiwan Institute (GTI)"
+    - id: isd
+      org: "Institute for Strategic Dialogue"
+      tier: B
+      aliases: "Institute for Strategic Dialogue, ISD"
+      from: "Institute for Strategic Dialogue (ISD)"
+    - id: cybercx
+      org: "CyberCX"
+      tier: B
+      from: "CyberCX"
+    - id: chinapower
+      org: "ChinaPower (CSIS)"
+      tier: B
+      aliases: "ChinaPower, CSIS"
+      from: "ChinaPower (CSIS) / Jamestown Foundation / Lowy Institute / HRW / ProPublica"
+    - id: jamestown
+      org: "Jamestown Foundation"
+      tier: B
+      from: "（同上行）"
+    - id: lowy
+      org: "Lowy Institute"
+      tier: B
+      from: "（同上行）"
+    - id: hrw
+      org: "HRW"
+      tier: B
+      from: "（同上行）"
+    - id: propublica
+      org: "ProPublica"
+      tier: B
+      from: "（同上行）"
+    - id: twreporter
+      org: "報導者 The Reporter"
+      tier: B
+      type: news
+      aliases: "報導者, The Reporter"
+      from: "報導者 The Reporter / 自由時報 / 中央社 CNA / Focus Taiwan / TVBS / 風傳媒 Storm / Taiwan Gazette / Taipei Times / CNBC / NYT"
+    - id: ltn
+      org: "自由時報"
+      tier: B
+      type: news
+      aliases: "自由時報"
+      from: "（同上行）"
+    - id: cna
+      org: "中央社 CNA"
+      tier: B
+      type: news
+      aliases: "中央社, CNA"
+      from: "（同上行）"
+    - id: focus-taiwan
+      org: "Focus Taiwan"
+      tier: B
+      type: news
+      aliases: "Focus Taiwan"
+      from: "（同上行）"
+    - id: tvbs-news
+      org: "TVBS"
+      tier: B
+      type: news
+      aliases: "TVBS"
+      from: "（同上行）※ 同時是已登錄行為者 tvbs（domestic-named）"
+    - id: storm
+      org: "風傳媒 Storm"
+      tier: B
+      type: news
+      aliases: "風傳媒, Storm"
+      from: "（同上行）"
+    - id: taiwan-gazette
+      org: "Taiwan Gazette"
+      tier: B
+      type: news
+      from: "（同上行）"
+    - id: taipei-times
+      org: "Taipei Times"
+      tier: B
+      type: news
+      from: "（同上行）"
+    - id: cnbc
+      org: "CNBC"
+      tier: B
+      type: news
+      from: "（同上行）"
+    - id: nyt
+      org: "NYT"
+      tier: B
+      type: news
+      aliases: "NYT, New York Times"
+      from: "（同上行）"
+    - id: globaltimes
+      org: "環球時報 Global Times"
+      tier: C
+      type: state-media
+      aliases: "環球時報, Global Times"
+      from: "環球時報 Global Times / 中國官媒 — state-media"
+    - id: wikipedia
+      org: "Wikipedia"
+      tier: C
+      type: reference
+      aliases: "Wikipedia"
+      from: "Wikipedia — reference only（僅背景，非主來源）"
 
 # 跨領域 canary feed（2026-07 納入 feeds.json，非台灣-中國記錄簿主來源）：
 #   DisinfoLab（disinfo.eu/publications，歐/俄為主；實測該 feed 目前 0 item）、

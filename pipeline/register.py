@@ -249,22 +249,48 @@ def cmd_suggest(args):
 
 FEEDS_PATH = _here / "feeds.json"
 
-def tracked_publishers():
-    """**主動追蹤**的機構 → 正規化名集合：訂閱其 feed，或列入 registry.yaml 的結構化條目。
+def parse_registry():
+    """讀 registry.yaml 的結構化條目 → [{id, org, tier, aliases:[...], ...}]。
 
-    這些是寫報告的**觀察者**，不是被記錄的行為者，不該出現在名冊候選清單裡。
-    刻意不用 `db.sources` 的出版方集合——那份混著對手方原始素材（環球時報自己的社評是物證），
-    用它會把「既是行為者、其產出又當佐證」的對象誤判成觀察者而永遠無法登錄。
-    只做正規化精確比對：追蹤機構的中文別名（如「台灣民主實驗室」）不會命中，那類留給忽略清單。
+    純 stdlib（專案不引 YAML 套件），只解析本檔已知的形狀：`- id:` 起一筆，後續縮排更深的
+    `key: value` 屬於該筆。解析失敗回空清單——寧可少濾，不要炸掉整個 roster。
+    """
+    if not REGISTRY.exists(): return []
+    out, cur = [], None
+    for raw in REGISTRY.read_text(encoding="utf-8").splitlines():
+        line = raw.split("#")[0].rstrip() if not raw.strip().startswith("#") else ""
+        if not line.strip(): continue
+        m = re.match(r"^(\s*)-\s*id:\s*(\S+)", line)
+        if m:
+            cur = {"id": m.group(2), "_indent": len(m.group(1))}; out.append(cur); continue
+        if cur is None: continue
+        m = re.match(r"^(\s*)([A-Za-z_]+):\s*(.*)$", line)
+        if not m: continue
+        indent, key, val = len(m.group(1)), m.group(2), m.group(3).strip().strip('"')
+        if indent <= cur["_indent"]: cur = None; continue      # 已離開這筆
+        cur[key] = val
+    for e in out:
+        e.pop("_indent", None)
+        e["aliases"] = [a.strip() for a in (e.get("aliases") or "").split(",") if a.strip()]
+    return out
+
+OBSERVER_TIERS = {"A", "B"}          # C＝對手方原始素材，是佐證也是行為者，不算觀察者
+
+def tracked_publishers():
+    """**觀察者**（寫報告的機構）→ 正規化名集合：訂閱其 feed，或 registry 登錄為 tier A／B。
+
+    刻意排除 tier C：環球時報這類「對手方原始素材」既是行為者、其產出又當佐證，
+    把它算成觀察者會讓它永遠無法登錄進名冊。也刻意不用 `db.sources` 的出版方集合——
+    那份混著物證來源，同樣會誤殺行為者。
     """
     orgs = set()
     try:
         for src in json.loads(FEEDS_PATH.read_text(encoding="utf-8")).get("sources", []):
-            if src.get("org"): orgs.add(src["org"])
+            if src.get("org") and src.get("tier", "A") in OBSERVER_TIERS: orgs.add(src["org"])
     except Exception: pass
-    if REGISTRY.exists():
-        txt = REGISTRY.read_text(encoding="utf-8")
-        orgs |= {o.strip() for o, _t in re.findall(r'org:\s*"?([^"\n]+?)"?\s*\n\s*tier:\s*([A-C])', txt)}
+    for e in parse_registry():
+        if e.get("tier") in OBSERVER_TIERS:
+            orgs.add(e.get("org", "")); orgs.update(e["aliases"])
     return {_norm(o) for o in orgs if o}
 
 _ROSTER_KINDS = _RL._ACTOR_KINDS | {"x-dad-channel"}   # 媒體／帳號＝放大者層，最常需要新登錄
@@ -304,9 +330,11 @@ def cmd_roster(args):
             sid = src_by_url.get(_urlnorm.source_key(e.get("url")))
             if sid: a["src"].add(sid)
     ign, hidden = load_ignore(), 0
-    obs, obs_hidden = tracked_publishers(), 0
-    for k in [k for k in agg if k in obs]:                    # 觀察者一律不列（不是判斷題）
-        del agg[k]; obs_hidden += 1
+    obs, obs_names = tracked_publishers(), []
+    for k in [k for k in agg if k in obs]:                    # 觀察者不列（寫報告的機構不是行為者）
+        obs_names.append(sorted(agg[k]["names"])[0])
+        if not args.show_ignored: del agg[k]                  # 但要叫得出來：tier A/B 的機構仍可能
+    obs_hidden = len(obs_names)                               # 需要被記錄（TVBS／中天都是台灣媒體又是行為者）
     if not args.show_ignored:
         for k in [k for k in agg if k in ign]:
             del agg[k]; hidden += 1
@@ -316,7 +344,9 @@ def cmd_roster(args):
     def _grp(a): return "人名" if a["kinds"] == {"人名"} else "機構／管道"
     ranked = sorted(agg.values(), key=lambda a: (_grp(a) == "人名", -len(a["docs"]), -a["ev"]))
     print(f"# 未登錄行為者候選（掃 {len(entries)} 篇）"
-          + (f"\n# 已濾除：{obs_hidden} 個我們主動追蹤的機構（寫報告的觀察者）" if obs_hidden else "")
+          + (f"\n# 已濾除：{obs_hidden} 個主動追蹤的機構（寫報告的觀察者）"
+             + (f"　→ {'、'.join(obs_names)}" if args.show_ignored else "（--show-ignored 可看）")
+             if obs_hidden else "")
           + (f"\n# 已濾除：{hidden} 個標記為不收錄（--show-ignored 可看）" if hidden else ""))
     shown, group = ranked[:args.limit], None
     for a in shown:

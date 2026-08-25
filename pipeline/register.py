@@ -52,11 +52,23 @@ def _valid_url(u):
     return u
 
 def _publishers(db):
-    """已信任出版方＝registry.yaml `org:`（governance 明示核可）∪ db.sources 現有 org（已在記錄簿即已用過）。
-    只有兩者皆無的『全新出版方』才 warn（提醒做 governance）。"""
-    txt = REGISTRY.read_text(encoding="utf-8")
-    reg = {o.strip().strip('"').strip() for o in re.findall(r"^\s*org:\s*(.+)$", txt, re.M)}
-    return reg | {s.get("org", "").strip() for s in db.get("sources", [])}
+    """已信任出版方＝registry 登錄的機構（**含別名**、含 tier C）∪ feeds.json ∪ db.sources 現有 org。
+
+    與 `tracked_publishers()`（觀察者，只取 tier A／B）刻意不同：這裡問的是「這家發布者經過
+    governance 了嗎」，對手方原始素材（tier C）同樣是合法的來源出處——環球時報自己的社評可以
+    被登錄成來源。別名必須算數：報告的 org 欄位常寫別名（「ASPI The Strategist」對登錄的「ASPI」），
+    不吃別名會讓已核可的來源被誤判成全新出版方而擋下發布。
+    """
+    orgs = set()
+    for e in parse_registry():
+        if e.get("org"): orgs.add(e["org"])
+        orgs.update(e.get("aliases") or [])
+    try:
+        for src in json.loads(FEEDS_PATH.read_text(encoding="utf-8")).get("sources", []):
+            if src.get("org"): orgs.add(src["org"])
+    except Exception: pass
+    orgs |= {s.get("org", "").strip() for s in db.get("sources", [])}
+    return {o.strip() for o in orgs if o and o.strip()}
 
 def load_db():
     src = DBP.read_text(encoding="utf-8")
@@ -341,8 +353,13 @@ def cmd_roster(args):
     if not agg:
         print("（佇列裡沒有未登錄的行為者候選）"
               + (f"；另有 {hidden} 個已標記為不收錄" if hidden else "")); return 0
-    def _grp(a): return "人名" if a["kinds"] == {"人名"} else "機構／管道"
-    ranked = sorted(agg.values(), key=lambda a: (_grp(a) == "人名", -len(a["docs"]), -a["ev"]))
+    # 分三組：管道（媒體／帳號＝放大者層，這本記錄簿的主體）→ 機構 → 人名。
+    # 刻意不用「當過述詞主詞」當排序訊號——實測反而更糟：assertion 稀少且模型傾向把國家當主詞，
+    # 「中國」當過 6 次主詞而中國軍號、新華社是 0 次。型別才是乾淨的訊號。
+    _ORDER = {"管道": 0, "機構": 1, "人名": 2}
+    def _grp(a):
+        return "人名" if a["kinds"] == {"人名"} else "管道" if "管道" in a["kinds"] else "機構"
+    ranked = sorted(agg.values(), key=lambda a: (_ORDER[_grp(a)], -len(a["docs"]), -a["ev"]))
     print(f"# 未登錄行為者候選（掃 {len(entries)} 篇）"
           + (f"\n# 已濾除：{obs_hidden} 個主動追蹤的機構（寫報告的觀察者）"
              + (f"　→ {'、'.join(obs_names)}" if args.show_ignored else "（--show-ignored 可看）")
@@ -354,8 +371,10 @@ def cmd_roster(args):
         if g != group:
             group = g
             n_all = sum(1 for x in ranked if _grp(x) == g)
-            print(f"\n【{g}】{'（這區幾乎都不收——被提及的人物，可整批忽略）' if g == '人名' else ''}"
-                  f"  共 {n_all} 個")
+            hint = {"管道": "（媒體／帳號＝放大者層，該收的多半在這裡）",
+                    "機構": "（混著國家、政府與泛稱，逐個判斷）",
+                    "人名": "（幾乎都不收——被提及的人物，可整批忽略）"}[g]
+            print(f"\n【{g}】{hint}  共 {n_all} 個")
             print(f"{'篇數':>4} {'引文':>4}  名稱")
         print(f"{len(a['docs']):>5} {a['ev']:>5}  " + "／".join(sorted(a["names"])))
     print("\n# 決定要收的，逐一執行（欄位務必人工確認）：")

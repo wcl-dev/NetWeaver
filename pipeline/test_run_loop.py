@@ -88,6 +88,17 @@ def test_extraction_provenance_records_model_not_key():
         for k, v in saved.items():
             os.environ.pop(k, None) if v is None else os.environ.__setitem__(k, v)
 
+@case
+def test_span_drop_stats():
+    # 模型有回應卻 0 mention 時，這份統計是唯一線索——原本 dropped 收下就丟掉了
+    dropped = [("mention", "央視", "bad-quote"), ("mention", "新華社", "bad-quote"),
+               ("mention", "X", "missing-quote"), ("assertion", "轉發", "dangling")]
+    assert rl.span_drop_stats(dropped) == {
+        "mention:bad-quote": 2, "mention:missing-quote": 1, "assertion:dangling": 1}
+    assert rl.span_drop_stats([]) == {} and rl.span_drop_stats(None) == {}
+    # 只記類別與次數，不得把引文內容寫進 queue
+    assert all("央視" not in k for k in rl.span_drop_stats(dropped))
+
 def main():
     for fn in CASES:
         try:

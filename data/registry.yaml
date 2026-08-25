@@ -173,7 +173,7 @@ existing:
       tier: A
       type: research
       url: "https://factlink.tw"
-      aliases: "FactLink, 數位素養實驗室"
+      aliases: "FactLink, 數位素養實驗室, FactLink團隊, Taiwan+"
       from: "FactLink 數位素養實驗室 (factlink.tw) — research/OSINT"
     - id: meta-atr
       org: "Meta — Adversarial Threat Reports"

@@ -100,6 +100,19 @@ def operator_ref(sl, ent_ids):
         if o.get("kind") in _ACTOR_KINDS: return o["nw_ref"]
     return acting[0]["nw_ref"] if acting else None           # 2) 任一行動方；否則 None（不綁 target）
 
+def span_drop_stats(dropped):
+    """span-check 的丟棄統計 → {"kind:reason": 次數}。
+
+    模型有回應（有 completion tokens）卻抽出 0 個 mention 時，這是唯一的診斷線索——
+    原本 run_loop 把 dropped 收下就丟，出問題只能重跑一次才知道發生什麼事。
+    只記類別與次數，不記引文內容（避免把原文寫進 queue）。
+    """
+    out = {}
+    for kind, _name, reason in dropped or []:
+        key = f"{kind}:{reason}"
+        out[key] = out.get(key, 0) + 1
+    return out
+
 def extraction_provenance(ex):
     """這份抽取是「誰」做的——provider／model／prompt 變體。**金鑰不記錄。**
 
@@ -187,7 +200,8 @@ def main():
             # 一律建 run：即使不設上限也要記用量——對計費端點沒有成本能見度是不可接受的
             run = ex.ExtractionRun(doc_timeout=args.doc_timeout, max_cold_calls=args.max_cold_calls,
                                    max_assertion_windows=args.max_assertion_windows)
-            extr, _dropped = ex.extract(report_meta(m), text, run=run)
+            extr, dropped = ex.extract(report_meta(m), text, run=run)
+            span_drops = span_drop_stats(dropped)
             usage = {k: run.summary()[k] for k in
                      ("cold_calls", "cache_hits", "prompt_tokens", "completion_tokens",
                       "total_tokens", "elapsed_seconds")}
@@ -209,7 +223,7 @@ def main():
                      "claims": len(rec.get("claims", [])), "assertions": len(extr.get("assertions", [])),
                      "source_curated": _urlnorm.source_key(m.get("url")) in src_urls, "actor_registered": nw_ref,
                      "attributed_to": len(att), "valid": not fails, **extraction_provenance(ex),
-                     "usage": usage,
+                     "usage": usage, "span_drops": span_drops,
                      # 審核狀態機（curate.py 用）：pending→approved/rejected/deferred→compiled
                      "compile_status": prev.get("compile_status", "pending") if same else "pending"}
             if same and prev.get("note"): entry["note"] = prev["note"]
@@ -226,7 +240,9 @@ def main():
                  + (" ⚠attributed" if att else "") + ("" if not fails else " ⚠invalid"))
         print(f"  ⟳ 抽取 {len(extr.get('mentions',[]))}m/{entry['assertions']}a"
               f"｜{usage['cold_calls']} calls、{usage['total_tokens'] or usage['prompt_tokens']+usage['completion_tokens']:,} tokens"
-              f"、{usage['elapsed_seconds']:.0f}s → curation queue（{flags}）{tag}")
+              f"、{usage['elapsed_seconds']:.0f}s"
+              + (f"｜span 丟棄 {sum(span_drops.values())}" if span_drops else "")
+              + f" → curation queue（{flags}）{tag}")
         # queue 於每篇 _write_queue 落盤（crash-safe）；此處不再整批重寫，避免 0 篇時覆寫既有 queue
 
     print("\n═══ summary ═══")

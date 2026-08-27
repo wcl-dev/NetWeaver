@@ -142,7 +142,8 @@ window.NETWEAVER_DB = {
         "61716部隊",
         "政治工作部",
         "中央軍委政治工作部",
-        "PLA Political Work Department (PWD)"
+        "PLA Political Work Department (PWD)",
+        "總政治部"
       ],
       "category": "state-organ",
       "role": "attacker",
@@ -970,7 +971,8 @@ window.NETWEAVER_DB = {
         "補壹刀",
         "Chaoyang Shaoxia",
         "Buyidao",
-        "Yuyuantantian / Chaoyang Shaoxia / Buyidao"
+        "Yuyuantantian / Chaoyang Shaoxia / Buyidao",
+        "玉淵潭天"
       ],
       "category": "state-media",
       "role": "amplifier",
@@ -1974,7 +1976,9 @@ window.NETWEAVER_DB = {
         "央廣軍事",
         "看台海",
         "日月譚天",
-        "China Media Group (CCTV/CMG)"
+        "China Media Group (CCTV/CMG)",
+        "China Media Group",
+        "CMG"
       ],
       "category": "state-media",
       "role": "collaborator",
@@ -2576,6 +2580,122 @@ window.NETWEAVER_DB = {
         "src-factlink-a7a795"
       ],
       "confidence": "high"
+    },
+    {
+      "id": "sina-military",
+      "name_zh": "新浪軍事",
+      "name_en": "Sina Military",
+      "aliases": [
+        "新浪军事"
+      ],
+      "category": "state-media",
+      "role": "amplifier",
+      "origin": "PRC",
+      "summary_zh": "中國商業入口網站新浪的軍事頻道。在 FactLink 對 2025「正義使命」軍演的宣傳網絡分析中，被列為轉分享東部戰區與中央官媒素材的媒體之一。",
+      "source_ids": [
+        "src-factlink-a7a795"
+      ],
+      "confidence": "medium"
+    },
+    {
+      "id": "zhejiang-daily",
+      "name_zh": "浙江日報",
+      "name_en": "Zhejiang Daily",
+      "aliases": [
+        "浙江日报"
+      ],
+      "category": "state-media",
+      "role": "amplifier",
+      "origin": "PRC",
+      "summary_zh": "浙江省委機關報。在同一份分析中被列為轉分享軍演宣傳素材的媒體之一。",
+      "source_ids": [
+        "src-factlink-a7a795"
+      ],
+      "confidence": "medium"
+    },
+    {
+      "id": "the-paper",
+      "name_zh": "澎湃新聞",
+      "name_en": "The Paper",
+      "aliases": [
+        "澎湃新闻"
+      ],
+      "category": "state-media",
+      "role": "amplifier",
+      "origin": "PRC",
+      "summary_zh": "上海報業集團旗下新聞網站。在同一份分析中被列為轉分享軍演宣傳素材的媒體之一。",
+      "source_ids": [
+        "src-factlink-a7a795"
+      ],
+      "confidence": "medium"
+    },
+    {
+      "id": "pla-isf",
+      "name_zh": "解放軍信息支援部",
+      "name_en": "PLA Information Support Force",
+      "aliases": [
+        "解放军信息支援部",
+        "信息支援部隊"
+      ],
+      "category": "state-organ",
+      "role": "attacker",
+      "origin": "PRC",
+      "summary_zh": "解放軍資訊支援部隊。在同一份分析中，被國防大學受訪者列為過去與總政治部共同執行宣傳工作的單位。",
+      "source_ids": [
+        "src-factlink-a7a795"
+      ],
+      "confidence": "medium"
+    },
+    {
+      "id": "prc-mfa",
+      "name_zh": "中共外交部",
+      "name_en": "PRC Ministry of Foreign Affairs",
+      "aliases": [
+        "中华人民共和国外交部",
+        "中國外交部"
+      ],
+      "category": "state-organ",
+      "role": "amplifier",
+      "origin": "PRC",
+      "summary_zh": "中華人民共和國外交部。在同一份分析中被列為官媒評論所引述的官方消息來源。",
+      "source_ids": [
+        "src-factlink-a7a795"
+      ],
+      "confidence": "medium"
+    },
+    {
+      "id": "beijing-media-network",
+      "name_zh": "北京廣播電視台",
+      "name_en": "Beijing Media Network",
+      "aliases": [
+        "北京时间",
+        "北京時間"
+      ],
+      "category": "state-media",
+      "role": "amplifier",
+      "origin": "PRC",
+      "summary_zh": "北京市屬廣電機構，旗下品牌「北京時間」。在同一份分析中被列為以博主型記者主播講述軍演新聞、介紹主題海報意義的媒體。",
+      "source_ids": [
+        "src-factlink-a7a795"
+      ],
+      "confidence": "medium"
+    },
+    {
+      "id": "shenzhen-media-group",
+      "name_zh": "深圳廣電集團",
+      "name_en": "Shenzhen Media Group",
+      "aliases": [
+        "直新闻",
+        "直新聞"
+      ],
+      "category": "state-media",
+      "role": "amplifier",
+      "origin": "PRC",
+      "summary_zh": "深圳市屬廣電機構，旗下品牌「直新聞」。在同一份分析中被列為以博主型記者主播講述軍演新聞的媒體。",
+      "source_ids": [
+        "src-factlink-a7a795"
+      ],
+      "confidence": "medium"
     }
   ],
   "events": [

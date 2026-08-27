@@ -430,6 +430,11 @@ window.NETWEAVER_DB = {
           "text": "weekly monitoring of 600,000+ Taiwan-related items during the 2024 election",
           "source_id": "src-dtl-golaxy",
           "about": "targets"
+        },
+        {
+          "text": "台灣民主實驗室的〈AI 在中國影響力作戰中的崛起：從中科天璣文件中得出的九大要點〉，整理從中國外洩的一份科技公司內部文件，分析中國情報資訊公司「中科天璣」(該公司有中國科學院計算技術研究所的背景)對台灣、美國、一帶一路國家、香港新疆西藏等資訊監控、分析及宣傳策略系統。",
+          "source_id": "src-factlink-ff3dee",
+          "about": "中科天璣"
         }
       ]
     },
@@ -668,7 +673,149 @@ window.NETWEAVER_DB = {
         "src-nsb-2026",
         "src-factlink-butterfly"
       ],
-      "confidence": "medium"
+      "confidence": "medium",
+      "claims": [
+        {
+          "text": "This paper contributes to research on the Borderless Group (无边界集团), a PRC content farm with documented ties to the CCP government, and exposes its operations on Threads.",
+          "source_id": "src-dtl-borderless",
+          "about": "Borderless Group"
+        },
+        {
+          "text": "We identified 1,217 domains containing inauthentic news pages operated by the Borderless Group.",
+          "source_id": "src-dtl-borderless",
+          "about": "Borderless Group"
+        },
+        {
+          "text": "Roughly 566 authentic Threads users have shared Borderless Group domains, indicating the operation extends beyond its own inauthentic ecosystem.",
+          "source_id": "src-dtl-borderless",
+          "about": "Borderless Group"
+        },
+        {
+          "text": "The Borderless Group uses large-scale coordinated inauthentic behavior to pollute the Taiwanese and Japanese information environments.",
+          "source_id": "src-dtl-borderless",
+          "about": "Borderless Group"
+        },
+        {
+          "text": "the Borderless Group has built an infrastructure that provides access to large numbers of Taiwanese and Japanese social media users.",
+          "source_id": "src-dtl-borderless",
+          "about": "Borderless Group"
+        },
+        {
+          "text": "Previous research indicates that the Borderless Group has close collaborations with the CCP government.",
+          "source_id": "src-dtl-borderless",
+          "about": "Borderless Group"
+        },
+        {
+          "text": "Subsequently, the Borderless Group and said state-owned outlet jointly operated a company between 2020 and 2022.",
+          "source_id": "src-dtl-borderless",
+          "about": "Borderless Group"
+        },
+        {
+          "text": "The Borderless Group runs large numbers of inauthentic accounts on several social media platforms to share links and generate traffic for their domains.",
+          "source_id": "src-dtl-borderless",
+          "about": "Borderless Group"
+        },
+        {
+          "text": "Based on domain registration records, previous research, and social media analysis, we have identified 1,217 domains that are operated by the Borderless Group.",
+          "source_id": "src-dtl-borderless",
+          "about": "Borderless Group"
+        },
+        {
+          "text": "Despite these different layouts, the underlying source code does contain the Borderless Group’s forensic indicators.",
+          "source_id": "src-dtl-borderless",
+          "about": "Borderless Group"
+        },
+        {
+          "text": "We are almost certain that these accounts are operated by the Borderless Group, as they post large numbers of links to the Borderless Group’s domains (83% of the observed posts/replies).",
+          "source_id": "src-dtl-borderless",
+          "about": "Borderless Group"
+        },
+        {
+          "text": "The Borderless Group also employs an unconventional domain setup: in some cases, the apex domain and its ‘www.’ subdomain serve entirely different websites.",
+          "source_id": "src-dtl-borderless",
+          "about": "Borderless Group"
+        },
+        {
+          "text": "We are not sure why the Borderless Group uses this setup, but it could be related to cost-reduction or abuse evasion.",
+          "source_id": "src-dtl-borderless",
+          "about": "Borderless Group"
+        },
+        {
+          "text": "Conceal Infrastructure T0130: The Borderless Group uses GoDaddy and other proxy services to register its domains.",
+          "source_id": "src-dtl-borderless",
+          "about": "Borderless Group"
+        },
+        {
+          "text": "All three domains are operated by the Borderless Group.",
+          "source_id": "src-dtl-borderless",
+          "about": "Borderless Group"
+        },
+        {
+          "text": "Bots Amplify via Automated Forwarding and Reposting T0049.003: The Borderless Group maintains large numbers of inauthentic accounts on social media platforms to promote traffic to their domains through coordinated inauthentic behavior.",
+          "source_id": "src-dtl-borderless",
+          "about": "Borderless Group"
+        },
+        {
+          "text": "The Borderless Group’s domains are shared by inauthentic accounts on a wide range of platforms, including Facebook, Threads, X, TikTok, Dcard, and Instagram.",
+          "source_id": "src-dtl-borderless",
+          "about": "Borderless Group"
+        },
+        {
+          "text": "The Borderless Group domains have also been picked up by authentic Threads users.",
+          "source_id": "src-dtl-borderless",
+          "about": "Borderless Group"
+        },
+        {
+          "text": "This shows that the Borderless Group is able to reach authentic Threads users beyond its bubble of inauthentic accounts.",
+          "source_id": "src-dtl-borderless",
+          "about": "Borderless Group"
+        },
+        {
+          "text": "For this reason the Borderless Group’s operation scores a 3 out of 6 on the breakout scale; there are multiple breakouts on multiple platforms.",
+          "source_id": "src-dtl-borderless",
+          "about": "Borderless Group"
+        },
+        {
+          "text": "Our research shows that the Borderless Group’s activities on Threads are in a mature state.",
+          "source_id": "src-dtl-borderless",
+          "about": "Borderless Group"
+        },
+        {
+          "text": "For the Borderless Group, Threads is just another platform to promote their domains.",
+          "source_id": "src-dtl-borderless",
+          "about": "Borderless Group"
+        },
+        {
+          "text": "In essence, the Borderless Group uses large-scale coordinated inauthentic behavior to pollute the Taiwanese and Japanese information environments.",
+          "source_id": "src-dtl-borderless",
+          "about": "Borderless Group"
+        },
+        {
+          "text": "We searched the internet and social media for additional Borderless Group websites.",
+          "source_id": "src-dtl-borderless",
+          "about": "Borderless Group"
+        },
+        {
+          "text": "We automatically determined whether suspected links fit the Borderless Group pattern by scraping their HTML codes and looking for several forensic indicators.",
+          "source_id": "src-dtl-borderless",
+          "about": "Borderless Group"
+        },
+        {
+          "text": "PublicWWW shows there are 423 websites that contain this specific file path and virtually all of them are connected to the Borderless Group.",
+          "source_id": "src-dtl-borderless",
+          "about": "Borderless Group"
+        },
+        {
+          "text": "We are certain the email address is connected to the Borderless Group.",
+          "source_id": "src-dtl-borderless",
+          "about": "Borderless Group"
+        },
+        {
+          "text": "[website]/about/about-zh.html#for_advertisers contains “無邊界集團”: In many cases, the “對於廣告商” section of the website specifically mentions that the website’s content is generated by 無邊界集團.",
+          "source_id": "src-dtl-borderless",
+          "about": "無邊界集團"
+        }
+      ]
     },
     {
       "id": "mission-content-farm",
@@ -2563,7 +2710,14 @@ window.NETWEAVER_DB = {
       "source_ids": [
         "src-factlink-a7a795"
       ],
-      "confidence": "high"
+      "confidence": "high",
+      "claims": [
+        {
+          "text": "According to Xinhua News Agency, the ceremony was held on 3 July in Beijing.",
+          "source_id": "src-aspi-the-strategist-934197",
+          "about": "Xinhua News Agency"
+        }
+      ]
     },
     {
       "id": "pla-daily",
@@ -4021,6 +4175,22 @@ window.NETWEAVER_DB = {
       "org": "FactLink 數位素養實驗室",
       "url": "https://www.factlink.tw/p/pla-weibo-analysis",
       "date": "2026-04-29",
+      "type": "ngo-report"
+    },
+    {
+      "id": "src-aspi-the-strategist-934197",
+      "title": "With the promotion of new generals, Xi prioritises internal control",
+      "org": "ASPI The Strategist",
+      "url": "https://www.aspistrategist.org.au/with-the-promotion-of-new-generals-xi-prioritises-internal-control/",
+      "date": "2026-07-16",
+      "type": "news"
+    },
+    {
+      "id": "src-factlink-ff3dee",
+      "title": "【FactNote｜數位素養誌】伊朗戰火下的AI宣傳戰＋網攻近期鎖定記者和資安研究者",
+      "org": "FactLink 數位素養實驗室",
+      "url": "https://www.factlink.tw/p/factnoteai",
+      "date": "2026-05-13",
       "type": "ngo-report"
     }
   ],

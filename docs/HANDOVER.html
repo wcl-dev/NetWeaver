@@ -283,6 +283,36 @@
   .s-human-f { fill: var(--human); }
   .s-human-s { stroke: var(--human); }
 
+  /* ---------- 產出示意 ---------- */
+  .mock { border: 1px solid var(--rule); border-radius: 3px; overflow: hidden; margin: 1.5rem 0; }
+  .mock-bar {
+    background: var(--code-bg); border-bottom: 1px solid var(--rule);
+    padding: .45rem .9rem; font-family: var(--mono); font-size: .6875rem;
+    letter-spacing: .06em; color: var(--ink-faint);
+  }
+  .mock-body { padding: 1.25rem; background: var(--surface); }
+  .mock-eyebrow {
+    font-family: var(--mono); font-size: .6875rem; letter-spacing: .08em;
+    color: var(--ink-faint); margin: 0 0 .3rem;
+  }
+  .mock-title { font-family: var(--serif); font-size: 1.375rem; font-weight: 600; margin: 0 0 .15rem; }
+  .mock-sub { color: var(--ink-muted); font-size: .875rem; margin: 0 0 .6rem; font-family: var(--mono); }
+  .chips { display: flex; flex-wrap: wrap; gap: .35rem; margin-bottom: .9rem; }
+  .chip {
+    font-size: .6875rem; padding: .12rem .5rem; border-radius: 2px;
+    border: 1px solid var(--rule); color: var(--ink-muted); font-family: var(--mono);
+  }
+  .chip.hot { border-color: var(--human); color: var(--human); background: var(--human-bg); }
+  .mock-h {
+    font-size: .75rem; letter-spacing: .08em; text-transform: uppercase;
+    color: var(--ink-faint); margin: 1.1rem 0 .5rem; font-weight: 500;
+  }
+  .srcline { font-size: .8125rem; color: var(--ink-muted); margin-bottom: .5rem; }
+  .claimcard {
+    border-left: 2px solid var(--rule); padding: .5rem .75rem;
+    margin-bottom: .45rem; font-size: .9375rem; line-height: 1.6;
+  }
+
   a { color: inherit; text-decoration-color: var(--ink-faint); text-underline-offset: 2px; }
   a:focus-visible, li:focus-visible { outline: 2px solid var(--human); outline-offset: 3px; }
 </style>
@@ -298,7 +328,7 @@
     </p>
     <div class="meta">
       <span>台灣 FIMI 行為者記錄簿</span>
-      <span>已登錄行為者 57 · 來源 71</span>
+      <span>已登錄行為者 67 · 來源 73 · 宣稱 94</span>
       <span>2026-08-19</span>
     </div>
   </header>
@@ -317,6 +347,110 @@
     <p>
       而「誰可以進記錄簿」這件事，連程式碼都不決定，由人維護的<strong>名冊</strong>決定。
     </p>
+  </section>
+
+  <section>
+    <h2>產出長什麼樣</h2>
+    <p class="lead">
+      跑完之後，記錄簿上多的是一張張<strong>附原文引用、附來源連結</strong>的宣稱卡片。
+      這是整套系統唯一對外的產物。
+    </p>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>行為者</th><th>宣稱數</th><th>分類／角色</th></tr></thead>
+        <tbody>
+          <tr><td>無邊界集團</td><td class="num">28</td><td>content-farm／attacker</td></tr>
+          <tr><td>東部戰區融媒體中心</td><td class="num">23</td><td>state-media／attacker</td></tr>
+          <tr><td>中央廣播電視總台</td><td class="num">16</td><td>state-media／collaborator</td></tr>
+          <tr><td>假冒台灣人反民進黨帳號網絡</td><td class="num">8</td><td>cib-network／attacker</td></tr>
+          <tr><td>環球時報</td><td class="num">6</td><td>state-media／amplifier</td></tr>
+          <tr><td>其餘 4 個行為者</td><td class="num">13</td><td>—</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="color: var(--ink-muted); font-size: .9375rem;">
+      目前記錄簿共 <strong>67 個行為者、73 個來源、33 個事件、94 條宣稱</strong>。
+      宣稱集中在 9 個行為者身上——其餘 58 個是骨幹，還沒有被報告提到過。
+    </p>
+
+    <h3>一張卡片怎麼來的</h3>
+    <p>從報告原文到卡片，中間只有一次 AI 參與，而且它只做「逐字抄」：</p>
+    <pre><code>報告原文
+  ↓  ① 模型抄出一筆 mention（唯一的 AI 步驟）
+{
+  "surface":     "Borderless Group",      <span class="cmt">← 抄到的名字</span>
+  "coarse_type": "network",               <span class="cmt">← 粗分類</span>
+  "quote":       "Assessing the Borderless Group's Activity on Threads",
+  "source_url":  "https://medium.com/doublethinklab/…"
+}
+  ↓  ② 程式檢查：quote 是不是原文一字不差的片段？對不上就整筆丟掉
+  ↓  ③ 程式判斷關係、信心、是否歸因（規則寫死，換模型不變）
+  ↓  ④ 名冊比對：Borderless Group 有登錄嗎？沒有就丟掉
+  ↓
+記錄簿上的一張宣稱卡</code></pre>
+    <p>
+      第②步是硬性的：<strong>模型講不出原文出處的東西，一律不留</strong>。
+      第④步是人的閘門——沒登錄的名字，內容再好也不會出現。
+    </p>
+
+    <h3>檔案頁的版面</h3>
+    <p>每個行為者一頁，結構固定。以下用實際資料呈現（非截圖，實物請見下方說明）：</p>
+
+    <div class="mock">
+      <div class="mock-bar">檔案頁 · #/entity/borderless-group</div>
+      <div class="mock-body">
+        <p class="mock-eyebrow">檔案 · BORDERLESS-GROUP · 內容農場</p>
+        <p class="mock-title">無邊界集團</p>
+        <p class="mock-sub">Borderless Group</p>
+        <p style="font-size:.8125rem; color:var(--ink-muted); margin:0 0 .6rem;">
+          別名／代號：无边界集团、Borderless、wuweikeji（舊稱）、無界、無邊界
+        </p>
+        <div class="chips">
+          <span class="chip hot">攻擊者</span><span class="chip">內容農場</span>
+          <span class="chip">來源地：中國</span><span class="chip">活動起：2023-07</span>
+          <span class="chip">信心 中</span>
+        </div>
+
+        <p class="mock-h">彙整概述（NetWeaver Summary）</p>
+        <p style="margin:0; font-size:.9375rem;">
+          Doublethink Lab 記錄、位於秦皇島、與中共政府有往來的內容農場。
+        </p>
+
+        <p class="mock-h">逐來源宣稱（Sourced Claims）</p>
+        <p class="srcline">
+          <span style="color:var(--human)">[Doublethink Lab]</span>
+          Assessing the Borderless Group's Activity on Threads · 報告發布 2026-04
+        </p>
+        <div class="claimcard">This paper contributes to research on the Borderless Group (无边界集团), a PRC content farm with documented ties to the CCP government, and exposes its operations on Threads.</div>
+        <div class="claimcard">We identified 1,217 domains containing inauthentic news pages operated by the Borderless Group.</div>
+        <div class="claimcard">Roughly 566 authentic Threads users have shared Borderless Group domains, indicating the operation extends beyond its own inauthentic ecosystem.</div>
+        <p style="margin:.4rem 0 0; font-size:.8125rem; color:var(--ink-faint);">…另有 25 條</p>
+
+        <p class="mock-h">證據指標 · 主導／涉入的行動 · 關聯實體 · 來源</p>
+        <p style="margin:0; font-size:.875rem; color:var(--ink-muted);">
+          其餘四區為人工策展的骨幹資料，不由抽取產生。
+        </p>
+      </div>
+    </div>
+
+    <p><strong>宣稱卡是機器產出的，其餘都是人策展的。</strong>「彙整概述」「證據指標」「關聯實體」由人撰寫維護；
+    「逐來源宣稱」則是每跑一次迴圈就可能增加，而且一定掛著來源與報告發布日。</p>
+
+    <h3>三個檢視</h3>
+    <ul class="plain">
+      <li><strong>記錄簿</strong>——所有行為者的卡片牆，可依角色（攻擊者／協力者／放大者）、類別、來源地篩選，也可全文搜尋。台灣具名對象可一鍵隱藏。</li>
+      <li><strong>事件</strong>——每個資訊操弄行動一列，列出涉及的敘事與參與的行為者。</li>
+      <li><strong>關於</strong>——定位與免責說明。</li>
+    </ul>
+
+    <div class="note">
+      <span class="note-label">看實物</span>
+      <p>
+        純前端、無需後端、可離線。clone 之後直接用瀏覽器開 <code>index.html</code> 即可；
+        資料是 <code>data/db.js</code> 單一檔案。
+      </p>
+    </div>
   </section>
 
   <section>
@@ -714,8 +848,7 @@ python3 pipeline/curate.py auto  <span class="cmt"># 檢查閘門、能發的就
   <section>
     <h2>目前的限制</h2>
     <ul class="plain">
-      <li><strong>沒有排程。</strong>兩行指令要人自己下，沒有背景程式在跑。</li>
-      <li><strong>自動發布還沒實戰過。</strong>機制寫好也有測試（21 個測試檔全過），但佇列目前沒有待處理項目，還沒在真實資料上完整跑過一次。下一批報告進來會是第一次。</li>
+      <li><strong>已在 12 篇真實報告上跑過一次</strong>（地端模型，約 1 小時）：自動發布放行 3 篇、6 篇留給人。名冊首輪審查產生 176 個候選，處置後歸零。22 個測試檔全過。</li><li><strong>沒有排程。</strong>兩行指令要人自己下，沒有背景程式在跑。</li>
       <li><strong>用的是本機模型。</strong>雲端模型測出來明顯更好，但目前那把金鑰是團隊共用、只能用於測試，所以正式流程維持本機模型，品質差一截。要升級需要一把可以跑正式流程的金鑰。</li>
     </ul>
   </section>

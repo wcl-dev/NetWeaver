@@ -116,10 +116,15 @@ def cmd_set(args):
         # 此時擋住反而讓 db.js 永遠停在舊內容——開放重審，且仍要人再按一次 approve。
         try: _s2, _r2, _e2, _a2, now_digest, _f2 = project_extraction(e["extraction"])
         except Exception: now_digest = e.get("extraction_digest")
-        if now_digest == e.get("extraction_digest"):
+        gap = {}
+        try:
+            _s3, _i3, _e3, _db3 = load_db(); gap = backfill_gap(_r2, _db3)
+        except Exception: pass
+        if now_digest == e.get("extraction_digest") and not gap:
             raise SystemExit(f"{args.raw_id} 已 compiled 且內容未變；如需重審請重跑 loop")
-        print(f"⚠ {args.raw_id} 已 compiled，但投影內容已變"
-              f"（{e.get('extraction_digest')} → {now_digest}）→ 開放重審")
+        why = (f"投影內容已變（{e.get('extraction_digest')} → {now_digest}）" if now_digest != e.get("extraction_digest")
+               else f"名冊已擴充，可回填 {sum(gap.values())} 條到 {len(gap)} 個實體")
+        print(f"⚠ {args.raw_id} 已 compiled，但{why} → 開放重審")
     if args.status == "approved":
         # approve＝以「當下 registry」重新投影，鎖定歸屬與 digest（compile 據此比對）。
         # 這也是 defer→補 registry→approve 的重綁入口：重審時會抓到新登錄的 actor。
@@ -147,6 +152,35 @@ def cmd_set(args):
           + (f"｜歸屬 {e.get('actor_registered')}" if args.status == "approved" else "")
           + (f"（{args.note}）" if args.note else ""))
     return 0
+
+def _db_indices(db):
+    url2sid = _urlnorm.index_by_url(db["sources"])
+    name2ent = {}
+    for ent in db["entities"]:
+        for nm in [ent.get("name_zh"), ent.get("name_en")] + (ent.get("aliases") or []):
+            if nm: name2ent.setdefault(_norm(nm), ent)
+    return url2sid, name2ent
+
+def backfill_gap(rec, db):
+    """這篇若以**現在的名冊**重編，會新增哪些 claim → {entity_id: 條數}。
+
+    登錄名冊的動機通常正是「在某篇報告裡看到這個行為者」——而那篇往往早已 compiled。
+    抽取內容沒變，publication_digest 也就沒變，但該發布的內容確實變了（名冊擴充了）。
+    沒有這個判斷，新登錄的實體會停在 0 條 claim，檔案頁看起來像空的。
+    """
+    url2sid, name2ent = _db_indices(db)
+    have = {}
+    for ent in db["entities"]:
+        for c in ent.get("claims", []):
+            have.setdefault(ent["id"], set()).add(_norm(c["text"]))
+    gap = {}
+    for c in rec["claims"]:
+        sid = url2sid.get(_urlnorm.source_key(c["source"]))
+        ent = name2ent.get(_norm(c.get("about")))
+        if not sid or not ent: continue
+        if _norm(c["quote"]) not in have.get(ent["id"], set()):
+            gap[ent["id"]] = gap.get(ent["id"], 0) + 1
+    return gap
 
 AUTO_SENSITIVE = {"domestic-named"}                       # 這些實體不自動長內容（台灣具名媒體／個人）
 
@@ -181,10 +215,18 @@ def cmd_auto(args):
     """
     reg_mod = _load("register")
     q = rl.load_queue()
-    pending = [e for e in q.values() if e.get("compile_status") == "pending"]
-    if not pending:
-        print("（無 pending 項目）"); return 0
     _s, _i, _e, db = load_db()
+    pending = [e for e in q.values() if e.get("compile_status") == "pending"]
+    backfill = []                                            # 已發布、但名冊擴充後可補內容的
+    for e in q.values():
+        if e.get("compile_status") != "compiled": continue
+        try:
+            _sl, rec, _x, _a, _d, _f = project_extraction(e["extraction"])
+            if backfill_gap(rec, db): backfill.append(e)
+        except Exception: pass
+    if not pending and not backfill:
+        print("（無 pending 項目，名冊也沒有可回填的）"); return 0
+    pending = pending + backfill
     publishers = reg_mod._publishers(db)
     name2ent = {}
     for ent in db["entities"]:
@@ -192,6 +234,7 @@ def cmd_auto(args):
             if nm: name2ent.setdefault(_norm(nm), ent)
     published, held = [], []
     print("=== auto（人審名冊、模型填內容；碰紅線或碰不到名冊者留給人）===")
+    if backfill: print(f"  （{len(backfill)} 篇已發布項目因名冊擴充而可回填，一併處理）")
     for e in pending:
         rid = e["raw_id"]
         try:

@@ -180,7 +180,14 @@ window.NETWEAVER_DB = {
         "src-nsb-2026",
         "src-vanderbilt-golaxy"
       ],
-      "confidence": "high"
+      "confidence": "high",
+      "claims": [
+        {
+          "text": "國防大學新聞系教授傅文成觀察，過去一般是由總政治部加上解放軍信息支援部執行宣傳，東部戰區融媒體中心主責宣傳，宣傳工作比過去更能貼近台灣脈絡，操作也更精密、細膩。",
+          "source_id": "src-factlink-a7a795",
+          "about": "總政治部"
+        }
+      ]
     },
     {
       "id": "ufwd",
@@ -1149,7 +1156,14 @@ window.NETWEAVER_DB = {
         "src-factlink-satellite",
         "src-factlink-japan"
       ],
-      "confidence": "medium"
+      "confidence": "medium",
+      "claims": [
+        {
+          "text": "玉淵潭天為央視融媒體品牌，在網絡圖中與央視沒有指向關係，顯示兩個品牌之間分工明確，刻意不轉傳，各自扮演不同角色；《觀察者網》除了作為發布者外，也擴散轉發來自玉淵潭天這類被視為與中國官媒關係緊密的大V的內容。",
+          "source_id": "src-factlink-a7a795",
+          "about": "玉淵潭天"
+        }
+      ]
     },
     {
       "id": "voice-of-strait",
@@ -2418,6 +2432,21 @@ window.NETWEAVER_DB = {
       "confidence": "high",
       "claims": [
         {
+          "text": "研究團隊發現，此次軍演宣傳由「東部戰區融媒體中心」擔任「中央廚房」角色，提供素材，再由傳統官媒、自媒體、網路新媒體依照素材發揮，帶動網路輿論。",
+          "source_id": "src-factlink-pla",
+          "about": "東部戰區融媒體中心"
+        },
+        {
+          "text": "第一篇 6700筆軍演資料揭露 東部戰區融媒體的宣傳網絡全貌，拆解2025年底軍演中的政治宣傳協作機制。",
+          "source_id": "src-factlink-pla",
+          "about": "東部戰區"
+        },
+        {
+          "text": "研究團隊發現，該段影像是此次軍演的東部戰區的宣傳攻擊主軸。",
+          "source_id": "src-factlink-pla",
+          "about": "東部戰區"
+        },
+        {
           "text": "在軍演中，除了軍事作戰單位發動演練外，東部戰區融媒體中心更發動「資訊宣傳戰」。",
           "source_id": "src-factlink-a7a795",
           "about": "東部戰區融媒體中心"
@@ -2516,21 +2545,6 @@ window.NETWEAVER_DB = {
           "text": "東部戰區融媒體中心的「宣傳」敘事觀點，有其政治宣傳目的。",
           "source_id": "src-factlink-a7a795",
           "about": "東部戰區融媒體中心"
-        },
-        {
-          "text": "研究團隊發現，此次軍演宣傳由「東部戰區融媒體中心」擔任「中央廚房」角色，提供素材，再由傳統官媒、自媒體、網路新媒體依照素材發揮，帶動網路輿論。",
-          "source_id": "src-factlink-pla",
-          "about": "東部戰區融媒體中心"
-        },
-        {
-          "text": "第一篇 6700筆軍演資料揭露 東部戰區融媒體的宣傳網絡全貌，拆解2025年底軍演中的政治宣傳協作機制。",
-          "source_id": "src-factlink-pla",
-          "about": "東部戰區"
-        },
-        {
-          "text": "研究團隊發現，該段影像是此次軍演的東部戰區的宣傳攻擊主軸。",
-          "source_id": "src-factlink-pla",
-          "about": "東部戰區"
         }
       ]
     },
@@ -2693,7 +2707,59 @@ window.NETWEAVER_DB = {
       "source_ids": [
         "src-factlink-a7a795"
       ],
-      "confidence": "high"
+      "confidence": "high",
+      "claims": [
+        {
+          "text": "研究團隊觀察到，解放軍新聞傳播中心轄下微博帳號「中國軍號」的貼文經常被其他官媒與社群帳號採用，但未反映於本次網絡圖中。",
+          "source_id": "src-factlink-a7a795",
+          "about": "中國軍號"
+        },
+        {
+          "text": "主要是中國軍號內容多以短影音與影像形式被轉用，且其發文文字較為獨特。",
+          "source_id": "src-factlink-a7a795",
+          "about": "中國軍號"
+        },
+        {
+          "text": "因此，研究團隊將透過接下來的敘事分析，補充中國軍號在資訊宣傳中的角色。",
+          "source_id": "src-factlink-a7a795",
+          "about": "中國軍號"
+        },
+        {
+          "text": "依據文本相似性資料、關係網絡分析來確認主要行動者，包括：東部戰區；軍方媒體如中國軍號、解放軍報；中央官媒如新華社、央視、央視軍事、人民日報、央廣軍事；以及與對台議題高度相關的福建媒體，如看台海、台海時刻，另亦納入引用次數較高的觀察者網。",
+          "source_id": "src-factlink-a7a795",
+          "about": "中國軍號"
+        },
+        {
+          "text": "當晚7-9點之間，中國軍號、央視新聞、東部戰區、多社群平台眾多帳號等也共同發動此主題。",
+          "source_id": "src-factlink-a7a795",
+          "about": "中國軍號"
+        },
+        {
+          "text": "此影像敘事包含四種文本：央視和央視軍事採用手機直立畫面；中國軍號以無人機起飛影像作為開頭；東部戰區在「這麼近那麼美，隨時到台北」影像中穿插一張台北101照；此外，網路論壇和社群平台流傳所謂「無人機拍攝到的台北地形全景圖」。",
+          "source_id": "src-factlink-a7a795",
+          "about": "中國軍號"
+        },
+        {
+          "text": "資安院分析師戴毓辰協助比對上述文本的「台北101」影像，這四種文本影像疊合後完全相符，觀測到文本畫面左下的時間秒數，不同文本顯示的秒數略有不同，可推測東部戰區、央視、中國軍號等三個主要行動者，透過早已炮製的「共同素材」，自行加工與發揮為宣傳影像。",
+          "source_id": "src-factlink-a7a795",
+          "about": "中國軍號"
+        },
+        {
+          "text": "東部戰區融媒體所製作的「演習畫面」素材，提供給央視、人民日報、中國軍號、環球日報等媒體使用，素材會同步打上「東部戰區」藍白符號。",
+          "source_id": "src-factlink-a7a795",
+          "about": "中國軍號"
+        },
+        {
+          "text": "中國軍號和解放軍報，會有起床號、熄燈號，提供解放軍觀點的宣傳素材。",
+          "source_id": "src-factlink-a7a795",
+          "about": "中國軍號"
+        },
+        {
+          "text": "以「無人機」敘事為例，官方未曾提及「雙尾蠍」，但媒體和民間軍事博主透過中國軍號畫面，反搜認定為雙尾蠍，文章延伸介紹「雙尾蠍」功能，甚至虛擬出無人機斬首計畫、繞台路線。",
+          "source_id": "src-factlink-a7a795",
+          "about": "中國軍號"
+        }
+      ]
     },
     {
       "id": "xinhua",
@@ -2706,7 +2772,7 @@ window.NETWEAVER_DB = {
       "category": "state-media",
       "role": "collaborator",
       "origin": "PRC",
-      "summary_zh": "中國國家通訊社。在同一份軍演宣傳網絡分析中，被列為受權發布演訓公告與示意圖的中央官媒。",
+      "summary_zh": "中國國家通訊社。FactLink 對 2025「正義使命」軍演的宣傳網絡分析中，將其列為受權發布演訓公告與示意圖的中央官媒。",
       "source_ids": [
         "src-factlink-a7a795"
       ],
@@ -2716,6 +2782,26 @@ window.NETWEAVER_DB = {
           "text": "According to Xinhua News Agency, the ceremony was held on 3 July in Beijing.",
           "source_id": "src-aspi-the-strategist-934197",
           "about": "Xinhua News Agency"
+        },
+        {
+          "text": "正義使命軍演是由中共解放軍東部戰區發言人施毅在2025年12月29日早上7點30分宣布開始，由東部戰區、新華社受權發布演訓公告和示意圖，央視亦發布相關新聞。",
+          "source_id": "src-factlink-a7a795",
+          "about": "新華社"
+        },
+        {
+          "text": "關鍵字包含：正义使命、解放军、东部战区、演习、无人机、正義使命、解放軍、東部戰區、演習和無人機，共收集6,924筆資料，再排除新華社宣佈軍演開始之前的不相關貼文，共得到6,747筆資料，以此資料進行後續分析。",
+          "source_id": "src-factlink-a7a795",
+          "about": "新華社"
+        },
+        {
+          "text": "依據文本相似性資料、關係網絡分析來確認主要行動者，包括：東部戰區；軍方媒體如中國軍號、解放軍報；中央官媒如新華社、央視、央視軍事、人民日報、央廣軍事；以及與對台議題高度相關的福建媒體，如看台海、台海時刻，另亦納入引用次數較高的觀察者網。",
+          "source_id": "src-factlink-a7a795",
+          "about": "新華社"
+        },
+        {
+          "text": "除了東部戰區發言人的官宣之外，央視、環球時報、新華社等特定官媒採訪中共特定軍事專家來點評演習，是演習畫面尚未製播之前的關鍵宣傳素材。",
+          "source_id": "src-factlink-a7a795",
+          "about": "新華社"
         }
       ]
     },
@@ -2729,11 +2815,33 @@ window.NETWEAVER_DB = {
       "category": "state-media",
       "role": "collaborator",
       "origin": "PRC",
-      "summary_zh": "解放軍機關報。在同一份分析中，被列為刊登軍演實彈射擊照片集與文字報導的軍方媒體。",
+      "summary_zh": "解放軍機關報。FactLink 對 2025「正義使命」軍演的宣傳網絡分析中，將其列為刊登軍演實彈射擊照片集與文字報導的軍方媒體。",
       "source_ids": [
         "src-factlink-a7a795"
       ],
-      "confidence": "high"
+      "confidence": "high",
+      "claims": [
+        {
+          "text": "依據文本相似性資料、關係網絡分析來確認主要行動者，包括：東部戰區；軍方媒體如中國軍號、解放軍報；中央官媒如新華社、央視、央視軍事、人民日報、央廣軍事；以及與對台議題高度相關的福建媒體，如看台海、台海時刻，另亦納入引用次數較高的觀察者網。",
+          "source_id": "src-factlink-a7a795",
+          "about": "解放軍報"
+        },
+        {
+          "text": "中國軍號和解放軍報，會有起床號、熄燈號，提供解放軍觀點的宣傳素材。",
+          "source_id": "src-factlink-a7a795",
+          "about": "解放軍報"
+        },
+        {
+          "text": "東部戰區融媒體中心在第三日發布的是前兩日演習畫面和「沙場風雨兩岸燈」MV，解放軍報刊登的是12月30日於福州平潭拍攝的遠程火箭砲實彈射擊照片集與文字報導。",
+          "source_id": "src-factlink-a7a795",
+          "about": "解放軍報"
+        },
+        {
+          "text": "央視當晚的新聞聯播則為習近平新年賀詞，軍事新聞關注的是慶賀解放軍報70週年、香港部隊人事訊息、火箭軍建軍十週年等無關對台軍演訊息，翌日為元旦，並沒有對台軍演的相關訊息。",
+          "source_id": "src-factlink-a7a795",
+          "about": "解放軍報"
+        }
+      ]
     },
     {
       "id": "sina-military",
@@ -2749,7 +2857,24 @@ window.NETWEAVER_DB = {
       "source_ids": [
         "src-factlink-a7a795"
       ],
-      "confidence": "medium"
+      "confidence": "medium",
+      "claims": [
+        {
+          "text": "內容被其他帳號使用次數較高的行動者：一是東部戰區，二是中國官媒如央視新聞、環球時報、環球網、央廣軍事，三是與官方有關的帳號 (State-Linked)，如新浪軍事、觀察者網。",
+          "source_id": "src-factlink-a7a795",
+          "about": "新浪軍事"
+        },
+        {
+          "text": "檢視392組文本資料所顯示的指向網絡時可發現，東部戰區發布的貼文，有13個媒體和大V共同轉分享，包括央視新聞、央廣軍事、鎮江民生頻道、央廣軍事、環球時報、浙江日報、澎湃新聞、宣漢融媒、新浪軍事、動静新聞、南湖發布、看看新聞Knews和星話大白等。",
+          "source_id": "src-factlink-a7a795",
+          "about": "新浪軍事"
+        },
+        {
+          "text": "央視新聞發布的13則報導文本，有26個帳號轉發，官方單位有屏山公安、銅陵經開公安在線、山東高法、沐川公安、青春龍泉驛和平安金陽；媒體有動靜新聞、新浪軍事、南寧晚報、錢江晚報、南方週末、頭條新聞、第一現場、馬上資訊、看台海、福建日報、環球時報和新京報；大V有星話大白、包容萬物恆河水、台灣那點事兒、扎西德勒·天珠收藏、椒哥微記錄、航天面面觀、長春-小風、白鶴-老鄧。",
+          "source_id": "src-factlink-a7a795",
+          "about": "新浪軍事"
+        }
+      ]
     },
     {
       "id": "zhejiang-daily",
@@ -2761,11 +2886,18 @@ window.NETWEAVER_DB = {
       "category": "state-media",
       "role": "amplifier",
       "origin": "PRC",
-      "summary_zh": "浙江省委機關報。在同一份分析中被列為轉分享軍演宣傳素材的媒體之一。",
+      "summary_zh": "浙江省委機關報。FactLink 對 2025「正義使命」軍演的宣傳網絡分析中，將其列為轉分享軍演宣傳素材的媒體之一。",
       "source_ids": [
         "src-factlink-a7a795"
       ],
-      "confidence": "medium"
+      "confidence": "medium",
+      "claims": [
+        {
+          "text": "檢視392組文本資料所顯示的指向網絡時可發現，東部戰區發布的貼文，有13個媒體和大V共同轉分享，包括央視新聞、央廣軍事、鎮江民生頻道、央廣軍事、環球時報、浙江日報、澎湃新聞、宣漢融媒、新浪軍事、動静新聞、南湖發布、看看新聞Knews和星話大白等。",
+          "source_id": "src-factlink-a7a795",
+          "about": "浙江日報"
+        }
+      ]
     },
     {
       "id": "the-paper",
@@ -2777,11 +2909,18 @@ window.NETWEAVER_DB = {
       "category": "state-media",
       "role": "amplifier",
       "origin": "PRC",
-      "summary_zh": "上海報業集團旗下新聞網站。在同一份分析中被列為轉分享軍演宣傳素材的媒體之一。",
+      "summary_zh": "上海報業集團旗下新聞網站。FactLink 對 2025「正義使命」軍演的宣傳網絡分析中，將其列為轉分享軍演宣傳素材的媒體之一。",
       "source_ids": [
         "src-factlink-a7a795"
       ],
-      "confidence": "medium"
+      "confidence": "medium",
+      "claims": [
+        {
+          "text": "檢視392組文本資料所顯示的指向網絡時可發現，東部戰區發布的貼文，有13個媒體和大V共同轉分享，包括央視新聞、央廣軍事、鎮江民生頻道、央廣軍事、環球時報、浙江日報、澎湃新聞、宣漢融媒、新浪軍事、動静新聞、南湖發布、看看新聞Knews和星話大白等。",
+          "source_id": "src-factlink-a7a795",
+          "about": "澎湃新聞"
+        }
+      ]
     },
     {
       "id": "pla-isf",
@@ -2794,11 +2933,18 @@ window.NETWEAVER_DB = {
       "category": "state-organ",
       "role": "attacker",
       "origin": "PRC",
-      "summary_zh": "解放軍資訊支援部隊。在同一份分析中，被國防大學受訪者列為過去與總政治部共同執行宣傳工作的單位。",
+      "summary_zh": "解放軍資訊支援部隊。FactLink 對 2025「正義使命」軍演的宣傳網絡分析中，受訪的國防大學研究者將其列為過去與總政治部共同執行宣傳工作的單位。",
       "source_ids": [
         "src-factlink-a7a795"
       ],
-      "confidence": "medium"
+      "confidence": "medium",
+      "claims": [
+        {
+          "text": "國防大學新聞系教授傅文成觀察，過去一般是由總政治部加上解放軍信息支援部執行宣傳，東部戰區融媒體中心主責宣傳，宣傳工作比過去更能貼近台灣脈絡，操作也更精密、細膩。",
+          "source_id": "src-factlink-a7a795",
+          "about": "解放軍信息支援部"
+        }
+      ]
     },
     {
       "id": "prc-mfa",
@@ -2811,11 +2957,18 @@ window.NETWEAVER_DB = {
       "category": "state-organ",
       "role": "amplifier",
       "origin": "PRC",
-      "summary_zh": "中華人民共和國外交部。在同一份分析中被列為官媒評論所引述的官方消息來源。",
+      "summary_zh": "中華人民共和國外交部。FactLink 對 2025「正義使命」軍演的宣傳網絡分析中，將其列為官媒評論所引述的官方消息來源。",
       "source_ids": [
         "src-factlink-a7a795"
       ],
-      "confidence": "medium"
+      "confidence": "medium",
+      "claims": [
+        {
+          "text": "環球時報，另引述中共外交部，並從國際關係角度提供評論、新聞和圖卡。",
+          "source_id": "src-factlink-a7a795",
+          "about": "中共外交部"
+        }
+      ]
     },
     {
       "id": "beijing-media-network",
@@ -2828,11 +2981,18 @@ window.NETWEAVER_DB = {
       "category": "state-media",
       "role": "amplifier",
       "origin": "PRC",
-      "summary_zh": "北京市屬廣電機構，旗下品牌「北京時間」。在同一份分析中被列為以博主型記者主播講述軍演新聞、介紹主題海報意義的媒體。",
+      "summary_zh": "北京市屬廣電機構，旗下品牌「北京時間」。FactLink 對 2025「正義使命」軍演的宣傳網絡分析中，將其列為以博主型記者主播講述軍演新聞、介紹主題海報意義的媒體。",
       "source_ids": [
         "src-factlink-a7a795"
       ],
-      "confidence": "medium"
+      "confidence": "medium",
+      "claims": [
+        {
+          "text": "中共地方媒體的新媒體品牌，比如北京時間（北京廣播電視台）、直新聞（深圳廣電集團）透過博主型記者主播講述軍演新聞與介紹主題海報意義。",
+          "source_id": "src-factlink-a7a795",
+          "about": "北京廣播電視台"
+        }
+      ]
     },
     {
       "id": "shenzhen-media-group",
@@ -2845,11 +3005,18 @@ window.NETWEAVER_DB = {
       "category": "state-media",
       "role": "amplifier",
       "origin": "PRC",
-      "summary_zh": "深圳市屬廣電機構，旗下品牌「直新聞」。在同一份分析中被列為以博主型記者主播講述軍演新聞的媒體。",
+      "summary_zh": "深圳市屬廣電機構，旗下品牌「直新聞」。FactLink 對 2025「正義使命」軍演的宣傳網絡分析中，將其列為以博主型記者主播講述軍演新聞的媒體。",
       "source_ids": [
         "src-factlink-a7a795"
       ],
-      "confidence": "medium"
+      "confidence": "medium",
+      "claims": [
+        {
+          "text": "中共地方媒體的新媒體品牌，比如北京時間（北京廣播電視台）、直新聞（深圳廣電集團）透過博主型記者主播講述軍演新聞與介紹主題海報意義。",
+          "source_id": "src-factlink-a7a795",
+          "about": "深圳廣電集團"
+        }
+      ]
     }
   ],
   "events": [

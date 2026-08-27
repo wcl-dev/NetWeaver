@@ -165,6 +165,28 @@ def test_auto_gate_allows_curated_source_regardless_of_org_list():
     ok, why, _ = _gate(_rec("央視"), curated=True, org="某新部落格")
     assert ok, why
 
+# ---- 名冊擴充後的回填（登錄新實體時，那篇報告往往早已 compiled）----
+
+@case
+def test_backfill_gap_detects_newly_registered_entity():
+    db = {"sources": [{"id": "src-a", "url": "https://example.org/r"}],
+          "entities": [{"id": "cmg-cctv", "name_zh": "央視",
+                        "claims": [{"text": "央視發布相關新聞。", "source_id": "src-a", "about": "央視"}]},
+                       {"id": "xinhua", "name_zh": "新華社"}]}          # 新登錄、還沒有 claim
+    rec = {"claims": [{"about": "央視", "quote": "央視發布相關新聞。", "source": "https://example.org/r"},
+                      {"about": "新華社", "quote": "新華社受權發布公告。", "source": "https://example.org/r"},
+                      {"about": "未登錄的名字", "quote": "無關句。", "source": "https://example.org/r"}]}
+    gap = cur.backfill_gap(rec, db)
+    assert gap == {"xinhua": 1}, gap        # 已有的不算、掛不上名冊的不算
+
+@case
+def test_backfill_gap_empty_when_nothing_new():
+    db = {"sources": [{"id": "src-a", "url": "https://example.org/r"}],
+          "entities": [{"id": "cmg-cctv", "name_zh": "央視",
+                        "claims": [{"text": "央視發布相關新聞。", "source_id": "src-a", "about": "央視"}]}]}
+    rec = {"claims": [{"about": "央視", "quote": "央視發布相關新聞。", "source": "https://example.org/r"}]}
+    assert cur.backfill_gap(rec, db) == {}, "沒有新內容時不得誤判為可回填（否則會無限重編）"
+
 # ---- compile 的發布範圍（替身取代 queue/db IO，不落盤）----
 
 import contextlib, types

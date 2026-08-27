@@ -1046,7 +1046,9 @@ window.NETWEAVER_DB = {
       "aliases": [
         "环球时报",
         "globaltimes.cn",
-        "環球網/Huanqiu"
+        "環球網/Huanqiu",
+        "環球網",
+        "Huanqiu"
       ],
       "category": "state-media",
       "role": "amplifier",
@@ -2230,7 +2232,8 @@ window.NETWEAVER_DB = {
         "東部戰區",
         "Eastern Theater Command",
         "東部戰區融媒體",
-        "Eastern Theater Command Fusion-Media Center"
+        "Eastern Theater Command Fusion-Media Center",
+        "東部戰區融媒體中心帳號"
       ],
       "category": "state-media",
       "role": "attacker",
@@ -2524,6 +2527,55 @@ window.NETWEAVER_DB = {
         "src-factlink-hackleak"
       ],
       "confidence": "medium"
+    },
+    {
+      "id": "china-military-bugle",
+      "name_zh": "中國軍號",
+      "name_en": "China Military Bugle",
+      "aliases": [
+        "中国军号"
+      ],
+      "category": "state-media",
+      "role": "collaborator",
+      "origin": "PRC",
+      "summary_zh": "解放軍官方新媒體帳號品牌。在 FactLink 對 2025「正義使命」軍演的宣傳網絡分析中，被列為釋出無人機影像素材、並與東部戰區、央視共同發動宣傳主題的行動者。",
+      "source_ids": [
+        "src-factlink-a7a795"
+      ],
+      "confidence": "high"
+    },
+    {
+      "id": "xinhua",
+      "name_zh": "新華社",
+      "name_en": "Xinhua News Agency",
+      "aliases": [
+        "新华社",
+        "Xinhua"
+      ],
+      "category": "state-media",
+      "role": "collaborator",
+      "origin": "PRC",
+      "summary_zh": "中國國家通訊社。在同一份軍演宣傳網絡分析中，被列為受權發布演訓公告與示意圖的中央官媒。",
+      "source_ids": [
+        "src-factlink-a7a795"
+      ],
+      "confidence": "high"
+    },
+    {
+      "id": "pla-daily",
+      "name_zh": "解放軍報",
+      "name_en": "PLA Daily",
+      "aliases": [
+        "解放军报"
+      ],
+      "category": "state-media",
+      "role": "collaborator",
+      "origin": "PRC",
+      "summary_zh": "解放軍機關報。在同一份分析中，被列為刊登軍演實彈射擊照片集與文字報導的軍方媒體。",
+      "source_ids": [
+        "src-factlink-a7a795"
+      ],
+      "confidence": "high"
     }
   ],
   "events": [

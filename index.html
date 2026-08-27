@@ -220,6 +220,14 @@
   .claim-group-src .src-org { font-family: var(--mono); color: var(--accent-dim); }
   .claim-group-src .rep-date { font-family: var(--mono); color: var(--muted-2); }
   .claim { background: var(--panel); border: 1px solid var(--border-soft); border-left: 3px solid var(--accent); padding: 10px 14px; margin: 0 0 7px 12px; border-radius: 6px; font-size: 14px; color: #dfe6f0; line-height: 1.55; }
+  /* 敘述角色：邊條顏色分層，證據份量重的在上、顏色實 */
+  .claim.k-member { border-left-color: var(--accent-dim); }
+  .claim.k-cite   { border-left-color: var(--muted-2); }
+  .claim.k-method { border-left-color: var(--border); color: #aeb8c6; }
+  .claim-kind { display: inline-block; font-family: var(--mono); font-size: 10.5px; letter-spacing: .04em;
+    color: var(--muted); border: 1px solid var(--border-soft); border-radius: 3px;
+    padding: 1px 6px; margin-right: 8px; vertical-align: 1.5px; white-space: nowrap; cursor: help; }
+  .claim.k-desc .claim-kind { color: var(--accent-dim); border-color: var(--accent-dim); }
 
   /* ---- network ---- */
   .net-wrap { background: var(--panel); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
@@ -325,6 +333,25 @@
       group.split(/\s+/).filter(Boolean).every(t =>
         t.startsWith("-") ? (t.length < 2 || !hay.includes(t.slice(1))) : hay.includes(t)));
   }
+  // 宣稱的敘述角色（呈現層判斷，不改資料）：記錄簿要「完整呈現被提到的每一處」，
+  // 但四種提及方式的證據份量不同，混在一起讀者無從分辨。標記依據是結構性訊號——
+  // 引述詞、頓號相鄰、研究流程動詞——不是關鍵字猜測。
+  const CLAIM_KIND = {
+    cite:   { label: "引為消息來源", hint: "此處是被當成事實來源引述，非被記錄的行為" },
+    method: { label: "研究說明",     hint: "描述研究流程本身，非該行為者的行為" },
+    member: { label: "列為網絡成員", hint: "在報告的行動者清單中被列名" },
+    desc:   { label: "描述其行為",   hint: "報告直接描述此行為者的作為" },
+  };
+  const KIND_ORDER = ["desc", "member", "cite", "method"];
+  function reEsc(s) { return (s || "").replace(/[.*+?^${}()|[\]\\]/g, "\\$&"); }
+  function claimKind(text, about) {
+    const n = reEsc(about || ""); if (!n) return "desc";
+    if (new RegExp(`(據|根據|引述|援引|轉述|According to|according to)[^。]{0,12}${n}`).test(text)) return "cite";
+    if (/(研究團隊|本研究|本次)[^。]{0,24}(將|方法是|收集|排除|比對|接下來|補充)/.test(text)) return "method";
+    if (new RegExp(`[、,]\\s*${n}|${n}\\s*[、]|(如|包括|包含|例如)[^。]{0,24}${n}`).test(text)) return "member";
+    return "desc";
+  }
+
   // 真 B：claims 按來源分組（來源＋報告發布日只顯示一次，底下列該來源的各條 distinct claim）
   function claimsBySource(claims) {
     const order = [], byS = {};
@@ -332,7 +359,12 @@
     return order.map(sid => {
       const s = SRC[sid];
       const head = s ? `<a href="${esc(s.url)}" target="_blank" rel="noopener"><span class="src-org">〔${esc(shortOrg(s.org))}〕</span>${esc(s.title)}</a> <span class="rep-date">· 報告發布 ${esc(s.date||"—")}</span>` : esc(sid);
-      return `<div class="claim-group"><div class="claim-group-src">${head}</div>${byS[sid].map(c => `<div class="claim">${esc(c.text)}</div>`).join("")}</div>`;
+      const rows = byS[sid]
+        .map(c => ({ c, k: claimKind(c.text, c.about) }))
+        .sort((a, b) => KIND_ORDER.indexOf(a.k) - KIND_ORDER.indexOf(b.k))
+        .map(({ c, k }) => `<div class="claim k-${k}"><span class="claim-kind" title="${esc(CLAIM_KIND[k].hint)}">${esc(CLAIM_KIND[k].label)}</span>${esc(c.text)}</div>`)
+        .join("");
+      return `<div class="claim-group"><div class="claim-group-src">${head}</div>${rows}</div>`;
     }).join("");
   }
 

@@ -55,6 +55,43 @@ Gemma v22 真實單-call telemetry smoke（doc02 actor pass）：總耗時 62.1s
 
 qwen v4 分篇 strict edge F1：doc03 = 0.10，其餘 = 0。qwen v14 分篇 edge F1：doc02 0.06、doc04 0.14、doc05 0.30、doc07 0.11，其餘 0；micro edge F1 = 0.11。v14 的逐字 occurrence 展開消除了 duplicate tmp_id／ambiguity drop，mention pass 與 assertion window 各自 fail-closed；單一 mention pass timeout 會保留其餘成功 pass。
 
+### 2026-08-19 gemma 在低行為者密度文體上的歸零風險
+
+**現象**：`5d7d3b4a5f368b43`（FactLink「無人機飛到台北101」，6,032 字中文）以預設的
+`gemma4:12b-it-qat` 抽取，連續三次都是 **0 mention**——但模型有回應（1,596 completion
+tokens、3 次呼叫）。
+
+**診斷**（管線的 stage/span 診斷鏈補完後才查得出來，見下）：
+
+| stage | returned | schema_dropped | span_dropped | kept |
+|---|---:|---:|---:|---:|
+| mentions-a | 2 | 0 | 2（bad-quote 2） | 0 |
+| mentions-e | 8 | 0 | 8（surface-not-in-quote 5、bad-quote 3） | 0 |
+| mentions-n | 2 | 0 | 2（bad-quote 2） | 0 |
+
+模型回報的 `surface` 是**章節標題與句子片段**，不是實體名稱：
+「網友查證力 化身資訊防禦的民間力量」「研究團隊分析的Threads貼文中，有28.8%」。
+span-check 全數擋下——否則會產生 12 個荒謬的行為者候選。
+
+**歸因**（三個假設逐一排除）：
+
+- **文本前處理**：✗。6,032 字／55 行，標題各自獨立成行；與同publisher、同樣成功抽出
+  165 筆的 `13c8577d`（6,287 字／67 行）結構幾乎相同。
+- **prompt**：✗。三個 mention pass 都明文要求 `surface`／`quote` 必須是原文精確子字串、
+  `surface` 必須在 `quote` 內，ENTITY pass 另明文排除報告標題。
+- **模型行為**：✓。**同一篇、同一段文本、同一組 prompt，改用 `qwen2.5:7b` 得到 55 筆**
+  （surface 為「解放軍」「東部戰區」「台北101大樓」等真實實體名，引文皆在原文）。
+
+**判讀**：gemma 在**具名行為者密度低的社論體例**上有靜默歸零的風險。qwen 在該篇明顯較佳，
+但整體 gold 基線較差（mention F1 0.44 vs gemma 0.57），屬單篇勝出而非全面勝出——
+**不宜據此更換預設模型**。真正的解法是換用雲端模型（gemini-3.7-flash 在 gold 上
+entity-R 0.96），待 production 憑證到位。
+
+**附帶結論**：span-check 這道 fail-closed 閘在此案例中正確地發揮了作用。先前它默默丟掉
+12 筆而外界只看到「0 mention」，無從分辨「模型無能」與「管線出錯」——這兩者的處置方向
+相反。診斷鏈補完後（`run_loop` 的 `stages`／`span_drops`／`usage` 三層，只記數量與短例、
+不把報告原文寫進 queue），同類問題現在兩分鐘可定位。
+
 ### 2026-08-19 gemini-3.7-flash 單篇測試（共用額度，僅測試用）
 
 同一篇 dev 文件（`05-nsb-cognitive-2024`：中文、1,644 字、單 chunk）、同一評分器、同 aw12 設定下的對照：

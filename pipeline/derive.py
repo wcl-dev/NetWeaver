@@ -20,6 +20,14 @@ KIND = {"network": "intrusion-set", "org": "identity", "person": "identity",
         "account": "x-dad-channel", "website": "x-dad-channel", "media": "x-dad-channel",
         "narrative": "x-dad-narrative", "tool": "tool", "infrastructure": "infrastructure",
         "place": "location", "url": "url", "domain": "domain-name"}
+# 已登錄實體的 category → STIX kind。**人的分類勝過模型的 coarse_type**：
+# 同一個行為者若因模型每次猜的粗類不同而拿到不同 STIX 型別，UUIDv5 也會不同，
+# 逐篇 bundle 與整本匯出就會出現同一實體的分身。對照依 STIX-PROFILE §2。
+CATEGORY_KIND = {"cib-network": "intrusion-set", "content-farm": "intrusion-set",
+                 "state-media": "x-dad-channel", "domestic-amplifier": "x-dad-channel",
+                 "commentator": "identity", "state-organ": "identity",
+                 "tech-vendor": "identity", "pr-firm": "identity", "other": "identity"}
+
 HEDGE = ["likely", "possibly", "probably", "alleged", "assessed", "appears", "suspected", "疑似", "可能", "研判", "評估"]
 TIER = {"gov-report": 3, "platform-report": 3, "academic": 3, "ngo-report": 2, "news": 1}
 
@@ -48,6 +56,8 @@ def derive(extr, reg):
     for m in extr["mentions"]:
         surf = m["surface"]; kind = KIND.get(m["coarse_type"], "identity")
         known = reg.get(norm(surf)) or next((reg.get(norm(x)) for x in re.split(r"[／/、,]", surf) if reg.get(norm(x))), None)
+        if known and known.get("category") in CATEGORY_KIND:   # 已登錄 → 用人的分類，不用模型猜的
+            kind = CATEGORY_KIND[known["category"]]
         o = {"tmp_id": m["tmp_id"], "kind": kind}
         if kind == "location": o["country"] = m.get("country", "TW")
         else: o["name"] = re.split(r"[／/]", surf)[0].strip()

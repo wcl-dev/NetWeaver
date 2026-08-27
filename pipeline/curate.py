@@ -337,6 +337,10 @@ def cmd_compile(args):
         for eid, claims in by_ent.items():
             _upsert(ent_by_id[eid], claims, sids)
         e["compile_status"] = "compiled"
+        try:                                                 # 發布後刷新落盤 bundle，與已發布狀態一致
+            _bp = _here.parent / e["extraction"]
+            rl.write_bundle(_bp.parent, _bp.name.split(".")[0], sl and pipe.serialize(sl))
+        except Exception: pass
         done.append((rid, ents_str, nclaims, f"分掛 {len(by_ent)} 個實體，{dropped} 條 about 未登錄略過"
                                              + (f"，清除 {len(stale)} 個實體的同來源舊 claims" if stale else "")))
     if not args.dry_run and done:

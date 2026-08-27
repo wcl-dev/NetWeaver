@@ -51,6 +51,9 @@ python3 pipeline/pipeline.py pipeline/samples/spamouflage.extraction.json
 # 把樣本投影 claims 併入 db.js
 python3 pipeline/compile_to_db.py pipeline/samples/*.extraction.json
 
+# 整本記錄簿匯出成單一 STIX 2.1 bundle（行為者／事件／敘事／來源，非只有宣稱那一層）
+python3 pipeline/export_stix.py -o pipeline/out/netweaver-db.stix.json
+
 # 生產迴圈（自動發布模式）：抽取 → 審名冊 → 自動發布
 python3 pipeline/run_loop.py                     # ingest→…→project，入 curation queue
 python3 pipeline/register.py roster              # 看哪些名字反覆出現卻沒登錄 → 決定要收哪些
@@ -116,6 +119,7 @@ pipeline/
 ├── compile_to_db.py         # 投影 claims → data/db.js（樣本用；整包覆蓋。迴圈請用 curate.py）
 ├── run_loop.py              # 冪等編排 ingest→…→project；產出待審 curation queue（預設不自動 compile）
 ├── urlnorm.py               # 來源 URL 比對鍵（追蹤參數／scheme／www 不算新來源；id 雜湊同源）
+├── export_stix.py           # 整本記錄簿 → 單一 STIX 2.1 bundle（骨幹也可交換；id 與逐篇一致）
 ├── curate.py                # 審核 CLI：list/show/approve/compile/auto（安全 upsert／狀態機／歸因閘／歸屬重算）
 ├── register.py              # 補 source/actor：add-source/add-actor/suggest/roster/ignore（enum/URL/FK 驗證、防撞名）
 ├── ../data/roster_ignore.json # 「決定不收錄」清單（只影響 roster 候選；不隨 db.js 發布到前端）

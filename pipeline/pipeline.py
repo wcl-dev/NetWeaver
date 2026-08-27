@@ -96,7 +96,15 @@ def serialize(lite):
     return {"type": "bundle", "id": f"bundle--{uuid.uuid5(NS, 'bundle:' + rep['url'])}", "objects": objs}
 
 # ---------- validate: profile 不變量 ----------
-def validate(bundle):
+def validate(bundle, require_evidence=True):
+    """profile 不變量。
+
+    `require_evidence`：抽取路徑必須逐物件掛 evidence（§5「抽不出引文→不建立」，防模型
+    無中生有）。**人策展的骨幹用不同的憑據**——它的來源是 `source_ids`／report 引用，不是
+    逐字引文，所以整本記錄簿匯出時關掉這條，改由匯出端檢查「每個物件都被 report 引用」。
+    不可為了讓匯出通過而放寬本函式的預設值：serialize() 的 report.object_refs 涵蓋全部物件，
+    一旦放寬，抽取路徑的 grounding 檢查會變成永遠通過。
+    """
     objs = bundle["objects"]; byid = {o["id"]: o for o in objs}; fails = []
     for o in objs:
         if not re.match(r"^[a-z0-9-]+--[0-9a-f]{8}-[0-9a-f-]{27}$", o["id"]):
@@ -112,7 +120,7 @@ def validate(bundle):
     for o in objs:                                # grounding：被抽取物件需 evidence（或有 evidence 關係碰到）；SCO/參照免
         if o["type"] in ("report", "extension-definition", "marking-definition", "relationship") or o["type"] in SCO:
             continue
-        if not o.get("x_netweaver_evidence") and o["id"] not in touched:
+        if require_evidence and not o.get("x_netweaver_evidence") and o["id"] not in touched:
             fails.append("無 grounding: " + o["id"])
     att = [o for o in objs if o.get("relationship_type") == "attributed-to"]
     return fails, att

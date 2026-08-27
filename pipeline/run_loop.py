@@ -106,6 +106,18 @@ def _reason_counts(drops):
         out[reason] = out.get(reason, 0) + 1
     return out
 
+def write_bundle(outdir, raw_id, bundle):
+    """把該篇的 STIX bundle 落盤（`<raw_id>.stix.json`）。
+
+    先前 bundle 只是記憶體中的中繼物，驗證、投影完就丟——「中介過 STIX」成立，但沒有
+    可交換的產物。留檔之後，任何一篇都能直接餵給吃 STIX 2.1 的工具。
+    位於 gitignore 的 extractions/ 下，與該篇的 extraction JSON 併存。
+    """
+    outdir.mkdir(parents=True, exist_ok=True)
+    p = outdir / (raw_id + ".stix.json")
+    p.write_text(json.dumps(bundle, ensure_ascii=False, indent=2), encoding="utf-8")
+    return p
+
 def stage_stats(diags):
     """各抽取 stage 的結果 → [{stage, kept, error?}]。
 
@@ -241,6 +253,7 @@ def main():
             outdir = EXTRACTIONS / m.get("source_id", "_"); outdir.mkdir(parents=True, exist_ok=True)
             outp = outdir / (m["raw_id"] + ".extraction.json")
             outp.write_text(json.dumps(extr, ensure_ascii=False, indent=2), encoding="utf-8")
+            write_bundle(outdir, m["raw_id"], bundle)        # 合法 STIX 2.1，可直接交換
             # 預設不自動 compile：一律入 curation queue，附人工判斷所需的 readiness 旗標
             digest = publication_digest(extr, rec.get("claims"))
             prev = queue.get(m["raw_id"], {})                # 內容變了（重抽）→ 重置審核；沒變→保留既有決定/note/歸屬

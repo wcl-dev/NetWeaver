@@ -100,6 +100,34 @@ def operator_ref(sl, ent_ids):
         if o.get("kind") in _ACTOR_KINDS: return o["nw_ref"]
     return acting[0]["nw_ref"] if acting else None           # 2) 任一行動方；否則 None（不綁 target）
 
+def _reason_counts(drops):
+    out = {}
+    for _kind, _name, reason in drops or []:
+        out[reason] = out.get(reason, 0) + 1
+    return out
+
+def stage_stats(diags):
+    """各抽取 stage 的結果 → [{stage, kept, error?}]。
+
+    抽出 0 個 mention 時，這是唯一能分辨「模型正常回應但內容為空」與「呼叫失敗被吞掉」的
+    線索：returned＝模型實際回了幾筆、schema_dropped／span_dropped＝在哪一關被丟、kept＝最後留下。
+    只記數量不記內容——raw 裡含報告原文，不該進 queue。錯誤訊息截短，避免整段堆疊。
+    """
+    out = []
+    for d in diags or []:
+        raw = d.get("raw") or {}
+        row = {"stage": d.get("stage"),
+               "returned": len(raw.get("mentions") or []) if isinstance(raw, dict) else None,
+               "schema_dropped": len(d.get("schema_item_drops") or []),
+               "span_dropped": len(d.get("drops") or []),
+               "span_reasons": _reason_counts(d.get("drops")),
+               "examples": [str(x[1])[:24] for x in (d.get("drops") or [])[:3]],
+               "kept": d.get("kept")}
+        for k in ("error", "budget_exhausted"):
+            if d.get(k): row[k] = str(d[k])[:120]
+        out.append(row)
+    return out
+
 def span_drop_stats(dropped):
     """span-check 的丟棄統計 → {"kind:reason": 次數}。
 
@@ -200,8 +228,10 @@ def main():
             # 一律建 run：即使不設上限也要記用量——對計費端點沒有成本能見度是不可接受的
             run = ex.ExtractionRun(doc_timeout=args.doc_timeout, max_cold_calls=args.max_cold_calls,
                                    max_assertion_windows=args.max_assertion_windows)
-            extr, dropped = ex.extract(report_meta(m), text, run=run)
+            diags = []
+            extr, dropped = ex.extract(report_meta(m), text, run=run, diagnostics=diags)
             span_drops = span_drop_stats(dropped)
+            stages = stage_stats(diags)
             usage = {k: run.summary()[k] for k in
                      ("cold_calls", "cache_hits", "prompt_tokens", "completion_tokens",
                       "total_tokens", "elapsed_seconds")}
@@ -223,7 +253,7 @@ def main():
                      "claims": len(rec.get("claims", [])), "assertions": len(extr.get("assertions", [])),
                      "source_curated": _urlnorm.source_key(m.get("url")) in src_urls, "actor_registered": nw_ref,
                      "attributed_to": len(att), "valid": not fails, **extraction_provenance(ex),
-                     "usage": usage, "span_drops": span_drops,
+                     "usage": usage, "span_drops": span_drops, "stages": stages,
                      # 審核狀態機（curate.py 用）：pending→approved/rejected/deferred→compiled
                      "compile_status": prev.get("compile_status", "pending") if same else "pending"}
             if same and prev.get("note"): entry["note"] = prev["note"]

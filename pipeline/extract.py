@@ -904,9 +904,13 @@ def span_check(extr, text):                                   # 碼端硬閘：�
         else: dropped.append(("assertion", a.get("predicate"), "dangling"))
     return {"mentions": keep_m, "assertions": keep_a}, dropped
 
-def extract(report_meta, text, run=None):
-    """run＝可選的 ExtractionRun；給了才有時間／呼叫數上限（預設 None＝不設限，行為不變）。"""
-    raw = call_llm_two_stage(text, run=run)
+def extract(report_meta, text, run=None, diagnostics=None):
+    """run＝可選的 ExtractionRun（時間／呼叫數上限）；diagnostics＝可選的 list，收各 stage 的結果。
+
+    diagnostics 是抽出 0 個 mention 時唯一能分辨「模型回空」與「呼叫失敗」的線索——
+    兩階段抽取內部本來就會記，但先前沒有往上傳，資訊到這裡就斷了。
+    """
+    raw = call_llm_two_stage(text, run=run, diagnostics=diagnostics)
     for m in raw.get("mentions", []): m.setdefault("source_url", report_meta["url"])
     for a in raw.get("assertions", []): a.setdefault("source_url", report_meta["url"])
     checked, dropped = span_check(raw, text)

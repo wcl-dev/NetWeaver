@@ -678,16 +678,26 @@
       不會只留在我們自己的發布流程裡。
     </p>
 
+    <h3>把資料倒出去</h3>
+    <p>兩個層級的產物，都是合法的 STIX 2.1：</p>
+    <pre><code><span class="cmt"># 逐篇：跑迴圈時自動落盤，發布後會刷新成「已發布狀態」</span>
+pipeline/extractions/&lt;來源&gt;/&lt;raw_id&gt;.stix.json
+
+<span class="cmt"># 整本記錄簿：一次匯出成單一 bundle</span>
+python3 pipeline/export_stix.py</code></pre>
+    <p>
+      整本匯出<strong>不只是宣稱那一層</strong>——67 個行為者、33 個事件、35 個敘事、
+      70 份來源與其間的 181 條關係都在裡面，共 390 個物件。人策展的骨幹與機器抽的宣稱
+      在同一份檔案裡，而且同一個行為者在逐篇與整本兩種 bundle 裡是<strong>同一個 STIX id</strong>，
+      下游合併不會產生分身。
+    </p>
     <div class="note">
-      <span class="note-label">注意</span>
+      <span class="note-label">但書</span>
       <p>
-        目前<strong>迴圈不會把 bundle 存檔</strong>。它在記憶體裡建好、驗證、投影成卡片之後就丟掉，
-        只有抽取結果會留在磁碟上。要拿到實體檔案，得手動對單篇跑
-        <code>python3 pipeline/pipeline.py &lt;extraction.json&gt;</code>。
-      </p>
-      <p>
-        意思是：上面說的相容性與標記隨資料走，<strong>機制已經就位，但還沒被實際用上</strong>——
-        真的要把資料交換出去之前，得先決定要不要讓迴圈把 bundle 留下來。
+        這份 bundle 通過了我們自己的 profile 驗證（不變量、grounding、無懸空參照），
+        但<strong>還沒有人真的把它餵進 OpenCTI 或其他外部系統試過</strong>。
+        自訂物件（<code>x-dad-channel</code>、<code>x-dad-narrative</code>）在對方那端可能還需要對應設定。
+        第一次實際對接時要預留除錯時間。
       </p>
     </div>
 

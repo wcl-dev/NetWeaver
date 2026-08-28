@@ -7,3 +7,4 @@ pipeline/raw/
 pipeline/eval_runs/
 pipeline/ingest_state.json
 pipeline/extractions/
+pipeline/.request_cache/

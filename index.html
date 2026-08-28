@@ -20,6 +20,8 @@
     --amplifier: #5b9bf5;
     --accent: #3fb6a8;
     --accent-dim: #2c7d74;
+    --accent-soft: #16302e;
+    --label: #a8b2c4;          /* 小字標籤：對比 ≥4.5 */
     --radius: 10px;
     --mono: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
     --sans: -apple-system, "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", system-ui, sans-serif;
@@ -182,7 +184,8 @@
   .link-row:hover { border-color: var(--accent-dim); background: var(--panel-2); }
   .link-row .lr-main { flex: 1; min-width: 0; }
   .link-row .lr-title { font-weight: 600; font-size: 14.5px; }
-  .link-row .lr-sub { color: var(--muted); font-size: 12.5px; margin-top: 2px; }
+  .link-row .lr-sub { color: var(--muted); font-size: 12.5px; margin-top: 2px;
+    display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; }
   .link-row .lr-date { font-family: var(--mono); font-size: 12px; color: var(--muted); white-space: nowrap; }
   .rel-label { font-family: var(--mono); font-size: 11.5px; color: var(--accent); white-space: nowrap; }
 
@@ -213,12 +216,46 @@
   .rollup-chain { font-family: var(--mono); font-size: 11px; color: var(--accent); font-weight: 400; }
   .brand .v2 { font-family: var(--mono); font-size: 10px; color: #0b0e14; background: var(--accent); border-radius: 4px; padding: 1px 6px; margin-left: 4px; }
   /* ---- v2.1: claim 卡（真 B，按來源分組）---- */
-  .claim-group { margin-bottom: 16px; }
-  .claim-group-src { font-size: 12.5px; color: var(--muted); margin-bottom: 8px; padding-bottom: 6px; border-bottom: 1px solid var(--border-soft); }
-  .claim-group-src a { color: #cdd5e2; }
-  .claim-group-src a:hover { color: var(--accent); }
-  .claim-group-src .src-org { font-family: var(--mono); color: var(--accent-dim); }
-  .claim-group-src .rep-date { font-family: var(--mono); color: var(--muted-2); }
+  /* ---- v2.2: 來源與宣稱合併（一份報告一塊）---- */
+  .src-block { border: 1px solid var(--border-soft); border-radius: 8px; margin-bottom: 10px; background: var(--panel); }
+  .src-block[open] { border-color: var(--border); }
+  .src-sum { list-style: none; cursor: pointer; padding: 11px 14px; display: flex; flex-wrap: wrap;
+    align-items: center; gap: 4px 10px; font-size: 13.5px; min-height: 44px; }
+  .src-sum::-webkit-details-marker { display: none; }
+  .src-sum::before { content: "\25B8"; color: var(--muted-2); margin-right: 2px; font-size: 11px; }
+  .src-block[open] .src-sum::before { content: "\25BE"; }
+  .src-sum .src-org { font-family: var(--mono); color: var(--accent-dim); }
+  .src-sum .src-ttl { color: #cdd5e2; flex: 1 1 260px; }
+  .src-sum .rep-date { font-family: var(--mono); font-size: 12px; color: var(--label); }
+  .src-sum .src-n { font-family: var(--mono); font-size: 11.5px; padding: 1px 7px; border-radius: 10px; }
+  .src-sum .src-n.has { color: var(--accent); background: var(--accent-soft); }
+  .src-sum .src-n.none { color: var(--label); border: 1px solid var(--border); }
+  .src-body { padding: 2px 14px 12px; }
+  .src-body .claim { margin-left: 0; }
+  .src-link { margin-top: 8px; font-size: 12.5px; }
+  /* 「展開其餘 N 條」：文字鈕外觀，和報告卡片、共現細框各自可辨 */
+  details.more > summary { list-style: none; cursor: pointer; display: flex; align-items: center;
+    min-height: 44px; font-size: 13px; color: var(--accent);
+    border-top: 1px dashed var(--border-soft); margin-top: 6px; padding-top: 8px; }
+  details.more > summary::-webkit-details-marker { display: none; }
+  details.more > summary::before { content: "\FF0B "; }
+  details.more[open] > summary::before { content: "\FF0D "; }
+  .src-empty { border: 1px dashed var(--border); border-radius: 8px; margin-top: 10px; }
+  .src-empty > summary { cursor: pointer; padding: 0 14px; min-height: 44px; display: flex; align-items: center;
+    font-size: 13px; color: var(--label); }
+  /* ---- 引文共現 ---- */
+  .qco { border: 1px solid var(--border-soft); border-radius: 8px; margin-bottom: 8px; background: transparent; }
+  .qco > summary { list-style: none; cursor: pointer; padding: 10px 14px; min-height: 44px;
+    display: flex; justify-content: space-between; align-items: center; }
+  .qco > summary::-webkit-details-marker { display: none; }
+  .qco > summary::before { content: "\25B8"; color: var(--muted-2); margin-right: 8px; font-size: 11px; }
+  .qco[open] > summary::before { content: "\25BE"; }
+  .qco-name { color: #dfe6f0; font-size: 14px; flex: 1; }
+  .qco-n { font-family: var(--mono); font-size: 11.5px; color: var(--label); }
+  .qco-body { padding: 0 14px 12px; }
+  .qco-quote { border-left: 2px solid var(--accent-dim); padding: 8px 12px; margin-bottom: 8px;
+    font-size: 13.5px; color: #dfe6f0; line-height: 1.55; background: var(--panel); border-radius: 0 6px 6px 0; }
+  .qco-src { margin-top: 5px; font-family: var(--mono); font-size: 11.5px; color: var(--label); }
   .claim { background: var(--panel); border: 1px solid var(--border-soft); border-left: 3px solid var(--accent); padding: 10px 14px; margin: 0 0 7px 12px; border-radius: 6px; font-size: 14px; color: #dfe6f0; line-height: 1.55; }
   /* 敘述角色：邊條顏色分層，證據份量重的在上、顏色實 */
   .claim.k-member { border-left-color: var(--accent-dim); }
@@ -227,13 +264,19 @@
   .claim-kind { display: inline-block; font-family: var(--mono); font-size: 10.5px; letter-spacing: .04em;
     color: var(--muted); border: 1px solid var(--border-soft); border-radius: 3px;
     padding: 1px 6px; margin-right: 8px; vertical-align: 1.5px; white-space: nowrap; cursor: help; }
-  .claim.k-desc .claim-kind { color: var(--accent-dim); border-color: var(--accent-dim); }
+  .claim.k-desc .claim-kind { color: var(--accent); border-color: var(--accent-dim); background: var(--accent-soft); }
+  /* 鍵盤焦點：摺疊控制與連結都要看得見焦點 */
+  summary:focus-visible, a:focus-visible, button:focus-visible, .link-row:focus-visible {
+    outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 6px; }
+  /* 區塊標題原本小於內文，層級反了 */
+  .section h2 { font-size: 17px; letter-spacing: .04em; color: var(--text); }
 
   /* ---- network ---- */
   .net-wrap { background: var(--panel); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
   #net-svg { display: block; width: 100%; height: 600px; background:
     radial-gradient(circle at 50% 40%, #131a28 0%, #0b0e14 75%); cursor: grab; }
   #net-svg.grabbing { cursor: grabbing; }
+  .net-edge.q { stroke: #3ecf8e; stroke-opacity: .42; stroke-width: 1.2; stroke-dasharray: 2 3; }
   .net-legend { display: flex; gap: 20px; flex-wrap: wrap; padding: 13px 16px; border-top: 1px solid var(--border); font-size: 12.5px; color: var(--muted); }
   .net-legend .lg { display: flex; align-items: center; gap: 7px; }
   .net-node-label { font-size: 11px; fill: var(--text); font-family: var(--sans); pointer-events: none; }
@@ -353,20 +396,55 @@
   }
 
   // 真 B：claims 按來源分組（來源＋報告發布日只顯示一次，底下列該來源的各條 distinct claim）
-  function claimsBySource(claims) {
-    const order = [], byS = {};
-    (claims || []).forEach(c => { if (!byS[c.source_id]) { byS[c.source_id] = []; order.push(c.source_id); } byS[c.source_id].push(c); });
-    return order.map(sid => {
-      const s = SRC[sid];
-      const head = s ? `<a href="${esc(s.url)}" target="_blank" rel="noopener"><span class="src-org">〔${esc(shortOrg(s.org))}〕</span>${esc(s.title)}</a> <span class="rep-date">· 報告發布 ${esc(s.date||"—")}</span>` : esc(sid);
-      const rows = byS[sid]
-        .map(c => ({ c, k: claimKind(c.text, c.about) }))
-        .sort((a, b) => KIND_ORDER.indexOf(a.k) - KIND_ORDER.indexOf(b.k))
-        .map(({ c, k }) => `<div class="claim k-${k}"><span class="claim-kind" title="${esc(CLAIM_KIND[k].hint)}">${esc(CLAIM_KIND[k].label)}</span>${esc(c.text)}</div>`)
-        .join("");
-      return `<div class="claim-group"><div class="claim-group-src">${head}</div>${rows}</div>`;
-    }).join("");
+  // 名稱→實體索引。CJK 用子字串；純 ASCII 名（TAO/CAC/MPS…）要求詞界，否則 TAOYUAN 會誤中 TAO。
+  let _NAMEIDX = null;
+  function nameIndex() {
+    if (_NAMEIDX) return _NAMEIDX;
+    const rows = [];
+    DB.entities.forEach(e => [e.name_zh, e.name_en, ...(e.aliases||[])].forEach(nm => {
+      if (!nm || nm.length < 2) return;
+      rows.push(/^[\x00-\x7F]+$/.test(nm)
+        ? { id: e.id, re: new RegExp("(^|[^A-Za-z0-9])" + nm.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + "($|[^A-Za-z0-9])", "i") }
+        : { id: e.id, sub: nm });
+    }));
+    return (_NAMEIDX = rows);
   }
+  // 一段文字裡點名到哪些實體。回傳 id 集合——同一實體被多個別名命中只算一次。
+  // 同一句常同時掛在多個實體的 claims 上，結果按文字快取。
+  const _HITS = new Map();
+  function nameHits(text) {
+    let hit = _HITS.get(text);
+    if (hit) return hit;
+    hit = new Set();
+    nameIndex().forEach(r => { if (r.sub ? text.includes(r.sub) : r.re.test(text)) hit.add(r.id); });
+    _HITS.set(text, hit);
+    return hit;
+  }
+  // 來源 URL 一律限於 http(s)——來源是自動化流程寫進來的，escape 擋得住屬性跳脫但擋不住 javascript:
+  function safeUrl(u) { const t = String(u || "").trim(); return /^https?:\/\//i.test(t) ? t : ""; }
+
+  // 一份來源一塊：標題列＋可展開的宣稱。超過 3 條時預設只露 3 條。
+  function renderSrcBlock(b) {
+    const s = b.s, n = b.cs.length;
+    const rows = b.cs.map(c => ({ c, k: claimKind(c.text, c.about) }))
+                     .sort((x, y) => KIND_ORDER.indexOf(x.k) - KIND_ORDER.indexOf(y.k));
+    const card = r => `<div class="claim k-${r.k}"><span class="claim-kind" title="${esc(CLAIM_KIND[r.k].hint)}">${esc(CLAIM_KIND[r.k].label)}</span>${esc(r.c.text)}</div>`;
+    const u = safeUrl(s.url);
+    const link = u ? `<div class="src-link"><a href="${esc(u)}" target="_blank" rel="noopener">看原始報告 \u2197</a></div>` : "";
+    return `<details class="src-block"${n?" open":""}>
+      <summary class="src-sum">
+        <span class="src-org">\u3014${esc(shortOrg(s.org))}\u3015</span>
+        <span class="src-ttl">${esc(s.title)}</span>
+        <span class="rep-date">${esc(s.date||"\u2014")}</span>
+        <span class="src-n ${n?"has":"none"}">${n?n+" 條宣稱":"尚無擷取宣稱"}</span>
+      </summary>
+      <div class="src-body">
+        ${n?rows.slice(0,3).map(card).join(""):`<p class="hint">這份報告引用了此行為者，但尚未從中擷取到宣稱。</p>`}
+        ${n>3?`<details class="more"><summary>展開其餘 ${n-3} 條</summary>${rows.slice(3).map(card).join("")}</details>`:""}
+        ${link}
+      </div></details>`;
+  }
+
 
   function entityCard(e) {
     const evN = (e.event_ids || []).length;
@@ -478,7 +556,29 @@
       .map(r => ({ relation: r.relation, note: r.note, e: o, incoming: true })))
       .filter(r => !outIds.has(r.e.id)); // 去除反向重複：若已有去向關係就不再列回向
     const rels = [...outRel, ...inRel];
-    const srcs = (e.source_ids || []).map(i => SRC[i]).filter(Boolean);
+    // 來源與宣稱合併：人工策展的 source_ids ∪ 宣稱實際引用到的來源。
+    // 有宣稱的排前面並預設展開；沒有的仍列出——「引用了此行為者但尚未擷取到宣稱」
+    // 本身就是有意義的狀態，藏起來會讓人以為那份報告沒收。
+    const byS = {};
+    (e.claims||[]).forEach(c => (byS[c.source_id] = byS[c.source_id] || []).push(c));
+    const srcBlocks = [...new Set([...(e.source_ids||[]), ...Object.keys(byS)])]
+      .map(sid => ({ sid, s: SRC[sid] || { title: "（來源未登錄：" + sid + "）", org: "資料異常", date: "", url: "" }, cs: byS[sid] || [] }))
+      .sort((a, b) => b.cs.length - a.cs.length || String(b.s.date||"").localeCompare(String(a.s.date||"")));
+    // 引文共現：同一句被引用的原文裡同時點名的其他已登錄實體。
+    // 刻意不平鋪事件共現——那是「被點名參與的事件」的冗餘展開。
+    const qco = {};
+    (e.claims||[]).forEach(c => {
+      const hits = nameHits(c.text);
+      if (!hits.has(id)) return;      // 本實體沒被這句點名，就不能說「同句共現」
+      hits.forEach(oid => {
+      if (oid === id || !E[oid]) return;
+      const bag = (qco[oid] = qco[oid] || []);
+      if (!bag.some(h => h.q === c.text && h.s === c.source_id)) bag.push({ q: c.text, s: c.source_id });
+      });
+    });
+    const qcoRows = Object.entries(qco)
+      .filter(([oid]) => !rels.some(r => r.e.id === oid))   // 已有明確關係就不重複列
+      .sort((a, b) => b[1].length - a[1].length);
 
     app.innerHTML = `
       <a class="back" href="#/gallery">← 返回記錄簿</a>
@@ -501,10 +601,17 @@
         <p class="body">${esc(e.description_zh||e.summary_zh||"—")}</p>
         ${(e.claims&&e.claims.length)?'':srcChips(e.source_ids)}
       </div>
-      ${(e.claims&&e.claims.length)?`<div class="section">
-        <h2>逐來源宣稱（Sourced Claims）</h2>
-        ${claimsBySource(e.claims)}
-      </div>`:""}
+      <div class="section">
+        <h2>來源與宣稱（Sources &amp; Claims）(${srcBlocks.length})</h2>
+        <p class="hint" style="margin:-4px 0 12px">每份報告一塊；展開可看該報告說了什麼。宣稱由機器擷取並標記敘述角色，其餘為人工策展。</p>
+        ${srcBlocks.filter(b=>b.cs.length).map(renderSrcBlock).join("")}
+        ${(()=>{const emp=srcBlocks.filter(b=>!b.cs.length);return emp.length?`
+          <details class="src-empty"><summary>其他已收錄來源（${emp.length}）· 曾提及此行為者，尚未附上對應原文</summary>
+            <ul class="src-list" style="padding:4px 14px 12px">${emp.map(b=>`<li>
+              ${safeUrl(b.s.url)?`<a href="${esc(safeUrl(b.s.url))}" target="_blank" rel="noopener">${esc(b.s.title)}</a>`:esc(b.s.title)}
+              <div class="org">${esc(b.s.org)} \u00b7 ${esc(b.s.date||"")}</div></li>`).join("")}</ul></details>`:""})()}
+        ${!srcBlocks.length?`<div class="empty">未標註來源。</div>`:""}
+      </div>
 
       ${(e.indicators&&e.indicators.length)?`<div class="section">
         <h2>證據指標（Indicators）</h2>
@@ -515,18 +622,31 @@
         <h2>${isOperator ? '主導／涉入的行動（Operations）' : '被點名參與的事件（Appearances）'} (${events.length})</h2>
         ${events.length?events.map(ev=>`<div class="link-row" data-href="#/event/${esc(ev.id)}">
           <div class="lr-main"><div class="lr-title">${esc(ev.name_zh)}</div>
-            <div class="lr-sub">${esc(EVTYPE[ev.type]||ev.type)} · ${esc(ev.summary_zh||"")}</div></div>
+            <div class="lr-sub">${esc(EVTYPE[ev.type]||ev.type)}${ev.summary_zh?" · "+esc(ev.summary_zh):""}</div></div>
           <div class="lr-date">${esc(ev.date||"")}</div>
         </div>`).join(""):`<div class="empty">尚無記錄的事件。</div>`}
         ${rollup.length?`<div style="margin-top:14px">
           <div class="op-lbl" style="color:var(--muted);margin-bottom:8px">↳ 下游歸屬行動（Roll-up · 經其操作之行為者）</div>
           ${rollup.map(({ev,via})=>`<div class="link-row" data-href="#/event/${esc(ev.id)}">
             <div class="lr-main"><div class="lr-title">${esc(ev.name_zh)} <span class="rollup-chain">← ${esc(via.name_zh)}</span></div>
-              <div class="lr-sub">${esc(EVTYPE[ev.type]||ev.type)} · ${esc(ev.summary_zh||"")}</div></div>
+              <div class="lr-sub">${esc(EVTYPE[ev.type]||ev.type)}${ev.summary_zh?" · "+esc(ev.summary_zh):""}</div></div>
             <div class="lr-date">${esc(ev.date||"")}</div>
           </div>`).join("")}
         </div>`:``}
       </div>
+
+      ${qcoRows.length?`<div class="section">
+        <h2>引文共現（Co-mentioned in Quotes）(${qcoRows.length})</h2>
+        <p class="hint" style="margin:-4px 0 10px">同一句被引用的原文裡同時點名的行為者。機器從宣稱推得，每條都指得回原句。
+        這是<strong>共同被提及</strong>，不是雙方有合作或協調關係——後者須由人工登錄為明確關係。</p>
+        ${qcoRows.map(([oid,hits])=>`<details class="qco">
+          <summary><span class="qco-name">${esc(E[oid].name_zh)}</span>
+            <span class="qco-n">${hits.length} 段原文</span></summary>
+          <div class="qco-body">
+            ${hits.map(h=>`<div class="qco-quote">\u300c${esc(h.q)}\u300d<div class="qco-src">${SRC[h.s]?esc(shortOrg(SRC[h.s].org))+" \u00b7 "+esc(String(SRC[h.s].title).slice(0,40)):esc(h.s)}</div></div>`).join("")}
+            <div class="src-link"><a href="#/entity/${esc(oid)}">前往 ${esc(E[oid].name_zh)} 的檔案 \u2192</a></div>
+          </div></details>`).join("")}
+      </div>`:""}
 
       ${rels.length?`<div class="section">
         <h2>關聯實體（Related Entities）(${rels.length})</h2>
@@ -535,15 +655,7 @@
             <div class="lr-sub">${esc(r.note||"")}</div></div>
           <div class="rel-label">${r.incoming?"← ":""}${esc(REL[r.relation]||r.relation)}${r.incoming?"":" →"}</div>
         </div>`).join("")}
-      </div>`:""}
-
-      <div class="section">
-        <h2>來源（Sources）(${srcs.length})</h2>
-        ${srcs.length?`<ul class="src-list">${srcs.map(s=>`<li>
-          <a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.title)}</a>
-          <div class="org">${esc(s.org)} · ${esc(s.date||"")}</div></li>`).join("")}</ul>`
-          :`<div class="empty">未標註來源。</div>`}
-      </div>`;
+      </div>`:""}`;
     bindCards();
   }
 
@@ -623,7 +735,8 @@
     app.innerHTML = `
       <div class="page-head">
         <h1>關聯網絡（Relationship Graph）</h1>
-        <p class="lead">節點為行為者（顏色＝角色），實線為明確關係（操作／供應／關聯…），虛線為「共同現身於同一事件」。可拖曳節點，點擊進入檔案。</p>
+        <p class="lead">節點為行為者（顏色＝角色）。實線為明確關係（操作／供應／關聯…）；灰虛線為共同現身於同一事件；綠虛線為機器抽取的引文共現。
+        <strong>同句被提及或同場出現，不等於雙方有合作、協調或組織關係。</strong>可拖曳節點，點擊進入檔案。</p>
       </div>
       <div class="net-wrap">
         <svg id="net-svg" viewBox="0 0 900 600" preserveAspectRatio="xMidYMid meet"></svg>
@@ -632,7 +745,8 @@
           <span class="lg"><span class="role-dot collaborator"></span>協力者</span>
           <span class="lg"><span class="role-dot amplifier"></span>放大者</span>
           <span class="lg"><span style="display:inline-block;width:18px;height:0;border-top:2px solid #3a455c"></span>明確關係</span>
-          <span class="lg"><span style="display:inline-block;width:18px;height:0;border-top:2px dashed #3a455c"></span>共同現身</span>
+          <span class="lg"><span style="display:inline-block;width:18px;height:0;border-top:2px dashed #3a455c"></span>共同現身（事件）</span>
+          <span class="lg"><span style="display:inline-block;width:18px;height:0;border-top:2px dashed #3ecf8e"></span>引文共現（機器抽取）</span>
         </div>
       </div>`;
     buildForceGraph(document.getElementById("net-svg"));
@@ -656,21 +770,34 @@
     const idx = Object.fromEntries(nodes.map((n, i) => [n.id, i]));
 
     // explicit relations (deduped, undirected)
+    // 一組實體只畫一條邊，強者優先：明確關係 > 事件共現 > 引文共現。
+    // 順序即強度，先加的贏——否則同一組會疊兩條虛線。
     const edgeSet = new Set(); const edges = [];
-    const addEdge = (a, b, co) => {
+    const addEdge = (a, b, kind) => {
       if (a === b || idx[a]==null || idx[b]==null) return;
-      const key = [a, b].sort().join("|") + (co ? "|co" : "|rel");
-      const relKey = [a, b].sort().join("|") + "|rel";
-      if (co && (edgeSet.has(relKey))) return; // don't double a co-edge where a real one exists
-      if (edgeSet.has(key)) return;
-      edgeSet.add(key); edges.push({ a: idx[a], b: idx[b], co: !!co });
+      const pair = [a, b].sort().join("|");
+      if (edgeSet.has(pair)) return;
+      edgeSet.add(pair);
+      edges.push({ a: idx[a], b: idx[b], co: kind !== "rel", quote: kind === "quote", pair });
     };
-    DB.entities.forEach(e => (e.related||[]).forEach(r => addEdge(e.id, r.target_id, false)));
+    DB.entities.forEach(e => (e.related||[]).forEach(r => addEdge(e.id, r.target_id, "rel")));
     // co-appearance edges
     DB.events.forEach(ev => {
       const p = (ev.participant_ids||[]).filter(x => idx[x]!=null);
-      for (let i=0;i<p.length;i++) for (let j=i+1;j<p.length;j++) addEdge(p[i], p[j], true);
+      for (let i=0;i<p.length;i++) for (let j=i+1;j<p.length;j++) addEdge(p[i], p[j], "event");
     });
+    // 引文共現：同一句被引用的原文裡同時點名兩個已登錄實體 → 一條邊，滑過看得到原句
+    const CO_EV = {}, seenQ = new Set();
+    DB.entities.forEach(e => (e.claims||[]).forEach(c => {
+      const hit = [...nameHits(c.text)].filter(x => idx[x]!=null);
+      for (let i=0;i<hit.length;i++) for (let j=i+1;j<hit.length;j++) {
+        const k = [hit[i], hit[j]].sort().join("|");
+        // 同一句 claim 會掛在多個實體檔案上；按（配對，來源，原文）去重，否則 tooltip 的句數會膨脹
+        const once = k + "\u0000" + c.source_id + "\u0000" + c.text;
+        if (!seenQ.has(once)) { seenQ.add(once); (CO_EV[k] = CO_EV[k] || []).push({ q: c.text, s: c.source_id }); }
+        addEdge(hit[i], hit[j], "quote");
+      }
+    }));
 
     const NS = "http://www.w3.org/2000/svg";
     const mk = (t, attrs) => { const el = document.createElementNS(NS, t); for (const k in attrs) el.setAttribute(k, attrs[k]); return el; };
@@ -678,7 +805,15 @@
     const gEdges = mk("g", {}), gNodes = mk("g", {});
     svg.appendChild(gEdges); svg.appendChild(gNodes);
 
-    const edgeEls = edges.map(e => { const l = mk("line", { class: "net-edge" + (e.co ? " co" : "") }); gEdges.appendChild(l); return l; });
+    const edgeEls = edges.map(e => {
+      const l = mk("line", { class: "net-edge" + (e.quote ? " q" : e.co ? " co" : "") });
+      if (e.quote && CO_EV[e.pair]) {
+        const t = mk("title", {});
+        t.textContent = "引文共現（" + CO_EV[e.pair].length + " 句）：\u300c" + CO_EV[e.pair][0].q.slice(0, 70) + "\u300d";
+        l.appendChild(t);
+      }
+      gEdges.appendChild(l); return l;
+    });
     const nodeEls = nodes.map(n => {
       const g = mk("g", { class: "net-node" });
       const c = mk("circle", { r: n.r, fill: COLOR[n.role] || "#888", "fill-opacity": .9, stroke: "#0b0e14", "stroke-width": 1.5 });

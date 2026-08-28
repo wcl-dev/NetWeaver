@@ -325,11 +325,10 @@
   </div>
 </footer>
 
-<script src="data/db.js"></script>
 <script>
 "use strict";
-(function () {
-  const DB = window.NETWEAVER_DB || { entities: [], events: [], sources: [], narratives: [], meta: {} };
+function bootNetWeaver() {
+  const DB = window.NETWEAVER_DB;
 
   // ---- lookups ----
   const byId = (arr) => Object.fromEntries((arr || []).map(x => [x.id, x]));
@@ -935,6 +934,27 @@
   }
   window.addEventListener("hashchange", route);
   route();
+}
+
+// data/db.js 每次策展發布都會變，但 python -m http.server 與 file:// 都不送
+// Cache-Control，瀏覽器就用啟發式快取（依 Last-Modified 的年齡推算新鮮期）
+// 判定舊檔還新鮮、不回頭問伺服器——發布完打開看到的是上一版，資料對、畫面錯，
+// 最難查的那種。載入時帶時間戳，強制每次取新。
+(function () {
+  const s = document.createElement("script");
+  s.src = "data/db.js?t=" + Date.now();
+  s.onload = function () {
+    if (!window.NETWEAVER_DB) return s.onerror();
+    bootNetWeaver();
+  };
+  // 載不到就要講出來。原本 `|| { entities: [] }` 的預設值會靜靜渲染出一本
+  // 空記錄簿，看起來像「還沒收錄任何行為者」而不是「資料沒載到」。
+  s.onerror = function () {
+    document.getElementById("app").innerHTML =
+      '<div class="empty">載入 data/db.js 失敗——記錄簿沒有資料可顯示。'
+      + '請確認伺服器由專案根目錄啟動（python3 serve.py）。</div>';
+  };
+  document.head.appendChild(s);
 })();
 </script>
 </body>

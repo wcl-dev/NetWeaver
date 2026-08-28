@@ -316,7 +316,8 @@ window.NETWEAVER_DB = {
         "TAO",
         "國務院台灣事務辦公室",
         "中共中央台灣工作辦公室",
-        "Taiwan Affairs Office (TAO)"
+        "Taiwan Affairs Office (TAO)",
+        "国台办"
       ],
       "category": "state-organ",
       "role": "amplifier",

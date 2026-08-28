@@ -365,18 +365,21 @@ def cmd_roster(args):
              + (f"　→ {'、'.join(obs_names)}" if args.show_ignored else "（--show-ignored 可看）")
              if obs_hidden else "")
           + (f"\n# 已濾除：{hidden} 個標記為不收錄（--show-ignored 可看）" if hidden else ""))
-    shown, group = ranked[:args.limit], None
-    for a in shown:
-        g = _grp(a)
-        if g != group:
-            group = g
-            n_all = sum(1 for x in ranked if _grp(x) == g)
-            hint = {"管道": "（媒體／帳號＝放大者層，該收的多半在這裡）",
-                    "機構": "（混著國家、政府與泛稱，逐個判斷）",
-                    "人名": "（幾乎都不收——被提及的人物，可整批忽略）"}[g]
-            print(f"\n【{g}】{hint}  共 {n_all} 個")
-            print(f"{'篇數':>4} {'引文':>4}  名稱")
-        print(f"{len(a['docs']):>5} {a['ev']:>5}  " + "／".join(sorted(a["names"])))
+    # limit 按組計，不是全域切片：管道候選一多（實測 572 個）就會把機構與人名整組蓋掉，
+    # 而那兩組正是需要逐個判斷的。三組都要看得到。
+    by_group = {}
+    for a in ranked: by_group.setdefault(_grp(a), []).append(a)
+    for g in ("管道", "機構", "人名"):
+        rows = by_group.get(g)
+        if not rows: continue
+        hint = {"管道": "（媒體／帳號＝放大者層，該收的多半在這裡）",
+                "機構": "（混著國家、政府與泛稱，逐個判斷）",
+                "人名": "（幾乎都不收——被提及的人物，可整批忽略）"}[g]
+        more = f"，列出前 {args.limit}" if len(rows) > args.limit else ""
+        print(f"\n【{g}】{hint}  共 {len(rows)} 個{more}")
+        print(f"{'篇數':>4} {'引文':>4}  名稱")
+        for a in rows[:args.limit]:
+            print(f"{len(a['docs']):>5} {a['ev']:>5}  " + "／".join(sorted(a["names"])))
     print("\n# 決定要收的，逐一執行（欄位務必人工確認）：")
     for a in ranked[:args.top]:
         nm = sorted(a["names"])[0]

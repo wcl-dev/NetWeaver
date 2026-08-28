@@ -92,7 +92,18 @@ def derive(extr, reg):
     for r in rels:
         if r["type"] in CONTROL and r.get("confidence") in ("medium", "high"):
             ctrl, sub = objs.get(r["target"]), objs.get(r["source"])
-            if ctrl and ctrl["kind"] == "identity": ctrl["kind"] = "threat-actor"
+            # 兩端都必須是「叫得出名字的行為者」才談得上歸因。地點（只有 country）或
+            # 指向不存在 tmp_id 的一端，都不足以支撐 attributed-to——實測有模型把
+            # 「美國運用台灣」的主詞標成 place，若照建就是地點歸因給地點。
+            # 但也不保留較強的控制述詞：資訊更少時不該讓更強的主張通過，一律降為 related-to。
+            if not (ctrl and sub and ctrl.get("name") and sub.get("name")):
+                log.append(f"控制述詞「{r['type']}」端點不完整"
+                           f"（source={r['source']}:{(sub or {}).get('name') or (sub or {}).get('kind') or '不存在'}／"
+                           f"target={r['target']}:{(ctrl or {}).get('name') or (ctrl or {}).get('kind') or '不存在'}）"
+                           f" → 不建 attributed-to，降為 related-to")
+                r["type"] = "related-to"
+                continue
+            if ctrl["kind"] == "identity": ctrl["kind"] = "threat-actor"
             log.append(f"控制述詞＋信心{r['confidence']} → 建 attributed-to（{sub['name']}→{ctrl.get('name')}，需人工閘）；{ctrl.get('name')} 升 threat-actor")
             extra.append({"source": r["source"], "type": "attributed-to", "target": r["target"],
                           "confidence": r["confidence"], "evidence": r.get("evidence")})

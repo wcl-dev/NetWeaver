@@ -225,6 +225,71 @@ def cmd_add_alias(args):
     print(f"✓ 「{alias}」→ 補為 {aid}（{ent.get('name_zh')}）的別名，現有 {len(ent['aliases'])} 個別名")
     return 0
 
+# ---------- 簡繁對應 ----------
+# PRC 原始素材是簡體，名冊登錄的是正體，兩者對不上時同一個行為者會被拆成兩筆
+# （實測：海峡之声／看看新闻／环球网 都已登錄，卻仍列為新候選）。
+#
+# 折疊**不**放進 _norm()：那是 derive 查名冊用的比對鍵，1:1 字表在那裡誤併的代價太高
+# （后→後 會毀掉「皇后」、干→幹、里→裡）。這裡只用來**產生建議**，實際合併仍要人核可
+# 後寫成別名——名冊是這個專案唯一的人工閘，不該被一張字表繞過。
+_ST_PAIRS = (
+    "报報 闻聞 华華 网網 声聲 观觀 视視 军軍 国國 广廣 电電 时時 环環 东東 传傳 湾灣 侨僑 汇匯 阳陽 "
+    "长長 龙龍 兴興 财財 经經 济濟 众眾 卫衛 头頭 条條 频頻 号號 团團 体體 联聯 会會 员員 学學 张張 "
+    "刘劉 陈陳 杨楊 黄黃 赵趙 郑鄭 韩韓 谢謝 罗羅 马馬 冯馮 战戰 线線 纸紙 记記 编編 辑輯 络絡 页頁 "
+    "听聽 队隊 区區 讯訊 风風 凤鳳 腾騰 锋鋒 营營 运運 动動 际際 间間 关關 开開 门門 问問 证證 据據 "
+    "实實 验驗 总總 统統 领領 导導 层層 级級 别別 类類 样樣 种種 应應 该該 确確 认認 识識 为為 与與 "
+    "从從 来來 对對 话話 说說 语語 词詞 汇彙 码碼 译譯 释釋 义義 计計 划劃 峡峽 厦廈 飞飛 闽閩 苏蘇 "
+    "辽遼 宁寧 贵貴 云雲 沪滬 鲁魯 粤粵 业業 产產 农農 银銀 邮郵 铁鐵 钢鋼 机機 车車 轮輪 舰艦 弹彈 "
+    "争爭 胜勝 败敗 势勢 权權 议議 论論 评評 谈談 讲講 坛壇 盘盤 岛島 滨濱 坝壩"
+).split()
+_S2T = {p[0]: p[1] for p in _ST_PAIRS}
+
+def fold_st(s):
+    """把簡體字面折成正體，供比對用。刻意保守：只換上面列出的字，其餘原樣。"""
+    return "".join(_S2T.get(c, c) for c in s or "")
+
+def st_matches(db, names):
+    """names → [(簡體寫法, 折成的正體, 實體 id)]；只回「折疊後才對得上」的，本來就對得上的不算。"""
+    owner = {_norm(x): e for e in db["entities"]
+             for x in [e.get("name_zh"), e.get("name_en")] + (e.get("aliases") or []) if x}
+    out = []
+    for nm in names:
+        if _norm(nm) in owner: continue                    # 已經對得上，不是簡繁問題
+        t = fold_st(nm)
+        if t == nm: continue                               # 沒有簡體字
+        e = owner.get(_norm(t))
+        if e: out.append((nm, t, e["id"]))
+    return out
+
+def cmd_st_suggest(args):
+    """列出「折成正體後就對得上已登錄實體」的候選，供人核可後補為別名。"""
+    pipe = _load("pipeline"); reg = pipe._derive_mod().load_registry()
+    _src, _i, _end, db = load_db()
+    q = _RL.load_queue(); ign = load_ignore(); seen = {}
+    for e in q.values():
+        try:
+            extr = json.loads((_here.parent / e["extraction"]).read_text(encoding="utf-8"))
+            bundle, _sl, _log = pipe.stix_from_extraction(extr, reg)
+        except Exception:
+            continue
+        for o in bundle["objects"]:
+            nm = (o.get("name") or "").strip()
+            if o["type"] not in _ROSTER_KINDS or not nm or _norm(nm) in ign: continue
+            seen.setdefault(nm, set()).add(e["raw_id"])
+    rows = st_matches(db, sorted(seen))
+    if not rows:
+        print("（沒有需要補的簡繁別名）"); return 0
+    print(f"# 折成正體後對得上已登錄實體的候選：{len(rows)} 組")
+    print(f"# 字表是保守的 1:1 對照，**請逐組確認**——確認後加 --apply 寫入別名\n")
+    byid = {e["id"]: e for e in db["entities"]}
+    for s_, t, eid in rows:
+        print(f"  {len(seen[s_])}篇  {s_:<18} → {t:<18} {byid[eid].get('name_zh')}（{eid}）")
+    if not args.apply:
+        print("\n# 確認無誤後：python3 pipeline/register.py st-suggest --apply"); return 0
+    for s_, _t, eid in rows:
+        cmd_add_alias(argparse.Namespace(id=eid, alias=s_))
+    return 0
+
 # ---------- suggest（讀 deferred queue 條目，印預填指令）----------
 
 def cmd_suggest(args):
@@ -414,6 +479,9 @@ def main():
     p.add_argument("--sensitivity", choices=["domestic-named"])
     p.add_argument("--confidence", default="medium", choices=["high", "medium", "low"])
     p.set_defaults(fn=cmd_add_actor)
+    p = sub.add_parser("st-suggest", help="列出折成正體後對得上已登錄實體的候選（簡繁對應）")
+    p.add_argument("--apply", action="store_true", help="確認後直接補為別名")
+    p.set_defaults(fn=cmd_st_suggest)
     p = sub.add_parser("add-alias")
     p.add_argument("--id", required=True); p.add_argument("--alias", required=True); p.set_defaults(fn=cmd_add_alias)
     p = sub.add_parser("suggest"); p.add_argument("raw_id"); p.set_defaults(fn=cmd_suggest)

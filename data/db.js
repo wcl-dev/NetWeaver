@@ -1935,7 +1935,8 @@ window.NETWEAVER_DB = {
       "aliases": [
         "海峽之聲廣播電台",
         "Voice of the Taiwan Strait",
-        "前身：解放軍福建前線廣播電台"
+        "前身：解放軍福建前線廣播電台",
+        "海峡之声"
       ],
       "category": "state-media",
       "role": "attacker",
@@ -1981,7 +1982,8 @@ window.NETWEAVER_DB = {
         "globaltimes.cn",
         "環球網/Huanqiu",
         "環球網",
-        "Huanqiu"
+        "Huanqiu",
+        "环球网"
       ],
       "category": "state-media",
       "role": "amplifier",
@@ -2496,7 +2498,10 @@ window.NETWEAVER_DB = {
         "Haixia Daobao-linked TikTok accounts",
         "台海網",
         "海峽導報社",
-        "Haixia Daobao (Strait Herald)"
+        "Haixia Daobao (Strait Herald)",
+        "台海网",
+        "海峡导报",
+        "海峡导报社"
       ],
       "category": "state-media",
       "role": "amplifier",
@@ -3068,7 +3073,10 @@ window.NETWEAVER_DB = {
         "日月譚天",
         "China Media Group (CCTV/CMG)",
         "China Media Group",
-        "CMG"
+        "CMG",
+        "央广军事",
+        "央视新闻",
+        "央视网"
       ],
       "category": "state-media",
       "role": "collaborator",
@@ -3282,7 +3290,9 @@ window.NETWEAVER_DB = {
         "看看新聞Knews",
         "Knews",
         "上海文化廣播影視集團",
-        "Kankan News (Knews)"
+        "Kankan News (Knews)",
+        "看看新闻",
+        "看看新闻 Knews"
       ],
       "category": "state-media",
       "role": "collaborator",
@@ -3310,7 +3320,8 @@ window.NETWEAVER_DB = {
       "name_en": "China Taiwan Net",
       "aliases": [
         "taiwan.cn",
-        "China Taiwan Net"
+        "China Taiwan Net",
+        "中国台湾网"
       ],
       "category": "state-media",
       "role": "collaborator",
@@ -3407,7 +3418,9 @@ window.NETWEAVER_DB = {
         "Eastern Theater Command",
         "東部戰區融媒體",
         "Eastern Theater Command Fusion-Media Center",
-        "東部戰區融媒體中心帳號"
+        "東部戰區融媒體中心帳號",
+        "东部战区",
+        "东部战区融媒体中心"
       ],
       "category": "state-media",
       "role": "attacker",
@@ -3706,7 +3719,8 @@ window.NETWEAVER_DB = {
         "Guancha",
         "Observer Network",
         "guancha.cn",
-        "Guancha (Observer Network)"
+        "Guancha (Observer Network)",
+        "观察者网"
       ],
       "category": "state-media",
       "role": "amplifier",

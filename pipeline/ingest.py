@@ -6,7 +6,7 @@
   python3 pipeline/ingest.py [--limit N]                          # RSS：抓 feeds.json（每源上限 N，預設 2）
   python3 pipeline/ingest.py --url URL --source-id ID [--org …]   # 非 RSS 手動觸發（PDF/HTML，status=ready）
 """
-import argparse, json, time, urllib.request, urllib.parse, urllib.error, importlib.util, pathlib, hashlib, re
+import argparse, json, ssl, time, urllib.request, urllib.parse, urllib.error, importlib.util, pathlib, hashlib, re
 from datetime import datetime, timezone
 import xml.etree.ElementTree as ET
 
@@ -24,14 +24,28 @@ UA = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 Chrome/
 
 _MAX_FETCH = 25_000_000                                       # 下載大小上限（防 DoS）
 
-def fetch(url, timeout=25, retries=2):
+def fetch(url, timeout=25, retries=2, insecure=False):
+    """抓 URL。`insecure=True` 會**關閉 TLS 憑證驗證**——只在呼叫端明示時使用。
+
+    用途：部分政府網站的憑證鏈缺欄位（實測 nsb.gov.tw 缺 Subject Key Identifier），
+    curl 接受但 Python 的 OpenSSL 拒絕。這是有意識的例外，必須逐次指定並記進 manifest，
+    不可設為預設值。標頭補齊（Accept／語言／Referer）是為了降低其他站的 403，與此無關。
+    """
     if urllib.parse.urlparse(url).scheme not in ("http", "https"):   # 只允許 http(s)（拒 file:/ 等）
         raise ValueError(f"只允許 http(s) URL：{url}")
-    req = urllib.request.Request(url, headers={"User-Agent": UA, "Accept": "application/rss+xml, application/xml, text/html;q=0.8"})
+    from urllib.parse import urlsplit as _us
+    _o = _us(url)
+    req = urllib.request.Request(url, headers={
+        "User-Agent": UA,
+        "Accept": "application/rss+xml, application/xml, application/pdf, text/html;q=0.9, */*;q=0.8",
+        "Accept-Language": "zh-TW,zh;q=0.9,en;q=0.8",
+        "Referer": f"{_o.scheme}://{_o.netloc}/",
+    })
     last = None
     for attempt in range(retries + 1):
         try:
-            with urllib.request.urlopen(req, timeout=timeout) as r:
+            kw = {"context": ssl._create_unverified_context()} if insecure else {}
+            with urllib.request.urlopen(req, timeout=timeout, **kw) as r:
                 data = r.read(_MAX_FETCH + 1)                  # 讀 limit+1：超限即拒，不靜默截斷
                 if len(data) > _MAX_FETCH:
                     raise ValueError(f"下載超過 {_MAX_FETCH} bytes 上限")
@@ -67,13 +81,13 @@ def parse_feed(xml_bytes):
                           "summary": (it.findtext(A + "summary") or it.findtext(A + "content") or "").strip()})
     return items
 
-def _land(d, h, manifest):
+def _land(d, h, manifest, insecure=False):
     """抓 URL → 偵測 PDF/HTML → 存快照 → textextract 抽正文存 .txt 側車 → 回填 manifest（fail-closed，不擋全批）。"""
     for e in (".html", ".htm", ".pdf", ".txt"):               # 清舊快照/側車：型別改變或品質下降不留殘檔
         old = d / (h + e)
         if old.exists(): old.unlink()
     try:
-        raw = fetch(manifest["url"])
+        raw = fetch(manifest["url"], insecure=insecure)
     except Exception:
         manifest["snapshot"] = "fetch-failed（保留 metadata，可重試）"; return
     is_pdf = manifest["url"].lower().split("?")[0].endswith(".pdf") or raw[:5] == b"%PDF-"
@@ -101,7 +115,10 @@ def _manual(url, args, now):
                 "published": args.published, "discovered_at": now, "content_hash": None,
                 "mode": "manual", "extraction_status": "ready",
                 "relevance": {"relevant": True, "reason": "manual-trigger"}}
-    _land(d, h, manifest)
+    if getattr(args, "insecure", False):                      # 憑證未驗證是資料的一部分，不是隱形的全域讓步
+        manifest["tls_verified"] = False
+        print(f"⚠ 已關閉此次抓取的 TLS 憑證驗證（--insecure）：{url}")
+    _land(d, h, manifest, insecure=getattr(args, "insecure", False))
     (d / (h + ".json")).write_text(json.dumps(manifest, ensure_ascii=False, indent=2), encoding="utf-8")
     tail = (f"正文 {manifest['text_chars']} chars" if manifest.get("text_chars") else manifest.get("text_note", "無正文"))
     print(f"✓ manual 落地 {sid}/{h}（{manifest.get('snapshot', 'fetch-failed')}）｜status=ready｜{tail}")
@@ -115,6 +132,8 @@ def main():
     ap.add_argument("--source-id", dest="source_id"); ap.add_argument("--org"); ap.add_argument("--tier")
     ap.add_argument("--title"); ap.add_argument("--published")
     ap.add_argument("--license", default="cite-with-attribution")
+    ap.add_argument("--insecure", action="store_true",
+                    help="關閉此次抓取的 TLS 憑證驗證（憑證鏈有缺陷的站，如 nsb.gov.tw）；會記入 manifest")
     args = ap.parse_args()
     now = datetime.now(timezone.utc).isoformat()
     if args.url:
@@ -136,7 +155,7 @@ def main():
                         "license": s.get("license"), "title": it["title"], "summary": clean(it.get("summary")),
                         "url": it["link"], "guid": it["guid"], "published": it["published"], "discovered_at": now,
                         "content_hash": None, "extraction_status": "pending"}
-            _land(d, h, manifest)                             # 抓快照＋抽 .txt 正文側車
+            _land(d, h, manifest, insecure=getattr(args, "insecure", False))                             # 抓快照＋抽 .txt 正文側車
             (d / (h + ".json")).write_text(json.dumps(manifest, ensure_ascii=False, indent=2), encoding="utf-8")
             seen.add(it["guid"])
         state[s["id"]] = list(seen)

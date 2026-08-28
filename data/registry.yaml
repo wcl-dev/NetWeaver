@@ -149,6 +149,7 @@ existing:
   sources:
     - id: nsb
       org: "國家安全局 NSB"
+      mode: manual        # 無 RSS，需 ingest.py --url 觸發
       tier: A
       type: gov-report
       url: "https://www.nsb.gov.tw"
@@ -156,6 +157,7 @@ existing:
       from: "國家安全局 NSB (nsb.gov.tw) — gov-report"
     - id: iorg
       org: "IORG 台灣資訊環境研究中心"
+      mode: manual        # 無 RSS，需 ingest.py --url 觸發
       tier: A
       type: research
       url: "https://iorg.tw"
@@ -163,6 +165,7 @@ existing:
       from: "IORG 台灣資訊環境研究中心 (iorg.tw) — research/factcheck"
     - id: dtl
       org: "Doublethink Lab"
+      mode: feed
       tier: A
       type: research
       url: "https://medium.com/doublethinklab"
@@ -170,6 +173,7 @@ existing:
       from: "Doublethink Lab 台灣民主實驗室 (medium.com/doublethinklab) — research"
     - id: factlink
       org: "FactLink 數位素養實驗室"
+      mode: feed
       tier: A
       type: research
       url: "https://factlink.tw"
@@ -177,155 +181,184 @@ existing:
       from: "FactLink 數位素養實驗室 (factlink.tw) — research/OSINT"
     - id: meta-atr
       org: "Meta — Adversarial Threat Reports"
+      mode: manual        # 無 RSS，需 ingest.py --url 觸發
       tier: A
       type: platform-threat-report
       aliases: "Meta"
       from: "Meta — Adversarial Threat Reports — platform-threat-report"
     - id: google-tag
       org: "Google TAG / Mandiant"
+      mode: manual        # 無 RSS，需 ingest.py --url 觸發
       tier: A
       type: platform-threat-report
       aliases: "Google TAG, Mandiant"
       from: "Google TAG / Mandiant — platform-threat-report"
     - id: mtac
       org: "Microsoft Threat Analysis Center (MTAC)"
+      mode: manual        # 無 RSS，需 ingest.py --url 觸發
       tier: A
       type: platform-threat-report
       aliases: "MTAC, Microsoft Threat Analysis Center"
       from: "Microsoft Threat Analysis Center (MTAC) — platform-threat-report"
     - id: graphika
       org: "Graphika"
+      mode: manual        # 無 RSS，需 ingest.py --url 觸發
       tier: A
       type: research
       from: "Graphika — research"
     - id: aspi
       org: "ASPI"
+      mode: feed
       tier: A
       type: research
       aliases: "ASPI, The Strategist, ASPI The Strategist"
       from: "ASPI (含 The Strategist) — research"
     - id: citizenlab
       org: "Citizen Lab"
+      mode: feed
       tier: A
       type: academic
       aliases: "Citizen Lab"
       from: "Citizen Lab (U. Toronto) — academic"
     - id: us-doj
       org: "US DOJ"
+      mode: manual        # 無 RSS，需 ingest.py --url 觸發
       tier: A
       type: gov-report
       aliases: "US DOJ, DOJ"
       from: "US DOJ — gov-report"
     - id: vanderbilt
       org: "Vanderbilt Institute of National Security"
+      mode: manual        # 無 RSS，需 ingest.py --url 觸發
       tier: A
       type: academic
       from: "Vanderbilt Institute of National Security — academic"
     - id: recorded-future
       org: "Recorded Future"
+      mode: feed
       tier: B
       aliases: "Recorded Future, Recorded Future News, Insikt Group"
       from: "Recorded Future (News / Insikt Group)"
     - id: gti
       org: "Global Taiwan Institute"
+      mode: manual        # 無 RSS，需 ingest.py --url 觸發
       tier: B
       aliases: "Global Taiwan Institute, GTI"
       from: "Global Taiwan Institute (GTI)"
     - id: isd
       org: "Institute for Strategic Dialogue"
+      mode: manual        # 無 RSS，需 ingest.py --url 觸發
       tier: B
       aliases: "Institute for Strategic Dialogue, ISD"
       from: "Institute for Strategic Dialogue (ISD)"
     - id: cybercx
       org: "CyberCX"
+      mode: manual        # 無 RSS，需 ingest.py --url 觸發
       tier: B
       from: "CyberCX"
     - id: chinapower
       org: "ChinaPower (CSIS)"
+      mode: manual        # 無 RSS，需 ingest.py --url 觸發
       tier: B
       aliases: "ChinaPower, CSIS"
       from: "ChinaPower (CSIS) / Jamestown Foundation / Lowy Institute / HRW / ProPublica"
     - id: jamestown
       org: "Jamestown Foundation"
+      mode: manual        # 無 RSS，需 ingest.py --url 觸發
       tier: B
       from: "（同上行）"
     - id: lowy
       org: "Lowy Institute"
+      mode: manual        # 無 RSS，需 ingest.py --url 觸發
       tier: B
       from: "（同上行）"
     - id: hrw
       org: "HRW"
+      mode: manual        # 無 RSS，需 ingest.py --url 觸發
       tier: B
       from: "（同上行）"
     - id: propublica
       org: "ProPublica"
+      mode: manual        # 無 RSS，需 ingest.py --url 觸發
       tier: B
       from: "（同上行）"
     - id: twreporter
       org: "報導者 The Reporter"
+      mode: manual        # 無 RSS，需 ingest.py --url 觸發
       tier: B
       type: news
       aliases: "報導者, The Reporter"
       from: "報導者 The Reporter / 自由時報 / 中央社 CNA / Focus Taiwan / TVBS / 風傳媒 Storm / Taiwan Gazette / Taipei Times / CNBC / NYT"
     - id: ltn
       org: "自由時報"
+      mode: manual        # 無 RSS，需 ingest.py --url 觸發
       tier: B
       type: news
       aliases: "自由時報"
       from: "（同上行）"
     - id: cna
       org: "中央社 CNA"
+      mode: manual        # 無 RSS，需 ingest.py --url 觸發
       tier: B
       type: news
       aliases: "中央社, CNA"
       from: "（同上行）"
     - id: focus-taiwan
       org: "Focus Taiwan"
+      mode: manual        # 無 RSS，需 ingest.py --url 觸發
       tier: B
       type: news
       aliases: "Focus Taiwan"
       from: "（同上行）"
     - id: tvbs-news
       org: "TVBS"
+      mode: manual        # 無 RSS，需 ingest.py --url 觸發
       tier: B
       type: news
       aliases: "TVBS"
       from: "（同上行）※ 同時是已登錄行為者 tvbs（domestic-named）"
     - id: storm
       org: "風傳媒 Storm"
+      mode: manual        # 無 RSS，需 ingest.py --url 觸發
       tier: B
       type: news
       aliases: "風傳媒, Storm"
       from: "（同上行）"
     - id: taiwan-gazette
       org: "Taiwan Gazette"
+      mode: manual        # 無 RSS，需 ingest.py --url 觸發
       tier: B
       type: news
       from: "（同上行）"
     - id: taipei-times
       org: "Taipei Times"
+      mode: manual        # 無 RSS，需 ingest.py --url 觸發
       tier: B
       type: news
       from: "（同上行）"
     - id: cnbc
       org: "CNBC"
+      mode: manual        # 無 RSS，需 ingest.py --url 觸發
       tier: B
       type: news
       from: "（同上行）"
     - id: nyt
       org: "NYT"
+      mode: manual        # 無 RSS，需 ingest.py --url 觸發
       tier: B
       type: news
       aliases: "NYT, New York Times"
       from: "（同上行）"
     - id: globaltimes
       org: "環球時報 Global Times"
+      mode: manual        # 無 RSS，需 ingest.py --url 觸發
       tier: C
       type: state-media
       aliases: "環球時報, Global Times"
       from: "環球時報 Global Times / 中國官媒 — state-media"
     - id: wikipedia
       org: "Wikipedia"
+      mode: manual        # 無 RSS，需 ingest.py --url 觸發
       tier: C
       type: reference
       aliases: "Wikipedia"

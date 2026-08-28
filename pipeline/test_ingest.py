@@ -13,7 +13,7 @@ def case(fn): CASES.append(fn); return fn
 
 def _tmp(): ing.RAW = pathlib.Path(tempfile.mkdtemp()); return ing.RAW
 
-def _set_fetch(b): ing.fetch = lambda url, timeout=25: b
+def _set_fetch(b): ing.fetch = lambda url, timeout=25, retries=2, insecure=False: b
 
 @case
 def test_land_html_saves_snapshot_and_txt_sidecar():
@@ -123,6 +123,27 @@ def test_fetch_retries_transient_not_4xx():
         assert calls["n"] == 3, "retries=2 → 共 3 次嘗試"
     finally:
         ing.urllib.request.urlopen, ing.time.sleep = orig_open, orig_sleep
+
+@case
+def test_insecure_flag_is_opt_in_and_recorded():
+    # 關閉 TLS 驗證是有意識的例外：預設必須關著，且用了要留在 manifest 裡查得到
+    import argparse
+    _tmp(); _set_fetch(b"<html><body><article><p>" + b"Report body about Taiwan FIMI. " * 8 + b"</p></article></body></html>")
+    seen = {}
+    real = ing.fetch
+    ing.fetch = lambda url, timeout=25, retries=2, insecure=False: (seen.__setitem__("insecure", insecure), real(url))[1]
+    (ing.RAW / "a").mkdir(parents=True, exist_ok=True); (ing.RAW / "b").mkdir(parents=True, exist_ok=True)
+    ing._land(ing.RAW / "a", "h", {"url": "http://x/a"})
+    assert seen["insecure"] is False, "預設必須驗證憑證"
+    ing._land(ing.RAW / "b", "h", {"url": "http://x/b"}, insecure=True)
+    assert seen["insecure"] is True, "insecure 需傳達到 fetch"
+    ns = argparse.Namespace(source_id="nsb", org="o", tier="A", license="gov-open",
+                            title="t", published=None, insecure=True)
+    (ing.RAW / "nsb").mkdir(parents=True, exist_ok=True)
+    ing._manual("http://x/c", ns, "2026-01-01")
+    import json as _j
+    man = _j.loads(next((ing.RAW / "nsb").glob("*.json")).read_text(encoding="utf-8"))
+    assert man.get("tls_verified") is False, "未驗證憑證必須記進 manifest"
 
 def main():
     for fn in CASES:

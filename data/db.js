@@ -3077,7 +3077,10 @@ window.NETWEAVER_DB = {
         "CMG",
         "央广军事",
         "央视新闻",
-        "央视网"
+        "央视网",
+        "CCTV News",
+        "海峽飛虹",
+        "海峡飞虹"
       ],
       "category": "state-media",
       "role": "collaborator",
@@ -3207,6 +3210,16 @@ window.NETWEAVER_DB = {
           "about": "CGTN"
         },
         {
+          "text": "This was most clearly on show in an exchange between a CCTV journalist and Director of the Information Bureau of the Taiwan Affairs Office (TAO) of the State Council Chen Binhua (陈斌华).",
+          "source_id": "src-jamestown-js2024b",
+          "about": "CCTV"
+        },
+        {
+          "text": "The latter phrase, for instance, likely first appeared in a 2019 speech by Xi Jinping (VOA, January 3, 2019; Mainland Affairs Council, May 29, 2019; CCTV News, May 28).",
+          "source_id": "src-jamestown-js2024b",
+          "about": "CCTV"
+        },
+        {
           "text": "A final category of political content disseminated by PAPERWALL often takes the form of verbatim reposts of content from Chinese state media, such as CGTN or the Global Times.",
           "source_id": "src-citizenlab-paperwall",
           "about": "CGTN"
@@ -3270,16 +3283,6 @@ window.NETWEAVER_DB = {
           "text": "此外，央視網以及央視的對台融媒體平台「看台海」的發文數量也在發文帳號前十名之列。",
           "source_id": "src-factlink-japan",
           "about": "央視網"
-        },
-        {
-          "text": "This was most clearly on show in an exchange between a CCTV journalist and Director of the Information Bureau of the Taiwan Affairs Office (TAO) of the State Council Chen Binhua (陈斌华).",
-          "source_id": "src-jamestown-js2024b",
-          "about": "CCTV"
-        },
-        {
-          "text": "The latter phrase, for instance, likely first appeared in a 2019 speech by Xi Jinping (VOA, January 3, 2019; Mainland Affairs Council, May 29, 2019; CCTV News, May 28).",
-          "source_id": "src-jamestown-js2024b",
-          "about": "CCTV"
         }
       ]
     },
@@ -3930,7 +3933,9 @@ window.NETWEAVER_DB = {
       "name_en": "Xinhua News Agency",
       "aliases": [
         "新华社",
-        "Xinhua"
+        "Xinhua",
+        "新華網",
+        "新华网"
       ],
       "category": "state-media",
       "role": "collaborator",
@@ -4290,6 +4295,545 @@ window.NETWEAVER_DB = {
           "about": "深圳廣電集團"
         }
       ]
+    },
+    {
+      "id": "china-daily",
+      "name_zh": "中國日報",
+      "name_en": "China Daily",
+      "aliases": [
+        "中国日报",
+        "chinadaily.com.cn"
+      ],
+      "category": "state-media",
+      "role": "amplifier",
+      "origin": "PRC",
+      "summary_zh": "中國官方英文日報。多份研究報告記錄其新聞流被置入海外新聞網站首頁，作為內容洗白的來源之一。",
+      "source_ids": [
+        "src-aspi-strait",
+        "src-doublethink-lab-96d2c0",
+        "src-jamestown-js2024b",
+        "src-mandiant-haienergy-2022"
+      ],
+      "confidence": "high",
+      "claims": [
+        {
+          "text": "China Daily’s newsfeed is prominently featured on Dawn’s homepage, indicating strong content-sharing relationships.",
+          "source_id": "src-doublethink-lab-96d2c0",
+          "about": "China Daily"
+        },
+        {
+          "text": "China Daily.",
+          "source_id": "src-doublethink-lab-96d2c0",
+          "about": "China Daily"
+        }
+      ]
+    },
+    {
+      "id": "peoples-daily",
+      "name_zh": "人民日報",
+      "name_en": "People's Daily",
+      "aliases": [
+        "人民日报"
+      ],
+      "category": "state-media",
+      "role": "amplifier",
+      "origin": "PRC",
+      "summary_zh": "中共中央機關報。Doublethink Lab 與 Jamestown 記錄其與新華社同步發布圖文配合解放軍軍演敘事；IORG 記錄其發言被台灣在野政治人物與媒體引用。",
+      "source_ids": [
+        "src-doublethink-lab-96d2c0",
+        "src-dtl-2022election",
+        "src-jamestown-js2024b",
+        "src-lowy-globaltimes",
+        "src-iorg-118",
+        "src-iorg-131"
+      ],
+      "confidence": "high",
+      "claims": [
+        {
+          "text": "FactLink觀察到，此事件有兩波訊息傳播高峰，第一波是10月26日至10月29日，中國官方相關媒體如《觀察者網》、《環球網》、《環球時報》、《人民日報》、《央視軍事》、《海峽之聲》、《看台海》報導與其微博官方帳號，引用長光衛星公司衛星影像，「慶祝台灣回歸為中國一部分」的光復節。",
+          "source_id": "src-factlink-satellite",
+          "about": "《人民日報》"
+        },
+        {
+          "text": "As many foreign readers of the Global Times are already aware, it is a subsidiary of the People’s Daily, the principal propaganda publication of the Chinese Communist Party.",
+          "source_id": "src-lowy-globaltimes",
+          "about": "People’s Daily"
+        },
+        {
+          "text": "And it was noteworthy that when the Chinese president Xi Jinping visited the People’s Daily in February, he said his office subscribes to the Global Times.",
+          "source_id": "src-lowy-globaltimes",
+          "about": "People’s Daily"
+        },
+        {
+          "text": "The publication started as a weekly international supplement to the People’s Daily.",
+          "source_id": "src-lowy-globaltimes",
+          "about": "People’s Daily"
+        },
+        {
+          "text": "Another reporter from one of the three major state-owned media outlets says editorials from The People’s Daily and Xinhua more or less represent the Chinese government’s official position.",
+          "source_id": "src-lowy-globaltimes",
+          "about": "People’s Daily"
+        },
+        {
+          "text": "It is clear that Global Times’ editorials don’t carry the same weight as those of the People’s Daily or Xinhua.",
+          "source_id": "src-lowy-globaltimes",
+          "about": "People’s Daily"
+        },
+        {
+          "text": "The Global Times specialises in provoking and agitating and its tone and use of language is in marked contrast to the rather stolid People's Daily.",
+          "source_id": "src-lowy-globaltimes",
+          "about": "People's Daily"
+        }
+      ]
+    },
+    {
+      "id": "jinri-haixia",
+      "name_zh": "今日海峽",
+      "name_en": "Strait News",
+      "aliases": [
+        "今日海峡"
+      ],
+      "category": "state-media",
+      "role": "amplifier",
+      "origin": "PRC",
+      "summary_zh": "對台宣傳臉書粉專。IORG 與 FactLink 均將其與《CCTV中文》《知行》《香港大公報》等並列為中共官媒粉專群的一員。",
+      "source_ids": [
+        "src-dtl-multiverse",
+        "src-factlink-satellite",
+        "src-iorg-11",
+        "src-iorg-131"
+      ],
+      "confidence": "high",
+      "claims": [
+        {
+          "text": "同一時間，中國媒體用以面向台灣讀者的臉書粉絲專頁，包括《今日海峽》、《CCTV中文》、《知行》、《香港大公報》、香港中國通訊社的《通傳媒》等臉書粉專，同步發動長光衛星照慶祝台灣光復節的傳言，並發布台灣光復節歷史照片、紀錄片、台灣青年回顧光復節的內容素材。",
+          "source_id": "src-factlink-satellite",
+          "about": "《今日海峽》"
+        }
+      ]
+    },
+    {
+      "id": "times-newswire",
+      "name_zh": "Times Newswire",
+      "name_en": "Times Newswire",
+      "aliases": [],
+      "category": "pr-firm",
+      "role": "collaborator",
+      "origin": "PRC",
+      "summary_zh": "新聞稿發布服務。Citizen Lab 的 PAPERWALL 調查與 Mandiant 的 HaiEnergy 行動追蹤均指出，其內容被大量取用以把親北京政治內容送上正規新聞網站。",
+      "source_ids": [
+        "src-citizenlab-paperwall",
+        "src-google-glassbridge",
+        "src-mandiant-haienergy-2023"
+      ],
+      "confidence": "high",
+      "claims": [
+        {
+          "text": "PAPERWALL draws significant portions of its content from Times Newswire, a newswire service that was previously linked to HaiEnergy.",
+          "source_id": "src-citizenlab-paperwall",
+          "about": "Times Newswire"
+        },
+        {
+          "text": "We found evidence that Times Newswire regularly seeds pro-Beijing political content, including ad hominem attacks, by concealing it within large amounts of seemingly benign commercial content.",
+          "source_id": "src-citizenlab-paperwall",
+          "about": "Times Newswire"
+        },
+        {
+          "text": "This is consistent with the sourcing of press releases from Times Newswire – which we will analyze in the next section – where cryptocurrency topics are among the most common.",
+          "source_id": "src-citizenlab-paperwall",
+          "about": "Times Newswire"
+        },
+        {
+          "text": "Finally, but crucially, approximately 100 domains backlinked to Times Newswire, a supposed newswire service.",
+          "source_id": "src-citizenlab-paperwall",
+          "about": "Times Newswire"
+        },
+        {
+          "text": "The consistent connection between PAPERWALL and Times Newswire is one of the most peculiar traits of the campaign.",
+          "source_id": "src-citizenlab-paperwall",
+          "about": "Times Newswire"
+        },
+        {
+          "text": "We assess that the vast majority of the backlinks in question consist of content directly hosted on the Times Newswire website, and reposted by the PAPERWALL network, as seen in a previous example.",
+          "source_id": "src-citizenlab-paperwall",
+          "about": "Times Newswire"
+        },
+        {
+          "text": "Times Newswire is a known entity in the context of influence operations: it was first reported about in 2023 by Mandiant, a Google-owned cybersecurity company.",
+          "source_id": "src-citizenlab-paperwall",
+          "about": "Times Newswire"
+        },
+        {
+          "text": "Mandiant observed Times Newswire’s hosted content disseminated through a network of subdomains for legitimate US-based news outlets in the context of an influence campaign that the company dubbed as HaiEnergy.",
+          "source_id": "src-citizenlab-paperwall",
+          "about": "Times Newswire"
+        },
+        {
+          "text": "Similarly to what was stated by Mandiant for the HaiEnergy campaign, we cannot currently attribute Times Newswire to the same operators as PAPERWALL.",
+          "source_id": "src-citizenlab-paperwall",
+          "about": "Times Newswire"
+        },
+        {
+          "text": "Times Newswire also uses a simple WordPress template as its main structure.",
+          "source_id": "src-citizenlab-paperwall",
+          "about": "Times Newswire"
+        },
+        {
+          "text": "Being central to at least two distinct operations – PAPERWALL and HaiEnergy – Times Newswire could however be an independent asset, simultaneously exploited by multiple influence operations.",
+          "source_id": "src-citizenlab-paperwall",
+          "about": "Times Newswire"
+        },
+        {
+          "text": "We were able to identify examples of politically-themed articles that were routinely deleted from Times Newswire.",
+          "source_id": "src-citizenlab-paperwall",
+          "about": "Times Newswire"
+        },
+        {
+          "text": "a similar search through the Times Newswire content archived by the Wayback Machine showed a total of eight pieces.",
+          "source_id": "src-citizenlab-paperwall",
+          "about": "Times Newswire"
+        },
+        {
+          "text": "This behavior suggests that ephemeral seeding is the intention for most content of that type which is deleted from the source website (Times Newswire) at an unspecified time after its initial publication.",
+          "source_id": "src-citizenlab-paperwall",
+          "about": "Times Newswire"
+        },
+        {
+          "text": "Notably, the article on this subdomain in turn credited Times Newswire as the original source (see Figure 3).",
+          "source_id": "src-mandiant-haienergy-2023",
+          "about": "Times Newswire"
+        },
+        {
+          "text": "Looking forward to the next collaboration [sic].” The link to the influencer-hosted video was then embedded in a Times Newswire article that was distributed to subdomains associated with genuine U.S.-based news outlets.",
+          "source_id": "src-mandiant-haienergy-2023",
+          "about": "Times Newswire"
+        },
+        {
+          "text": "Times Newswire.",
+          "source_id": "src-mandiant-haienergy-2023",
+          "about": "Times Newswire"
+        },
+        {
+          "text": "Figure 9: Times Newswire promotes article on IRF Summit protest (left); subdomain of U.S.",
+          "source_id": "src-mandiant-haienergy-2023",
+          "about": "Times Newswire"
+        },
+        {
+          "text": "Figure 10: Times Newswire (left) posts article concerning \"September 24\" protest in Washington, D.C.; one of the 32 subdomains (right) of U.S.",
+          "source_id": "src-mandiant-haienergy-2023",
+          "about": "Times Newswire"
+        },
+        {
+          "text": "Figure 13: Previously identified social media accounts leveraged as part of the HaiEnergy campaign promote identical text from Times Newswire article and video of protest in Washington, D.C.",
+          "source_id": "src-mandiant-haienergy-2023",
+          "about": "Times Newswire"
+        },
+        {
+          "text": "Specifically, we observed an article published to Times Newswire claiming that protests occurred in response to Taiwanese President Tsai Ing-wen’s recent transit through the U.S.",
+          "source_id": "src-mandiant-haienergy-2023",
+          "about": "Times Newswire"
+        },
+        {
+          "text": "and an identified service that sells digital advertisements on the specific billboard featured in the Times Newswire article.",
+          "source_id": "src-mandiant-haienergy-2023",
+          "about": "Times Newswire"
+        },
+        {
+          "text": "9, we observed an article titled “The Frequent Shootings in the United States are the Greatest Contempt for Human Rights” published via the press release service Times Newswire.",
+          "source_id": "src-mandiant-haienergy-2023",
+          "about": "Times Newswire"
+        },
+        {
+          "text": "Subdomains Leveraged to Promote Pro-PRC Content from Times Newswire and World Newswire Intended to Masquerade as Content from Second-Level Domains of U.S.",
+          "source_id": "src-mandiant-haienergy-2023",
+          "about": "Times Newswire"
+        }
+      ]
+    },
+    {
+      "id": "world-newswire",
+      "name_zh": "World Newswire",
+      "name_en": "World Newswire",
+      "aliases": [],
+      "category": "pr-firm",
+      "role": "collaborator",
+      "origin": "PRC",
+      "summary_zh": "海賣（Shenzhen Haimai）經營的新聞稿發布服務。Mandiant 指出海訊社同時使用 Times Newswire 與 World Newswire，將親北京內容置入正規新聞網站的子網域。",
+      "source_ids": [
+        "src-google-glassbridge",
+        "src-mandiant-haienergy-2023"
+      ],
+      "confidence": "high",
+      "claims": [
+        {
+          "text": "4, 2022, we observed an article titled “US CIA: The Manifest of the Unholy Saint in Africa'' published via the press release service World Newswire.",
+          "source_id": "src-mandiant-haienergy-2023",
+          "about": "World Newswire"
+        },
+        {
+          "text": "Figure 16: Original article posted to Online Nigeria (top left); article altered and posted to World Newswire (top right); article distributed to FinancialContent, Inc.",
+          "source_id": "src-mandiant-haienergy-2023",
+          "about": "World Newswire"
+        },
+        {
+          "text": "Subdomains Leveraged to Promote Pro-PRC Content from Times Newswire and World Newswire Intended to Masquerade as Content from Second-Level Domains of U.S.",
+          "source_id": "src-mandiant-haienergy-2023",
+          "about": "World Newswire"
+        }
+      ]
+    },
+    {
+      "id": "ifeng",
+      "name_zh": "鳳凰網",
+      "name_en": "Phoenix New Media (ifeng)",
+      "aliases": [
+        "凤凰网",
+        "ifeng.com"
+      ],
+      "category": "state-media",
+      "role": "amplifier",
+      "origin": "HK",
+      "summary_zh": "香港鳳凰傳媒旗下網站。IORG 記錄其與地方官媒協力傳播對台敘事；FactLink 記錄其參與衛星照與對日敘事的放大。",
+      "source_ids": [
+        "src-factlink-japan",
+        "src-factlink-satellite",
+        "src-iorg-38",
+        "src-iorg-41"
+      ],
+      "confidence": "high",
+      "claims": [
+        {
+          "text": "館長在10月27日訪北京時，接受香港媒體《大公報》、《鳳凰網》群訪時回答：「衛星系統根本無所遁形」、「認清兩岸差距愈來愈大」。",
+          "source_id": "src-factlink-satellite",
+          "about": "鳳凰網"
+        },
+        {
+          "text": "中央官媒如央視、新華社等，呼應官方敘事，例如「高市早苗讓日本承擔代價」，「高市早苗要明白中國人民惹不得」；而地方官媒如北京日報、以及常與官媒呼應的香港媒體如鳳凰網，以及時政大V帳號則在既有敘事基礎上進一步加油添醋、強化情緒性語言與陰謀論式解讀，使訊息更具戲劇性與傳播力。",
+          "source_id": "src-factlink-japan",
+          "about": "鳳凰網"
+        }
+      ]
+    },
+    {
+      "id": "hk-china-news",
+      "name_zh": "香港新聞網",
+      "name_en": "HK China News",
+      "aliases": [
+        "香港新闻网",
+        "hkcna"
+      ],
+      "category": "state-media",
+      "role": "amplifier",
+      "origin": "PRC",
+      "summary_zh": "IORG 標記為中共中央統戰部口徑的新聞網站，多次報導台灣立法院修法爭議並引用國民黨、民眾黨政治人物發言。",
+      "source_ids": [
+        "src-iorg-118",
+        "src-iorg-131",
+        "src-iorg-38",
+        "src-iorg-41"
+      ],
+      "confidence": "medium"
+    },
+    {
+      "id": "china-news-service",
+      "name_zh": "中國新聞社",
+      "name_en": "China News Service",
+      "aliases": [
+        "中新社",
+        "中国新闻社",
+        "中国新闻网",
+        "中國新聞網",
+        "chinanews.com"
+      ],
+      "category": "state-media",
+      "role": "amplifier",
+      "origin": "PRC",
+      "summary_zh": "IORG 標記為中共中央統戰部口徑的通訊社。其網站中國新聞網針對賴清德演講發表文章，YouTube 頻道亦發布對台影片。",
+      "source_ids": [
+        "src-iorg-118",
+        "src-iorg-131",
+        "src-iorg-41"
+      ],
+      "confidence": "medium",
+      "claims": [
+        {
+          "text": "至於2025年11月1日至12月6日期間，微博上對於高市早苗個人或其發言的討論，以官媒發文最多，包括北京晚報、中國新聞網與環球時報。",
+          "source_id": "src-factlink-japan",
+          "about": "中國新聞網"
+        },
+        {
+          "text": "11月1日高市早苗與林信義在APEC會議見面後，中國外交部首先極快提出抗議，北京日報、央視、中國新聞網等官媒也迅速轉發外交部意見。",
+          "source_id": "src-factlink-japan",
+          "about": "中國新聞網"
+        },
+        {
+          "text": "在2025年11月至12月初攻擊高市早苗與其言行的貼文中，官媒帳號如北京晚報、環球時報、中國新聞網、央視網，以及作為中國官方喉舌的民營媒體觀察者網及時政評論大V，以「日本軍國主義意圖對外擴張」為宣傳主旋律。",
+          "source_id": "src-factlink-japan",
+          "about": "中國新聞網"
+        }
+      ]
+    },
+    {
+      "id": "fujian-daily",
+      "name_zh": "福建日報",
+      "name_en": "Fujian Daily",
+      "aliases": [
+        "福建日报"
+      ],
+      "category": "state-media",
+      "role": "amplifier",
+      "origin": "PRC",
+      "summary_zh": "福建省委機關報，海峽導報與台海網的上級單位。IORG 在中共月報中多次記錄其對台傳播鏈。",
+      "source_ids": [
+        "src-iorg-118",
+        "src-iorg-131"
+      ],
+      "confidence": "medium"
+    },
+    {
+      "id": "takungpao-wenweipo-net",
+      "name_zh": "大公文匯網",
+      "name_en": "Ta Kung Wen Wei Media (TKWW)",
+      "aliases": [
+        "大公文汇网",
+        "TKWW"
+      ],
+      "category": "state-media",
+      "role": "amplifier",
+      "origin": "HK",
+      "summary_zh": "香港大公報與文匯報的合併網站。IORG 記錄其與鳳凰網、環球網、香港新聞網協力傳播台灣名嘴在中天新聞節目中的說法。",
+      "source_ids": [
+        "src-iorg-38",
+        "src-iorg-41"
+      ],
+      "confidence": "medium"
+    },
+    {
+      "id": "hk-wenweipo",
+      "name_zh": "香港文匯報",
+      "name_en": "Wen Wei Po",
+      "aliases": [
+        "文匯報",
+        "文汇报",
+        "香港文汇报"
+      ],
+      "category": "state-media",
+      "role": "amplifier",
+      "origin": "HK",
+      "summary_zh": "FactLink 描述為具中國官方性質的香港報紙，記錄其散播與中國高度相關的不實訊息後快速下架刪文。",
+      "source_ids": [
+        "src-factlink-hackleak",
+        "src-factlink-satellite"
+      ],
+      "confidence": "medium",
+      "claims": [
+        {
+          "text": "〉影片，由《澎湃新聞》、《大象新聞》、香港《文匯報》等多家媒體、論壇帳號、多個抖音帳號轉分享。",
+          "source_id": "src-factlink-satellite",
+          "about": "香港《文匯報》"
+        },
+        {
+          "text": "此外，與中國高度相關的臉書粉專「兩岸頭條」、具有中國官方性質的香港《文匯報》也接連散播相同訊息。",
+          "source_id": "src-factlink-hackleak",
+          "about": "文匯報"
+        },
+        {
+          "text": "但在台灣查證此傳言為不實訊息之後，兩岸頭條和香港文匯報皆快速下架刪文。",
+          "source_id": "src-factlink-hackleak",
+          "about": "文匯報"
+        }
+      ]
+    },
+    {
+      "id": "qiaobao",
+      "name_zh": "僑報網",
+      "name_en": "China Press (Qiaobao)",
+      "aliases": [
+        "侨报网",
+        "僑報"
+      ],
+      "category": "state-media",
+      "role": "amplifier",
+      "origin": "PRC",
+      "summary_zh": "面向海外華人的官媒網站。IORG 記錄其發布報導並引用台灣名嘴蔡正元的意見。",
+      "source_ids": [
+        "src-iorg-38",
+        "src-iorg-41"
+      ],
+      "confidence": "medium"
+    },
+    {
+      "id": "dongnan-tv",
+      "name_zh": "東南衛視",
+      "name_en": "Southeast TV",
+      "aliases": [
+        "中国东南卫视官方频道",
+        "中國東南衛視",
+        "东南卫视"
+      ],
+      "category": "state-media",
+      "role": "amplifier",
+      "origin": "PRC",
+      "summary_zh": "福建廣播影視集團旗下衛視。IORG 記錄其 YouTube 官方頻道發布「推翻民進黨」等對台政治宣傳影片。",
+      "source_ids": [
+        "src-iorg-131",
+        "src-iorg-41"
+      ],
+      "confidence": "medium"
+    },
+    {
+      "id": "guangming-daily",
+      "name_zh": "光明日報",
+      "name_en": "Guangming Daily",
+      "aliases": [
+        "光明日报"
+      ],
+      "category": "state-media",
+      "role": "amplifier",
+      "origin": "PRC",
+      "summary_zh": "中共中央機關報之一。Doublethink Lab 的 GoLaxy 文件分析記錄其與出門問問（Mobvoi）深度合作，2020 年起共同推出 AI 虛擬主播「小明」等產品。",
+      "source_ids": [
+        "src-dtl-golaxy"
+      ],
+      "confidence": "low"
+    },
+    {
+      "id": "xiamen-media",
+      "name_zh": "廈門廣電",
+      "name_en": "Xiamen Media Group",
+      "aliases": [
+        "厦门广电",
+        "廈門廣播電視集團"
+      ],
+      "category": "state-media",
+      "role": "amplifier",
+      "origin": "PRC",
+      "summary_zh": "廈門市廣播電視集團。IORG 記錄其微博帳號與環球網、台海網、鳳凰網等官媒帳號同步使用相同素材發布對台內容。",
+      "source_ids": [
+        "src-dtl-multiverse",
+        "src-iorg-41"
+      ],
+      "confidence": "medium"
+    },
+    {
+      "id": "china-review-news",
+      "name_zh": "中評社",
+      "name_en": "China Review News",
+      "aliases": [
+        "中評網",
+        "中评社",
+        "中评网",
+        "中國評論通訊社"
+      ],
+      "category": "state-media",
+      "role": "amplifier",
+      "origin": "HK",
+      "summary_zh": "香港中國評論通訊社。IORG 記錄其中評網發布涉台評論文章，如上海交通大學台灣研究中心主任盛九元的「虛構民主對抗專制敘事可休矣」。",
+      "source_ids": [
+        "src-iorg-11",
+        "src-iorg-118"
+      ],
+      "confidence": "medium"
     }
   ],
   "events": [

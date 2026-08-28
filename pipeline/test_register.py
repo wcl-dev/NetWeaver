@@ -79,7 +79,20 @@ def test_add_actor_rejections():
     _setup(); assert _rejects(reg.cmd_add_actor, actor_ns(origin="US")), "非法 origin 應拒"
     _setup(); assert _rejects(reg.cmd_add_actor, actor_ns(source_ids="src-none")), "source_id FK 不存在應拒"
     _setup(); assert _rejects(reg.cmd_add_actor, actor_ns(source_ids="")), "source_ids 空應拒"
-    _setup(); assert _rejects(reg.cmd_add_actor, actor_ns(name_en="乙")), "新名/別名彼此重複應拒"
+    _setup(); assert _rejects(reg.cmd_add_actor, actor_ns(aliases="乙")), "別名撞自己的中文名應拒"
+    _setup(); assert _rejects(reg.cmd_add_actor, actor_ns(aliases="AL2,al 2")), "別名彼此重複（normalize 後）應拒"
+
+@case
+def test_add_actor_english_only_brand():
+    """中英同名要能過：Times Newswire／Spamouflage／DURINBRIDGE 這類品牌沒有中文名。
+
+    硬要填一個中文名只會產出假資料。真正該擋的是**別名之間**重複——那才是打錯，
+    由 test_add_actor_rejections 鎖住。
+    """
+    dbp = _setup()
+    reg.cmd_add_actor(actor_ns(id="brand", name_zh="Times Newswire", name_en="Times Newswire"))
+    e = next(x for x in _db(dbp)["entities"] if x["id"] == "brand")
+    assert e["name_zh"] == e["name_en"] == "Times Newswire"
 
 @case
 def test_url_host_and_strict_kebab():

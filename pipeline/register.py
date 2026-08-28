@@ -32,7 +32,7 @@ SOURCE_TYPES = {"gov-report", "ngo-report", "platform-report", "news", "academic
 CATEGORIES = {"state-organ", "tech-vendor", "pr-firm", "content-farm", "cib-network",
               "state-media", "domestic-amplifier", "commentator", "other"}
 ROLES = {"attacker", "collaborator", "amplifier"}
-ORIGINS = {"PRC", "TW", "other"}
+ORIGINS = {"PRC", "TW", "HK", "other"}   # HK：受中方控制但在香港法域運作的媒體，與 PRC 分開記
 _KEBAB = re.compile(r"^[a-z0-9]+(-[a-z0-9]+)*$")            # 嚴格 kebab-case（拒 a-、a--b）
 
 def _slug(s):
@@ -187,7 +187,10 @@ def cmd_add_actor(args):
     existing = {_norm(n) for e in db["entities"]
                 for n in [e.get("name_zh"), e.get("name_en")] + (e.get("aliases") or []) if n}
     seen = set()
-    for n in [name_zh, name_en] + aliases:
+    # 品牌沒有中文名時中英同名（既有的 Spamouflage／DURINBRIDGE 就是），那是一個名字不是兩個。
+    # 別名之間的重複仍要擋——那才是真的寫錯。
+    names = [name_zh] + ([name_en] if _norm(name_en) != _norm(name_zh) else []) + aliases
+    for n in names:
         k = _norm(n)
         if not k: raise SystemExit(f"名稱／別名 normalize 後為空：「{n}」")
         if k in existing: raise SystemExit(f"名稱／別名撞既有 actor：「{n}」（同一實體請用既有 entity）")

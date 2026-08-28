@@ -238,7 +238,19 @@ window.NETWEAVER_DB = {
         "src-nsb-2026",
         "src-propublica-onesight"
       ],
-      "confidence": "high"
+      "confidence": "high",
+      "claims": [
+        {
+          "text": "which has links to Chinese law enforcement and coordinates with other agencies such as the Ministry of Foreign Affairs and the United Front Work Department according to internal group communications revealed by the US Department of Justice.",
+          "source_id": "src-aspi-2024",
+          "about": "United Front Work Department"
+        },
+        {
+          "text": "The usage of the United Front Work Department (UFWD) is inconspicuous in South Asia.",
+          "source_id": "src-doublethink-lab-96d2c0",
+          "about": "United Front Work Department"
+        }
+      ]
     },
     {
       "id": "mps",
@@ -331,7 +343,39 @@ window.NETWEAVER_DB = {
         "src-aspi-strait",
         "src-nsb-2026"
       ],
-      "confidence": "high"
+      "confidence": "high",
+      "claims": [
+        {
+          "text": "This coincided with reporting on the allegation by the China Times, a Taiwan-based newspaper that reportedly takes instructions directly from the CCP’s Taiwan Affairs Office.",
+          "source_id": "src-aspi-2024",
+          "about": "Taiwan Affairs Office"
+        },
+        {
+          "text": "the Ministry of Defence and the Taiwan Affairs Office to consolidate their influence operations targeting the Taiwan election.",
+          "source_id": "src-aspi-2024",
+          "about": "Taiwan Affairs Office"
+        },
+        {
+          "text": "The Taiwan Affairs Office in China has described united front work as “an important magic weapon for the Communist Party of China to unite people and gather strength”.",
+          "source_id": "src-aspi-strait",
+          "about": "Taiwan Affairs Office"
+        },
+        {
+          "text": "This was most clearly on show in an exchange between a CCTV journalist and Director of the Information Bureau of the Taiwan Affairs Office (TAO) of the State Council Chen Binhua (陈斌华).",
+          "source_id": "src-jamestown-js2024b",
+          "about": "TAO"
+        },
+        {
+          "text": "Chen Binhua, the TAO spokesman, used the same phrase in his press conference several days later (TAO, October 16).",
+          "source_id": "src-jamestown-js2024b",
+          "about": "TAO"
+        },
+        {
+          "text": "中国海警在中国海域开展执法巡查，是为了维护相关海域作业秩序，维护包括台湾渔民在内的中国渔民生命财产安全和合法正当权益)” (TAO, October 16).",
+          "source_id": "src-jamestown-js2024b",
+          "about": "TAO"
+        }
+      ]
     },
     {
       "id": "golaxy",
@@ -442,6 +486,16 @@ window.NETWEAVER_DB = {
           "text": "台灣民主實驗室的〈AI 在中國影響力作戰中的崛起：從中科天璣文件中得出的九大要點〉，整理從中國外洩的一份科技公司內部文件，分析中國情報資訊公司「中科天璣」(該公司有中國科學院計算技術研究所的背景)對台灣、美國、一帶一路國家、香港新疆西藏等資訊監控、分析及宣傳策略系統。",
           "source_id": "src-factlink-ff3dee",
           "about": "中科天璣"
+        },
+        {
+          "text": "A Vanderbilt Institute of National Security archive detailing how state-aligned firm GoLaxy harvests data, builds precision profiles, and deploys AI-driven propaganda at scale.",
+          "source_id": "src-vanderbilt-golaxy",
+          "about": "GoLaxy"
+        },
+        {
+          "text": "The Vanderbilt Institute of National Security has released The GoLaxy Documents—an archive describing how one Chinese company uses artificial intelligence to drive large-scale influence operations.",
+          "source_id": "src-vanderbilt-golaxy",
+          "about": "GoLaxy"
         }
       ]
     },
@@ -630,7 +684,194 @@ window.NETWEAVER_DB = {
         "src-google-glassbridge",
         "src-nsb-2026"
       ],
-      "confidence": "high"
+      "confidence": "high",
+      "claims": [
+        {
+          "text": "there is at least some evidence to suggest that HaiEnergy failed to generate substantial engagement outside of the inauthentic amplification that we have identified—a limitation we also noted in our recent public reporting on DRAGONBRIDGE.",
+          "source_id": "src-mandiant-haienergy-2022",
+          "about": "HaiEnergy"
+        },
+        {
+          "text": "Sites attributed to HaiEnergy all display images and videos that are hosted on the server 02100.vip, which is registered by Haixun (Figure 2).",
+          "source_id": "src-mandiant-haienergy-2022",
+          "about": "HaiEnergy"
+        },
+        {
+          "text": "We observed multiple inauthentic news sites we attribute to “HaiEnergy” listed in a downloadable spreadsheet hosted at haixunpr.org.",
+          "source_id": "src-mandiant-haienergy-2022",
+          "about": "HaiEnergy"
+        },
+        {
+          "text": "To date, HaiEnergy has exclusively leveraged Haixun infrastructure to host websites.",
+          "source_id": "src-mandiant-haienergy-2022",
+          "about": "HaiEnergy"
+        },
+        {
+          "text": "We currently track HaiEnergy and DRAGONBRIDGE as separate campaigns due to differences in campaign TTPs.",
+          "source_id": "src-mandiant-haienergy-2022",
+          "about": "HaiEnergy"
+        },
+        {
+          "text": "Specifically, known DRAGONBRIDGE assets have not promoted content from HaiEnergy's inauthentic news sites.",
+          "source_id": "src-mandiant-haienergy-2022",
+          "about": "HaiEnergy"
+        },
+        {
+          "text": "We note that despite the capabilities and global reach advertised by Haixun, there is at least some evidence to suggest HaiEnergy failed to generate substantial engagement.",
+          "source_id": "src-mandiant-haienergy-2022",
+          "about": "HaiEnergy"
+        },
+        {
+          "text": "we believe these sites are linked to Shanghai Haixun Technology Co.",
+          "source_id": "src-mandiant-haienergy-2022",
+          "about": "Haixun"
+        },
+        {
+          "text": "a Chinese public relations (PR) firm (referred to hereafter as “Haixun”).",
+          "source_id": "src-mandiant-haienergy-2022",
+          "about": "Haixun"
+        },
+        {
+          "text": "Based on information from public descriptions of the company’s services, Haixun offers content creation and marketing services in at least 40 different languages in over 100 countries.",
+          "source_id": "src-mandiant-haienergy-2022",
+          "about": "Haixun"
+        },
+        {
+          "text": "our analysis indicates that the campaign has at least leveraged services and infrastructure belonging to Haixun to host and distribute content.",
+          "source_id": "src-mandiant-haienergy-2022",
+          "about": "Haixun"
+        },
+        {
+          "text": "In total, we identified 72 websites (59 domains and 13 subdomains) hosted by Haixun, which were used to target audiences in North America, Europe, the Middle East, and Asia.",
+          "source_id": "src-mandiant-haienergy-2022",
+          "about": "Haixun"
+        },
+        {
+          "text": "we identified two additional domains (haixunpr.com and haixunpr.org)—Chinese- and English-language sites describing Haixun’s services—that have resolved to the same IP address and leveraged content from 02100.vip.",
+          "source_id": "src-mandiant-haienergy-2022",
+          "about": "Haixun"
+        },
+        {
+          "text": "Pro-PRC HaiEnergy Campaign Exploits U.S.",
+          "source_id": "src-mandiant-haienergy-2023",
+          "about": "HaiEnergy"
+        },
+        {
+          "text": "The campaign then used the protests as source material in HaiEnergy-linked operations that promoted narratives surrounding highly divisive U.S.",
+          "source_id": "src-mandiant-haienergy-2023",
+          "about": "HaiEnergy"
+        },
+        {
+          "text": "which were also published to suspected inauthentic news sites we have previously attributed to HaiEnergy (see Figure 1 and Figure 2).",
+          "source_id": "src-mandiant-haienergy-2023",
+          "about": "HaiEnergy"
+        },
+        {
+          "text": "Figure 3: A HaiEnergy site posts an article identical to one on Times Newswire and links directly to that Times Newswire article published on a subdomain of a U.S.",
+          "source_id": "src-mandiant-haienergy-2023",
+          "about": "HaiEnergy"
+        },
+        {
+          "text": "we identified a Fiverr account we attribute to Haixun actively engaged in soliciting individuals to promote content both consistent with the political narratives promoted by the HaiEnergy campaign and sourced to infrastructure we attribute to it (Figure 5).",
+          "source_id": "src-mandiant-haienergy-2023",
+          "about": "HaiEnergy"
+        },
+        {
+          "text": "In some cases, HaiEnergy-sourced content was promoted by social media accounts linked to paid promoters on the same days, further suggesting a notable degree of coordination (Figure 7).",
+          "source_id": "src-mandiant-haienergy-2023",
+          "about": "HaiEnergy"
+        },
+        {
+          "text": "Mandiant also identified two clusters of suspected inauthentic accounts operating on Twitter engaged in the concerted promotion of source material originating from HaiEnergy-linked sources.",
+          "source_id": "src-mandiant-haienergy-2023",
+          "about": "HaiEnergy"
+        },
+        {
+          "text": "Evidence Suggests Operators Behind HaiEnergy May Have Commissioned Staged In-Person Protests in Washington, D.C.",
+          "source_id": "src-mandiant-haienergy-2023",
+          "about": "HaiEnergy"
+        },
+        {
+          "text": "were documented via video and subsequently used as source material to support campaign-promoted narratives published by assets and infrastructure leveraged by HaiEnergy.",
+          "source_id": "src-mandiant-haienergy-2023",
+          "about": "HaiEnergy"
+        },
+        {
+          "text": "As previously alluded to, HaiEnergy subsequently leveraged these videos to bolster campaign messaging.",
+          "source_id": "src-mandiant-haienergy-2023",
+          "about": "HaiEnergy"
+        },
+        {
+          "text": "we were unable to identify any outside sources referencing these protests other than those we either attribute directly to HaiEnergy or have identified as being tangential to the campaign by virtue of paid promotion services.",
+          "source_id": "src-mandiant-haienergy-2023",
+          "about": "HaiEnergy"
+        },
+        {
+          "text": "Figure 13: Previously identified social media accounts leveraged as part of the HaiEnergy campaign promote identical text from Times Newswire article and video of protest in Washington, D.C.",
+          "source_id": "src-mandiant-haienergy-2023",
+          "about": "HaiEnergy"
+        },
+        {
+          "text": "Attempts by the campaign to manufacture source material offline for subsequent use in HaiEnergy-linked operations may not be isolated to the aforementioned protests in Washington, D.C.",
+          "source_id": "src-mandiant-haienergy-2023",
+          "about": "HaiEnergy"
+        },
+        {
+          "text": "Mandiant released a public report detailing an ongoing influence campaign leveraging infrastructure attributed to the Chinese public relations (PR) firm Shanghai Haixun Technology Co.",
+          "source_id": "src-mandiant-haienergy-2023",
+          "about": "Haixun"
+        },
+        {
+          "text": "Ltd (上海海讯社科技有限公司) (referred to hereafter as “Haixun”).",
+          "source_id": "src-mandiant-haienergy-2023",
+          "about": "Haixun"
+        },
+        {
+          "text": "we have identified additional evidence suggesting Haixun is not only aware of the campaign but is actively supporting it through the solicitation of for-hire freelancers via Fiverr to promote campaign content.",
+          "source_id": "src-mandiant-haienergy-2023",
+          "about": "Haixun"
+        },
+        {
+          "text": "as well as newly-identified for-hire freelancers we judge were commissioned by Haixun to amplify campaign content (see next section).",
+          "source_id": "src-mandiant-haienergy-2023",
+          "about": "Haixun"
+        },
+        {
+          "text": "at least 72 suspected inauthentic news sites which all leveraged content from the server “02100.vip” that was registered by Haixun.",
+          "source_id": "src-mandiant-haienergy-2023",
+          "about": "Haixun"
+        },
+        {
+          "text": "Additionally, we observed numerous reviews from the Haixun Fiverr account as a “buyer” placed on identified “seller” accounts.",
+          "source_id": "src-mandiant-haienergy-2023",
+          "about": "Haixun"
+        },
+        {
+          "text": "In at least one instance, we observed Haixun, via its Fiverr account, commission an influencer to promote a video surrounding China’s “victory” over COVID-19.",
+          "source_id": "src-mandiant-haienergy-2023",
+          "about": "Haixun"
+        },
+        {
+          "text": "On Fiverr, the Haixun account shared a screenshot of the video being posted by the influencer, presumably as proof of service delivery, alongside text stating “Great service, fast respond.",
+          "source_id": "src-mandiant-haienergy-2023",
+          "about": "Haixun"
+        },
+        {
+          "text": "we surmise that Haixun selectively targeted for-hire accounts that could maximize campaign reach.",
+          "source_id": "src-mandiant-haienergy-2023",
+          "about": "Haixun"
+        },
+        {
+          "text": "including at least one we judge is associated with a freelancer that was commissioned by Haixun via Fiverr (see Figure 12 and Figure 13).",
+          "source_id": "src-mandiant-haienergy-2023",
+          "about": "Haixun"
+        },
+        {
+          "text": "we have observed corresponding Twitter profiles associated with identified accounts on Fiverr commissioned by Haixun retweet suspected inauthentic accounts that have amplified content consistent with source material promoted by DRAGONBRIDGE accounts.",
+          "source_id": "src-mandiant-haienergy-2023",
+          "about": "Haixun"
+        }
+      ]
     },
     {
       "id": "borderless-group",
@@ -881,7 +1122,24 @@ window.NETWEAVER_DB = {
         "src-dtl-2022election",
         "src-factlink-hackleak"
       ],
-      "confidence": "medium"
+      "confidence": "medium",
+      "claims": [
+        {
+          "text": "此外，與中國高度相關的臉書粉專「兩岸頭條」、具有中國官方性質的香港《文匯報》也接連散播相同訊息。",
+          "source_id": "src-factlink-hackleak",
+          "about": "兩岸頭條"
+        },
+        {
+          "text": "但在台灣查證此傳言為不實訊息之後，兩岸頭條和香港文匯報皆快速下架刪文。",
+          "source_id": "src-factlink-hackleak",
+          "about": "兩岸頭條"
+        },
+        {
+          "text": "「兩岸頭條」過去多次傳播親中不實訊息。",
+          "source_id": "src-factlink-hackleak",
+          "about": "兩岸頭條"
+        }
+      ]
     },
     {
       "id": "spamouflage",
@@ -985,6 +1243,491 @@ window.NETWEAVER_DB = {
           "text": "Dragonbridge 跨逾180個平台的對台行動",
           "source_id": "src-nsb-2026",
           "about": "related-to"
+        },
+        {
+          "text": "We believe one is likely linked to the CCP’s largest network of inauthentic social media accounts known as Spamouflage or Dragonbridge.",
+          "source_id": "src-aspi-2024",
+          "about": "Spamouflage"
+        },
+        {
+          "text": "Accounts targeting Lai and Hsiao were involved in previous Spamouflage campaigns targeting Chinese virologist Yan Limeng, Chinese businessman Guo Wengui, and Chinese dissidents.",
+          "source_id": "src-aspi-2024",
+          "about": "Spamouflage"
+        },
+        {
+          "text": "Spamouflage-affiliated accounts sought to harass DPP legislative candidates too, calling the DPP’s Lin Ching-yi, a ‘shameless’ politician.",
+          "source_id": "src-aspi-2024",
+          "about": "Spamouflage"
+        },
+        {
+          "text": "who Spamouflage accounts accused of sexually harassing female colleagues and having affairs.",
+          "source_id": "src-aspi-2024",
+          "about": "Spamouflage"
+        },
+        {
+          "text": "The document was originally uploaded on Zenodo, an open-source data repository previously used by Spamouflage-linked operators to upload a document claiming Covid-19 originated from the US.",
+          "source_id": "src-aspi-2024",
+          "about": "Spamouflage"
+        },
+        {
+          "text": "On YouTube, Spamouflage-linked channels posted at least 490 videos referencing the ‘secret history’ document between 4 January and 10 January before YouTube suspended all the channels.",
+          "source_id": "src-aspi-2024",
+          "about": "Spamouflage"
+        },
+        {
+          "text": "ASPI is not suggesting that D-ID knowingly cooperated with Spamouflage-linked operators.",
+          "source_id": "src-aspi-2024",
+          "about": "Spamouflage"
+        },
+        {
+          "text": "在11月更發現極為相似的另一個Hashtag「右翼の共生者」，第二波標籤以日語用法更道地，且該波攻擊與高市提出的「台灣有事」有關，不過這些帳號多數屬於典型「Spamouflage（垃圾變色龍）」網路，點閱互動低，影響力有限。",
+          "source_id": "src-factlink-takaichi",
+          "about": "Spamouflage"
+        },
+        {
+          "text": "Today we are sharing updated insights about DRAGONBRIDGE, the most prolific IO actor Google’s Threat Analysis Group (TAG) tracks.",
+          "source_id": "src-google-dragonbridge-2024",
+          "about": "DRAGONBRIDGE"
+        },
+        {
+          "text": "Despite producing a high amount of content, DRAGONBRIDGE still does not get high engagement from users on YouTube or Blogger.",
+          "source_id": "src-google-dragonbridge-2024",
+          "about": "DRAGONBRIDGE"
+        },
+        {
+          "text": "As described in our previous blog, the majority of DRAGONBRIDGE activity remains low quality content without a political message.",
+          "source_id": "src-google-dragonbridge-2024",
+          "about": "DRAGONBRIDGE"
+        },
+        {
+          "text": "A small fraction of DRAGONBRIDGE accounts also post about current events with messaging that supports pro-PRC views.",
+          "source_id": "src-google-dragonbridge-2024",
+          "about": "DRAGONBRIDGE"
+        },
+        {
+          "text": "In the first quarter of 2024, Google disrupted over 10,000 instances of DRAGONBRIDGE activity across YouTube and Blogger.",
+          "source_id": "src-google-dragonbridge-2024",
+          "about": "DRAGONBRIDGE"
+        },
+        {
+          "text": "In the network's lifetime, this brings the number of instances of DRAGONBRIDGE activity we have disrupted to over 175,000.",
+          "source_id": "src-google-dragonbridge-2024",
+          "about": "DRAGONBRIDGE"
+        },
+        {
+          "text": "Despite their continued profuse content production and the scale of their operations, DRAGONBRIDGE achieves practically no organic engagement from real viewers.",
+          "source_id": "src-google-dragonbridge-2024",
+          "about": "DRAGONBRIDGE"
+        },
+        {
+          "text": "Despite experimenting with content and producing large amounts of content, DRAGONBRIDGE still does not receive high engagement.",
+          "source_id": "src-google-dragonbridge-2024",
+          "about": "DRAGONBRIDGE"
+        },
+        {
+          "text": "In the cases where DRAGONBRIDGE content did receive engagement, it was almost entirely inauthentic, coming from other DRAGONBRIDGE accounts and not from authentic users.",
+          "source_id": "src-google-dragonbridge-2024",
+          "about": "DRAGONBRIDGE"
+        },
+        {
+          "text": "Comment activity was also mostly from other DRAGONBRIDGE accounts.",
+          "source_id": "src-google-dragonbridge-2024",
+          "about": "DRAGONBRIDGE"
+        },
+        {
+          "text": "The majority of DRAGONBRIDGE activity is low quality content without a political message, populated across many channels and blogs.",
+          "source_id": "src-google-dragonbridge-2024",
+          "about": "DRAGONBRIDGE"
+        },
+        {
+          "text": "However, a small fraction of DRAGONBRIDGE accounts also post about current events with messaging that pushes pro-PRC views.",
+          "source_id": "src-google-dragonbridge-2024",
+          "about": "DRAGONBRIDGE"
+        },
+        {
+          "text": "DRAGONBRIDGE accounts create content reacting to breaking news, especially wedge social issues, usually within a few weeks of the event.",
+          "source_id": "src-google-dragonbridge-2024",
+          "about": "DRAGONBRIDGE"
+        },
+        {
+          "text": "For anticipated events, DRAGONBRIDGE creates content in advance, allowing them to quickly disseminate large volumes in a short timeframe around the event.",
+          "source_id": "src-google-dragonbridge-2024",
+          "about": "DRAGONBRIDGE"
+        },
+        {
+          "text": "DRAGONBRIDGE content has targeted Taiwan for years, including pro-unification narratives and surges of activity in response to news events.",
+          "source_id": "src-google-dragonbridge-2024",
+          "about": "DRAGONBRIDGE"
+        },
+        {
+          "text": "As is typical with DRAGONBRIDGE, the volume of content was large but unsuccessful in gaining traction with authentic viewers.",
+          "source_id": "src-google-dragonbridge-2024",
+          "about": "DRAGONBRIDGE"
+        },
+        {
+          "text": "The videos were typical of DRAGONBRIDGE’s style featuring robotic voiceovers, stock footage and publicly available images.",
+          "source_id": "src-google-dragonbridge-2024",
+          "about": "DRAGONBRIDGE"
+        },
+        {
+          "text": "DRAGONBRIDGE posted thousands of videos and comments on YouTube using synthetic audio and avatars promoting a false “secret history” document critical of the outgoing President Tsai Ing-wen.",
+          "source_id": "src-google-dragonbridge-2024",
+          "about": "DRAGONBRIDGE"
+        },
+        {
+          "text": "DRAGONBRIDGE also posted comments to videos belonging to legitimate users, likely an attempt to spread their narrative.",
+          "source_id": "src-google-dragonbridge-2024",
+          "about": "DRAGONBRIDGE"
+        },
+        {
+          "text": "The comments shared links to DRAGONBRIDGE videos and the “secret history” document, which was hosted elsewhere online.",
+          "source_id": "src-google-dragonbridge-2024",
+          "about": "DRAGONBRIDGE"
+        },
+        {
+          "text": "DRAGONBRIDGE also pushed the same narrative on multiple, non-Google platforms, including X (formerly Twitter), Reddit, Instagram, Facebook, Medium, and smaller online forums and bulletin boards.",
+          "source_id": "src-google-dragonbridge-2024",
+          "about": "DRAGONBRIDGE"
+        },
+        {
+          "text": "DRAGONBRIDGE has experimented with generative AI tools to create content for several years.",
+          "source_id": "src-google-dragonbridge-2024",
+          "about": "DRAGONBRIDGE"
+        },
+        {
+          "text": "As early as 2022, Graphika reported that DRAGONBRIDGE was using AI-generated footage.",
+          "source_id": "src-google-dragonbridge-2024",
+          "about": "DRAGONBRIDGE"
+        },
+        {
+          "text": "the content consisted of DRAGONBRIDGE’s usual compilation of stock images and news footage from online sources accompanied by robotic English-language voiceovers.",
+          "source_id": "src-google-dragonbridge-2024",
+          "about": "DRAGONBRIDGE"
+        },
+        {
+          "text": "DRAGONBRIDGE used an AI-generated \"news presenter\" in a short news segment-style video.",
+          "source_id": "src-google-dragonbridge-2024",
+          "about": "DRAGONBRIDGE"
+        },
+        {
+          "text": "For example, in May 2024 DRAGONBRIDGE began uploading videos and commenting on the student protests over the Israel-Hamas war on US university campuses.",
+          "source_id": "src-google-dragonbridge-2024",
+          "about": "DRAGONBRIDGE"
+        },
+        {
+          "text": "The DRAGONBRIDGE content appeared in English, was generally pro-Palestine in its narrative themes, and used the student protests to frame the US and Western media as hypocritical.",
+          "source_id": "src-google-dragonbridge-2024",
+          "about": "DRAGONBRIDGE"
+        },
+        {
+          "text": "This fits in a larger context of DRAGONBRIDGE portraying the US government and society as hypocritical.",
+          "source_id": "src-google-dragonbridge-2024",
+          "about": "DRAGONBRIDGE"
+        },
+        {
+          "text": "We have seen DRAGONBRIDGE respond to significant events with pre-produced content and consider it highly likely that they will continue to do so, including with the 2024 US general election.",
+          "source_id": "src-google-dragonbridge-2024",
+          "about": "DRAGONBRIDGE"
+        },
+        {
+          "text": "DRAGONBRIDGE content has regularly included US political issues and political figures, particularly in the leadup to elections and generally presented in the format of short news clips.",
+          "source_id": "src-google-dragonbridge-2024",
+          "about": "DRAGONBRIDGE"
+        },
+        {
+          "text": "In previous US elections, DRAGONBRIDGE content has not explicitly advocated for specific candidates or any specific political outcome in the US.",
+          "source_id": "src-google-dragonbridge-2024",
+          "about": "DRAGONBRIDGE"
+        },
+        {
+          "text": "In 2020 DRAGONBRIDGE content was critical of both presidential candidates.",
+          "source_id": "src-google-dragonbridge-2024",
+          "about": "DRAGONBRIDGE"
+        },
+        {
+          "text": "The activity extended cross-platform, with DRAGONBRIDGE posting similar messages via tweets and identical video content on X, formerly known as Twitter.",
+          "source_id": "src-google-dragonbridge-2024",
+          "about": "DRAGONBRIDGE"
+        },
+        {
+          "text": "So far in 2024 DRAGONBRIDGE continues to spread narratives highlighting US political divisions, including content in January discussing political leaders.",
+          "source_id": "src-google-dragonbridge-2024",
+          "about": "DRAGONBRIDGE"
+        },
+        {
+          "text": "TAG is actively monitoring DRAGONBRIDGE activity for any shifts in tone or focus related to the US presidential election.",
+          "source_id": "src-google-dragonbridge-2024",
+          "about": "DRAGONBRIDGE"
+        },
+        {
+          "text": "In 2023, Mandiant also observed DRAGONBRIDGE accounts operating across multiple, non-Google platforms promoting narratives similar to those observed by TAG.",
+          "source_id": "src-google-dragonbridge-2024",
+          "about": "DRAGONBRIDGE"
+        },
+        {
+          "text": "this small subset of DRAGONBRIDGE operations garnered higher levels of engagement from seemingly authentic users compared to the limited-to-no authentic engagement typically received by campaign activity.",
+          "source_id": "src-google-dragonbridge-2024",
+          "about": "DRAGONBRIDGE"
+        },
+        {
+          "text": "That is why Google has scaled our efforts in recent years to disrupt DRAGONBRIDGE coordinated inauthentic activity on our platforms.",
+          "source_id": "src-google-dragonbridge-2024",
+          "about": "DRAGONBRIDGE"
+        },
+        {
+          "text": "We encourage others in the community to continue tracking this actor and shedding light on their operations and would like to thank Mandiant and other researchers for their partnership in countering DRAGONBRIDGE activity.",
+          "source_id": "src-google-dragonbridge-2024",
+          "about": "DRAGONBRIDGE"
+        },
+        {
+          "text": "DRAGONBRIDGE, also known as “Spamouflage Dragon,” is a spammy influence network linked to the People’s Republic of China (PRC) that has a presence across multiple platforms.",
+          "source_id": "src-google-dragonbridge-2024",
+          "about": "Spamouflage Dragon"
+        },
+        {
+          "text": "The videos used the branding of a likely fictitious media company called “Wolf News” mirroring past Spamouflage efforts to pass as legitimate news outlets.",
+          "source_id": "src-graphika-deepfake",
+          "about": "Spamouflage"
+        },
+        {
+          "text": "Chinese State-Linked Influence Operation Spamouflage Masquerades as U.S.",
+          "source_id": "src-graphika-americans",
+          "about": "Spamouflage"
+        },
+        {
+          "text": "Chinese state-linked influence operation (IO) Spamouflage has become more aggressive in its efforts to influence U.S.",
+          "source_id": "src-graphika-americans",
+          "about": "Spamouflage"
+        },
+        {
+          "text": "Through Graphika’s intelligence reporting, we identified 15 Spamouflage accounts on X and one account on TikTok claiming to be U.S.",
+          "source_id": "src-graphika-americans",
+          "about": "Spamouflage"
+        },
+        {
+          "text": "We also identified a cross-platform Spamouflage persona operating as an inauthentic U.S.-focused media outlet.",
+          "source_id": "src-graphika-americans",
+          "about": "Spamouflage"
+        },
+        {
+          "text": "which documented a set of four Spamouflage accounts on X posing as supporters of Trump and the Make America Great Again (MAGA) movement.",
+          "source_id": "src-graphika-americans",
+          "about": "Spamouflage"
+        },
+        {
+          "text": "In conjunction with ISD’s analysis, our findings suggest that Spamouflage’s attempts to pose as U.S.",
+          "source_id": "src-graphika-americans",
+          "about": "Spamouflage"
+        },
+        {
+          "text": "We assess that Spamouflage and other Chinese IO actors will almost certainly continue their efforts to influence U.S.",
+          "source_id": "src-graphika-americans",
+          "about": "Spamouflage"
+        },
+        {
+          "text": "The Spamouflage network is a long-running and widespread but largely ineffective operation, traditionally pushing pro-CCP narratives.",
+          "source_id": "src-isd-magaflage",
+          "about": "Spamouflage"
+        },
+        {
+          "text": "Although this strategy appears to be nascent, it has the potential to make Spamouflage significantly more effective.",
+          "source_id": "src-isd-magaflage",
+          "about": "Spamouflage"
+        },
+        {
+          "text": "The Spamouflage campaign has become infamous amongst researchers for both its dogged persistence and its lack of significant innovation, despite the apparent futility of its operations.",
+          "source_id": "src-isd-magaflage",
+          "about": "Spamouflage"
+        },
+        {
+          "text": "For the first time we have also found Spamouflage accounts posing convincingly as Americans.",
+          "source_id": "src-isd-magaflage",
+          "about": "Spamouflage"
+        },
+        {
+          "text": "The three examples below illustrate the incremental changes in Spamouflage’s content since 2017.",
+          "source_id": "src-isd-magaflage",
+          "about": "Spamouflage"
+        },
+        {
+          "text": "they are not being artificially boosted by the rest of the Spamouflage network.",
+          "source_id": "src-isd-magaflage",
+          "about": "Spamouflage"
+        },
+        {
+          "text": "One of the accounts, @WubbaLubbaDub18 began in 2020 as a standard Spamouflage account.",
+          "source_id": "src-isd-magaflage",
+          "about": "Spamouflage"
+        },
+        {
+          "text": "which is increasingly common across the network (for more on this see this previous Dispatch on Spamouflage and the US 2024 elections).",
+          "source_id": "src-isd-magaflage",
+          "about": "Spamouflage"
+        },
+        {
+          "text": "During this period the account frequently posted Spamouflage’s AI-generated ‘movie posters’, as discussed above, as well as posting anti-Biden and pro-Trump texts in English.",
+          "source_id": "src-isd-magaflage",
+          "about": "Spamouflage"
+        },
+        {
+          "text": "A second MAGAflage account, @ktwsports, has been identified as part of the network because it has posted multiple word-for-word posts and images from known Spamouflage accounts.",
+          "source_id": "src-isd-magaflage",
+          "about": "Spamouflage"
+        },
+        {
+          "text": "At least two other accounts have also made the switch from standard Spamouflage activity to this more tailored and convincing pro-MAGA content.",
+          "source_id": "src-isd-magaflage",
+          "about": "Spamouflage"
+        },
+        {
+          "text": "It posted predominately in Mandarin sharing Spamouflage content until 16 April 2023.",
+          "source_id": "src-isd-magaflage",
+          "about": "Spamouflage"
+        },
+        {
+          "text": "It then posted Spamouflage ‘movie posters’ alongside food and travel content, usually Chinese dishes or regions of China.",
+          "source_id": "src-isd-magaflage",
+          "about": "Spamouflage"
+        },
+        {
+          "text": "this is one of the first documented efforts by Spamouflage to create a consistent multi-platform American persona.",
+          "source_id": "src-isd-magaflage",
+          "about": "Spamouflage"
+        },
+        {
+          "text": "Some of the content is original, but some is copied from viral tweets by large non-Spamouflage accounts.",
+          "source_id": "src-isd-magaflage",
+          "about": "Spamouflage"
+        },
+        {
+          "text": "The case of the Huawei Mate 60 Pro phone is an example of how this approach has the potential to be more effective at spreading pro-CCP narratives among real Trump supporters than the usual Spamouflage tactics.",
+          "source_id": "src-isd-magaflage",
+          "about": "Spamouflage"
+        },
+        {
+          "text": "As with almost all of Spamouflage’s content, this appeared to generate little if any engagement from accounts outside the Spamouflage network.",
+          "source_id": "src-isd-magaflage",
+          "about": "Spamouflage"
+        },
+        {
+          "text": "But it is also possible that this is not the case, especially given Spamouflage’s usual pattern of operating at enormous scale.",
+          "source_id": "src-isd-magaflage",
+          "about": "Spamouflage"
+        },
+        {
+          "text": "Newly created or repurposed accounts without a history of previous Spamouflage activity engaging in this behaviour would be very difficult for external researchers to detect.",
+          "source_id": "src-isd-magaflage",
+          "about": "Spamouflage"
+        },
+        {
+          "text": "Most of the non-Spamouflage content originates from three accounts, with one in particular being the most prolific.",
+          "source_id": "src-isd-magaflage",
+          "about": "Spamouflage"
+        },
+        {
+          "text": "the same account posted a video comparing Biden and the Democrats to Hitler and the Nazis and shared a meme (which does not appear to have been created by Spamouflage) about how America will be “Zio free.”",
+          "source_id": "src-isd-magaflage",
+          "about": "Spamouflage"
+        },
+        {
+          "text": "While some posts are original, others are copied from viral posts by larger non-Spamouflage accounts.",
+          "source_id": "src-isd-magaflage",
+          "about": "Spamouflage"
+        },
+        {
+          "text": "Unlike MAGAflage, as of early February 2024, the ‘fo’ accounts do not appear to be succeeding in breaking out of the Spamouflage bubble.",
+          "source_id": "src-isd-magaflage",
+          "about": "Spamouflage"
+        },
+        {
+          "text": "Despite a small number of seemingly organic comments on some posts, engagement is overwhelmingly from what appear to be other Spamouflage accounts.",
+          "source_id": "src-isd-magaflage",
+          "about": "Spamouflage"
+        },
+        {
+          "text": "The accounts examined in this Dispatch represent two small-scale but evolving strategies for the Spamouflage campaign.",
+          "source_id": "src-isd-magaflage",
+          "about": "Spamouflage"
+        },
+        {
+          "text": "A particular concern is the possibility that there either already are – or that in the future there will be – many more ‘MAGAflage’ style accounts (or similar accounts supporting the Biden campaign) which evade the usual methods for detecting Spamouflage activity and are successful in generating real engagement.",
+          "source_id": "src-isd-magaflage",
+          "about": "Spamouflage"
+        },
+        {
+          "text": "There is a long history of Spamouflage using hacked and stolen accounts, in some cases potentially purchased from account brokers.",
+          "source_id": "src-isd-magaflage",
+          "about": "Spamouflage"
+        },
+        {
+          "text": "The account behaved like a standard Spamouflage account in both English and Mandarin until May 2022 when it began posting entirely in English.",
+          "source_id": "src-isd-magaflage",
+          "about": "Spamouflage"
+        },
+        {
+          "text": "there is at least some evidence to suggest that HaiEnergy failed to generate substantial engagement outside of the inauthentic amplification that we have identified—a limitation we also noted in our recent public reporting on DRAGONBRIDGE.",
+          "source_id": "src-mandiant-haienergy-2022",
+          "about": "DRAGONBRIDGE"
+        },
+        {
+          "text": "We currently track HaiEnergy and DRAGONBRIDGE as separate campaigns due to differences in campaign TTPs.",
+          "source_id": "src-mandiant-haienergy-2022",
+          "about": "DRAGONBRIDGE"
+        },
+        {
+          "text": "DRAGONBRIDGE has typically leveraged thousands of social media and forum accounts across various authentic platforms to post comments, videos, and photos.",
+          "source_id": "src-mandiant-haienergy-2022",
+          "about": "DRAGONBRIDGE"
+        },
+        {
+          "text": "Specifically, known DRAGONBRIDGE assets have not promoted content from HaiEnergy's inauthentic news sites.",
+          "source_id": "src-mandiant-haienergy-2022",
+          "about": "DRAGONBRIDGE"
+        },
+        {
+          "text": "This lack of amplification from external sources, not unlike what we typically observed with DRAGONBRIDGE, limited the campaigns’ ability to breakout, essentially forming an echo chamber.",
+          "source_id": "src-mandiant-haienergy-2022",
+          "about": "DRAGONBRIDGE"
+        },
+        {
+          "text": "we were able to tie this activity together to confirm it was part of one operation known in the security community as Spamouflage and link it to individuals associated with Chinese law enforcement.",
+          "source_id": "src-meta-2023",
+          "about": "Spamouflage"
+        },
+        {
+          "text": "Storm-1376 tried to cast doubt on the International Atomic Energy Agency’s (IAEA) scientific assessment that the disposal was safe.",
+          "source_id": "src-mtac-2024",
+          "about": "Storm-1376"
+        },
+        {
+          "text": "The group we call Storm-1376, also known as Spamouflage and Dragonbridge, was the most prolific.",
+          "source_id": "src-mtac-2024",
+          "about": "Storm-1376"
+        },
+        {
+          "text": "These have included an increasing use of AI-generated TV news anchors that Storm-1376 has deployed since at least February 2023.",
+          "source_id": "src-mtac-2024",
+          "about": "Storm-1376"
+        },
+        {
+          "text": "Insikt Group has identified and analyzed a network named \"Empire Dragon,\" which is believed to be a coordinated and inauthentic operation likely aligned with the Chinese government and based in China.",
+          "source_id": "src-rf-empire-dragon",
+          "about": "Empire Dragon"
+        },
+        {
+          "text": "Over time, Empire Dragon has evolved its tactics and focus.",
+          "source_id": "src-rf-empire-dragon",
+          "about": "Empire Dragon"
+        },
+        {
+          "text": "Notably, there is a growing convergence between Empire Dragon's narratives and those propagated by Russian disinformation campaigns.",
+          "source_id": "src-rf-empire-dragon",
+          "about": "Empire Dragon"
+        },
+        {
+          "text": "Empire Dragon's use of tactics like employing \"useful idiots,\" fringe political groups, and account impersonation further reflects this convergence.",
+          "source_id": "src-rf-empire-dragon",
+          "about": "Empire Dragon"
         }
       ]
     },
@@ -1162,6 +1905,26 @@ window.NETWEAVER_DB = {
           "text": "玉淵潭天為央視融媒體品牌，在網絡圖中與央視沒有指向關係，顯示兩個品牌之間分工明確，刻意不轉傳，各自扮演不同角色；《觀察者網》除了作為發布者外，也擴散轉發來自玉淵潭天這類被視為與中國官媒關係緊密的大V的內容。",
           "source_id": "src-factlink-a7a795",
           "about": "玉淵潭天"
+        },
+        {
+          "text": "14如「玉淵譚天」等帳號，早在2019年時已自行證實是中央廣播電視台的自媒體品牌。",
+          "source_id": "src-factlink-japan",
+          "about": "玉淵譚天"
+        },
+        {
+          "text": "在這次中國針對高市早苗發言的攻擊中，玉淵譚天再度扮演提供另類詮釋的角色，帶動愛國情緒。",
+          "source_id": "src-factlink-japan",
+          "about": "玉淵譚天"
+        },
+        {
+          "text": "但央視則由自媒體品牌「玉淵譚天」在微博發表，製作影片，以更辛辣的詞彙宣傳，號稱中方穿著的五四青年服，正與百年前五四青年抗議日本，要求「還我青島」時的穿著相同。",
+          "source_id": "src-factlink-japan",
+          "about": "玉淵譚天"
+        },
+        {
+          "text": "有些帳號已經公開其官媒身分，例如央視的「玉淵譚天」。",
+          "source_id": "src-factlink-japan",
+          "about": "玉淵譚天"
         }
       ]
     },
@@ -1200,7 +1963,14 @@ window.NETWEAVER_DB = {
         "src-wiki-vos",
         "src-factlink-satellite"
       ],
-      "confidence": "high"
+      "confidence": "high",
+      "claims": [
+        {
+          "text": "FactLink觀察到，此事件有兩波訊息傳播高峰，第一波是10月26日至10月29日，中國官方相關媒體如《觀察者網》、《環球網》、《環球時報》、《人民日報》、《央視軍事》、《海峽之聲》、《看台海》報導與其微博官方帳號，引用長光衛星公司衛星影像，「慶祝台灣回歸為中國一部分」的光復節。",
+          "source_id": "src-factlink-satellite",
+          "about": "《海峽之聲》"
+        }
+      ]
     },
     {
       "id": "global-times",
@@ -1266,6 +2036,116 @@ window.NETWEAVER_DB = {
           "text": "環球時報，另引述中共外交部，並從國際關係角度提供評論、新聞和圖卡。",
           "source_id": "src-factlink-a7a795",
           "about": "環球時報"
+        },
+        {
+          "text": "A final category of political content disseminated by PAPERWALL often takes the form of verbatim reposts of content from Chinese state media, such as CGTN or the Global Times.",
+          "source_id": "src-citizenlab-paperwall",
+          "about": "Global Times"
+        },
+        {
+          "text": "In 2025, during the regular press briefing of the foreign ministry spokesperson of the PRC, Lin Jian, Global Times posed a question on Pakistan and mining.",
+          "source_id": "src-doublethink-lab-96d2c0",
+          "about": "Global Times"
+        },
+        {
+          "text": "FactLink觀察到，此事件有兩波訊息傳播高峰，第一波是10月26日至10月29日，中國官方相關媒體如《觀察者網》、《環球網》、《環球時報》、《人民日報》、《央視軍事》、《海峽之聲》、《看台海》報導與其微博官方帳號，引用長光衛星公司衛星影像，「慶祝台灣回歸為中國一部分」的光復節。",
+          "source_id": "src-factlink-satellite",
+          "about": "《環球網》"
+        },
+        {
+          "text": "檢視「島內輿論」這波主題，中國官方媒體家數雖多，但內容來源單一，不同媒體之間交互引用，內容主要來自新華社旗下的微博帳號《參考消息》報導〈島內網友熱議衛星視角下瞰中國台灣省〉，此報導除了引述台灣媒體，更取材特定媒體報導的網友留言，製造「島內輿論」高度熱議、高度讚嘆中國科技進步的風向，獲得《央廣軍事》和《環球時報》等媒體轉分享。",
+          "source_id": "src-factlink-satellite",
+          "about": "《環球時報》"
+        },
+        {
+          "text": "” —-《環球時報》引述《參考消息》。",
+          "source_id": "src-factlink-satellite",
+          "about": "《環球時報》"
+        },
+        {
+          "text": "至於2025年11月1日至12月6日期間，微博上對於高市早苗個人或其發言的討論，以官媒發文最多，包括北京晚報、中國新聞網與環球時報。",
+          "source_id": "src-factlink-japan",
+          "about": "環球時報"
+        },
+        {
+          "text": "在中國外交部定調之前，微博網民對於中國駐日外交官的極端發言，並未有大量關注討論，雖有時政大V如前環球時報總編輯胡錫進或小粉紅立場鮮明的「小凡好攝」在當日快速轉述高市早苗發言並出言批評，但中國官媒卻相對沉默。",
+          "source_id": "src-factlink-japan",
+          "about": "環球時報"
+        },
+        {
+          "text": "在2025年11月至12月初攻擊高市早苗與其言行的貼文中，官媒帳號如北京晚報、環球時報、中國新聞網、央視網，以及作為中國官方喉舌的民營媒體觀察者網及時政評論大V，以「日本軍國主義意圖對外擴張」為宣傳主旋律。",
+          "source_id": "src-factlink-japan",
+          "about": "環球時報"
+        },
+        {
+          "text": "比如前環球時報的總編輯胡錫進在11月1日高市與林信義在APEC場合見面時，25便從高市早苗的性別做文章，將她與日本形容為美國的「東亞妾室」，與台灣「私通」，比擬日本與台灣及美國之間的關係。",
+          "source_id": "src-factlink-japan",
+          "about": "環球時報"
+        },
+        {
+          "text": "As many foreign readers of the Global Times are already aware, it is a subsidiary of the People’s Daily, the principal propaganda publication of the Chinese Communist Party.",
+          "source_id": "src-lowy-globaltimes",
+          "about": "Global Times"
+        },
+        {
+          "text": "While this implies a degree of official sanction, it is difficult to measure the extent to which Global Times represents the official position of the Chinese government.",
+          "source_id": "src-lowy-globaltimes",
+          "about": "Global Times"
+        },
+        {
+          "text": "It does appear, however, that the Global Times has a special license to push positions and voice sentiments that other state media operations are reluctant to air openly.",
+          "source_id": "src-lowy-globaltimes",
+          "about": "Global Times"
+        },
+        {
+          "text": "And it was noteworthy that when the Chinese president Xi Jinping visited the People’s Daily in February, he said his office subscribes to the Global Times.",
+          "source_id": "src-lowy-globaltimes",
+          "about": "Global Times"
+        },
+        {
+          "text": "In 1997, it became the Global Times that started publishing daily in 2011.",
+          "source_id": "src-lowy-globaltimes",
+          "about": "Global Times"
+        },
+        {
+          "text": "The Global Times specialises in provoking and agitating and its tone and use of language is in marked contrast to the rather stolid People's Daily.",
+          "source_id": "src-lowy-globaltimes",
+          "about": "Global Times"
+        },
+        {
+          "text": "The Interpreter spoke to several senior Chinese editors and reporters about the influence of Global Times.",
+          "source_id": "src-lowy-globaltimes",
+          "about": "Global Times"
+        },
+        {
+          "text": "The reporter says one of the KPIs for Global Times is how many times it gets cited in foreign press, so editors often use colourful and outrageous language to attract foreign media’s attention.",
+          "source_id": "src-lowy-globaltimes",
+          "about": "Global Times"
+        },
+        {
+          "text": "In contrast, while Global Times is in line with more hawkish elements within the party, its boisterous editorials don’t necessarily represent Beijing’s official line.",
+          "source_id": "src-lowy-globaltimes",
+          "about": "Global Times"
+        },
+        {
+          "text": "It is understood that the Chinese Foreign Ministry representatives made a similar point to their Korean counterparts in Seoul after the Global Times launched a series of tirade against South Koreans.",
+          "source_id": "src-lowy-globaltimes",
+          "about": "Global Times"
+        },
+        {
+          "text": "A foreign editor from one the popular current affairs magazines said simply: 'Global Times is rubbish and its editors are a bunch of opportunists'.",
+          "source_id": "src-lowy-globaltimes",
+          "about": "Global Times"
+        },
+        {
+          "text": "It is clear that Global Times’ editorials don’t carry the same weight as those of the People’s Daily or Xinhua.",
+          "source_id": "src-lowy-globaltimes",
+          "about": "Global Times"
+        },
+        {
+          "text": "We should object to insulting editorials from the Global Times.",
+          "source_id": "src-lowy-globaltimes",
+          "about": "Global Times"
         }
       ]
     },
@@ -1446,7 +2326,49 @@ window.NETWEAVER_DB = {
         "src-citizenlab-paperwall",
         "src-google-glassbridge"
       ],
-      "confidence": "medium"
+      "confidence": "medium",
+      "claims": [
+        {
+          "text": "We attribute the PAPERWALL campaign to Shenzhen Haimaiyunxiang Media Co.",
+          "source_id": "src-citizenlab-paperwall",
+          "about": "Haimai"
+        },
+        {
+          "text": "The report attributed these sites to a Chinese PR firm called Haimai, based on the firm itself advertising the opportunity for its clients to publish press releases on these same sites.",
+          "source_id": "src-citizenlab-paperwall",
+          "about": "Haimai"
+        },
+        {
+          "text": "Shenzhen Haimaiyunxiang Media Co.",
+          "source_id": "src-citizenlab-paperwall",
+          "about": "Haimai"
+        },
+        {
+          "text": "We attribute PAPERWALL to a PR firm based in China, Shenzhen Haimaiyunxiang Media Co., Ltd., or “Haimai.”",
+          "source_id": "src-citizenlab-paperwall",
+          "about": "Haimai"
+        },
+        {
+          "text": "Haimai was first exposed by the Korean NCSC in their investigation on 18 Korean-focused PAPERWALL websites as being responsible for operating them.",
+          "source_id": "src-citizenlab-paperwall",
+          "about": "Haimai"
+        },
+        {
+          "text": "However, we could identify digital infrastructure linkages between Haimai and PAPERWALL.",
+          "source_id": "src-citizenlab-paperwall",
+          "about": "Haimai"
+        },
+        {
+          "text": "This is therefore an incriminating finding, proving that both PAPERWALL domains had been set up by the same operators as the Haimai assets.",
+          "source_id": "src-citizenlab-paperwall",
+          "about": "Haimai"
+        },
+        {
+          "text": "Haimai, short for Shenzhen Haimaiyunxiang Media Co., Ltd.",
+          "source_id": "src-citizenlab-paperwall",
+          "about": "Haimai"
+        }
+      ]
     },
     {
       "id": "huya-pr",
@@ -1605,7 +2527,14 @@ window.NETWEAVER_DB = {
         "src-iorg-118",
         "src-iorg-136"
       ],
-      "confidence": "low"
+      "confidence": "low",
+      "claims": [
+        {
+          "text": "然而，也有台灣的挺中網紅名嘴，冠以「媽媽桑」外交形容高市的外交風格，進而被專門對台宣傳的網站，例如「台海網」截用，剪輯高市與其他元首見面的影片，26再成為微博的熱搜關鍵詞。",
+          "source_id": "src-factlink-japan",
+          "about": "台海網"
+        }
+      ]
     },
     {
       "id": "wangwang-china-times-group",
@@ -2262,6 +3191,86 @@ window.NETWEAVER_DB = {
           "text": "依據文本相似性資料、關係網絡分析來確認主要行動者，包括：東部戰區；軍方媒體如中國軍號、解放軍報；中央官媒如新華社、央視、央視軍事、人民日報、央廣軍事；以及與對台議題高度相關的福建媒體，如看台海、台海時刻，另亦納入引用次數較高的觀察者網。",
           "source_id": "src-factlink-a7a795",
           "about": "央廣軍事"
+        },
+        {
+          "text": "Chinese mainland urges DPP authorities not to jeopardize Taiwan’s economy CGTN The U.S.",
+          "source_id": "src-aspi-strait",
+          "about": "CGTN"
+        },
+        {
+          "text": "A final category of political content disseminated by PAPERWALL often takes the form of verbatim reposts of content from Chinese state media, such as CGTN or the Global Times.",
+          "source_id": "src-citizenlab-paperwall",
+          "about": "CGTN"
+        },
+        {
+          "text": "FactLink觀察到，此事件有兩波訊息傳播高峰，第一波是10月26日至10月29日，中國官方相關媒體如《觀察者網》、《環球網》、《環球時報》、《人民日報》、《央視軍事》、《海峽之聲》、《看台海》報導與其微博官方帳號，引用長光衛星公司衛星影像，「慶祝台灣回歸為中國一部分」的光復節。",
+          "source_id": "src-factlink-satellite",
+          "about": "《看台海》"
+        },
+        {
+          "text": "檢視「島內輿論」這波主題，中國官方媒體家數雖多，但內容來源單一，不同媒體之間交互引用，內容主要來自新華社旗下的微博帳號《參考消息》報導〈島內網友熱議衛星視角下瞰中國台灣省〉，此報導除了引述台灣媒體，更取材特定媒體報導的網友留言，製造「島內輿論」高度熱議、高度讚嘆中國科技進步的風向，獲得《央廣軍事》和《環球時報》等媒體轉分享。",
+          "source_id": "src-factlink-satellite",
+          "about": "《央廣軍事》"
+        },
+        {
+          "text": "11月1日高市早苗與林信義在APEC會議見面後，中國外交部首先極快提出抗議，北京日報、央視、中國新聞網等官媒也迅速轉發外交部意見。",
+          "source_id": "src-factlink-japan",
+          "about": "央視"
+        },
+        {
+          "text": "中央官媒如央視、新華社等，呼應官方敘事，例如「高市早苗讓日本承擔代價」，「高市早苗要明白中國人民惹不得」；而地方官媒如北京日報、以及常與官媒呼應的香港媒體如鳳凰網，以及時政大V帳號則在既有敘事基礎上進一步加油添醋、強化情緒性語言與陰謀論式解讀，使訊息更具戲劇性與傳播力。",
+          "source_id": "src-factlink-japan",
+          "about": "央視"
+        },
+        {
+          "text": "但央視則由自媒體品牌「玉淵譚天」在微博發表，製作影片，以更辛辣的詞彙宣傳，號稱中方穿著的五四青年服，正與百年前五四青年抗議日本，要求「還我青島」時的穿著相同。",
+          "source_id": "src-factlink-japan",
+          "about": "央視"
+        },
+        {
+          "text": "換言之，對於央視官方不便言說的激烈言詞，就由小號代言。",
+          "source_id": "src-factlink-japan",
+          "about": "央視"
+        },
+        {
+          "text": "在2025年11月至12月初攻擊高市早苗與其言行的貼文中，官媒帳號如北京晚報、環球時報、中國新聞網、央視網，以及作為中國官方喉舌的民營媒體觀察者網及時政評論大V，以「日本軍國主義意圖對外擴張」為宣傳主旋律。",
+          "source_id": "src-factlink-japan",
+          "about": "央視"
+        },
+        {
+          "text": "比如央視網評論日本自衛隊往西南轉移，是「右翼勢力妄圖以新型軍國主義介入台海事務」。",
+          "source_id": "src-factlink-japan",
+          "about": "央視"
+        },
+        {
+          "text": "像是央視網發文聲稱，「既然高市拿台灣”搞事”，#是時候談談琉球問題了#」。",
+          "source_id": "src-factlink-japan",
+          "about": "央視"
+        },
+        {
+          "text": "有些帳號已經公開其官媒身分，例如央視的「玉淵譚天」。",
+          "source_id": "src-factlink-japan",
+          "about": "央視"
+        },
+        {
+          "text": "央視網.",
+          "source_id": "src-factlink-japan",
+          "about": "央視"
+        },
+        {
+          "text": "此外，央視網以及央視的對台融媒體平台「看台海」的發文數量也在發文帳號前十名之列。",
+          "source_id": "src-factlink-japan",
+          "about": "央視網"
+        },
+        {
+          "text": "This was most clearly on show in an exchange between a CCTV journalist and Director of the Information Bureau of the Taiwan Affairs Office (TAO) of the State Council Chen Binhua (陈斌华).",
+          "source_id": "src-jamestown-js2024b",
+          "about": "CCTV"
+        },
+        {
+          "text": "The latter phrase, for instance, likely first appeared in a 2019 speech by Xi Jinping (VOA, January 3, 2019; Mainland Affairs Council, May 29, 2019; CCTV News, May 28).",
+          "source_id": "src-jamestown-js2024b",
+          "about": "CCTV"
         }
       ]
     },
@@ -2580,7 +3589,114 @@ window.NETWEAVER_DB = {
       "source_ids": [
         "src-factlink-satellite"
       ],
-      "confidence": "medium"
+      "confidence": "medium",
+      "claims": [
+        {
+          "text": "配合著中共對「光復節」的詮釋權定調，帶有中國軍方色彩的中國商業衛星遙測公司「長光衛星」在光復節當公布旗下「吉林一號」衛星拍攝到的台灣衛星影像，以「慶祝」台灣終結日本殖民，回歸中國版圖。",
+          "source_id": "src-factlink-satellite",
+          "about": "長光衛星"
+        },
+        {
+          "text": "不過，檢視長光衛星公布的衛星影像：阿里山、日月潭、鵝鑾鼻、台北市、台北港、中正紀念堂、基隆河、新竹科學園區，景點遍及全台知名景點，均為非機密的景點。",
+          "source_id": "src-factlink-satellite",
+          "about": "長光衛星"
+        },
+        {
+          "text": "根據長光衛星公司資料，該公司成立於2014年，由吉林省、中國科學院長春光學精密機械與物理研究所與民間資本合資成立。",
+          "source_id": "src-factlink-satellite",
+          "about": "長光衛星"
+        },
+        {
+          "text": "中國媒體近期對長光衛星的關注，並非其技術突破，恰好是該公司遲遲未能打開商業市場，虧損擴大，原申請於上海證交所科創板上市，2024年底宣布停止上市，今年的話題之一就是市場揣測長光衛星擬借中國某家上市公司的殼來上市。",
+          "source_id": "src-factlink-satellite",
+          "about": "長光衛星"
+        },
+        {
+          "text": "此外，根據《金融時報》報導，美國國務院4月指控長光衛星協助葉門胡塞武裝份子，把它列為具中共軍方色彩的制裁清單。",
+          "source_id": "src-factlink-satellite",
+          "about": "長光衛星"
+        },
+        {
+          "text": "國防安全院中共政軍與作戰概念研究所副研究員舒孝煌說，中共過去在軍演、擾台期間，多半以Google Maps照片等亂湊影像或錯誤資訊，來宣稱解放軍掌握台灣的地理圖資和情報，不過，這次不一樣，是透過民間公司釋出台灣的地理衛星實景照，「長光衛星除了與官方政治宣傳同步應和，當然也有商業行銷目的。",
+          "source_id": "src-factlink-satellite",
+          "about": "長光衛星"
+        },
+        {
+          "text": "他指出，長光衛星是趕在台灣首個自主遙測衛星福八衛星發射前夕公布台灣地理圖資，以營造「中國商業民間公司都做得到，解放軍軍方也做得到的宣示」，以長光衛星的圖資來證明解放軍掌握衛星拍攝技術的能力。",
+          "source_id": "src-factlink-satellite",
+          "about": "長光衛星"
+        },
+        {
+          "text": "長光衛星的動作，自然不單是商業行銷行為，更是代表中共試圖恫嚇台灣的政治宣傳行動，讓台灣民眾和國際社會理解「中國老大哥」正在看著你。",
+          "source_id": "src-factlink-satellite",
+          "about": "長光衛星"
+        },
+        {
+          "text": "不過，長光衛星此次發布的衛星圖資並非機敏資料，舒孝煌說，長光衛星釋出的衛星圖資，全球商業衛星公司也都能拍攝得到；擅長運用衛星、地理開源工具來研究解放軍的溫約瑟說：「長光衛星公布的是照片，實際上Google Earth就能看得到，沒有什麼好驚奇，甚至引不起我的注意。",
+          "source_id": "src-factlink-satellite",
+          "about": "長光衛星"
+        },
+        {
+          "text": "FactLink觀察「長光衛星」敘事的傳播路徑和敘事內容，發現此次「長光衛星釋放台灣衛星圖資」的政治宣傳，除了對台在光復節做政治宣示和恫嚇，同時也面向中國內部進行「大內宣」。",
+          "source_id": "src-factlink-satellite",
+          "about": "長光衛星"
+        },
+        {
+          "text": "更有甚者，中國駐美大使館X帳號刻意貼出長光衛星衛星實景圖，並以「英文」註記「中國台灣」，進一步對國際社會宣示「台灣是中國一部分」。",
+          "source_id": "src-factlink-satellite",
+          "about": "長光衛星"
+        },
+        {
+          "text": "長光衛星釋出台灣衛星圖資的新聞，除了引發台灣媒體報導，中國在此事件更是對內加大「大內宣」的力度。",
+          "source_id": "src-factlink-satellite",
+          "about": "長光衛星"
+        },
+        {
+          "text": "FactLink觀察到，此事件有兩波訊息傳播高峰，第一波是10月26日至10月29日，中國官方相關媒體如《觀察者網》、《環球網》、《環球時報》、《人民日報》、《央視軍事》、《海峽之聲》、《看台海》報導與其微博官方帳號，引用長光衛星公司衛星影像，「慶祝台灣回歸為中國一部分」的光復節。",
+          "source_id": "src-factlink-satellite",
+          "about": "長光衛星"
+        },
+        {
+          "text": "同一時間，中國媒體用以面向台灣讀者的臉書粉絲專頁，包括《今日海峽》、《CCTV中文》、《知行》、《香港大公報》、香港中國通訊社的《通傳媒》等臉書粉專，同步發動長光衛星照慶祝台灣光復節的傳言，並發布台灣光復節歷史照片、紀錄片、台灣青年回顧光復節的內容素材。",
+          "source_id": "src-factlink-satellite",
+          "about": "長光衛星"
+        },
+        {
+          "text": "台灣媒體針對長光衛星釋放台灣實景衛星照均有報導。",
+          "source_id": "src-factlink-satellite",
+          "about": "長光衛星"
+        },
+        {
+          "text": "這些台灣媒體對長光衛星的「解讀」，反而成為中國官方的另一波宣傳素材。",
+          "source_id": "src-factlink-satellite",
+          "about": "長光衛星"
+        },
+        {
+          "text": "由上述的傳播路徑可見，中國官媒在「長光衛星發布台灣衛星實景照」，較少著墨在「長光衛星」的技術，更不曾揭露解放軍掌握衛星技術與情資的情資能力。",
+          "source_id": "src-factlink-satellite",
+          "about": "長光衛星"
+        },
+        {
+          "text": "長光衛星的衛星圖資，在11月1日由中國駐美大使館（Chinese Embassy in Us）X帳號轉載，每張照片在寫英文圖說時，將每個台灣景點註記為中國的一部分，呼應同樣敘事，將資訊戰線上升至中美台。",
+          "source_id": "src-factlink-satellite",
+          "about": "長光衛星"
+        },
+        {
+          "text": "經過多輪募資投入研發，是中國最大的民間商業衛星遙測公司，投資的「吉林一號」衛星對外宣稱有117顆衛星，致力開發運用於救災、農業、氣候變遷等商業遙測市場。",
+          "source_id": "src-factlink-satellite",
+          "about": "吉林一號"
+        },
+        {
+          "text": "FactLink運用台灣民主實驗室（Doublethink Lab）微博熱搜分析平台資料庫，顯示從10月26日至10月27日的熱搜主題是「吉林一號放出台灣島高清衛星圖」，從中國官媒的微博帳號到特定軍事微博帳號均轉傳此訊息。",
+          "source_id": "src-factlink-satellite",
+          "about": "吉林一號"
+        },
+        {
+          "text": "媒體的報導角度各不同，部分媒體以陳述事實角度報導「吉林一號」公布台灣多張衛星照，部分媒體分析中國進行政治恫嚇，但也有特定媒體和政論節目引述名嘴指出衛星照「看光光」台灣、中國航太科技進步。",
+          "source_id": "src-factlink-satellite",
+          "about": "吉林一號"
+        }
+      ]
     },
     {
       "id": "guancha",
@@ -2624,6 +3740,26 @@ window.NETWEAVER_DB = {
           "text": "依據文本相似性資料、關係網絡分析來確認主要行動者，包括：東部戰區；軍方媒體如中國軍號、解放軍報；中央官媒如新華社、央視、央視軍事、人民日報、央廣軍事；以及與對台議題高度相關的福建媒體，如看台海、台海時刻，另亦納入引用次數較高的觀察者網。",
           "source_id": "src-factlink-a7a795",
           "about": "觀察者網"
+        },
+        {
+          "text": "FactLink觀察到，此事件有兩波訊息傳播高峰，第一波是10月26日至10月29日，中國官方相關媒體如《觀察者網》、《環球網》、《環球時報》、《人民日報》、《央視軍事》、《海峽之聲》、《看台海》報導與其微博官方帳號，引用長光衛星公司衛星影像，「慶祝台灣回歸為中國一部分」的光復節。",
+          "source_id": "src-factlink-satellite",
+          "about": "《觀察者網》"
+        },
+        {
+          "text": "至於與中國官方關係特殊，但全力宣傳中國官方意識的「觀察者網」也名列前茅。",
+          "source_id": "src-factlink-japan",
+          "about": "觀察者網"
+        },
+        {
+          "text": "在2025年11月至12月初攻擊高市早苗與其言行的貼文中，官媒帳號如北京晚報、環球時報、中國新聞網、央視網，以及作為中國官方喉舌的民營媒體觀察者網及時政評論大V，以「日本軍國主義意圖對外擴張」為宣傳主旋律。",
+          "source_id": "src-factlink-japan",
+          "about": "觀察者網"
+        },
+        {
+          "text": "至於與中國在過去幾年在海上發生數次衝突的菲律賓，雖然在高市早苗的「台灣有事」發言之初並未受到矚目，但自從11月30日共同社報導日本政府正在考慮對菲律賓出口導彈之後，中國官媒、關係媒體帳號如「觀察者網」，以及網路大V也開始以「菲律賓勾結高市早苗反華」、「日本擴武野心正通過菲律賓落地」等敘事，對菲律賓及日本的關係展開攻勢，並且作為日本試圖破壞二戰秩序的證明。",
+          "source_id": "src-factlink-japan",
+          "about": "觀察者網"
         }
       ]
     },
@@ -2655,7 +3791,19 @@ window.NETWEAVER_DB = {
       "source_ids": [
         "src-factlink-japan"
       ],
-      "confidence": "high"
+      "confidence": "high",
+      "claims": [
+        {
+          "text": "在中國外交部定調之前，微博網民對於中國駐日外交官的極端發言，並未有大量關注討論，雖有時政大V如前環球時報總編輯胡錫進或小粉紅立場鮮明的「小凡好攝」在當日快速轉述高市早苗發言並出言批評，但中國官媒卻相對沉默。",
+          "source_id": "src-factlink-japan",
+          "about": "胡錫進"
+        },
+        {
+          "text": "比如前環球時報的總編輯胡錫進在11月1日高市與林信義在APEC場合見面時，25便從高市早苗的性別做文章，將她與日本形容為美國的「東亞妾室」，與台灣「私通」，比擬日本與台灣及美國之間的關係。",
+          "source_id": "src-factlink-japan",
+          "about": "胡錫進"
+        }
+      ]
     },
     {
       "id": "hack-leak-network",
@@ -2802,6 +3950,56 @@ window.NETWEAVER_DB = {
           "text": "除了東部戰區發言人的官宣之外，央視、環球時報、新華社等特定官媒採訪中共特定軍事專家來點評演習，是演習畫面尚未製播之前的關鍵宣傳素材。",
           "source_id": "src-factlink-a7a795",
           "about": "新華社"
+        },
+        {
+          "text": "PM Oli had held a meeting with Xi Jinping in the course of his visit to the PRC for attending the Shanghai Cooperation Organization (SCO) Plus Summit in Tianjin on 30 August 2025 (Xinhua, 2025).",
+          "source_id": "src-doublethink-lab-96d2c0",
+          "about": "Xinhua"
+        },
+        {
+          "text": "Additionally, China Radio International broadcasts in Urdu, and Xinhua offers services in multiple languages, including Urdu.",
+          "source_id": "src-doublethink-lab-96d2c0",
+          "about": "Xinhua"
+        },
+        {
+          "text": "Leading Pakistani media outlets, such as Jang Group, Daily Pakistan, Nawa-i-Waqt, Associated Press of Pakistan, Daily Times, Hum News, and Pakistan Today, have subscribed to Xinhua’s services.",
+          "source_id": "src-doublethink-lab-96d2c0",
+          "about": "Xinhua"
+        },
+        {
+          "text": "Xinhua.",
+          "source_id": "src-doublethink-lab-96d2c0",
+          "about": "Xinhua"
+        },
+        {
+          "text": "Xinhua News.",
+          "source_id": "src-doublethink-lab-96d2c0",
+          "about": "Xinhua"
+        },
+        {
+          "text": "檢視「島內輿論」這波主題，中國官方媒體家數雖多，但內容來源單一，不同媒體之間交互引用，內容主要來自新華社旗下的微博帳號《參考消息》報導〈島內網友熱議衛星視角下瞰中國台灣省〉，此報導除了引述台灣媒體，更取材特定媒體報導的網友留言，製造「島內輿論」高度熱議、高度讚嘆中國科技進步的風向，獲得《央廣軍事》和《環球時報》等媒體轉分享。",
+          "source_id": "src-factlink-satellite",
+          "about": "新華社"
+        },
+        {
+          "text": "中央官媒如央視、新華社等，呼應官方敘事，例如「高市早苗讓日本承擔代價」，「高市早苗要明白中國人民惹不得」；而地方官媒如北京日報、以及常與官媒呼應的香港媒體如鳳凰網，以及時政大V帳號則在既有敘事基礎上進一步加油添醋、強化情緒性語言與陰謀論式解讀，使訊息更具戲劇性與傳播力。",
+          "source_id": "src-factlink-japan",
+          "about": "新華社"
+        },
+        {
+          "text": "例如北京日報引述新華社，稱賴清德和民進黨「附和高市早苗言論，甘當日本反華勢力的“應聲蟲”，藉機污衊攻擊大陸，為了“倚外謀獨”已經失心瘋」，恐將台灣推向戰火；其他官媒與時政大V帳號發文強調台灣問題屬於中國內政，日本不應以「存亡危機」為藉口介入。",
+          "source_id": "src-factlink-japan",
+          "about": "新華社"
+        },
+        {
+          "text": "Another reporter from one of the three major state-owned media outlets says editorials from The People’s Daily and Xinhua more or less represent the Chinese government’s official position.",
+          "source_id": "src-lowy-globaltimes",
+          "about": "Xinhua"
+        },
+        {
+          "text": "It is clear that Global Times’ editorials don’t carry the same weight as those of the People’s Daily or Xinhua.",
+          "source_id": "src-lowy-globaltimes",
+          "about": "Xinhua"
         }
       ]
     },
@@ -2919,6 +4117,11 @@ window.NETWEAVER_DB = {
           "text": "檢視392組文本資料所顯示的指向網絡時可發現，東部戰區發布的貼文，有13個媒體和大V共同轉分享，包括央視新聞、央廣軍事、鎮江民生頻道、央廣軍事、環球時報、浙江日報、澎湃新聞、宣漢融媒、新浪軍事、動静新聞、南湖發布、看看新聞Knews和星話大白等。",
           "source_id": "src-factlink-a7a795",
           "about": "澎湃新聞"
+        },
+        {
+          "text": "〉影片，由《澎湃新聞》、《大象新聞》、香港《文匯報》等多家媒體、論壇帳號、多個抖音帳號轉分享。",
+          "source_id": "src-factlink-satellite",
+          "about": "《澎湃新聞》"
         }
       ]
     },
@@ -2967,6 +4170,61 @@ window.NETWEAVER_DB = {
           "text": "環球時報，另引述中共外交部，並從國際關係角度提供評論、新聞和圖卡。",
           "source_id": "src-factlink-a7a795",
           "about": "中共外交部"
+        },
+        {
+          "text": "一、中國外交部、官媒和社群大V帳號，針對高市政權發動厭女的性別歧視攻擊、二戰歷史深仇、琉球主權論。",
+          "source_id": "src-factlink-takaichi",
+          "about": "中國外交部"
+        },
+        {
+          "text": "中國外交部採取連串抗議與反制措施，除了約見日本駐華大使之外，更祭出赴日旅遊治安提醒、暫停日本水產品進口等經濟制裁。",
+          "source_id": "src-factlink-japan",
+          "about": "中國外交部"
+        },
+        {
+          "text": "11月7日高市早苗在日本國會「台灣有事論」發言後幾天，網路上並未馬上引起大量討論，而是直待11月10日中國外交部記者會回應高市早苗的發言後，官媒才開始陸續發文，由時政評論大V帳號轉發中國官媒貼文。",
+          "source_id": "src-factlink-japan",
+          "about": "中國外交部"
+        },
+        {
+          "text": "11月1日高市早苗與林信義在APEC會議見面後，中國外交部首先極快提出抗議，北京日報、央視、中國新聞網等官媒也迅速轉發外交部意見。",
+          "source_id": "src-factlink-japan",
+          "about": "中國外交部"
+        },
+        {
+          "text": "11月7日高市早苗在國會發表「台灣有事論」後，則是由中國駐日外交官率先在X平台發動輿論攻勢，接著中國外交部定調、中國官媒跟進宣傳，然後由微博上具有眾多粉絲追隨者的「官媒小號」13或是「網路大V」表態，引動輿論風潮。",
+          "source_id": "src-factlink-japan",
+          "about": "中國外交部"
+        },
+        {
+          "text": "然而中國官媒和微博社群對高市早苗「台灣有事」說的反應，在中國駐日大使發言後，卻有幾天空窗期 - 直到中國外交部於11月10日的記者會定調後，中國官媒以及微博社群才展開熱議譴責及轉帖。",
+          "source_id": "src-factlink-japan",
+          "about": "中國外交部"
+        },
+        {
+          "text": "在中國外交部定調之前，微博網民對於中國駐日外交官的極端發言，並未有大量關注討論，雖有時政大V如前環球時報總編輯胡錫進或小粉紅立場鮮明的「小凡好攝」在當日快速轉述高市早苗發言並出言批評，但中國官媒卻相對沉默。",
+          "source_id": "src-factlink-japan",
+          "about": "中國外交部"
+        },
+        {
+          "text": "在中國外交部定調後，中央與地方官媒以及微博時政大V帳號在專攻的主題上，也有不同層次。",
+          "source_id": "src-factlink-japan",
+          "about": "中國外交部"
+        },
+        {
+          "text": "例如11月18日日本外務省亞洲大洋洲局局長金井正彰與中國外交部亞洲司司長劉勁松會面，中方在未與日方協調的情況下，拍攝劉勁松插著口袋與金井正彰談話的畫面。",
+          "source_id": "src-factlink-japan",
+          "about": "中國外交部"
+        },
+        {
+          "text": "官宣也呼應中國外交部所推出的旅遊警告等措施，大力喧染宣傳高市早苗發言所造成的日本經濟損失，像是不只大量機票以及旅館訂單被取消，連股市債市匯市也大幅震盪，甚至可能能會拖累日本的GDP下降，造成重大經濟風險。",
+          "source_id": "src-factlink-japan",
+          "about": "中國外交部"
+        },
+        {
+          "text": "從研究資料可以看出，當高市早苗提出「台灣有事」發言時，是由中國駐日外交官在X平台首先發動發動攻擊，中國大V在微博上零散回應，等待中國外交部定調之後，再由官媒與大V再掀輿論浪潮，並在各主題敘事中，分別擔任各自的角色。",
+          "source_id": "src-factlink-japan",
+          "about": "中國外交部"
         }
       ]
     },
@@ -4358,6 +5616,14 @@ window.NETWEAVER_DB = {
       "org": "FactLink 數位素養實驗室",
       "url": "https://www.factlink.tw/p/factnoteai",
       "date": "2026-05-13",
+      "type": "ngo-report"
+    },
+    {
+      "id": "src-doublethink-lab-96d2c0",
+      "title": "PRC Influence in South Asia: A Case Study of India, Nepal, Sri Lanka, and Pakistan",
+      "org": "Doublethink Lab",
+      "url": "https://medium.com/doublethinklab/prc-influence-in-south-asia-a-case-study-of-india-nepal-sri-lanka-and-pakistan-a405059731be?source=rss----9106617863e3---4",
+      "date": "2026-02-03",
       "type": "ngo-report"
     }
   ],

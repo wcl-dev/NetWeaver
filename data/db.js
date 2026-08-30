@@ -78,7 +78,19 @@ window.NETWEAVER_DB = {
         "src-vanderbilt-golaxy",
         "src-record-golaxy"
       ],
-      "confidence": "high"
+      "confidence": "high",
+      "claims": [
+        {
+          "text": "中共網信辦、國安部及解放軍政治工作部等單位，指導",
+          "source_id": "src-nsb-2026",
+          "about": "網信辦"
+        },
+        {
+          "text": "此外，中共網信辦、統戰部及解放軍網路空間部隊等單",
+          "source_id": "src-nsb-2026",
+          "about": "網信辦"
+        }
+      ]
     },
     {
       "id": "mss",
@@ -128,7 +140,14 @@ window.NETWEAVER_DB = {
         "src-vanderbilt-golaxy",
         "src-record-golaxy"
       ],
-      "confidence": "high"
+      "confidence": "high",
+      "claims": [
+        {
+          "text": "中共網信辦、國安部及解放軍政治工作部等單位，指導",
+          "source_id": "src-nsb-2026",
+          "about": "國安部"
+        }
+      ]
     },
     {
       "id": "pla-pwd",
@@ -186,6 +205,11 @@ window.NETWEAVER_DB = {
           "text": "國防大學新聞系教授傅文成觀察，過去一般是由總政治部加上解放軍信息支援部執行宣傳，東部戰區融媒體中心主責宣傳，宣傳工作比過去更能貼近台灣脈絡，操作也更精密、細膩。",
           "source_id": "src-factlink-a7a795",
           "about": "總政治部"
+        },
+        {
+          "text": "中共網信辦、國安部及解放軍政治工作部等單位，指導",
+          "source_id": "src-nsb-2026",
+          "about": "解放軍政治工作部"
         }
       ]
     },
@@ -249,6 +273,11 @@ window.NETWEAVER_DB = {
           "text": "The usage of the United Front Work Department (UFWD) is inconspicuous in South Asia.",
           "source_id": "src-doublethink-lab-96d2c0",
           "about": "United Front Work Department"
+        },
+        {
+          "text": "此外，中共網信辦、統戰部及解放軍網路空間部隊等單",
+          "source_id": "src-nsb-2026",
+          "about": "統戰部"
         }
       ]
     },
@@ -259,7 +288,8 @@ window.NETWEAVER_DB = {
       "aliases": [
         "MPS",
         "912專項工作小組",
-        "Ministry of Public Security (MPS)"
+        "Ministry of Public Security (MPS)",
+        "中共公安部"
       ],
       "category": "state-organ",
       "role": "attacker",
@@ -306,7 +336,19 @@ window.NETWEAVER_DB = {
         "src-nsb-2026",
         "src-record-spamouflage"
       ],
-      "confidence": "high"
+      "confidence": "high",
+      "claims": [
+        {
+          "text": "（一）虛假網站：中宣部、公安部透由「海訊社」、「海賣」",
+          "source_id": "src-nsb-2026",
+          "about": "公安部"
+        },
+        {
+          "text": "中共公安部運用「龍橋」網路水軍集團，透過逾 20 種",
+          "source_id": "src-nsb-2026",
+          "about": "公安部"
+        }
+      ]
     },
     {
       "id": "tao",
@@ -598,6 +640,16 @@ window.NETWEAVER_DB = {
           "text": "weekly monitoring of 600,000+ Taiwan-related items during the 2024 election",
           "source_id": "src-dtl-golaxy",
           "about": "targets"
+        },
+        {
+          "text": "「中科天璣」利用 AI",
+          "source_id": "src-nsb-2026",
+          "about": "中科天璣"
+        },
+        {
+          "text": "《中科天璣內部文件研究》",
+          "source_id": "src-nsb-2026",
+          "about": "中科天璣"
         }
       ]
     },
@@ -651,7 +703,14 @@ window.NETWEAVER_DB = {
         "src-record-meiya",
         "src-nsb-2026"
       ],
-      "confidence": "low"
+      "confidence": "low",
+      "claims": [
+        {
+          "text": "「美亞柏科」等科技公司，利用「爬蟲技術」",
+          "source_id": "src-nsb-2026",
+          "about": "美亞柏科"
+        }
+      ]
     },
     {
       "id": "iflytek",
@@ -695,7 +754,14 @@ window.NETWEAVER_DB = {
         "src-hrw-iflytek",
         "src-nsb-2026"
       ],
-      "confidence": "low"
+      "confidence": "low",
+      "claims": [
+        {
+          "text": "「科大訊飛」等科技公司，",
+          "source_id": "src-nsb-2026",
+          "about": "科大訊飛"
+        }
+      ]
     },
     {
       "id": "onesight",
@@ -734,7 +800,14 @@ window.NETWEAVER_DB = {
         "src-aspi-persuasive",
         "src-nsb-2026"
       ],
-      "confidence": "low"
+      "confidence": "low",
+      "claims": [
+        {
+          "text": "「北京星光」及「一網互通」等科技",
+          "source_id": "src-nsb-2026",
+          "about": "一網互通"
+        }
+      ]
     },
     {
       "id": "haixun",
@@ -897,6 +970,106 @@ window.NETWEAVER_DB = {
           "text": "On Fiverr, the Haixun account shared a screenshot of the video being posted by the influencer, presumably as proof of service delivery, alongside text stating “Great service, fast respond.",
           "source_id": "src-mandiant-haienergy-2023",
           "about": "Haixun"
+        },
+        {
+          "text": "（一）虛假網站：中宣部、公安部透由「海訊社」、「海賣」",
+          "source_id": "src-nsb-2026",
+          "about": "海訊社"
+        },
+        {
+          "text": "Seeing Through a GLASSBRIDGE: Understanding the Digital Marketing Ecosystem Spreading Pro-PRC Influence Operations",
+          "source_id": "src-google-glassbridge",
+          "about": "GLASSBRIDGE"
+        },
+        {
+          "text": "UPDATE (December 4): This blog post was updated to include example domains associated with GLASSBRIDGE.",
+          "source_id": "src-google-glassbridge",
+          "about": "GLASSBRIDGE"
+        },
+        {
+          "text": "This blog post details GLASSBRIDGE—an umbrella group of four different companies that operate networks of inauthentic news sites and newswire services tracked by the Google Threat Intelligence Group (consisting of Google’s Threat Analysis Group (TAG) and Mandiant).",
+          "source_id": "src-google-glassbridge",
+          "about": "GLASSBRIDGE"
+        },
+        {
+          "text": "Google has blocked more than a thousand GLASSBRIDGE-operated websites from eligibility to appear in Google News features and Google Discover because these sites violated our policies that prohibit deceptive behavior and require editorial transparency.",
+          "source_id": "src-google-glassbridge",
+          "about": "GLASSBRIDGE"
+        },
+        {
+          "text": "Figure 1: GLASSBRIDGE is an ecosystem of companies and newswire services that publish inauthentic news content",
+          "source_id": "src-google-glassbridge",
+          "about": "GLASSBRIDGE"
+        },
+        {
+          "text": "The inauthentic news sites operated by GLASSBRIDGE illustrate how information operations actors have embraced methods beyond social media in an attempt to spread their narratives.",
+          "source_id": "src-google-glassbridge",
+          "about": "GLASSBRIDGE"
+        },
+        {
+          "text": "In the case of GLASSBRIDGE",
+          "source_id": "src-google-glassbridge",
+          "about": "GLASSBRIDGE"
+        },
+        {
+          "text": "Google is committed to information transparency, and we will continue tracking GLASSBRIDGE and blocking their inauthentic content on Google’s platforms.",
+          "source_id": "src-google-glassbridge",
+          "about": "GLASSBRIDGE"
+        },
+        {
+          "text": "The Most Prolific: Shanghai Haixun Technology",
+          "source_id": "src-google-glassbridge",
+          "about": "Haixun"
+        },
+        {
+          "text": "Of the PR and marketing firms we have observed supporting pro-China IO campaigns, the most prolific is Shanghai Haixun Technology Co., Ltd or “Haixun”.",
+          "source_id": "src-google-glassbridge",
+          "about": "Haixun"
+        },
+        {
+          "text": "Since TAG first began tracking Haixun, Google has removed more than 600 policy-violating domains linked to the firm from the ability to appear in Google News features.",
+          "source_id": "src-google-glassbridge",
+          "about": "Haixun"
+        },
+        {
+          "text": "In July 2023, Mandiant identified Haixun using both Times Newswire and World Newswire to place pro-Beijing content on the subdomains of legitimate news outlets.",
+          "source_id": "src-google-glassbridge",
+          "about": "Haixun"
+        },
+        {
+          "text": "Mandiant also identified Haixun’s use of freelance services such as Fiverr to recruit for-hire social media accounts to promote pro-Beijing content.",
+          "source_id": "src-google-glassbridge",
+          "about": "Haixun"
+        },
+        {
+          "text": "Haixun’s inauthentic news sites are generally low quality, and much of the content on the domains is spammy and repetitive.",
+          "source_id": "src-google-glassbridge",
+          "about": "Haixun"
+        },
+        {
+          "text": "Figure 2: Haixun inauthentic news featuring a mix of content, including PRC government talking points, Global Times articles, and content on the metaverse",
+          "source_id": "src-google-glassbridge",
+          "about": "Haixun"
+        },
+        {
+          "text": "one of the news wire services that has distributed content on behalf of Haixun.",
+          "source_id": "src-google-glassbridge",
+          "about": "Haixun"
+        },
+        {
+          "text": "However, a small portion of the content includes pro-PRC narratives and content directly linked to IO campaigns from Haixun and DRAGONBRIDGE.",
+          "source_id": "src-google-glassbridge",
+          "about": "Haixun"
+        },
+        {
+          "text": "the same press release service used by Haixun to place content on the subdomains of legitimate news outlets.",
+          "source_id": "src-google-glassbridge",
+          "about": "Haixun"
+        },
+        {
+          "text": "Shanghai Haixun Technology",
+          "source_id": "src-google-glassbridge",
+          "about": "Haixun"
         }
       ]
     },
@@ -914,7 +1087,9 @@ window.NETWEAVER_DB = {
         "Borderless Group",
         "Wubianjie Group (Borderless Group)",
         "無為科技",
-        "wuweikeji"
+        "wuweikeji",
+        "無邊界公司",
+        "WUBIANJIE"
       ],
       "category": "content-farm",
       "role": "attacker",
@@ -1084,6 +1259,16 @@ window.NETWEAVER_DB = {
           "text": "[website]/about/about-zh.html#for_advertisers contains “無邊界集團”: In many cases, the “對於廣告商” section of the website specifically mentions that the website’s content is generated by 無邊界集團.",
           "source_id": "src-dtl-borderless",
           "about": "無邊界集團"
+        },
+        {
+          "text": "the “pray for you” fan page was operated by the company named “WUBIANJIE” [無邊界公司] based in Qinhuangdao [秦皇島]",
+          "source_id": "src-factlink-butterfly",
+          "about": "WUBIANJIE"
+        },
+        {
+          "text": "（二）內容農場及異常頻道：中共扶植中企「無邊界集團」",
+          "source_id": "src-nsb-2026",
+          "about": "無邊界集團"
         }
       ]
     },
@@ -1238,6 +1423,11 @@ window.NETWEAVER_DB = {
           "target_id": "durinbridge",
           "relation": "affiliated-with",
           "note": "Google GLASSBRIDGE：DURINBRIDGE 網站代為發布 DRAGONBRIDGE 推廣的《蔡英文秘史》與賴清德敘事"
+        },
+        {
+          "target_id": "mps",
+          "relation": "attributed-to",
+          "note": "國家安全局 National Security Bureau (NSB), Taiwan 報告記錄；2026-08-30 人工核可"
         }
       ],
       "event_ids": [
@@ -1709,26 +1899,6 @@ window.NETWEAVER_DB = {
           "about": "Empire Dragon"
         },
         {
-          "text": "於全球逾180個社群平臺、以逾20種語言進行影響力操作",
-          "source_id": "src-nsb-2026",
-          "about": "Dragonbridge 對台認知作戰"
-        },
-        {
-          "text": "龍橋（Dragonbridge）為公安部僱用的網路水軍",
-          "source_id": "src-nsb-2026",
-          "about": "Spamouflage"
-        },
-        {
-          "text": "針對台灣議題散布不實訊息",
-          "source_id": "src-nsb-2026",
-          "about": "targets"
-        },
-        {
-          "text": "Dragonbridge 跨逾180個平台的對台行動",
-          "source_id": "src-nsb-2026",
-          "about": "related-to"
-        },
-        {
           "text": "the content consisted of DRAGONBRIDGE’s usual compilation of stock images and news footage from online sources accompanied by robotic English-language voiceovers.",
           "source_id": "src-google-dragonbridge-2024",
           "about": "DRAGONBRIDGE"
@@ -1747,6 +1917,61 @@ window.NETWEAVER_DB = {
           "text": "we were able to tie this activity together to confirm it was part of one operation known in the security community as Spamouflage and link it to individuals associated with Chinese law enforcement.",
           "source_id": "src-meta-2023",
           "about": "Spamouflage"
+        },
+        {
+          "text": "中共公安部運用「龍橋」網路水軍集團，透過逾 20 種",
+          "source_id": "src-nsb-2026",
+          "about": "龍橋"
+        },
+        {
+          "text": "《第三次外國資訊操弄與干 中共利用「龍橋」水軍及",
+          "source_id": "src-nsb-2026",
+          "about": "龍橋"
+        },
+        {
+          "text": "We have also observed content from DRAGONBRIDGE, the most prolific IO actor TAG tracks, disseminated in these campaigns.",
+          "source_id": "src-google-glassbridge",
+          "about": "DRAGONBRIDGE"
+        },
+        {
+          "text": "However, a small portion of the content includes pro-PRC narratives and content directly linked to IO campaigns from Haixun and DRAGONBRIDGE.",
+          "source_id": "src-google-glassbridge",
+          "about": "DRAGONBRIDGE"
+        },
+        {
+          "text": "We identified multiple DRAGONBRIDGE articles published to DURINBRIDGE’s news sites.",
+          "source_id": "src-google-glassbridge",
+          "about": "DRAGONBRIDGE"
+        },
+        {
+          "text": "a perennial topic for DRAGONBRIDGE",
+          "source_id": "src-google-glassbridge",
+          "about": "DRAGONBRIDGE"
+        },
+        {
+          "text": "and multiple narratives amplified by DRAGONBRIDGE in the lead up to the Taiwanese presidential election.",
+          "source_id": "src-google-glassbridge",
+          "about": "DRAGONBRIDGE"
+        },
+        {
+          "text": "Figure 3: DRAGONBRIDGE content published to inauthentic news sites operated by DURINBRIDGE",
+          "source_id": "src-google-glassbridge",
+          "about": "DRAGONBRIDGE"
+        },
+        {
+          "text": "Figure 5: Narratives about then-candidate Lai Ching-te promoted by DRAGONBRIDGE prior to the Taiwanese presidential election",
+          "source_id": "src-google-glassbridge",
+          "about": "DRAGONBRIDGE"
+        },
+        {
+          "text": "In more than one case, TAG and Mandiant have identified content linked to DRAGONBRIDGE published on Shenzhen Bowen-operated sites.",
+          "source_id": "src-google-glassbridge",
+          "about": "DRAGONBRIDGE"
+        },
+        {
+          "text": "Figure 7: DRAGONBRIDGE content on “Boston Journal” website linked to Shenzhen Bowen Media",
+          "source_id": "src-google-glassbridge",
+          "about": "DRAGONBRIDGE"
         }
       ]
     },
@@ -2447,6 +2672,16 @@ window.NETWEAVER_DB = {
           "text": "We should object to insulting editorials from the Global Times.",
           "source_id": "src-lowy-globaltimes",
           "about": "Global Times"
+        },
+        {
+          "text": "This includes articles from the Global Times",
+          "source_id": "src-google-glassbridge",
+          "about": "Global Times"
+        },
+        {
+          "text": "Figure 2: Haixun inauthentic news featuring a mix of content, including PRC government talking points, Global Times articles, and content on the metaverse",
+          "source_id": "src-google-glassbridge",
+          "about": "Global Times"
         }
       ]
     },
@@ -2491,7 +2726,14 @@ window.NETWEAVER_DB = {
       "source_ids": [
         "src-nsb-2026"
       ],
-      "confidence": "high"
+      "confidence": "high",
+      "claims": [
+        {
+          "text": "此外，中共網信辦、統戰部及解放軍網路空間部隊等單",
+          "source_id": "src-nsb-2026",
+          "about": "解放軍網路空間部隊"
+        }
+      ]
     },
     {
       "id": "womin",
@@ -2523,7 +2765,14 @@ window.NETWEAVER_DB = {
       "source_ids": [
         "src-nsb-2026"
       ],
-      "confidence": "medium"
+      "confidence": "medium",
+      "claims": [
+        {
+          "text": "「沃民高新」等企業，則彙整我國選舉期間候選",
+          "source_id": "src-nsb-2026",
+          "about": "沃民高新"
+        }
+      ]
     },
     {
       "id": "zhongkedianji",
@@ -2579,7 +2828,14 @@ window.NETWEAVER_DB = {
       "source_ids": [
         "src-nsb-2026"
       ],
-      "confidence": "medium"
+      "confidence": "medium",
+      "claims": [
+        {
+          "text": "「北京星光」及「一網互通」等科技",
+          "source_id": "src-nsb-2026",
+          "about": "北京星光"
+        }
+      ]
     },
     {
       "id": "haimai",
@@ -2668,6 +2924,36 @@ window.NETWEAVER_DB = {
           "text": "Haimai, short for Shenzhen Haimaiyunxiang Media Co., Ltd.",
           "source_id": "src-citizenlab-paperwall",
           "about": "Haimai"
+        },
+        {
+          "text": "（一）虛假網站：中宣部、公安部透由「海訊社」、「海賣」",
+          "source_id": "src-nsb-2026",
+          "about": "海賣"
+        },
+        {
+          "text": "Times Newswire and Shenzhen Haimai Yunxiang Media",
+          "source_id": "src-google-glassbridge",
+          "about": "Haimai"
+        },
+        {
+          "text": "Shenzhen Haimai Yunxiang Media Co.",
+          "source_id": "src-google-glassbridge",
+          "about": "Haimai"
+        },
+        {
+          "text": "or “Haimai”",
+          "source_id": "src-google-glassbridge",
+          "about": "Haimai"
+        },
+        {
+          "text": "DURINBRIDGE sites also used articles and images from Times Newswire, which is operated by the aforementioned Chinese PR firm Haimai.",
+          "source_id": "src-google-glassbridge",
+          "about": "Haimai"
+        },
+        {
+          "text": "Shenzhen Haimai Yunxiang Media",
+          "source_id": "src-google-glassbridge",
+          "about": "Haimai"
         }
       ]
     },
@@ -2707,7 +2993,14 @@ window.NETWEAVER_DB = {
       "source_ids": [
         "src-nsb-2026"
       ],
-      "confidence": "low"
+      "confidence": "low",
+      "claims": [
+        {
+          "text": "及「虎牙」等公關公司，創建虛假網站，並以中立性",
+          "source_id": "src-nsb-2026",
+          "about": "虎牙"
+        }
+      ]
     },
     {
       "id": "magic-data",
@@ -2729,7 +3022,14 @@ window.NETWEAVER_DB = {
       "source_ids": [
         "src-nsb-2026"
       ],
-      "confidence": "medium"
+      "confidence": "medium",
+      "claims": [
+        {
+          "text": "中共另委託「晴數智慧科技」",
+          "source_id": "src-nsb-2026",
+          "about": "晴數智慧科技"
+        }
+      ]
     },
     {
       "id": "norinco-group",
@@ -2754,7 +3054,14 @@ window.NETWEAVER_DB = {
       "source_ids": [
         "src-nsb-2026"
       ],
-      "confidence": "medium"
+      "confidence": "medium",
+      "claims": [
+        {
+          "text": "「中國兵器工業集團」等企業積極開發 AI 模型及智能",
+          "source_id": "src-nsb-2026",
+          "about": "中國兵器工業集團"
+        }
+      ]
     },
     {
       "id": "bohemia-daily-fake",
@@ -4308,6 +4615,41 @@ window.NETWEAVER_DB = {
           "text": "隔日，中共官媒「中國台灣網」「鳳凰網」「台海網」「海峽飛虹」及「海峽之聲」以「根据岛内公布的一份最新民调」協力傳播相同內容，以網路投票結果代表台灣民眾全體意見。",
           "source_id": "src-iorg-38",
           "about": "海峽飛虹"
+        },
+        {
+          "text": "It was further magnified by Chinese state media, CCTV.",
+          "source_id": "src-factlink-butterfly",
+          "about": "CCTV"
+        },
+        {
+          "text": "The CCTV footage of negative propaganda against Taiwan’s political factions was then recycled to become short videos and circulated back to Taiwanese social media platforms",
+          "source_id": "src-factlink-butterfly",
+          "about": "CCTV"
+        },
+        {
+          "text": "The unverified accusation that supporters of the Bluebird movement created a fake image for self-promotion was further exploited by CCTV, a Chinese state media outlet.",
+          "source_id": "src-factlink-butterfly",
+          "about": "CCTV"
+        },
+        {
+          "text": "CCTV reframed the claim",
+          "source_id": "src-factlink-butterfly",
+          "about": "CCTV"
+        },
+        {
+          "text": "CCTV cited Taiwanese media content as “evidence” of the Taiwanese ruling party’s “propaganda campaign.” Soon after",
+          "source_id": "src-factlink-butterfly",
+          "about": "CCTV"
+        },
+        {
+          "text": "CCTV’s content was edited into short videos and shared by pro-China influencers with both Taiwanese and Chinese audiences on social media platforms like TikTok",
+          "source_id": "src-factlink-butterfly",
+          "about": "CCTV"
+        },
+        {
+          "text": "CCTV reframed the claim, falsely asserting that the AI-generated image of boxed meals was part of a disinformation campaign led by the Taiwanese ruling party and supporters of Taiwan’s independence to target pro-China politicians",
+          "source_id": "src-factlink-butterfly",
+          "about": "CCTV"
         }
       ]
     },
@@ -4529,7 +4871,49 @@ window.NETWEAVER_DB = {
       "source_ids": [
         "src-google-glassbridge"
       ],
-      "confidence": "high"
+      "confidence": "high",
+      "claims": [
+        {
+          "text": "DURINBRIDGE",
+          "source_id": "src-google-glassbridge",
+          "about": "DURINBRIDGE"
+        },
+        {
+          "text": "Another example of a commercial firm distributing content linked to pro-China IO campaigns is DURINBRIDGE",
+          "source_id": "src-google-glassbridge",
+          "about": "DURINBRIDGE"
+        },
+        {
+          "text": "DURINBRIDGE operates a network of over 200 websites designed to look like independent media outlets that publish news content on various topics.",
+          "source_id": "src-google-glassbridge",
+          "about": "DURINBRIDGE"
+        },
+        {
+          "text": "Importantly, DURINBRIDGE itself is not an IO actor and likely published the IO content on behalf of a customer or partner.",
+          "source_id": "src-google-glassbridge",
+          "about": "DURINBRIDGE"
+        },
+        {
+          "text": "DURINBRIDGE sites also used articles and images from Times Newswire, which is operated by the aforementioned Chinese PR firm Haimai.",
+          "source_id": "src-google-glassbridge",
+          "about": "DURINBRIDGE"
+        },
+        {
+          "text": "We identified multiple DRAGONBRIDGE articles published to DURINBRIDGE’s news sites.",
+          "source_id": "src-google-glassbridge",
+          "about": "DURINBRIDGE"
+        },
+        {
+          "text": "Figure 3: DRAGONBRIDGE content published to inauthentic news sites operated by DURINBRIDGE",
+          "source_id": "src-google-glassbridge",
+          "about": "DURINBRIDGE"
+        },
+        {
+          "text": "Figure 4: “Secret History of Tsai Ing-Wen,” on DURINBRIDGE-operated inauthentic news site",
+          "source_id": "src-google-glassbridge",
+          "about": "DURINBRIDGE"
+        }
+      ]
     },
     {
       "id": "green-cicada",
@@ -5903,6 +6287,38 @@ window.NETWEAVER_DB = {
           "text": "Subdomains Leveraged to Promote Pro-PRC Content from Times Newswire and World Newswire Intended to Masquerade as Content from Second-Level Domains of U.S.",
           "source_id": "src-mandiant-haienergy-2023",
           "about": "Times Newswire"
+        },
+        {
+          "text": "In July 2023, Mandiant identified Haixun using both Times Newswire and World Newswire to place pro-Beijing content on the subdomains of legitimate news outlets.",
+          "source_id": "src-google-glassbridge",
+          "about": "Times Newswire"
+        },
+        {
+          "text": "Times Newswire and Shenzhen Haimai Yunxiang Media",
+          "source_id": "src-google-glassbridge",
+          "about": "Times Newswire"
+        },
+        {
+          "text": "TAG determined the inauthentic news websites were operated and controlled directly by Times Newswire",
+          "source_id": "src-google-glassbridge",
+          "about": "Times Newswire"
+        },
+        {
+          "text": "TAG believes Times Newswire is",
+          "source_id": "src-google-glassbridge",
+          "about": "Times Newswire"
+        },
+        {
+          "text": "DURINBRIDGE sites also used articles and images from Times Newswire, which is operated by the aforementioned Chinese PR firm Haimai.",
+          "source_id": "src-google-glassbridge",
+          "about": "Times Newswire"
+        }
+      ],
+      "related": [
+        {
+          "target_id": "haimai",
+          "relation": "attributed-to",
+          "note": "Google Threat Intelligence Group 報告記錄；2026-08-30 人工核可"
         }
       ]
     },
@@ -5934,6 +6350,26 @@ window.NETWEAVER_DB = {
         {
           "text": "Subdomains Leveraged to Promote Pro-PRC Content from Times Newswire and World Newswire Intended to Masquerade as Content from Second-Level Domains of U.S.",
           "source_id": "src-mandiant-haienergy-2023",
+          "about": "World Newswire"
+        },
+        {
+          "text": "In July 2023, Mandiant identified Haixun using both Times Newswire and World Newswire to place pro-Beijing content on the subdomains of legitimate news outlets.",
+          "source_id": "src-google-glassbridge",
+          "about": "World Newswire"
+        },
+        {
+          "text": "is a PRC-based marketing firm that also operates World Newswire",
+          "source_id": "src-google-glassbridge",
+          "about": "World Newswire"
+        },
+        {
+          "text": "Side-by-side with local content, the sites include narratives promoting the Chinese government’s interests, much of it sourced from World Newswire.",
+          "source_id": "src-google-glassbridge",
+          "about": "World Newswire"
+        },
+        {
+          "text": "World Newswire, the same press release service used by Haixun",
+          "source_id": "src-google-glassbridge",
           "about": "World Newswire"
         }
       ]
@@ -7124,6 +7560,44 @@ window.NETWEAVER_DB = {
           "text": "直到 8 月 30 日，中共官媒粉專「知行」還在繼續傳播 A.2 論述。",
           "source_id": "src-iorg-11",
           "about": "知行"
+        }
+      ]
+    },
+    {
+      "id": "pray-for-you",
+      "name_zh": "為你祈福",
+      "name_en": "Pray for you",
+      "aliases": [],
+      "category": "content-farm",
+      "role": "amplifier",
+      "origin": "PRC",
+      "summary_zh": "臉書粉專。FactLink 記錄其散布陰謀論內容獲數萬互動，並記錄該粉專由位於河北秦皇島的無邊界公司（WUBIANJIE）經營。",
+      "source_ids": [
+        "src-factlink-butterfly"
+      ],
+      "confidence": "medium",
+      "claims": [
+        {
+          "text": "including one called “pray for you” (為你祈福)",
+          "source_id": "src-factlink-butterfly",
+          "about": "pray for you"
+        },
+        {
+          "text": "the “pray for you” fan page was operated by the company named “WUBIANJIE” [無邊界公司] based in Qinhuangdao [秦皇島]",
+          "source_id": "src-factlink-butterfly",
+          "about": "pray for you"
+        },
+        {
+          "text": "the “pray for you” fan page was operated by the company named “WUBIANJIE” [無邊界公司]",
+          "source_id": "src-factlink-butterfly",
+          "about": "pray for you"
+        }
+      ],
+      "related": [
+        {
+          "target_id": "borderless-group",
+          "relation": "attributed-to",
+          "note": "FactLink 數位素養實驗室 報告記錄；2026-08-30 人工核可"
         }
       ]
     }

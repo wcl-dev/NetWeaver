@@ -241,13 +241,13 @@ window.NETWEAVER_DB = {
       "confidence": "high",
       "claims": [
         {
-          "text": "which has links to Chinese law enforcement and coordinates with other agencies such as the Ministry of Foreign Affairs and the United Front Work Department according to internal group communications revealed by the US Department of Justice.",
-          "source_id": "src-aspi-2024",
+          "text": "The usage of the United Front Work Department (UFWD) is inconspicuous in South Asia.",
+          "source_id": "src-doublethink-lab-96d2c0",
           "about": "United Front Work Department"
         },
         {
-          "text": "The usage of the United Front Work Department (UFWD) is inconspicuous in South Asia.",
-          "source_id": "src-doublethink-lab-96d2c0",
+          "text": "which has links to Chinese law enforcement and coordinates with other agencies such as the Ministry of Foreign Affairs and the United Front Work Department according to internal group communications revealed by the US Department of Justice.",
+          "source_id": "src-aspi-2024",
           "about": "United Front Work Department"
         }
       ]
@@ -347,16 +347,6 @@ window.NETWEAVER_DB = {
       "confidence": "high",
       "claims": [
         {
-          "text": "This coincided with reporting on the allegation by the China Times, a Taiwan-based newspaper that reportedly takes instructions directly from the CCP’s Taiwan Affairs Office.",
-          "source_id": "src-aspi-2024",
-          "about": "Taiwan Affairs Office"
-        },
-        {
-          "text": "the Ministry of Defence and the Taiwan Affairs Office to consolidate their influence operations targeting the Taiwan election.",
-          "source_id": "src-aspi-2024",
-          "about": "Taiwan Affairs Office"
-        },
-        {
           "text": "The Taiwan Affairs Office in China has described united front work as “an important magic weapon for the Communist Party of China to unite people and gather strength”.",
           "source_id": "src-aspi-strait",
           "about": "Taiwan Affairs Office"
@@ -375,6 +365,16 @@ window.NETWEAVER_DB = {
           "text": "中国海警在中国海域开展执法巡查，是为了维护相关海域作业秩序，维护包括台湾渔民在内的中国渔民生命财产安全和合法正当权益)” (TAO, October 16).",
           "source_id": "src-jamestown-js2024b",
           "about": "TAO"
+        },
+        {
+          "text": "This coincided with reporting on the allegation by the China Times, a Taiwan-based newspaper that reportedly takes instructions directly from the CCP’s Taiwan Affairs Office.",
+          "source_id": "src-aspi-2024",
+          "about": "Taiwan Affairs Office"
+        },
+        {
+          "text": "the Ministry of Defence and the Taiwan Affairs Office to consolidate their influence operations targeting the Taiwan election.",
+          "source_id": "src-aspi-2024",
+          "about": "Taiwan Affairs Office"
         }
       ]
     },
@@ -1246,41 +1246,6 @@ window.NETWEAVER_DB = {
           "about": "related-to"
         },
         {
-          "text": "We believe one is likely linked to the CCP’s largest network of inauthentic social media accounts known as Spamouflage or Dragonbridge.",
-          "source_id": "src-aspi-2024",
-          "about": "Spamouflage"
-        },
-        {
-          "text": "Accounts targeting Lai and Hsiao were involved in previous Spamouflage campaigns targeting Chinese virologist Yan Limeng, Chinese businessman Guo Wengui, and Chinese dissidents.",
-          "source_id": "src-aspi-2024",
-          "about": "Spamouflage"
-        },
-        {
-          "text": "Spamouflage-affiliated accounts sought to harass DPP legislative candidates too, calling the DPP’s Lin Ching-yi, a ‘shameless’ politician.",
-          "source_id": "src-aspi-2024",
-          "about": "Spamouflage"
-        },
-        {
-          "text": "who Spamouflage accounts accused of sexually harassing female colleagues and having affairs.",
-          "source_id": "src-aspi-2024",
-          "about": "Spamouflage"
-        },
-        {
-          "text": "The document was originally uploaded on Zenodo, an open-source data repository previously used by Spamouflage-linked operators to upload a document claiming Covid-19 originated from the US.",
-          "source_id": "src-aspi-2024",
-          "about": "Spamouflage"
-        },
-        {
-          "text": "On YouTube, Spamouflage-linked channels posted at least 490 videos referencing the ‘secret history’ document between 4 January and 10 January before YouTube suspended all the channels.",
-          "source_id": "src-aspi-2024",
-          "about": "Spamouflage"
-        },
-        {
-          "text": "ASPI is not suggesting that D-ID knowingly cooperated with Spamouflage-linked operators.",
-          "source_id": "src-aspi-2024",
-          "about": "Spamouflage"
-        },
-        {
           "text": "在11月更發現極為相似的另一個Hashtag「右翼の共生者」，第二波標籤以日語用法更道地，且該波攻擊與高市提出的「台灣有事」有關，不過這些帳號多數屬於典型「Spamouflage（垃圾變色龍）」網路，點閱互動低，影響力有限。",
           "source_id": "src-factlink-takaichi",
           "about": "Spamouflage"
@@ -1729,6 +1694,41 @@ window.NETWEAVER_DB = {
           "text": "Empire Dragon's use of tactics like employing \"useful idiots,\" fringe political groups, and account impersonation further reflects this convergence.",
           "source_id": "src-rf-empire-dragon",
           "about": "Empire Dragon"
+        },
+        {
+          "text": "We believe one is likely linked to the CCP’s largest network of inauthentic social media accounts known as Spamouflage or Dragonbridge.",
+          "source_id": "src-aspi-2024",
+          "about": "Spamouflage"
+        },
+        {
+          "text": "Accounts targeting Lai and Hsiao were involved in previous Spamouflage campaigns targeting Chinese virologist Yan Limeng, Chinese businessman Guo Wengui, and Chinese dissidents.",
+          "source_id": "src-aspi-2024",
+          "about": "Spamouflage"
+        },
+        {
+          "text": "Spamouflage-affiliated accounts sought to harass DPP legislative candidates too, calling the DPP’s Lin Ching-yi, a ‘shameless’ politician.",
+          "source_id": "src-aspi-2024",
+          "about": "Spamouflage"
+        },
+        {
+          "text": "who Spamouflage accounts accused of sexually harassing female colleagues and having affairs.",
+          "source_id": "src-aspi-2024",
+          "about": "Spamouflage"
+        },
+        {
+          "text": "The document was originally uploaded on Zenodo, an open-source data repository previously used by Spamouflage-linked operators to upload a document claiming Covid-19 originated from the US.",
+          "source_id": "src-aspi-2024",
+          "about": "Spamouflage"
+        },
+        {
+          "text": "On YouTube, Spamouflage-linked channels posted at least 490 videos referencing the ‘secret history’ document between 4 January and 10 January before YouTube suspended all the channels.",
+          "source_id": "src-aspi-2024",
+          "about": "Spamouflage"
+        },
+        {
+          "text": "ASPI is not suggesting that D-ID knowingly cooperated with Spamouflage-linked operators.",
+          "source_id": "src-aspi-2024",
+          "about": "Spamouflage"
         }
       ]
     },
@@ -4795,7 +4795,14 @@ window.NETWEAVER_DB = {
       "source_ids": [
         "src-dtl-golaxy"
       ],
-      "confidence": "low"
+      "confidence": "low",
+      "claims": [
+        {
+          "text": "173 Liu Wenxuan, ‘Mobvoi joined Guangming Daily to launch AI virtual anchor’ [出门问问携手光明日报发布推出AI虚拟主播].",
+          "source_id": "src-aspi-00c2db",
+          "about": "Guangming Daily"
+        }
+      ]
     },
     {
       "id": "xiamen-media",
@@ -4834,6 +4841,277 @@ window.NETWEAVER_DB = {
         "src-iorg-118"
       ],
       "confidence": "medium"
+    },
+    {
+      "id": "silicon-intelligence",
+      "name_zh": "硅基智能",
+      "name_en": "Silicon Intelligence",
+      "aliases": [
+        "Silicon Intelligence Technology"
+      ],
+      "category": "tech-vendor",
+      "role": "collaborator",
+      "origin": "PRC",
+      "summary_zh": "南京數位人技術公司。ASPI 與 Midu 並列為說服性技術的兩大要角；與華為簽署「數字人＋盤古大模型」合作協議，並獲騰訊與紅杉資本中國投資。",
+      "source_ids": [
+        "src-aspi-00c2db"
+      ],
+      "confidence": "low",
+      "claims": [
+        {
+          "text": "section focuses on two notable players: Midu (蜜度) and Silicon Intelligence (硅基智能).",
+          "source_id": "src-aspi-00c2db",
+          "about": "硅基智能"
+        },
+        {
+          "text": "innovation’ [硅基智能亮相江苏产学研大会，携手8所高校推动技术创新], Silicon Intelligence [硅基智能], 12 September 2024, online.",
+          "source_id": "src-aspi-00c2db",
+          "about": "硅基智能"
+        },
+        {
+          "text": "70 Silicon Intelligence [硅基智能], online.",
+          "source_id": "src-aspi-00c2db",
+          "about": "硅基智能"
+        },
+        {
+          "text": "71 ‘Silicon Intelligence’ [硅基智能], PGYER, online; Silicon Intelligence [硅基智能], online.",
+          "source_id": "src-aspi-00c2db",
+          "about": "硅基智能"
+        },
+        {
+          "text": "been completed’ [硅基智能：打造数字科技全球人工智能高地！",
+          "source_id": "src-aspi-00c2db",
+          "about": "硅基智能"
+        },
+        {
+          "text": "’ [硅基智能：战略签约！",
+          "source_id": "src-aspi-00c2db",
+          "about": "硅基智能"
+        },
+        {
+          "text": "Silicon Intelligence’ [南京雨花台公安分局“警企党风廉政建设互动”在硅基智能顺利开展].",
+          "source_id": "src-aspi-00c2db",
+          "about": "硅基智能"
+        }
+      ]
+    },
+    {
+      "id": "goertek",
+      "name_zh": "歌爾股份",
+      "name_en": "Goertek",
+      "aliases": [
+        "歌尔股份有限公司",
+        "歌爾聲學"
+      ],
+      "category": "tech-vendor",
+      "role": "collaborator",
+      "origin": "PRC",
+      "summary_zh": "山東電子製造商，智慧穿戴與 VR 產品的全球供應商。ASPI 記錄其參與軍民融合項目，並指出這顯示其與中國戰略目標的連結。",
+      "source_ids": [
+        "src-aspi-00c2db"
+      ],
+      "confidence": "low",
+      "claims": [
+        {
+          "text": "Goertek’s involvement in military–civil fusion projects highlights its connection to China’s strategic goals.",
+          "source_id": "src-aspi-00c2db",
+          "about": "Goertek"
+        },
+        {
+          "text": "US Entity List in March 2023.148 Goertek has long been investing in Beihang University.",
+          "source_id": "src-aspi-00c2db",
+          "about": "Goertek"
+        },
+        {
+          "text": "Source: ‘Goertek party committee held a series of activities to celebrate July 1st’, Goertek, 30 June 2023, online.",
+          "source_id": "src-aspi-00c2db",
+          "about": "Goertek"
+        },
+        {
+          "text": "128 ‘Goertek: Prominent player in global VR Industry’, China Daily, 10 September 2022, online.",
+          "source_id": "src-aspi-00c2db",
+          "about": "Goertek"
+        },
+        {
+          "text": "129 Goertek, online.",
+          "source_id": "src-aspi-00c2db",
+          "about": "Goertek"
+        },
+        {
+          "text": "‘Goertek Inc.",
+          "source_id": "src-aspi-00c2db",
+          "about": "Goertek"
+        },
+        {
+          "text": "132 ‘Goertek by the numbers’, Goertek, online.",
+          "source_id": "src-aspi-00c2db",
+          "about": "Goertek"
+        },
+        {
+          "text": "133 According to Importinfo.com, for example, Goertek provides goods for companies such as Amazon, Sony and Google.",
+          "source_id": "src-aspi-00c2db",
+          "about": "Goertek"
+        },
+        {
+          "text": "135 Goertek manufactures VR products for ByteDance subsidiary, Pico.",
+          "source_id": "src-aspi-00c2db",
+          "about": "Goertek"
+        },
+        {
+          "text": "See ‘Eifeh Strom, ‘Pico, Goertek bullish on VR’, DigiTimes Asia, 23 March 2022, online.",
+          "source_id": "src-aspi-00c2db",
+          "about": "Goertek"
+        },
+        {
+          "text": "140 ‘Goertek wins Microsoft’s 2017 “CTE Partner” award’ [歌尔股份荣膺微软2017 “CTE Partner”奖项], Goertek, 4 August 2017, online.",
+          "source_id": "src-aspi-00c2db",
+          "about": "Goertek"
+        },
+        {
+          "text": "142 ‘About Goertek’s Design Center’ [关于歌尔设计中心], Goertek, online.",
+          "source_id": "src-aspi-00c2db",
+          "about": "Goertek"
+        },
+        {
+          "text": "At the time of writing, Goertek still listed Cisco as a client.",
+          "source_id": "src-aspi-00c2db",
+          "about": "Goertek"
+        },
+        {
+          "text": "spokesperson confirmed with ASPI that Goertek is no longer a supplier to Cisco.",
+          "source_id": "src-aspi-00c2db",
+          "about": "Goertek"
+        },
+        {
+          "text": "Innovation Center’ in Qingdao; see ‘Qualcomm, Goertek join hands for microelectronics advances in Laoshan’, China Daily, 16 April 2019, online.",
+          "source_id": "src-aspi-00c2db",
+          "about": "Goertek"
+        },
+        {
+          "text": "144 ‘Goertek Inc.",
+          "source_id": "src-aspi-00c2db",
+          "about": "Goertek"
+        },
+        {
+          "text": "report 6, Goertek: Investing in Qingdao to build a global R&D center], Qingdao Daily / Qingdao View / Qingdao News Network, 20 May 2020, online.",
+          "source_id": "src-aspi-00c2db",
+          "about": "Goertek"
+        },
+        {
+          "text": "149 ‘Beihang University receives Ұ200 million donation from Goertek’, Goertek, 3 May 2016, online.",
+          "source_id": "src-aspi-00c2db",
+          "about": "Goertek"
+        },
+        {
+          "text": "152 ‘Your advanced UAV manufacturing partner’, Goertek Robotics, online.",
+          "source_id": "src-aspi-00c2db",
+          "about": "Goertek"
+        },
+        {
+          "text": "Report (6)｜Goertek: Investing in Qingdao to build a global R&D center].",
+          "source_id": "src-aspi-00c2db",
+          "about": "Goertek"
+        },
+        {
+          "text": "159 Goertek Inc., 2023 annual report summary, announcement no.",
+          "source_id": "src-aspi-00c2db",
+          "about": "Goertek"
+        }
+      ]
+    },
+    {
+      "id": "mobvoi",
+      "name_zh": "出門問問",
+      "name_en": "Mobvoi",
+      "aliases": [
+        "出门问问",
+        "Weta365"
+      ],
+      "category": "tech-vendor",
+      "role": "collaborator",
+      "origin": "PRC",
+      "summary_zh": "中國生成式 AI 公司。ASPI 記錄 Spamouflage 帳號張貼的影片疑似以其 Weta365 應用生成，並推測其與中國安全或情報機構可能存在更深合作（原文為推測語氣）；Doublethink Lab 另記錄其與光明日報合作推出 AI 虛擬主播。",
+      "source_ids": [
+        "src-aspi-2024",
+        "src-dtl-golaxy"
+      ],
+      "confidence": "low",
+      "claims": [
+        {
+          "text": "174 Weta365 [奇妙元], online.",
+          "source_id": "src-aspi-00c2db",
+          "about": "Weta365"
+        },
+        {
+          "text": "which implies that there may be deeper cooperation between Mobvoi and Chinese security or intelligence services.",
+          "source_id": "src-aspi-2024",
+          "about": "Mobvoi"
+        }
+      ]
+    },
+    {
+      "id": "midu",
+      "name_zh": "蜜度",
+      "name_en": "Midu",
+      "aliases": [
+        "蜜度科技",
+        "Midu Technology"
+      ],
+      "category": "tech-vendor",
+      "role": "collaborator",
+      "origin": "PRC",
+      "summary_zh": "南京語言智能公司。ASPI 專章記錄其提供生成式 AI 工具供中國政府用於輿論管理，客戶以其產品強化監控與管制中國國內輿論的能力。",
+      "source_ids": [
+        "src-aspi-00c2db"
+      ],
+      "confidence": "low",
+      "claims": [
+        {
+          "text": "section focuses on two notable players: Midu (蜜度) and Silicon Intelligence (硅基智能).",
+          "source_id": "src-aspi-00c2db",
+          "about": "Midu"
+        },
+        {
+          "text": "Founded in 2009, Midu Technology Co.",
+          "source_id": "src-aspi-00c2db",
+          "about": "Midu"
+        },
+        {
+          "text": "are using Midu products to improve their ability to monitor and police Chinese public opinion.",
+          "source_id": "src-aspi-00c2db",
+          "about": "Midu"
+        },
+        {
+          "text": "Midu’s Sina Public Opinion (新浪舆情通) offers real-time alerts on social-media trends.",
+          "source_id": "src-aspi-00c2db",
+          "about": "Midu"
+        },
+        {
+          "text": "Midu has a number of joint ventures with both Chinese and international partners.",
+          "source_id": "src-aspi-00c2db",
+          "about": "Midu"
+        },
+        {
+          "text": "China’s public-security system is also using Midu’s products.",
+          "source_id": "src-aspi-00c2db",
+          "about": "Midu"
+        },
+        {
+          "text": "Midu Language Intelligence and Vertical Large Model Enterprise.",
+          "source_id": "src-aspi-00c2db",
+          "about": "Midu"
+        },
+        {
+          "text": "43 ‘Release of Midu’s intelligent Yuqing V Assistant’ [蜜度发布智能舆情V助手], People.cn, 5 July 2024, online.",
+          "source_id": "src-aspi-00c2db",
+          "about": "Midu"
+        },
+        {
+          "text": "广告学院携手蜜度信息成立’品牌大数据实验室’], China News Network, 26 April 2019, online; ‘Shanghai Midu Information Technology Co.",
+          "source_id": "src-aspi-00c2db",
+          "about": "Midu"
+        }
+      ]
     }
   ],
   "events": [
@@ -6183,6 +6461,14 @@ window.NETWEAVER_DB = {
       "org": "Doublethink Lab",
       "url": "https://medium.com/doublethinklab/prc-influence-in-south-asia-a-case-study-of-india-nepal-sri-lanka-and-pakistan-a405059731be?source=rss----9106617863e3---4",
       "date": "2026-02-03",
+      "type": "ngo-report"
+    },
+    {
+      "id": "src-aspi-00c2db",
+      "title": "Persuasive technologies in China: implications for the future of national security",
+      "org": "ASPI",
+      "url": "https://aspi.s3.ap-southeast-2.amazonaws.com/wp-content/uploads/2025/03/11125258/Persuasive-technologies-in-China_0.pdf",
+      "date": "2025-03-11",
       "type": "ngo-report"
     }
   ],

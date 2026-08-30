@@ -7,7 +7,16 @@ import re, json, pathlib
 
 # 逐字述詞 → 關係（反升級 ladder；由上而下取先命中；預設最弱 related-to）
 LADDER = [
-    (r"operated by|run by|directed by|controlled by|hired|僱用|運用|操控|指揮|經營", "operated-by"),
+    # 控制述詞分主動／被動，**方向相反**，不可混在同一桶。
+    # 「A is operated by B」＝被動，A 是被操作的一方 → operated-by(A, B)
+    # 「A 運用 B」＝主動，A 是操作方        → runs(A, B)
+    # 混在一起會讓中文主動句的歸因整個反過來：實測 NSB「中共公安部運用『龍橋』」
+    # 產生 attributed-to(中共公安部 → 龍橋)，讀成「公安部歸屬於網軍集團」。
+    # 被動樣式必須排在主動之前，否則 "hired by" 會先被 "hired" 吃掉。
+    (r"operated by|run by|directed by|controlled by|hired by|employed by|"
+     r"受[^，。]{0,6}(僱用|雇用|操作|指揮|操控|經營)|受僱於|由[^，。]{0,8}(經營|operated)", "operated-by"),
+    (r"\bhires?\b|\bhired\b|\boperates?\b|\bruns?\b|\bdirects?\b|\bcontrols?\b|"
+     r"僱用|雇用|運用|操控|指揮|經營", "runs"),
     (r"subsidiary|owned by|旗下|隸屬|子公司", "subsidiary-of"),
     (r"supplied|built for|provided .*to|developed for|承包|供應|開發給|提供給", "supplies-tech-to"),
     (r"amplified|echoed|boosted|reposted|cited by|放大|轉發|轉載|引用", "amplifies"),
@@ -91,7 +100,11 @@ def derive(extr, reg):
     extra = []
     for r in rels:
         if r["type"] in CONTROL and r.get("confidence") in ("medium", "high"):
-            ctrl, sub = objs.get(r["target"]), objs.get(r["source"])
+            # 方向依述詞語態決定：operated-by(A,B) 是「A 受 B 操作」→ 控制方是 target；
+            # runs(A,B) 是「A 操作 B」→ 控制方是 source，歸因要翻過來。
+            if r["type"] == "runs": ctrl_ref, sub_ref = r["source"], r["target"]
+            else:                   ctrl_ref, sub_ref = r["target"], r["source"]
+            ctrl, sub = objs.get(ctrl_ref), objs.get(sub_ref)
             # 兩端都必須是「叫得出名字的行為者」才談得上歸因。地點（只有 country）或
             # 指向不存在 tmp_id 的一端，都不足以支撐 attributed-to——實測有模型把
             # 「美國運用台灣」的主詞標成 place，若照建就是地點歸因給地點。
@@ -105,7 +118,7 @@ def derive(extr, reg):
                 continue
             if ctrl["kind"] == "identity": ctrl["kind"] = "threat-actor"
             log.append(f"控制述詞＋信心{r['confidence']} → 建 attributed-to（{sub['name']}→{ctrl.get('name')}，需人工閘）；{ctrl.get('name')} 升 threat-actor")
-            extra.append({"source": r["source"], "type": "attributed-to", "target": r["target"],
+            extra.append({"source": sub_ref, "type": "attributed-to", "target": ctrl_ref,
                           "confidence": r["confidence"], "evidence": r.get("evidence")})
             r["type"] = "related-to"       # 原控制關係降為結構分組；正式歸因走 attributed-to（保守）
         elif r["type"] == "related-to" and r.get("evidence") and any(hedged(e["quote"]) for e in r["evidence"]):

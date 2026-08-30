@@ -241,9 +241,9 @@ window.NETWEAVER_DB = {
       "confidence": "high",
       "claims": [
         {
-          "text": "which has links to Chinese law enforcement and coordinates with other agencies such as the Ministry of Foreign Affairs and the United Front Work Department according to internal group communications revealed by the US Department of Justice.",
-          "source_id": "src-aspi-2024",
-          "about": "United Front Work Department"
+          "text": "Prior to the election, relevant Weibo hot searches mainly related to anti-Taiwan independence, (re)unification, Taiwan’s diplomatic relations, and other United Front Work Department (UFWD) mainstays.",
+          "source_id": "src-dtl-2022election",
+          "about": "United Front Work Department (UFWD)"
         },
         {
           "text": "The usage of the United Front Work Department (UFWD) is inconspicuous in South Asia.",
@@ -348,9 +348,124 @@ window.NETWEAVER_DB = {
       "confidence": "high",
       "claims": [
         {
+          "text": "This coincided with reporting on the allegation by the China Times, a Taiwan-based newspaper that reportedly takes instructions directly from the CCP’s Taiwan Affairs Office.",
+          "source_id": "src-aspi-2024",
+          "about": "Taiwan Affairs Office"
+        },
+        {
           "text": "The Taiwan Affairs Office in China has described united front work as “an important magic weapon for the Communist Party of China to unite people and gather strength”.",
           "source_id": "src-aspi-strait",
           "about": "Taiwan Affairs Office"
+        },
+        {
+          "text": "The Taiwan Affairs Office of the State Council of China issued a major response on Nov.",
+          "source_id": "src-dtl-2022election",
+          "about": "Taiwan Affairs Office of the State Council"
+        },
+        {
+          "text": "The Taiwan Affairs Office of the State Council also condemned the DPP on Nov.",
+          "source_id": "src-dtl-2022election",
+          "about": "Taiwan Affairs Office of the State Council"
+        },
+        {
+          "text": "Taiwan Affairs Office of the State Council quoted the reports, saying that “the two sides of the Strait have the same root and their origin cannot be separated.”",
+          "source_id": "src-dtl-2022election",
+          "about": "Taiwan Affairs Office of the State Council"
+        },
+        {
+          "text": "🇨🇳 2024 年 1 月 13 日台灣總統大選投票日， 🇨🇳 国台办「中国台湾网」發表署名「王杰」的「社会政治文化变迁与台湾选举」一文回顧台灣政治與選舉變遷。",
+          "source_id": "src-iorg-118",
+          "about": "国台办"
+        },
+        {
+          "text": "🇨🇳 2024 年 8 月 7 日 🇨🇳 国台办「中国台湾网」評論賴清德資政、國正顧問名單的文章中，批評「赖清德吃相难看，想做民选皇帝」。",
+          "source_id": "src-iorg-118",
+          "about": "国台办"
+        },
+        {
+          "text": "🇹🇼-🇨🇳 2024 年 12 月 31 日 🇨🇳 国台办「中国台湾网」報導引用國民黨「回顧賴清德2024執政十大亂象」，內容涵蓋內閣表現、罷免謝國樑、戒嚴發言爭議（TEAM 戒嚴）、房價、打詐、政治人物貪污等面向。",
+          "source_id": "src-iorg-118",
+          "about": "国台办"
+        },
+        {
+          "text": "🇹🇼-🇨🇳 2024 年 12 月 31 日 🇨🇳 国台办「中国台湾网」抖音上傳影片，標題為「扭曲的台湾民主 “民主教”」。",
+          "source_id": "src-iorg-118",
+          "about": "国台办"
+        },
+        {
+          "text": "🇹🇼-🇨🇳 2024 年 12 月 31 日 🇨🇳 国台办「中国台湾网」報導引用 國民黨 國民黨「回顧賴清德2024執政十大亂象」，並針對民進黨評論韓國宣布戒嚴的發文爭議，評論為「让台湾的“民主形象”沦为笑话」。",
+          "source_id": "src-iorg-118",
+          "about": "国台办"
+        },
+        {
+          "text": "🇨🇳 2025 年 6 月 24 日 🇨🇳 国台办「中国台湾网」以「台独就是有害垃圾！",
+          "source_id": "src-iorg-118",
+          "about": "国台办"
+        },
+        {
+          "text": "🇨🇳 2025 年 3 月 14 日 🇨🇳 国台办「中国台湾网」發表標題為「赖清德宣布全面紧缩两岸交流 岛内舆论批不如直接宣布戒严！」",
+          "source_id": "src-iorg-118",
+          "about": "国台办"
+        },
+        {
+          "text": "🇨🇳 2025 年 6 月 24 日 🇨🇳 国台办「中国台湾网」發表評論文章，內容稱賴清德「将两岸商机扭曲为“台湾危机”」「将两岸正常交往交流活动以及台商台企经济合作项目通通划入所谓“统战威胁”」，並以「賴 17 條」「威胁参与两岸互动的台商、台企、台青、台生，给支持两岸和平发展的岛内政党、团体及各界人士扣上所谓“在地协力者”的“帽子”」。",
+          "source_id": "src-iorg-118",
+          "about": "国台办"
+        },
+        {
+          "text": "實際案例包括：15 日中共官媒環球網、17 日中國外交部發言人華春瑩、18 日中國外交部發言人趙立堅、20 日中共官媒環球網總編胡锡进的發言、24 日中國外交部發言人汪文斌、28 日國台辦轄下「中國台灣網」針對美國艦隊通過台灣海峽的回應。",
+          "source_id": "src-iorg-11",
+          "about": "國台辦"
+        },
+        {
+          "text": "8 月 28 日，國台辦轄下「中國台灣網」發文，譴責美國艦隊通過台灣海峽是挑釁中國。",
+          "source_id": "src-iorg-11",
+          "about": "國台辦"
+        },
+        {
+          "text": "中共最關注台灣人物 top 5 之中，提出「兩岸和平框架」主張的 國民黨 主席鄭麗文名列第 2，民進黨 內政部長劉世芳、教育部長鄭英耀為国台办列為「“台独” 顽固分子」而位居 3、4，名嘴蔡正元首次進入前 5。",
+          "source_id": "src-iorg-131",
+          "about": "国台办"
+        },
+        {
+          "text": "中共最關注時事為美軍抓捕委內瑞拉時任總統馬杜羅，中共官方譴責美國此舉「明显违反国际法和国际关系基本准则」，外交部、国台办等官方機構則借機複誦其錯誤立場「台湾问题纯属中国内政」，在此錯誤立場之上以此次事件 錯誤類比 兩岸關係，宣稱其跨境鎮壓為「抓捕、惩治 “台独” 顽固分子」，是「法理闭环」、「道义高地」，在譴責美國的同時又意圖正當化其對台威脅。",
+          "source_id": "src-iorg-131",
+          "about": "国台办"
+        },
+        {
+          "text": "名列中共国台办「台独顽固份子」14 位台灣人列表，人物排序按宣布日期排列。",
+          "source_id": "src-iorg-131",
+          "about": "国台办"
+        },
+        {
+          "text": "名列中共国台办「台独打手帮凶」12 位台灣人列表，人物排序按宣布日期排列。",
+          "source_id": "src-iorg-131",
+          "about": "国台办"
+        },
+        {
+          "text": "1 月 8 日，🇨🇳 上海报业集团「澎湃新闻」發布來自「“日月谭天”微信公众号」的文本「日月谭天 | 大陆惩治“台独”分子绝不手软，推动两岸交融绝不止步」，內文包含「1 月 7 日，国台办举行 2026 年首场例行新闻发布会。",
+          "source_id": "src-iorg-131",
+          "about": "国台办"
+        },
+        {
+          "text": "1 月 13 日，🇨🇳 国台办「中国台湾网」發布文本「郑丽文批民进党当局滥用司法：台湾之耻辱」，內文包含「据台媒报道，台湾民众党前主席柯文哲、中国国民党前台北市党部主委黄吕锦茹及前民代蔡正元均因涉案被强制佩戴电子脚镣，而民进党籍涉贪人士郑文灿却未受该“待遇”。",
+          "source_id": "src-iorg-131",
+          "about": "国台办"
+        },
+        {
+          "text": "1 月 27 日，🇨🇳 国台办「中国台湾网」發布文本「从“台北101”到“台湾101”：民进党“地标碰瓷”背后尽显治理失能」，內文包含「美国攀岩运动家艾力克斯·霍诺德（Alex Honnold）25 日挑战徒手攀登“台北 101”大楼并成功登顶，引发关注。",
+          "source_id": "src-iorg-131",
+          "about": "国台办"
+        },
+        {
+          "text": "1 月 28 日，🇨🇳 北京日报「北京日报」發布微博，內文包含「【#民进党当局对微博微信抖音下手#】#民进党当局有多怕大陆APP#」、「正如国台办发言人所说，民进党当局此举背后，是 “台独” 势力的恐惧和忌惮。",
+          "source_id": "src-iorg-131",
+          "about": "国台办"
+        },
+        {
+          "text": "1 月 14 日，🇨🇳 国台办「中国台湾网」發布文本「“青提”风波背后：民进党“文字猎巫”的“抗中”意识形态困局」，內文包含「这一荒诞事件再次暴露绿营长期操弄“抗中反中”意识形态、将日常事务泛政治化的深层乱象，引发岛内舆论对“绿色恐怖”蔓延的担忧」、「实际上，随着两岸文化交流合作的深入，许多大陆用语早已成为台湾民众沟通中的日常。",
+          "source_id": "src-iorg-131",
+          "about": "国台办"
         },
         {
           "text": "This was most clearly on show in an exchange between a CCTV journalist and Director of the Information Bureau of the Taiwan Affairs Office (TAO) of the State Council Chen Binhua (陈斌华).",
@@ -366,16 +481,6 @@ window.NETWEAVER_DB = {
           "text": "中国海警在中国海域开展执法巡查，是为了维护相关海域作业秩序，维护包括台湾渔民在内的中国渔民生命财产安全和合法正当权益)” (TAO, October 16).",
           "source_id": "src-jamestown-js2024b",
           "about": "TAO"
-        },
-        {
-          "text": "This coincided with reporting on the allegation by the China Times, a Taiwan-based newspaper that reportedly takes instructions directly from the CCP’s Taiwan Affairs Office.",
-          "source_id": "src-aspi-2024",
-          "about": "Taiwan Affairs Office"
-        },
-        {
-          "text": "the Ministry of Defence and the Taiwan Affairs Office to consolidate their influence operations targeting the Taiwan election.",
-          "source_id": "src-aspi-2024",
-          "about": "Taiwan Affairs Office"
         }
       ]
     },
@@ -465,6 +570,21 @@ window.NETWEAVER_DB = {
       "confidence": "high",
       "claims": [
         {
+          "text": "A Vanderbilt Institute of National Security archive detailing how state-aligned firm GoLaxy harvests data, builds precision profiles, and deploys AI-driven propaganda at scale.",
+          "source_id": "src-vanderbilt-golaxy",
+          "about": "GoLaxy"
+        },
+        {
+          "text": "The Vanderbilt Institute of National Security has released The GoLaxy Documents—an archive describing how one Chinese company uses artificial intelligence to drive large-scale influence operations.",
+          "source_id": "src-vanderbilt-golaxy",
+          "about": "GoLaxy"
+        },
+        {
+          "text": "台灣民主實驗室的〈AI 在中國影響力作戰中的崛起：從中科天璣文件中得出的九大要點〉，整理從中國外洩的一份科技公司內部文件，分析中國情報資訊公司「中科天璣」(該公司有中國科學院計算技術研究所的背景)對台灣、美國、一帶一路國家、香港新疆西藏等資訊監控、分析及宣傳策略系統。",
+          "source_id": "src-factlink-ff3dee",
+          "about": "中科天璣"
+        },
+        {
           "text": "3,692 virtual personas operable across 12 platforms",
           "source_id": "src-dtl-golaxy",
           "about": "GoLaxy AI 影響力作業（2024 大選）"
@@ -483,21 +603,6 @@ window.NETWEAVER_DB = {
           "text": "weekly monitoring of 600,000+ Taiwan-related items during the 2024 election",
           "source_id": "src-dtl-golaxy",
           "about": "targets"
-        },
-        {
-          "text": "台灣民主實驗室的〈AI 在中國影響力作戰中的崛起：從中科天璣文件中得出的九大要點〉，整理從中國外洩的一份科技公司內部文件，分析中國情報資訊公司「中科天璣」(該公司有中國科學院計算技術研究所的背景)對台灣、美國、一帶一路國家、香港新疆西藏等資訊監控、分析及宣傳策略系統。",
-          "source_id": "src-factlink-ff3dee",
-          "about": "中科天璣"
-        },
-        {
-          "text": "A Vanderbilt Institute of National Security archive detailing how state-aligned firm GoLaxy harvests data, builds precision profiles, and deploys AI-driven propaganda at scale.",
-          "source_id": "src-vanderbilt-golaxy",
-          "about": "GoLaxy"
-        },
-        {
-          "text": "The Vanderbilt Institute of National Security has released The GoLaxy Documents—an archive describing how one Chinese company uses artificial intelligence to drive large-scale influence operations.",
-          "source_id": "src-vanderbilt-golaxy",
-          "about": "GoLaxy"
         }
       ]
     },
@@ -689,11 +794,6 @@ window.NETWEAVER_DB = {
       "confidence": "high",
       "claims": [
         {
-          "text": "there is at least some evidence to suggest that HaiEnergy failed to generate substantial engagement outside of the inauthentic amplification that we have identified—a limitation we also noted in our recent public reporting on DRAGONBRIDGE.",
-          "source_id": "src-mandiant-haienergy-2022",
-          "about": "HaiEnergy"
-        },
-        {
           "text": "Sites attributed to HaiEnergy all display images and videos that are hosted on the server 02100.vip, which is registered by Haixun (Figure 2).",
           "source_id": "src-mandiant-haienergy-2022",
           "about": "HaiEnergy"
@@ -724,32 +824,12 @@ window.NETWEAVER_DB = {
           "about": "HaiEnergy"
         },
         {
-          "text": "we believe these sites are linked to Shanghai Haixun Technology Co.",
-          "source_id": "src-mandiant-haienergy-2022",
-          "about": "Haixun"
-        },
-        {
-          "text": "a Chinese public relations (PR) firm (referred to hereafter as “Haixun”).",
-          "source_id": "src-mandiant-haienergy-2022",
-          "about": "Haixun"
-        },
-        {
           "text": "Based on information from public descriptions of the company’s services, Haixun offers content creation and marketing services in at least 40 different languages in over 100 countries.",
           "source_id": "src-mandiant-haienergy-2022",
           "about": "Haixun"
         },
         {
-          "text": "our analysis indicates that the campaign has at least leveraged services and infrastructure belonging to Haixun to host and distribute content.",
-          "source_id": "src-mandiant-haienergy-2022",
-          "about": "Haixun"
-        },
-        {
           "text": "In total, we identified 72 websites (59 domains and 13 subdomains) hosted by Haixun, which were used to target audiences in North America, Europe, the Middle East, and Asia.",
-          "source_id": "src-mandiant-haienergy-2022",
-          "about": "Haixun"
-        },
-        {
-          "text": "we identified two additional domains (haixunpr.com and haixunpr.org)—Chinese- and English-language sites describing Haixun’s services—that have resolved to the same IP address and leveraged content from 02100.vip.",
           "source_id": "src-mandiant-haienergy-2022",
           "about": "Haixun"
         },
@@ -764,17 +844,7 @@ window.NETWEAVER_DB = {
           "about": "HaiEnergy"
         },
         {
-          "text": "which were also published to suspected inauthentic news sites we have previously attributed to HaiEnergy (see Figure 1 and Figure 2).",
-          "source_id": "src-mandiant-haienergy-2023",
-          "about": "HaiEnergy"
-        },
-        {
           "text": "Figure 3: A HaiEnergy site posts an article identical to one on Times Newswire and links directly to that Times Newswire article published on a subdomain of a U.S.",
-          "source_id": "src-mandiant-haienergy-2023",
-          "about": "HaiEnergy"
-        },
-        {
-          "text": "we identified a Fiverr account we attribute to Haixun actively engaged in soliciting individuals to promote content both consistent with the political narratives promoted by the HaiEnergy campaign and sourced to infrastructure we attribute to it (Figure 5).",
           "source_id": "src-mandiant-haienergy-2023",
           "about": "HaiEnergy"
         },
@@ -794,17 +864,7 @@ window.NETWEAVER_DB = {
           "about": "HaiEnergy"
         },
         {
-          "text": "were documented via video and subsequently used as source material to support campaign-promoted narratives published by assets and infrastructure leveraged by HaiEnergy.",
-          "source_id": "src-mandiant-haienergy-2023",
-          "about": "HaiEnergy"
-        },
-        {
           "text": "As previously alluded to, HaiEnergy subsequently leveraged these videos to bolster campaign messaging.",
-          "source_id": "src-mandiant-haienergy-2023",
-          "about": "HaiEnergy"
-        },
-        {
-          "text": "we were unable to identify any outside sources referencing these protests other than those we either attribute directly to HaiEnergy or have identified as being tangential to the campaign by virtue of paid promotion services.",
           "source_id": "src-mandiant-haienergy-2023",
           "about": "HaiEnergy"
         },
@@ -829,21 +889,6 @@ window.NETWEAVER_DB = {
           "about": "Haixun"
         },
         {
-          "text": "we have identified additional evidence suggesting Haixun is not only aware of the campaign but is actively supporting it through the solicitation of for-hire freelancers via Fiverr to promote campaign content.",
-          "source_id": "src-mandiant-haienergy-2023",
-          "about": "Haixun"
-        },
-        {
-          "text": "as well as newly-identified for-hire freelancers we judge were commissioned by Haixun to amplify campaign content (see next section).",
-          "source_id": "src-mandiant-haienergy-2023",
-          "about": "Haixun"
-        },
-        {
-          "text": "at least 72 suspected inauthentic news sites which all leveraged content from the server “02100.vip” that was registered by Haixun.",
-          "source_id": "src-mandiant-haienergy-2023",
-          "about": "Haixun"
-        },
-        {
           "text": "Additionally, we observed numerous reviews from the Haixun Fiverr account as a “buyer” placed on identified “seller” accounts.",
           "source_id": "src-mandiant-haienergy-2023",
           "about": "Haixun"
@@ -855,21 +900,6 @@ window.NETWEAVER_DB = {
         },
         {
           "text": "On Fiverr, the Haixun account shared a screenshot of the video being posted by the influencer, presumably as proof of service delivery, alongside text stating “Great service, fast respond.",
-          "source_id": "src-mandiant-haienergy-2023",
-          "about": "Haixun"
-        },
-        {
-          "text": "we surmise that Haixun selectively targeted for-hire accounts that could maximize campaign reach.",
-          "source_id": "src-mandiant-haienergy-2023",
-          "about": "Haixun"
-        },
-        {
-          "text": "including at least one we judge is associated with a freelancer that was commissioned by Haixun via Fiverr (see Figure 12 and Figure 13).",
-          "source_id": "src-mandiant-haienergy-2023",
-          "about": "Haixun"
-        },
-        {
-          "text": "we have observed corresponding Twitter profiles associated with identified accounts on Fiverr commissioned by Haixun retweet suspected inauthentic accounts that have amplified content consistent with source material promoted by DRAGONBRIDGE accounts.",
           "source_id": "src-mandiant-haienergy-2023",
           "about": "Haixun"
         }
@@ -942,11 +972,6 @@ window.NETWEAVER_DB = {
         },
         {
           "text": "The Borderless Group uses large-scale coordinated inauthentic behavior to pollute the Taiwanese and Japanese information environments.",
-          "source_id": "src-dtl-borderless",
-          "about": "Borderless Group"
-        },
-        {
-          "text": "the Borderless Group has built an infrastructure that provides access to large numbers of Taiwanese and Japanese social media users.",
           "source_id": "src-dtl-borderless",
           "about": "Borderless Group"
         },
@@ -1092,7 +1117,14 @@ window.NETWEAVER_DB = {
         "src-reporter-mission",
         "src-gazette-mission"
       ],
-      "confidence": "high"
+      "confidence": "high",
+      "claims": [
+        {
+          "text": "群聚發文 同日，內容農場「密訊」發布和中時文章標題及內容一致的文章，並獲得粉專「反民進黨粉絲團」「民間大小事」「空心菜政府」群聚分享（23:00-01）。",
+          "source_id": "src-iorg-38",
+          "about": "密訊"
+        }
+      ]
     },
     {
       "id": "taiwan-headlines",
@@ -1139,6 +1171,26 @@ window.NETWEAVER_DB = {
         {
           "text": "「兩岸頭條」過去多次傳播親中不實訊息。",
           "source_id": "src-factlink-hackleak",
+          "about": "兩岸頭條"
+        },
+        {
+          "text": "14 日，中國時報發表社論「阿富汗悲慘結局，台灣的震撼彈」，該社論在 16 日被「兩岸頭條」引用。",
+          "source_id": "src-iorg-11",
+          "about": "兩岸頭條"
+        },
+        {
+          "text": "同日，「兩岸頭條」、「中華微視」引用《日經亞洲評論》報導內容，表示阿富汗的狀況打亂了拜登集中精力對抗中國的佈局。",
+          "source_id": "src-iorg-11",
+          "about": "兩岸頭條"
+        },
+        {
+          "text": "蔡正元的意見於當日獲得中資粉專「兩岸頭條」（9:12）及中共官媒「僑報網」（16:47）分享及引用。",
+          "source_id": "src-iorg-38",
+          "about": "兩岸頭條"
+        },
+        {
+          "text": "2 月 3 日 05:29 中資粉專「兩岸頭條」發布影片，標題為「美徹底犧牲台灣！",
+          "source_id": "src-iorg-38",
           "about": "兩岸頭條"
         }
       ]
@@ -1227,28 +1279,38 @@ window.NETWEAVER_DB = {
       "confidence": "high",
       "claims": [
         {
-          "text": "於全球逾180個社群平臺、以逾20種語言進行影響力操作",
-          "source_id": "src-nsb-2026",
-          "about": "Dragonbridge 對台認知作戰"
-        },
-        {
-          "text": "龍橋（Dragonbridge）為公安部僱用的網路水軍",
-          "source_id": "src-nsb-2026",
+          "text": "在11月更發現極為相似的另一個Hashtag「右翼の共生者」，第二波標籤以日語用法更道地，且該波攻擊與高市提出的「台灣有事」有關，不過這些帳號多數屬於典型「Spamouflage（垃圾變色龍）」網路，點閱互動低，影響力有限。",
+          "source_id": "src-factlink-takaichi",
           "about": "Spamouflage"
         },
         {
-          "text": "針對台灣議題散布不實訊息",
-          "source_id": "src-nsb-2026",
-          "about": "targets"
+          "text": "We believe one is likely linked to the CCP’s largest network of inauthentic social media accounts known as Spamouflage or Dragonbridge.",
+          "source_id": "src-aspi-2024",
+          "about": "Spamouflage"
         },
         {
-          "text": "Dragonbridge 跨逾180個平台的對台行動",
-          "source_id": "src-nsb-2026",
-          "about": "related-to"
+          "text": "Accounts targeting Lai and Hsiao were involved in previous Spamouflage campaigns targeting Chinese virologist Yan Limeng, Chinese businessman Guo Wengui, and Chinese dissidents.",
+          "source_id": "src-aspi-2024",
+          "about": "Spamouflage"
         },
         {
-          "text": "在11月更發現極為相似的另一個Hashtag「右翼の共生者」，第二波標籤以日語用法更道地，且該波攻擊與高市提出的「台灣有事」有關，不過這些帳號多數屬於典型「Spamouflage（垃圾變色龍）」網路，點閱互動低，影響力有限。",
-          "source_id": "src-factlink-takaichi",
+          "text": "Spamouflage-affiliated accounts sought to harass DPP legislative candidates too, calling the DPP’s Lin Ching-yi, a ‘shameless’ politician.",
+          "source_id": "src-aspi-2024",
+          "about": "Spamouflage"
+        },
+        {
+          "text": "The document was originally uploaded on Zenodo, an open-source data repository previously used by Spamouflage-linked operators to upload a document claiming Covid-19 originated from the US.",
+          "source_id": "src-aspi-2024",
+          "about": "Spamouflage"
+        },
+        {
+          "text": "On YouTube, Spamouflage-linked channels posted at least 490 videos referencing the ‘secret history’ document between 4 January and 10 January before YouTube suspended all the channels.",
+          "source_id": "src-aspi-2024",
+          "about": "Spamouflage"
+        },
+        {
+          "text": "ASPI is not suggesting that D-ID knowingly cooperated with Spamouflage-linked operators.",
+          "source_id": "src-aspi-2024",
           "about": "Spamouflage"
         },
         {
@@ -1367,11 +1429,6 @@ window.NETWEAVER_DB = {
           "about": "DRAGONBRIDGE"
         },
         {
-          "text": "the content consisted of DRAGONBRIDGE’s usual compilation of stock images and news footage from online sources accompanied by robotic English-language voiceovers.",
-          "source_id": "src-google-dragonbridge-2024",
-          "about": "DRAGONBRIDGE"
-        },
-        {
           "text": "DRAGONBRIDGE used an AI-generated \"news presenter\" in a short news segment-style video.",
           "source_id": "src-google-dragonbridge-2024",
           "about": "DRAGONBRIDGE"
@@ -1432,11 +1489,6 @@ window.NETWEAVER_DB = {
           "about": "DRAGONBRIDGE"
         },
         {
-          "text": "this small subset of DRAGONBRIDGE operations garnered higher levels of engagement from seemingly authentic users compared to the limited-to-no authentic engagement typically received by campaign activity.",
-          "source_id": "src-google-dragonbridge-2024",
-          "about": "DRAGONBRIDGE"
-        },
-        {
           "text": "That is why Google has scaled our efforts in recent years to disrupt DRAGONBRIDGE coordinated inauthentic activity on our platforms.",
           "source_id": "src-google-dragonbridge-2024",
           "about": "DRAGONBRIDGE"
@@ -1477,11 +1529,6 @@ window.NETWEAVER_DB = {
           "about": "Spamouflage"
         },
         {
-          "text": "which documented a set of four Spamouflage accounts on X posing as supporters of Trump and the Make America Great Again (MAGA) movement.",
-          "source_id": "src-graphika-americans",
-          "about": "Spamouflage"
-        },
-        {
           "text": "In conjunction with ISD’s analysis, our findings suggest that Spamouflage’s attempts to pose as U.S.",
           "source_id": "src-graphika-americans",
           "about": "Spamouflage"
@@ -1517,17 +1564,7 @@ window.NETWEAVER_DB = {
           "about": "Spamouflage"
         },
         {
-          "text": "they are not being artificially boosted by the rest of the Spamouflage network.",
-          "source_id": "src-isd-magaflage",
-          "about": "Spamouflage"
-        },
-        {
           "text": "One of the accounts, @WubbaLubbaDub18 began in 2020 as a standard Spamouflage account.",
-          "source_id": "src-isd-magaflage",
-          "about": "Spamouflage"
-        },
-        {
-          "text": "which is increasingly common across the network (for more on this see this previous Dispatch on Spamouflage and the US 2024 elections).",
           "source_id": "src-isd-magaflage",
           "about": "Spamouflage"
         },
@@ -1553,11 +1590,6 @@ window.NETWEAVER_DB = {
         },
         {
           "text": "It then posted Spamouflage ‘movie posters’ alongside food and travel content, usually Chinese dishes or regions of China.",
-          "source_id": "src-isd-magaflage",
-          "about": "Spamouflage"
-        },
-        {
-          "text": "this is one of the first documented efforts by Spamouflage to create a consistent multi-platform American persona.",
           "source_id": "src-isd-magaflage",
           "about": "Spamouflage"
         },
@@ -1588,11 +1620,6 @@ window.NETWEAVER_DB = {
         },
         {
           "text": "Most of the non-Spamouflage content originates from three accounts, with one in particular being the most prolific.",
-          "source_id": "src-isd-magaflage",
-          "about": "Spamouflage"
-        },
-        {
-          "text": "the same account posted a video comparing Biden and the Democrats to Hitler and the Nazis and shared a meme (which does not appear to have been created by Spamouflage) about how America will be “Zio free.”",
           "source_id": "src-isd-magaflage",
           "about": "Spamouflage"
         },
@@ -1632,11 +1659,6 @@ window.NETWEAVER_DB = {
           "about": "Spamouflage"
         },
         {
-          "text": "there is at least some evidence to suggest that HaiEnergy failed to generate substantial engagement outside of the inauthentic amplification that we have identified—a limitation we also noted in our recent public reporting on DRAGONBRIDGE.",
-          "source_id": "src-mandiant-haienergy-2022",
-          "about": "DRAGONBRIDGE"
-        },
-        {
           "text": "We currently track HaiEnergy and DRAGONBRIDGE as separate campaigns due to differences in campaign TTPs.",
           "source_id": "src-mandiant-haienergy-2022",
           "about": "DRAGONBRIDGE"
@@ -1655,11 +1677,6 @@ window.NETWEAVER_DB = {
           "text": "This lack of amplification from external sources, not unlike what we typically observed with DRAGONBRIDGE, limited the campaigns’ ability to breakout, essentially forming an echo chamber.",
           "source_id": "src-mandiant-haienergy-2022",
           "about": "DRAGONBRIDGE"
-        },
-        {
-          "text": "we were able to tie this activity together to confirm it was part of one operation known in the security community as Spamouflage and link it to individuals associated with Chinese law enforcement.",
-          "source_id": "src-meta-2023",
-          "about": "Spamouflage"
         },
         {
           "text": "Storm-1376 tried to cast doubt on the International Atomic Energy Agency’s (IAEA) scientific assessment that the disposal was safe.",
@@ -1697,37 +1714,72 @@ window.NETWEAVER_DB = {
           "about": "Empire Dragon"
         },
         {
-          "text": "We believe one is likely linked to the CCP’s largest network of inauthentic social media accounts known as Spamouflage or Dragonbridge.",
-          "source_id": "src-aspi-2024",
+          "text": "於全球逾180個社群平臺、以逾20種語言進行影響力操作",
+          "source_id": "src-nsb-2026",
+          "about": "Dragonbridge 對台認知作戰"
+        },
+        {
+          "text": "龍橋（Dragonbridge）為公安部僱用的網路水軍",
+          "source_id": "src-nsb-2026",
           "about": "Spamouflage"
         },
         {
-          "text": "Accounts targeting Lai and Hsiao were involved in previous Spamouflage campaigns targeting Chinese virologist Yan Limeng, Chinese businessman Guo Wengui, and Chinese dissidents.",
-          "source_id": "src-aspi-2024",
+          "text": "針對台灣議題散布不實訊息",
+          "source_id": "src-nsb-2026",
+          "about": "targets"
+        },
+        {
+          "text": "Dragonbridge 跨逾180個平台的對台行動",
+          "source_id": "src-nsb-2026",
+          "about": "related-to"
+        },
+        {
+          "text": "the content consisted of DRAGONBRIDGE’s usual compilation of stock images and news footage from online sources accompanied by robotic English-language voiceovers.",
+          "source_id": "src-google-dragonbridge-2024",
+          "about": "DRAGONBRIDGE"
+        },
+        {
+          "text": "this small subset of DRAGONBRIDGE operations garnered higher levels of engagement from seemingly authentic users compared to the limited-to-no authentic engagement typically received by campaign activity.",
+          "source_id": "src-google-dragonbridge-2024",
+          "about": "DRAGONBRIDGE"
+        },
+        {
+          "text": "which documented a set of four Spamouflage accounts on X posing as supporters of Trump and the Make America Great Again (MAGA) movement.",
+          "source_id": "src-graphika-americans",
           "about": "Spamouflage"
         },
         {
-          "text": "Spamouflage-affiliated accounts sought to harass DPP legislative candidates too, calling the DPP’s Lin Ching-yi, a ‘shameless’ politician.",
-          "source_id": "src-aspi-2024",
+          "text": "they are not being artificially boosted by the rest of the Spamouflage network.",
+          "source_id": "src-isd-magaflage",
+          "about": "Spamouflage"
+        },
+        {
+          "text": "which is increasingly common across the network (for more on this see this previous Dispatch on Spamouflage and the US 2024 elections).",
+          "source_id": "src-isd-magaflage",
+          "about": "Spamouflage"
+        },
+        {
+          "text": "this is one of the first documented efforts by Spamouflage to create a consistent multi-platform American persona.",
+          "source_id": "src-isd-magaflage",
+          "about": "Spamouflage"
+        },
+        {
+          "text": "the same account posted a video comparing Biden and the Democrats to Hitler and the Nazis and shared a meme (which does not appear to have been created by Spamouflage) about how America will be “Zio free.”",
+          "source_id": "src-isd-magaflage",
+          "about": "Spamouflage"
+        },
+        {
+          "text": "there is at least some evidence to suggest that HaiEnergy failed to generate substantial engagement outside of the inauthentic amplification that we have identified—a limitation we also noted in our recent public reporting on DRAGONBRIDGE.",
+          "source_id": "src-mandiant-haienergy-2022",
+          "about": "DRAGONBRIDGE"
+        },
+        {
+          "text": "we were able to tie this activity together to confirm it was part of one operation known in the security community as Spamouflage and link it to individuals associated with Chinese law enforcement.",
+          "source_id": "src-meta-2023",
           "about": "Spamouflage"
         },
         {
           "text": "who Spamouflage accounts accused of sexually harassing female colleagues and having affairs.",
-          "source_id": "src-aspi-2024",
-          "about": "Spamouflage"
-        },
-        {
-          "text": "The document was originally uploaded on Zenodo, an open-source data repository previously used by Spamouflage-linked operators to upload a document claiming Covid-19 originated from the US.",
-          "source_id": "src-aspi-2024",
-          "about": "Spamouflage"
-        },
-        {
-          "text": "On YouTube, Spamouflage-linked channels posted at least 490 videos referencing the ‘secret history’ document between 4 January and 10 January before YouTube suspended all the channels.",
-          "source_id": "src-aspi-2024",
-          "about": "Spamouflage"
-        },
-        {
-          "text": "ASPI is not suggesting that D-ID knowingly cooperated with Spamouflage-linked operators.",
           "source_id": "src-aspi-2024",
           "about": "Spamouflage"
         }
@@ -1927,6 +1979,11 @@ window.NETWEAVER_DB = {
           "text": "有些帳號已經公開其官媒身分，例如央視的「玉淵譚天」。",
           "source_id": "src-factlink-japan",
           "about": "玉淵譚天"
+        },
+        {
+          "text": "關於裴洛西訪台，中共官媒發起並參與多項論述傳播，央視更公開報導宣揚其旗下品牌「玉渊谭天」「協同」中央廣電總台「影響中國國內海外輿論」 DA.28；關於麥卡錫訪台的 10 項論述則多出自台灣，中共官媒多引用台灣新聞媒體社論、特定名嘴（如郭正亮、蔡正元、介文汲）、政治人物（如楊永明）及其他可信度不一的評論，擴大傳播。",
+          "source_id": "src-iorg-38",
+          "about": "玉渊谭天"
         }
       ]
     },
@@ -1972,6 +2029,116 @@ window.NETWEAVER_DB = {
           "text": "FactLink觀察到，此事件有兩波訊息傳播高峰，第一波是10月26日至10月29日，中國官方相關媒體如《觀察者網》、《環球網》、《環球時報》、《人民日報》、《央視軍事》、《海峽之聲》、《看台海》報導與其微博官方帳號，引用長光衛星公司衛星影像，「慶祝台灣回歸為中國一部分」的光復節。",
           "source_id": "src-factlink-satellite",
           "about": "《海峽之聲》"
+        },
+        {
+          "text": "出現傳播熱度高峰的事件多與台灣內部時事有關，唯一例外的是 2024 年 12 月 31 日 🇨🇳 中共中央军委「海峡之声」發布評論文章回顧台灣「民主退步的 2024」。",
+          "source_id": "src-iorg-118",
+          "about": "海峡之声"
+        },
+        {
+          "text": "自賴清德當選後，中共宣傳持續以台灣國內政治事件製造台灣民主失敗的「證據」（「赖清德希特勒化」「民进党法西斯化」「民进党独裁」「绿色恐怖」），持續放大「戒嚴論」論述，使中共「越来越多证据」的說法得以自圓其說（海峡之声），甚至主動發表年度總結評論台灣民主退步，突顯中共宣傳策略為優先形塑「民進黨破壞台灣民主」印象。",
+          "source_id": "src-iorg-118",
+          "about": "海峡之声"
+        },
+        {
+          "text": "當日，🇨🇳 中共中央军委「海峡之声」發布作者為「大力」的評論文章回顧台灣「民主退步的 2024」。",
+          "source_id": "src-iorg-118",
+          "about": "海峡之声"
+        },
+        {
+          "text": "🇨🇳 2024 年 5 月 27 日 🇨🇳 中共中央军委「海峡之声」發表文章認為賴清德在就職演說中多次提及民主，是民進黨為迷惑民眾的包裝，且以此「乞求外部势力为其谋独挑衅撑腰打气」。",
+          "source_id": "src-iorg-118",
+          "about": "海峡之声"
+        },
+        {
+          "text": "🇨🇳 2024 年 5 月 31 日 🇨🇳 中共中央军委「海峡之声」發表評論稱民進黨執政多年「民主这块包装纸不仅用来包裹一党一己私利，也成为谋“独”分裂的装饰工具」，針對賴清德就職演說強調民主價值，則認為目的是「乞求外部势力为其谋独挑衅撑腰打气，充当外部势力遏制中国发展的马前卒」。",
+          "source_id": "src-iorg-118",
+          "about": "海峡之声"
+        },
+        {
+          "text": "🇨🇳 2024 年 10 月 12 日 🇨🇳 中共中央军委「海峡之声」發表評論稱賴清德「编造台独谬论的手法」之一就「披上民主的外衣进行伪装」。",
+          "source_id": "src-iorg-118",
+          "about": "海峡之声"
+        },
+        {
+          "text": "🇨🇳 2025 年 2 月 25 日 🇨🇳 中共中央军委「海峡之声」批評賴清德於國安會議後談話中稱要和「友盟國家合力打造全球民主供應鏈」的觀點，是因為明知無法達成川普希望台灣提高國防預算的標準，想以「民主同盟」價值討好美國，「让美国充当保护伞」。",
+          "source_id": "src-iorg-118",
+          "about": "海峡之声"
+        },
+        {
+          "text": "🇨🇳 2024 年 10 月 12 日 🇨🇳 中共中央军委 「海峡之声」評論賴清德雙十演講的文章中，稱賴清德高調宣揚民主，但上台以來「只要多数尊重少数，不要少数服从多数」。",
+          "source_id": "src-iorg-118",
+          "about": "海峡之声"
+        },
+        {
+          "text": "🇨🇳 2024 年 12 月 27 日 🇨🇳 中共中央军委 「海峡之声」發表作者為「言未央」的評論文章「“青鸟”扑来 民进党上演“更大的民主”闹剧！」",
+          "source_id": "src-iorg-118",
+          "about": "海峡之声"
+        },
+        {
+          "text": "🇨🇳 2024 年 12 月 31 日 🇨🇳 中共中央军委「海峡之声」作者為「大力」的文章，總結台灣 2024 年的政治發展，以「民主退步的2024：“斗鸡”搭草台，“台独”变独裁！」",
+          "source_id": "src-iorg-118",
+          "about": "海峡之声"
+        },
+        {
+          "text": "🇨🇳 2024 年 12 月 31 日 🇨🇳 中共中央军委「海峡之声」評論稱賴清德對於如何找回失去的年輕選票「采取了更为简单粗暴的方式，即利用司法工具打残柯文哲」。",
+          "source_id": "src-iorg-118",
+          "about": "海峡之声"
+        },
+        {
+          "text": "🇨🇳 2024 年 9 月 18 日 🇨🇳 中共中央军委「海峡之声」發布評論文章，內文針對台灣「轉型正義」工作評論，稱賴清德「以“民主自由”为幌子，推进“转型正义”，大搞“去中国化”和“软性台独”」，將「闽南语方言更名为“台湾台语”，相继抛出“中华民族论述是一个陷阱”“炎黄子孙只是中国古代传说”“两岸关系的实质是两国”等离谱言论」，其意在「洗涤人心」。",
+          "source_id": "src-iorg-118",
+          "about": "海峡之声"
+        },
+        {
+          "text": "🇨🇳 2024 年 12 月 27 日 🇨🇳 中共中央军委「海峡之声」發表評論，針對韓國總統尹錫悅宣布戒嚴事件，文章認為「民进党第一时间公开表示支持」「充分暴露出民进党一干人企图通过暴力手段解决问题的险恶用心」，且稱民進黨「大搞“绿色恐怖”，制造“寒蝉效应”，其实就是“戒严”的变种」。",
+          "source_id": "src-iorg-118",
+          "about": "海峡之声"
+        },
+        {
+          "text": "🇨🇳 2024 年 9 月 9 日 🇨🇳 中共中央军委「海峡之声」發表標題為「抗中变为美尽忠，民主成赖清德做主」的評論文章，內文稱賴清德上台以來「对除了自己以外的其他派系、其他政党全力围攻、意图剿灭，让民主变成“赖清德做主”」。",
+          "source_id": "src-iorg-118",
+          "about": "海峡之声"
+        },
+        {
+          "text": "🇨🇳 2024 年 12 月 27 日 🇨🇳 中共中央军委「海峡之声」藉台灣立法院修訂選罷法、憲訴法、財劃法三大法案的爭議，認為賴清德煽動反修法的群眾（青鳥）對抗政敵。",
+          "source_id": "src-iorg-118",
+          "about": "海峡之声"
+        },
+        {
+          "text": "🇨🇳 2024 年 9 月 18 日 🇨🇳 中共中央军委「海峡之声」發表評論，內文針對台灣政府增加「媒體政策及業務宣導經費」，認為這表明「赖当局将进一步推动实施“台独”文化工程、培养绿色网军大肆洗脑，建构信息茧房，确保其政治、选举利益和“抗中保台”策略的实现」。",
+          "source_id": "src-iorg-118",
+          "about": "海峡之声"
+        },
+        {
+          "text": "🇹🇼-🇨🇳 2024 年 6 月 12 日 🇨🇳 中共中央军委「海峡之声」發表作者為「大力」的評論，標題「越来越多证据表明，赖清德正在向希特勒靠拢！」",
+          "source_id": "src-iorg-118",
+          "about": "海峡之声"
+        },
+        {
+          "text": "🇹🇼-🇨🇳 2025 年 6 月 11-12 日間「中国台湾网」、「海峡飞虹」、「海峡之声」先後引述 6 月 11 日「黨外在野大聯盟」成立大會上召集人 國民黨 鄭麗文的發言：「当下岛内的执政党逐渐走向法西斯化、沙文主义化，大家忧心不已，因此希望联结、团结所有“在野”力量」。",
+          "source_id": "src-iorg-118",
+          "about": "海峡之声"
+        },
+        {
+          "text": "🇨🇳 4 月 10 日 07:12 至 4 月 11 日 08:11 間，中共官媒「大公文匯網」「大公文匯網」「僑報網」「海峽之聲」「鳳凰網」「鳳凰網」「鳳凰網」發布報導，持續傳播此動畫影片。",
+          "source_id": "src-iorg-41",
+          "about": "海峽之聲"
+        },
+        {
+          "text": "當日 09:47 至 14:44，中共官媒「海峽之聲」「中國台灣網」「央視網」持續發布報導傳播該影片。",
+          "source_id": "src-iorg-41",
+          "about": "海峽之聲"
+        },
+        {
+          "text": "8 日，中共官媒「台海網」（8:59）及「海峽之聲」（9:12）協力傳播 2 則社論內容，宣稱「不少岛内媒体和民众已经看清了麦卡锡访台的真相，喊话麦卡锡不要来台湾。」",
+          "source_id": "src-iorg-38",
+          "about": "海峽之聲"
+        },
+        {
+          "text": "隔日，中共官媒「中國台灣網」「鳳凰網」「台海網」「海峽飛虹」及「海峽之聲」以「根据岛内公布的一份最新民调」協力傳播相同內容，以網路投票結果代表台灣民眾全體意見。",
+          "source_id": "src-iorg-38",
+          "about": "海峽之聲"
         }
       ]
     },
@@ -2047,6 +2214,36 @@ window.NETWEAVER_DB = {
           "about": "Global Times"
         },
         {
+          "text": "10, the Global Times reported on “A bloody kidnapping that shocked Taiwan,” criticizing Tsai for ‘ignoring’ a major violent crime case in Taoyuan.",
+          "source_id": "src-dtl-2022election",
+          "about": "Global Times"
+        },
+        {
+          "text": "Global Times, local PRC state media Southeast Media, and the Taiwan Affairs Office of the State Council quoted the reports, saying that “the two sides of the Strait have the same root and their origin cannot be separated.”",
+          "source_id": "src-dtl-2022election",
+          "about": "Global Times"
+        },
+        {
+          "text": "In 2025, during the regular press briefing of the foreign ministry spokesperson of the PRC, Lin Jian, Global Times posed a question on Pakistan and mining.",
+          "source_id": "src-doublethink-lab-96d2c0",
+          "about": "Global Times"
+        },
+        {
+          "text": "Notably, #YESWPS documented a post from Global Times even before the incident happened.",
+          "source_id": "src-doublethink-lab-aaba8c",
+          "about": "Global Times"
+        },
+        {
+          "text": "The first post appeared on Global Times at UTC+00:00 24:39 on September 15 and 1:15 on September 16, 2025, despite the event occurring at 2:00 a.m.",
+          "source_id": "src-doublethink-lab-aaba8c",
+          "about": "Global Times"
+        },
+        {
+          "text": "State-controlled media Global Times has, in several articles, highlighted how retired generals accused the Philippine government of being a U.S.",
+          "source_id": "src-doublethink-lab-aaba8c",
+          "about": "Global Times"
+        },
+        {
           "text": "FactLink觀察到，此事件有兩波訊息傳播高峰，第一波是10月26日至10月29日，中國官方相關媒體如《觀察者網》、《環球網》、《環球時報》、《人民日報》、《央視軍事》、《海峽之聲》、《看台海》報導與其微博官方帳號，引用長光衛星公司衛星影像，「慶祝台灣回歸為中國一部分」的光復節。",
           "source_id": "src-factlink-satellite",
           "about": "《環球網》"
@@ -2057,7 +2254,7 @@ window.NETWEAVER_DB = {
           "about": "《環球時報》"
         },
         {
-          "text": "” —-《環球時報》引述《參考消息》。",
+          "text": "“表示有能力精准打击目标，释放出这些信息，是在警告‘台独’势力。” —-《環球時報》引述《參考消息》。",
           "source_id": "src-factlink-satellite",
           "about": "《環球時報》"
         },
@@ -2080,6 +2277,156 @@ window.NETWEAVER_DB = {
           "text": "比如前環球時報的總編輯胡錫進在11月1日高市與林信義在APEC場合見面時，25便從高市早苗的性別做文章，將她與日本形容為美國的「東亞妾室」，與台灣「私通」，比擬日本與台灣及美國之間的關係。",
           "source_id": "src-factlink-japan",
           "about": "環球時報"
+        },
+        {
+          "text": "🇹🇼-🇨🇳 2024 年 5 月 23 日 🇨🇳 人民日报「环球网」針對立法院「國會改革」修法爭議發表文章，內文引用 國民黨 葉元之、 國民黨 趙少康、聯合 聯合新聞網說法，認為立院外抗議的民眾是受到民進黨煽動或組織，評論賴政府「意图操控民众」。",
+          "source_id": "src-iorg-118",
+          "about": "环球网"
+        },
+        {
+          "text": "🇨🇳 2024 年 5 月 25 日 🇨🇳 人民日报「环球网」再發表評論，稱立法院內肢體衝突事件的根源是因賴政府不能接受在國會不佔多數，因此訴諸暴力「输了人头就出拳头」。",
+          "source_id": "src-iorg-118",
+          "about": "环球网"
+        },
+        {
+          "text": "🇨🇳 2025 年 3 月 15 日 🇨🇳 人民日报「环球网」發表作者為「北平锋」的評論文章，內文宣稱民進黨借國安之名打壓反對派，並「把司法工具化，滥用所谓反渗透法擅权专用、罗织罪名」。",
+          "source_id": "src-iorg-118",
+          "about": "环球网"
+        },
+        {
+          "text": "🇹🇼-🇨🇳 2025 年 6 月 25 日 🇨🇳 人民日报「环球网」報導台灣移除蔣介石銅像，引用 國民黨 羅智強稱「赖清德的权力越大，就越往独裁迈进」；區桂之稱「民进党推动拆除所谓“威权”象征物，实则是企图建立自身的“威权”」；蔡正元稱民進黨為「打着“消除威权象征”的幌子，实则是为了打击反对力量」。",
+          "source_id": "src-iorg-118",
+          "about": "环球网"
+        },
+        {
+          "text": "🇨🇳 2025 年 3 月 16 日 🇨🇳 人民日报「环球网」再發布「北平锋」的評論「赖清德绿色恐怖暴政让台湾回到戒严白色恐怖时期」，稱民進黨以反滲透之名「行思想禁锢人身控制之实，将台湾社会推向绿色恐怖深渊」。",
+          "source_id": "src-iorg-118",
+          "about": "环球网"
+        },
+        {
+          "text": "🇨🇳 2024 年 6 月 14 日 🇨🇳 人民日报「环球网」發表作者為「程东」的評論文章，針對台灣網紅鍾明軒赴中，稱這是「“信息茧房”被现实击碎」。",
+          "source_id": "src-iorg-118",
+          "about": "环球网"
+        },
+        {
+          "text": "🇨🇳 2025 年 6 月 5 日 🇨🇳 人民日报「环球网」再度發表作者為「程东」的文章，針對網紅館長陳之漢赴中，開頭引用未知來源的「岛内舆论」稱綠營批評館長代表「绿营其实是害怕了，担忧他们构筑的认知围墙被陈之汉突破」。",
+          "source_id": "src-iorg-118",
+          "about": "环球网"
+        },
+        {
+          "text": "🇹🇼-🇨🇳 2025 年 6 月 30 日 🇨🇳 人民日报「环球网」發表評論「赖清德“法理”外衣难掩“台独”祸心」，開頭即批評賴團結十講「直接目的是为推动“大罢免”政治斗争谋取政治私利进行文宣造势，不惜将台湾推向分裂对抗的深渊」。",
+          "source_id": "src-iorg-118",
+          "about": "环球网"
+        },
+        {
+          "text": "🇨🇳 2025 年 4 月 28 日 🇨🇳 人民日报「环球时报」抖音發布影片，標題「绿恐又出新花样，民进党拿台民众户籍开刀」，內容稱陸委會指出台灣民眾持有中國身分證與定居證將喪失戶籍的政策是「绿色恐怖」，將「严重损害台湾的民主自由和社会和谐」。",
+          "source_id": "src-iorg-118",
+          "about": "环球时报"
+        },
+        {
+          "text": "🇨🇳 2025 年 3 月 27 日 🇨🇳 人民日报「环球时报」抖音發布影片評論中配遭台灣政府驅逐事件，內容引用「厦门大学台湾研究院副院长」张文生觀點，稱「岛内台独势力已然在纳粹化的政治道路上一去不复返，打压陆配很可能仅仅是一个开始」。",
+          "source_id": "src-iorg-118",
+          "about": "环球时报"
+        },
+        {
+          "text": "🇨🇳 2025 年 3 月 28 日 🇨🇳 人民日报「环球时报」發表作者為「中国社会科学院台湾研究所副研究员」陈桂清的評論文章，內文列舉民進黨政治人物（如劉世芳、黃捷、沈伯洋等）、台派人士（如曹興誠、網紅「八炯」）等「配合」「赖当局」「大搞“台独”一言堂，大搞“绿色独裁”“绿色恐怖”」「阻挠两岸交流、打压政治异己、迫害台湾同胞」，認為他們「充当“台独”政权的“纳粹冲锋队员”」。",
+          "source_id": "src-iorg-118",
+          "about": "环球时报"
+        },
+        {
+          "text": "例如，聯合新聞網刊出社論「阿富汗震撼」後，中共官媒環球網微博帳號、通說 2.0 引用其內容；而中共官媒環球網刊出社評「为什么说美国一定会最终抛弃台湾」，聯合新聞網即在隔日改寫，刊出「環球時報列六大理由，指美國終將拋棄台灣」報導。",
+          "source_id": "src-iorg-11",
+          "about": "環球網"
+        },
+        {
+          "text": "環球網：美国从阿富汗撤军后，很可能跑到西太平洋地区再继续制造新的危机和混乱。",
+          "source_id": "src-iorg-11",
+          "about": "環球網"
+        },
+        {
+          "text": "環球網總編胡锡进：拜登是「老糊塗」，會讓台灣變成東亞火藥桶。",
+          "source_id": "src-iorg-11",
+          "about": "環球網"
+        },
+        {
+          "text": "8 月 18 日，中共官媒環球網發表社評「为什么说美国一定会最终抛弃台湾」。",
+          "source_id": "src-iorg-11",
+          "about": "環球網"
+        },
+        {
+          "text": "8 月 16 日，中共官媒環球網微博帳號貼文，提到「岛内不少网友表示同意：“今日阿富汗，明日台湾。”」",
+          "source_id": "src-iorg-11",
+          "about": "環球網"
+        },
+        {
+          "text": "在美國國安顧問蘇利文強調對台承諾堅實後，中共官媒環球網藉由台灣網友言論反擊美國「不管他承諾什麼，我們台灣一定是焦土」，並以「美國在阿富汗是賠錢，在台灣是賺錢」說法與美國對台軍售案連結，製造美國藉由賣軍火發戰爭財的形象。",
+          "source_id": "src-iorg-11",
+          "about": "環球網"
+        },
+        {
+          "text": "有 5 個粉專分享中共官媒環球網評論的內容，包含多次在心慌週報中出現的 qiqi 內容農場相關粉專。",
+          "source_id": "src-iorg-11",
+          "about": "環球網"
+        },
+        {
+          "text": "15 日，中共官媒環球網：「美国从阿富汗撤军后，很可能跑到西太平洋地区再继续制造新的危机和混乱。」",
+          "source_id": "src-iorg-11",
+          "about": "環球網"
+        },
+        {
+          "text": "隔日，聯合新聞網將該社評改寫，刊出題為「環球時報列六大理由 指美國終將拋棄台灣」的報導。",
+          "source_id": "src-iorg-11",
+          "about": "環球時報"
+        },
+        {
+          "text": "8 月 20 日，中共官媒環球時報總編輯胡锡进貼文，認為拜登將台灣類比為北約盟友的是「老糊塗」，會讓台灣變成「東亞火藥桶」。",
+          "source_id": "src-iorg-11",
+          "about": "環球時報"
+        },
+        {
+          "text": "當日 10:19 至 14:06 間，中共官媒「環球網」「台海網」「鳳凰網」「澎湃新聞」「央視網」及官媒微博帳號「环球时报」「海外网」「环球网」「小央视频」「香港中通社」「中国新闻网」「厦门广电」「海峡导报」「中国新闻社」多使用相同「天氣晴朗」圖片，協力傳播中時報導內容。",
+          "source_id": "src-iorg-41",
+          "about": "环球时报"
+        },
+        {
+          "text": "當日 14:56 至隔日 9:18 之間，中共官媒「澎湃新聞」「環球網」「台海網」「香港新聞網」協力傳播此則中時新聞網的報導內容。",
+          "source_id": "src-iorg-41",
+          "about": "環球網"
+        },
+        {
+          "text": "🇹🇼-🇨🇳 4 月 12 日 08:55 至 10:19 間，中共官媒「鳳凰網」「環球網」「香港新聞網」「大公文匯網」協力傳播介文汲在「中天新聞」節目影片中的說法。",
+          "source_id": "src-iorg-41",
+          "about": "環球網"
+        },
+        {
+          "text": "中共官媒 🇨🇳 人民日报「环球网」主筆室「北平锋」宣稱霍諾德徒手登頂台北 101 是「照见 “台独” 的穷途末路」，宣稱世界透過此次活動直播看見「“台独” 制造的危机、“绿色恐怖” 笼罩的阴霾」，全文言不及義，胡言亂語，充分展現其無論如何必須批評台灣政府、台灣民主的窘境與無奈。",
+          "source_id": "src-iorg-131",
+          "about": "环球网"
+        },
+        {
+          "text": "1 月份共有 329 則文本提及劉世芳，主要內容為国台办在 1 月 7 日召開記者會宣布將劉世芳「列为 “台独” 顽固分子」（国台办）、宣稱原因是「解职驱逐多名陆配」（环球网），並強調其「两次上清单」（环球网）。",
+          "source_id": "src-iorg-131",
+          "about": "环球网"
+        },
+        {
+          "text": "1 月份共有 329 則文本提及劉世芳，主要內容為国台办在 1 月 7 日召開記者會宣布將鄭英耀「列为 “台独” 顽固分子」（国台办）、宣稱原因是「制造校园 “绿色恐怖”」（环球网），並強調其「劣迹斑斑，反对两岸教育交流第一人」（中国新闻网）。",
+          "source_id": "src-iorg-131",
+          "about": "环球网"
+        },
+        {
+          "text": "1 月 10 日，🇨🇳 人民日报「环球网」發布作者「北平锋」的文章「在反“独”促统的民族大义面前并肩而行」，內文包含「近日，台湾“高等法院”对“三中案”作出二审判决，台湾前民意代表蔡正元被判三年六个月，中国国民党前主席马英九无罪。",
+          "source_id": "src-iorg-131",
+          "about": "环球网"
+        },
+        {
+          "text": "1 月 26 日，🇨🇳 人民日报「环球网」發布作者「北平锋」的文章「台北 101，照见“台独”的穷途末路」，內文包含「台北 101 大楼的玻璃幕墙外，美国极限攀岩者亚历克斯·霍诺德的身影向上移动，赖清德对此高调宣称，“让世界看到了台湾的活力与风貌”。",
+          "source_id": "src-iorg-131",
+          "about": "环球网"
+        },
+        {
+          "text": "1 月 31 日，🇨🇳 人民日报「环球网」發布作者「北平锋」的文章「再聊聊“台北 101”背后的那把“假钥匙”」，內文包含「民进党当局却执意要将“台北 101”改名为 “台湾 101”，居心叵测篡改其文化内涵及其被寄托的民族情感。",
+          "source_id": "src-iorg-131",
+          "about": "环球网"
         },
         {
           "text": "As many foreign readers of the Global Times are already aware, it is a subsidiary of the People’s Daily, the principal propaganda publication of the Chinese Communist Party.",
@@ -2144,11 +2491,6 @@ window.NETWEAVER_DB = {
         {
           "text": "We should object to insulting editorials from the Global Times.",
           "source_id": "src-lowy-globaltimes",
-          "about": "Global Times"
-        },
-        {
-          "text": "In 2025, during the regular press briefing of the foreign ministry spokesperson of the PRC, Lin Jian, Global Times posed a question on Pakistan and mining.",
-          "source_id": "src-doublethink-lab-96d2c0",
           "about": "Global Times"
         }
       ]
@@ -2540,6 +2882,81 @@ window.NETWEAVER_DB = {
           "text": "然而，也有台灣的挺中網紅名嘴，冠以「媽媽桑」外交形容高市的外交風格，進而被專門對台宣傳的網站，例如「台海網」截用，剪輯高市與其他元首見面的影片，26再成為微博的熱搜關鍵詞。",
           "source_id": "src-factlink-japan",
           "about": "台海網"
+        },
+        {
+          "text": "🇨🇳 2025 年 2 月 22 日 🇨🇳 福建日报「台海网」發表評論稱民進黨「把制度和民主作为抗拒统一、分裂国家的借口」，且配合西方「民主对抗威权」敘事，但川普「亲手撕碎了美西方虚伪民主叙事的包装纸」。",
+          "source_id": "src-iorg-118",
+          "about": "台海网"
+        },
+        {
+          "text": "🇹🇼-🇨🇳 2024 年 1 月 13 日 🇨🇳 福建日报「海峡导报」針對美方於選前舉行媒體電話簡報會一事發表評論，認為美國此舉「罕见」「反常」「甘冒“介选”质疑」。",
+          "source_id": "src-iorg-118",
+          "about": "海峡导报"
+        },
+        {
+          "text": "🇨🇳 2024 年 12 月 31 日 🇨🇳 福建日报「海峡导报社」以「民主退步的2024：斗鸡搭草台，台独变独裁」為標題發表評論，內文預言「只要2028年蓝白能够完成整合，“双少数”的赖清德将毫无一战之力，或将成为台湾地区领导人直选以来首个未能连任的领导人」。",
+          "source_id": "src-iorg-118",
+          "about": "海峡导报"
+        },
+        {
+          "text": "🇹🇼-🇨🇳 2024 年 4 月 22 日 🇨🇳 福建日报「海峡导报社」報導，針對國民黨智庫傳出裁員，引用 國民黨 國民黨批評「民进党透过“党产会”抄家式的追杀在野党，眼中只有政治追杀，早就把所谓公平正义抛诸脑后」。",
+          "source_id": "src-iorg-118",
+          "about": "海峡导报"
+        },
+        {
+          "text": "🇹🇼-🇨🇳 2025 年 2 月 18 日 🇨🇳 福建广播影视 TikTok 帳號「大咖開麥」及 🇨🇳 福建日报 抖音帳號「海峡导报」都發布影片，內容為呂禮詩於政論節目上稱中國電影「哪吒 2」在台灣可惜沒有排上上映抽籤（即無法在台灣上映），認為「台灣的言論自由，台灣的各種自由，會不會慢慢的讓大家覺得越來越只是一場笑話」。",
+          "source_id": "src-iorg-118",
+          "about": "海峡导报"
+        },
+        {
+          "text": "🇨🇳 2024 年 12 月 31 日 🇨🇳 福建日报「海峡导报社」發表文章回顧 2024 年台灣政治發展，內文稱賴清德司法迫害柯文哲「接连突破民主底线，将绿色独裁推进至戒严边缘」，又動員「青鳥」施壓在野黨，讓 2024 年成為「民主退步的2024」。",
+          "source_id": "src-iorg-118",
+          "about": "海峡导报"
+        },
+        {
+          "text": "當日 10:19 至 14:06 間，中共官媒「環球網」「台海網」「鳳凰網」「澎湃新聞」「央視網」及官媒微博帳號「环球时报」「海外网」「环球网」「小央视频」「香港中通社」「中国新闻网」「厦门广电」「海峡导报」「中国新闻社」多使用相同「天氣晴朗」圖片，協力傳播中時報導內容。",
+          "source_id": "src-iorg-41",
+          "about": "台海網"
+        },
+        {
+          "text": "當日 14:56 至隔日 9:18 之間，中共官媒「澎湃新聞」「環球網」「台海網」「香港新聞網」協力傳播此則中時新聞網的報導內容。",
+          "source_id": "src-iorg-41",
+          "about": "台海網"
+        },
+        {
+          "text": "1 月份共有 437 則文本提及鄭麗文，主要內容包含前總統馬英九建議鄭麗文訪中「别穿高跟鞋，赶快练毛笔字」（凤凰网），並放大鄭麗文宣稱台灣主流民意期待兩岸交流的說法（海峡导报）以及「兩岸和平框架」主張（凤凰网）。",
+          "source_id": "src-iorg-131",
+          "about": "海峡导报"
+        },
+        {
+          "text": "1 月 30 日，🇨🇳 鳳凰衛視「凤凰网」發布來自 🇨🇳 福建日报「海峡导报」的文章「郑丽文抛“两岸和平框架”，岛内蓝白认可：和平是人民的殷切期盼」，內文包含「国民党主席郑丽文在专访透露今年上半年会先访问大陆、2028年执政后推“两岸和平框架”。",
+          "source_id": "src-iorg-131",
+          "about": "海峡导报"
+        },
+        {
+          "text": "1 月 17 日，🇨🇳 福建日报「海峡导报」發布抖音，標題為「中天知名记者林宸佑被羁押，或因得罪民进党引祸上身」。",
+          "source_id": "src-iorg-131",
+          "about": "海峡导报"
+        },
+        {
+          "text": "8 日，中共官媒「台海網」（8:59）及「海峽之聲」（9:12）協力傳播 2 則社論內容，宣稱「不少岛内媒体和民众已经看清了麦卡锡访台的真相，喊话麦卡锡不要来台湾。」",
+          "source_id": "src-iorg-38",
+          "about": "台海網"
+        },
+        {
+          "text": "2 月 27 日 8:36 中共官媒「台海網」發布報導，內容引用政治大學國際關係研究中心研究員嚴震生教授受訪時的意見，認為「麦卡锡 [...] 窜台在所谓“美台关系”上的政治象征意义非常明显」「中国大陆在被逼迫的情况下“不得不”作出反制」。",
+          "source_id": "src-iorg-38",
+          "about": "台海網"
+        },
+        {
+          "text": "隔日，中共官媒「中國台灣網」「鳳凰網」「台海網」「海峽飛虹」及「海峽之聲」以「根据岛内公布的一份最新民调」協力傳播相同內容，以網路投票結果代表台灣民眾全體意見。",
+          "source_id": "src-iorg-38",
+          "about": "台海網"
+        },
+        {
+          "text": "其中，「台海網」的文章使用中共官媒「新華網」發布於 2022 年 8 月 5 日的合成照片 DA.28。",
+          "source_id": "src-iorg-38",
+          "about": "台海網"
         }
       ]
     },
@@ -2578,7 +2995,189 @@ window.NETWEAVER_DB = {
         "src-iorg-usskep1",
         "src-iorg-101"
       ],
-      "confidence": "high"
+      "confidence": "high",
+      "claims": [
+        {
+          "text": "This coincided with reporting on the allegation by the China Times, a Taiwan-based newspaper that reportedly takes instructions directly from the CCP’s Taiwan Affairs Office.",
+          "source_id": "src-aspi-2024",
+          "about": "China Times"
+        },
+        {
+          "text": "Traditional media, such as: United Daily News, China Times, ETtoday, TVBS, CTITV.",
+          "source_id": "src-dtl-2022election",
+          "about": "China Times"
+        },
+        {
+          "text": "文末引用 旺中 中時電子報評論的觀點「台湾民主自由出现越来越被美国利益所掌控的趋势」。",
+          "source_id": "src-iorg-118",
+          "about": "中時電子報"
+        },
+        {
+          "text": "文末也引用 旺中 中時電子報評論稱「绿营担心他会和钟明轩一样，带回的第一手信息冲击绿粉尤其是年轻世代，让大家走出绿营长期建构的“信息茧房”，对大陆有全新的认知，这样就不利于民进党继续“认知作战”洗脑了」。",
+          "source_id": "src-iorg-118",
+          "about": "中時電子報"
+        },
+        {
+          "text": "蔡總統會見麥卡錫後，提及軍演的 YouTube 影片主要來自台灣新聞媒體頻道，依序為 TVBS、旺中集團、三立。",
+          "source_id": "src-iorg-41",
+          "about": "旺中集團"
+        },
+        {
+          "text": "觀點 旺中集團多個 Facebook 粉專群聚發文協力傳播這項論述，時間點在國防部發布新聞稿後，並使用容易引起情緒的說法「攏是假」「軍方認定 [...] 究辦」。",
+          "source_id": "src-iorg-41",
+          "about": "旺中集團"
+        },
+        {
+          "text": "當日 12:15 旺中集團粉專「無色覺醒」「正常發揮」「大新聞大爆卦」「頭條開講」亦群聚發表訊息內容完全相同的貼文，留言內容亦同。",
+          "source_id": "src-iorg-41",
+          "about": "旺中集團"
+        },
+        {
+          "text": "觀點 旺中集團對這次事件的說法反覆，引用無法證實來源的「知情人士」宣稱「巨響」「純粹是 F-16 例行測試」，未提供證據，說法亦與國防部澄清內容不符。",
+          "source_id": "src-iorg-41",
+          "about": "旺中集團"
+        },
+        {
+          "text": "觀點 根據 IORG 資料庫，包括旺中集團在內，在 Facebook 有多起關於這項論述的群聚發文現象。",
+          "source_id": "src-iorg-41",
+          "about": "旺中集團"
+        },
+        {
+          "text": "隨後在當日 19:02 至 21:26 間，台灣新聞媒體跟進報導，包含自由時報、中央社、民視新聞網、聯合新聞網、中廣新聞網、上報、中時新聞網、芋傳媒。",
+          "source_id": "src-iorg-41",
+          "about": "中時新聞網"
+        },
+        {
+          "text": "🇨🇳-🇹🇼 4 月 10 日 11:09 中時新聞網報導〈宣傳戰持續 東部戰區發布「台島上空的聲音」〉，為 IORG 資料庫中首則提及這支影片的台灣新聞報導。",
+          "source_id": "src-iorg-41",
+          "about": "中時新聞網"
+        },
+        {
+          "text": "🇹🇼-🇨🇳 4 月 10 日 9:20 中時新聞網發布標題〈花蓮上空連傳 4 聲爆炸巨響 網友：該不會要打仗了〉的報導，提及「花蓮北區今天早上 8 點多，連續傳出 4 次不明爆炸巨響」「也有人擔心該不會要打仗，更有人猜測應是空軍戰鬥機的超音速音爆聲」。",
+          "source_id": "src-iorg-41",
+          "about": "中時新聞網"
+        },
+        {
+          "text": "🇹🇼-🇨🇳 4 月 10 日 11:32 中時新聞網發布標題〈花蓮連 4 次爆炸巨響原因曝光 知情人士 5 字掛保證〉的報導，宣稱「有知情人士保證跟軍演無關，純粹是我軍方針對 F-16 的例行測試」「每架 F-16 整修完後，軍方都一定會進行超音速測試，而這正是今日花蓮發生巨響的原因，跟解放軍環台軍演無關」。",
+          "source_id": "src-iorg-41",
+          "about": "中時新聞網"
+        },
+        {
+          "text": "當日 14:56 至隔日 9:18 之間，中共官媒「澎湃新聞」「環球網」「台海網」「香港新聞網」協力傳播此則中時新聞網的報導內容。",
+          "source_id": "src-iorg-41",
+          "about": "中時新聞網"
+        },
+        {
+          "text": "觀點 中時新聞網將中共官媒發起的論述簡化為「澳大利亞新聞網報導」內容，然而實際上該澳媒報導內容並未包含「尼米茲號跑了」，因此這樣的報導方式屬於變造來源，可判定為資訊操弄。",
+          "source_id": "src-iorg-41",
+          "about": "中時新聞網"
+        },
+        {
+          "text": "此外，中共官媒亦多次協力傳播中時集團關於這項論述的報導。",
+          "source_id": "src-iorg-41",
+          "about": "中時"
+        },
+        {
+          "text": "當日 10:19 至 14:06 間，中共官媒「環球網」「台海網」「鳳凰網」「澎湃新聞」「央視網」及官媒微博帳號「环球时报」「海外网」「环球网」「小央视频」「香港中通社」「中国新闻网」「厦门广电」「海峡导报」「中国新闻社」多使用相同「天氣晴朗」圖片，協力傳播中時報導內容。",
+          "source_id": "src-iorg-41",
+          "about": "中時"
+        },
+        {
+          "text": "影片中也持續使用中時 10 日首則報導「天氣晴朗」圖片。",
+          "source_id": "src-iorg-41",
+          "about": "中時"
+        },
+        {
+          "text": "貼文皆使用中時「天氣晴朗」圖片，發文帳號包括「逐浪新闻」（14 日 23:25）「垄上频道」（15 日 0:07）「长江云官方微博」（9:06）「湖北卫视」（9:07）「湖北电视教育频道」（9:10）「湖北电视台官方微博」（9:20）。",
+          "source_id": "src-iorg-41",
+          "about": "中時"
+        },
+        {
+          "text": "（聽片 42:00 起）隔日 18:03，此則中時報導內容，被以可疑訊息回報至 Cofacts。",
+          "source_id": "src-iorg-41",
+          "about": "中時"
+        },
+        {
+          "text": "🇹🇼 2022 年 11 月 20-21 日 3 則由李路、郁慕明、旺報社評為作者的評論刊登於中時電子報，認為裴洛西訪台已造成「台海危機」，麥卡錫訪台將會是下一次的「台海危機」。",
+          "source_id": "src-iorg-38",
+          "about": "中時"
+        },
+        {
+          "text": "（01:12）隔日，聯合新聞網（8:52）、中時新聞網（22:38）直接引用報導內容。",
+          "source_id": "src-iorg-38",
+          "about": "中時"
+        },
+        {
+          "text": "貼文內容在當日獲得聯合新聞網（10:21）、中時新聞網（14:45）、中共官媒「台灣中評網」（16:44）報導引用，隔日也刊載在風傳媒（4 日 7:00）。",
+          "source_id": "src-iorg-38",
+          "about": "中時"
+        },
+        {
+          "text": "2022 年 11 月 22 日 16:12 中時新聞網刊載作者陳朝平的評論，宣稱「萬一，此種外交操作失控時，美國必須也必要壯士斷腕，犧牲台灣 [...] 台灣也該做好為星條旗犧牲的準備了」。",
+          "source_id": "src-iorg-38",
+          "about": "中時"
+        },
+        {
+          "text": "2023 年 1 月 24 日 YouTube 頻道「中天新聞」及中時電子報報導（16:04）引用郭正亮的意見，認為美國「就是要誘打」，「因為這符合美國的戰略利益，戰爭越早發生越好，就是美國要營造的局面 [...] 他可以在外交軍事上做出無限加碼不等於挑釁作戰的動作，就是要逼你動手」。",
+          "source_id": "src-iorg-38",
+          "about": "中時"
+        },
+        {
+          "text": "群聚發文 同日，內容農場「密訊」發布和中時文章標題及內容一致的文章，並獲得粉專「反民進黨粉絲團」「民間大小事」「空心菜政府」群聚分享（23:00-01）。",
+          "source_id": "src-iorg-38",
+          "about": "中時"
+        },
+        {
+          "text": "2 月 5 日 13:47 中時新聞網刊出作者為周忠菲的評論，標題為〈若麥卡錫訪台，「和平統一」將成為台灣民意主流〉，認為「麥卡錫若訪台 [...] 目的就是通過逼中國大陸對台動武，達到延緩中國發展的目的」。",
+          "source_id": "src-iorg-38",
+          "about": "中時"
+        },
+        {
+          "text": "2023 年 1 月 10 日 0:01 中時新聞網報導引用 9 日「新聞大白話」節目中郭正亮的意見，認為共和黨下屆總統候選人「也有機率同行」、「幫共和黨造勢」。",
+          "source_id": "src-iorg-38",
+          "about": "中時"
+        },
+        {
+          "text": "🇹🇼-🇨🇳 1 月 24 日 17:13 中時新聞網以標題〈二原因斷言麥卡錫必來 專家爆內幕：台灣已成美國「提款機」〉發布報導，引用介文汲的意見，認為「台灣已成美國提款機」。",
+          "source_id": "src-iorg-38",
+          "about": "中時"
+        },
+        {
+          "text": "中時報導標題後更改為〈斷言麥卡錫必來！",
+          "source_id": "src-iorg-38",
+          "about": "中時"
+        },
+        {
+          "text": "1 月 28 日 17:49 中時新聞網發表作者為趙興鵬的評論，質疑民進黨「勾連美國，敢於冒著犧牲台灣危險，來削弱中國大陸」認為這是「對台灣 2300 萬人民 [...] 不仁、不義、不負責任」。",
+          "source_id": "src-iorg-38",
+          "about": "中時"
+        },
+        {
+          "text": "1 月 31 日 00:00 中時新聞網發表作者為周忠菲的評論，以「牽頭」稱呼台美關係，並認為「美民勾連本是常態，但他們試圖在台海燃起戰火的「欲望與能力」始終受到節制，也正在成為常態」。",
+          "source_id": "src-iorg-38",
+          "about": "中時"
+        },
+        {
+          "text": "1 月 9 日 8:00 中時電子報刊出作者為中国劳动关系学院副教授郭振家的評論，認為 「美國對台灣的軍事化動作，正在高度拷貝當初對烏克蘭的政策」，宣稱「一些美國政客」曾經表態，美國在烏克蘭「賺到了」，呼籲台灣人如「不想陷入衝突，變成今天的烏克蘭戰場」，就應該反對美國「干涉兩岸事務」。",
+          "source_id": "src-iorg-38",
+          "about": "中時"
+        },
+        {
+          "text": "1 月 25 日 18:32 中時新聞網刊出作者為佛光大學公共事務學系副教授柳金財的評論，標題為〈警惕美「以烏制俄」戰略 炮製「以台制中」釀險境〉，認為「從國際戰略選擇及地緣政治權力平衡角度檢視，俄烏戰爭爆發，美國是破壞國際秩序及區域穩定的罪魁禍首」，如果麥卡錫訪台，中國將會「祭出更大規模及力度圍台軍演及封鎖」，美國「試圖將北約拉攏烏克蘭版劇本應用在亞太區域」「聯台制中」「以台耗中」。",
+          "source_id": "src-iorg-38",
+          "about": "中時"
+        },
+        {
+          "text": "2 月 22 日 23:48 中時新聞網刊出黃智賢的評論，認為美國「用俄烏戰爭」「破壞俄羅斯跟歐盟和解和平之勢」「取得戰略利益」「搶奪巨大經濟利益」「威攝中國」「組建圍中聯盟」，更要「用俄烏戰爭做模型」「在東亞要複製另一場俄烏戰爭」。",
+          "source_id": "src-iorg-38",
+          "about": "中時"
+        },
+        {
+          "text": "另外，中天新聞網引用蔡正元的報導（12:43），也獲得旺中集團旗下節目「大新聞大爆卦」「無色覺醒」「頭條開講」「正常發揮」 的群聚分享（17:30）。",
+          "source_id": "src-iorg-38",
+          "about": "旺中集團"
+        }
+      ]
     },
     {
       "id": "cti-tv",
@@ -2616,7 +3215,74 @@ window.NETWEAVER_DB = {
         "src-iorg-101",
         "src-iorg-131"
       ],
-      "confidence": "high"
+      "confidence": "high",
+      "claims": [
+        {
+          "text": "Traditional media, such as: United Daily News, China Times, ETtoday, TVBS, CTITV.",
+          "source_id": "src-dtl-2022election",
+          "about": "CTITV"
+        },
+        {
+          "text": "The channel’s location is in Taiwan and the website for CTi News is linked in the About pop-up of the channel.",
+          "source_id": "src-doublethink-lab-aaba8c",
+          "about": "CTi News"
+        },
+        {
+          "text": "CTi News is owned by Tsai Eng-meng, who supports Taiwan’s unification with the PRC.",
+          "source_id": "src-doublethink-lab-aaba8c",
+          "about": "CTi News"
+        },
+        {
+          "text": "Zhongtian Daily Commentary is also the Bilibili presence of CTi News.",
+          "source_id": "src-doublethink-lab-aaba8c",
+          "about": "CTi News"
+        },
+        {
+          "text": "除中共官媒外，台灣新聞媒體聯合、中天亦有相關內容，擴大「亂源論」傳播。",
+          "source_id": "src-iorg-11",
+          "about": "中天"
+        },
+        {
+          "text": "值得注意的是，此一論述亦有台灣新聞媒體加入傳播，實際案例為 8 月 23 日聯合社論、8 月 29 日中天貼文。",
+          "source_id": "src-iorg-11",
+          "about": "中天"
+        },
+        {
+          "text": "🇹🇼-🇨🇳 4 月 12 日 08:55 至 10:19 間，中共官媒「鳳凰網」「環球網」「香港新聞網」「大公文匯網」協力傳播介文汲在「中天新聞」節目影片中的說法。",
+          "source_id": "src-iorg-41",
+          "about": "中天新聞"
+        },
+        {
+          "text": "1 月 12 日，🇨🇳 广电总台「看台海」發布微博，影片內容為 1 月 11 日 旺中「中天新聞」政論節目「辣晚報」中名嘴郭正亮的發言「2 個人（指蔡正元、柯文哲）都受到監控之中，都是被司法迫害的人士」，文字內容包含「柯文哲、蔡正元同框，一起秀出“电子脚镣” 尽显#台湾司法迫害黑暗#」。",
+          "source_id": "src-iorg-131",
+          "about": "中天新聞"
+        },
+        {
+          "text": "1 月 18 日，🇨🇳 中共中央统战部「香港新聞網」發布文本「台灣中天新聞記者涉“安全”問題 遭羈押禁見」，內文包含「民眾黨立委張啟楷17日表示，林宸佑在採訪或者當主播的過程中，深入去追蹤了非常多的事情，是一位受廣大民眾支持的名主播、名記者。",
+          "source_id": "src-iorg-131",
+          "about": "中天新聞"
+        },
+        {
+          "text": "1 月 21 日，🇨🇳 中共中央统战部「香港新聞網」發布文本「台記者涉“安全”問題遭羈押引島內輿論撻伐」，內文包含「台灣中天新聞記者林宸佑近日被指涉以金錢利誘軍人拍攝“投敵”影片，並刺探軍事機密，遭依涉犯所謂“國安法”等罪嫌羈押禁見。",
+          "source_id": "src-iorg-131",
+          "about": "中天新聞"
+        },
+        {
+          "text": "另外，中天新聞網引用蔡正元的報導（12:43），也獲得旺中集團旗下節目「大新聞大爆卦」「無色覺醒」「頭條開講」「正常發揮」 的群聚分享（17:30）。",
+          "source_id": "src-iorg-38",
+          "about": "中天"
+        },
+        {
+          "text": "2023 年 1 月 24 日 YouTube 頻道「中天新聞」及中時電子報報導（16:04）引用郭正亮的意見，認為美國「就是要誘打」，「因為這符合美國的戰略利益，戰爭越早發生越好，就是美國要營造的局面 [...] 他可以在外交軍事上做出無限加碼不等於挑釁作戰的動作，就是要逼你動手」。",
+          "source_id": "src-iorg-38",
+          "about": "中天"
+        },
+        {
+          "text": "1 月 25 日 15:30 中天新聞以〈王定宇自爆邀請麥卡錫訪台 網友罵翻：爽了民進黨，苦了台灣百姓〉發布報導，提及「民進黨立委王定宇昨說，去年 9 月他飛到華府送邀請函，邀請麥卡錫訪台」，形容「網友對此罵聲一片」，引用網友留言認為「血汗錢又要填坑了」並將留言詮釋為「遊說公關費」，另引用網友留言認為王定宇委員的邀請是「勾結美國」，認為美國政要訪台「都是有目的」「都是來收保護費」。",
+          "source_id": "src-iorg-38",
+          "about": "中天"
+        }
+      ]
     },
     {
       "id": "tvbs",
@@ -2646,7 +3312,34 @@ window.NETWEAVER_DB = {
       "source_ids": [
         "src-iorg-101"
       ],
-      "confidence": "high"
+      "confidence": "high",
+      "claims": [
+        {
+          "text": "Traditional media, such as: United Daily News, China Times, ETtoday, TVBS, CTITV.",
+          "source_id": "src-dtl-2022election",
+          "about": "TVBS"
+        },
+        {
+          "text": "4 月 10 日 14:35 TVBS 新聞網報導提及「對岸社群媒體繪聲繪影」「PTT 也出現 Dcard 轉貼文，標題寫下共軍飛門口，海軍還扯 [...] 上報假航跡」，描述 Dcard 貼文作者「自稱是海偵部一中隊雷達一兵，已向國防部信箱反映但根本沒人理」「被砲轟是假訊息後隨即刪文」。",
+          "source_id": "src-iorg-41",
+          "about": "TVBS 新聞網"
+        },
+        {
+          "text": "蔡總統會見麥卡錫後，提及軍演的 YouTube 影片主要來自台灣新聞媒體頻道，依序為 TVBS、旺中集團、三立。",
+          "source_id": "src-iorg-41",
+          "about": "TVBS"
+        },
+        {
+          "text": "2023 年 1 月 10 日 0:01 中時新聞網報導引用 9 日「新聞大白話」節目中郭正亮的意見，認為共和黨下屆總統候選人「也有機率同行」、「幫共和黨造勢」。",
+          "source_id": "src-iorg-38",
+          "about": "新聞大白話"
+        },
+        {
+          "text": "最新民調嚇壞人〉發布報導，提及 TVBS 新聞網於 1 月 31 日至 2 月 5 日間舉行的網路投票，宣稱台灣「有將近 8 成 5 的網友，對於麥卡錫來台相當不支持」「更是有 9 成的網友，憂慮台灣成為兩國之間的棋子」，無視 TVBS 報導原文的聲明：「投票結果並不能夠直接推論全台灣民眾意見」。",
+          "source_id": "src-iorg-38",
+          "about": "TVBS 新聞網"
+        }
+      ]
     },
     {
       "id": "united-daily-news",
@@ -2675,7 +3368,79 @@ window.NETWEAVER_DB = {
       "source_ids": [
         "src-iorg-usskep1"
       ],
-      "confidence": "medium"
+      "confidence": "medium",
+      "claims": [
+        {
+          "text": "7 月 12 日，聯合報刊登所謂台灣政府會議記錄的照片，宣稱美國曾「要求台灣設立 P4 實驗室」「研發生物戰劑」，台灣政府已駁斥這項說法。",
+          "source_id": "src-iorg-usskep1",
+          "about": "聯合報"
+        },
+        {
+          "text": "例如，聯合新聞網刊出社論「阿富汗震撼」後，中共官媒環球網微博帳號、通說 2.0 引用其內容；而中共官媒環球網刊出社評「为什么说美国一定会最终抛弃台湾」，聯合新聞網即在隔日改寫，刊出「環球時報列六大理由，指美國終將拋棄台灣」報導。",
+          "source_id": "src-iorg-11",
+          "about": "聯合新聞網"
+        },
+        {
+          "text": "隔日，聯合新聞網將該社評改寫，刊出題為「環球時報列六大理由 指美國終將拋棄台灣」的報導。",
+          "source_id": "src-iorg-11",
+          "about": "聯合新聞網"
+        },
+        {
+          "text": "21 日，內容農場怒吼，抄襲聯合報導內容，「反蔡英文粉絲團」轉發怒吼文章。",
+          "source_id": "src-iorg-11",
+          "about": "聯合報"
+        },
+        {
+          "text": "經 IORG 比對內容，此貼文部分內容來自當日聯合報社論黑白集「阿富汗震撼」，及前一天 TVBS 新聞網的報導內容。",
+          "source_id": "src-iorg-11",
+          "about": "聯合報"
+        },
+        {
+          "text": "另，中共官媒通說 2.0，直接分享聯合報社論。",
+          "source_id": "src-iorg-11",
+          "about": "聯合報"
+        },
+        {
+          "text": "🇨🇳-🇹🇼 4 月 10 日 9:06 台灣新聞媒體鏡傳媒發布報導，內容包含 4 月 9 日 17:41 解放軍東部戰區的微博官方帳號「东部战区」發布相同的動畫影片，當日，聯合新聞網（12:40）、自由時報（16:44）亦跟進報導此動畫影片。",
+          "source_id": "src-iorg-41",
+          "about": "聯合新聞網"
+        },
+        {
+          "text": "隨後在當日 19:02 至 21:26 間，台灣新聞媒體跟進報導，包含自由時報、中央社、民視新聞網、聯合新聞網、中廣新聞網、上報、中時新聞網、芋傳媒。",
+          "source_id": "src-iorg-41",
+          "about": "聯合新聞網"
+        },
+        {
+          "text": "當日，台灣新聞媒體跟進報導，包含民視新聞網、聯合新聞網、華視新聞網、上報。",
+          "source_id": "src-iorg-41",
+          "about": "聯合新聞網"
+        },
+        {
+          "text": "4 月 10 日 12:46 聯合新聞網報導「海巡署澄清海上射擊訓練已取消」「空軍花蓮五聯隊否認有易產生音爆的超音速飛行演訓」「亞泥回應上午沒有採礦炸山作業」，為 IORG 資料庫首則包含官方機構澄清的文本。",
+          "source_id": "src-iorg-41",
+          "about": "聯合新聞網"
+        },
+        {
+          "text": "（01:12）隔日，聯合新聞網（8:52）、中時新聞網（22:38）直接引用報導內容。",
+          "source_id": "src-iorg-38",
+          "about": "聯合新聞網"
+        },
+        {
+          "text": "貼文內容在當日獲得聯合新聞網（10:21）、中時新聞網（14:45）、中共官媒「台灣中評網」（16:44）報導引用，隔日也刊載在風傳媒（4 日 7:00）。",
+          "source_id": "src-iorg-38",
+          "about": "聯合新聞網"
+        },
+        {
+          "text": "🇹🇼-🇨🇳-🇹🇼 1 月 27 日中共官媒「香港中評網」引用郭正亮的意見（1:12），隔日，台灣新聞媒體聯合新聞網則引用「香港中評網」引用郭正亮意見的報導內容（8:52）。",
+          "source_id": "src-iorg-38",
+          "about": "聯合新聞網"
+        },
+        {
+          "text": "2 月 5 日 4:51 聯合報發布社論，認為「麥卡錫有意訪台，並成立中國事務特別委員會，該會還以加強對台軍售為由，有意來台舉行聽證會 [...] 這些主張看似大力挺台，其實是拿台灣當小刀戳痛中共並讓拜登難堪，不僅無助台灣提升戰力，並且是升高台海危機作為選票提款機」。",
+          "source_id": "src-iorg-38",
+          "about": "聯合報"
+        }
+      ]
     },
     {
       "id": "asia-vision-tv",
@@ -2742,7 +3507,54 @@ window.NETWEAVER_DB = {
         "src-iorg-101",
         "src-iorg-136"
       ],
-      "confidence": "high"
+      "confidence": "high",
+      "claims": [
+        {
+          "text": "1 月 12 日，🇨🇳 广电总台「看台海」發布微博，影片內容為 1 月 11 日 旺中「中天新聞」政論節目「辣晚報」中名嘴郭正亮的發言「2 個人（指蔡正元、柯文哲）都受到監控之中，都是被司法迫害的人士」，文字內容包含「柯文哲、蔡正元同框，一起秀出“电子脚镣” 尽显#台湾司法迫害黑暗#」。",
+          "source_id": "src-iorg-131",
+          "about": "郭正亮"
+        },
+        {
+          "text": "關於裴洛西訪台，中共官媒發起並參與多項論述傳播，央視更公開報導宣揚其旗下品牌「玉渊谭天」「協同」中央廣電總台「影響中國國內海外輿論」 DA.28；關於麥卡錫訪台的 10 項論述則多出自台灣，中共官媒多引用台灣新聞媒體社論、特定名嘴（如郭正亮、蔡正元、介文汲）、政治人物（如楊永明）及其他可信度不一的評論，擴大傳播。",
+          "source_id": "src-iorg-38",
+          "about": "郭正亮"
+        },
+        {
+          "text": "2022 年 11 月 25 日 YouTube 頻道「Yahoo TV 風向龍鳳配」發布節目影片，郭正亮在節目中認為美國是在「引誘你（中國）來打（台灣）」（57:35），並認為「新的議長一定會來台灣」（57:48）。",
+          "source_id": "src-iorg-38",
+          "about": "郭正亮"
+        },
+        {
+          "text": "節目內容及郭正亮的意見在隔日獲得風傳媒報導（8:10）。",
+          "source_id": "src-iorg-38",
+          "about": "郭正亮"
+        },
+        {
+          "text": "2023 年 1 月 24 日 YouTube 頻道「中天新聞」及中時電子報報導（16:04）引用郭正亮的意見，認為美國「就是要誘打」，「因為這符合美國的戰略利益，戰爭越早發生越好，就是美國要營造的局面 [...] 他可以在外交軍事上做出無限加碼不等於挑釁作戰的動作，就是要逼你動手」。",
+          "source_id": "src-iorg-38",
+          "about": "郭正亮"
+        },
+        {
+          "text": "🇹🇼-🇨🇳-🇹🇼 1 月 27 日中共官媒「香港中評網」引用郭正亮的意見（1:12），隔日，台灣新聞媒體聯合新聞網則引用「香港中評網」引用郭正亮意見的報導內容（8:52）。",
+          "source_id": "src-iorg-38",
+          "about": "郭正亮"
+        },
+        {
+          "text": "2022 年 11 月 26 日 8:10 風傳媒報導引用 25 日「Yahoo TV 風向龍鳳配」節目中郭正亮的意見（57:35），認為「麥卡錫訪台並不是最大的衝擊」、「川普一定會想來」「佛州州長德桑提斯也可能會想來台灣」，因為「台灣是最容易造勢的地方」。",
+          "source_id": "src-iorg-38",
+          "about": "郭正亮"
+        },
+        {
+          "text": "2023 年 1 月 10 日 0:01 中時新聞網報導引用 9 日「新聞大白話」節目中郭正亮的意見，認為共和黨下屆總統候選人「也有機率同行」、「幫共和黨造勢」。",
+          "source_id": "src-iorg-38",
+          "about": "郭正亮"
+        },
+        {
+          "text": "2 月 23 日 08:20 風傳媒報導引用 22 日「觀點：明亮看世界」節目中郭正亮的意見（57:30），認為「麥卡錫勢必會在今年訪台，因為麥卡錫明年也要選舉，且又不能搶總統候選人的風頭，說不定共和黨的總統候選人有意訪台」。",
+          "source_id": "src-iorg-38",
+          "about": "郭正亮"
+        }
+      ]
     },
     {
       "id": "jaw-shaw-kong",
@@ -2771,7 +3583,39 @@ window.NETWEAVER_DB = {
         "src-iorg-11",
         "src-iorg-118"
       ],
-      "confidence": "high"
+      "confidence": "high",
+      "claims": [
+        {
+          "text": "🇹🇼-🇨🇳 2024 年 5 月 23 日 🇨🇳 人民日报「环球网」針對立法院「國會改革」修法爭議發表文章，內文引用 國民黨 葉元之、 國民黨 趙少康、聯合 聯合新聞網說法，認為立院外抗議的民眾是受到民進黨煽動或組織，評論賴政府「意图操控民众」。",
+          "source_id": "src-iorg-118",
+          "about": "趙少康"
+        },
+        {
+          "text": "第 2 是「阿富汗是台灣的前車之鑑」，至少 127 則貼文，佔 14.6 %，此論述來自台灣媒體人趙少康。",
+          "source_id": "src-iorg-11",
+          "about": "趙少康"
+        },
+        {
+          "text": "這句話，是 8 月 15 日台灣政論節目名嘴趙少康在 Facebook 粉專表示「小心，阿富汗是台灣的前車之鑑」、「老共不可測，老美不可靠，要靠還是要靠自己」。",
+          "source_id": "src-iorg-11",
+          "about": "趙少康"
+        },
+        {
+          "text": "美軍撤離阿富汗首都，趙少康：小心！",
+          "source_id": "src-iorg-11",
+          "about": "趙少康"
+        },
+        {
+          "text": "國民黨的趙少康直言，小心阿富汗是台灣的前車之鑑，民進黨灌輸台灣人「打了美國會來救」的一廂情願想法，台灣如果不想成為第二個阿富汗，就要在「和」「戰」之間想清楚。",
+          "source_id": "src-iorg-11",
+          "about": "趙少康"
+        },
+        {
+          "text": "阿富汗是台灣的前車之鑑 趙少康：靠美國太愚蠢了！",
+          "source_id": "src-iorg-11",
+          "about": "趙少康"
+        }
+      ]
     },
     {
       "id": "tsai-cheng-yuan",
@@ -2801,7 +3645,89 @@ window.NETWEAVER_DB = {
         "src-iorg-136",
         "src-iorg-131"
       ],
-      "confidence": "high"
+      "confidence": "high",
+      "claims": [
+        {
+          "text": "🇹🇼-🇨🇳 4 月 13 日 10:49，中共官媒「香港新聞網」發布報導，宣稱尼米茲號在共軍演一開始「馬上就掉頭跑了」，並引述蔡正元的說法「美國是渣男」「幫助台灣，只剩下一張嘴」。",
+          "source_id": "src-iorg-41",
+          "about": "蔡正元"
+        },
+        {
+          "text": "中共最關注台灣人物 top 5 之中，提出「兩岸和平框架」主張的 國民黨 主席鄭麗文名列第 2，民進黨 內政部長劉世芳、教育部長鄭英耀為国台办列為「“台独” 顽固分子」而位居 3、4，名嘴蔡正元首次進入前 5。",
+          "source_id": "src-iorg-131",
+          "about": "蔡正元"
+        },
+        {
+          "text": "中共借司法案件（柯文哲「京華城案」、名嘴蔡正元「三中案」、中天記者林宸佑涉犯國安法案）、政府發布資安風險警告（數發部公布資安高風險 App 清單）宣稱「民进党当局」「司法迫害」、「製造寒蝉效应」、「剥夺台湾民众、青年知情权」，形塑民進黨政府濫用司法、迫害野黨、箝制人民思想自由，遭多數民意反對的獨裁形象，意圖損害台灣民眾對司法機關、政府機關、執政黨的信任。",
+          "source_id": "src-iorg-131",
+          "about": "蔡正元"
+        },
+        {
+          "text": "1 月份共有 293 則文本提及蔡正元，主要內容為借蔡正元介入「三中案」批評民進黨政府「编织罪名」（中国新闻社）、「政治追杀异己」（中国东南卫视官方频道）、讓唐湘龍「当场抹泪」（中国东南卫视官方频道），並放大蔡正元對此事件觀點「哪怕深陷狱中，反“台独” 立场永不改变」（中国新闻社）、「我们要在每一个角落作战，推翻民进党」（中国东南卫视官方频道）。",
+          "source_id": "src-iorg-131",
+          "about": "蔡正元"
+        },
+        {
+          "text": "1 月 10 日，🇨🇳 人民日报「环球网」發布作者「北平锋」的文章「在反“独”促统的民族大义面前并肩而行」，內文包含「近日，台湾“高等法院”对“三中案”作出二审判决，台湾前民意代表蔡正元被判三年六个月，中国国民党前主席马英九无罪。",
+          "source_id": "src-iorg-131",
+          "about": "蔡正元"
+        },
+        {
+          "text": "1 月 11 日，🇨🇳 鳳凰衛視「凤凰网」發布來自「台湾日月谈」文本「蔡正元和柯文哲同框翘脚，一起秀出“电子脚镣”」，引用名嘴蔡正元 1 月 10 日在其個人 Facebook 貼文使用的照片，文字內容包含「蔡正元 1 月 10 日晚间再度成为话题焦点。",
+          "source_id": "src-iorg-131",
+          "about": "蔡正元"
+        },
+        {
+          "text": "蔡正元在贴文中以“当电子脚镣遇到电子脚镣”形容这场会面，指出此次是应柯文哲之邀，参与“土城十讲”第九讲的录影。",
+          "source_id": "src-iorg-131",
+          "about": "蔡正元"
+        },
+        {
+          "text": "1 月 12 日，🇨🇳 广电总台「看台海」發布微博，影片內容為 1 月 11 日 旺中「中天新聞」政論節目「辣晚報」中名嘴郭正亮的發言「2 個人（指蔡正元、柯文哲）都受到監控之中，都是被司法迫害的人士」，文字內容包含「柯文哲、蔡正元同框，一起秀出“电子脚镣” 尽显#台湾司法迫害黑暗#」。",
+          "source_id": "src-iorg-131",
+          "about": "蔡正元"
+        },
+        {
+          "text": "1 月 13 日，🇨🇳 国台办「中国台湾网」發布文本「郑丽文批民进党当局滥用司法：台湾之耻辱」，內文包含「据台媒报道，台湾民众党前主席柯文哲、中国国民党前台北市党部主委黄吕锦茹及前民代蔡正元均因涉案被强制佩戴电子脚镣，而民进党籍涉贪人士郑文灿却未受该“待遇”。",
+          "source_id": "src-iorg-131",
+          "about": "蔡正元"
+        },
+        {
+          "text": "關於裴洛西訪台，中共官媒發起並參與多項論述傳播，央視更公開報導宣揚其旗下品牌「玉渊谭天」「協同」中央廣電總台「影響中國國內海外輿論」 DA.28；關於麥卡錫訪台的 10 項論述則多出自台灣，中共官媒多引用台灣新聞媒體社論、特定名嘴（如郭正亮、蔡正元、介文汲）、政治人物（如楊永明）及其他可信度不一的評論，擴大傳播。",
+          "source_id": "src-iorg-38",
+          "about": "蔡正元"
+        },
+        {
+          "text": "🇹🇼-🇨🇳 群聚發文 2023 年 1 月 24 日 6:50 粉專「蔡正元」貼文，認為「美國透過麥卡錫訪台 [...] 利用台海戰爭徹底犧牲台灣，可以換得圍堵及削弱中國的機會，甚或利用麥卡錫訪台作為談判酬碼，從中台雙方取得重大退讓的利益」。",
+          "source_id": "src-iorg-38",
+          "about": "蔡正元"
+        },
+        {
+          "text": "蔡正元的意見於當日獲得中資粉專「兩岸頭條」（9:12）及中共官媒「僑報網」（16:47）分享及引用。",
+          "source_id": "src-iorg-38",
+          "about": "蔡正元"
+        },
+        {
+          "text": "另外，中天新聞網引用蔡正元的報導（12:43），也獲得旺中集團旗下節目「大新聞大爆卦」「無色覺醒」「頭條開講」「正常發揮」 的群聚分享（17:30）。",
+          "source_id": "src-iorg-38",
+          "about": "蔡正元"
+        },
+        {
+          "text": "1 月 26 日 19:00 粉專「Speak Out HK 港人講地」發布貼文，認為麥卡錫「忽然要匆匆訪台」，是美國「採取主動態勢打台灣牌及台獨牌」「測試觸碰中方紅線的後果」，並認為「徹底犧牲台灣」「可以換來圍堵和削弱中國的機會」，文句和蔡正元 24 日貼文吻合。",
+          "source_id": "src-iorg-38",
+          "about": "蔡正元"
+        },
+        {
+          "text": "24 日蔡正元的貼文及 26 日「港人講地」的貼文，都連結了麥卡錫訪台及俄烏戰爭，認為是美國挑釁，犧牲台灣（烏克蘭）人民。",
+          "source_id": "src-iorg-38",
+          "about": "蔡正元"
+        },
+        {
+          "text": "1 月 24 日蔡正元的粉專貼文及 26 日「港人講地」的貼文，都連結了麥卡錫訪台及俄烏戰爭，認為是美國挑釁，犧牲台灣及烏克蘭人民。",
+          "source_id": "src-iorg-38",
+          "about": "蔡正元"
+        }
+      ]
     },
     {
       "id": "lai-yueh-chien",
@@ -2920,7 +3846,14 @@ window.NETWEAVER_DB = {
         "src-iorg-101",
         "src-iorg-136"
       ],
-      "confidence": "high"
+      "confidence": "high",
+      "claims": [
+        {
+          "text": "🇹🇼-🇨🇳 2025 年 2 月 18 日 🇨🇳 福建广播影视 TikTok 帳號「大咖開麥」及 🇨🇳 福建日报 抖音帳號「海峡导报」都發布影片，內容為呂禮詩於政論節目上稱中國電影「哪吒 2」在台灣可惜沒有排上上映抽籤（即無法在台灣上映），認為「台灣的言論自由，台灣的各種自由，會不會慢慢的讓大家覺得越來越只是一場笑話」。",
+          "source_id": "src-iorg-118",
+          "about": "呂禮詩"
+        }
+      ]
     },
     {
       "id": "chieh-wen-chi",
@@ -2949,7 +3882,39 @@ window.NETWEAVER_DB = {
         "src-iorg-101",
         "src-iorg-136"
       ],
-      "confidence": "high"
+      "confidence": "high",
+      "claims": [
+        {
+          "text": "前大使：5 千美軍比台人重要〉發布報導，認為「《澳大利亞新聞網》報導，尼米茲號航母 7 日靠近台灣，一度與山東號僅距離 200 海浬，但 8 日軍演一開始就果斷轉頭北上，與去年 8 月一樣」，報導同時引述介文汲在中天網路節目「盧秀芳辣晚報」的說法「美軍並不想干涉中共軍演，轉頭離開就是向中國發出訊息，表達與我無關，不希望局勢被誤判」「一艘航空母艦上 5 千名官兵的性命，絕對高於台灣人怎麼想」。",
+          "source_id": "src-iorg-41",
+          "about": "介文汲"
+        },
+        {
+          "text": "🇹🇼-🇨🇳 4 月 12 日 08:55 至 10:19 間，中共官媒「鳳凰網」「環球網」「香港新聞網」「大公文匯網」協力傳播介文汲在「中天新聞」節目影片中的說法。",
+          "source_id": "src-iorg-41",
+          "about": "介文汲"
+        },
+        {
+          "text": "關於裴洛西訪台，中共官媒發起並參與多項論述傳播，央視更公開報導宣揚其旗下品牌「玉渊谭天」「協同」中央廣電總台「影響中國國內海外輿論」 DA.28；關於麥卡錫訪台的 10 項論述則多出自台灣，中共官媒多引用台灣新聞媒體社論、特定名嘴（如郭正亮、蔡正元、介文汲）、政治人物（如楊永明）及其他可信度不一的評論，擴大傳播。",
+          "source_id": "src-iorg-38",
+          "about": "介文汲"
+        },
+        {
+          "text": "🇹🇼-🇨🇳 1 月 24 日 17:13 中時新聞網以標題〈二原因斷言麥卡錫必來 專家爆內幕：台灣已成美國「提款機」〉發布報導，引用介文汲的意見，認為「台灣已成美國提款機」。",
+          "source_id": "src-iorg-38",
+          "about": "介文汲"
+        },
+        {
+          "text": "隔日（25），介文汲的意見獲得中共官媒「僑報網」引用。",
+          "source_id": "src-iorg-38",
+          "about": "介文汲"
+        },
+        {
+          "text": "2022 年 11 月 18 日 1:18 中共官媒「台灣中評網」發布報導，引用介文汲受訪時的意見，認為「把台灣烏克蘭化從各種角度來看，非常符合美國利益」。",
+          "source_id": "src-iorg-38",
+          "about": "介文汲"
+        }
+      ]
     },
     {
       "id": "hsieh-han-ping",
@@ -3006,7 +3971,19 @@ window.NETWEAVER_DB = {
         "src-iorg-101",
         "src-iorg-136"
       ],
-      "confidence": "high"
+      "confidence": "high",
+      "claims": [
+        {
+          "text": "🇨🇳 🇹🇼-🇨🇳 YT 4 月 15 日 21:09 微博帳號「紫金山上听风吟」發文，宣稱「我东部战区视频公开那是解放军隐形战机飞过台湾上空，那是 J20 音爆声音」，文章同時包含 4 月 13 日唐湘龍在 YouTube 頻道「飛碟聯播網」節目影片的剪輯片段。",
+          "source_id": "src-iorg-41",
+          "about": "唐湘龍"
+        },
+        {
+          "text": "1 月份共有 293 則文本提及蔡正元，主要內容為借蔡正元介入「三中案」批評民進黨政府「编织罪名」（中国新闻社）、「政治追杀异己」（中国东南卫视官方频道）、讓唐湘龍「当场抹泪」（中国东南卫视官方频道），並放大蔡正元對此事件觀點「哪怕深陷狱中，反“台独” 立场永不改变」（中国新闻社）、「我们要在每一个角落作战，推翻民进党」（中国东南卫视官方频道）。",
+          "source_id": "src-iorg-131",
+          "about": "唐湘龍"
+        }
+      ]
     },
     {
       "id": "chiu-yi",
@@ -3035,7 +4012,24 @@ window.NETWEAVER_DB = {
         "src-iorg-101",
         "src-iorg-136"
       ],
-      "confidence": "high"
+      "confidence": "high",
+      "claims": [
+        {
+          "text": "In October 2023, Chiu Yi mentioned the alleged illegitimate child again during a live broadcast with Taiwanese influencer Bit King.",
+          "source_id": "src-dtl-multiverse",
+          "about": "Chiu Yi"
+        },
+        {
+          "text": "On January 3, Hong Kong’s Wen Wei Po quoted Chiu Yi’s remarks, mentioning Lai Ching-te’s mistress and illegitimate child.",
+          "source_id": "src-dtl-multiverse",
+          "about": "Chiu Yi"
+        },
+        {
+          "text": "1 月 20 日，🇨🇳 福建广播影视「中国东南卫视官方频道」發布 YouTube，標題為「台湾中天记者林宸佑遭民进党当局羁押，邱毅：杀鸡儆猴，赖清德要对台湾媒体动屠刀了」。",
+          "source_id": "src-iorg-131",
+          "about": "邱毅"
+        }
+      ]
     },
     {
       "id": "yuan-chu-cheng",
@@ -3216,19 +4210,14 @@ window.NETWEAVER_DB = {
           "about": "CGTN"
         },
         {
-          "text": "This was most clearly on show in an exchange between a CCTV journalist and Director of the Information Bureau of the Taiwan Affairs Office (TAO) of the State Council Chen Binhua (陈斌华).",
-          "source_id": "src-jamestown-js2024b",
-          "about": "CCTV"
-        },
-        {
-          "text": "The latter phrase, for instance, likely first appeared in a 2019 speech by Xi Jinping (VOA, January 3, 2019; Mainland Affairs Council, May 29, 2019; CCTV News, May 28).",
-          "source_id": "src-jamestown-js2024b",
-          "about": "CCTV"
-        },
-        {
           "text": "A final category of political content disseminated by PAPERWALL often takes the form of verbatim reposts of content from Chinese state media, such as CGTN or the Global Times.",
           "source_id": "src-citizenlab-paperwall",
           "about": "CGTN"
+        },
+        {
+          "text": "15, the topic #統一有好處台獨是絕路# (Unification has benefits and Taiwan independence is a dead end) appeared, primarily hosted by state media CCTV News.",
+          "source_id": "src-dtl-2022election",
+          "about": "CCTV News"
         },
         {
           "text": "FactLink觀察到，此事件有兩波訊息傳播高峰，第一波是10月26日至10月29日，中國官方相關媒體如《觀察者網》、《環球網》、《環球時報》、《人民日報》、《央視軍事》、《海峽之聲》、《看台海》報導與其微博官方帳號，引用長光衛星公司衛星影像，「慶祝台灣回歸為中國一部分」的光復節。",
@@ -3281,14 +4270,89 @@ window.NETWEAVER_DB = {
           "about": "央視"
         },
         {
-          "text": "央視網.",
-          "source_id": "src-factlink-japan",
-          "about": "央視"
-        },
-        {
           "text": "此外，央視網以及央視的對台融媒體平台「看台海」的發文數量也在發文帳號前十名之列。",
           "source_id": "src-factlink-japan",
           "about": "央視網"
+        },
+        {
+          "text": "🇹🇼-🇨🇳 2025 年 6 月 11-12 日間「中国台湾网」、「海峡飞虹」、「海峡之声」先後引述 6 月 11 日「黨外在野大聯盟」成立大會上召集人 國民黨 鄭麗文的發言：「当下岛内的执政党逐渐走向法西斯化、沙文主义化，大家忧心不已，因此希望联结、团结所有“在野”力量」。",
+          "source_id": "src-iorg-118",
+          "about": "海峡飞虹"
+        },
+        {
+          "text": "同時，影片數量前 20 的頻道，有 6 個內容親近中國的頻道，包括中共官媒內容、中國網路節目、中共官媒，其中，「中国人民解放军」、「军迷天下」、「看看新闻」3 個頻道未能確認為中共官媒，但直接協助傳播央視影片及其他中共官媒內容，請讀者特別注意。",
+          "source_id": "src-iorg-41",
+          "about": "央視"
+        },
+        {
+          "text": "「中国东南卫视」是中共官媒，曾出現在 IORG 報告之中 DA.39 ，「中国人民解放军」、「军迷天下」、「看看新闻」是以非官方狀態直接協助傳播央視影片及其他中共官媒內容，而「兵鉴堂」、「军武侦察兵」則是中國網路節目，內容亦親近中國。",
+          "source_id": "src-iorg-41",
+          "about": "央視"
+        },
+        {
+          "text": "4 月 14 日 「亞洲事實查核實驗室」發布查核報告，研究發現「軍演期間不實消息充斥媒體和社交平台 [...] 似乎意圖放大恐懼，使台灣民眾相信中國的軍演意味著侵台迫在眉睫」，並認為由央視主動發布的影片「恐嚇意味濃」。",
+          "source_id": "src-iorg-41",
+          "about": "央視"
+        },
+        {
+          "text": "當日 09:47 至 14:44，中共官媒「海峽之聲」「中國台灣網」「央視網」持續發布報導傳播該影片。",
+          "source_id": "src-iorg-41",
+          "about": "央視"
+        },
+        {
+          "text": "當日 10:19 至 14:06 間，中共官媒「環球網」「台海網」「鳳凰網」「澎湃新聞」「央視網」及官媒微博帳號「环球时报」「海外网」「环球网」「小央视频」「香港中通社」「中国新闻网」「厦门广电」「海峡导报」「中国新闻社」多使用相同「天氣晴朗」圖片，協力傳播中時報導內容。",
+          "source_id": "src-iorg-41",
+          "about": "央視"
+        },
+        {
+          "text": "🇨🇳 4 月 9 日 14:03 中共官媒微博帳號「央广军事」發布由「东部战区融媒体中心」製作的「东部战区多军兵种模拟联合精确打击演示动画」影片，內容為解放軍透過陸、海、空部隊使用飛彈攻擊台灣周遭海域及臺北、高雄的模擬畫面，是 IORG 資料庫中首則相關文本。",
+          "source_id": "src-iorg-41",
+          "about": "央广军事"
+        },
+        {
+          "text": "借台美關稅談判批評其「舔美卖台」（海峡飞虹）、「“巨款换关税”遭岛内痛批」（中国台湾网）同時放大 民眾黨 立院黨團批評民進黨政府「挟洋自重」說法（凤凰网）。",
+          "source_id": "src-iorg-131",
+          "about": "海峡飞虹"
+        },
+        {
+          "text": "1 月 30 日，🇨🇳 广电总台「海峡飞虹」發布來自 🇨🇳 中国新闻社「中新社」的文章「国共机制化交流重启 台专家指“符合多数人的期盼”」，內文包含「“国共两党智库论坛”2 月 3 日将在北京举行。",
+          "source_id": "src-iorg-131",
+          "about": "海峡飞虹"
+        },
+        {
+          "text": "5-6 日，有 6 個中共官媒微博帳號發布含有相同內容文本，包含 🇨🇳 广电总台「看台海」、🇨🇳 福建日报「福建东南网」。",
+          "source_id": "src-iorg-131",
+          "about": "看台海"
+        },
+        {
+          "text": "1 月 12 日，🇨🇳 广电总台「看台海」發布微博，影片內容為 1 月 11 日 旺中「中天新聞」政論節目「辣晚報」中名嘴郭正亮的發言「2 個人（指蔡正元、柯文哲）都受到監控之中，都是被司法迫害的人士」，文字內容包含「柯文哲、蔡正元同框，一起秀出“电子脚镣” 尽显#台湾司法迫害黑暗#」。",
+          "source_id": "src-iorg-131",
+          "about": "看台海"
+        },
+        {
+          "text": "28 日，有 35 個中共官媒微博帳號發布含有相同內容文本，包含 🇨🇳 国务院「新华社」、🇨🇳 广电总台「央视新闻」。",
+          "source_id": "src-iorg-131",
+          "about": "央视新闻"
+        },
+        {
+          "text": "This was most clearly on show in an exchange between a CCTV journalist and Director of the Information Bureau of the Taiwan Affairs Office (TAO) of the State Council Chen Binhua (陈斌华).",
+          "source_id": "src-jamestown-js2024b",
+          "about": "CCTV"
+        },
+        {
+          "text": "The latter phrase, for instance, likely first appeared in a 2019 speech by Xi Jinping (VOA, January 3, 2019; Mainland Affairs Council, May 29, 2019; CCTV News, May 28).",
+          "source_id": "src-jamestown-js2024b",
+          "about": "CCTV"
+        },
+        {
+          "text": "關於裴洛西訪台，中共官媒發起並參與多項論述傳播，央視更公開報導宣揚其旗下品牌「玉渊谭天」「協同」中央廣電總台「影響中國國內海外輿論」 DA.28；關於麥卡錫訪台的 10 項論述則多出自台灣，中共官媒多引用台灣新聞媒體社論、特定名嘴（如郭正亮、蔡正元、介文汲）、政治人物（如楊永明）及其他可信度不一的評論，擴大傳播。",
+          "source_id": "src-iorg-38",
+          "about": "央視"
+        },
+        {
+          "text": "隔日，中共官媒「中國台灣網」「鳳凰網」「台海網」「海峽飛虹」及「海峽之聲」以「根据岛内公布的一份最新民调」協力傳播相同內容，以網路投票結果代表台灣民眾全體意見。",
+          "source_id": "src-iorg-38",
+          "about": "海峽飛虹"
         }
       ]
     },
@@ -3322,7 +4386,29 @@ window.NETWEAVER_DB = {
         "src-iorg-136",
         "src-iorg-131"
       ],
-      "confidence": "medium"
+      "confidence": "medium",
+      "claims": [
+        {
+          "text": "同時，影片數量前 20 的頻道，有 6 個內容親近中國的頻道，包括中共官媒內容、中國網路節目、中共官媒，其中，「中国人民解放军」、「军迷天下」、「看看新闻」3 個頻道未能確認為中共官媒，但直接協助傳播央視影片及其他中共官媒內容，請讀者特別注意。",
+          "source_id": "src-iorg-41",
+          "about": "看看新闻"
+        },
+        {
+          "text": "「中国东南卫视」是中共官媒，曾出現在 IORG 報告之中 DA.39 ，「中国人民解放军」、「军迷天下」、「看看新闻」是以非官方狀態直接協助傳播央視影片及其他中共官媒內容，而「兵鉴堂」、「军武侦察兵」則是中國網路節目，內容亦親近中國。",
+          "source_id": "src-iorg-41",
+          "about": "看看新闻"
+        },
+        {
+          "text": "IORG 暫時無法確認 YouTube 頻道「看看新闻」是否為中共官媒。",
+          "source_id": "src-iorg-41",
+          "about": "看看新闻"
+        },
+        {
+          "text": "中共官媒上海廣播電視台旗下有名稱和帳號大頭照相同的節目「看看新闻」，同時，YouTube 頻道「看看新闻」的頻道介紹之中亦連結至中共陝西省委及陜西省政府官媒「西部決策」，由於身分衝突，IORG 暫時無法確認「看看新闻」的分類。",
+          "source_id": "src-iorg-41",
+          "about": "看看新闻"
+        }
+      ]
     },
     {
       "id": "china-taiwan-net",
@@ -3361,7 +4447,104 @@ window.NETWEAVER_DB = {
         "src-iorg-118",
         "src-iorg-136"
       ],
-      "confidence": "high"
+      "confidence": "high",
+      "claims": [
+        {
+          "text": "🇨🇳 2024 年 1 月 13 日台灣總統大選投票日， 🇨🇳 国台办「中国台湾网」發表署名「王杰」的「社会政治文化变迁与台湾选举」一文回顧台灣政治與選舉變遷。",
+          "source_id": "src-iorg-118",
+          "about": "中国台湾网"
+        },
+        {
+          "text": "🇨🇳 2024 年 8 月 7 日 🇨🇳 国台办「中国台湾网」評論賴清德資政、國正顧問名單的文章中，批評「赖清德吃相难看，想做民选皇帝」。",
+          "source_id": "src-iorg-118",
+          "about": "中国台湾网"
+        },
+        {
+          "text": "🇹🇼-🇨🇳 2024 年 12 月 31 日 🇨🇳 国台办「中国台湾网」報導引用國民黨「回顧賴清德2024執政十大亂象」，內容涵蓋內閣表現、罷免謝國樑、戒嚴發言爭議（TEAM 戒嚴）、房價、打詐、政治人物貪污等面向。",
+          "source_id": "src-iorg-118",
+          "about": "中国台湾网"
+        },
+        {
+          "text": "🇹🇼-🇨🇳 2024 年 12 月 31 日 🇨🇳 国台办「中国台湾网」抖音上傳影片，標題為「扭曲的台湾民主 “民主教”」。",
+          "source_id": "src-iorg-118",
+          "about": "中国台湾网"
+        },
+        {
+          "text": "🇹🇼-🇨🇳 2024 年 12 月 31 日 🇨🇳 国台办「中国台湾网」報導引用 國民黨 國民黨「回顧賴清德2024執政十大亂象」，並針對民進黨評論韓國宣布戒嚴的發文爭議，評論為「让台湾的“民主形象”沦为笑话」。",
+          "source_id": "src-iorg-118",
+          "about": "中国台湾网"
+        },
+        {
+          "text": "🇨🇳 2025 年 6 月 24 日 🇨🇳 国台办「中国台湾网」以「台独就是有害垃圾！",
+          "source_id": "src-iorg-118",
+          "about": "中国台湾网"
+        },
+        {
+          "text": "🇨🇳 2025 年 3 月 14 日 🇨🇳 国台办「中国台湾网」發表標題為「赖清德宣布全面紧缩两岸交流 岛内舆论批不如直接宣布戒严！」",
+          "source_id": "src-iorg-118",
+          "about": "中国台湾网"
+        },
+        {
+          "text": "🇨🇳 2025 年 6 月 24 日 🇨🇳 国台办「中国台湾网」發表評論文章，內容稱賴清德「将两岸商机扭曲为“台湾危机”」「将两岸正常交往交流活动以及台商台企经济合作项目通通划入所谓“统战威胁”」，並以「賴 17 條」「威胁参与两岸互动的台商、台企、台青、台生，给支持两岸和平发展的岛内政党、团体及各界人士扣上所谓“在地协力者”的“帽子”」。",
+          "source_id": "src-iorg-118",
+          "about": "中国台湾网"
+        },
+        {
+          "text": "🇹🇼-🇨🇳 2025 年 6 月 11-12 日間「中国台湾网」、「海峡飞虹」、「海峡之声」先後引述 6 月 11 日「黨外在野大聯盟」成立大會上召集人 國民黨 鄭麗文的發言：「当下岛内的执政党逐渐走向法西斯化、沙文主义化，大家忧心不已，因此希望联结、团结所有“在野”力量」。",
+          "source_id": "src-iorg-118",
+          "about": "中国台湾网"
+        },
+        {
+          "text": "實際案例包括：15 日中共官媒環球網、17 日中國外交部發言人華春瑩、18 日中國外交部發言人趙立堅、20 日中共官媒環球網總編胡锡进的發言、24 日中國外交部發言人汪文斌、28 日國台辦轄下「中國台灣網」針對美國艦隊通過台灣海峽的回應。",
+          "source_id": "src-iorg-11",
+          "about": "中國台灣網"
+        },
+        {
+          "text": "8 月 28 日，國台辦轄下「中國台灣網」發文，譴責美國艦隊通過台灣海峽是挑釁中國。",
+          "source_id": "src-iorg-11",
+          "about": "中國台灣網"
+        },
+        {
+          "text": "當日 09:47 至 14:44，中共官媒「海峽之聲」「中國台灣網」「央視網」持續發布報導傳播該影片。",
+          "source_id": "src-iorg-41",
+          "about": "中國台灣網"
+        },
+        {
+          "text": "借台美關稅談判批評其「舔美卖台」（海峡飞虹）、「“巨款换关税”遭岛内痛批」（中国台湾网）同時放大 民眾黨 立院黨團批評民進黨政府「挟洋自重」說法（凤凰网）。",
+          "source_id": "src-iorg-131",
+          "about": "中国台湾网"
+        },
+        {
+          "text": "1 月 13 日，🇨🇳 国台办「中国台湾网」發布文本「郑丽文批民进党当局滥用司法：台湾之耻辱」，內文包含「据台媒报道，台湾民众党前主席柯文哲、中国国民党前台北市党部主委黄吕锦茹及前民代蔡正元均因涉案被强制佩戴电子脚镣，而民进党籍涉贪人士郑文灿却未受该“待遇”。",
+          "source_id": "src-iorg-131",
+          "about": "中国台湾网"
+        },
+        {
+          "text": "1 月 27 日，🇨🇳 国台办「中国台湾网」發布文本「从“台北101”到“台湾101”：民进党“地标碰瓷”背后尽显治理失能」，內文包含「美国攀岩运动家艾力克斯·霍诺德（Alex Honnold）25 日挑战徒手攀登“台北 101”大楼并成功登顶，引发关注。",
+          "source_id": "src-iorg-131",
+          "about": "中国台湾网"
+        },
+        {
+          "text": "1 月 14 日，🇨🇳 国台办「中国台湾网」發布文本「“青提”风波背后：民进党“文字猎巫”的“抗中”意识形态困局」，內文包含「这一荒诞事件再次暴露绿营长期操弄“抗中反中”意识形态、将日常事务泛政治化的深层乱象，引发岛内舆论对“绿色恐怖”蔓延的担忧」、「实际上，随着两岸文化交流合作的深入，许多大陆用语早已成为台湾民众沟通中的日常。",
+          "source_id": "src-iorg-131",
+          "about": "中国台湾网"
+        },
+        {
+          "text": "島內網民 2 月 3 日中共官媒「中國台灣網」以標題「打脸！",
+          "source_id": "src-iorg-38",
+          "about": "中國台灣網"
+        },
+        {
+          "text": "島內網民 2 月 3 日 17:26 中共官媒「中國台灣網」以標題〈“疑美”才是真民意，“倚美”只能沦为真棋子！",
+          "source_id": "src-iorg-38",
+          "about": "中國台灣網"
+        },
+        {
+          "text": "隔日，中共官媒「中國台灣網」「鳳凰網」「台海網」「海峽飛虹」及「海峽之聲」以「根据岛内公布的一份最新民调」協力傳播相同內容，以網路投票結果代表台灣民眾全體意見。",
+          "source_id": "src-iorg-38",
+          "about": "中國台灣網"
+        }
+      ]
     },
     {
       "id": "durinbridge",
@@ -3464,21 +4647,6 @@ window.NETWEAVER_DB = {
       "confidence": "high",
       "claims": [
         {
-          "text": "研究團隊發現，此次軍演宣傳由「東部戰區融媒體中心」擔任「中央廚房」角色，提供素材，再由傳統官媒、自媒體、網路新媒體依照素材發揮，帶動網路輿論。",
-          "source_id": "src-factlink-pla",
-          "about": "東部戰區融媒體中心"
-        },
-        {
-          "text": "第一篇 6700筆軍演資料揭露 東部戰區融媒體的宣傳網絡全貌，拆解2025年底軍演中的政治宣傳協作機制。",
-          "source_id": "src-factlink-pla",
-          "about": "東部戰區"
-        },
-        {
-          "text": "研究團隊發現，該段影像是此次軍演的東部戰區的宣傳攻擊主軸。",
-          "source_id": "src-factlink-pla",
-          "about": "東部戰區"
-        },
-        {
           "text": "在軍演中，除了軍事作戰單位發動演練外，東部戰區融媒體中心更發動「資訊宣傳戰」。",
           "source_id": "src-factlink-a7a795",
           "about": "東部戰區融媒體中心"
@@ -3577,6 +4745,51 @@ window.NETWEAVER_DB = {
           "text": "東部戰區融媒體中心的「宣傳」敘事觀點，有其政治宣傳目的。",
           "source_id": "src-factlink-a7a795",
           "about": "東部戰區融媒體中心"
+        },
+        {
+          "text": "研究團隊發現，此次軍演宣傳由「東部戰區融媒體中心」擔任「中央廚房」角色，提供素材，再由傳統官媒、自媒體、網路新媒體依照素材發揮，帶動網路輿論。",
+          "source_id": "src-factlink-pla",
+          "about": "東部戰區融媒體中心"
+        },
+        {
+          "text": "第一篇 6700筆軍演資料揭露 東部戰區融媒體的宣傳網絡全貌，拆解2025年底軍演中的政治宣傳協作機制。",
+          "source_id": "src-factlink-pla",
+          "about": "東部戰區"
+        },
+        {
+          "text": "研究團隊發現，該段影像是此次軍演的東部戰區的宣傳攻擊主軸。",
+          "source_id": "src-factlink-pla",
+          "about": "東部戰區"
+        },
+        {
+          "text": "🇨🇳 4 月 9 日 14:03 中共官媒微博帳號「央广军事」發布由「东部战区融媒体中心」製作的「东部战区多军兵种模拟联合精确打击演示动画」影片，內容為解放軍透過陸、海、空部隊使用飛彈攻擊台灣周遭海域及臺北、高雄的模擬畫面，是 IORG 資料庫中首則相關文本。",
+          "source_id": "src-iorg-41",
+          "about": "东部战区融媒体中心"
+        },
+        {
+          "text": "🇨🇳 4 月 10 日 7:30 微博帳號「东部战区」及 bilibili 帳號「东部战区」 發布一則宣稱由「东部战区融媒体中心」製作的影片「台岛上空的声音」，影片中「轟-6K」的飛行員口述「我已抵達台島北部附近空域」並模擬發射飛彈。",
+          "source_id": "src-iorg-41",
+          "about": "东部战区融媒体中心"
+        },
+        {
+          "text": "🇨🇳-🇹🇼 4 月 10 日 9:06 台灣新聞媒體鏡傳媒發布報導，內容包含 4 月 9 日 17:41 解放軍東部戰區的微博官方帳號「东部战区」發布相同的動畫影片，當日，聯合新聞網（12:40）、自由時報（16:44）亦跟進報導此動畫影片。",
+          "source_id": "src-iorg-41",
+          "about": "东部战区"
+        },
+        {
+          "text": "經查在 4 月 6 日至 4 月 10 日解放軍軍演期間，國防部以及 IORG 資料庫中的中共官媒以及微博帳號「东部战区」，並沒有發布任何關於中共在此次軍演期間發射飛彈進入台灣領空的訊息。",
+          "source_id": "src-iorg-41",
+          "about": "东部战区"
+        },
+        {
+          "text": "🇨🇳 4 月 10 日 22:34 bilibili 帳號「东部战区」發布影片「利剑出鞘！",
+          "source_id": "src-iorg-41",
+          "about": "东部战区"
+        },
+        {
+          "text": "🇨🇳 🇹🇼-🇨🇳 YT 4 月 15 日 21:09 微博帳號「紫金山上听风吟」發文，宣稱「我东部战区视频公开那是解放军隐形战机飞过台湾上空，那是 J20 音爆声音」，文章同時包含 4 月 13 日唐湘龍在 YouTube 頻道「飛碟聯播網」節目影片的剪輯片段。",
+          "source_id": "src-iorg-41",
+          "about": "东部战区"
         }
       ]
     },
@@ -3640,7 +4853,7 @@ window.NETWEAVER_DB = {
           "about": "長光衛星"
         },
         {
-          "text": "國防安全院中共政軍與作戰概念研究所副研究員舒孝煌說，中共過去在軍演、擾台期間，多半以Google Maps照片等亂湊影像或錯誤資訊，來宣稱解放軍掌握台灣的地理圖資和情報，不過，這次不一樣，是透過民間公司釋出台灣的地理衛星實景照，「長光衛星除了與官方政治宣傳同步應和，當然也有商業行銷目的。",
+          "text": "國防安全院中共政軍與作戰概念研究所副研究員舒孝煌說，中共過去在軍演、擾台期間，多半以Google Maps照片等亂湊影像或錯誤資訊，來宣稱解放軍掌握台灣的地理圖資和情報，不過，這次不一樣，是透過民間公司釋出台灣的地理衛星實景照，「長光衛星除了與官方政治宣傳同步應和，當然也有商業行銷目的。」",
           "source_id": "src-factlink-satellite",
           "about": "長光衛星"
         },
@@ -3784,6 +4997,16 @@ window.NETWEAVER_DB = {
           "text": "至於與中國在過去幾年在海上發生數次衝突的菲律賓，雖然在高市早苗的「台灣有事」發言之初並未受到矚目，但自從11月30日共同社報導日本政府正在考慮對菲律賓出口導彈之後，中國官媒、關係媒體帳號如「觀察者網」，以及網路大V也開始以「菲律賓勾結高市早苗反華」、「日本擴武野心正通過菲律賓落地」等敘事，對菲律賓及日本的關係展開攻勢，並且作為日本試圖破壞二戰秩序的證明。",
           "source_id": "src-factlink-japan",
           "about": "觀察者網"
+        },
+        {
+          "text": "🇨🇳 2024 年 2 月 4 日「观察者网」發布张维为於 🇨🇳 上海广电 「东方卫视」節目發言逐字稿，张维为在節目中批評台灣「以选票为中心」的西方政治模式存在缺陷，導致政黨「竞相争夺选票 [...] 对基本盘以外其他群体的利益，要么是视而不见，要么是开一些空头支票」。",
+          "source_id": "src-iorg-118",
+          "about": "观察者网"
+        },
+        {
+          "text": "1 月 28 日 7:58 中國媒體「观察者网」刊出「台灣自由撰稿人」雁默的評論，認為「“被逼还手”是大陆解决台湾问题的最佳途径，其能在道义上站得住脚，也能最大程度降低周边国家与欧洲的反弹」，而中國應「主动创造“被逼还手”的环境」。",
+          "source_id": "src-iorg-38",
+          "about": "观察者网"
         }
       ]
     },
@@ -3827,6 +5050,21 @@ window.NETWEAVER_DB = {
           "text": "比如前環球時報的總編輯胡錫進在11月1日高市與林信義在APEC場合見面時，25便從高市早苗的性別做文章，將她與日本形容為美國的「東亞妾室」，與台灣「私通」，比擬日本與台灣及美國之間的關係。",
           "source_id": "src-factlink-japan",
           "about": "胡錫進"
+        },
+        {
+          "text": "實際案例包括：15 日中共官媒環球網、17 日中國外交部發言人華春瑩、18 日中國外交部發言人趙立堅、20 日中共官媒環球網總編胡锡进的發言、24 日中國外交部發言人汪文斌、28 日國台辦轄下「中國台灣網」針對美國艦隊通過台灣海峽的回應。",
+          "source_id": "src-iorg-11",
+          "about": "胡锡进"
+        },
+        {
+          "text": "環球網總編胡锡进：拜登是「老糊塗」，會讓台灣變成東亞火藥桶。",
+          "source_id": "src-iorg-11",
+          "about": "胡锡进"
+        },
+        {
+          "text": "8 月 20 日，中共官媒環球時報總編輯胡锡进貼文，認為拜登將台灣類比為北約盟友的是「老糊塗」，會讓台灣變成「東亞火藥桶」。",
+          "source_id": "src-iorg-11",
+          "about": "胡锡进"
         }
       ]
     },
@@ -3954,11 +5192,6 @@ window.NETWEAVER_DB = {
       "confidence": "high",
       "claims": [
         {
-          "text": "According to Xinhua News Agency, the ceremony was held on 3 July in Beijing.",
-          "source_id": "src-aspi-the-strategist-934197",
-          "about": "Xinhua News Agency"
-        },
-        {
           "text": "正義使命軍演是由中共解放軍東部戰區發言人施毅在2025年12月29日早上7點30分宣布開始，由東部戰區、新華社受權發布演訓公告和示意圖，央視亦發布相關新聞。",
           "source_id": "src-factlink-a7a795",
           "about": "新華社"
@@ -3979,29 +5212,14 @@ window.NETWEAVER_DB = {
           "about": "新華社"
         },
         {
-          "text": "檢視「島內輿論」這波主題，中國官方媒體家數雖多，但內容來源單一，不同媒體之間交互引用，內容主要來自新華社旗下的微博帳號《參考消息》報導〈島內網友熱議衛星視角下瞰中國台灣省〉，此報導除了引述台灣媒體，更取材特定媒體報導的網友留言，製造「島內輿論」高度熱議、高度讚嘆中國科技進步的風向，獲得《央廣軍事》和《環球時報》等媒體轉分享。",
-          "source_id": "src-factlink-satellite",
-          "about": "新華社"
+          "text": "According to Xinhua News Agency, the ceremony was held on 3 July in Beijing.",
+          "source_id": "src-aspi-the-strategist-934197",
+          "about": "Xinhua News Agency"
         },
         {
-          "text": "中央官媒如央視、新華社等，呼應官方敘事，例如「高市早苗讓日本承擔代價」，「高市早苗要明白中國人民惹不得」；而地方官媒如北京日報、以及常與官媒呼應的香港媒體如鳳凰網，以及時政大V帳號則在既有敘事基礎上進一步加油添醋、強化情緒性語言與陰謀論式解讀，使訊息更具戲劇性與傳播力。",
-          "source_id": "src-factlink-japan",
-          "about": "新華社"
-        },
-        {
-          "text": "例如北京日報引述新華社，稱賴清德和民進黨「附和高市早苗言論，甘當日本反華勢力的“應聲蟲”，藉機污衊攻擊大陸，為了“倚外謀獨”已經失心瘋」，恐將台灣推向戰火；其他官媒與時政大V帳號發文強調台灣問題屬於中國內政，日本不應以「存亡危機」為藉口介入。",
-          "source_id": "src-factlink-japan",
-          "about": "新華社"
-        },
-        {
-          "text": "Another reporter from one of the three major state-owned media outlets says editorials from The People’s Daily and Xinhua more or less represent the Chinese government’s official position.",
-          "source_id": "src-lowy-globaltimes",
-          "about": "Xinhua"
-        },
-        {
-          "text": "It is clear that Global Times’ editorials don’t carry the same weight as those of the People’s Daily or Xinhua.",
-          "source_id": "src-lowy-globaltimes",
-          "about": "Xinhua"
+          "text": "5, PRC state media Xinhua News Agency and the People’s Daily both released a series of pictures and texts suggesting that the People’s Liberation Army (PLA) were operating on Taiwan’s coastline.",
+          "source_id": "src-dtl-2022election",
+          "about": "Xinhua News Agency"
         },
         {
           "text": "PM Oli had held a meeting with Xi Jinping in the course of his visit to the PRC for attending the Shanghai Cooperation Organization (SCO) Plus Summit in Tianjin on 30 August 2025 (Xinhua, 2025).",
@@ -4019,14 +5237,64 @@ window.NETWEAVER_DB = {
           "about": "Xinhua"
         },
         {
-          "text": "Xinhua.",
+          "text": "Xinhua News.",
           "source_id": "src-doublethink-lab-96d2c0",
           "about": "Xinhua"
         },
         {
-          "text": "Xinhua News.",
-          "source_id": "src-doublethink-lab-96d2c0",
+          "text": "檢視「島內輿論」這波主題，中國官方媒體家數雖多，但內容來源單一，不同媒體之間交互引用，內容主要來自新華社旗下的微博帳號《參考消息》報導〈島內網友熱議衛星視角下瞰中國台灣省〉，此報導除了引述台灣媒體，更取材特定媒體報導的網友留言，製造「島內輿論」高度熱議、高度讚嘆中國科技進步的風向，獲得《央廣軍事》和《環球時報》等媒體轉分享。",
+          "source_id": "src-factlink-satellite",
+          "about": "新華社"
+        },
+        {
+          "text": "中央官媒如央視、新華社等，呼應官方敘事，例如「高市早苗讓日本承擔代價」，「高市早苗要明白中國人民惹不得」；而地方官媒如北京日報、以及常與官媒呼應的香港媒體如鳳凰網，以及時政大V帳號則在既有敘事基礎上進一步加油添醋、強化情緒性語言與陰謀論式解讀，使訊息更具戲劇性與傳播力。",
+          "source_id": "src-factlink-japan",
+          "about": "新華社"
+        },
+        {
+          "text": "例如北京日報引述新華社，稱賴清德和民進黨「附和高市早苗言論，甘當日本反華勢力的“應聲蟲”，藉機污衊攻擊大陸，為了“倚外謀獨”已經失心瘋」，恐將台灣推向戰火；其他官媒與時政大V帳號發文強調台灣問題屬於中國內政，日本不應以「存亡危機」為藉口介入。",
+          "source_id": "src-factlink-japan",
+          "about": "新華社"
+        },
+        {
+          "text": "🇨🇳 2025 年 3 月 30 日 🇨🇳 国务院「新华网」評論內文稱，「賴 17 條」中「意图恢复“军事审判制度”，通过渲染战争恐慌强化“台独”意识形态控制」，並讓不明來源的「台湾民众」驚呼「“‘白色恐怖 ’还魂重现”“已进入准‘戒严 ’状态”」。",
+          "source_id": "src-iorg-118",
+          "about": "新华网"
+        },
+        {
+          "text": "🇨🇳 2025 年 3 月 30 日 🇨🇳 国务院「新华网」發表標題為「赖清德大搞绿色威权 包藏祸心」的評論文章，內文稱賴清德「大开民主倒车，使台湾滑向绿色恐怖执政的黑暗深渊」，認為賴政府以「国安和统战威胁等借口」限制人民言論自由，而民進黨當前的作法與「过去抨击的戒严体制已无二致」「从批判威权到成为绿色威权」。",
+          "source_id": "src-iorg-118",
+          "about": "新华网"
+        },
+        {
+          "text": "16 日，新華網發布報導：「喀布爾陷落標誌著美國無功而返、國際形象和信譽崩塌，美國霸權走向衰落。」",
+          "source_id": "src-iorg-11",
+          "about": "新華網"
+        },
+        {
+          "text": "🇨🇳 4 月 10 日 08:31中共官媒「新華網」發布報導傳播「台岛上空的声音」影片。",
+          "source_id": "src-iorg-41",
+          "about": "新華網"
+        },
+        {
+          "text": "28 日，有 35 個中共官媒微博帳號發布含有相同內容文本，包含 🇨🇳 国务院「新华社」、🇨🇳 广电总台「央视新闻」。",
+          "source_id": "src-iorg-131",
+          "about": "新华社"
+        },
+        {
+          "text": "Another reporter from one of the three major state-owned media outlets says editorials from The People’s Daily and Xinhua more or less represent the Chinese government’s official position.",
+          "source_id": "src-lowy-globaltimes",
           "about": "Xinhua"
+        },
+        {
+          "text": "It is clear that Global Times’ editorials don’t carry the same weight as those of the People’s Daily or Xinhua.",
+          "source_id": "src-lowy-globaltimes",
+          "about": "Xinhua"
+        },
+        {
+          "text": "其中，「台海網」的文章使用中共官媒「新華網」發布於 2022 年 8 月 5 日的合成照片 DA.28。",
+          "source_id": "src-iorg-38",
+          "about": "新華網"
         }
       ]
     },
@@ -4149,6 +5417,21 @@ window.NETWEAVER_DB = {
           "text": "〉影片，由《澎湃新聞》、《大象新聞》、香港《文匯報》等多家媒體、論壇帳號、多個抖音帳號轉分享。",
           "source_id": "src-factlink-satellite",
           "about": "《澎湃新聞》"
+        },
+        {
+          "text": "當日 10:19 至 14:06 間，中共官媒「環球網」「台海網」「鳳凰網」「澎湃新聞」「央視網」及官媒微博帳號「环球时报」「海外网」「环球网」「小央视频」「香港中通社」「中国新闻网」「厦门广电」「海峡导报」「中国新闻社」多使用相同「天氣晴朗」圖片，協力傳播中時報導內容。",
+          "source_id": "src-iorg-41",
+          "about": "澎湃新聞"
+        },
+        {
+          "text": "當日 14:56 至隔日 9:18 之間，中共官媒「澎湃新聞」「環球網」「台海網」「香港新聞網」協力傳播此則中時新聞網的報導內容。",
+          "source_id": "src-iorg-41",
+          "about": "澎湃新聞"
+        },
+        {
+          "text": "1 月 8 日，🇨🇳 上海报业集团「澎湃新闻」發布來自「“日月谭天”微信公众号」的文本「日月谭天 | 大陆惩治“台独”分子绝不手软，推动两岸交融绝不止步」，內文包含「1 月 7 日，国台办举行 2026 年首场例行新闻发布会。",
+          "source_id": "src-iorg-131",
+          "about": "澎湃新闻"
         }
       ]
     },
@@ -4205,6 +5488,11 @@ window.NETWEAVER_DB = {
           "about": "中國外交部"
         },
         {
+          "text": "In April 2023, the Chinese Ministry of Foreign Affairs froze the visas of two prominent Indian journalists — The Hindu’s Ananth Krishnan and Prasar Bharati’s Anshuman Mishra.",
+          "source_id": "src-doublethink-lab-96d2c0",
+          "about": "Chinese Ministry of Foreign Affairs"
+        },
+        {
           "text": "中國外交部採取連串抗議與反制措施，除了約見日本駐華大使之外，更祭出赴日旅遊治安提醒、暫停日本水產品進口等經濟制裁。",
           "source_id": "src-factlink-japan",
           "about": "中國外交部"
@@ -4255,9 +5543,24 @@ window.NETWEAVER_DB = {
           "about": "中國外交部"
         },
         {
-          "text": "In April 2023, the Chinese Ministry of Foreign Affairs froze the visas of two prominent Indian journalists — The Hindu’s Ananth Krishnan and Prasar Bharati’s Anshuman Mishra.",
-          "source_id": "src-doublethink-lab-96d2c0",
-          "about": "Chinese Ministry of Foreign Affairs"
+          "text": "中國外交部汪文斌：美国可以肆意对一个主权国家进行军事干涉，而不必为这个国家的人民所遭受的苦难负责。",
+          "source_id": "src-iorg-11",
+          "about": "中國外交部"
+        },
+        {
+          "text": "17 日，中國外交部發言人華春瑩：「美军所到之处，留下的都是动荡分裂、家破人亡，留下千疮百孔的烂摊子。」",
+          "source_id": "src-iorg-11",
+          "about": "中國外交部"
+        },
+        {
+          "text": "18 日，中國外交部發言人趙立堅：「​​一些国家打着民主、人权旗号对主权国家实施军事干涉，严重破坏有关国家主权和领土完整，导致其经济和社会发展遭受重创，导致大量无辜平民伤亡或被迫颠沛流离。」",
+          "source_id": "src-iorg-11",
+          "about": "中國外交部"
+        },
+        {
+          "text": "24 日，中國外交部汪文斌：「美国可以肆意对一个主权国家进行军事干涉，而不必为这个国家的人民所遭受的苦难负责。」",
+          "source_id": "src-iorg-11",
+          "about": "中國外交部"
         }
       ]
     },
@@ -4363,9 +5666,94 @@ window.NETWEAVER_DB = {
       "confidence": "high",
       "claims": [
         {
+          "text": "5, PRC state media Xinhua News Agency and the People’s Daily both released a series of pictures and texts suggesting that the People’s Liberation Army (PLA) were operating on Taiwan’s coastline.",
+          "source_id": "src-dtl-2022election",
+          "about": "People’s Daily"
+        },
+        {
+          "text": "20, towards the end of the 20th National Congress, the People’s Daily hosted the topic #連續拿下台灣當局9個所謂的邦交國# (PRC MOFA won over 9 so-called diplomatic allies from Taiwan).",
+          "source_id": "src-dtl-2022election",
+          "about": "People’s Daily"
+        },
+        {
           "text": "FactLink觀察到，此事件有兩波訊息傳播高峰，第一波是10月26日至10月29日，中國官方相關媒體如《觀察者網》、《環球網》、《環球時報》、《人民日報》、《央視軍事》、《海峽之聲》、《看台海》報導與其微博官方帳號，引用長光衛星公司衛星影像，「慶祝台灣回歸為中國一部分」的光復節。",
           "source_id": "src-factlink-satellite",
           "about": "《人民日報》"
+        },
+        {
+          "text": "🇹🇼-🇨🇳 2024 年 5 月 23 日 🇨🇳 人民日报「环球网」針對立法院「國會改革」修法爭議發表文章，內文引用 國民黨 葉元之、 國民黨 趙少康、聯合 聯合新聞網說法，認為立院外抗議的民眾是受到民進黨煽動或組織，評論賴政府「意图操控民众」。",
+          "source_id": "src-iorg-118",
+          "about": "人民日报"
+        },
+        {
+          "text": "🇨🇳 2024 年 5 月 25 日 🇨🇳 人民日报「环球网」再發表評論，稱立法院內肢體衝突事件的根源是因賴政府不能接受在國會不佔多數，因此訴諸暴力「输了人头就出拳头」。",
+          "source_id": "src-iorg-118",
+          "about": "人民日报"
+        },
+        {
+          "text": "🇨🇳 2025 年 3 月 15 日 🇨🇳 人民日报「环球网」發表作者為「北平锋」的評論文章，內文宣稱民進黨借國安之名打壓反對派，並「把司法工具化，滥用所谓反渗透法擅权专用、罗织罪名」。",
+          "source_id": "src-iorg-118",
+          "about": "人民日报"
+        },
+        {
+          "text": "🇹🇼-🇨🇳 2025 年 6 月 25 日 🇨🇳 人民日报「环球网」報導台灣移除蔣介石銅像，引用 國民黨 羅智強稱「赖清德的权力越大，就越往独裁迈进」；區桂之稱「民进党推动拆除所谓“威权”象征物，实则是企图建立自身的“威权”」；蔡正元稱民進黨為「打着“消除威权象征”的幌子，实则是为了打击反对力量」。",
+          "source_id": "src-iorg-118",
+          "about": "人民日报"
+        },
+        {
+          "text": "🇨🇳 2025 年 3 月 16 日 🇨🇳 人民日报「环球网」再發布「北平锋」的評論「赖清德绿色恐怖暴政让台湾回到戒严白色恐怖时期」，稱民進黨以反滲透之名「行思想禁锢人身控制之实，将台湾社会推向绿色恐怖深渊」。",
+          "source_id": "src-iorg-118",
+          "about": "人民日报"
+        },
+        {
+          "text": "🇨🇳 2025 年 4 月 28 日 🇨🇳 人民日报「环球时报」抖音發布影片，標題「绿恐又出新花样，民进党拿台民众户籍开刀」，內容稱陸委會指出台灣民眾持有中國身分證與定居證將喪失戶籍的政策是「绿色恐怖」，將「严重损害台湾的民主自由和社会和谐」。",
+          "source_id": "src-iorg-118",
+          "about": "人民日报"
+        },
+        {
+          "text": "🇨🇳 2024 年 6 月 14 日 🇨🇳 人民日报「环球网」發表作者為「程东」的評論文章，針對台灣網紅鍾明軒赴中，稱這是「“信息茧房”被现实击碎」。",
+          "source_id": "src-iorg-118",
+          "about": "人民日报"
+        },
+        {
+          "text": "🇨🇳 2025 年 6 月 5 日 🇨🇳 人民日报「环球网」再度發表作者為「程东」的文章，針對網紅館長陳之漢赴中，開頭引用未知來源的「岛内舆论」稱綠營批評館長代表「绿营其实是害怕了，担忧他们构筑的认知围墙被陈之汉突破」。",
+          "source_id": "src-iorg-118",
+          "about": "人民日报"
+        },
+        {
+          "text": "🇹🇼-🇨🇳 2025 年 6 月 30 日 🇨🇳 人民日报「环球网」發表評論「赖清德“法理”外衣难掩“台独”祸心」，開頭即批評賴團結十講「直接目的是为推动“大罢免”政治斗争谋取政治私利进行文宣造势，不惜将台湾推向分裂对抗的深渊」。",
+          "source_id": "src-iorg-118",
+          "about": "人民日报"
+        },
+        {
+          "text": "🇨🇳 2025 年 3 月 27 日 🇨🇳 人民日报「环球时报」抖音發布影片評論中配遭台灣政府驅逐事件，內容引用「厦门大学台湾研究院副院长」张文生觀點，稱「岛内台独势力已然在纳粹化的政治道路上一去不复返，打压陆配很可能仅仅是一个开始」。",
+          "source_id": "src-iorg-118",
+          "about": "人民日报"
+        },
+        {
+          "text": "🇨🇳 2025 年 3 月 28 日 🇨🇳 人民日报「环球时报」發表作者為「中国社会科学院台湾研究所副研究员」陈桂清的評論文章，內文列舉民進黨政治人物（如劉世芳、黃捷、沈伯洋等）、台派人士（如曹興誠、網紅「八炯」）等「配合」「赖当局」「大搞“台独”一言堂，大搞“绿色独裁”“绿色恐怖”」「阻挠两岸交流、打压政治异己、迫害台湾同胞」，認為他們「充当“台独”政权的“纳粹冲锋队员”」。",
+          "source_id": "src-iorg-118",
+          "about": "人民日报"
+        },
+        {
+          "text": "中共官媒 🇨🇳 人民日报「环球网」主筆室「北平锋」宣稱霍諾德徒手登頂台北 101 是「照见 “台独” 的穷途末路」，宣稱世界透過此次活動直播看見「“台独” 制造的危机、“绿色恐怖” 笼罩的阴霾」，全文言不及義，胡言亂語，充分展現其無論如何必須批評台灣政府、台灣民主的窘境與無奈。",
+          "source_id": "src-iorg-131",
+          "about": "人民日报"
+        },
+        {
+          "text": "1 月 10 日，🇨🇳 人民日报「环球网」發布作者「北平锋」的文章「在反“独”促统的民族大义面前并肩而行」，內文包含「近日，台湾“高等法院”对“三中案”作出二审判决，台湾前民意代表蔡正元被判三年六个月，中国国民党前主席马英九无罪。",
+          "source_id": "src-iorg-131",
+          "about": "人民日报"
+        },
+        {
+          "text": "1 月 26 日，🇨🇳 人民日报「环球网」發布作者「北平锋」的文章「台北 101，照见“台独”的穷途末路」，內文包含「台北 101 大楼的玻璃幕墙外，美国极限攀岩者亚历克斯·霍诺德的身影向上移动，赖清德对此高调宣称，“让世界看到了台湾的活力与风貌”。",
+          "source_id": "src-iorg-131",
+          "about": "人民日报"
+        },
+        {
+          "text": "1 月 31 日，🇨🇳 人民日报「环球网」發布作者「北平锋」的文章「再聊聊“台北 101”背后的那把“假钥匙”」，內文包含「民进党当局却执意要将“台北 101”改名为 “台湾 101”，居心叵测篡改其文化内涵及其被寄托的民族情感。",
+          "source_id": "src-iorg-131",
+          "about": "人民日报"
         },
         {
           "text": "As many foreign readers of the Global Times are already aware, it is a subsidiary of the People’s Daily, the principal propaganda publication of the Chinese Communist Party.",
@@ -4422,6 +5810,16 @@ window.NETWEAVER_DB = {
           "text": "同一時間，中國媒體用以面向台灣讀者的臉書粉絲專頁，包括《今日海峽》、《CCTV中文》、《知行》、《香港大公報》、香港中國通訊社的《通傳媒》等臉書粉專，同步發動長光衛星照慶祝台灣光復節的傳言，並發布台灣光復節歷史照片、紀錄片、台灣青年回顧光復節的內容素材。",
           "source_id": "src-factlink-satellite",
           "about": "《今日海峽》"
+        },
+        {
+          "text": "8 月 16 日，中共官媒粉專「今日海峽」加入傳播此論述：「（美國）帝國為了維護自己的利益，抓著廉價的“台灣牌”與北京周旋，本小利厚。",
+          "source_id": "src-iorg-11",
+          "about": "今日海峽"
+        },
+        {
+          "text": "1 月 13 日，🇨🇳 福建广播影视「今日海峽」發布 Facebook 動態，內文包含「命名『青提』挨轟『使用大陸用語』，基隆一甜品店被灌爆一星負評，網批：青鳥患上簡體字恐懼症」、「對此，有島內網民評論稱，一些人『自卑感是要多重』『青鳥患上簡體字恐懼症』」。",
+          "source_id": "src-iorg-131",
+          "about": "今日海峽"
         }
       ]
     },
@@ -4502,11 +5900,6 @@ window.NETWEAVER_DB = {
           "about": "Times Newswire"
         },
         {
-          "text": "a similar search through the Times Newswire content archived by the Wayback Machine showed a total of eight pieces.",
-          "source_id": "src-citizenlab-paperwall",
-          "about": "Times Newswire"
-        },
-        {
           "text": "This behavior suggests that ephemeral seeding is the intention for most content of that type which is deleted from the source website (Times Newswire) at an unspecified time after its initial publication.",
           "source_id": "src-citizenlab-paperwall",
           "about": "Times Newswire"
@@ -4543,11 +5936,6 @@ window.NETWEAVER_DB = {
         },
         {
           "text": "Specifically, we observed an article published to Times Newswire claiming that protests occurred in response to Taiwanese President Tsai Ing-wen’s recent transit through the U.S.",
-          "source_id": "src-mandiant-haienergy-2023",
-          "about": "Times Newswire"
-        },
-        {
-          "text": "and an identified service that sells digital advertisements on the specific billboard featured in the Times Newswire article.",
           "source_id": "src-mandiant-haienergy-2023",
           "about": "Times Newswire"
         },
@@ -4624,6 +6012,61 @@ window.NETWEAVER_DB = {
           "text": "中央官媒如央視、新華社等，呼應官方敘事，例如「高市早苗讓日本承擔代價」，「高市早苗要明白中國人民惹不得」；而地方官媒如北京日報、以及常與官媒呼應的香港媒體如鳳凰網，以及時政大V帳號則在既有敘事基礎上進一步加油添醋、強化情緒性語言與陰謀論式解讀，使訊息更具戲劇性與傳播力。",
           "source_id": "src-factlink-japan",
           "about": "鳳凰網"
+        },
+        {
+          "text": "當日 10:19 至 14:06 間，中共官媒「環球網」「台海網」「鳳凰網」「澎湃新聞」「央視網」及官媒微博帳號「环球时报」「海外网」「环球网」「小央视频」「香港中通社」「中国新闻网」「厦门广电」「海峡导报」「中国新闻社」多使用相同「天氣晴朗」圖片，協力傳播中時報導內容。",
+          "source_id": "src-iorg-41",
+          "about": "鳳凰網"
+        },
+        {
+          "text": "🇹🇼-🇨🇳 4 月 12 日 08:55 至 10:19 間，中共官媒「鳳凰網」「環球網」「香港新聞網」「大公文匯網」協力傳播介文汲在「中天新聞」節目影片中的說法。",
+          "source_id": "src-iorg-41",
+          "about": "鳳凰網"
+        },
+        {
+          "text": "借台美關稅談判批評其「舔美卖台」（海峡飞虹）、「“巨款换关税”遭岛内痛批」（中国台湾网）同時放大 民眾黨 立院黨團批評民進黨政府「挟洋自重」說法（凤凰网）。",
+          "source_id": "src-iorg-131",
+          "about": "凤凰网"
+        },
+        {
+          "text": "1 月份共有 437 則文本提及鄭麗文，主要內容包含前總統馬英九建議鄭麗文訪中「别穿高跟鞋，赶快练毛笔字」（凤凰网），並放大鄭麗文宣稱台灣主流民意期待兩岸交流的說法（海峡导报）以及「兩岸和平框架」主張（凤凰网）。",
+          "source_id": "src-iorg-131",
+          "about": "凤凰网"
+        },
+        {
+          "text": "1 月 16 日，🇨🇳 鳳凰衛視「凤凰网」發布文本「国防部：我们对付“台独”武装就像瓮中捉鳖」，內文包含「问：岛内有舆论担忧大陆仿照美国对委内瑞拉做法来合理化对台采取行动。",
+          "source_id": "src-iorg-131",
+          "about": "凤凰网"
+        },
+        {
+          "text": "1 月 30 日，🇨🇳 鳳凰衛視「凤凰网」發布來自 🇨🇳 福建日报「海峡导报」的文章「郑丽文抛“两岸和平框架”，岛内蓝白认可：和平是人民的殷切期盼」，內文包含「国民党主席郑丽文在专访透露今年上半年会先访问大陆、2028年执政后推“两岸和平框架”。",
+          "source_id": "src-iorg-131",
+          "about": "凤凰网"
+        },
+        {
+          "text": "1 月 11 日，🇨🇳 鳳凰衛視「凤凰网」發布來自「台湾日月谈」文本「蔡正元和柯文哲同框翘脚，一起秀出“电子脚镣”」，引用名嘴蔡正元 1 月 10 日在其個人 Facebook 貼文使用的照片，文字內容包含「蔡正元 1 月 10 日晚间再度成为话题焦点。",
+          "source_id": "src-iorg-131",
+          "about": "凤凰网"
+        },
+        {
+          "text": "評論同時獲得中共類官媒「鳳凰網」的轉發（7:58）。",
+          "source_id": "src-iorg-38",
+          "about": "鳳凰網"
+        },
+        {
+          "text": "同日 14:26 ，中共類官媒「鳳凰網」發布內容完全相同的報導。",
+          "source_id": "src-iorg-38",
+          "about": "鳳凰網"
+        },
+        {
+          "text": "隔日，中共官媒「中國台灣網」「鳳凰網」「台海網」「海峽飛虹」及「海峽之聲」以「根据岛内公布的一份最新民调」協力傳播相同內容，以網路投票結果代表台灣民眾全體意見。",
+          "source_id": "src-iorg-38",
+          "about": "鳳凰網"
+        },
+        {
+          "text": "1 月 10 日中共類官媒「鳳凰網」刊出作者「明叔杂谈」（微信公眾號）於 9 日發布的評論，認為「在俄乌冲突爆发后，美国在俄罗斯身上尝到了甜头，正在稳步地将台湾“乌克兰化”」，並認為美國要把台灣變成「刺蝟」、「棋子」、「炮灰」。",
+          "source_id": "src-iorg-38",
+          "about": "鳳凰網"
         }
       ]
     },
@@ -4645,7 +6088,54 @@ window.NETWEAVER_DB = {
         "src-iorg-38",
         "src-iorg-41"
       ],
-      "confidence": "medium"
+      "confidence": "medium",
+      "claims": [
+        {
+          "text": "🇹🇼-🇨🇳 2024 年 12 月 20 日 🇨🇳 中共中央统战部「香港新聞網」報導立法院修法爭議，內文引用 民眾黨 黃國昌對民進黨的批評稱「民進黨一手握著行政權，另一手則要求綠委癱瘓立法機構，在立法機構里搞戒嚴，賴清德已經跨越紅線」。",
+          "source_id": "src-iorg-118",
+          "about": "香港新聞網"
+        },
+        {
+          "text": "🇹🇼-🇨🇳 2025 年 3 月 14 日 🇨🇳 中共中央统战部 「香港新聞網」引用 國民黨 朱立倫發言，針對賴清德包括恢復軍事審判制度在內的「賴 17 條」策略，宣稱這是「嚴重限制民眾言論自由、思想自由、行動自由，是台灣民主的麻煩製造者」，且「公然成為國際的麻煩製造者，成為兩岸的麻煩製造者，成為台灣民主的麻煩製造者」。",
+          "source_id": "src-iorg-118",
+          "about": "香港新聞網"
+        },
+        {
+          "text": "當日 14:56 至隔日 9:18 之間，中共官媒「澎湃新聞」「環球網」「台海網」「香港新聞網」協力傳播此則中時新聞網的報導內容。",
+          "source_id": "src-iorg-41",
+          "about": "香港新聞網"
+        },
+        {
+          "text": "🇹🇼-🇨🇳 4 月 12 日 08:55 至 10:19 間，中共官媒「鳳凰網」「環球網」「香港新聞網」「大公文匯網」協力傳播介文汲在「中天新聞」節目影片中的說法。",
+          "source_id": "src-iorg-41",
+          "about": "香港新聞網"
+        },
+        {
+          "text": "🇹🇼-🇨🇳 4 月 13 日 10:49，中共官媒「香港新聞網」發布報導，宣稱尼米茲號在共軍演一開始「馬上就掉頭跑了」，並引述蔡正元的說法「美國是渣男」「幫助台灣，只剩下一張嘴」。",
+          "source_id": "src-iorg-41",
+          "about": "香港新聞網"
+        },
+        {
+          "text": "1 月 9 日，🇨🇳 中共中央统战部「香港新聞網」發布文本「國共論壇據報有望本月底重啟」，內文包含「停辦多年的國共論壇有望在本月底舉行，中國國民黨副主席蕭旭岑將率團赴大陸參加。",
+          "source_id": "src-iorg-131",
+          "about": "香港新聞網"
+        },
+        {
+          "text": "1 月 18 日，🇨🇳 中共中央统战部「香港新聞網」發布文本「台灣中天新聞記者涉“安全”問題 遭羈押禁見」，內文包含「民眾黨立委張啟楷17日表示，林宸佑在採訪或者當主播的過程中，深入去追蹤了非常多的事情，是一位受廣大民眾支持的名主播、名記者。",
+          "source_id": "src-iorg-131",
+          "about": "香港新聞網"
+        },
+        {
+          "text": "1 月 21 日，🇨🇳 中共中央统战部「香港新聞網」發布文本「台記者涉“安全”問題遭羈押引島內輿論撻伐」，內文包含「台灣中天新聞記者林宸佑近日被指涉以金錢利誘軍人拍攝“投敵”影片，並刺探軍事機密，遭依涉犯所謂“國安法”等罪嫌羈押禁見。",
+          "source_id": "src-iorg-131",
+          "about": "香港新聞網"
+        },
+        {
+          "text": "這則貼文在當日獲得中共官媒「香港新聞網」引用（18:01）。",
+          "source_id": "src-iorg-38",
+          "about": "香港新聞網"
+        }
+      ]
     },
     {
       "id": "china-news-service",
@@ -4683,6 +6173,41 @@ window.NETWEAVER_DB = {
           "text": "在2025年11月至12月初攻擊高市早苗與其言行的貼文中，官媒帳號如北京晚報、環球時報、中國新聞網、央視網，以及作為中國官方喉舌的民營媒體觀察者網及時政評論大V，以「日本軍國主義意圖對外擴張」為宣傳主旋律。",
           "source_id": "src-factlink-japan",
           "about": "中國新聞網"
+        },
+        {
+          "text": "🇨🇳 2025 年 1 月 6 日 🇨🇳 中共中央统战部「中国新闻网」針對賴清德元旦演講發表文章，內文引述多位中國學者批評賴清德是「披着民主外衣，意在倚外谋独」。",
+          "source_id": "src-iorg-118",
+          "about": "中国新闻网"
+        },
+        {
+          "text": "同日，多個中共官媒跨平台社交媒體帳號皆發布了相同的動畫影片，包括「中新社」的 Twitter 帳號「中國新聞社」（15:45）、bilibili 帳號「东部战区」（17:37）、微博帳號「东部战区」（17:41）。",
+          "source_id": "src-iorg-41",
+          "about": "中新社"
+        },
+        {
+          "text": "YT 同日，中共官媒「中新社」的 YouTube 頻道「中国新闻社」亦發布影片，將原片編輯為直式，並加上說明文字及中新社頻道名稱。",
+          "source_id": "src-iorg-41",
+          "about": "中新社"
+        },
+        {
+          "text": "當日 10:19 至 14:06 間，中共官媒「環球網」「台海網」「鳳凰網」「澎湃新聞」「央視網」及官媒微博帳號「环球时报」「海外网」「环球网」「小央视频」「香港中通社」「中国新闻网」「厦门广电」「海峡导报」「中国新闻社」多使用相同「天氣晴朗」圖片，協力傳播中時報導內容。",
+          "source_id": "src-iorg-41",
+          "about": "中国新闻社"
+        },
+        {
+          "text": "1 月份共有 329 則文本提及劉世芳，主要內容為国台办在 1 月 7 日召開記者會宣布將鄭英耀「列为 “台独” 顽固分子」（国台办）、宣稱原因是「制造校园 “绿色恐怖”」（环球网），並強調其「劣迹斑斑，反对两岸教育交流第一人」（中国新闻网）。",
+          "source_id": "src-iorg-131",
+          "about": "中国新闻网"
+        },
+        {
+          "text": "1 月份共有 293 則文本提及蔡正元，主要內容為借蔡正元介入「三中案」批評民進黨政府「编织罪名」（中国新闻社）、「政治追杀异己」（中国东南卫视官方频道）、讓唐湘龍「当场抹泪」（中国东南卫视官方频道），並放大蔡正元對此事件觀點「哪怕深陷狱中，反“台独” 立场永不改变」（中国新闻社）、「我们要在每一个角落作战，推翻民进党」（中国东南卫视官方频道）。",
+          "source_id": "src-iorg-131",
+          "about": "中国新闻社"
+        },
+        {
+          "text": "1 月 30 日，🇨🇳 广电总台「海峡飞虹」發布來自 🇨🇳 中国新闻社「中新社」的文章「国共机制化交流重启 台专家指“符合多数人的期盼”」，內文包含「“国共两党智库论坛”2 月 3 日将在北京举行。",
+          "source_id": "src-iorg-131",
+          "about": "中国新闻社"
         }
       ]
     },
@@ -4701,7 +6226,54 @@ window.NETWEAVER_DB = {
         "src-iorg-118",
         "src-iorg-131"
       ],
-      "confidence": "medium"
+      "confidence": "medium",
+      "claims": [
+        {
+          "text": "🇨🇳 2025 年 2 月 22 日 🇨🇳 福建日报「台海网」發表評論稱民進黨「把制度和民主作为抗拒统一、分裂国家的借口」，且配合西方「民主对抗威权」敘事，但川普「亲手撕碎了美西方虚伪民主叙事的包装纸」。",
+          "source_id": "src-iorg-118",
+          "about": "福建日报"
+        },
+        {
+          "text": "🇹🇼-🇨🇳 2024 年 1 月 13 日 🇨🇳 福建日报「海峡导报」針對美方於選前舉行媒體電話簡報會一事發表評論，認為美國此舉「罕见」「反常」「甘冒“介选”质疑」。",
+          "source_id": "src-iorg-118",
+          "about": "福建日报"
+        },
+        {
+          "text": "🇨🇳 2024 年 12 月 31 日 🇨🇳 福建日报「海峡导报社」以「民主退步的2024：斗鸡搭草台，台独变独裁」為標題發表評論，內文預言「只要2028年蓝白能够完成整合，“双少数”的赖清德将毫无一战之力，或将成为台湾地区领导人直选以来首个未能连任的领导人」。",
+          "source_id": "src-iorg-118",
+          "about": "福建日报"
+        },
+        {
+          "text": "🇹🇼-🇨🇳 2024 年 4 月 22 日 🇨🇳 福建日报「海峡导报社」報導，針對國民黨智庫傳出裁員，引用 國民黨 國民黨批評「民进党透过“党产会”抄家式的追杀在野党，眼中只有政治追杀，早就把所谓公平正义抛诸脑后」。",
+          "source_id": "src-iorg-118",
+          "about": "福建日报"
+        },
+        {
+          "text": "🇹🇼-🇨🇳 2025 年 2 月 18 日 🇨🇳 福建广播影视 TikTok 帳號「大咖開麥」及 🇨🇳 福建日报 抖音帳號「海峡导报」都發布影片，內容為呂禮詩於政論節目上稱中國電影「哪吒 2」在台灣可惜沒有排上上映抽籤（即無法在台灣上映），認為「台灣的言論自由，台灣的各種自由，會不會慢慢的讓大家覺得越來越只是一場笑話」。",
+          "source_id": "src-iorg-118",
+          "about": "福建日报"
+        },
+        {
+          "text": "🇨🇳 2024 年 12 月 31 日 🇨🇳 福建日报「海峡导报社」發表文章回顧 2024 年台灣政治發展，內文稱賴清德司法迫害柯文哲「接连突破民主底线，将绿色独裁推进至戒严边缘」，又動員「青鳥」施壓在野黨，讓 2024 年成為「民主退步的2024」。",
+          "source_id": "src-iorg-118",
+          "about": "福建日报"
+        },
+        {
+          "text": "5-6 日，有 6 個中共官媒微博帳號發布含有相同內容文本，包含 🇨🇳 广电总台「看台海」、🇨🇳 福建日报「福建东南网」。",
+          "source_id": "src-iorg-131",
+          "about": "福建日报"
+        },
+        {
+          "text": "1 月 30 日，🇨🇳 鳳凰衛視「凤凰网」發布來自 🇨🇳 福建日报「海峡导报」的文章「郑丽文抛“两岸和平框架”，岛内蓝白认可：和平是人民的殷切期盼」，內文包含「国民党主席郑丽文在专访透露今年上半年会先访问大陆、2028年执政后推“两岸和平框架”。",
+          "source_id": "src-iorg-131",
+          "about": "福建日报"
+        },
+        {
+          "text": "1 月 17 日，🇨🇳 福建日报「海峡导报」發布抖音，標題為「中天知名记者林宸佑被羁押，或因得罪民进党引祸上身」。",
+          "source_id": "src-iorg-131",
+          "about": "福建日报"
+        }
+      ]
     },
     {
       "id": "takungpao-wenweipo-net",
@@ -4719,7 +6291,29 @@ window.NETWEAVER_DB = {
         "src-iorg-38",
         "src-iorg-41"
       ],
-      "confidence": "medium"
+      "confidence": "medium",
+      "claims": [
+        {
+          "text": "🇨🇳 4 月 12 日 08:37 中共官媒「大公文匯網」發布報導，宣稱「據外媒報道，原本山東艦抵達台灣東部海域之際，尼米茲號航母遠遠地保持跟蹤監視狀態，但解放軍東部戰區的演習 8 日一開始，美國航母就重演去年 8 月的那一幕─離台島遠遠的」。",
+          "source_id": "src-iorg-41",
+          "about": "大公文匯網"
+        },
+        {
+          "text": "🇹🇼-🇨🇳 4 月 12 日 08:55 至 10:19 間，中共官媒「鳳凰網」「環球網」「香港新聞網」「大公文匯網」協力傳播介文汲在「中天新聞」節目影片中的說法。",
+          "source_id": "src-iorg-41",
+          "about": "大公文匯網"
+        },
+        {
+          "text": "26 日 8:42，中共官媒「大公文匯網」的發表作者為朱穗怡的評論，認為「美國政客不僅把台灣當作刺激和牽制中國大陸的棋子，還把台灣當作為自己累積政治利益的提款機」，麥卡錫「搞風搞雨」「台灣是最大受害者」。",
+          "source_id": "src-iorg-38",
+          "about": "大公文匯網"
+        },
+        {
+          "text": "1 月 31 日 10:07 中共官媒「大公文匯網」刊出輔仁大學兩岸關係學暨國際關係學教授、海峽兩岸學術文化交流協會副理事長潘錫堂的評論，標題為〈台美勾連是台海不安的根源〉，內容並以「竄台」形容麥卡錫訪台，引用「不少大陸軍事專家分析」，，認為如果麥卡錫訪台，中國將採取「更全面震撼的行動方式」、「更常態化方式」「讓美台都知道台海問題絕對不容挑釁」。",
+          "source_id": "src-iorg-38",
+          "about": "大公文匯網"
+        }
+      ]
     },
     {
       "id": "hk-wenweipo",
@@ -4740,6 +6334,11 @@ window.NETWEAVER_DB = {
       ],
       "confidence": "medium",
       "claims": [
+        {
+          "text": "On January 3, Hong Kong’s Wen Wei Po quoted Chiu Yi’s remarks, mentioning Lai Ching-te’s mistress and illegitimate child.",
+          "source_id": "src-dtl-multiverse",
+          "about": "Wen Wei Po"
+        },
         {
           "text": "〉影片，由《澎湃新聞》、《大象新聞》、香港《文匯報》等多家媒體、論壇帳號、多個抖音帳號轉分享。",
           "source_id": "src-factlink-satellite",
@@ -4773,7 +6372,24 @@ window.NETWEAVER_DB = {
         "src-iorg-38",
         "src-iorg-41"
       ],
-      "confidence": "medium"
+      "confidence": "medium",
+      "claims": [
+        {
+          "text": "🇨🇳 4 月 10 日 07:12 至 4 月 11 日 08:11 間，中共官媒「大公文匯網」「大公文匯網」「僑報網」「海峽之聲」「鳳凰網」「鳳凰網」「鳳凰網」發布報導，持續傳播此動畫影片。",
+          "source_id": "src-iorg-41",
+          "about": "僑報網"
+        },
+        {
+          "text": "蔡正元的意見於當日獲得中資粉專「兩岸頭條」（9:12）及中共官媒「僑報網」（16:47）分享及引用。",
+          "source_id": "src-iorg-38",
+          "about": "僑報網"
+        },
+        {
+          "text": "隔日（25），介文汲的意見獲得中共官媒「僑報網」引用。",
+          "source_id": "src-iorg-38",
+          "about": "僑報網"
+        }
+      ]
     },
     {
       "id": "dongnan-tv",
@@ -4793,7 +6409,24 @@ window.NETWEAVER_DB = {
         "src-iorg-131",
         "src-iorg-41"
       ],
-      "confidence": "medium"
+      "confidence": "medium",
+      "claims": [
+        {
+          "text": "🇨🇳 2024 年 1 月 14 日 🇨🇳 福建广播影视「东南卫视」評論台灣大選結果。",
+          "source_id": "src-iorg-118",
+          "about": "东南卫视"
+        },
+        {
+          "text": "「中国东南卫视」是中共官媒，曾出現在 IORG 報告之中 DA.39 ，「中国人民解放军」、「军迷天下」、「看看新闻」是以非官方狀態直接協助傳播央視影片及其他中共官媒內容，而「兵鉴堂」、「军武侦察兵」則是中國網路節目，內容亦親近中國。",
+          "source_id": "src-iorg-41",
+          "about": "中国东南卫视"
+        },
+        {
+          "text": "1 月份共有 293 則文本提及蔡正元，主要內容為借蔡正元介入「三中案」批評民進黨政府「编织罪名」（中国新闻社）、「政治追杀异己」（中国东南卫视官方频道）、讓唐湘龍「当场抹泪」（中国东南卫视官方频道），並放大蔡正元對此事件觀點「哪怕深陷狱中，反“台独” 立场永不改变」（中国新闻社）、「我们要在每一个角落作战，推翻民进党」（中国东南卫视官方频道）。",
+          "source_id": "src-iorg-131",
+          "about": "中国东南卫视官方频道"
+        }
+      ]
     },
     {
       "id": "guangming-daily",
@@ -4834,7 +6467,14 @@ window.NETWEAVER_DB = {
         "src-dtl-multiverse",
         "src-iorg-41"
       ],
-      "confidence": "medium"
+      "confidence": "medium",
+      "claims": [
+        {
+          "text": "當日 10:19 至 14:06 間，中共官媒「環球網」「台海網」「鳳凰網」「澎湃新聞」「央視網」及官媒微博帳號「环球时报」「海外网」「环球网」「小央视频」「香港中通社」「中国新闻网」「厦门广电」「海峡导报」「中国新闻社」多使用相同「天氣晴朗」圖片，協力傳播中時報導內容。",
+          "source_id": "src-iorg-41",
+          "about": "厦门广电"
+        }
+      ]
     },
     {
       "id": "china-review-news",
@@ -4854,7 +6494,19 @@ window.NETWEAVER_DB = {
         "src-iorg-11",
         "src-iorg-118"
       ],
-      "confidence": "medium"
+      "confidence": "medium",
+      "claims": [
+        {
+          "text": "🇨🇳 2025 年 6 月 11 日 🇨🇳 中評社「中評網」發布作者為「上海交通大學台灣研究中心主任盛九元」的評論文章「虛構民主對抗專制敘事可休矣」，內文扭曲台灣民主，同時頌揚中共「全過程民主」，將雙方制度比擬為「假民主 VS 真民主」。",
+          "source_id": "src-iorg-118",
+          "about": "中評網"
+        },
+        {
+          "text": "1 月 14 日，🇨🇳 国台办「国台办」發布文本「国务院台办新闻发布会辑录（2026-01-14）」，內文包含「香港中评社记者：美国日前派兵强行控制委内瑞拉总统马杜罗夫妇并移送出境引发岛内高度关注。",
+          "source_id": "src-iorg-131",
+          "about": "中评社"
+        }
+      ]
     },
     {
       "id": "silicon-intelligence",
@@ -4873,16 +6525,6 @@ window.NETWEAVER_DB = {
       "confidence": "low",
       "claims": [
         {
-          "text": "section focuses on two notable players: Midu (蜜度) and Silicon Intelligence (硅基智能).",
-          "source_id": "src-aspi-00c2db",
-          "about": "硅基智能"
-        },
-        {
-          "text": "innovation’ [硅基智能亮相江苏产学研大会，携手8所高校推动技术创新], Silicon Intelligence [硅基智能], 12 September 2024, online.",
-          "source_id": "src-aspi-00c2db",
-          "about": "硅基智能"
-        },
-        {
           "text": "70 Silicon Intelligence [硅基智能], online.",
           "source_id": "src-aspi-00c2db",
           "about": "硅基智能"
@@ -4893,12 +6535,7 @@ window.NETWEAVER_DB = {
           "about": "硅基智能"
         },
         {
-          "text": "been completed’ [硅基智能：打造数字科技全球人工智能高地！",
-          "source_id": "src-aspi-00c2db",
-          "about": "硅基智能"
-        },
-        {
-          "text": "’ [硅基智能：战略签约！",
+          "text": "Silicon Intelligence and 360 Group reached a strategic cooperation in China (Nanjing) Software Valley!’ [硅基智能：战略签约！",
           "source_id": "src-aspi-00c2db",
           "about": "硅基智能"
         },
@@ -4992,22 +6629,12 @@ window.NETWEAVER_DB = {
           "about": "Goertek"
         },
         {
-          "text": "spokesperson confirmed with ASPI that Goertek is no longer a supplier to Cisco.",
-          "source_id": "src-aspi-00c2db",
-          "about": "Goertek"
-        },
-        {
           "text": "Innovation Center’ in Qingdao; see ‘Qualcomm, Goertek join hands for microelectronics advances in Laoshan’, China Daily, 16 April 2019, online.",
           "source_id": "src-aspi-00c2db",
           "about": "Goertek"
         },
         {
           "text": "144 ‘Goertek Inc.",
-          "source_id": "src-aspi-00c2db",
-          "about": "Goertek"
-        },
-        {
-          "text": "report 6, Goertek: Investing in Qingdao to build a global R&D center], Qingdao Daily / Qingdao View / Qingdao News Network, 20 May 2020, online.",
           "source_id": "src-aspi-00c2db",
           "about": "Goertek"
         },
@@ -5055,11 +6682,6 @@ window.NETWEAVER_DB = {
           "text": "174 Weta365 [奇妙元], online.",
           "source_id": "src-aspi-00c2db",
           "about": "Weta365"
-        },
-        {
-          "text": "which implies that there may be deeper cooperation between Mobvoi and Chinese security or intelligence services.",
-          "source_id": "src-aspi-2024",
-          "about": "Mobvoi"
         }
       ]
     },
@@ -5081,17 +6703,7 @@ window.NETWEAVER_DB = {
       "confidence": "low",
       "claims": [
         {
-          "text": "section focuses on two notable players: Midu (蜜度) and Silicon Intelligence (硅基智能).",
-          "source_id": "src-aspi-00c2db",
-          "about": "Midu"
-        },
-        {
           "text": "Founded in 2009, Midu Technology Co.",
-          "source_id": "src-aspi-00c2db",
-          "about": "Midu"
-        },
-        {
-          "text": "are using Midu products to improve their ability to monitor and police Chinese public opinion.",
           "source_id": "src-aspi-00c2db",
           "about": "Midu"
         },
@@ -5145,7 +6757,44 @@ window.NETWEAVER_DB = {
         "src-iorg-131"
       ],
       "confidence": "medium",
-      "sensitivity": "domestic-named"
+      "sensitivity": "domestic-named",
+      "claims": [
+        {
+          "text": "FactLink研究團隊觀察到，第二波宣傳高峰是10月27日後，中國官媒營造「島內輿論」，報導切入點為「島內如何看大陸發布台高清衛星圖」、「衛星視角瞰中國台灣省，島內反應來了」、「館長談大陸發布台灣省衛星圖」，截取特定台灣媒體、政治網紅、台灣政治名嘴（中國稱為台灣時事評論員）的分析與評論，甚至取材網友留言，營造「島內輿論」，創造話題熱度。",
+          "source_id": "src-factlink-satellite",
+          "about": "館長"
+        },
+        {
+          "text": "「島內輿論」的另一個來源是台灣網紅館長。",
+          "source_id": "src-factlink-satellite",
+          "about": "館長"
+        },
+        {
+          "text": "館長在10月27日訪北京時，接受香港媒體《大公報》、《鳳凰網》群訪時回答：「衛星系統根本無所遁形」、「認清兩岸差距愈來愈大」。",
+          "source_id": "src-factlink-satellite",
+          "about": "館長"
+        },
+        {
+          "text": "可知館長影片成為「島內輿論」，打造塑造中國衛星科技進步的內外宣傳素材。",
+          "source_id": "src-factlink-satellite",
+          "about": "館長"
+        },
+        {
+          "text": "比如多篇官媒及大V帳號貼文轉述日本前首相鳩山由紀夫「怒斥」高市早苗「愈小的狗越會叫」、或者引述台灣網紅館長「我們中國人的事情日本閉嘴」等發言。",
+          "source_id": "src-factlink-japan",
+          "about": "館長"
+        },
+        {
+          "text": "🇨🇳 2025 年 6 月 5 日 🇨🇳 人民日报「环球网」再度發表作者為「程东」的文章，針對網紅館長陳之漢赴中，開頭引用未知來源的「岛内舆论」稱綠營批評館長代表「绿营其实是害怕了，担忧他们构筑的认知围墙被陈之汉突破」。",
+          "source_id": "src-iorg-118",
+          "about": "陳之漢"
+        },
+        {
+          "text": "內容評論館長陳之漢赴中行程，引用陳之漢批評民進黨「用谎言欺骗人民」，宣稱這是「要用不带滤镜的真实镜头，戳破台湾绿营长期散布的谣言，撕开民进党当局精心编织的“信息茧房”」。",
+          "source_id": "src-iorg-118",
+          "about": "陳之漢"
+        }
+      ]
     },
     {
       "id": "hou-han-ting",
@@ -5161,7 +6810,14 @@ window.NETWEAVER_DB = {
         "src-iorg-131"
       ],
       "confidence": "medium",
-      "sensitivity": "domestic-named"
+      "sensitivity": "domestic-named",
+      "claims": [
+        {
+          "text": "🇹🇼-🇨🇳 2025 年 5 月 25 日 🇨🇳 香港大公文匯「大公文匯」針對 新黨 侯漢廷檢舉沈伯洋接受境外資金一事發表評論，內文引述侯漢廷觀點，認為「沈柏洋接受境外勢力贊助，成立並發展組織、假民主介入台灣政治，抨擊政黨、製造敵人，近期更公然呼籲推動大罷免，干擾政治運行」。",
+          "source_id": "src-iorg-118",
+          "about": "侯漢廷"
+        }
+      ]
     },
     {
       "id": "wuse-juexing",
@@ -5183,6 +6839,18 @@ window.NETWEAVER_DB = {
           "target_id": "wangwang-china-times-group",
           "relation": "subsidiary-of",
           "note": "旺中集團旗下粉專／節目"
+        }
+      ],
+      "claims": [
+        {
+          "text": "當日 12:15 旺中集團粉專「無色覺醒」「正常發揮」「大新聞大爆卦」「頭條開講」亦群聚發表訊息內容完全相同的貼文，留言內容亦同。",
+          "source_id": "src-iorg-41",
+          "about": "無色覺醒"
+        },
+        {
+          "text": "另外，中天新聞網引用蔡正元的報導（12:43），也獲得旺中集團旗下節目「大新聞大爆卦」「無色覺醒」「頭條開講」「正常發揮」 的群聚分享（17:30）。",
+          "source_id": "src-iorg-38",
+          "about": "無色覺醒"
         }
       ]
     },
@@ -5207,6 +6875,18 @@ window.NETWEAVER_DB = {
           "relation": "subsidiary-of",
           "note": "旺中集團旗下粉專／節目"
         }
+      ],
+      "claims": [
+        {
+          "text": "當日 12:15 旺中集團粉專「無色覺醒」「正常發揮」「大新聞大爆卦」「頭條開講」亦群聚發表訊息內容完全相同的貼文，留言內容亦同。",
+          "source_id": "src-iorg-41",
+          "about": "正常發揮"
+        },
+        {
+          "text": "另外，中天新聞網引用蔡正元的報導（12:43），也獲得旺中集團旗下節目「大新聞大爆卦」「無色覺醒」「頭條開講」「正常發揮」 的群聚分享（17:30）。",
+          "source_id": "src-iorg-38",
+          "about": "正常發揮"
+        }
       ]
     },
     {
@@ -5229,6 +6909,18 @@ window.NETWEAVER_DB = {
           "target_id": "wangwang-china-times-group",
           "relation": "subsidiary-of",
           "note": "旺中集團旗下粉專／節目"
+        }
+      ],
+      "claims": [
+        {
+          "text": "當日 12:15 旺中集團粉專「無色覺醒」「正常發揮」「大新聞大爆卦」「頭條開講」亦群聚發表訊息內容完全相同的貼文，留言內容亦同。",
+          "source_id": "src-iorg-41",
+          "about": "大新聞大爆卦"
+        },
+        {
+          "text": "另外，中天新聞網引用蔡正元的報導（12:43），也獲得旺中集團旗下節目「大新聞大爆卦」「無色覺醒」「頭條開講」「正常發揮」 的群聚分享（17:30）。",
+          "source_id": "src-iorg-38",
+          "about": "大新聞大爆卦"
         }
       ]
     },
@@ -5253,6 +6945,18 @@ window.NETWEAVER_DB = {
           "relation": "subsidiary-of",
           "note": "旺中集團旗下粉專／節目"
         }
+      ],
+      "claims": [
+        {
+          "text": "當日 12:15 旺中集團粉專「無色覺醒」「正常發揮」「大新聞大爆卦」「頭條開講」亦群聚發表訊息內容完全相同的貼文，留言內容亦同。",
+          "source_id": "src-iorg-41",
+          "about": "頭條開講"
+        },
+        {
+          "text": "另外，中天新聞網引用蔡正元的報導（12:43），也獲得旺中集團旗下節目「大新聞大爆卦」「無色覺醒」「頭條開講」「正常發揮」 的群聚分享（17:30）。",
+          "source_id": "src-iorg-38",
+          "about": "頭條開講"
+        }
       ]
     },
     {
@@ -5269,7 +6973,14 @@ window.NETWEAVER_DB = {
         "src-iorg-41"
       ],
       "confidence": "medium",
-      "sensitivity": "domestic-named"
+      "sensitivity": "domestic-named",
+      "claims": [
+        {
+          "text": "群聚發文 同日，內容農場「密訊」發布和中時文章標題及內容一致的文章，並獲得粉專「反民進黨粉絲團」「民間大小事」「空心菜政府」群聚分享（23:00-01）。",
+          "source_id": "src-iorg-38",
+          "about": "反民進黨粉絲團"
+        }
+      ]
     },
     {
       "id": "minjian-daxiaoshi",
@@ -5285,7 +6996,14 @@ window.NETWEAVER_DB = {
         "src-iorg-41"
       ],
       "confidence": "medium",
-      "sensitivity": "domestic-named"
+      "sensitivity": "domestic-named",
+      "claims": [
+        {
+          "text": "群聚發文 同日，內容農場「密訊」發布和中時文章標題及內容一致的文章，並獲得粉專「反民進黨粉絲團」「民間大小事」「空心菜政府」群聚分享（23:00-01）。",
+          "source_id": "src-iorg-38",
+          "about": "民間大小事"
+        }
+      ]
     },
     {
       "id": "kongxincai-zhengfu",
@@ -5301,7 +7019,14 @@ window.NETWEAVER_DB = {
         "src-iorg-41"
       ],
       "confidence": "medium",
-      "sensitivity": "domestic-named"
+      "sensitivity": "domestic-named",
+      "claims": [
+        {
+          "text": "群聚發文 同日，內容農場「密訊」發布和中時文章標題及內容一致的文章，並獲得粉專「反民進黨粉絲團」「民間大小事」「空心菜政府」群聚分享（23:00-01）。",
+          "source_id": "src-iorg-38",
+          "about": "空心菜政府"
+        }
+      ]
     },
     {
       "id": "chunghua-microvision",
@@ -5318,7 +7043,24 @@ window.NETWEAVER_DB = {
         "src-iorg-41"
       ],
       "confidence": "medium",
-      "sensitivity": "domestic-named"
+      "sensitivity": "domestic-named",
+      "claims": [
+        {
+          "text": "「和坛」由香港華文媒體「中華微視」控制，俄羅斯官媒和中共官媒有官方合作協議，而「全球華人軍事聯盟」則是馬來西亞內容農場集團旗下的匿名粉專。",
+          "source_id": "src-iorg-usskep1",
+          "about": "中華微視"
+        },
+        {
+          "text": "查詢其聯絡方式、信箱，其於香港親中媒體「中華微視」旗下的臉書粉絲專頁帳號，且該粉專多次改名、管理者散布於台灣、中國。",
+          "source_id": "src-factlink-hackleak",
+          "about": "中華微視"
+        },
+        {
+          "text": "同日，「兩岸頭條」、「中華微視」引用《日經亞洲評論》報導內容，表示阿富汗的狀況打亂了拜登集中精力對抗中國的佈局。",
+          "source_id": "src-iorg-11",
+          "about": "中華微視"
+        }
+      ]
     },
     {
       "id": "hetan",
@@ -5335,7 +7077,29 @@ window.NETWEAVER_DB = {
         "src-iorg-38",
         "src-iorg-41"
       ],
-      "confidence": "medium"
+      "confidence": "medium",
+      "claims": [
+        {
+          "text": "其中，2 項（26 40）由「和坛」發起，2 項（35 37）由俄羅斯官媒「俄羅斯衛星通訊社」及「今日俄羅斯」發起，1 項（34）由「全球華人軍事聯盟」發起。",
+          "source_id": "src-iorg-usskep1",
+          "about": "和坛"
+        },
+        {
+          "text": "「和坛」由香港華文媒體「中華微視」控制，俄羅斯官媒和中共官媒有官方合作協議，而「全球華人軍事聯盟」則是馬來西亞內容農場集團旗下的匿名粉專。",
+          "source_id": "src-iorg-usskep1",
+          "about": "和坛"
+        },
+        {
+          "text": "直到 8 月 31 日，還可以在「和坛」的貼文看到 A.1 論述。",
+          "source_id": "src-iorg-11",
+          "about": "和坛"
+        },
+        {
+          "text": "同日，「和坛」：「常規戰美國的總體實力肯定是勝過中國的，但是西太平洋的局部戰爭就未必如此」。",
+          "source_id": "src-iorg-11",
+          "about": "和坛"
+        }
+      ]
     },
     {
       "id": "chuji-zhe",
@@ -5351,7 +7115,29 @@ window.NETWEAVER_DB = {
         "src-iorg-41"
       ],
       "confidence": "medium",
-      "sensitivity": "domestic-named"
+      "sensitivity": "domestic-named",
+      "claims": [
+        {
+          "text": "Anonymous fan pages/accounts, such as: Kaohsiung.NewTide, The Reacher, and fake accounts regularly sharing content in LINE groups.",
+          "source_id": "src-dtl-2022election",
+          "about": "The Reacher"
+        },
+        {
+          "text": "此論述的主要內容，如新黨人士林正國經營的內容農場「觸極者」：「自以為世界警察的美國，根本是超級破壞者。」",
+          "source_id": "src-iorg-11",
+          "about": "觸極者"
+        },
+        {
+          "text": "1 月 26 日 10:00 粉專「觸極者」發布貼文，認為「世界警察」美國「從一戰、二戰，至冷戰背景下的韓戰、越戰，再到找各國極端分子，到處點燃 “顏色革命”，而最終該地區都陷入絕望深淵」，貼文也認為埃及、烏克蘭都是案例。",
+          "source_id": "src-iorg-38",
+          "about": "觸極者"
+        },
+        {
+          "text": "1 月 29 日 23:00 粉專「觸極者」發布貼文，認為「事實上半個多世紀以來越南、伊拉克、阿富汗克蘭等國，只要有親美國政權，就是戰爭及人民流離失所」。",
+          "source_id": "src-iorg-38",
+          "about": "觸極者"
+        }
+      ]
     },
     {
       "id": "zhixing",
@@ -5367,7 +7153,24 @@ window.NETWEAVER_DB = {
         "src-iorg-11"
       ],
       "confidence": "medium",
-      "strict_match": true
+      "strict_match": true,
+      "claims": [
+        {
+          "text": "The song was boosted by ZhiXing on Facebook, who continuously invested advertising funds in posts that promoted the song to increase engagement.",
+          "source_id": "src-dtl-multiverse",
+          "about": "ZhiXing"
+        },
+        {
+          "text": "同一時間，中國媒體用以面向台灣讀者的臉書粉絲專頁，包括《今日海峽》、《CCTV中文》、《知行》、《香港大公報》、香港中國通訊社的《通傳媒》等臉書粉專，同步發動長光衛星照慶祝台灣光復節的傳言，並發布台灣光復節歷史照片、紀錄片、台灣青年回顧光復節的內容素材。",
+          "source_id": "src-factlink-satellite",
+          "about": "《知行》"
+        },
+        {
+          "text": "直到 8 月 30 日，中共官媒粉專「知行」還在繼續傳播 A.2 論述。",
+          "source_id": "src-iorg-11",
+          "about": "知行"
+        }
+      ]
     }
   ],
   "events": [
@@ -6725,6 +8528,14 @@ window.NETWEAVER_DB = {
       "org": "ASPI",
       "url": "https://aspi.s3.ap-southeast-2.amazonaws.com/wp-content/uploads/2025/03/11125258/Persuasive-technologies-in-China_0.pdf",
       "date": "2025-03-11",
+      "type": "ngo-report"
+    },
+    {
+      "id": "src-doublethink-lab-aaba8c",
+      "title": "A #Bayanihan Initiative: Countering FIMI in the Philippines",
+      "org": "Doublethink Lab",
+      "url": "https://medium.com/doublethinklab/a-bayanihan-initiative-countering-fimi-in-the-philippines-15d14c4e2356?source=rss----9106617863e3---4",
+      "date": "2026-03-20",
       "type": "ngo-report"
     }
   ],

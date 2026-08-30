@@ -757,16 +757,39 @@ def snap_quote(text, quote, max_chars=200):
     if not s or len(s) > max_chars: return q.strip(_EDGE_PUNCT)
     return s
 
-def is_claim_span(span):
-    """碼端的宣稱閘：**句尾**決定它是不是宣稱（只在有正文可對照、引文已擴張時才套）。
+_OPENERS = "、，,；;：:。．.！!？?…」』）〕】》”’\"')]"   # 句首若是這些，代表是從句中被切出來的
+_MIN_CONTENT = 8                                        # 去標點後的最少字數
+_QUOTE_PAIRS = (("「", "」"), ("『", "』"), ("《", "》"))    # 引號配對；只擋「先出現收尾」這種明確切斷
 
-    剝掉句尾引號／括號後：無終止符 → 章節標題／表格列（「東部戰區融媒體中心扮演的角色」）；
-    以問號收尾 → 提問（「…到底是什麼樣的單位？」）。兩者都不是對世界的宣稱，不進 claim 卡。
-    看句尾而非「整句任一位置有標點」，才不會讓「重要發現！四種手法」這種標題矇混過關。
+def is_claim_span(span):
+    """碼端的宣稱閘：**句首與句尾**都要像一個完整句（只在有正文可對照、引文已擴張時才套）。
+
+    句尾：剝掉引號／括號後無終止符 → 章節標題／表格列（「東部戰區融媒體中心扮演的角色」）；
+    以問號收尾 → 提問。兩者都不是對世界的宣稱。看句尾而非「任一位置有標點」，
+    才不會讓「重要發現！四種手法」這種標題矇混過關。
+
+    句首同樣要檢查，否則從句子中間切出來的片段只要結尾剛好碰到句號就會過關。實測落地的：
+      「，並獲得「今日海峽」、「兩岸頭條」粉專分享。」   ← 以頓號開頭
+      「” —-《環球時報》引述《參考消息》。」           ← 以收尾引號開頭
+      「and The Reacher.」                        ← 英文以小寫字開頭＝句中
+      「TVBS).」                                  ← 只有名字加標點，沒有內容
+    三條規則分別對應：句首接續標點、句首小寫拉丁字母、去標點後內容過短。
     """
-    s = (span or "").rstrip().rstrip(_CLOSERS).rstrip()
-    if not s or s[-1] in "？?": return False
-    return s[-1] in CLAIM_TERMINATORS
+    s = (span or "").strip()
+    if not s: return False
+    if s[0] in _OPENERS: return False                    # 句首是接續標點 → 從句中切出來的
+    if s[0].islower() and s[0].isascii(): return False    # 英文句中切點（and／which／who…）
+    if len(re.sub(r"[\s\W_]+", "", s, flags=re.UNICODE)) < _MIN_CONTENT: return False
+    for _op, _cl in _QUOTE_PAIRS:                        # 收尾引號出現在對應開引號之前 → 從引文中間切開
+        d = 0
+        for ch in s:
+            if ch == _op: d += 1
+            elif ch == _cl:
+                d -= 1
+                if d < 0: return False
+    t = s.rstrip().rstrip(_CLOSERS).rstrip()
+    if not t or t[-1] in "？?": return False
+    return t[-1] in CLAIM_TERMINATORS
 
 def expand_surface_occurrences(seed_mentions, text):
     """只展開模型已辨識 surface 的原文 occurrence；不注入新名稱。"""

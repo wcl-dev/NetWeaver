@@ -328,8 +328,8 @@
     </p>
     <div class="meta">
       <span>台灣 FIMI 行為者記錄簿</span>
-      <span>已登錄行為者 67 · 來源 73 · 宣稱 94</span>
-      <span>2026-08-19</span>
+      <span>已登錄行為者 101 · 來源 76 · 宣稱 877</span>
+      <span>2026-08-30</span>
     </div>
   </header>
 
@@ -360,22 +360,22 @@
       <table>
         <thead><tr><th>行為者</th><th>宣稱數</th><th>分類／角色</th></tr></thead>
         <tbody>
-          <tr><td>無邊界集團</td><td class="num">28</td><td>content-farm／attacker</td></tr>
-          <tr><td>東部戰區融媒體中心</td><td class="num">23</td><td>state-media／attacker</td></tr>
-          <tr><td>中央廣播電視總台</td><td class="num">16</td><td>state-media／collaborator</td></tr>
-          <tr><td>假冒台灣人反民進黨帳號網絡</td><td class="num">8</td><td>cib-network／attacker</td></tr>
-          <tr><td>環球時報</td><td class="num">6</td><td>state-media／amplifier</td></tr>
-          <tr><td>其餘 4 個行為者</td><td class="num">13</td><td>—</td></tr>
+          <tr><td>Spamouflage</td><td class="num">102</td><td>cib-network／attacker</td></tr>
+          <tr><td>環球時報</td><td class="num">65</td><td>state-media／amplifier</td></tr>
+          <tr><td>中央廣播電視總台</td><td class="num">53</td><td>state-media／collaborator</td></tr>
+          <tr><td>海訊社</td><td class="num">42</td><td>pr-firm／attacker</td></tr>
+          <tr><td>旺旺中時媒體集團</td><td class="num">36</td><td>domestic-amplifier／amplifier</td></tr>
+          <tr><td>其餘 85 個行為者</td><td class="num">579</td><td>—</td></tr>
         </tbody>
       </table>
     </div>
     <p style="color: var(--ink-muted); font-size: .9375rem;">
-      目前記錄簿共 <strong>67 個行為者、73 個來源、33 個事件、94 條宣稱</strong>。
-      宣稱集中在 9 個行為者身上——其餘 58 個是骨幹，還沒有被報告提到過。
+      目前記錄簿共 <strong>101 個行為者、76 個來源、33 個事件、877 條宣稱</strong>。
+      宣稱分布在 90 個行為者身上——其餘 11 個是骨幹，還沒有被報告提到過。
     </p>
 
     <h3>一張卡片怎麼來的</h3>
-    <p>從報告原文到卡片，中間只有一次 AI 參與，而且它只做「逐字抄」：</p>
+    <p>從報告原文到卡片，AI 只在「逐字抄」這一步做主，其餘全是寫死的規則：</p>
     <pre><code>報告原文
   ↓  ① 模型抄出一筆 mention（唯一的 AI 步驟）
 {
@@ -393,6 +393,22 @@
       第②步是硬性的：<strong>模型講不出原文出處的東西，一律不留</strong>。
       第④步是人的閘門——沒登錄的名字，內容再好也不會出現。
     </p>
+    <div class="note">
+      <span class="note-label">第二次用到模型（誠實補述）</span>
+      <p>
+        原本這裡寫「整條線只有一次 AI」。後來為了處理宣稱碎片化，加了第二個模型用途：
+        <strong>判斷一段抽出的文字讀不讀得懂</strong>（例如「which 指誰？」這種從句中切斷、
+        主詞在句外的殘句該濾掉，而「龍橋為公安部僱用的網路水軍」這種沒句號但意思完整的該留）。
+        這件事碼判不準，因為「有沒有句號」跟「讀不讀得懂」不是同一回事。
+      </p>
+      <p>
+        但這個第二模型<strong>守著同一條紅線</strong>：它<em>只</em>判斷呈現層的可讀性，
+        <strong>不碰</strong>分類、關係、信心、歸因——那些仍全是碼規則。而且碼先把能確定的分掉
+        （實測 804 條裡 778 條碼就定案），只有 26 條邊界案例送模型；每一則裁決連同理由、
+        用哪個模型、哪天判的，都寫進 <code>data/claim_verdicts.json</code> 供人稽核與覆寫。
+        「模型抽取、碼判斷、人決定」的分工沒有變。
+      </p>
+    </div>
 
     <h3>檔案頁的版面</h3>
     <p>每個行為者一頁，結構固定。以下用實際資料呈現（非截圖，實物請見下方說明）：</p>
@@ -417,25 +433,32 @@
           Doublethink Lab 記錄、位於秦皇島、與中共政府有往來的內容農場。
         </p>
 
-        <p class="mock-h">逐來源宣稱（Sourced Claims）</p>
+        <p class="mock-h">來源與宣稱（Sources &amp; Claims）</p>
         <p class="srcline">
-          <span style="color:var(--human)">[Doublethink Lab]</span>
-          Assessing the Borderless Group's Activity on Threads · 報告發布 2026-04
+          <span style="color:var(--human)">〔Doublethink Lab〕</span>
+          Assessing the Borderless Group's Activity on Threads · 報告發布 2026-04 · <strong>28 條宣稱</strong>
         </p>
         <div class="claimcard">This paper contributes to research on the Borderless Group (无边界集团), a PRC content farm with documented ties to the CCP government, and exposes its operations on Threads.</div>
         <div class="claimcard">We identified 1,217 domains containing inauthentic news pages operated by the Borderless Group.</div>
         <div class="claimcard">Roughly 566 authentic Threads users have shared Borderless Group domains, indicating the operation extends beyond its own inauthentic ecosystem.</div>
-        <p style="margin:.4rem 0 0; font-size:.8125rem; color:var(--ink-faint);">…另有 25 條</p>
+        <p style="margin:.4rem 0 0; font-size:.8125rem; color:var(--ink-faint);">＋ 展開其餘 25 條　·　其他已收錄來源（曾提及但尚未附上原文）可展開</p>
 
-        <p class="mock-h">證據指標 · 主導／涉入的行動 · 關聯實體 · 來源</p>
+        <p class="mock-h">引文共現（Co-mentioned in Quotes）</p>
         <p style="margin:0; font-size:.875rem; color:var(--ink-muted);">
-          其餘四區為人工策展的骨幹資料，不由抽取產生。
+          同一句被引用的原文裡同時被點名的其他已登錄行為者——機器從宣稱推得，指得回原句。
+          <strong>共同被提及，不等於雙方有合作或協調關係</strong>（那要人工登錄為明確關係）。
+        </p>
+
+        <p class="mock-h">證據指標 · 被點名參與的事件 · 關聯實體</p>
+        <p style="margin:0; font-size:.875rem; color:var(--ink-muted);">
+          其餘三區為人工策展的骨幹資料，不由抽取產生。
         </p>
       </div>
     </div>
 
-    <p><strong>宣稱卡是機器產出的，其餘都是人策展的。</strong>「彙整概述」「證據指標」「關聯實體」由人撰寫維護；
-    「逐來源宣稱」則是每跑一次迴圈就可能增加，而且一定掛著來源與報告發布日。</p>
+    <p><strong>宣稱卡與引文共現是機器產出的，其餘都是人策展的。</strong>「彙整概述」「證據指標」「關聯實體」由人撰寫維護；
+    「來源與宣稱」則是每跑一次迴圈就可能增加，而且一定掛著來源與報告發布日。這一版把原本分開的「逐來源宣稱」與「來源」
+    併成一塊——一份報告一個可展開的區塊，讀者看得到哪份報告說了什麼；沒有抽到宣稱的來源也仍列出，因為「引用了此行為者但尚未擷取到宣稱」是有意義的狀態。</p>
 
     <h3>三個檢視</h3>
     <ul class="plain">
@@ -565,7 +588,7 @@
         <span class="stage-num">③</span><span class="tag">模型</span>
         <div class="stage-body">
           <h3>抽取</h3>
-          <p>整條線唯一用到 AI 的地方。模型只把原文提到的名字與句子逐字抄出來，不分類、不判斷關係、不決定歸因。</p>
+          <p>模型做主的地方。只把原文提到的名字與句子逐字抄出來，不分類、不判斷關係、不決定歸因。（另有一個次要的模型用途：判斷抽出的句子讀不讀得懂，只影響呈現、不碰判斷——見下方「一張卡片怎麼來的」的補述。）</p>
         </div>
       </li>
       <li>
@@ -686,10 +709,17 @@ pipeline/extractions/&lt;來源&gt;/&lt;raw_id&gt;.stix.json
 <span class="cmt"># 整本記錄簿：一次匯出成單一 bundle</span>
 python3 pipeline/export_stix.py</code></pre>
     <p>
-      整本匯出<strong>不只是宣稱那一層</strong>——67 個行為者、33 個事件、35 個敘事、
-      70 份來源與其間的 181 條關係都在裡面，共 390 個物件。人策展的骨幹與機器抽的宣稱
+      整本匯出<strong>不只是宣稱那一層</strong>——101 個行為者、33 個事件、35 個敘事、
+      76 份來源與其間的 260 條關係都在裡面，共 505 個物件。人策展的骨幹與機器抽的宣稱
       在同一份檔案裡，而且同一個行為者在逐篇與整本兩種 bundle 裡是<strong>同一個 STIX id</strong>，
-      下游合併不會產生分身。
+      下游合併不會產生分身。關係的型別是<strong>通透</strong>的：<code>runs</code>、<code>operated-by</code>、
+      <code>subsidiary-of</code> 各自保留語意，不會被壓成一種泛用邊。
+    </p>
+    <p>
+      這一版新增了記錄簿最早的三則 <code>attributed-to</code>（歸因）。歸因是紅線——只能由人逐則核可，
+      通過後才寫進資料檔與匯出。逐篇 bundle 裡的每則歸因都帶著<strong>核可狀態章</strong>
+      （<code>pending-human-approval</code> 或 <code>approved</code>＋日期），所以接手的人拿到 bundle 時，
+      看得出哪一則已經過人工閘、哪一則還沒——狀態不只存在策展佇列裡，而是跟著物件走。
     </p>
     <div class="note">
       <span class="note-label">但書</span>
@@ -858,8 +888,9 @@ python3 pipeline/curate.py auto  <span class="cmt"># 檢查閘門、能發的就
   <section>
     <h2>目前的限制</h2>
     <ul class="plain">
-      <li><strong>已在 12 篇真實報告上跑過一次</strong>（地端模型，約 1 小時）：自動發布放行 3 篇、6 篇留給人。名冊首輪審查產生 176 個候選，處置後歸零。22 個測試檔全過。</li><li><strong>沒有排程。</strong>兩行指令要人自己下，沒有背景程式在跑。</li>
-      <li><strong>用的是本機模型。</strong>雲端模型測出來明顯更好，但目前那把金鑰是團隊共用、只能用於測試，所以正式流程維持本機模型，品質差一截。要升級需要一把可以跑正式流程的金鑰。</li>
+      <li><strong>已在 39 篇第一手研究／政府報告上跑過</strong>（雲端 Gemini 3.7 Flash，約 134 萬 tokens／75 分鐘）：所有含在地具名對象或歸因的文件都經人逐篇看過證據才發布。名冊候選從上千個處置到「出現 ≥2 篇者歸零」。30 個測試檔全過。</li><li><strong>沒有排程。</strong>指令要人自己下，沒有背景程式在跑。</li>
+      <li><strong>金鑰仍是團隊共用、額度有限。</strong>這一輪的雲端抽取是經明確授權的一次性作業；日常若要routine 地跑，仍需要一把可以承擔正式流程用量的金鑰。地端模型（gemma 等）品質差一截，是無金鑰時的退路。</li>
+      <li><strong>compile 是逐篇的，不能排除單一宣稱。</strong>有一篇報告（GoLaxy 九點分析）唯一的敏感宣稱把「被攻擊的對象」寫成了行為者，因為無法只挑掉那一條、其餘照發，整篇留在 deferred。要處理這種情況需要逐條排除的機制。</li>
     </ul>
   </section>
 

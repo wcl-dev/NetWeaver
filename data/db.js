@@ -241,13 +241,13 @@ window.NETWEAVER_DB = {
       "confidence": "high",
       "claims": [
         {
-          "text": "The usage of the United Front Work Department (UFWD) is inconspicuous in South Asia.",
-          "source_id": "src-doublethink-lab-96d2c0",
+          "text": "which has links to Chinese law enforcement and coordinates with other agencies such as the Ministry of Foreign Affairs and the United Front Work Department according to internal group communications revealed by the US Department of Justice.",
+          "source_id": "src-aspi-2024",
           "about": "United Front Work Department"
         },
         {
-          "text": "which has links to Chinese law enforcement and coordinates with other agencies such as the Ministry of Foreign Affairs and the United Front Work Department according to internal group communications revealed by the US Department of Justice.",
-          "source_id": "src-aspi-2024",
+          "text": "The usage of the United Front Work Department (UFWD) is inconspicuous in South Asia.",
+          "source_id": "src-doublethink-lab-96d2c0",
           "about": "United Front Work Department"
         }
       ]
@@ -317,7 +317,8 @@ window.NETWEAVER_DB = {
         "國務院台灣事務辦公室",
         "中共中央台灣工作辦公室",
         "Taiwan Affairs Office (TAO)",
-        "国台办"
+        "国台办",
+        "Taiwan Affairs Office of the State Council"
       ],
       "category": "state-organ",
       "role": "amplifier",
@@ -2046,11 +2047,6 @@ window.NETWEAVER_DB = {
           "about": "Global Times"
         },
         {
-          "text": "In 2025, during the regular press briefing of the foreign ministry spokesperson of the PRC, Lin Jian, Global Times posed a question on Pakistan and mining.",
-          "source_id": "src-doublethink-lab-96d2c0",
-          "about": "Global Times"
-        },
-        {
           "text": "FactLink觀察到，此事件有兩波訊息傳播高峰，第一波是10月26日至10月29日，中國官方相關媒體如《觀察者網》、《環球網》、《環球時報》、《人民日報》、《央視軍事》、《海峽之聲》、《看台海》報導與其微博官方帳號，引用長光衛星公司衛星影像，「慶祝台灣回歸為中國一部分」的光復節。",
           "source_id": "src-factlink-satellite",
           "about": "《環球網》"
@@ -2148,6 +2144,11 @@ window.NETWEAVER_DB = {
         {
           "text": "We should object to insulting editorials from the Global Times.",
           "source_id": "src-lowy-globaltimes",
+          "about": "Global Times"
+        },
+        {
+          "text": "In 2025, during the regular press briefing of the foreign ministry spokesperson of the PRC, Lin Jian, Global Times posed a question on Pakistan and mining.",
+          "source_id": "src-doublethink-lab-96d2c0",
           "about": "Global Times"
         }
       ]
@@ -3787,7 +3788,8 @@ window.NETWEAVER_DB = {
       "name_en": "Hu Xijin",
       "aliases": [
         "Hu Xijin",
-        "老胡"
+        "老胡",
+        "胡锡进"
       ],
       "category": "commentator",
       "role": "amplifier",
@@ -3972,31 +3974,6 @@ window.NETWEAVER_DB = {
           "about": "新華社"
         },
         {
-          "text": "PM Oli had held a meeting with Xi Jinping in the course of his visit to the PRC for attending the Shanghai Cooperation Organization (SCO) Plus Summit in Tianjin on 30 August 2025 (Xinhua, 2025).",
-          "source_id": "src-doublethink-lab-96d2c0",
-          "about": "Xinhua"
-        },
-        {
-          "text": "Additionally, China Radio International broadcasts in Urdu, and Xinhua offers services in multiple languages, including Urdu.",
-          "source_id": "src-doublethink-lab-96d2c0",
-          "about": "Xinhua"
-        },
-        {
-          "text": "Leading Pakistani media outlets, such as Jang Group, Daily Pakistan, Nawa-i-Waqt, Associated Press of Pakistan, Daily Times, Hum News, and Pakistan Today, have subscribed to Xinhua’s services.",
-          "source_id": "src-doublethink-lab-96d2c0",
-          "about": "Xinhua"
-        },
-        {
-          "text": "Xinhua.",
-          "source_id": "src-doublethink-lab-96d2c0",
-          "about": "Xinhua"
-        },
-        {
-          "text": "Xinhua News.",
-          "source_id": "src-doublethink-lab-96d2c0",
-          "about": "Xinhua"
-        },
-        {
           "text": "檢視「島內輿論」這波主題，中國官方媒體家數雖多，但內容來源單一，不同媒體之間交互引用，內容主要來自新華社旗下的微博帳號《參考消息》報導〈島內網友熱議衛星視角下瞰中國台灣省〉，此報導除了引述台灣媒體，更取材特定媒體報導的網友留言，製造「島內輿論」高度熱議、高度讚嘆中國科技進步的風向，獲得《央廣軍事》和《環球時報》等媒體轉分享。",
           "source_id": "src-factlink-satellite",
           "about": "新華社"
@@ -4019,6 +3996,31 @@ window.NETWEAVER_DB = {
         {
           "text": "It is clear that Global Times’ editorials don’t carry the same weight as those of the People’s Daily or Xinhua.",
           "source_id": "src-lowy-globaltimes",
+          "about": "Xinhua"
+        },
+        {
+          "text": "PM Oli had held a meeting with Xi Jinping in the course of his visit to the PRC for attending the Shanghai Cooperation Organization (SCO) Plus Summit in Tianjin on 30 August 2025 (Xinhua, 2025).",
+          "source_id": "src-doublethink-lab-96d2c0",
+          "about": "Xinhua"
+        },
+        {
+          "text": "Additionally, China Radio International broadcasts in Urdu, and Xinhua offers services in multiple languages, including Urdu.",
+          "source_id": "src-doublethink-lab-96d2c0",
+          "about": "Xinhua"
+        },
+        {
+          "text": "Leading Pakistani media outlets, such as Jang Group, Daily Pakistan, Nawa-i-Waqt, Associated Press of Pakistan, Daily Times, Hum News, and Pakistan Today, have subscribed to Xinhua’s services.",
+          "source_id": "src-doublethink-lab-96d2c0",
+          "about": "Xinhua"
+        },
+        {
+          "text": "Xinhua.",
+          "source_id": "src-doublethink-lab-96d2c0",
+          "about": "Xinhua"
+        },
+        {
+          "text": "Xinhua News.",
+          "source_id": "src-doublethink-lab-96d2c0",
           "about": "Xinhua"
         }
       ]
@@ -4175,7 +4177,8 @@ window.NETWEAVER_DB = {
       "name_en": "PRC Ministry of Foreign Affairs",
       "aliases": [
         "中华人民共和国外交部",
-        "中國外交部"
+        "中國外交部",
+        "Chinese Ministry of Foreign Affairs"
       ],
       "category": "state-organ",
       "role": "amplifier",
@@ -4245,6 +4248,11 @@ window.NETWEAVER_DB = {
           "text": "從研究資料可以看出，當高市早苗提出「台灣有事」發言時，是由中國駐日外交官在X平台首先發動發動攻擊，中國大V在微博上零散回應，等待中國外交部定調之後，再由官媒與大V再掀輿論浪潮，並在各主題敘事中，分別擔任各自的角色。",
           "source_id": "src-factlink-japan",
           "about": "中國外交部"
+        },
+        {
+          "text": "In April 2023, the Chinese Ministry of Foreign Affairs froze the visas of two prominent Indian journalists — The Hindu’s Ananth Krishnan and Prasar Bharati’s Anshuman Mishra.",
+          "source_id": "src-doublethink-lab-96d2c0",
+          "about": "Chinese Ministry of Foreign Affairs"
         }
       ]
     },
@@ -4769,7 +4777,8 @@ window.NETWEAVER_DB = {
       "aliases": [
         "中国东南卫视官方频道",
         "中國東南衛視",
-        "东南卫视"
+        "东南卫视",
+        "中国东南卫视"
       ],
       "category": "state-media",
       "role": "amplifier",
@@ -5112,6 +5121,42 @@ window.NETWEAVER_DB = {
           "about": "Midu"
         }
       ]
+    },
+    {
+      "id": "chen-chih-han",
+      "name_zh": "陳之漢",
+      "name_en": "Chen Chih-han (Kuan Chang)",
+      "aliases": [
+        "館長",
+        "舘長"
+      ],
+      "category": "commentator",
+      "role": "amplifier",
+      "origin": "TW",
+      "summary_zh": "台灣網紅。FactLink 記錄其影片與發言被中共官媒抓取為「島內輿論」的來源之一；IORG 記錄人民日報引用其批評民進黨的發言，並報導其赴中行程。",
+      "source_ids": [
+        "src-factlink-satellite",
+        "src-factlink-japan",
+        "src-iorg-131"
+      ],
+      "confidence": "medium",
+      "sensitivity": "domestic-named"
+    },
+    {
+      "id": "hou-han-ting",
+      "name_zh": "侯漢廷",
+      "name_en": "Hou Han-ting",
+      "aliases": [],
+      "category": "commentator",
+      "role": "amplifier",
+      "origin": "TW",
+      "summary_zh": "新黨台北市議員。IORG 記錄其指控 USAID 補助台灣民主實驗室、檢舉沈伯洋接受境外資金，相關說法經香港大公文匯發表評論並引述。",
+      "source_ids": [
+        "src-iorg-118",
+        "src-iorg-131"
+      ],
+      "confidence": "medium",
+      "sensitivity": "domestic-named"
     }
   ],
   "events": [

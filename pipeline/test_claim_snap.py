@@ -35,11 +35,15 @@ assert extract.snap_quote("前言。" + "甲" * 300 + "乙，丙。", "乙，") 
 # ⑤ 宣稱閘看**句尾**：終止符在句中不算數，句尾引號／括號先剝掉
 assert extract.is_claim_span("央視亦發布相關新聞。")
 assert extract.is_claim_span("他說：「央視發布消息。」")                    # 句尾為 」 → 剝掉後看 。
-assert not extract.is_claim_span("東部戰區融媒體中心扮演的角色")            # 標題
+# 標題：碼無法與「龍橋為公安部僱用的網路水軍」這種無句號的完整陳述區分，
+# 因此降級為 review，由 claim_judge 判語意（見 test_claim_gate_start.py）。
+assert extract.claim_verdict("東部戰區融媒體中心扮演的角色") == "review"
 assert not extract.is_claim_span("研究團隊得到幾點觀察：")                  # 欄位標籤
-assert not extract.is_claim_span("重要發現！四種手法")                      # 標點在句中，句尾仍無終止符
+# 「重要發現！四種手法」是標題，但碼無法與無句號的完整陳述區分 → review，交語意判斷
+assert extract.claim_verdict("重要發現！四種手法") == "review"
 assert not extract.is_claim_span("東部戰區融媒體中心到底是什麼樣的單位？")  # 提問（已知取捨：反問句一併損失）
-assert not extract.is_claim_span("他們否認。真是如此嗎")                    # 句中有 。但句尾無終止符
+# 句中有 。但句尾無終止符：同樣是碼分不出的形態 → review
+assert extract.claim_verdict("他們否認。真是如此嗎") == "review"
 
 # ⑥ project 去重含物件：同一句可同時佐證多個實體，不被先到的實體吃掉
 ev = [{"quote": "央視與環球時報同為官媒。", "source_url": "https://example.org/r"}]
@@ -57,7 +61,19 @@ head = {"objects": [{"id": "identity--a", "type": "identity", "name": "東部戰
                      "x_netweaver_evidence": [{"quote": "東部戰區融媒體中心扮演的角色",
                                                "source_url": "https://example.org/r"}]}]}
 assert len(pipeline.project(head)["claims"]) == 1
+# 契約：碼判不準（review）且尚無裁決 → **保留**。寧可留一條可疑的，
+# 不要靜靜刪掉一條有效的（「龍橋為公安部僱用的網路水軍」也是無句號）。
+assert len(pipeline.project(head, text=TEXT)["claims"]) == 1
+# 有裁決說不可讀 → 才濾掉。裁決寫在 data/claim_verdicts.json，可人工覆寫。
+import json as _json, os as _os, tempfile as _tf, pathlib as _pl
+import claim_judge as _cj
+_tmp = _pl.Path(_tf.mkdtemp()) / "v.json"
+_tmp.write_text(_json.dumps({_cj.key_of("東部戰區融媒體中心扮演的角色", "東部戰區融媒體中心"):
+                             {"readable": False, "reason": "章節標題"}}), encoding="utf-8")
+_os.environ["NW_CLAIM_VERDICTS"] = str(_tmp)
+pipeline._CLAIM_JUDGE = None                      # 重新載入，讓新路徑生效
 assert len(pipeline.project(head, text=TEXT)["claims"]) == 0
+_os.environ.pop("NW_CLAIM_VERDICTS"); pipeline._CLAIM_JUDGE = None
 frag = {"objects": [{"id": "identity--a", "type": "identity", "name": "東部戰區融媒體中心",
                      "x_netweaver_evidence": [{"quote": "東部戰區融媒體中心被外界稱為「中央廚房」，",
                                                "source_url": "https://example.org/r"}]}]}

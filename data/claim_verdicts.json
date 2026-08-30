@@ -1,0 +1,210 @@
+{
+  "09e7491c9e55fc49": {
+    "about": "Spamouflage",
+    "judged": "2026-08-30",
+    "model": "gemini-3.7-flash",
+    "readable": true,
+    "reason": "清楚說明主體、影響規模及行動目標。",
+    "text": "Dragonbridge 跨逾180個平台的對台行動"
+  },
+  "0a11c621ccb8083e": {
+    "about": "假冒台灣人反民進黨帳號網絡",
+    "judged": "2026-08-30",
+    "model": "gemini-3.7-flash",
+    "readable": false,
+    "reason": "開頭「the operation」指涉外部未明行動",
+    "text": "the operation was run by the network of 51 accounts"
+  },
+  "0c3ecca60be60575": {
+    "about": "Spamouflage",
+    "judged": "2026-08-30",
+    "model": "gemini-3.7-flash",
+    "readable": false,
+    "reason": "開頭 which 指代不明，主詞位於句外",
+    "text": "which documented a set of four Spamouflage accounts on X posing as supporters of Trump and the Make America Great Again (MAGA) movement."
+  },
+  "159225c0aa36bcd5": {
+    "about": "假冒台灣人反民進黨帳號網絡",
+    "judged": "2026-08-30",
+    "model": "gemini-3.7-flash",
+    "readable": false,
+    "reason": "僅為動詞片語，缺少主詞且語意不完整",
+    "text": "attacking the Democratic Progressive Party (DPP)"
+  },
+  "184287eccb3bd8d6": {
+    "about": "Spamouflage",
+    "judged": "2026-08-30",
+    "model": "gemini-3.7-flash",
+    "readable": false,
+    "reason": "代名詞 they 指代不明，主體缺乏上下文。",
+    "text": "they are not being artificially boosted by the rest of the Spamouflage network."
+  },
+  "1a95ba6c4d96ef9c": {
+    "about": "假冒台灣人反民進黨帳號網絡",
+    "judged": "2026-08-30",
+    "model": "gemini-3.7-flash",
+    "readable": true,
+    "reason": "條列陳述運作方式與帳號數量，意思清楚。",
+    "text": "operated via 51 inauthentic Threads accounts"
+  },
+  "2988df494f84eb2d": {
+    "about": "Spamouflage",
+    "judged": "2026-08-30",
+    "model": "gemini-3.7-flash",
+    "readable": false,
+    "reason": "以 who 開頭，指涉對象不明且語意殘缺",
+    "text": "who Spamouflage accounts accused of sexually harassing female colleagues and having affairs."
+  },
+  "38e05c6896e5fd30": {
+    "about": "Spamouflage",
+    "judged": "2026-08-30",
+    "model": "gemini-3.7-flash",
+    "readable": true,
+    "reason": "清楚說明確認為Spamouflage並關聯至中國執法機構",
+    "text": "we were able to tie this activity together to confirm it was part of one operation known in the security community as Spamouflage and link it to individuals associated with Chinese law enforcement."
+  },
+  "3e74616845155182": {
+    "about": "Spamouflage",
+    "judged": "2026-08-30",
+    "model": "gemini-3.7-flash",
+    "readable": false,
+    "reason": "開頭代名詞 this 指向文外事物，不知所指",
+    "text": "this is one of the first documented efforts by Spamouflage to create a consistent multi-platform American persona."
+  },
+  "4a4b7f6cca21c52c": {
+    "about": "假冒台灣人反民進黨帳號網絡",
+    "judged": "2026-08-30",
+    "model": "gemini-3.7-flash",
+    "readable": true,
+    "reason": "條列式陳述清楚說明貼文推廣特定論述",
+    "text": "posts pushed the 我是台灣人我反綠 narrative"
+  },
+  "4f887c27e041635e": {
+    "about": "中科天璣",
+    "judged": "2026-08-30",
+    "model": "gemini-3.7-flash",
+    "readable": true,
+    "reason": "語意完整，清楚說明主體及其具體行為。",
+    "text": "GoLaxy built detailed profiles of 170+ Taiwanese political figures"
+  },
+  "4fc7bf86be5a4b2b": {
+    "about": "假冒台灣人反民進黨帳號網絡",
+    "judged": "2026-08-30",
+    "model": "gemini-3.7-flash",
+    "readable": true,
+    "reason": "清楚說明51個假冒帳號攻擊民進黨",
+    "text": "51 inauthentic accounts impersonating Taiwanese posted content attacking the DPP"
+  },
+  "58ad55a666b13234": {
+    "about": "Spamouflage",
+    "judged": "2026-08-30",
+    "model": "gemini-3.7-flash",
+    "readable": true,
+    "reason": "清楚陳述了散布不實訊息的具體行為",
+    "text": "針對台灣議題散布不實訊息"
+  },
+  "5a07914d96cfbbcb": {
+    "about": "Spamouflage",
+    "judged": "2026-08-30",
+    "model": "gemini-3.7-flash",
+    "readable": true,
+    "reason": "清楚描述DRAGONBRIDGE常使用的內容形式",
+    "text": "the content consisted of DRAGONBRIDGE’s usual compilation of stock images and news footage from online sources accompanied by robotic English-language voiceovers."
+  },
+  "8b804a71189c8c3b": {
+    "about": "Spamouflage",
+    "judged": "2026-08-30",
+    "model": "gemini-3.7-flash",
+    "readable": true,
+    "reason": "主謂完整，清楚說明龍橋的身份屬性。",
+    "text": "龍橋（Dragonbridge）為公安部僱用的網路水軍"
+  },
+  "8b813dab133851d0": {
+    "about": "Spamouflage",
+    "judged": "2026-08-30",
+    "model": "gemini-3.7-flash",
+    "readable": false,
+    "reason": "以 which 開頭指涉不明，缺少主體。",
+    "text": "which is increasingly common across the network (for more on this see this previous Dispatch on Spamouflage and the US 2024 elections)."
+  },
+  "91fc4c365ee98354": {
+    "about": "中科天璣",
+    "judged": "2026-08-30",
+    "model": "gemini-3.7-flash",
+    "readable": false,
+    "reason": "開頭「the campaign」指涉不明",
+    "text": "the campaign was run using GoLaxy's AI-driven smart propaganda system"
+  },
+  "a3ce9b91a371b68d": {
+    "about": "Spamouflage",
+    "judged": "2026-08-30",
+    "model": "gemini-3.7-flash",
+    "readable": true,
+    "reason": "條列式陳述其操作平臺與語言規模，語意清楚",
+    "text": "於全球逾180個社群平臺、以逾20種語言進行影響力操作"
+  },
+  "a5de4d0cf55a1f4f": {
+    "about": "假冒台灣人反民進黨帳號網絡",
+    "judged": "2026-08-30",
+    "model": "gemini-3.7-flash",
+    "readable": true,
+    "reason": "語意清楚，說明研究機構評估網絡關聯中國",
+    "text": "DTL assesses the network can likely be linked to the PRC"
+  },
+  "ad31a9d09c636201": {
+    "about": "假冒台灣人反民進黨帳號網絡",
+    "judged": "2026-08-30",
+    "model": "gemini-3.7-flash",
+    "readable": true,
+    "reason": "清楚說明有275篇特定類型的雷同貼文",
+    "text": "275 near-identical posts of the 我是台灣人我反綠 type"
+  },
+  "b41600a23ea7ee34": {
+    "about": "Spamouflage",
+    "judged": "2026-08-30",
+    "model": "gemini-3.7-flash",
+    "readable": true,
+    "reason": "句意完整，清楚說明行動子集的互動特徵",
+    "text": "this small subset of DRAGONBRIDGE operations garnered higher levels of engagement from seemingly authentic users compared to the limited-to-no authentic engagement typically received by campaign activity."
+  },
+  "cf492d4339e949e6": {
+    "about": "中科天璣",
+    "judged": "2026-08-30",
+    "model": "gemini-3.7-flash",
+    "readable": true,
+    "reason": "條列式陳述清楚，完整表達特定監測活動。",
+    "text": "weekly monitoring of 600,000+ Taiwan-related items during the 2024 election"
+  },
+  "db746057bb41e41f": {
+    "about": "假冒台灣人反民進黨帳號網絡",
+    "judged": "2026-08-30",
+    "model": "gemini-3.7-flash",
+    "readable": true,
+    "reason": "清楚說明51個帳號中有44個盜用網紅照片",
+    "text": "44 of 51 accounts reused photos of Taiwanese influencers"
+  },
+  "dcf417df35e55de2": {
+    "about": "Spamouflage",
+    "judged": "2026-08-30",
+    "model": "gemini-3.7-flash",
+    "readable": false,
+    "reason": "開頭「the same account」指涉不明",
+    "text": "the same account posted a video comparing Biden and the Democrats to Hitler and the Nazis and shared a meme (which does not appear to have been created by Spamouflage) about how America will be “Zio free.”"
+  },
+  "deece6923a08cbdb": {
+    "about": "Spamouflage",
+    "judged": "2026-08-30",
+    "model": "gemini-3.7-flash",
+    "readable": true,
+    "reason": "語意完整，清楚說明HaiEnergy缺乏真實互動",
+    "text": "there is at least some evidence to suggest that HaiEnergy failed to generate substantial engagement outside of the inauthentic amplification that we have identified—a limitation we also noted in our recent public reporting on DRAGONBRIDGE."
+  },
+  "f5f4f5fc3c5611ed": {
+    "about": "中科天璣",
+    "judged": "2026-08-30",
+    "model": "gemini-3.7-flash",
+    "readable": true,
+    "reason": "條列陳述清楚，說明具備之虛擬身分規模與跨平台能力",
+    "text": "3,692 virtual personas operable across 12 platforms"
+  }
+}

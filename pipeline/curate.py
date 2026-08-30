@@ -207,6 +207,46 @@ def auto_gate(rec, att, fails, source_curated, org, name2ent, publishers):
         return False, f"掛到敏感實體（{'、'.join(sens)}）→ 需人工確認", hits
     return True, f"掛 {len(hits)} 個已登錄實體", hits
 
+def cmd_judge(args):
+    """把佇列裡「碼判不準」的宣稱送語意判斷，結果寫進 data/claim_verdicts.json。
+
+    碼只確定得了明顯的切斷跡象（句首標點、引號未配對、內容過短）。「沒有句號」
+    與「小寫英文開頭」不能當作讀不讀得懂的 proxy——實測兩邊都會判錯，所以降級
+    為 review 交給模型。模型只回答呈現層的可讀性，不碰分類／關係／信心／歸因。
+    """
+    cj = _load("claim_judge")
+    ex = _load("extract")
+    q = rl.load_queue()
+    todo, seen = [], set()
+    for e in q.values():
+        try:
+            _sl, rec, _x, _n, _d, _f = project_extraction(e["extraction"])
+        except Exception:
+            continue
+        for c in rec.get("claims", []):
+            if ex.claim_verdict(c["quote"]) != "review":
+                continue
+            k = cj.key_of(c["quote"], c["about"])
+            if k in seen:
+                continue
+            seen.add(k); todo.append((c["about"], c["quote"]))
+    have = cj.load_verdicts()
+    fresh = [(a, t) for a, t in todo if cj.key_of(t, a) not in have]
+    print("碼判不準的宣稱 %d 條；其中未裁決 %d 條" % (len(todo), len(fresh)))
+    if args.dry_run or not fresh:
+        for a, t in fresh[:20]:
+            print("  . %s | %s" % (a, t[:70]))
+        if args.dry_run:
+            print("（dry-run：未呼叫模型）")
+        return 0
+    keep = drop = 0
+    for a, t in fresh:
+        ok, reason, _src = cj.judge(t, a)
+        keep += ok; drop += (not ok)
+        print("  [%s] %s | %s" % ("留" if ok else "刪", a, reason))
+    print("--- 可讀 %d｜不可讀 %d｜裁決已寫入 data/claim_verdicts.json（可人工覆寫）---" % (keep, drop))
+    return 0
+
 def cmd_auto(args):
     """掃 pending 項目，過閘的自動核可＋發布；其餘留在佇列並記下原因。
 
@@ -363,6 +403,8 @@ def main():
     for st in ("approve", "reject", "defer"):
         p = sub.add_parser(st); p.add_argument("raw_id"); p.add_argument("--note")
         p.set_defaults(fn=cmd_set, status={"approve": "approved", "reject": "rejected", "defer": "deferred"}[st])
+    p = sub.add_parser("judge", help="對碼判不準的宣稱做語意可讀性裁決（只影響呈現，不碰分類／歸因）")
+    p.add_argument("--dry-run", action="store_true"); p.set_defaults(fn=cmd_judge)
     p = sub.add_parser("auto", help="掃 pending：過閘者自動發布，其餘留給人")
     p.add_argument("--dry-run", action="store_true"); p.set_defaults(fn=cmd_auto)
     p = sub.add_parser("compile"); p.add_argument("raw_id", nargs="?", help="只發布這一篇；省略＝全部 approved")

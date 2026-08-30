@@ -775,21 +775,36 @@ def is_claim_span(span):
       「TVBS).」                                  ← 只有名字加標點，沒有內容
     三條規則分別對應：句首接續標點、句首小寫拉丁字母、去標點後內容過短。
     """
+    return claim_verdict(span) != "reject"
+
+def claim_verdict(span):
+    """三分：reject（碼可確定不是宣稱）／accept（碼可確定是）／review（要語意判斷）。
+
+    刻意不用語法當「讀不讀得懂」的 proxy——實測兩邊都會判錯：
+      「龍橋（Dragonbridge）為公安部僱用的網路水軍」        沒句號但說清楚了 → 該留
+      「the campaign was run using GoLaxy's AI…」        小寫開頭但說清楚了 → 該留
+      「which is increasingly common across the network」  which 指誰？句子沒說 → 該刪
+    所以「沒有終止符」與「小寫英文開頭」只降級為 review，交給 claim_judge 判語意，
+    不在這裡直接刪。碼只保留能百分之百確定的三種切斷跡象。
+    """
     s = (span or "").strip()
-    if not s: return False
-    if s[0] in _OPENERS: return False                    # 句首是接續標點 → 從句中切出來的
-    if s[0].islower() and s[0].isascii(): return False    # 英文句中切點（and／which／who…）
-    if len(re.sub(r"[\s\W_]+", "", s, flags=re.UNICODE)) < _MIN_CONTENT: return False
-    for _op, _cl in _QUOTE_PAIRS:                        # 收尾引號出現在對應開引號之前 → 從引文中間切開
+    if not s: return "reject"
+    if s[0] in _OPENERS: return "reject"                  # 句首是接續標點 → 從句中切出來的
+    if len(re.sub(r"[\s\W_]+", "", s, flags=re.UNICODE)) < _MIN_CONTENT: return "reject"
+    for _op, _cl in _QUOTE_PAIRS:                         # 收尾引號先於開引號 → 從引文中間切開
         d = 0
         for ch in s:
             if ch == _op: d += 1
             elif ch == _cl:
                 d -= 1
-                if d < 0: return False
+                if d < 0: return "reject"
     t = s.rstrip().rstrip(_CLOSERS).rstrip()
-    if not t or t[-1] in "？?": return False
-    return t[-1] in CLAIM_TERMINATORS
+    if not t: return "reject"
+    if t[-1] in "？?": return "reject"                     # 提問不是宣稱
+    if t[-1] in "：:": return "reject"                     # 以冒號收尾＝欄位標籤／引導語，不是陳述
+    if t[-1] not in CLAIM_TERMINATORS: return "review"     # 無終止符：可能是標題，也可能是簡潔註記
+    if s[0].islower() and s[0].isascii(): return "review"  # 小寫開頭：可能是句中切點，也可能是完整陳述
+    return "accept"
 
 def expand_surface_occurrences(seed_mentions, text):
     """只展開模型已辨識 surface 的原文 occurrence；不注入新名稱。"""

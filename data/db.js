@@ -595,11 +595,6 @@ window.NETWEAVER_DB = {
           "about": "GoLaxy"
         },
         {
-          "text": "the campaign was run using GoLaxy's AI-driven smart propaganda system",
-          "source_id": "src-dtl-golaxy",
-          "about": "related-to"
-        },
-        {
           "text": "weekly monitoring of 600,000+ Taiwan-related items during the 2024 election",
           "source_id": "src-dtl-golaxy",
           "about": "targets"
@@ -1744,31 +1739,6 @@ window.NETWEAVER_DB = {
           "about": "DRAGONBRIDGE"
         },
         {
-          "text": "which documented a set of four Spamouflage accounts on X posing as supporters of Trump and the Make America Great Again (MAGA) movement.",
-          "source_id": "src-graphika-americans",
-          "about": "Spamouflage"
-        },
-        {
-          "text": "they are not being artificially boosted by the rest of the Spamouflage network.",
-          "source_id": "src-isd-magaflage",
-          "about": "Spamouflage"
-        },
-        {
-          "text": "which is increasingly common across the network (for more on this see this previous Dispatch on Spamouflage and the US 2024 elections).",
-          "source_id": "src-isd-magaflage",
-          "about": "Spamouflage"
-        },
-        {
-          "text": "this is one of the first documented efforts by Spamouflage to create a consistent multi-platform American persona.",
-          "source_id": "src-isd-magaflage",
-          "about": "Spamouflage"
-        },
-        {
-          "text": "the same account posted a video comparing Biden and the Democrats to Hitler and the Nazis and shared a meme (which does not appear to have been created by Spamouflage) about how America will be “Zio free.”",
-          "source_id": "src-isd-magaflage",
-          "about": "Spamouflage"
-        },
-        {
           "text": "there is at least some evidence to suggest that HaiEnergy failed to generate substantial engagement outside of the inauthentic amplification that we have identified—a limitation we also noted in our recent public reporting on DRAGONBRIDGE.",
           "source_id": "src-mandiant-haienergy-2022",
           "about": "DRAGONBRIDGE"
@@ -1776,11 +1746,6 @@ window.NETWEAVER_DB = {
         {
           "text": "we were able to tie this activity together to confirm it was part of one operation known in the security community as Spamouflage and link it to individuals associated with Chinese law enforcement.",
           "source_id": "src-meta-2023",
-          "about": "Spamouflage"
-        },
-        {
-          "text": "who Spamouflage accounts accused of sexually harassing female colleagues and having affairs.",
-          "source_id": "src-aspi-2024",
           "about": "Spamouflage"
         }
       ]
@@ -1857,16 +1822,6 @@ window.NETWEAVER_DB = {
           "text": "operated via 51 inauthentic Threads accounts",
           "source_id": "src-dtl-impersonation",
           "about": "uses"
-        },
-        {
-          "text": "attacking the Democratic Progressive Party (DPP)",
-          "source_id": "src-dtl-impersonation",
-          "about": "targets"
-        },
-        {
-          "text": "the operation was run by the network of 51 accounts",
-          "source_id": "src-dtl-impersonation",
-          "about": "related-to"
         }
       ]
     },

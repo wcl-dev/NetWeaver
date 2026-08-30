@@ -163,7 +163,13 @@ def project(bundle, text=None):
         if not about: continue                    # 無可辨識實體名 → 不產生 claim（見 _claim_about）
         for e in (o.get("x_netweaver_evidence") or []):
             quote = _extract_mod().snap_quote(text, e["quote"]) if text else e["quote"]
-            if text and not _extract_mod().is_claim_span(quote): continue
+            if text:
+                v = _extract_mod().claim_verdict(quote)
+                if v == "reject": continue
+                # review＝碼判不準（無終止符／小寫開頭），交語意判斷。這裡只讀已存的裁決，
+                # 不打網路——project() 會被測試與離線流程大量呼叫。未裁決的先留著，
+                # 由 `curate.py judge` 補判：寧可留一條可疑的，不要靜靜刪掉一條有效的。
+                if v == "review" and not _claim_judge().judge(quote, about, use_model=False)[0]: continue
             key = o["id"] + "|" + e["source_url"] + "|" + re.sub(r"[\s\W]+", "", quote.lower())
             if key in seen: continue
             seen.add(key)
@@ -191,6 +197,17 @@ def _extract_mod():                                 # 句界／宣稱閘與 asse
         spec = importlib.util.spec_from_file_location("extract", str(p))
         m = importlib.util.module_from_spec(spec); spec.loader.exec_module(m); _EXTRACT_MOD = m
     return _EXTRACT_MOD
+
+_CLAIM_JUDGE = None
+def _claim_judge():                                 # 語意可讀性裁決；只讀 data/claim_verdicts.json，不打網路
+    global _CLAIM_JUDGE
+    if _CLAIM_JUDGE is None:
+        import importlib.util
+        p = pathlib.Path(__file__).resolve().parent / "claim_judge.py"
+        spec = importlib.util.spec_from_file_location("claim_judge", str(p))
+        m = importlib.util.module_from_spec(spec); spec.loader.exec_module(m); _CLAIM_JUDGE = m
+    return _CLAIM_JUDGE
+
 
 def _derive_mod():                                  # 以路徑載入 derive.py（免 sys.path 問題）
     import importlib.util

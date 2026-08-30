@@ -109,4 +109,17 @@ d_new = run_loop.publication_digest(extr_x, [{"about": "央視", "quote": "央�
 assert d_old != d_new
 assert d_new == run_loop.publication_digest(extr_x, [{"about": "央視", "quote": "央視亦發布相關新聞。"}])
 
+# ── 句號落在引號裡面：收尾引號要算進前一句 ──────────────────────
+# 實測 IORG〈延續麥卡錫和裴洛西兩任美國議長的疑美論〉：
+#   …很可能再度引爆台海危機。」（01:12）隔日，聯合新聞網（8:52）直接引用報導內容。
+# 原本在「。」就切，下一句以孤兒「」」開頭，單篇產生 7 條這種碎片。
+_T = "中共官媒「香港中評網」報導認為「麥卡錫如果竄台，很可能再度引爆台海危機。」（01:12）隔日，聯合新聞網（8:52）直接引用報導內容。"
+_w = extract.sentence_windows(_T)
+assert not any(w.lstrip().startswith(("」", "』", "）")) for w in _w), \
+    f"句窗不得以收尾引號開頭：{[w[:14] for w in _w]}"
+assert _w[0].rstrip().endswith("」"), f"收尾引號應留在前一句：{_w[0][-8:]!r}"
+# 擴張後的 claim 同樣不得以收尾引號開頭
+_snapped = extract.snap_quote(_T, "隔日，聯合新聞網")
+assert not _snapped.lstrip().startswith("」"), f"snap_quote 不得以「」」開頭：{_snapped[:20]!r}"
+
 print("claim 引文：通過（句界擴張＋中英句尾＋定位歧義保守＋宣稱閘＋逐物件去重＋不回頭動 derive）")

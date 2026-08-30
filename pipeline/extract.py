@@ -710,6 +710,8 @@ def split_text(text, max_chars=2400, overlap=240):
         start = max(start + 1, end - overlap)
     return chunks
 
+_CLOSERS = "」』）〕】》”’\"')]"                                # 句尾引號／括號先剝掉再看終止符
+
 def sentence_windows(text):
     """回傳覆蓋原文的 exact 句／行窗。"""
     ends, i = [], 0
@@ -717,6 +719,9 @@ def sentence_windows(text):
         ch = text[i]
         if ch in "。！？!?\n" or (ch == "." and (i + 1 == len(text) or text[i + 1].isspace())):
             j = i + 1
+            # 句號常落在引號**裡面**（…台海危機。」（01:12）隔日…）。收尾引號／括號要算進前一句，
+            # 否則下一句會以孤兒「」」開頭——實測 IORG 單篇就產生 7 條這種碎片。
+            while j < len(text) and text[j] in _CLOSERS: j += 1
             while j < len(text) and text[j] == "\n": j += 1
             ends.append(j); i = j; continue
         i += 1
@@ -727,7 +732,6 @@ def sentence_windows(text):
     return windows
 
 CLAIM_TERMINATORS = "。！？!?.…"                              # 含英文句點：英文來源的正常陳述句不得被閘掉
-_CLOSERS = "」』）〕】》”’\"')]"                                # 句尾引號／括號先剝掉再看終止符
 _EDGE_PUNCT = " \t\n、，,；;：:"                            # 只去分隔標點；句尾「。！？」是內容，不剝
 
 def snap_quote(text, quote, max_chars=200):

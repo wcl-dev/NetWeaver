@@ -2555,7 +2555,8 @@ window.NETWEAVER_DB = {
         "Want Want China Times Media Group",
         "中時",
         "中時新聞網",
-        "中時電子報"
+        "中時電子報",
+        "China Times"
       ],
       "category": "domestic-amplifier",
       "role": "amplifier",
@@ -2624,7 +2625,8 @@ window.NETWEAVER_DB = {
       "aliases": [
         "TVBS新聞台",
         "新聞大白話",
-        "TVBS選新聞"
+        "TVBS選新聞",
+        "TVBS 新聞網"
       ],
       "category": "domestic-amplifier",
       "role": "amplifier",

@@ -34,7 +34,14 @@ def extdef_id(typ):
     return f"extension-definition--{uuid.uuid5(NS, 'extdef:' + typ)}"
 
 # ---------- serialize: STIX-lite → 合法 STIX 2.1 ----------
-def serialize(lite):
+def serialize(lite, attribution_approved=None):
+    """STIX-lite → 合法 STIX 2.1。
+
+    attribution_approved：attributed-to 的人工核可日期（如 "2026-08-30"）。
+    逐篇 bundle 在抽取完成時就落盤、可直接交換（OpenCTI 等），但歸因的人工閘
+    在那之後才發生——bundle 裡的 attributed-to 若無狀態標記，接手的人看不出
+    這則歸因還沒過紅線。預設蓋 pending-human-approval；curate compile --yes
+    通過後重寫 bundle 時傳入核可日期，改蓋 approved。"""
     rep = lite["report"]; ts = iso(rep.get("published"))
     mark_id = f"marking-definition--{uuid.uuid5(NS, 'mark:statement')}"
     idmap, objs, used = {}, [], set()
@@ -74,6 +81,12 @@ def serialize(lite):
               "relationship_type": rt, "source_ref": s, "target_ref": t, "object_marking_refs": [mark_id]}
         if r.get("confidence"): so["confidence"] = CONF[r["confidence"]]
         if r.get("evidence"): so["x_netweaver_evidence"] = r["evidence"]
+        if rt == "attributed-to":                 # 歸因紅線的狀態要跟著物件走，不能只存在佇列裡
+            if attribution_approved:
+                so["x_netweaver_review"] = "approved"
+                so["x_netweaver_review_date"] = attribution_approved
+            else:
+                so["x_netweaver_review"] = "pending-human-approval"
         if rt in XDAD_REL:
             used.add(rt); so["extensions"] = {extdef_id(rt): {"extension_type": "new-sro"}}
         objs.append(so); rel_ids.append(i)

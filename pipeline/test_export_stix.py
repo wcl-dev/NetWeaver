@@ -15,7 +15,12 @@ DB = {
    {"id": "kol", "name_zh": "某評論者", "category": "commentator", "role": "amplifier",
     "origin": "TW", "source_ids": ["s1"]},
    {"id": "net", "name_zh": "某網絡", "category": "cib-network", "role": "attacker",
-    "origin": "PRC", "source_ids": ["s1"], "related": ["gt"]},
+    "origin": "PRC", "source_ids": ["s1"],
+    # 兩種形態都要支援：舊的純 id 字串（→中性邊），與實際 schema 的 dict。
+    # dict 用的是 target_id——匯出曾讀錯成 r.get("id")，人工關係整批被靜默丟掉。
+    "related": ["gt",
+                {"target_id": "cac", "relation": "runs", "note": "人工登錄"},
+                {"target_id": "cti", "relation": "attributed-to", "note": "報告記錄；人工核可"}]},
    {"id": "orphan", "name_zh": "無來源實體", "category": "state-organ", "role": "attacker",
     "origin": "PRC", "source_ids": []},
  ],
@@ -50,11 +55,18 @@ assert "x_netweaver_sensitivity" not in byname["環球時報"], "非敏感實體
 # ④ claims → x_netweaver_evidence（宣稱那一層仍是 grounding 的來源）
 assert byname["環球時報"]["x_netweaver_evidence"][0]["source_url"] == "https://example.org/r"
 
-# ⑤ 關係：參與者用中性邊（§6 保守歸因），敘事用 uses，且不得產生 attributed-to
+# ⑤ 關係：事件參與者只給中性邊（§6 保守歸因）；db 裡人工登錄的關係**通透**——
+#    型別不得壓平（runs 仍是 runs），attributed-to 只能來自 db（人工核可），匯出不得自行建立
 rels = [o for o in b["objects"] if o["type"] == "relationship"]
 kinds = {r["relationship_type"] for r in rels}
-assert "attributed-to" not in kinds, "匯出不得自行建立歸因"
 assert ("related-to" in kinds) and ("uses" in kinds), kinds
+byid = {o["id"]: o for o in b["objects"]}
+runs = [r for r in rels if r["relationship_type"] == "runs"]
+assert len(runs) == 1 and byid[runs[0]["source_ref"]]["name"] == "某網絡"        and byid[runs[0]["target_ref"]]["name"] == "中央網信辦", "runs 應通透且方向正確"
+att = [r for r in rels if r["relationship_type"] == "attributed-to"]
+assert len(att) == 1 and byid[att[0]["source_ref"]]["name"] == "某網絡"        and byid[att[0]["target_ref"]]["name"] == "中天電視", "db 的 attributed-to 應忠實匯出"
+for v_ev in [r for r in rels if byid.get(r["source_ref"], {}).get("type") == "campaign"]:
+    assert v_ev["relationship_type"] in ("related-to", "uses"), "事件邊不得自行升級為歸因"
 
 # ⑥ 巢狀敘事以 parent 屬性表達
 assert byname["子敘事"]["parent"] == byname["某敘事"]["id"]

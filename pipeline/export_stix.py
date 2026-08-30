@@ -91,10 +91,15 @@ def build(db, ts="2026-01-01T00:00:00.000Z"):
         rels.append({"type": "relationship", "spec_version": "2.1", "id": i, "created": ts,
                      "modified": ts, "relationship_type": rt, "source_ref": s, "target_ref": t,
                      "object_marking_refs": [mark_id]})
-    for e in db.get("entities", []):                  # 實體↔實體：描述性，不做歸因
+    for e in db.get("entities", []):                  # 實體↔實體：關係皆人工登錄（add-relation／歸因核可）
         for r in (e.get("related") or []):
-            tid = ent_sid.get(r if isinstance(r, str) else r.get("id"))
-            rel("related-to", ent_sid.get(e["id"]), tid)
+            if isinstance(r, str):                    # 舊形態：純 id 字串 → 中性邊
+                rel("related-to", ent_sid.get(e["id"]), ent_sid.get(r)); continue
+            # 實際 schema 是 {"target_id","relation",...}。原本讀 r.get("id") 永遠是 None，
+            # 全書匯出把人工關係**整批靜默丟掉**；且型別被壓成 related-to，丟失
+            # runs／operated-by／subsidiary-of／attributed-to 的語意。兩者都不可接受：
+            # db.js 裡的關係全是人工決定（attributed-to 更是逐則核可），匯出必須忠實。
+            rel(r.get("relation") or "related-to", ent_sid.get(e["id"]), ent_sid.get(r.get("target_id")))
     for v in db.get("events", []):                    # 行動→參與者：§6 中性邊，不用 attributed-to
         for pid in (v.get("participant_ids") or []): rel("related-to", ev_sid.get(v["id"]), ent_sid.get(pid))
         for nid in (v.get("narratives") or []):       # 行動→敘事：uses

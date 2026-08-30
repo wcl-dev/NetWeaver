@@ -12,7 +12,7 @@
   python3 pipeline/curate.py approve|reject|defer <raw_id> [--note "…"]
   python3 pipeline/curate.py compile [--yes] [--dry-run]
 """
-import argparse, hashlib, importlib.util, json, pathlib, re, types
+import argparse, datetime as _dt, hashlib, importlib.util, json, pathlib, re, types
 
 _here = pathlib.Path(__file__).resolve().parent
 def _load(n):
@@ -308,6 +308,44 @@ def cmd_auto(args):
     if args.dry_run: print("（dry-run：未寫 db.js/queue）")
     return 0
 
+def _resolve_actor(name, name2ent):
+    """歸因端點名 → 已登錄實體。先精確比對；失敗再取括號內片段逐一比對。
+
+    模型的 surface 常是整個片語（the company named "WUBIANJIE" [無邊界公司]），
+    精確比對必然失敗，但括號裡的每個名字都可能已登錄。規則刻意保守：**所有**
+    命中的片段必須指向同一實體才算，出現歧義寧可 held 讓人補別名，不猜。"""
+    hit = name2ent.get(_norm(name))
+    if hit: return hit
+    parts = re.findall(r"[「『［\[（(“\"]([^」』］\]）)”\"]{1,40})[」』］\]）)”\"]", name or "")
+    ids = {name2ent[_norm(x)]["id"]: name2ent[_norm(x)] for x in parts if _norm(x) in name2ent}
+    return next(iter(ids.values())) if len(ids) == 1 else None
+
+def apply_attributions(sl, name2ent, ent_by_id, org, today):
+    """把 `--yes` 核可的 attributed-to 寫進 db.js（source 實體的 related）。
+
+    這是紅線的出口：閘門通過之後，人工決定必須落到記錄簿與全書匯出，否則核可
+    等於空轉（歸因只存在逐篇 bundle 裡，db.js 與整本 STIX 都是 0）。回傳
+    (written, held)——端點解析不到已登錄實體的一律 held 並報告，由人補別名或
+    登錄後重跑，不自動猜。"""
+    obj_by_tmp = {o["tmp_id"]: o for o in sl.get("objects", [])}
+    written, held = [], []
+    for r in sl.get("relationships", []):
+        if r.get("type") != "attributed-to": continue
+        s_name = (obj_by_tmp.get(r.get("source")) or {}).get("name", "")
+        t_name = (obj_by_tmp.get(r.get("target")) or {}).get("name", "")
+        se, te = _resolve_actor(s_name, name2ent), _resolve_actor(t_name, name2ent)
+        if not (se and te):
+            held.append((s_name or "?", t_name or "?")); continue
+        ent = ent_by_id[se["id"]]
+        if any(x.get("target_id") == te["id"] and x.get("relation") == "attributed-to"
+               for x in ent.get("related") or []):
+            continue                                         # 已寫過（重編）→ 不重複
+        ent.setdefault("related", []).append(
+            {"target_id": te["id"], "relation": "attributed-to",
+             "note": f"{org} 報告記錄；{today} 人工核可"})
+        written.append((se["id"], te["id"]))
+    return written, held
+
 def cmd_compile(args):
     """compile approved 項目。給 raw_id 就**只**處理該篇。
 
@@ -376,13 +414,22 @@ def cmd_compile(args):
             _upsert(ent, [], sids)
         for eid, claims in by_ent.items():
             _upsert(ent_by_id[eid], claims, sids)
+        att_note = ""
+        today = _dt.date.today().isoformat()
+        if att and args.yes:                                 # 紅線出口：核可的歸因落進 db.js
+            org = next((s_.get("org", "") for s_ in db["sources"] if s_["id"] in sids), "")
+            written, held = apply_attributions(sl, name2ent, ent_by_id, org, today)
+            if written: att_note += "；歸因寫入 " + "、".join(f"{a}→{b}" for a, b in written)
+            if held:    att_note += "；歸因端點未登錄而保留 " + "、".join(f"{a}→{b}" for a, b in held)
         e["compile_status"] = "compiled"
         try:                                                 # 發布後刷新落盤 bundle，與已發布狀態一致
             _bp = _here.parent / e["extraction"]
-            rl.write_bundle(_bp.parent, _bp.name.split(".")[0], sl and pipe.serialize(sl))
+            rl.write_bundle(_bp.parent, _bp.name.split(".")[0],
+                            sl and pipe.serialize(sl, attribution_approved=(today if att and args.yes else None)))
         except Exception: pass
         done.append((rid, ents_str, nclaims, f"分掛 {len(by_ent)} 個實體，{dropped} 條 about 未登錄略過"
-                                             + (f"，清除 {len(stale)} 個實體的同來源舊 claims" if stale else "")))
+                                             + (f"，清除 {len(stale)} 個實體的同來源舊 claims" if stale else "")
+                                             + att_note))
     if not args.dry_run and done:
         save_db(src, i, db); rl._write_queue(q)
     print("=== compile（安全 upsert；以 source_id 為單位；重算比對，不做 partial）===")

@@ -390,7 +390,9 @@ function bootNetWeaver() {
     const n = reEsc(about || ""); if (!n) return "desc";
     if (new RegExp(`(據|根據|引述|援引|轉述|According to|according to)[^。]{0,12}${n}`).test(text)) return "cite";
     if (/(研究團隊|本研究|本次)[^。]{0,24}(將|方法是|收集|排除|比對|接下來|補充)/.test(text)) return "method";
-    if (new RegExp(`[、,]\\s*${n}|${n}\\s*[、]|(如|包括|包含|例如)[^。]{0,24}${n}`).test(text)) return "member";
+    // 名字後面常卡一個時間戳再接頓號（「聯合新聞網（12:40）、自由時報（16:44）亦跟進報導」），
+    // 那仍是清單列名，不是在描述它做了什麼。
+    if (new RegExp(`[、,]\\s*${n}|${n}\\s*(?:[（(][^）)]{0,16}[）)])?\\s*[、,]|(如|包括|包含|例如)[^。]{0,24}${n}`).test(text)) return "member";
     return "desc";
   }
 

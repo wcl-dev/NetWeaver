@@ -2552,7 +2552,10 @@ window.NETWEAVER_DB = {
         "旺中媒體",
         "中時集團",
         "Want Want China Times",
-        "Want Want China Times Media Group"
+        "Want Want China Times Media Group",
+        "中時",
+        "中時新聞網",
+        "中時電子報"
       ],
       "category": "domestic-amplifier",
       "role": "amplifier",
@@ -5157,6 +5160,212 @@ window.NETWEAVER_DB = {
       ],
       "confidence": "medium",
       "sensitivity": "domestic-named"
+    },
+    {
+      "id": "wuse-juexing",
+      "name_zh": "無色覺醒",
+      "name_en": "Wuse Juexing",
+      "aliases": [],
+      "category": "domestic-amplifier",
+      "role": "amplifier",
+      "origin": "TW",
+      "summary_zh": "旺中集團旗下粉專／節目。IORG 記錄其與「無色覺醒」「正常發揮」「大新聞大爆卦」「頭條開講」在同一時間點群聚發表內容完全相同的貼文。",
+      "source_ids": [
+        "src-iorg-38",
+        "src-iorg-41"
+      ],
+      "confidence": "medium",
+      "sensitivity": "domestic-named",
+      "related": [
+        {
+          "target_id": "wangwang-china-times-group",
+          "relation": "subsidiary-of",
+          "note": "旺中集團旗下粉專／節目"
+        }
+      ]
+    },
+    {
+      "id": "zhengchang-fahui",
+      "name_zh": "正常發揮",
+      "name_en": "Zhengchang Fahui",
+      "aliases": [],
+      "category": "domestic-amplifier",
+      "role": "amplifier",
+      "origin": "TW",
+      "summary_zh": "旺中集團旗下粉專／節目。IORG 記錄其與「無色覺醒」「正常發揮」「大新聞大爆卦」「頭條開講」在同一時間點群聚發表內容完全相同的貼文。",
+      "source_ids": [
+        "src-iorg-38",
+        "src-iorg-41"
+      ],
+      "confidence": "medium",
+      "sensitivity": "domestic-named",
+      "related": [
+        {
+          "target_id": "wangwang-china-times-group",
+          "relation": "subsidiary-of",
+          "note": "旺中集團旗下粉專／節目"
+        }
+      ]
+    },
+    {
+      "id": "daxinwen-dabaogua",
+      "name_zh": "大新聞大爆卦",
+      "name_en": "Daxinwen Dabaogua",
+      "aliases": [],
+      "category": "domestic-amplifier",
+      "role": "amplifier",
+      "origin": "TW",
+      "summary_zh": "旺中集團旗下粉專／節目。IORG 記錄其與「無色覺醒」「正常發揮」「大新聞大爆卦」「頭條開講」在同一時間點群聚發表內容完全相同的貼文。",
+      "source_ids": [
+        "src-iorg-38",
+        "src-iorg-41"
+      ],
+      "confidence": "medium",
+      "sensitivity": "domestic-named",
+      "related": [
+        {
+          "target_id": "wangwang-china-times-group",
+          "relation": "subsidiary-of",
+          "note": "旺中集團旗下粉專／節目"
+        }
+      ]
+    },
+    {
+      "id": "toutiao-kaijiang",
+      "name_zh": "頭條開講",
+      "name_en": "Toutiao Kaijiang",
+      "aliases": [],
+      "category": "domestic-amplifier",
+      "role": "amplifier",
+      "origin": "TW",
+      "summary_zh": "旺中集團旗下粉專／節目。IORG 記錄其與「無色覺醒」「正常發揮」「大新聞大爆卦」「頭條開講」在同一時間點群聚發表內容完全相同的貼文。",
+      "source_ids": [
+        "src-iorg-38",
+        "src-iorg-41"
+      ],
+      "confidence": "medium",
+      "sensitivity": "domestic-named",
+      "related": [
+        {
+          "target_id": "wangwang-china-times-group",
+          "relation": "subsidiary-of",
+          "note": "旺中集團旗下粉專／節目"
+        }
+      ]
+    },
+    {
+      "id": "anti-dpp-fanzhuantuan",
+      "name_zh": "反民進黨粉絲團",
+      "name_en": "Anti-DPP Fan Page",
+      "aliases": [],
+      "category": "domestic-amplifier",
+      "role": "amplifier",
+      "origin": "TW",
+      "summary_zh": "台灣臉書粉專。IORG 記錄其與「反民進黨粉絲團」「民間大小事」「空心菜政府」在同一時間點群聚發文並群聚分享。",
+      "source_ids": [
+        "src-iorg-38",
+        "src-iorg-41"
+      ],
+      "confidence": "medium",
+      "sensitivity": "domestic-named"
+    },
+    {
+      "id": "minjian-daxiaoshi",
+      "name_zh": "民間大小事",
+      "name_en": "Minjian Daxiaoshi",
+      "aliases": [],
+      "category": "domestic-amplifier",
+      "role": "amplifier",
+      "origin": "TW",
+      "summary_zh": "台灣臉書粉專。IORG 記錄其與「反民進黨粉絲團」「民間大小事」「空心菜政府」在同一時間點群聚發文並群聚分享。",
+      "source_ids": [
+        "src-iorg-38",
+        "src-iorg-41"
+      ],
+      "confidence": "medium",
+      "sensitivity": "domestic-named"
+    },
+    {
+      "id": "kongxincai-zhengfu",
+      "name_zh": "空心菜政府",
+      "name_en": "Kongxincai Zhengfu",
+      "aliases": [],
+      "category": "domestic-amplifier",
+      "role": "amplifier",
+      "origin": "TW",
+      "summary_zh": "台灣臉書粉專。IORG 記錄其與「反民進黨粉絲團」「民間大小事」「空心菜政府」在同一時間點群聚發文並群聚分享。",
+      "source_ids": [
+        "src-iorg-38",
+        "src-iorg-41"
+      ],
+      "confidence": "medium",
+      "sensitivity": "domestic-named"
+    },
+    {
+      "id": "chunghua-microvision",
+      "name_zh": "中華微視",
+      "name_en": "Chunghua Microvision",
+      "aliases": [],
+      "category": "state-media",
+      "role": "amplifier",
+      "origin": "TW",
+      "summary_zh": "FactLink 描述為香港親中媒體，IORG 記錄其臉書粉專與「兩岸頭條」共同引用《日經亞洲評論》報導。已登錄的「兩岸頭條」記載其相關粉專於 2022 年遭調查局偵辦。",
+      "source_ids": [
+        "src-factlink-satellite",
+        "src-iorg-38",
+        "src-iorg-41"
+      ],
+      "confidence": "medium",
+      "sensitivity": "domestic-named"
+    },
+    {
+      "id": "hetan",
+      "name_zh": "和坛",
+      "name_en": "Hetan",
+      "aliases": [
+        "和壇"
+      ],
+      "category": "cib-network",
+      "role": "amplifier",
+      "origin": "PRC",
+      "summary_zh": "IORG 標記為中國的臉書粉專，記錄其貼文傳播疑美論述，如「常規戰美國的總體實力肯定是勝過中國的」。",
+      "source_ids": [
+        "src-iorg-38",
+        "src-iorg-41"
+      ],
+      "confidence": "medium"
+    },
+    {
+      "id": "chuji-zhe",
+      "name_zh": "觸極者",
+      "name_en": "The Reacher",
+      "aliases": [],
+      "category": "content-farm",
+      "role": "amplifier",
+      "origin": "TW",
+      "summary_zh": "IORG 記錄為新黨人士林正國經營的內容農場，貼文傳播疑美論述，如「自以為世界警察的美國」。",
+      "source_ids": [
+        "src-iorg-38",
+        "src-iorg-41"
+      ],
+      "confidence": "medium",
+      "sensitivity": "domestic-named"
+    },
+    {
+      "id": "zhixing",
+      "name_zh": "知行",
+      "name_en": "Zhixing",
+      "aliases": [],
+      "category": "state-media",
+      "role": "amplifier",
+      "origin": "PRC",
+      "summary_zh": "中共官媒臉書粉專。FactLink 將其與《今日海峽》《CCTV中文》《香港大公報》並列為官媒粉專群；IORG 記錄其持續傳播疑美論述。",
+      "source_ids": [
+        "src-factlink-satellite",
+        "src-iorg-11"
+      ],
+      "confidence": "medium",
+      "strict_match": true
     }
   ],
   "events": [

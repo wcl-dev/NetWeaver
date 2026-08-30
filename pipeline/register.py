@@ -199,6 +199,9 @@ def cmd_add_actor(args):
     entry = {"id": aid, "name_zh": name_zh, "name_en": name_en, "aliases": aliases,
              "category": cat, "role": role, "origin": origin, "summary_zh": summary,
              "source_ids": source_ids, "confidence": args.confidence}
+    # 短又通用的名字（如官媒粉專「知行」）：前端的引文共現是子字串比對，
+    # 不設限會把「知行合一」也算成點名。標記後只在前後非中日韓字時才算命中。
+    if getattr(args, "strict_match", False): entry["strict_match"] = True
     if args.sensitivity: entry["sensitivity"] = args.sensitivity
     elif cat in ("domestic-amplifier", "commentator"):       # 在地具名類：紅線，提醒標記（前端可篩除）
         print(f"⚠ 在地具名類 actor（{cat}）建議加 --sensitivity domestic-named（最敏感、從嚴；前端可一鍵篩除）")
@@ -226,6 +229,30 @@ def cmd_add_alias(args):
     ent.setdefault("aliases", []).append(alias)
     save_db(src, i, end, db)
     print(f"✓ 「{alias}」→ 補為 {aid}（{ent.get('name_zh')}）的別名，現有 {len(ent['aliases'])} 個別名")
+    return 0
+
+# ---------- add-relation（人工登錄實體間的明確關係）----------
+# 關係是人決定的，不是模型推的——這是 STIX-PROFILE 的紅線之一。
+# 詞彙沿用 db.js 既有取值；attributed-to 不在此列，它只能走 curate 的歸因核可。
+RELATIONS = {"linked-to", "affiliated-with", "supplies-tech-to", "runs", "operated-by", "subsidiary-of"}
+
+def cmd_add_relation(args):
+    aid = _req(args.id, "id"); tid = _req(args.target, "target"); rel = _req(args.relation, "relation")
+    if rel not in RELATIONS: raise SystemExit(f"--relation ∈ {sorted(RELATIONS)}")
+    src, i, end, db = load_db()
+    by = {e.get("id"): e for e in db["entities"]}
+    if aid not in by: raise SystemExit(f"找不到來源單位 id：{aid}")
+    if tid not in by: raise SystemExit(f"找不到目標單位 id：{tid}")
+    if aid == tid: raise SystemExit("不可指向自己")
+    ent = by[aid]
+    for r in ent.get("related") or []:
+        if r.get("target_id") == tid and r.get("relation") == rel:
+            print(f"「{aid} --{rel}--> {tid}」已存在，不重複加"); return 0
+    entry = {"target_id": tid, "relation": rel}
+    if args.note: entry["note"] = args.note.strip()
+    ent.setdefault("related", []).append(entry)
+    save_db(src, i, end, db)
+    print(f"✓ {aid}（{ent.get('name_zh')}）--{rel}--> {tid}（{by[tid].get('name_zh')}）")
     return 0
 
 # ---------- 簡繁對應 ----------
@@ -489,11 +516,17 @@ def main():
         p.add_argument("--" + f, required=True, dest=f.replace("-", "_"))
     p.add_argument("--aliases")
     p.add_argument("--sensitivity", choices=["domestic-named"])
+    p.add_argument("--strict-match", dest="strict_match", action="store_true",
+                   help="名稱短且通用時：前端比對只在前後非中日韓字元時才算命中")
     p.add_argument("--confidence", default="medium", choices=["high", "medium", "low"])
     p.set_defaults(fn=cmd_add_actor)
     p = sub.add_parser("st-suggest", help="列出折成正體後對得上已登錄實體的候選（簡繁對應）")
     p.add_argument("--apply", action="store_true", help="確認後直接補為別名")
     p.set_defaults(fn=cmd_st_suggest)
+    p = sub.add_parser("add-relation", help="人工登錄兩個已登錄單位之間的明確關係")
+    p.add_argument("--id", required=True); p.add_argument("--target", required=True)
+    p.add_argument("--relation", required=True); p.add_argument("--note")
+    p.set_defaults(fn=cmd_add_relation)
     p = sub.add_parser("add-alias")
     p.add_argument("--id", required=True); p.add_argument("--alias", required=True); p.set_defaults(fn=cmd_add_alias)
     p = sub.add_parser("suggest"); p.add_argument("raw_id"); p.set_defaults(fn=cmd_suggest)

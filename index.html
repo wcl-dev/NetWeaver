@@ -400,11 +400,17 @@ function bootNetWeaver() {
   function nameIndex() {
     if (_NAMEIDX) return _NAMEIDX;
     const rows = [];
+    const CJK = "\u3400-\u4dbf\u4e00-\u9fff\uf900-\ufaff";
     DB.entities.forEach(e => [e.name_zh, e.name_en, ...(e.aliases||[])].forEach(nm => {
       if (!nm || nm.length < 2) return;
-      rows.push(/^[\x00-\x7F]+$/.test(nm)
-        ? { id: e.id, re: new RegExp("(^|[^A-Za-z0-9])" + nm.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + "($|[^A-Za-z0-9])", "i") }
-        : { id: e.id, sub: nm });
+      const esc2 = nm.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+      if (/^[\x00-\x7F]+$/.test(nm))
+        rows.push({ id: e.id, re: new RegExp("(^|[^A-Za-z0-9])" + esc2 + "($|[^A-Za-z0-9])", "i") });
+      else if (e.strict_match)
+        // 短又通用的中文名：前後不得緊接中日韓字，否則「知行合一」會算成點名「知行」
+        rows.push({ id: e.id, re: new RegExp("(^|[^" + CJK + "])" + esc2 + "($|[^" + CJK + "])") });
+      else
+        rows.push({ id: e.id, sub: nm });
     }));
     return (_NAMEIDX = rows);
   }

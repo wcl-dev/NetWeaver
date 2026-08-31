@@ -19,12 +19,15 @@
 ## 怎麼看
 
 直接用瀏覽器打開 `index.html` 即可（純前端、無需後端、可離線）。
-資料以 `<script src>` 載入，避免 `file://` 的 CORS 問題；若偏好用伺服器：
+資料以動態注入的 `<script>` 標籤載入 `data/db.js`（帶時間戳破快取），避免 `file://` 的 CORS 問題；若偏好用伺服器：
 
 ```bash
-cd NetWeaver && python3 -m http.server 8000
-# 開 http://localhost:8000
+cd NetWeaver && python3 serve.py 8062
+# 開 http://localhost:8062/index.html
 ```
+
+> 用 `serve.py`（送 `Cache-Control: no-store`）而不是 `python3 -m http.server`：後者只送
+> `Last-Modified`，瀏覽器會啟發式快取舊的 `data/db.js`，發布後打開看到的是上一版、且畫面毫無徵兆。
 
 ## 檔案結構
 

@@ -22,6 +22,7 @@
   .card .t{font-weight:600;font-size:14px;line-height:1.35}
   .tag{display:inline-block;font-size:11.5px;padding:2px 9px;border-radius:20px;font-weight:600;margin-top:6px}
   .tag.wait{background:var(--warn-soft);color:var(--warn)} .tag.done{background:var(--accent-soft);color:var(--accent)}
+  .tag.gone{background:var(--line);color:var(--muted)} .card.faded{opacity:.5}
   .detail{max-width:720px}
   .detail h2{font-size:19px;margin:2px 0 4px;line-height:1.3} .detail .from{color:var(--muted);font-size:13px;margin-bottom:20px}
   .big{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px 20px;margin-bottom:16px}
@@ -56,17 +57,27 @@
 </div>
 <script>
 const esc=(s)=>(s||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-let SEL=null, CUR=null;
+let SEL=null, CUR=null, SHOW_DONE=false;
 async function loadAll(){await loadQueue(); if(SEL) selectItem(SEL);}
 async function loadQueue(){
   const rows=await fetch('/api/queue').then(r=>r.json());
   const L=document.getElementById('list'); L.innerHTML='';
-  if(!rows.length){L.innerHTML='<div class="empty">目前沒有待審的報告</div>';return}
-  rows.forEach(e=>{
-    const done=e.compile_status==='compiled';
-    const c=document.createElement('div'); c.className='card'+(e.raw_id===SEL?' sel':''); c.dataset.id=e.raw_id;
-    c.innerHTML=`<div class="t">${esc(e.title||e.raw_id)}</div>
-      <span class="tag ${done?'done':'wait'}">${done?'已進記錄簿':'待你處理'}</span>`;
+  if(!rows.length){L.innerHTML='<div class="empty">目前沒有報告</div>';return}
+  const isDone=e=>['compiled','rejected'].includes(e.compile_status);
+  const pend=rows.filter(e=>!isDone(e)), doneN=rows.length-pend.length;
+  if(doneN){
+    const b=document.createElement('button'); b.className='small'; b.style.cssText='width:100%;margin-bottom:8px;color:var(--muted)';
+    b.textContent=SHOW_DONE?'▾ 隱藏已處理':`▸ 顯示已處理（${doneN}）`;
+    b.onclick=()=>{SHOW_DONE=!SHOW_DONE;loadQueue()}; L.appendChild(b);
+  }
+  const show=SHOW_DONE?rows:pend;
+  if(!show.length){const d=document.createElement('div');d.className='empty';d.innerHTML='待處理都清完了 🎉';L.appendChild(d);return}
+  show.forEach(e=>{
+    const st=e.compile_status;
+    const lb = st==='compiled'?['已進記錄簿','done'] : st==='rejected'?['已退回','gone'] : ['待你處理','wait'];
+    const c=document.createElement('div');
+    c.className='card'+(e.raw_id===SEL?' sel':'')+(isDone(e)?' faded':''); c.dataset.id=e.raw_id;
+    c.innerHTML=`<div class="t">${esc(e.title||e.raw_id)}</div><span class="tag ${lb[1]}">${lb[0]}</span>`;
     c.onclick=()=>selectItem(e.raw_id); L.appendChild(c);
   });
 }
@@ -99,40 +110,48 @@ async function selectItem(id){
         <div class="act">${held.map(h=>`<button class="small" onclick="openForm('${esc(h.name)}','${esc(h.suggest_category)}','${esc(h.suggest_role)}')">＋ 加「${esc(h.name)}」</button>`).join('')}</div>
         <div id="form_slot"></div></div></div>`);
 
-  const ready = srcOk;   // 真正的發布門檻＝來源登錄（主要行為者在核可時檢查）；未登錄單位只是「可選」
   d.innerHTML=`
     <h2>${esc(e.title||e.raw_id)}</h2>
     <div class="from">來自報告：<a href="${esc(e.url||'#')}" target="_blank">${esc(e.title||e.url||'')} ↗</a></div>
 
-    <div class="big"><p class="h">這篇要進記錄簿的狀態</p>
-      <p class="lead">${ready?('✅ 可以核可並發布'+(held.length?`（另有 ${held.length} 個單位的關係會先保留）`:'')):'⚠ 來源還沒登錄 —— 先補來源這一項'}</p>
-      ${steps.join('')}
+    <div class="big">
+      <p class="lead">電腦從這篇抓到 ${(p.claims||[]).length} 條引文${held.length?`，講到 ${held.length} 個還沒登錄的單位`:''}</p>
+      ${held.length ? `<div class="why" style="margin-top:6px">
+          要發布，<b>先把「這篇主要在講的那個單位」加進名冊</b>（其他雜訊 —— 國際媒體、研究員、網友 —— <b>不用理</b>）。電腦已猜好類別，對就一鍵建：
+          <div class="act" style="margin-top:8px">${held.map(h=>`<button class="small" onclick="openForm('${esc(h.name)}','${esc(h.suggest_category)}','${esc(h.suggest_role)}')">＋ 加「${esc(h.name)}」</button>`).join('')}</div>
+          <div id="form_slot"></div></div>`
+        : `<div class="why" style="margin-top:6px">涉及的單位都已在名冊，可直接按下面發布。</div>`}
     </div>
 
-    <details><summary>▸ 看電腦從報告抓到的內容（${(p.claims||[]).length} 句重點、${(p.relationships||[]).length} 條關係）</summary>
+    <details><summary>▸ 看抓到的引文／關係（${(p.claims||[]).length} 句、${(p.relationships||[]).length} 條關係）</summary>
       <div style="padding:6px 2px">
-        <p class="hint">審核就是看這些引文有沒有支持結論。</p>
         ${(p.relationships||[]).map(r=>`<div class="rel">${esc(r.source)} <span class="muted">—${esc(r.type)}→</span> ${esc(r.target)}
-          ${r.publishable?'<span class="yes">✓可發布</span>':'<span class="no">（等單位登記）</span>'}</div>`).join('')||'<span class="hint">（無）</span>'}
+          ${r.publishable?'<span class="yes">✓會進</span>':'<span class="no">（等單位登記）</span>'}</div>`).join('')||'<span class="hint">（無關係）</span>'}
         <div style="height:10px"></div>
         ${(p.claims||[]).slice(0,20).map(c=>`<div class="claim"><div class="q">「${esc(c.quote)}」</div><div class="s">出處：${esc(c.source)}</div></div>`).join('')}
-        ${(p.claims||[]).length>20?`<p class="hint">…另有 ${(p.claims||[]).length-20} 句（略）</p>`:''}
+        ${(p.claims||[]).length>20?`<p class="hint">…另有 ${(p.claims||[]).length-20} 句</p>`:''}
       </div>
     </details>
 
-    <div class="big"><p class="h">你的決定</p>
-      <div class="decide">
-        <button class="go" onclick="approveAndPublish()">✓ 核可並發布進記錄簿</button>
-        <button onclick="setStatus('rejected')">退回（引文不對）</button>
-      </div>
+    <div class="big">
+      <button class="go" style="font-size:16px;padding:13px 22px" onclick="publishOne()">✓ 確認並發布這篇</button>
+      <p class="hint" style="margin-top:8px">一鍵完成：自動登錄來源 → 把「已在名冊的單位」內容寫進記錄簿。按完下面會逐步告訴你發生什麼。</p>
       <div id="decidemsg"></div>
-      <p class="hint" style="margin-top:10px">＝你確認引文沒問題、直接寫進 db.js。若還缺來源/單位，下面會說明。可隨時 <code>git</code> 還原。</p>
-      <details style="margin-top:8px"><summary>進階：分開處理（大量審核時用）</summary>
-        <div class="decide" style="margin-top:8px">
-          <button onclick="setStatus('approved')">只核可（先打勾，不發布）</button>
-          <button onclick="publish()">發布所有已核可的</button>
-        </div></details>
+      <div style="margin-top:16px;border-top:1px solid var(--line);padding-top:12px">
+        <button class="ghost" style="color:var(--muted);font-size:13px" onclick="rejectOne()">這篇不要 · 退回</button></div>
     </div>`;
+}
+async function publishOne(){
+  const m=document.getElementById('decidemsg'); if(m) m.innerHTML='<div class="hint">處理中…（登錄來源 → 核可 → 發布）</div>';
+  const r=await post('/api/publish-one',{raw_id:SEL});
+  if(m) m.innerHTML=`<div class="msg ${r.ok?'ok':'err'}">${r.ok?'✅ 完成！\n':'⚠ 還沒發布：\n'}${esc(r.msg)}</div>`;
+  loadQueue();
+}
+async function rejectOne(){
+  if(!confirm('確定要退回這篇？（不會進記錄簿）')) return;
+  const r=await post('/api/set',{raw_id:SEL,status:'rejected'});
+  const m=document.getElementById('decidemsg'); if(m) m.innerHTML=`<div class="msg ${r.ok?'ok':'err'}">${esc(r.msg)}</div>`;
+  loadQueue();
 }
 async function openForm(surface, sugCat, sugRole){
   const slot=document.getElementById('form_slot'); if(!slot) return;

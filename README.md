@@ -38,7 +38,17 @@ NetWeaver/
 └── README.md
 ```
 
-## 怎麼加資料
+## 給工程師
+
+這份 README 是產品面。**程式怎麼運作，看 [`docs/ENGINEERING.md`](docs/ENGINEERING.md)**——模組邊界、資料流、三條紅線與不變量、測試紀律、quickstart 全在那。
+
+一句話：一條單向管線把報告原文變成合法 STIX 2.1，再投影成 `data/db.js`；LLM 只在抽取那一段做逐字抽取，其餘全是可測試的純函式。心法是「模型抽取、碼判斷、人決定」。
+
+> 下面「怎麼加資料」講的是**手動編輯 db.js**（PoC 早期的做法）。實際的資料現在多半經 `pipeline/`
+> 的抽取→審核→發布流程進來，見 ENGINEERING.md 的 Quickstart 與 [`pipeline/README.md`](pipeline/README.md)。
+> 手動編輯仍可用於人工策展的骨幹資料。
+
+## 怎麼加資料（手動策展骨幹）
 
 編輯 `data/db.js`，依 `docs/SCHEMA.md` 的結構新增 `entities` / `events` / `sources` / `narratives`。
 要點：

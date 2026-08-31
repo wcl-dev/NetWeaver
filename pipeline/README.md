@@ -3,6 +3,8 @@
 把公開 FIMI 報告，經固定中介格式（STIX）穩定地變成 NetWeaver 前端讀的 operator 視圖資料。
 核心原則：**模型抽取・碼判斷**——模型只忠實抽取，所有分類/關係/信心/歸因由碼決定，**換模型也穩**。規格見 [../docs/STIX-PROFILE.md](../docs/STIX-PROFILE.md)。
 
+> 這份是**指令參考**。系統級架構（模組邊界、資料流、三條紅線與不變量、測試紀律）看 [../docs/ENGINEERING.md](../docs/ENGINEERING.md)。
+
 ## 流程
 
 ```

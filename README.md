@@ -58,7 +58,7 @@ NetWeaver/
 
 ## 資料來源
 
-每筆行為者、事件、關係的關鍵宣稱都掛 `source_ids`，前端會顯示來源連結供查證（目前共 74 筆來源）。主要取自：
+每筆行為者、事件、關係的關鍵宣稱都掛 `source_ids`，前端會顯示來源連結供查證（目前共 76 筆來源、877 條逐來源宣稱）。主要取自：
 
 - **政府公開報告**：國家安全局 (NSB)、美國司法部 (DOJ)
 - **台灣公民社會研究／數位調查**：
@@ -66,7 +66,7 @@ NetWeaver/
   - Doublethink Lab 台灣民主實驗室（CIB 網絡、GoLaxy、China Index）
   - **FactLink 數位素養實驗室**（數位調查／OSINT——東部戰區融媒體宣傳網絡、蝴蝶攻擊、中國對日敘事、暗網假文件 hack-and-leak 等案例）
 - **國際平台威脅報告**：Meta、Google／Mandiant（GLASSBRIDGE / HaiEnergy / DRAGONBRIDGE）、Microsoft MTAC
-- **國際研究機構**：Graphika、ASPI、Citizen Lab（PAPERWALL）、Recorded Future、Global Taiwan Institute、Vanderbilt（GoLaxy 文件）、CyberCX
+- **國際研究機構**：Graphika、ASPI、Citizen Lab（PAPERWALL）、Recorded Future、Global Taiwan Institute、Vanderbilt（GoLaxy 文件）、Jamestown Foundation、Institute for Strategic Dialogue (ISD)、Lowy Institute、ChinaPower (CSIS)、CyberCX
 - **新聞媒體佐證**：報導者、自由時報、中央社、CNBC、紐約時報、ProPublica 等
 
 ## 後續擴充方向（roadmap）
@@ -82,14 +82,17 @@ NetWeaver/
 
 ## 狀態
 
-概念驗證階段。資料規模：**57 行為者 / 33 事件 / 74 來源 / 35 敘事**（含子敘事樹），整理自 NSB、IORG、Doublethink Lab、FactLink 數位素養實驗室、Mandiant/Google、Meta、Graphika、ASPI、Citizen Lab、Microsoft MTAC、Recorded Future、US DOJ 等公開報告與數位調查。
+概念驗證階段。資料規模：**101 行為者 / 33 事件 / 76 來源 / 35 敘事 / 877 條逐來源宣稱**（含子敘事樹），整理自 NSB、IORG、Doublethink Lab、FactLink 數位素養實驗室、Mandiant/Google、Meta、Graphika、ASPI、Citizen Lab、Microsoft MTAC、Recorded Future、Jamestown、ISD、Vanderbilt、US DOJ 等公開報告與數位調查。
 
-涵蓋層次：
-- **PRC 攻擊機關**：網信辦、國安部、政工部、網路空間部隊、統戰部、公安部、國台辦
-- **技術／front 供應商**：GoLaxy、美亞柏科、科大訊飛、中科點擊、北京星光、一網互通、晴數智慧、沃民高新等
-- **PR／內容農場**：海訊、海脈、虎牙、DURINBRIDGE、無邊界集團、密訊、兩岸頭條
-- **CIB 網絡／行動**：Spamouflage(龍橋/Dragonbridge)、PAPERWALL、HaiEnergy、GLASSBRIDGE、Green Cicada、假冒台灣人反民進黨網絡
-- **官媒管道**：央視/CMG、玉淵譚天、海峽之聲、海峽導報、環球時報、中國台灣網
-- **在地放大者（17，標記 `domestic-named`、中性框架、可一鍵篩除）**：旺中、中天、TVBS、聯合報、亞洲衛視，及郭正亮、趙少康、蔡正元等 12 位被 IORG 點名遭官媒引用放大的名嘴
+涵蓋層次（依 `category`）：
+- **PRC 攻擊機關**（state-organ）：網信辦、國安部、政工部、網路空間部隊、信息支援部、統戰部、公安部、國台辦、外交部
+- **技術／front 供應商**（tech-vendor）：GoLaxy、美亞柏科、科大訊飛、中科點擊、北京星光、一網互通、晴數智慧、沃民高新、長光衛星、硅基智能、歌爾股份、蜜度、出門問問等
+- **PR 代理／新聞稿發布**（pr-firm）：海訊社、海賣、虎牙、Times Newswire、World Newswire
+- **內容農場**（content-farm）：無邊界集團、密訊、兩岸頭條、觸極者、為你祈福、DURINBRIDGE、假捷克媒體《波希米亞日報》
+- **CIB 網絡／行動**（cib-network）：Spamouflage(龍橋/Dragonbridge)、假冒台灣人反民進黨網絡、綠蟬網絡、假外交文件 hack-and-leak 網絡、和坛
+- **官媒管道**（state-media，最大類）：央視/CMG、玉淵譚天、海峽之聲、環球時報、新華社、人民日報、中國日報、中國台灣網、觀察者網、東部戰區融媒體中心，及香港受控媒體（origin=HK：鳳凰網、大公文匯網、香港文匯報、中評社）
+- **在地放大者（28 個標記 `domestic-named`、中性框架、可一鍵篩除）**：媒體與粉專（旺中、中天、TVBS、聯合報、亞洲衛視，及無色覺醒、大新聞大爆卦、頭條開講等旺中系粉專），及郭正亮、趙少康、蔡正元、館長、侯漢廷等被 IORG／FactLink 點名遭官媒引用放大的名嘴
+
+同時新增記錄簿最早的 **3 則人工核可歸因（attributed-to）**：Spamouflage→公安部、Times Newswire→海賣、為你祈福→無邊界集團。
 
 仍在擴充與校正中；對外發布前需抽查來源 URL 與授權。

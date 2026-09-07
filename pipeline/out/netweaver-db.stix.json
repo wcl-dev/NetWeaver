@@ -1291,6 +1291,10 @@
         {
           "quote": "Figure 7: DRAGONBRIDGE content on “Boston Journal” website linked to Shenzhen Bowen Media",
           "source_url": "https://cloud.google.com/blog/topics/threat-intelligence/glassbridge-pro-prc-influence-operations"
+        },
+        {
+          "quote": "Spamouflage/DRAGONBRIDGE network used",
+          "source_url": "https://openai.com/index/prc-linked-influence-operations-ai-debates/"
         }
       ]
     },
@@ -6236,6 +6240,77 @@
         {
           "quote": "Less than five hours later, a separate Facebook page, HULA, shared Muzukulu Wa Kashikulu’s post in a burst of four posts on another set of Facebook groups.",
           "source_url": "https://medium.com/doublethinklab/prc-influence-and-alignment-in-the-2026-zambian-election-31c113a3f435"
+        }
+      ]
+    },
+    {
+      "type": "intrusion-set",
+      "spec_version": "2.1",
+      "id": "intrusion-set--b8908e19-82c6-58b4-88e3-a5e700c47773",
+      "created": "2026-01-01T00:00:00.000Z",
+      "modified": "2026-01-01T00:00:00.000Z",
+      "name": "資料中心跟風行動",
+      "object_marking_refs": [
+        "marking-definition--30837352-4bcb-536d-ab32-86f489a09985"
+      ],
+      "aliases": [
+        "Data Center Bandwagon"
+      ],
+      "description": "OpenAI June 2026 威脅報告命名的 PRC 來源祕密影響力網絡。以簡體中文 prompt 生成冒充美國人的社群內容、經 VPN 存取，宣稱 AI 資料中心推高電價煽動民怨，並針對海外中國異議人士（如「李老師」李穎）進行騷擾。OpenAI 研判操作者疑為替中國省級政府客戶工作的民間科技公司輿情團隊。",
+      "confidence": 60,
+      "x_netweaver_evidence": [
+        {
+          "quote": "While neither the “Data Center Bandwagon” nor “Tech and Tariffs\" campaigns",
+          "source_url": "https://openai.com/index/prc-linked-influence-operations-ai-debates/"
+        }
+      ]
+    },
+    {
+      "type": "intrusion-set",
+      "spec_version": "2.1",
+      "id": "intrusion-set--71ee80d0-9136-55bb-8ae1-c2b53b2f7b3c",
+      "created": "2026-01-01T00:00:00.000Z",
+      "modified": "2026-01-01T00:00:00.000Z",
+      "name": "科技與關稅行動",
+      "object_marking_refs": [
+        "marking-definition--30837352-4bcb-536d-ab32-86f489a09985"
+      ],
+      "aliases": [
+        "Tech and Tariffs"
+      ],
+      "description": "OpenAI June 2026 威脅報告命名的 PRC 來源祕密影響力網絡。生成批評美國科技政策與關稅的短評與政治漫畫、抹黑 OpenAI，操作者自稱「水軍」。除英文外並生成義大利文、日文與繁體中文內容，其中繁中內容針對台灣受眾。OpenAI 研判其活動與中共利益一致。",
+      "confidence": 60,
+      "x_netweaver_evidence": [
+        {
+          "quote": "While neither the “Data Center Bandwagon” nor “Tech and Tariffs\" campaigns",
+          "source_url": "https://openai.com/index/prc-linked-influence-operations-ai-debates/"
+        },
+        {
+          "quote": "accounts associated with Operation “Nine-emdash Line,” which we discussed in",
+          "source_url": "https://openai.com/index/prc-linked-influence-operations-ai-debates/"
+        }
+      ]
+    },
+    {
+      "type": "intrusion-set",
+      "spec_version": "2.1",
+      "id": "intrusion-set--4170f397-6c12-5e9d-8cb9-d434f6b9fa99",
+      "created": "2026-01-01T00:00:00.000Z",
+      "modified": "2026-01-01T00:00:00.000Z",
+      "name": "九破折號線行動",
+      "object_marking_refs": [
+        "marking-definition--30837352-4bcb-536d-ab32-86f489a09985"
+      ],
+      "aliases": [
+        "Nine-emdash Line",
+        "Operation Nine-emdash Line"
+      ],
+      "description": "PRC 來源影響力行動，OpenAI 於 2025 年 10 月報告揭露。June 2026 報告記錄「科技與關稅行動」的 X 帳號轉發過與本行動關聯帳號先前散布的菲律賓總統 Marcos 影像——OpenAI 明言此不足以確立兩行動的直接關聯，僅強化「X 上放大中國影響力活動的網絡」印象。",
+      "confidence": 30,
+      "x_netweaver_evidence": [
+        {
+          "quote": "accounts associated with Operation “Nine-emdash Line,” which we discussed in",
+          "source_url": "https://openai.com/index/prc-linked-influence-operations-ai-debates/"
         }
       ]
     },
@@ -12709,6 +12784,29 @@
         {
           "source_name": "Doublethink Lab",
           "url": "https://medium.com/doublethinklab/prc-influence-and-alignment-in-the-2026-zambian-election-31c113a3f435"
+        }
+      ],
+      "object_marking_refs": [
+        "marking-definition--30837352-4bcb-536d-ab32-86f489a09985"
+      ]
+    },
+    {
+      "type": "report",
+      "spec_version": "2.1",
+      "id": "report--38cdd4e7-56b4-5be5-988b-952b4866b9f7",
+      "created": "2026-01-01T00:00:00.000Z",
+      "modified": "2026-01-01T00:00:00.000Z",
+      "name": "Disrupting malicious uses of AI: June 2026 Threat Report (PRC-linked influence operations targeting US AI debates)",
+      "published": "2026-06-01T00:00:00.000Z",
+      "object_refs": [
+        "intrusion-set--4170f397-6c12-5e9d-8cb9-d434f6b9fa99",
+        "intrusion-set--71ee80d0-9136-55bb-8ae1-c2b53b2f7b3c",
+        "intrusion-set--b8908e19-82c6-58b4-88e3-a5e700c47773"
+      ],
+      "external_references": [
+        {
+          "source_name": "OpenAI — Threat Intelligence",
+          "url": "https://openai.com/index/prc-linked-influence-operations-ai-debates/"
         }
       ],
       "object_marking_refs": [

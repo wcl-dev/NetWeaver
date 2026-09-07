@@ -3301,6 +3301,14 @@
         {
           "quote": "CCTV reframed the claim, falsely asserting that the AI-generated image of boxed meals was part of a disinformation campaign led by the Taiwanese ruling party and supporters of Taiwan’s independence to target pro-China politicians",
           "source_url": "https://www.factlink.tw/p/are-they-one-of-us-butterfly-attacks"
+        },
+        {
+          "quote": "Other institutional relationships have also developed between Chinese and Zambian media organizations, including cooperation involving China Media Group and membership by Zambia Daily Mail in the Belt and Road News Network",
+          "source_url": "https://medium.com/doublethinklab/prc-influence-and-alignment-in-the-2026-zambian-election-31c113a3f435"
+        },
+        {
+          "quote": "PRC state-controlled outlets: PRC state-controlled media covered this event: Xinhua and the Facebook pages of CGTN and the China Civil Engineering Construction Corporation (CCECC).",
+          "source_url": "https://medium.com/doublethinklab/prc-influence-and-alignment-in-the-2026-zambian-election-31c113a3f435"
         }
       ],
       "extensions": {
@@ -4075,6 +4083,10 @@
         {
           "quote": "其中，「台海網」的文章使用中共官媒「新華網」發布於 2022 年 8 月 5 日的合成照片 DA.28。",
           "source_url": "https://iorg.tw/_en/da/38"
+        },
+        {
+          "quote": "In 2023, Xinhua, ZNBC, and ZANIS signed a news-exchange agreement covering content sharing, broader media cooperation, and journalism training.",
+          "source_url": "https://medium.com/doublethinklab/prc-influence-and-alignment-in-the-2026-zambian-election-31c113a3f435"
         }
       ],
       "extensions": {
@@ -5985,6 +5997,245 @@
         {
           "quote": "the “pray for you” fan page was operated by the company named “WUBIANJIE” [無邊界公司]",
           "source_url": "https://www.factlink.tw/p/are-they-one-of-us-butterfly-attacks"
+        }
+      ]
+    },
+    {
+      "type": "x-dad-channel",
+      "spec_version": "2.1",
+      "id": "x-dad-channel--1cd9d328-bd01-53d7-aabb-fb2144334813",
+      "created": "2026-01-01T00:00:00.000Z",
+      "modified": "2026-01-01T00:00:00.000Z",
+      "name": "尚比亞國家廣播公司",
+      "object_marking_refs": [
+        "marking-definition--30837352-4bcb-536d-ab32-86f489a09985"
+      ],
+      "aliases": [
+        "ZNBC",
+        "Zambia National Broadcasting Corporation",
+        "ZNBC Today"
+      ],
+      "description": "尚比亞國家公共廣播機構。Doublethink Lab 記錄其與新華社簽有新聞交換協議、與四達時代合資成立 TopStar 經營數位電視分發，並在 2026 大選前後承載對中友好敘事。",
+      "confidence": 60,
+      "channel_type": "state-media",
+      "x_netweaver_evidence": [
+        {
+          "quote": "In 2023, Xinhua, ZNBC, and ZANIS signed a news-exchange agreement covering content sharing, broader media cooperation, and journalism training.",
+          "source_url": "https://medium.com/doublethinklab/prc-influence-and-alignment-in-the-2026-zambian-election-31c113a3f435"
+        }
+      ],
+      "extensions": {
+        "extension-definition--9ac7e7dd-9940-5e27-8a16-bb11195bcc06": {
+          "extension_type": "new-sdo"
+        }
+      }
+    },
+    {
+      "type": "x-dad-channel",
+      "spec_version": "2.1",
+      "id": "x-dad-channel--efc06b20-8610-5edc-8b49-85fcf3a4ff36",
+      "created": "2026-01-01T00:00:00.000Z",
+      "modified": "2026-01-01T00:00:00.000Z",
+      "name": "尚比亞新聞資訊署",
+      "object_marking_refs": [
+        "marking-definition--30837352-4bcb-536d-ab32-86f489a09985"
+      ],
+      "aliases": [
+        "ZANIS",
+        "Zambia News and Information Agency"
+      ],
+      "description": "尚比亞資訊部轄下的政府新聞機構。Doublethink Lab 記錄其與新華社、中央廣播電視總台簽有合作協議，並在大選前後傳散對中友好敘事。",
+      "confidence": 60,
+      "channel_type": "state-media",
+      "x_netweaver_evidence": [
+        {
+          "quote": "In 2023, Xinhua, ZNBC, and ZANIS signed a news-exchange agreement covering content sharing, broader media cooperation, and journalism training.",
+          "source_url": "https://medium.com/doublethinklab/prc-influence-and-alignment-in-the-2026-zambian-election-31c113a3f435"
+        },
+        {
+          "quote": "Both ZNBC and ZANIS have signed cooperation agreements with Xinhua News Agency and China Media Group; Zambia Daily Mail is a member of the Belt and Road News Network.",
+          "source_url": "https://medium.com/doublethinklab/prc-influence-and-alignment-in-the-2026-zambian-election-31c113a3f435"
+        }
+      ],
+      "extensions": {
+        "extension-definition--9ac7e7dd-9940-5e27-8a16-bb11195bcc06": {
+          "extension_type": "new-sdo"
+        }
+      }
+    },
+    {
+      "type": "x-dad-channel",
+      "spec_version": "2.1",
+      "id": "x-dad-channel--1802a261-e3ae-53d8-a115-5fc1a2b2d9eb",
+      "created": "2026-01-01T00:00:00.000Z",
+      "modified": "2026-01-01T00:00:00.000Z",
+      "name": "尚比亞每日郵報",
+      "object_marking_refs": [
+        "marking-definition--30837352-4bcb-536d-ab32-86f489a09985"
+      ],
+      "aliases": [
+        "Zambia Daily Mail"
+      ],
+      "description": "尚比亞國有日報，一帶一路新聞網絡成員。Doublethink Lab 記錄其在 2026 大選前後承載中尚合作、對中友好敘事。",
+      "confidence": 60,
+      "channel_type": "state-media",
+      "x_netweaver_evidence": [
+        {
+          "quote": "including cooperation involving China Media Group and membership by Zambia Daily Mail in the Belt and Road News Network",
+          "source_url": "https://medium.com/doublethinklab/prc-influence-and-alignment-in-the-2026-zambian-election-31c113a3f435"
+        },
+        {
+          "quote": "Zambia Daily Mail, which is a member of the Belt and Road News Network",
+          "source_url": "https://medium.com/doublethinklab/prc-influence-and-alignment-in-the-2026-zambian-election-31c113a3f435"
+        }
+      ],
+      "extensions": {
+        "extension-definition--9ac7e7dd-9940-5e27-8a16-bb11195bcc06": {
+          "extension_type": "new-sdo"
+        }
+      }
+    },
+    {
+      "type": "identity",
+      "spec_version": "2.1",
+      "id": "identity--1b7522c4-316e-5dd8-a260-3e6f468f774e",
+      "created": "2026-01-01T00:00:00.000Z",
+      "modified": "2026-01-01T00:00:00.000Z",
+      "name": "四達時代",
+      "object_marking_refs": [
+        "marking-definition--30837352-4bcb-536d-ab32-86f489a09985"
+      ],
+      "aliases": [
+        "StarTimes"
+      ],
+      "description": "中國媒體公司。Doublethink Lab 記錄其與尚比亞國家廣播公司合資成立 TopStar Communications、經營尚比亞全國數位電視分發基礎設施。",
+      "confidence": 60,
+      "identity_class": "organization",
+      "x_netweaver_evidence": [
+        {
+          "quote": "The most significant example is StarTimes, a Chinese media company that entered a joint venture with the state broadcaster ZNBC to establish TopStar Communications, which manages national digital television distribution.",
+          "source_url": "https://medium.com/doublethinklab/prc-influence-and-alignment-in-the-2026-zambian-election-31c113a3f435"
+        },
+        {
+          "quote": "StarTimes, a Chinese media company that entered a joint venture with the state broadcaster ZNBC to establish TopStar Communications",
+          "source_url": "https://medium.com/doublethinklab/prc-influence-and-alignment-in-the-2026-zambian-election-31c113a3f435"
+        }
+      ]
+    },
+    {
+      "type": "identity",
+      "spec_version": "2.1",
+      "id": "identity--1453c9be-54cf-54bf-942c-f3edc66c7be0",
+      "created": "2026-01-01T00:00:00.000Z",
+      "modified": "2026-01-01T00:00:00.000Z",
+      "name": "TopStar 通訊",
+      "object_marking_refs": [
+        "marking-definition--30837352-4bcb-536d-ab32-86f489a09985"
+      ],
+      "aliases": [
+        "TopStar Communications"
+      ],
+      "description": "四達時代（60%）與尚比亞國家廣播公司（40%）合資公司，經營尚比亞全國數位電視分發。Doublethink Lab 以其為中國進入尚比亞資訊基礎設施的結構性存在案例。",
+      "confidence": 60,
+      "identity_class": "organization",
+      "x_netweaver_evidence": [
+        {
+          "quote": "that entered a joint venture with the state broadcaster ZNBC to establish TopStar Communications, which manages national digital television distribution.",
+          "source_url": "https://medium.com/doublethinklab/prc-influence-and-alignment-in-the-2026-zambian-election-31c113a3f435"
+        }
+      ]
+    },
+    {
+      "type": "x-dad-channel",
+      "spec_version": "2.1",
+      "id": "x-dad-channel--c2a2e9d2-05e7-5b8a-bf6b-12c542fd1d2d",
+      "created": "2026-01-01T00:00:00.000Z",
+      "modified": "2026-01-01T00:00:00.000Z",
+      "name": "一帶一路新聞網絡",
+      "object_marking_refs": [
+        "marking-definition--30837352-4bcb-536d-ab32-86f489a09985"
+      ],
+      "aliases": [
+        "Belt and Road News Network"
+      ],
+      "description": "中國主導的跨國媒體合作網絡。Doublethink Lab 記錄尚比亞每日郵報為其成員，作為中國媒體敘事進入尚比亞的制度性管道之一。",
+      "confidence": 60,
+      "channel_type": "state-media",
+      "x_netweaver_evidence": [
+        {
+          "quote": "membership by Zambia Daily Mail in the Belt and Road News Network",
+          "source_url": "https://medium.com/doublethinklab/prc-influence-and-alignment-in-the-2026-zambian-election-31c113a3f435"
+        }
+      ],
+      "extensions": {
+        "extension-definition--9ac7e7dd-9940-5e27-8a16-bb11195bcc06": {
+          "extension_type": "new-sdo"
+        }
+      }
+    },
+    {
+      "type": "intrusion-set",
+      "spec_version": "2.1",
+      "id": "intrusion-set--342dc2e6-09c7-5975-a0f5-694b89262f4a",
+      "created": "2026-01-01T00:00:00.000Z",
+      "modified": "2026-01-01T00:00:00.000Z",
+      "name": "UPND GOVERNMENT",
+      "object_marking_refs": [
+        "marking-definition--30837352-4bcb-536d-ab32-86f489a09985"
+      ],
+      "aliases": [
+        "UPND GOVERNMENT"
+      ],
+      "description": "親 UPND 的臉書社團（27.9 萬成員）。Doublethink Lab 記錄其管理員為盜圖假帳號、指定專家個人檔案掛有中國註冊網域，據此研判疑似 PRC 對齊——報告明言歸因未能確認。",
+      "confidence": 30,
+      "x_netweaver_evidence": [
+        {
+          "quote": "This case examines the Facebook group UPND GOVERNMENT, a pro-UPND community strongly supportive of President Hichilema’s reelection.",
+          "source_url": "https://medium.com/doublethinklab/prc-influence-and-alignment-in-the-2026-zambian-election-31c113a3f435"
+        }
+      ]
+    },
+    {
+      "type": "intrusion-set",
+      "spec_version": "2.1",
+      "id": "intrusion-set--51e37057-8367-5137-9d32-a7642a3c54c5",
+      "created": "2026-01-01T00:00:00.000Z",
+      "modified": "2026-01-01T00:00:00.000Z",
+      "name": "Muzukulu Wa Kashikulu",
+      "object_marking_refs": [
+        "marking-definition--30837352-4bcb-536d-ab32-86f489a09985"
+      ],
+      "aliases": [
+        "Muzukulu Wa Kashikulu"
+      ],
+      "description": "臉書專頁，Doublethink Lab 記錄其部分由中國境內實體管理，2026/7/17 於多個社團兩分鐘內齊發九則相同貼文為尚比亞執政黨辯護——疑似 PRC 對齊，歸因未確認。",
+      "confidence": 30,
+      "x_netweaver_evidence": [
+        {
+          "quote": "This case centers on posts made by the Facebook page Muzukulu Wa Kashikulu.",
+          "source_url": "https://medium.com/doublethinklab/prc-influence-and-alignment-in-the-2026-zambian-election-31c113a3f435"
+        }
+      ]
+    },
+    {
+      "type": "intrusion-set",
+      "spec_version": "2.1",
+      "id": "intrusion-set--4ae53645-8a75-56dc-9c3f-4c6979267857",
+      "created": "2026-01-01T00:00:00.000Z",
+      "modified": "2026-01-01T00:00:00.000Z",
+      "name": "HULA",
+      "object_marking_refs": [
+        "marking-definition--30837352-4bcb-536d-ab32-86f489a09985"
+      ],
+      "aliases": [
+        "HULA"
+      ],
+      "description": "臉書專頁。Doublethink Lab 記錄其在 Muzukulu Wa Kashikulu 齊發後不到五小時、於另一組社團齊發四則轉分享同一貼文——疑似協同放大，歸因未確認。",
+      "confidence": 30,
+      "x_netweaver_evidence": [
+        {
+          "quote": "Less than five hours later, a separate Facebook page, HULA, shared Muzukulu Wa Kashikulu’s post in a burst of four posts on another set of Facebook groups.",
+          "source_url": "https://medium.com/doublethinklab/prc-influence-and-alignment-in-the-2026-zambian-election-31c113a3f435"
         }
       ]
     },
@@ -12429,6 +12680,35 @@
         {
           "source_name": "ASPI",
           "url": "https://aspi.s3.ap-southeast-2.amazonaws.com/wp-content/uploads/2025/03/11125258/Persuasive-technologies-in-China_0.pdf"
+        }
+      ],
+      "object_marking_refs": [
+        "marking-definition--30837352-4bcb-536d-ab32-86f489a09985"
+      ]
+    },
+    {
+      "type": "report",
+      "spec_version": "2.1",
+      "id": "report--8e161f94-4145-52d9-a838-b0c50149c1f1",
+      "created": "2026-01-01T00:00:00.000Z",
+      "modified": "2026-01-01T00:00:00.000Z",
+      "name": "PRC Influence and Alignment in the 2026 Zambian Election",
+      "published": "2026-08-24T00:00:00.000Z",
+      "object_refs": [
+        "identity--1453c9be-54cf-54bf-942c-f3edc66c7be0",
+        "identity--1b7522c4-316e-5dd8-a260-3e6f468f774e",
+        "intrusion-set--342dc2e6-09c7-5975-a0f5-694b89262f4a",
+        "intrusion-set--4ae53645-8a75-56dc-9c3f-4c6979267857",
+        "intrusion-set--51e37057-8367-5137-9d32-a7642a3c54c5",
+        "x-dad-channel--1802a261-e3ae-53d8-a115-5fc1a2b2d9eb",
+        "x-dad-channel--1cd9d328-bd01-53d7-aabb-fb2144334813",
+        "x-dad-channel--c2a2e9d2-05e7-5b8a-bf6b-12c542fd1d2d",
+        "x-dad-channel--efc06b20-8610-5edc-8b49-85fcf3a4ff36"
+      ],
+      "external_references": [
+        {
+          "source_name": "Doublethink Lab",
+          "url": "https://medium.com/doublethinklab/prc-influence-and-alignment-in-the-2026-zambian-election-31c113a3f435"
         }
       ],
       "object_marking_refs": [

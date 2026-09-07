@@ -7615,6 +7615,215 @@ window.NETWEAVER_DB = {
           "note": "FactLink 數位素養實驗室 報告記錄；2026-08-30 人工核可"
         }
       ]
+    },
+    {
+      "id": "znbc",
+      "name_zh": "尚比亞國家廣播公司",
+      "name_en": "ZNBC",
+      "aliases": [
+        "Zambia National Broadcasting Corporation",
+        "ZNBC Today"
+      ],
+      "category": "state-media",
+      "role": "amplifier",
+      "origin": "other",
+      "summary_zh": "尚比亞國家公共廣播機構。Doublethink Lab 記錄其與新華社簽有新聞交換協議、與四達時代合資成立 TopStar 經營數位電視分發，並在 2026 大選前後承載對中友好敘事。",
+      "source_ids": [
+        "src-doublethink-lab-b7212b"
+      ],
+      "confidence": "medium",
+      "claims": [
+        {
+          "text": "In 2023, Xinhua, ZNBC, and ZANIS signed a news-exchange agreement covering content sharing, broader media cooperation, and journalism training.",
+          "source_id": "src-doublethink-lab-b7212b",
+          "about": "ZNBC"
+        }
+      ]
+    },
+    {
+      "id": "zanis",
+      "name_zh": "尚比亞新聞資訊署",
+      "name_en": "ZANIS",
+      "aliases": [
+        "Zambia News and Information Agency"
+      ],
+      "category": "state-media",
+      "role": "amplifier",
+      "origin": "other",
+      "summary_zh": "尚比亞資訊部轄下的政府新聞機構。Doublethink Lab 記錄其與新華社、中央廣播電視總台簽有合作協議，並在大選前後傳散對中友好敘事。",
+      "source_ids": [
+        "src-doublethink-lab-b7212b"
+      ],
+      "confidence": "medium",
+      "claims": [
+        {
+          "text": "In 2023, Xinhua, ZNBC, and ZANIS signed a news-exchange agreement covering content sharing, broader media cooperation, and journalism training.",
+          "source_id": "src-doublethink-lab-b7212b",
+          "about": "ZANIS"
+        },
+        {
+          "text": "Both ZNBC and ZANIS have signed cooperation agreements with Xinhua News Agency and China Media Group; Zambia Daily Mail is a member of the Belt and Road News Network.",
+          "source_id": "src-doublethink-lab-b7212b",
+          "about": "ZANIS"
+        }
+      ]
+    },
+    {
+      "id": "zambia-daily-mail",
+      "name_zh": "尚比亞每日郵報",
+      "name_en": "Zambia Daily Mail",
+      "aliases": [],
+      "category": "state-media",
+      "role": "amplifier",
+      "origin": "other",
+      "summary_zh": "尚比亞國有日報，一帶一路新聞網絡成員。Doublethink Lab 記錄其在 2026 大選前後承載中尚合作、對中友好敘事。",
+      "source_ids": [
+        "src-doublethink-lab-b7212b"
+      ],
+      "confidence": "medium",
+      "claims": [
+        {
+          "text": "including cooperation involving China Media Group and membership by Zambia Daily Mail in the Belt and Road News Network",
+          "source_id": "src-doublethink-lab-b7212b",
+          "about": "Zambia Daily Mail"
+        },
+        {
+          "text": "Zambia Daily Mail, which is a member of the Belt and Road News Network",
+          "source_id": "src-doublethink-lab-b7212b",
+          "about": "Zambia Daily Mail"
+        }
+      ]
+    },
+    {
+      "id": "startimes",
+      "name_zh": "四達時代",
+      "name_en": "StarTimes",
+      "aliases": [],
+      "category": "tech-vendor",
+      "role": "collaborator",
+      "origin": "PRC",
+      "summary_zh": "中國媒體公司。Doublethink Lab 記錄其與尚比亞國家廣播公司合資成立 TopStar Communications、經營尚比亞全國數位電視分發基礎設施。",
+      "source_ids": [
+        "src-doublethink-lab-b7212b"
+      ],
+      "confidence": "medium",
+      "claims": [
+        {
+          "text": "The most significant example is StarTimes, a Chinese media company that entered a joint venture with the state broadcaster ZNBC to establish TopStar Communications, which manages national digital television distribution.",
+          "source_id": "src-doublethink-lab-b7212b",
+          "about": "StarTimes"
+        },
+        {
+          "text": "StarTimes, a Chinese media company that entered a joint venture with the state broadcaster ZNBC to establish TopStar Communications",
+          "source_id": "src-doublethink-lab-b7212b",
+          "about": "StarTimes"
+        }
+      ]
+    },
+    {
+      "id": "topstar-communications",
+      "name_zh": "TopStar 通訊",
+      "name_en": "TopStar Communications",
+      "aliases": [],
+      "category": "tech-vendor",
+      "role": "collaborator",
+      "origin": "other",
+      "summary_zh": "四達時代（60%）與尚比亞國家廣播公司（40%）合資公司，經營尚比亞全國數位電視分發。Doublethink Lab 以其為中國進入尚比亞資訊基礎設施的結構性存在案例。",
+      "source_ids": [
+        "src-doublethink-lab-b7212b"
+      ],
+      "confidence": "medium",
+      "claims": [
+        {
+          "text": "that entered a joint venture with the state broadcaster ZNBC to establish TopStar Communications, which manages national digital television distribution.",
+          "source_id": "src-doublethink-lab-b7212b",
+          "about": "TopStar Communications"
+        }
+      ]
+    },
+    {
+      "id": "belt-road-news-network",
+      "name_zh": "一帶一路新聞網絡",
+      "name_en": "Belt and Road News Network",
+      "aliases": [],
+      "category": "state-media",
+      "role": "collaborator",
+      "origin": "PRC",
+      "summary_zh": "中國主導的跨國媒體合作網絡。Doublethink Lab 記錄尚比亞每日郵報為其成員，作為中國媒體敘事進入尚比亞的制度性管道之一。",
+      "source_ids": [
+        "src-doublethink-lab-b7212b"
+      ],
+      "confidence": "medium",
+      "claims": [
+        {
+          "text": "membership by Zambia Daily Mail in the Belt and Road News Network",
+          "source_id": "src-doublethink-lab-b7212b",
+          "about": "Belt and Road News Network"
+        }
+      ]
+    },
+    {
+      "id": "upnd-government",
+      "name_zh": "UPND GOVERNMENT",
+      "name_en": "UPND GOVERNMENT",
+      "aliases": [],
+      "category": "cib-network",
+      "role": "amplifier",
+      "origin": "other",
+      "summary_zh": "親 UPND 的臉書社團（27.9 萬成員）。Doublethink Lab 記錄其管理員為盜圖假帳號、指定專家個人檔案掛有中國註冊網域，據此研判疑似 PRC 對齊——報告明言歸因未能確認。",
+      "source_ids": [
+        "src-doublethink-lab-b7212b"
+      ],
+      "confidence": "low",
+      "claims": [
+        {
+          "text": "This case examines the Facebook group UPND GOVERNMENT, a pro-UPND community strongly supportive of President Hichilema’s reelection.",
+          "source_id": "src-doublethink-lab-b7212b",
+          "about": "UPND GOVERNMENT"
+        }
+      ]
+    },
+    {
+      "id": "muzukulu-wa-kashikulu",
+      "name_zh": "Muzukulu Wa Kashikulu",
+      "name_en": "Muzukulu Wa Kashikulu",
+      "aliases": [],
+      "category": "cib-network",
+      "role": "amplifier",
+      "origin": "other",
+      "summary_zh": "臉書專頁，Doublethink Lab 記錄其部分由中國境內實體管理，2026/7/17 於多個社團兩分鐘內齊發九則相同貼文為尚比亞執政黨辯護——疑似 PRC 對齊，歸因未確認。",
+      "source_ids": [
+        "src-doublethink-lab-b7212b"
+      ],
+      "confidence": "low",
+      "claims": [
+        {
+          "text": "This case centers on posts made by the Facebook page Muzukulu Wa Kashikulu.",
+          "source_id": "src-doublethink-lab-b7212b",
+          "about": "Muzukulu Wa Kashikulu"
+        }
+      ]
+    },
+    {
+      "id": "hula",
+      "name_zh": "HULA",
+      "name_en": "HULA",
+      "aliases": [],
+      "category": "cib-network",
+      "role": "amplifier",
+      "origin": "other",
+      "summary_zh": "臉書專頁。Doublethink Lab 記錄其在 Muzukulu Wa Kashikulu 齊發後不到五小時、於另一組社團齊發四則轉分享同一貼文——疑似協同放大，歸因未確認。",
+      "source_ids": [
+        "src-doublethink-lab-b7212b"
+      ],
+      "confidence": "low",
+      "claims": [
+        {
+          "text": "Less than five hours later, a separate Facebook page, HULA, shared Muzukulu Wa Kashikulu’s post in a burst of four posts on another set of Facebook groups.",
+          "source_id": "src-doublethink-lab-b7212b",
+          "about": "HULA"
+        }
+      ]
     }
   ],
   "events": [

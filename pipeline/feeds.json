@@ -6,7 +6,7 @@
     { "id": "citizenlab", "org": "Citizen Lab", "tier": "A", "feed_url": "https://citizenlab.ca/feed/", "license": "cite-with-attribution" },
     { "id": "aspi-strategist", "org": "ASPI The Strategist", "tier": "B", "feed_url": "https://www.aspistrategist.org.au/feed/", "license": "cite-with-attribution" },
     { "id": "factlink", "org": "FactLink 數位素養實驗室", "tier": "A", "feed_url": "https://www.factlink.tw/feed", "license": "cite-with-attribution" },
-    { "id": "disinfolab", "org": "EU DisinfoLab", "tier": "A", "feed_url": "https://www.disinfo.eu/publications/feed/", "license": "cite-with-attribution" },
+    { "id": "disinfolab", "org": "EU DisinfoLab", "tier": "A", "feed_url": "https://www.disinfo.eu/category/newsletter/feed/", "license": "cite-with-attribution" },
     { "id": "newsguard-rc", "org": "NewsGuard Reality Check", "tier": "B", "feed_url": "https://www.newsguardrealitycheck.com/feed", "license": "all-rights-reserved" }
   ]
 }

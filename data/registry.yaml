@@ -374,7 +374,9 @@ existing:
       from: "Wikipedia — reference only（僅背景，非主來源）"
 
 # 跨領域 canary feed（2026-07 納入 feeds.json，非台灣-中國記錄簿主來源）：
-#   DisinfoLab（disinfo.eu/publications，歐/俄為主；實測該 feed 目前 0 item）、
+#   DisinfoLab（disinfo.eu/category/newsletter，disinfo update 電子報系列，歐/俄為主；
+#     ~10 item 活躍。註：publications feed 已死（0 item），改用 newsletter 分類 feed；
+#     此系列為彙整式電子報，非單篇報告，抽取品質待觀察）、
 #   NewsGuard Reality Check（newsguardrealitycheck.com，美國/選舉 misinfo）
 #   —— 用途：觀察 ingest/filter 對跨領域內容的行為（其內容非台灣-中國，filter 會擋、不進記錄簿）。
 #   註：真正的 generalization test set 應為固定 fixture＋預期判斷，非 live feed；此處只是 canary。

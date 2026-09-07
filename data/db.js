@@ -4650,6 +4650,16 @@ window.NETWEAVER_DB = {
           "text": "CCTV reframed the claim, falsely asserting that the AI-generated image of boxed meals was part of a disinformation campaign led by the Taiwanese ruling party and supporters of Taiwan’s independence to target pro-China politicians",
           "source_id": "src-factlink-butterfly",
           "about": "CCTV"
+        },
+        {
+          "text": "Other institutional relationships have also developed between Chinese and Zambian media organizations, including cooperation involving China Media Group and membership by Zambia Daily Mail in the Belt and Road News Network",
+          "source_id": "src-doublethink-lab-b7212b",
+          "about": "China Media Group"
+        },
+        {
+          "text": "PRC state-controlled outlets: PRC state-controlled media covered this event: Xinhua and the Facebook pages of CGTN and the China Civil Engineering Construction Corporation (CCECC).",
+          "source_id": "src-doublethink-lab-b7212b",
+          "about": "CGTN"
         }
       ]
     },
@@ -5634,6 +5644,11 @@ window.NETWEAVER_DB = {
           "text": "其中，「台海網」的文章使用中共官媒「新華網」發布於 2022 年 8 月 5 日的合成照片 DA.28。",
           "source_id": "src-iorg-38",
           "about": "新華網"
+        },
+        {
+          "text": "In 2023, Xinhua, ZNBC, and ZANIS signed a news-exchange agreement covering content sharing, broader media cooperation, and journalism training.",
+          "source_id": "src-doublethink-lab-b7212b",
+          "about": "Xinhua"
         }
       ]
     },
@@ -8965,6 +8980,14 @@ window.NETWEAVER_DB = {
       "org": "Doublethink Lab",
       "url": "https://medium.com/doublethinklab/a-bayanihan-initiative-countering-fimi-in-the-philippines-15d14c4e2356?source=rss----9106617863e3---4",
       "date": "2026-03-20",
+      "type": "ngo-report"
+    },
+    {
+      "id": "src-doublethink-lab-b7212b",
+      "title": "PRC Influence and Alignment in the 2026 Zambian Election",
+      "org": "Doublethink Lab",
+      "url": "https://medium.com/doublethinklab/prc-influence-and-alignment-in-the-2026-zambian-election-31c113a3f435",
+      "date": "2026-08-24",
       "type": "ngo-report"
     }
   ],

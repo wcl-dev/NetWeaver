@@ -111,11 +111,14 @@ def build(db, ts="2026-01-01T00:00:00.000Z"):
         cited += [ev_sid[v["id"]] for v in db.get("events", []) if s["id"] in (v.get("source_ids") or [])]
         cited += [na_sid[n["id"]] for n in db.get("narratives", []) if s["id"] in (n.get("source_ids") or [])]
         if not cited: continue                        # 沒有任何物件引用 → 不建空 report
-        objs.append({"type": "report", "spec_version": "2.1", "id": pipe.sid("report", s.get("url") or s["id"]),
-                     "created": ts, "modified": ts, "name": s.get("title") or s["id"],
-                     "published": pipe.iso(s.get("date")), "object_refs": sorted(set(cited)),
-                     "external_references": [{"source_name": s.get("org") or "source", "url": s.get("url", "")}],
-                     "object_marking_refs": [mark_id]})
+        rep = {"type": "report", "spec_version": "2.1", "id": pipe.sid("report", s.get("url") or s["id"]),
+               "created": ts, "modified": ts, "name": s.get("title") or s["id"],
+               "published": pipe.iso(s.get("date")), "object_refs": sorted(set(cited)),
+               "external_references": [{"source_name": s.get("org") or "source", "url": s.get("url", "")}],
+               "object_marking_refs": [mark_id]}
+        if s.get("license"):                          # 逐來源授權，讓下游機器讀得到再利用條款（非 NetWeaver 重新授權）
+            rep["x_netweaver_license"] = s["license"]
+        objs.append(rep)
 
     for k in sorted(used):
         objs.append({"type": "extension-definition", "spec_version": "2.1", "id": pipe.extdef_id(k),

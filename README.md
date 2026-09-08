@@ -86,7 +86,7 @@ NetWeaver/
 這個 repo 是兩種東西，**分開授權**：
 
 - **程式碼**（`pipeline/`、`index.html`、`serve.py` 等本專案自寫的部分）：**MIT**，見 [`LICENSE`](LICENSE)。
-- **資料**（`data/`、匯出的 STIX bundle）：**不適用 MIT，也未被重新授權。** 逐來源宣稱是**公開研究報告的逐字引述**、以加註出處方式呈現；內容版權仍屬各原始來源，且來源條款是混的（含 `all-rights-reserved`、`ngo-restricted`、`platform-terms`，逐源見 [`data/registry.yaml`](data/registry.yaml)）。**再利用資料者須自行遵守各原始來源的授權。**
+- **資料**（`data/`、匯出的 STIX bundle）：**不適用 MIT，也未被重新授權。** 逐來源宣稱是**公開研究報告的逐字引述**、以加註出處方式呈現；內容版權仍屬各原始來源，且來源條款是混的（`cite-with-attribution`／`all-rights-reserved`／`gov-open`／`cc-by-sa` 等）。**逐源授權現在機器可讀**：`data/db.js` 的 `sources[].license`，以及 STIX bundle 每個 `report` 物件的 `x_netweaver_license`；governance 面另見 [`data/registry.yaml`](data/registry.yaml)。**再利用資料者須自行遵守各原始來源的授權。**
 - 本專案**自己產出**的部分（資料結構、實體的中性 summary 與分類這個「彙整」）以 **CC BY 4.0** 提供，惟不覆蓋上述第三方引文。
 
 授權不改變「記錄非指控」的定位（見上方免責）：收錄不代表法律指控，內容以原始來源為準。
@@ -114,6 +114,7 @@ https://wcl-dev.github.io/NetWeaver/pipeline/out/netweaver-db.stix.json
 - **OpenCTI 接入**：以 connector／URL import 拉上面的 raw URL 即可；沒有 TAXII server，它就是一份靜態 bundle，也可在 Data → Import 手動上傳。
 - **自訂型別**：頻道與敘事使用自訂 SDO `x-dad-channel`／`x-dad-narrative`（pending OASIS DAD-CDM），bundle 內含對應的 `extension-definition`；對方系統可能需要額外對應設定，第一次對接請預留除錯時間。
 - **歸因標記**：`attributed-to` 關係帶 `x_netweaver_review`（`approved`＋日期／`pending-human-approval`），標明是否已過人工核可紅線；匯出只含 db 裡人工核可的歸因。
+- **逐源授權**：每個 `report` 物件帶 `x_netweaver_license`（`cite-with-attribution`／`all-rights-reserved`／`gov-open`／`cc-by-sa`…），下游可據此判斷該來源引文的再利用條款——NetWeaver 只轉述、不重新授權。
 - **標記**：含 TLP:AMBER，及一則聲明式 marking「記錄公開研究中被點名者，非法律指控」。完整規格見 [`docs/STIX-PROFILE.md`](docs/STIX-PROFILE.md)。
 
 ## 後續擴充方向（roadmap）

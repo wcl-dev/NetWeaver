@@ -25,7 +25,7 @@ def _setup():
     return dbp
 
 def src_ns(**kw):
-    base = {"id": None, "url": "http://new", "org": "Org X", "type": "news", "title": "N", "date": "2025-02-02"}
+    base = {"id": None, "url": "http://new", "org": "Org X", "type": "news", "title": "N", "date": "2025-02-02", "license": "cite-with-attribution"}
     base.update(kw); return argparse.Namespace(**base)
 
 def actor_ns(**kw):
@@ -48,6 +48,8 @@ def test_add_source_happy_suffix_and_id():
     reg.cmd_add_source(src_ns())
     d = _db(dbp)
     assert len(d["sources"]) == 2 and any(s["url"] == "http://new" for s in d["sources"])
+    _new = next(s for s in d["sources"] if s["url"] == "http://new")
+    assert _new.get("license") == "cite-with-attribution", "來源須持久化 license（下游機器可讀再利用條款）"
     assert dbp.read_text().rstrip().endswith(";"), "db.js 後綴 ; 須保留"
     # 自動 id 帶 url hash，同 org 第二篇不撞
     reg.cmd_add_source(src_ns(url="http://new2"))

@@ -160,7 +160,8 @@ def cmd_add_source(args):
     if any(s.get("id") == sid for s in db["sources"]): raise SystemExit(f"source id 已存在：{sid}")
     if org not in _publishers(db):
         print(f"⚠ 出版方「{org}」不在已信任清單（registry.yaml∪db.sources）——記得另做 governance 核可（新增來源＝人的決策）")
-    db["sources"].append({"id": sid, "title": title, "org": org, "url": url, "date": date, "type": typ})
+    db["sources"].append({"id": sid, "title": title, "org": org, "url": url, "date": date, "type": typ,
+                           "license": getattr(args, "license", None) or "cite-with-attribution"})
     save_db(src, i, end, db)
     print(f"✓ 加入 source {sid}（{org}）→ db.js，共 {len(db['sources'])} 筆")
     return 0

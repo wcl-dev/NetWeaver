@@ -8667,7 +8667,8 @@ window.NETWEAVER_DB = {
       "org": "國家安全局 National Security Bureau (NSB), Taiwan",
       "url": "https://www.nsb.gov.tw/zh/assets/documents/%E6%96%B0%E8%81%9E%E7%A8%BF/023b202c-8bc9-4b19-a8eb-c0d0b5809f99.pdf",
       "date": "2026-01-10",
-      "type": "gov-report"
+      "type": "gov-report",
+      "license": "gov-open"
     },
     {
       "id": "src-vanderbilt-golaxy",
@@ -8675,7 +8676,8 @@ window.NETWEAVER_DB = {
       "org": "Vanderbilt Institute of National Security (Wicked Problems Lab)",
       "url": "https://www.vanderbilt.edu/national-security/wicked-problems-lab/golaxy/",
       "date": "2025-08",
-      "type": "academic"
+      "type": "academic",
+      "license": "cite-with-attribution"
     },
     {
       "id": "src-record-golaxy",
@@ -8683,7 +8685,8 @@ window.NETWEAVER_DB = {
       "org": "Recorded Future News (The Record)",
       "url": "https://therecord.media/golaxy-china-artificial-intelligence-papers",
       "date": "2025-09",
-      "type": "news"
+      "type": "news",
+      "license": "cite-with-attribution"
     },
     {
       "id": "src-dtl-golaxy",
@@ -8691,7 +8694,8 @@ window.NETWEAVER_DB = {
       "org": "Doublethink Lab",
       "url": "https://medium.com/doublethinklab/the-rise-of-ai-in-prc-influence-operations-nine-takeaways-from-the-golaxy-documents-2d6617a753e5",
       "date": "2026-03",
-      "type": "ngo-report"
+      "type": "ngo-report",
+      "license": "cite-with-attribution"
     },
     {
       "id": "src-nyt-golaxy",
@@ -8699,7 +8703,8 @@ window.NETWEAVER_DB = {
       "org": "The New York Times (Opinion)",
       "url": "https://www.nytimes.com/2025/08/05/opinion/ai-propaganda-china-golaxy.html",
       "date": "2025-08",
-      "type": "news"
+      "type": "news",
+      "license": "all-rights-reserved"
     },
     {
       "id": "src-gti-base311",
@@ -8707,7 +8712,8 @@ window.NETWEAVER_DB = {
       "org": "Global Taiwan Institute",
       "url": "https://globaltaiwan.org/2017/02/the-role-of-pla-base-311-in-political-warfare-against-taiwan-part-3/",
       "date": "2017-02",
-      "type": "ngo-report"
+      "type": "ngo-report",
+      "license": "cite-with-attribution"
     },
     {
       "id": "src-aspi-strait",
@@ -8715,7 +8721,8 @@ window.NETWEAVER_DB = {
       "org": "ASPI",
       "url": "https://stateofthestrait.substack.com/p/was-2025-an-inflection-point-for",
       "date": "2025",
-      "type": "ngo-report"
+      "type": "ngo-report",
+      "license": "cite-with-attribution"
     },
     {
       "id": "src-meta-2023",
@@ -8723,7 +8730,8 @@ window.NETWEAVER_DB = {
       "org": "Meta",
       "url": "https://about.fb.com/news/2023/08/raising-online-defenses/",
       "date": "2023-08",
-      "type": "platform-report"
+      "type": "platform-report",
+      "license": "cite-with-attribution"
     },
     {
       "id": "src-record-spamouflage",
@@ -8731,7 +8739,8 @@ window.NETWEAVER_DB = {
       "org": "Recorded Future News (The Record)",
       "url": "https://therecord.media/spamouflage-china-accused-largest-covert-influence-operation-meta",
       "date": "2023-08",
-      "type": "news"
+      "type": "news",
+      "license": "cite-with-attribution"
     },
     {
       "id": "src-iorg-118",
@@ -8739,7 +8748,8 @@ window.NETWEAVER_DB = {
       "org": "IORG",
       "url": "https://iorg.tw/_en/da/118",
       "date": "2025-08",
-      "type": "ngo-report"
+      "type": "ngo-report",
+      "license": "cite-with-attribution"
     },
     {
       "id": "src-record-meiya",
@@ -8747,7 +8757,8 @@ window.NETWEAVER_DB = {
       "org": "Recorded Future News (The Record)",
       "url": "https://therecord.media/treasury-blacklists-eight-chinese-tech-firms-for-their-role-in-uyghur-surveillance",
       "date": "2021-12",
-      "type": "news"
+      "type": "news",
+      "license": "cite-with-attribution"
     },
     {
       "id": "src-hrw-iflytek",
@@ -8755,7 +8766,8 @@ window.NETWEAVER_DB = {
       "org": "Human Rights Watch",
       "url": "https://www.hrw.org/news/2017/10/22/china-voice-biometric-collection-threatens-privacy",
       "date": "2017-10",
-      "type": "ngo-report"
+      "type": "ngo-report",
+      "license": "cite-with-attribution"
     },
     {
       "id": "src-propublica-onesight",
@@ -8763,7 +8775,8 @@ window.NETWEAVER_DB = {
       "org": "ProPublica",
       "url": "https://www.propublica.org/article/how-china-built-a-twitter-propaganda-machine-then-let-it-loose-on-coronavirus",
       "date": "2020-03",
-      "type": "news"
+      "type": "news",
+      "license": "all-rights-reserved"
     },
     {
       "id": "src-aspi-persuasive",
@@ -8771,7 +8784,8 @@ window.NETWEAVER_DB = {
       "org": "ASPI",
       "url": "https://www.aspi.org.au/report/persuasive-technologies-china-implications-future-national-security/",
       "date": "2024-11",
-      "type": "ngo-report"
+      "type": "ngo-report",
+      "license": "cite-with-attribution"
     },
     {
       "id": "src-mandiant-haienergy-2022",
@@ -8779,7 +8793,8 @@ window.NETWEAVER_DB = {
       "org": "Mandiant / Google",
       "url": "https://cloud.google.com/blog/topics/threat-intelligence/pro-prc-information-operations-campaign-haienergy",
       "date": "2022-08",
-      "type": "platform-report"
+      "type": "platform-report",
+      "license": "cite-with-attribution"
     },
     {
       "id": "src-mandiant-haienergy-2023",
@@ -8787,7 +8802,8 @@ window.NETWEAVER_DB = {
       "org": "Mandiant / Google",
       "url": "https://cloud.google.com/blog/topics/threat-intelligence/pro-prc-haienergy-us-news/",
       "date": "2023-07",
-      "type": "platform-report"
+      "type": "platform-report",
+      "license": "cite-with-attribution"
     },
     {
       "id": "src-google-glassbridge",
@@ -8795,7 +8811,8 @@ window.NETWEAVER_DB = {
       "org": "Google Threat Intelligence Group",
       "url": "https://cloud.google.com/blog/topics/threat-intelligence/glassbridge-pro-prc-influence-operations",
       "date": "2024-11",
-      "type": "platform-report"
+      "type": "platform-report",
+      "license": "cite-with-attribution"
     },
     {
       "id": "src-dtl-borderless",
@@ -8803,7 +8820,8 @@ window.NETWEAVER_DB = {
       "org": "Doublethink Lab",
       "url": "https://medium.com/doublethinklab/assessing-the-borderless-groups-activity-on-threads-69257a44ca82",
       "date": "2026-04",
-      "type": "ngo-report"
+      "type": "ngo-report",
+      "license": "cite-with-attribution"
     },
     {
       "id": "src-reporter-mission",
@@ -8811,7 +8829,8 @@ window.NETWEAVER_DB = {
       "org": "報導者 The Reporter",
       "url": "https://www.twreporter.org/a/information-warfare-business-content-farm-mission",
       "date": "2019-12",
-      "type": "news"
+      "type": "news",
+      "license": "all-rights-reserved"
     },
     {
       "id": "src-gazette-mission",
@@ -8819,7 +8838,8 @@ window.NETWEAVER_DB = {
       "org": "Taiwan Gazette",
       "url": "https://www.taiwangazette.org/news/2020/7/22/uncovering-the-money-and-china-factor-behind-mission-taiwans-biggest-content-farm",
       "date": "2020-07",
-      "type": "news"
+      "type": "news",
+      "license": "all-rights-reserved"
     },
     {
       "id": "src-ltn-chinavtv",
@@ -8827,7 +8847,8 @@ window.NETWEAVER_DB = {
       "org": "自由時報 Liberty Times",
       "url": "https://news.ltn.com.tw/news/society/breakingnews/4127700",
       "date": "2022-11",
-      "type": "news"
+      "type": "news",
+      "license": "all-rights-reserved"
     },
     {
       "id": "src-gti-provincial",
@@ -8835,7 +8856,8 @@ window.NETWEAVER_DB = {
       "org": "Global Taiwan Institute",
       "url": "https://globaltaiwan.org/2023/01/political-warfare-alert-the-prcs-evolving-information-operations-provincial-media/",
       "date": "2023-01",
-      "type": "ngo-report"
+      "type": "ngo-report",
+      "license": "cite-with-attribution"
     },
     {
       "id": "src-dtl-2022election",
@@ -8843,7 +8865,8 @@ window.NETWEAVER_DB = {
       "org": "Doublethink Lab",
       "url": "https://medium.com/doublethinklab/2022-taiwan-election-foreign-influence-observation-report-89951af668f1",
       "date": "2023-06",
-      "type": "ngo-report"
+      "type": "ngo-report",
+      "license": "cite-with-attribution"
     },
     {
       "id": "src-graphika-spamouflage",
@@ -8851,7 +8874,8 @@ window.NETWEAVER_DB = {
       "org": "Graphika",
       "url": "https://graphika.com/reports/spamouflage/",
       "date": "2019-09",
-      "type": "ngo-report"
+      "type": "ngo-report",
+      "license": "cite-with-attribution"
     },
     {
       "id": "src-dtl-impersonation",
@@ -8859,7 +8883,8 @@ window.NETWEAVER_DB = {
       "org": "Doublethink Lab",
       "url": "https://medium.com/doublethinklab/inauthentic-accounts-impersonate-taiwanese-to-attack-political-party-c7d04d5e1e13",
       "date": "2025-07",
-      "type": "ngo-report"
+      "type": "ngo-report",
+      "license": "cite-with-attribution"
     },
     {
       "id": "src-graphika-americans",
@@ -8867,7 +8892,8 @@ window.NETWEAVER_DB = {
       "org": "Graphika",
       "url": "https://graphika.com/reports/the-americans",
       "date": "2024-09",
-      "type": "ngo-report"
+      "type": "ngo-report",
+      "license": "cite-with-attribution"
     },
     {
       "id": "src-cna-yuyuan",
@@ -8875,7 +8901,8 @@ window.NETWEAVER_DB = {
       "org": "中央社 CNA",
       "url": "https://www.cna.com.tw/news/firstnews/201908210225.aspx",
       "date": "2019-08",
-      "type": "news"
+      "type": "news",
+      "license": "all-rights-reserved"
     },
     {
       "id": "src-wiki-yuyuan",
@@ -8883,7 +8910,8 @@ window.NETWEAVER_DB = {
       "org": "Wikipedia (citing 中国记协网/BBC)",
       "url": "https://en.wikipedia.org/wiki/Yuyuan_Tantian",
       "date": "2024",
-      "type": "academic"
+      "type": "academic",
+      "license": "cc-by-sa"
     },
     {
       "id": "src-wiki-vos",
@@ -8891,7 +8919,8 @@ window.NETWEAVER_DB = {
       "org": "Wikipedia (citing Kania/GTI)",
       "url": "https://en.wikipedia.org/wiki/Voice_of_the_Strait",
       "date": "2024",
-      "type": "academic"
+      "type": "academic",
+      "license": "cc-by-sa"
     },
     {
       "id": "src-wiki-globaltimes",
@@ -8899,7 +8928,8 @@ window.NETWEAVER_DB = {
       "org": "Wikipedia",
       "url": "https://en.wikipedia.org/wiki/Global_Times",
       "date": "2024",
-      "type": "academic"
+      "type": "academic",
+      "license": "cc-by-sa"
     },
     {
       "id": "src-lowy-globaltimes",
@@ -8907,7 +8937,8 @@ window.NETWEAVER_DB = {
       "org": "Lowy Institute (The Interpreter)",
       "url": "https://www.lowyinstitute.org/the-interpreter/global-times-beijing-nuanced-relationship",
       "date": "2016",
-      "type": "ngo-report"
+      "type": "ngo-report",
+      "license": "cite-with-attribution"
     },
     {
       "id": "src-globaltimes-pelosi",
@@ -8915,7 +8946,8 @@ window.NETWEAVER_DB = {
       "org": "Global Times",
       "url": "https://www.globaltimes.cn/page/202208/1272161.shtml",
       "date": "2022-08",
-      "type": "news"
+      "type": "news",
+      "license": "all-rights-reserved"
     },
     {
       "id": "src-dtl-deafening",
@@ -8923,7 +8955,8 @@ window.NETWEAVER_DB = {
       "org": "Doublethink Lab",
       "url": "https://medium.com/doublethinklab/deafening-whispers-f9b1d773f6cd",
       "date": "2020-10",
-      "type": "ngo-report"
+      "type": "ngo-report",
+      "license": "cite-with-attribution"
     },
     {
       "id": "src-record-pelosi",
@@ -8931,7 +8964,8 @@ window.NETWEAVER_DB = {
       "org": "Recorded Future News (The Record)",
       "url": "https://therecord.media/cyberattacks-on-taiwan-started-several-days-before-pelosi-arrival-report",
       "date": "2022-08",
-      "type": "news"
+      "type": "news",
+      "license": "cite-with-attribution"
     },
     {
       "id": "src-focustaiwan-pelosi",
@@ -8939,7 +8973,8 @@ window.NETWEAVER_DB = {
       "org": "Focus Taiwan (CNA)",
       "url": "https://focustaiwan.tw/society/202208030026",
       "date": "2022-08",
-      "type": "news"
+      "type": "news",
+      "license": "all-rights-reserved"
     },
     {
       "id": "src-iorg-38",
@@ -8947,7 +8982,8 @@ window.NETWEAVER_DB = {
       "org": "IORG",
       "url": "https://iorg.tw/_en/da/38",
       "date": "2023-03",
-      "type": "ngo-report"
+      "type": "ngo-report",
+      "license": "cite-with-attribution"
     },
     {
       "id": "src-iorg-41",
@@ -8955,7 +8991,8 @@ window.NETWEAVER_DB = {
       "org": "IORG",
       "url": "https://iorg.tw/_en/da/41",
       "date": "2023-05",
-      "type": "ngo-report"
+      "type": "ngo-report",
+      "license": "cite-with-attribution"
     },
     {
       "id": "src-dtl-multiverse",
@@ -8963,7 +9000,8 @@ window.NETWEAVER_DB = {
       "org": "Doublethink Lab",
       "url": "https://medium.com/doublethinklab/artificial-multiverse-foreign-information-manipulation-and-interference-in-taiwans-2024-national-f3e22ac95fe7",
       "date": "2024-08",
-      "type": "ngo-report"
+      "type": "ngo-report",
+      "license": "cite-with-attribution"
     },
     {
       "id": "src-mtac-2024",
@@ -8971,7 +9009,8 @@ window.NETWEAVER_DB = {
       "org": "Microsoft Threat Analysis Center (MTAC)",
       "url": "https://blogs.microsoft.com/on-the-issues/2024/04/04/china-ai-influence-elections-mtac-cybersecurity/",
       "date": "2024-04",
-      "type": "platform-report"
+      "type": "platform-report",
+      "license": "cite-with-attribution"
     },
     {
       "id": "src-iorg-usskep1",
@@ -8979,7 +9018,8 @@ window.NETWEAVER_DB = {
       "org": "IORG",
       "url": "https://iorg.tw/_en/a/us-skepticism-1",
       "date": "2023-08",
-      "type": "ngo-report"
+      "type": "ngo-report",
+      "license": "cite-with-attribution"
     },
     {
       "id": "src-chinapower-js2024a",
@@ -8987,7 +9027,8 @@ window.NETWEAVER_DB = {
       "org": "ChinaPower (CSIS)",
       "url": "https://chinapower.csis.org/china-respond-inauguration-taiwan-william-lai-joint-sword-2024a-military-exercise/",
       "date": "2024-05",
-      "type": "ngo-report"
+      "type": "ngo-report",
+      "license": "cite-with-attribution"
     },
     {
       "id": "src-jamestown-js2024b",
@@ -8995,7 +9036,8 @@ window.NETWEAVER_DB = {
       "org": "Jamestown Foundation",
       "url": "https://jamestown.org/program/discourse-dimensions-of-the-plas-joint-sword-2024-b-drills/",
       "date": "2024-11",
-      "type": "ngo-report"
+      "type": "ngo-report",
+      "license": "cite-with-attribution"
     },
     {
       "id": "src-tvbs-etc",
@@ -9003,7 +9045,8 @@ window.NETWEAVER_DB = {
       "org": "TVBS",
       "url": "https://news.tvbs.com.tw/world/2496210",
       "date": "2024",
-      "type": "news"
+      "type": "news",
+      "license": "all-rights-reserved"
     },
     {
       "id": "src-nsb-2025",
@@ -9011,7 +9054,8 @@ window.NETWEAVER_DB = {
       "org": "國家安全局 National Security Bureau (NSB), Taiwan",
       "url": "https://www.nsb.gov.tw/zh/assets/documents/%E6%96%B0%E8%81%9E%E7%A8%BF/2024%E5%B9%B4%E4%B8%AD%E5%85%B1%E7%88%AD%E8%A8%8A%E5%82%B3%E6%95%A3%E6%85%8B%E6%A8%A3%E5%88%86%E6%9E%90(%E5%A0%B1%E5%91%8A%E5%85%A8%E6%96%87)-%E4%B8%AD%E6%96%87.pdf",
       "date": "2025-01-03",
-      "type": "gov-report"
+      "type": "gov-report",
+      "license": "gov-open"
     },
     {
       "id": "src-vanderbilt-golaxy-2025",
@@ -9019,7 +9063,8 @@ window.NETWEAVER_DB = {
       "org": "中央社 CNA",
       "url": "https://www.cna.com.tw/news/aopl/202508060159.aspx",
       "date": "2025-08-06",
-      "type": "news"
+      "type": "news",
+      "license": "all-rights-reserved"
     },
     {
       "id": "src-taipei-times-nsb-2026",
@@ -9027,7 +9072,8 @@ window.NETWEAVER_DB = {
       "org": "Taipei Times",
       "url": "https://www.taipeitimes.com/News/front/archives/2026/01/12/2003850442",
       "date": "2026-01-12",
-      "type": "news"
+      "type": "news",
+      "license": "all-rights-reserved"
     },
     {
       "id": "src-storm-nsb-2026",
@@ -9035,7 +9081,8 @@ window.NETWEAVER_DB = {
       "org": "風傳媒 Storm Media",
       "url": "https://www.storm.mg/article/11094106",
       "date": "2026-01-12",
-      "type": "news"
+      "type": "news",
+      "license": "all-rights-reserved"
     },
     {
       "id": "src-iorg-101",
@@ -9043,7 +9090,8 @@ window.NETWEAVER_DB = {
       "org": "IORG 台灣資訊環境研究中心",
       "url": "https://iorg.tw/da/101",
       "date": "2025-02-14",
-      "type": "ngo-report"
+      "type": "ngo-report",
+      "license": "cite-with-attribution"
     },
     {
       "id": "src-iorg-136",
@@ -9051,7 +9099,8 @@ window.NETWEAVER_DB = {
       "org": "IORG 台灣資訊環境研究中心",
       "url": "https://iorg.tw/da/136",
       "date": "2026-04-17",
-      "type": "ngo-report"
+      "type": "ngo-report",
+      "license": "cite-with-attribution"
     },
     {
       "id": "src-iorg-tw-defeatism",
@@ -9059,7 +9108,8 @@ window.NETWEAVER_DB = {
       "org": "IORG 台灣資訊環境研究中心",
       "url": "https://iorg.tw/a/tw-defeatism-259",
       "date": "2025-09-23",
-      "type": "ngo-report"
+      "type": "ngo-report",
+      "license": "cite-with-attribution"
     },
     {
       "id": "src-iorg-11",
@@ -9067,7 +9117,8 @@ window.NETWEAVER_DB = {
       "org": "IORG 台灣資訊環境研究中心",
       "url": "https://iorg.tw/da/11",
       "date": "2021-09-16",
-      "type": "ngo-report"
+      "type": "ngo-report",
+      "license": "cite-with-attribution"
     },
     {
       "id": "src-iorg-131",
@@ -9075,7 +9126,8 @@ window.NETWEAVER_DB = {
       "org": "IORG 台灣資訊環境研究中心",
       "url": "https://iorg.tw/da/131",
       "date": "2026-02-11",
-      "type": "ngo-report"
+      "type": "ngo-report",
+      "license": "cite-with-attribution"
     },
     {
       "id": "src-iorg-139",
@@ -9083,7 +9135,8 @@ window.NETWEAVER_DB = {
       "org": "IORG 台灣資訊環境研究中心",
       "url": "https://iorg.tw/da/139",
       "date": "2026-06-19",
-      "type": "ngo-report"
+      "type": "ngo-report",
+      "license": "cite-with-attribution"
     },
     {
       "id": "src-isd-magaflage",
@@ -9091,7 +9144,8 @@ window.NETWEAVER_DB = {
       "org": "Institute for Strategic Dialogue (ISD)",
       "url": "https://www.isdglobal.org/digital-dispatch/pro-ccp-spamouflage-campaign-experiments-with-new-tactics-targeting-the-us/",
       "date": "2024-04-01",
-      "type": "ngo-report"
+      "type": "ngo-report",
+      "license": "cite-with-attribution"
     },
     {
       "id": "src-meta-q3-2023",
@@ -9099,7 +9153,8 @@ window.NETWEAVER_DB = {
       "org": "CNBC（引述 Meta Q3 2023 Adversarial Threat Report）",
       "url": "https://www.cnbc.com/2023/11/30/meta-q3-threats-report-shows-risk-of-china-influence-ahead-of-election.html",
       "date": "2023-11-30",
-      "type": "news"
+      "type": "news",
+      "license": "all-rights-reserved"
     },
     {
       "id": "src-google-dragonbridge-2024",
@@ -9107,7 +9162,8 @@ window.NETWEAVER_DB = {
       "org": "Google Threat Analysis Group",
       "url": "https://blog.google/threat-analysis-group/google-disrupted-dragonbridge-activity-q1-2024/",
       "date": "2024-06-26",
-      "type": "platform-report"
+      "type": "platform-report",
+      "license": "cite-with-attribution"
     },
     {
       "id": "src-rf-empire-dragon",
@@ -9115,7 +9171,8 @@ window.NETWEAVER_DB = {
       "org": "Recorded Future Insikt Group",
       "url": "https://www.recordedfuture.com/research/empire-dragon-accelerates-covert-information-operations-converges-russian-narratives",
       "date": "2023-08-30",
-      "type": "ngo-report"
+      "type": "ngo-report",
+      "license": "cite-with-attribution"
     },
     {
       "id": "src-aspi-2024",
@@ -9123,7 +9180,8 @@ window.NETWEAVER_DB = {
       "org": "ASPI (The Strategist)",
       "url": "https://www.aspistrategist.org.au/as-taiwan-voted-beijing-spammed-ai-avatars-faked-paternity-tests-and-leaked-fake-documents/",
       "date": "2024-01-18",
-      "type": "ngo-report"
+      "type": "ngo-report",
+      "license": "cite-with-attribution"
     },
     {
       "id": "src-graphika-deepfake",
@@ -9131,7 +9189,8 @@ window.NETWEAVER_DB = {
       "org": "Graphika",
       "url": "https://public-assets.graphika.com/reports/graphika-report-deepfake-it-till-you-make-it.pdf",
       "date": "2023-02-07",
-      "type": "ngo-report"
+      "type": "ngo-report",
+      "license": "cite-with-attribution"
     },
     {
       "id": "src-doj-912",
@@ -9139,7 +9198,8 @@ window.NETWEAVER_DB = {
       "org": "US DOJ (EDNY)",
       "url": "https://www.justice.gov/usao-edny/pr/34-officers-peoples-republic-china-national-police-charged-perpetrating-transnational",
       "date": "2023-04-17",
-      "type": "gov-report"
+      "type": "gov-report",
+      "license": "gov-open"
     },
     {
       "id": "src-meta-q1-2025",
@@ -9147,7 +9207,8 @@ window.NETWEAVER_DB = {
       "org": "Meta",
       "url": "https://nuari.org/hubfs/Meta%20Adversarial%20Threat%20Report%20May%202025.pdf",
       "date": "2025-05-31",
-      "type": "platform-report"
+      "type": "platform-report",
+      "license": "cite-with-attribution"
     },
     {
       "id": "src-citizenlab-paperwall",
@@ -9155,7 +9216,8 @@ window.NETWEAVER_DB = {
       "org": "Citizen Lab (University of Toronto)",
       "url": "https://citizenlab.ca/2024/02/paperwall-chinese-websites-posing-as-local-news-outlets-with-pro-beijing-content/",
       "date": "2024-02-07",
-      "type": "academic"
+      "type": "academic",
+      "license": "cite-with-attribution"
     },
     {
       "id": "src-cybercx-cicada",
@@ -9163,7 +9225,8 @@ window.NETWEAVER_DB = {
       "org": "CyberCX",
       "url": "https://cybercx.com/blog/cybercx-unmasks-china-linked-ai-disinformation-capability/",
       "date": "2024-08-18",
-      "type": "ngo-report"
+      "type": "ngo-report",
+      "license": "cite-with-attribution"
     },
     {
       "id": "src-factlink-pla",
@@ -9171,7 +9234,8 @@ window.NETWEAVER_DB = {
       "org": "FactLink 數位素養實驗室（與台灣民主實驗室）",
       "url": "https://www.factlink.tw/p/pla-military-drills",
       "date": "2026-04",
-      "type": "ngo-report"
+      "type": "ngo-report",
+      "license": "cite-with-attribution"
     },
     {
       "id": "src-factlink-takaichi",
@@ -9179,7 +9243,8 @@ window.NETWEAVER_DB = {
       "org": "FactLink 數位素養實驗室",
       "url": "https://www.factlink.tw/p/openai-factlink",
       "date": "2026-04",
-      "type": "ngo-report"
+      "type": "ngo-report",
+      "license": "cite-with-attribution"
     },
     {
       "id": "src-factlink-satellite",
@@ -9187,7 +9252,8 @@ window.NETWEAVER_DB = {
       "org": "FactLink 數位素養實驗室",
       "url": "https://www.factlink.tw/p/china-satellite",
       "date": "2025-11",
-      "type": "ngo-report"
+      "type": "ngo-report",
+      "license": "cite-with-attribution"
     },
     {
       "id": "src-factlink-butterfly",
@@ -9195,7 +9261,8 @@ window.NETWEAVER_DB = {
       "org": "FactLink 數位素養實驗室",
       "url": "https://www.factlink.tw/p/are-they-one-of-us-butterfly-attacks",
       "date": "2025-11",
-      "type": "ngo-report"
+      "type": "ngo-report",
+      "license": "cite-with-attribution"
     },
     {
       "id": "src-factlink-japan",
@@ -9203,7 +9270,8 @@ window.NETWEAVER_DB = {
       "org": "FactLink 數位素養實驗室",
       "url": "https://www.factlink.tw/p/china-japan-propaganda",
       "date": "2026-02",
-      "type": "ngo-report"
+      "type": "ngo-report",
+      "license": "cite-with-attribution"
     },
     {
       "id": "src-factlink-hackleak",
@@ -9211,7 +9279,8 @@ window.NETWEAVER_DB = {
       "org": "FactLink 數位素養實驗室",
       "url": "https://www.factlink.tw/p/hack-and-leak-taiwan",
       "date": "2026-02",
-      "type": "ngo-report"
+      "type": "ngo-report",
+      "license": "cite-with-attribution"
     },
     {
       "id": "src-factlink-2d1f0c",
@@ -9219,7 +9288,8 @@ window.NETWEAVER_DB = {
       "org": "FactLink 數位素養實驗室",
       "url": "https://www.factlink.tw/p/factnote",
       "date": "2026-05-21",
-      "type": "ngo-report"
+      "type": "ngo-report",
+      "license": "cite-with-attribution"
     },
     {
       "id": "src-factlink-a7a795",
@@ -9227,7 +9297,8 @@ window.NETWEAVER_DB = {
       "org": "FactLink 數位素養實驗室",
       "url": "https://www.factlink.tw/p/pla-weibo-analysis",
       "date": "2026-04-29",
-      "type": "ngo-report"
+      "type": "ngo-report",
+      "license": "cite-with-attribution"
     },
     {
       "id": "src-aspi-the-strategist-934197",
@@ -9235,7 +9306,8 @@ window.NETWEAVER_DB = {
       "org": "ASPI The Strategist",
       "url": "https://www.aspistrategist.org.au/with-the-promotion-of-new-generals-xi-prioritises-internal-control/",
       "date": "2026-07-16",
-      "type": "news"
+      "type": "news",
+      "license": "cite-with-attribution"
     },
     {
       "id": "src-factlink-ff3dee",
@@ -9243,7 +9315,8 @@ window.NETWEAVER_DB = {
       "org": "FactLink 數位素養實驗室",
       "url": "https://www.factlink.tw/p/factnoteai",
       "date": "2026-05-13",
-      "type": "ngo-report"
+      "type": "ngo-report",
+      "license": "cite-with-attribution"
     },
     {
       "id": "src-doublethink-lab-96d2c0",
@@ -9251,7 +9324,8 @@ window.NETWEAVER_DB = {
       "org": "Doublethink Lab",
       "url": "https://medium.com/doublethinklab/prc-influence-in-south-asia-a-case-study-of-india-nepal-sri-lanka-and-pakistan-a405059731be?source=rss----9106617863e3---4",
       "date": "2026-02-03",
-      "type": "ngo-report"
+      "type": "ngo-report",
+      "license": "cite-with-attribution"
     },
     {
       "id": "src-aspi-00c2db",
@@ -9259,7 +9333,8 @@ window.NETWEAVER_DB = {
       "org": "ASPI",
       "url": "https://aspi.s3.ap-southeast-2.amazonaws.com/wp-content/uploads/2025/03/11125258/Persuasive-technologies-in-China_0.pdf",
       "date": "2025-03-11",
-      "type": "ngo-report"
+      "type": "ngo-report",
+      "license": "cite-with-attribution"
     },
     {
       "id": "src-doublethink-lab-aaba8c",
@@ -9267,7 +9342,8 @@ window.NETWEAVER_DB = {
       "org": "Doublethink Lab",
       "url": "https://medium.com/doublethinklab/a-bayanihan-initiative-countering-fimi-in-the-philippines-15d14c4e2356?source=rss----9106617863e3---4",
       "date": "2026-03-20",
-      "type": "ngo-report"
+      "type": "ngo-report",
+      "license": "cite-with-attribution"
     },
     {
       "id": "src-doublethink-lab-b7212b",
@@ -9275,7 +9351,8 @@ window.NETWEAVER_DB = {
       "org": "Doublethink Lab",
       "url": "https://medium.com/doublethinklab/prc-influence-and-alignment-in-the-2026-zambian-election-31c113a3f435",
       "date": "2026-08-24",
-      "type": "ngo-report"
+      "type": "ngo-report",
+      "license": "cite-with-attribution"
     },
     {
       "id": "src-openai-threat-intelligence-1b31cc",
@@ -9283,7 +9360,8 @@ window.NETWEAVER_DB = {
       "org": "OpenAI — Threat Intelligence",
       "url": "https://openai.com/index/prc-linked-influence-operations-ai-debates/",
       "date": "2026-06-01",
-      "type": "platform-report"
+      "type": "platform-report",
+      "license": "all-rights-reserved"
     }
   ],
   "narratives": [

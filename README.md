@@ -81,6 +81,16 @@ NetWeaver/
 - **國際研究機構**：Graphika、ASPI、Citizen Lab（PAPERWALL）、Recorded Future、Global Taiwan Institute、Vanderbilt（GoLaxy 文件）、Jamestown Foundation、Institute for Strategic Dialogue (ISD)、Lowy Institute、ChinaPower (CSIS)、CyberCX
 - **新聞媒體佐證**：報導者、自由時報、中央社、CNBC、紐約時報、ProPublica 等
 
+## 授權
+
+這個 repo 是兩種東西，**分開授權**：
+
+- **程式碼**（`pipeline/`、`index.html`、`serve.py` 等本專案自寫的部分）：**MIT**，見 [`LICENSE`](LICENSE)。
+- **資料**（`data/`、匯出的 STIX bundle）：**不適用 MIT，也未被重新授權。** 逐來源宣稱是**公開研究報告的逐字引述**、以加註出處方式呈現；內容版權仍屬各原始來源，且來源條款是混的（含 `all-rights-reserved`、`ngo-restricted`、`platform-terms`，逐源見 [`data/registry.yaml`](data/registry.yaml)）。**再利用資料者須自行遵守各原始來源的授權。**
+- 本專案**自己產出**的部分（資料結構、實體的中性 summary 與分類這個「彙整」）以 **CC BY 4.0** 提供，惟不覆蓋上述第三方引文。
+
+授權不改變「記錄非指控」的定位（見上方免責）：收錄不代表法律指控，內容以原始來源為準。
+
 ## 已完成（相對於初版 PoC）
 
 初版是「手動編輯 `db.js`」的靜態記錄簿；目前已長出一條**自動化產線與治理層**（機制詳見 [`docs/ENGINEERING.md`](docs/ENGINEERING.md)）：

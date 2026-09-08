@@ -279,7 +279,16 @@
   .net-edge.q { stroke: #3ecf8e; stroke-opacity: .42; stroke-width: 1.2; stroke-dasharray: 2 3; }
   .net-legend { display: flex; gap: 20px; flex-wrap: wrap; padding: 13px 16px; border-top: 1px solid var(--border); font-size: 12.5px; color: var(--muted); }
   .net-legend .lg { display: flex; align-items: center; gap: 7px; }
-  .net-node-label { font-size: 11px; fill: var(--text); font-family: var(--sans); pointer-events: none; }
+  .net-node-label { font-size: 11px; fill: var(--text); font-family: var(--sans); pointer-events: none;
+    opacity: 0; transition: opacity .12s; }              /* 預設隱藏，避免 113 標籤打架 */
+  .net-node:hover .net-node-label { opacity: 1; }         /* 滑過才顯示 */
+  .net-node.hub .net-node-label { opacity: .82; }         /* 樞紐節點（明確關係度數高）常駐 */
+  /* 共現邊預設隱藏，由開關（svg.show-co）帶出 */
+  #net-svg .net-edge.co, #net-svg .net-edge.q { display: none; }
+  #net-svg.show-co .net-edge.co, #net-svg.show-co .net-edge.q { display: inline; }
+  .net-toggle { display: flex; align-items: center; gap: 7px; margin-left: auto; font-size: 12.5px;
+    color: var(--muted); cursor: pointer; user-select: none; }
+  .net-toggle input { cursor: pointer; }
   .net-edge { stroke: #3a455c; stroke-opacity: .55; }
   .net-edge.co { stroke-dasharray: 3 3; stroke-opacity: .3; }
   .net-node { cursor: pointer; }
@@ -744,8 +753,8 @@ function bootNetWeaver() {
     app.innerHTML = `
       <div class="page-head">
         <h1>關聯網絡（Relationship Graph）</h1>
-        <p class="lead">節點為行為者（顏色＝角色）。實線為明確關係（操作／供應／關聯…）；灰虛線為共同現身於同一事件；綠虛線為機器抽取的引文共現。
-        <strong>同句被提及或同場出現，不等於雙方有合作、協調或組織關係。</strong>可拖曳節點，點擊進入檔案。</p>
+        <p class="lead">節點為<strong>有明確關係</strong>的行為者（顏色＝角色），實線＝人工登錄的關係（操作／供應／隸屬／歸因…）。標籤滑過顯示、樞紐常駐；可拖曳、點擊進入檔案。
+        沒有明確關係的行為者不在此圖——請由記錄簿卡片牆進入。共現連結（同事件／同句被提及）預設隱藏，可用右下開關帶出；<strong>共現不等於合作或協調關係</strong>。</p>
       </div>
       <div class="net-wrap">
         <svg id="net-svg" viewBox="0 0 900 600" preserveAspectRatio="xMidYMid meet"></svg>
@@ -756,16 +765,27 @@ function bootNetWeaver() {
           <span class="lg"><span style="display:inline-block;width:18px;height:0;border-top:2px solid #3a455c"></span>明確關係</span>
           <span class="lg"><span style="display:inline-block;width:18px;height:0;border-top:2px dashed #3a455c"></span>共同現身（事件）</span>
           <span class="lg"><span style="display:inline-block;width:18px;height:0;border-top:2px dashed #3ecf8e"></span>引文共現（機器抽取）</span>
+          <label class="net-toggle"><input type="checkbox" id="co-toggle"> 顯示共現連結（事件／引文）</label>
         </div>
       </div>`;
-    buildForceGraph(document.getElementById("net-svg"));
+    const _svg = document.getElementById("net-svg");
+    buildForceGraph(_svg);
+    const _t = document.getElementById("co-toggle");
+    if (_t) _t.addEventListener("change", e => { _svg.classList.toggle("show-co", e.target.checked); });
   }
 
   function buildForceGraph(svg) {
     const W = 900, H = 600;
     const COLOR = { attacker: "#f0594f", collaborator: "#e0a52b", amplifier: "#5b9bf5" };
-    const N = DB.entities.length;
-    const nodes = DB.entities.map((e, i) => {
+    // 只納入「有明確關係」的行為者：孤島（僅共現或全無邊）不進關係圖，留在卡片牆。
+    const allIds = new Set(DB.entities.map(e => e.id));
+    const relIds = new Set();
+    DB.entities.forEach(e => (e.related||[]).forEach(r => {
+      if (allIds.has(r.target_id)) { relIds.add(e.id); relIds.add(r.target_id); }
+    }));
+    const ents = DB.entities.filter(e => relIds.has(e.id));
+    const N = ents.length;
+    const nodes = ents.map((e, i) => {
       const ang = (i / Math.max(1, N)) * Math.PI * 2;      // 等角度分布於圓周
       const rad = 90 + (i % 3) * 40;                        // 微錯開半徑，避免完全同心
       return {
@@ -823,8 +843,10 @@ function bootNetWeaver() {
       }
       gEdges.appendChild(l); return l;
     });
-    const nodeEls = nodes.map(n => {
-      const g = mk("g", { class: "net-node" });
+    const deg = {};                                   // 明確關係度數（不含共現）→ 決定樞紐標籤
+    edges.forEach(e => { if (!e.co) { deg[e.a]=(deg[e.a]||0)+1; deg[e.b]=(deg[e.b]||0)+1; } });
+    const nodeEls = nodes.map((n, ni) => {
+      const g = mk("g", { class: "net-node" + ((deg[ni]||0) >= 3 ? " hub" : "") });
       const c = mk("circle", { r: n.r, fill: COLOR[n.role] || "#888", "fill-opacity": .9, stroke: "#0b0e14", "stroke-width": 1.5 });
       const t = mk("text", { class: "net-node-label", "text-anchor": "middle", dy: n.r + 13 });
       t.textContent = n.name;

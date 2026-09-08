@@ -6294,18 +6294,21 @@
     {
       "type": "intrusion-set",
       "spec_version": "2.1",
-      "id": "intrusion-set--4170f397-6c12-5e9d-8cb9-d434f6b9fa99",
+      "id": "intrusion-set--5f4c9e0d-463a-575a-8d97-1d5a1a0802b4",
       "created": "2026-01-01T00:00:00.000Z",
       "modified": "2026-01-01T00:00:00.000Z",
-      "name": "九破折號線行動",
+      "name": "九段線行動",
       "object_marking_refs": [
         "marking-definition--30837352-4bcb-536d-ab32-86f489a09985"
       ],
       "aliases": [
         "Nine-emdash Line",
-        "Operation Nine-emdash Line"
+        "Operation Nine-emdash Line",
+        "九段線",
+        "Nine-dash Line",
+        "Nine-Dash Line"
       ],
-      "description": "PRC 來源影響力行動，OpenAI 於 2025 年 10 月報告揭露。June 2026 報告記錄「科技與關稅行動」的 X 帳號轉發過與本行動關聯帳號先前散布的菲律賓總統 Marcos 影像——OpenAI 明言此不足以確立兩行動的直接關聯，僅強化「X 上放大中國影響力活動的網絡」印象。",
+      "description": "OpenAI 對一項南海「九段線」敘事影響力行動的命名（Nine-emdash Line 為其風格化寫法），於 2025 年 10 月報告揭露、屬 PRC 來源。June 2026 報告記錄「科技與關稅行動」的 X 帳號轉發過與本行動關聯帳號先前散布的菲律賓總統 Marcos 影像（南海爭端脈絡）——OpenAI 明言此不足以確立兩行動的直接關聯，僅強化「X 上放大中國影響力活動的網絡」印象。",
       "confidence": 30,
       "x_netweaver_evidence": [
         {
@@ -12799,7 +12802,7 @@
       "name": "Disrupting malicious uses of AI: June 2026 Threat Report (PRC-linked influence operations targeting US AI debates)",
       "published": "2026-06-01T00:00:00.000Z",
       "object_refs": [
-        "intrusion-set--4170f397-6c12-5e9d-8cb9-d434f6b9fa99",
+        "intrusion-set--5f4c9e0d-463a-575a-8d97-1d5a1a0802b4",
         "intrusion-set--71ee80d0-9136-55bb-8ae1-c2b53b2f7b3c",
         "intrusion-set--b8908e19-82c6-58b4-88e3-a5e700c47773"
       ],

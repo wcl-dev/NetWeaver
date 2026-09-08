@@ -43,7 +43,10 @@ TIER = {"gov-report": 3, "platform-report": 3, "academic": 3, "ngo-report": 2, "
 def norm(s): return re.sub(r"[\s\W]+", "", (s or "").lower())
 def hedged(q): return any(h in (q or "").lower() for h in HEDGE)
 
-def load_registry(db="/Users/wclim/NetWeaver/data/db.js"):
+def load_registry(db=None):
+    # 預設相對路徑（repo 根 /data/db.js）——寫死絕對路徑會讓 CI／fork／別台機器全掛
+    if db is None:
+        db = pathlib.Path(__file__).resolve().parent.parent / "data" / "db.js"
     src = pathlib.Path(db).read_text(encoding="utf-8")
     i = src.index("{", src.index("window.NETWEAVER_DB")); j = src.rindex("}")
     d = json.loads(src[i:j + 1]); reg = {}

@@ -7,6 +7,7 @@ on:
     branches: [main]
     paths-ignore:
       - 'pipeline/out/**'      # bot 自己回寫 bundle 的 push 不再觸發，斷迴圈
+  workflow_dispatch: {}        # 手動「立即刷新」按鈕
 
 permissions:
   contents: write             # 需要寫回 bundle

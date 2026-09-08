@@ -89,6 +89,23 @@ NetWeaver/
 - **歸因人工核可紅線**：`attributed-to` 只能逐則人工核可才落地；逐篇 STIX bundle 帶核可狀態章。
 - **匯出 STIX 2.1**（原 roadmap 項目，已做）：整本 `db.js` → 單一 bundle（id 與逐篇一致、關係型別通透），與 OpenCTI／FIMI-ISAC 生態互通。見 `pipeline/export_stix.py`。
 
+## STIX 下載／OpenCTI 接入
+
+整本記錄簿匯出為單一 **STIX 2.1 bundle**，公開可直接取用，且每次 push 到 main 由 CI 自動重匯、與 `data/db.js` 同步：
+
+```
+# 原始檔（下游程式直接吃這個）
+https://raw.githubusercontent.com/wcl-dev/NetWeaver/main/pipeline/out/netweaver-db.stix.json
+# Pages 路徑（同一份）
+https://wcl-dev.github.io/NetWeaver/pipeline/out/netweaver-db.stix.json
+```
+
+- **內容**：行為者（`identity` / `intrusion-set` / `x-dad-channel`）、行動（`campaign`）、敘事（`x-dad-narrative`）、來源（`report`）與其間關係。id 為決定性 UUIDv5，與逐篇 bundle 一致——下游合併不會產生同一實體的分身。
+- **OpenCTI 接入**：以 connector／URL import 拉上面的 raw URL 即可；沒有 TAXII server，它就是一份靜態 bundle，也可在 Data → Import 手動上傳。
+- **自訂型別**：頻道與敘事使用自訂 SDO `x-dad-channel`／`x-dad-narrative`（pending OASIS DAD-CDM），bundle 內含對應的 `extension-definition`；對方系統可能需要額外對應設定，第一次對接請預留除錯時間。
+- **歸因標記**：`attributed-to` 關係帶 `x_netweaver_review`（`approved`＋日期／`pending-human-approval`），標明是否已過人工核可紅線；匯出只含 db 裡人工核可的歸因。
+- **標記**：含 TLP:AMBER，及一則聲明式 marking「記錄公開研究中被點名者，非法律指控」。完整規格見 [`docs/STIX-PROFILE.md`](docs/STIX-PROFILE.md)。
+
 ## 後續擴充方向（roadmap）
 
 尚未做，依「最自然的下一步」排序：

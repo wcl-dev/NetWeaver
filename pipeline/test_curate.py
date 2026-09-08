@@ -205,17 +205,18 @@ def _compile_env(entries, att=0):
                            "source": f"https://example.org/{rid}"}]}
         return None, rec, {}, att, f"dig-{rid}", []
     orig = (cur.rl.load_queue, cur.rl._write_queue, cur.rl.operator_ref,
-            cur.load_db, cur.save_db, cur.project_extraction)
+            cur.load_db, cur.save_db, cur.project_extraction, cur.rl.write_bundle)
     cur.rl.load_queue = lambda: queue
     cur.rl._write_queue = lambda q: None
     cur.rl.operator_ref = lambda sl, ent_ids: None
     cur.load_db = lambda: ("", 0, 0, db)
     cur.save_db = lambda src, i, d: saved.append(d)
     cur.project_extraction = fake_project
+    cur.rl.write_bundle = lambda *a, **k: None   # 不落盤 bundle（避免污染 repo/x/）
     try: yield queue, db, saved
     finally:
         (cur.rl.load_queue, cur.rl._write_queue, cur.rl.operator_ref,
-         cur.load_db, cur.save_db, cur.project_extraction) = orig
+         cur.load_db, cur.save_db, cur.project_extraction, cur.rl.write_bundle) = orig
 
 @case
 def test_compile_scoped_to_raw_id():

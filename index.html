@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>NetWeaver v2 — 台灣 FIMI 行為者記錄簿</title>
+<title>NetWeaver — 台灣 FIMI 行為者記錄簿</title>
 <style>
   :root {
     --bg: #0b0e14;
@@ -307,7 +307,7 @@
   <div class="nav-inner">
     <div class="brand">
       <span class="logo">NetWeaver</span>
-      <span class="sub">台灣 FIMI 行為者記錄簿</span><span class="v2">v2 · operator 視圖</span>
+      <span class="sub">台灣 FIMI 行為者記錄簿</span><span class="v2" id="ver"></span>
     </div>
     <nav class="tabs" id="tabs">
       <a href="#/gallery" data-tab="gallery">記錄簿</a>
@@ -328,6 +328,7 @@
 <script>
 "use strict";
 function bootNetWeaver() {
+  try { const _m=(window.NETWEAVER_DB||{}).meta||{}, _v=document.getElementById("ver"); if(_v) _v.textContent = _m.version ? "v"+_m.version : ""; } catch(e){}
   const DB = window.NETWEAVER_DB;
 
   // ---- lookups ----
@@ -916,7 +917,7 @@ function bootNetWeaver() {
 
         <p><strong>資料來源</strong>主要取自三類公開研究：政府公開報告（如國家安全局 NSB）、公民社會研究機構（如 IORG 台灣資訊環境研究中心、Doublethink Lab 台灣民主實驗室），以及國際平台與研究單位的揭露（如 Meta、Google/Mandiant、Graphika）。</p>
 
-        <p><strong>資料模型</strong>刻意設計成可對映國際標準（STIX 2.1 / DISARM / EEAS DAD-CDM 擴充），目前 v1 停在輕量的「實體—事件—關係」層級，尚未納入 DISARM 戰技標記與曝光層級分級——那是最自然的下一步。結構說明見專案內 <code>docs/SCHEMA.md</code>。</p>
+        <p><strong>資料模型</strong>刻意設計成可對映國際標準（STIX 2.1 / DISARM / EEAS DAD-CDM 擴充），目前停在輕量的「實體—事件—關係」層級，尚未納入 DISARM 戰技標記與曝光層級分級——那是最自然的下一步。結構說明見專案內 <code>docs/SCHEMA.md</code>。</p>
 
         <p style="color:var(--muted-2);font-size:13px;margin-top:30px">資料版本：${esc((DB.meta&&DB.meta.version)||"—")} · 更新：${esc((DB.meta&&DB.meta.updated)||"—")}</p>
       </div>`;

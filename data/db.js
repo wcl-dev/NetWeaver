@@ -7,9 +7,9 @@
  */
 window.NETWEAVER_DB = {
   "meta": {
-    "version": "0.3.1",
-    "updated": "2026-06",
-    "note": "57 行為者 / 33 事件 / 69 來源 / 35 敘事，整理自 NSB、IORG、Doublethink Lab、FactLink、Mandiant/Google、Meta、Graphika、ASPI、Citizen Lab 等公開報告與數位調查。"
+    "version": "0.4.0",
+    "updated": "2026-09",
+    "note": "113 行為者 / 33 事件 / 78 來源 / 35 敘事。本版新增：抽取→審核→發布產線、歸因人工核可工作流（3 則 attributed-to）、簡繁對應、來源與宣稱合併＋引文共現介面；並收錄尚比亞案與 OpenAI June 2026 報告的 PRC 影響力行動。"
   },
   "entities": [
     {

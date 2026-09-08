@@ -1,0 +1,38 @@
+name: Refresh STIX bundle
+
+# 每次 push 到 main（除了只動 bundle 本身）自動重匯出整本 STIX，
+# 讓公開的 pipeline/out/netweaver-db.stix.json 永遠跟 data/db.js 同步。
+on:
+  push:
+    branches: [main]
+    paths-ignore:
+      - 'pipeline/out/**'      # bot 自己回寫 bundle 的 push 不再觸發，斷迴圈
+
+permissions:
+  contents: write             # 需要寫回 bundle
+
+concurrency:
+  group: refresh-stix
+  cancel-in-progress: false
+
+jobs:
+  export:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+      - name: 重匯出整本 STIX bundle（export_stix.py，純 stdlib）
+        run: python3 pipeline/export_stix.py     # profile 不變量未過會 exit 1 → 步驟失敗、不發佈壞 bundle
+      - name: 有變動才 commit 回寫
+        run: |
+          if git diff --quiet -- pipeline/out/netweaver-db.stix.json; then
+            echo "bundle 未變，無需回寫"
+          else
+            git config user.name  "netweaver-bot"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add pipeline/out/netweaver-db.stix.json
+            git commit -m "chore(stix): 自動重匯出 bundle（與 db.js 同步）[skip ci]"
+            git push
+          fi

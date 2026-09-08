@@ -7879,15 +7879,18 @@ window.NETWEAVER_DB = {
     },
     {
       "id": "nine-emdash-line",
-      "name_zh": "九破折號線行動",
+      "name_zh": "九段線行動",
       "name_en": "Nine-emdash Line",
       "aliases": [
-        "Operation Nine-emdash Line"
+        "Operation Nine-emdash Line",
+        "九段線",
+        "Nine-dash Line",
+        "Nine-Dash Line"
       ],
       "category": "cib-network",
       "role": "attacker",
       "origin": "PRC",
-      "summary_zh": "PRC 來源影響力行動，OpenAI 於 2025 年 10 月報告揭露。June 2026 報告記錄「科技與關稅行動」的 X 帳號轉發過與本行動關聯帳號先前散布的菲律賓總統 Marcos 影像——OpenAI 明言此不足以確立兩行動的直接關聯，僅強化「X 上放大中國影響力活動的網絡」印象。",
+      "summary_zh": "OpenAI 對一項南海「九段線」敘事影響力行動的命名（Nine-emdash Line 為其風格化寫法），於 2025 年 10 月報告揭露、屬 PRC 來源。June 2026 報告記錄「科技與關稅行動」的 X 帳號轉發過與本行動關聯帳號先前散布的菲律賓總統 Marcos 影像（南海爭端脈絡）——OpenAI 明言此不足以確立兩行動的直接關聯，僅強化「X 上放大中國影響力活動的網絡」印象。",
       "source_ids": [
         "src-openai-threat-intelligence-1b31cc"
       ],

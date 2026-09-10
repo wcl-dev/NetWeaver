@@ -1,0 +1,40 @@
+name: Checks
+
+# 兩道把關：
+#  1) README 的「完整來源清單」附錄必須與 data/registry.yaml 同步
+#     （改了 registry 卻忘了重生成 README → CI 紅）。
+#  2) 管線測試套件（pipeline/test_*.py，純離線單元測試）。
+on:
+  push:
+    branches: [main]
+    paths-ignore:
+      - 'pipeline/out/**'        # bot 回寫 STIX bundle 的 push 不需重跑
+  pull_request: {}
+  workflow_dispatch: {}
+
+permissions:
+  contents: read                # 只檢查、不寫回
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+      - name: 安裝依賴（PyYAML，供 registry 工具與測試）
+        run: pip install -r requirements.txt
+      - name: README 來源附錄與 registry.yaml 同步檢查（漂移則失敗）
+        run: python3 scripts/gen_source_appendix.py --check
+      - name: 管線測試套件（pipeline/test_*.py，純離線）
+        run: |
+          fail=0
+          for t in pipeline/test_*.py; do
+            if python3 "$t" >/tmp/nw_test.out 2>&1; then
+              echo "✓ $(basename "$t")"
+            else
+              echo "✗ FAIL: $t"; tail -20 /tmp/nw_test.out; fail=1
+            fi
+          done
+          exit $fail

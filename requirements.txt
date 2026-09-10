@@ -1,0 +1,4 @@
+# NetWeaver 工具／測試依賴。
+# 核心產線（ingest / filter / extract / derive / export_stix）為純 Python 標準庫、無需安裝。
+# 以下僅供 register.py、scripts/gen_source_appendix.py 與相關測試（讀 data/registry.yaml）使用。
+PyYAML>=6.0

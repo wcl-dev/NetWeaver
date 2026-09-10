@@ -83,7 +83,7 @@ sources:
     tier: B
     type: research
     url: "https://www.newsguardtech.com/"
-    license: ngo-restricted         # 部分 gated／商用
+    license: all-rights-reserved    # 商用、gated；與 feeds.json: newsguard-rc 一致（取較嚴）
     mode: feed                      # 經 Reality Check feed 輪詢（feeds.json: newsguard-rc）
     cadence: on-alert
     added: "2026-07"

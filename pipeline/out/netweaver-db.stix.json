@@ -5969,6 +5969,22 @@
         {
           "quote": "同日，「兩岸頭條」、「中華微視」引用《日經亞洲評論》報導內容，表示阿富汗的狀況打亂了拜登集中精力對抗中國的佈局。",
           "source_url": "https://iorg.tw/da/11"
+        },
+        {
+          "quote": "「中華微視」及「兩岸頭條」等臉書粉絲專頁，涉嫌散布「日本為『臺海突發狀況』預作撤僑準備，認臺灣將踩踏中共紅線」等不實訊息",
+          "source_url": "https://news.ltn.com.tw/news/society/breakingnews/4127700"
+        },
+        {
+          "quote": "資安工作站過濾相關人員的電磁紀錄等多項證物，發現蔡男及其張姓前妻等人，涉嫌受中方指示，在台成立中華微視公司，經營多媒體相關事業，除播送與推廣大陸微視及香港微視的影音項目之外，另協助經營、管理臉書「中華微視」粉絲專頁及Youtube頻道，轉貼分享外宣影片及貼文。",
+          "source_url": "https://news.ltn.com.tw/news/society/breakingnews/4127700"
+        },
+        {
+          "quote": "檢調另查獲，中華微視負責人蔡男未經主管機關「經濟部投資審議委員會」許可，涉嫌與具有中共解放軍退伍背景的大陸微視及香港微視的董事長簽訂簽訂「戰略合作協議」，約定由大陸微視及香港微視出資人民幣300萬元，以取得中華微視的67%股權，藉此推動中方指示的業務，中華微視目前已收受中方提供的人民幣50萬元資金，涉嫌違反「臺灣地區與大陸地區人民關係條例」相關規定。",
+          "source_url": "https://news.ltn.com.tw/news/society/breakingnews/4127700"
+        },
+        {
+          "quote": "「中華微視」及「兩岸頭條」等臉書粉絲專頁，涉嫌散布「日本為『臺海突發狀況』預作撤僑準備，認臺灣將踩踏中共紅線」等不實訊息，調查局資安工作站蒐證後發現，中華微視未經許可即收取中資在台營運，報請新北地檢署指揮搜索中華微視及蔡姓負責人住居所等4處，訊後依違反兩岸條例等罪分別諭令蔡岳廷9萬元交保、蔡的前妻張巧琳5萬元交保。",
+          "source_url": "https://news.ltn.com.tw/news/society/breakingnews/4127700"
         }
       ],
       "extensions": {
@@ -6495,6 +6511,50 @@
           "source_url": "https://www.storm.mg/article/11094106"
         }
       ]
+    },
+    {
+      "type": "intrusion-set",
+      "spec_version": "2.1",
+      "id": "intrusion-set--5cf28e31-36b0-5a3e-b702-be0bc31d0c95",
+      "created": "2026-01-01T00:00:00.000Z",
+      "modified": "2026-01-01T00:00:00.000Z",
+      "name": "大陸微視網絡科技",
+      "object_marking_refs": [
+        "marking-definition--30837352-4bcb-536d-ab32-86f489a09985"
+      ],
+      "aliases": [
+        "Dalu Weishi (Jiangsu)",
+        "Dalu VTV",
+        "大陸微視",
+        "大陸微視網絡科技江蘇有限公司"
+      ],
+      "description": "大陸微視網絡科技江蘇有限公司；董事長具中共解放軍退伍背景，出資取得在台「中華微視」67% 股權、指示其在台散布外宣與不實訊息（調查局資安工作站 2022 偵辦）。",
+      "confidence": 60,
+      "x_netweaver_evidence": [
+        {
+          "quote": "檢調另查獲，中華微視負責人蔡男未經主管機關「經濟部投資審議委員會」許可，涉嫌與具有中共解放軍退伍背景的大陸微視及香港微視的董事長簽訂簽訂「戰略合作協議」，約定由大陸微視及香港微視出資人民幣300萬元，以取得中華微視的67%股權，藉此推動中方指示的業務，中華微視目前已收受中方提供的人民幣50萬元資金，涉嫌違反「臺灣地區與大陸地區人民關係條例」相關規定。",
+          "source_url": "https://news.ltn.com.tw/news/society/breakingnews/4127700"
+        }
+      ]
+    },
+    {
+      "type": "intrusion-set",
+      "spec_version": "2.1",
+      "id": "intrusion-set--27992e27-13b8-58de-b832-5b6ee3fb58b0",
+      "created": "2026-01-01T00:00:00.000Z",
+      "modified": "2026-01-01T00:00:00.000Z",
+      "name": "香港中華微視",
+      "object_marking_refs": [
+        "marking-definition--30837352-4bcb-536d-ab32-86f489a09985"
+      ],
+      "aliases": [
+        "Hong Kong China VTV",
+        "Hong Kong China VTV",
+        "香港中華微視有限公司",
+        "香港微視"
+      ],
+      "description": "香港中華微視有限公司；與大陸微視共同出資、指示在台「中華微視」推動中方外宣業務（調查局資安工作站 2022 偵辦）。",
+      "confidence": 60
     },
     {
       "type": "x-dad-narrative",
@@ -8817,6 +8877,32 @@
       "relationship_type": "subsidiary-of",
       "source_ref": "x-dad-channel--1035b28e-3a32-542d-9436-a85da97c0a27",
       "target_ref": "x-dad-channel--bb476641-af25-5a77-a88f-b937fcfd58d3",
+      "object_marking_refs": [
+        "marking-definition--30837352-4bcb-536d-ab32-86f489a09985"
+      ]
+    },
+    {
+      "type": "relationship",
+      "spec_version": "2.1",
+      "id": "relationship--a2d8ca1d-908f-5ce9-b243-7b11f665e496",
+      "created": "2026-01-01T00:00:00.000Z",
+      "modified": "2026-01-01T00:00:00.000Z",
+      "relationship_type": "subsidiary-of",
+      "source_ref": "x-dad-channel--66294ada-7bb7-5947-a4c1-39acd3cbd017",
+      "target_ref": "intrusion-set--5cf28e31-36b0-5a3e-b702-be0bc31d0c95",
+      "object_marking_refs": [
+        "marking-definition--30837352-4bcb-536d-ab32-86f489a09985"
+      ]
+    },
+    {
+      "type": "relationship",
+      "spec_version": "2.1",
+      "id": "relationship--c3993130-c009-549b-ac20-7a31162e1170",
+      "created": "2026-01-01T00:00:00.000Z",
+      "modified": "2026-01-01T00:00:00.000Z",
+      "relationship_type": "affiliated-with",
+      "source_ref": "x-dad-channel--66294ada-7bb7-5947-a4c1-39acd3cbd017",
+      "target_ref": "intrusion-set--27992e27-13b8-58de-b832-5b6ee3fb58b0",
       "object_marking_refs": [
         "marking-definition--30837352-4bcb-536d-ab32-86f489a09985"
       ]
@@ -11734,6 +11820,8 @@
       "published": "2022-11-01T00:00:00.000Z",
       "object_refs": [
         "campaign--5c27a79b-fa24-5ef7-bb37-f8efe9f36af9",
+        "intrusion-set--27992e27-13b8-58de-b832-5b6ee3fb58b0",
+        "intrusion-set--5cf28e31-36b0-5a3e-b702-be0bc31d0c95",
         "intrusion-set--a7ae7366-e49b-5e6d-98cd-d84710169956"
       ],
       "external_references": [

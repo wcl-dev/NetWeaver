@@ -84,13 +84,19 @@ def build(db, ts="2026-01-01T00:00:00.000Z"):
         objs.append(o)
 
     rels = []
-    def rel(rt, s, t):
+    def rel(rt, s, t, note=None):
         if not s or not t: return
         i = pipe.sid("relationship", f"{rt}:{s}:{t}")
         if any(r["id"] == i for r in rels): return
-        rels.append({"type": "relationship", "spec_version": "2.1", "id": i, "created": ts,
-                     "modified": ts, "relationship_type": rt, "source_ref": s, "target_ref": t,
-                     "object_marking_refs": [mark_id]})
+        obj = {"type": "relationship", "spec_version": "2.1", "id": i, "created": ts,
+               "modified": ts, "relationship_type": rt, "source_ref": s, "target_ref": t,
+               "object_marking_refs": [mark_id]}
+        if rt == "attributed-to":                         # 歸因＝人工核可紅線；db.js 只存已核可者，核可章帶進全書 bundle
+            import re as _re
+            obj["x_netweaver_review"] = "approved"
+            m = _re.search(r"(\d{4}-\d{2}-\d{2})", note or "")   # note：「…；YYYY-MM-DD 人工核可」
+            if m: obj["x_netweaver_reviewed"] = m.group(1)
+        rels.append(obj)
     for e in db.get("entities", []):                  # 實體↔實體：關係皆人工登錄（add-relation／歸因核可）
         for r in (e.get("related") or []):
             if isinstance(r, str):                    # 舊形態：純 id 字串 → 中性邊
@@ -99,7 +105,7 @@ def build(db, ts="2026-01-01T00:00:00.000Z"):
             # 全書匯出把人工關係**整批靜默丟掉**；且型別被壓成 related-to，丟失
             # runs／operated-by／subsidiary-of／attributed-to 的語意。兩者都不可接受：
             # db.js 裡的關係全是人工決定（attributed-to 更是逐則核可），匯出必須忠實。
-            rel(r.get("relation") or "related-to", ent_sid.get(e["id"]), ent_sid.get(r.get("target_id")))
+            rel(r.get("relation") or "related-to", ent_sid.get(e["id"]), ent_sid.get(r.get("target_id")), note=r.get("note"))
     for v in db.get("events", []):                    # 行動→參與者：§6 中性邊，不用 attributed-to
         for pid in (v.get("participant_ids") or []): rel("related-to", ev_sid.get(v["id"]), ent_sid.get(pid))
         for nid in (v.get("narratives") or []):       # 行動→敘事：uses

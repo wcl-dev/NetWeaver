@@ -9,7 +9,7 @@ window.NETWEAVER_DB = {
   "meta": {
     "version": "0.4.0",
     "updated": "2026-09",
-    "note": "115 行為者 / 33 事件 / 78 來源 / 35 敘事。本版新增：抽取→審核→發布產線、歸因人工核可工作流（4 則 attributed-to）、簡繁對應、來源與宣稱合併＋引文共現介面；並收錄尚比亞案與 OpenAI June 2026 報告的 PRC 影響力行動。"
+    "note": "118 行為者 / 33 事件 / 78 來源 / 35 敘事。本版新增：抽取→審核→發布產線、歸因人工核可工作流（4 則 attributed-to）、簡繁對應、來源與宣稱合併＋引文共現介面；並收錄尚比亞案與 OpenAI June 2026 報告的 PRC 影響力行動。"
   },
   "entities": [
     {
@@ -75,8 +75,9 @@ window.NETWEAVER_DB = {
       ],
       "source_ids": [
         "src-nsb-2026",
-        "src-vanderbilt-golaxy",
-        "src-record-golaxy"
+        "src-record-golaxy",
+        "src-storm-nsb-2026",
+        "src-vanderbilt-golaxy"
       ],
       "confidence": "high",
       "claims": [
@@ -142,8 +143,9 @@ window.NETWEAVER_DB = {
       ],
       "source_ids": [
         "src-nsb-2026",
-        "src-vanderbilt-golaxy",
-        "src-record-golaxy"
+        "src-record-golaxy",
+        "src-storm-nsb-2026",
+        "src-vanderbilt-golaxy"
       ],
       "confidence": "high",
       "claims": [
@@ -205,8 +207,10 @@ window.NETWEAVER_DB = {
         "golaxy-leak-2025"
       ],
       "source_ids": [
+        "src-factlink-a7a795",
         "src-gti-base311",
         "src-nsb-2026",
+        "src-storm-nsb-2026",
         "src-vanderbilt-golaxy"
       ],
       "confidence": "high",
@@ -274,8 +278,11 @@ window.NETWEAVER_DB = {
       ],
       "source_ids": [
         "src-aspi-strait",
+        "src-doublethink-lab-96d2c0",
+        "src-dtl-2022election",
         "src-nsb-2026",
-        "src-propublica-onesight"
+        "src-propublica-onesight",
+        "src-storm-nsb-2026"
       ],
       "confidence": "high",
       "claims": [
@@ -351,10 +358,11 @@ window.NETWEAVER_DB = {
         "nsb-cognitive-2025"
       ],
       "source_ids": [
-        "src-meta-2023",
         "src-doj-912",
+        "src-meta-2023",
         "src-nsb-2026",
-        "src-record-spamouflage"
+        "src-record-spamouflage",
+        "src-storm-nsb-2026"
       ],
       "confidence": "high",
       "claims": [
@@ -408,8 +416,13 @@ window.NETWEAVER_DB = {
         "joint-sword-2024"
       ],
       "source_ids": [
-        "src-iorg-118",
+        "src-aspi-2024",
         "src-aspi-strait",
+        "src-dtl-2022election",
+        "src-iorg-11",
+        "src-iorg-118",
+        "src-iorg-131",
+        "src-jamestown-js2024b",
         "src-nsb-2026"
       ],
       "confidence": "high",
@@ -623,8 +636,8 @@ window.NETWEAVER_DB = {
         },
         {
           "target_id": "cas",
-          "relation": "subsidiary-of",
-          "note": "范德堡大學取得之文件：GoLaxy（中科天璣）由中國科學院創立"
+          "relation": "affiliated-with",
+          "note": "范德堡文件：GoLaxy（中科天璣）由中國科學院創立（spin-off）"
         }
       ],
       "event_ids": [
@@ -632,12 +645,13 @@ window.NETWEAVER_DB = {
         "election-op-2024"
       ],
       "source_ids": [
-        "src-vanderbilt-golaxy",
-        "src-record-golaxy",
         "src-dtl-golaxy",
+        "src-factlink-ff3dee",
         "src-nsb-2026",
-        "src-vanderbilt-golaxy-2025",
-        "src-nyt-golaxy"
+        "src-nyt-golaxy",
+        "src-record-golaxy",
+        "src-vanderbilt-golaxy",
+        "src-vanderbilt-golaxy-2025"
       ],
       "confidence": "high",
       "claims": [
@@ -760,8 +774,9 @@ window.NETWEAVER_DB = {
       ],
       "source_ids": [
         "src-dtl-golaxy",
+        "src-nsb-2026",
         "src-record-meiya",
-        "src-nsb-2026"
+        "src-storm-nsb-2026"
       ],
       "confidence": "low",
       "claims": [
@@ -817,7 +832,8 @@ window.NETWEAVER_DB = {
       "source_ids": [
         "src-dtl-golaxy",
         "src-hrw-iflytek",
-        "src-nsb-2026"
+        "src-nsb-2026",
+        "src-storm-nsb-2026"
       ],
       "confidence": "low",
       "claims": [
@@ -866,9 +882,10 @@ window.NETWEAVER_DB = {
       ],
       "event_ids": [],
       "source_ids": [
-        "src-propublica-onesight",
         "src-aspi-persuasive",
-        "src-nsb-2026"
+        "src-nsb-2026",
+        "src-propublica-onesight",
+        "src-storm-nsb-2026"
       ],
       "confidence": "low",
       "claims": [
@@ -949,10 +966,11 @@ window.NETWEAVER_DB = {
         "nsb-cognitive-2025"
       ],
       "source_ids": [
+        "src-google-glassbridge",
         "src-mandiant-haienergy-2022",
         "src-mandiant-haienergy-2023",
-        "src-google-glassbridge",
-        "src-nsb-2026"
+        "src-nsb-2026",
+        "src-storm-nsb-2026"
       ],
       "confidence": "high",
       "claims": [
@@ -1220,8 +1238,9 @@ window.NETWEAVER_DB = {
       ],
       "source_ids": [
         "src-dtl-borderless",
+        "src-factlink-butterfly",
         "src-nsb-2026",
-        "src-factlink-butterfly"
+        "src-storm-nsb-2026"
       ],
       "confidence": "medium",
       "claims": [
@@ -1399,8 +1418,9 @@ window.NETWEAVER_DB = {
       "related": [],
       "event_ids": [],
       "source_ids": [
-        "src-reporter-mission",
-        "src-gazette-mission"
+        "src-gazette-mission",
+        "src-iorg-38",
+        "src-reporter-mission"
       ],
       "confidence": "high",
       "claims": [
@@ -1456,10 +1476,12 @@ window.NETWEAVER_DB = {
         "hack-leak-takaichi-2025"
       ],
       "source_ids": [
-        "src-ltn-chinavtv",
-        "src-gti-provincial",
         "src-dtl-2022election",
-        "src-factlink-hackleak"
+        "src-factlink-hackleak",
+        "src-gti-provincial",
+        "src-iorg-11",
+        "src-iorg-38",
+        "src-ltn-chinavtv"
       ],
       "confidence": "medium",
       "claims": [
@@ -1571,20 +1593,26 @@ window.NETWEAVER_DB = {
         "glassbridge-takedown-2024"
       ],
       "source_ids": [
-        "src-graphika-spamouflage",
-        "src-meta-2023",
-        "src-record-spamouflage",
+        "src-aspi-2024",
+        "src-doj-912",
+        "src-dtl-multiverse",
+        "src-factlink-takaichi",
         "src-google-dragonbridge-2024",
-        "src-nsb-2026",
+        "src-google-glassbridge",
         "src-graphika-americans",
+        "src-graphika-deepfake",
+        "src-graphika-spamouflage",
+        "src-isd-magaflage",
+        "src-mandiant-haienergy-2022",
+        "src-meta-2023",
+        "src-meta-q1-2025",
         "src-meta-q3-2023",
         "src-mtac-2024",
+        "src-nsb-2026",
+        "src-openai-threat-intelligence-1b31cc",
+        "src-record-spamouflage",
         "src-rf-empire-dragon",
-        "src-aspi-2024",
-        "src-graphika-deepfake",
-        "src-doj-912",
-        "src-meta-q1-2025",
-        "src-dtl-multiverse"
+        "src-storm-nsb-2026"
       ],
       "confidence": "high",
       "claims": [
@@ -2268,10 +2296,12 @@ window.NETWEAVER_DB = {
       ],
       "source_ids": [
         "src-cna-yuyuan",
-        "src-wiki-yuyuan",
-        "src-nsb-2025",
+        "src-factlink-a7a795",
+        "src-factlink-japan",
         "src-factlink-satellite",
-        "src-factlink-japan"
+        "src-iorg-38",
+        "src-nsb-2025",
+        "src-wiki-yuyuan"
       ],
       "confidence": "medium",
       "claims": [
@@ -2344,9 +2374,12 @@ window.NETWEAVER_DB = {
         "satellite-retrocession-2025"
       ],
       "source_ids": [
+        "src-factlink-satellite",
         "src-gti-base311",
-        "src-wiki-vos",
-        "src-factlink-satellite"
+        "src-iorg-118",
+        "src-iorg-38",
+        "src-iorg-41",
+        "src-wiki-vos"
       ],
       "confidence": "high",
       "claims": [
@@ -2496,10 +2529,21 @@ window.NETWEAVER_DB = {
         "japan-narrative-2025"
       ],
       "source_ids": [
-        "src-wiki-globaltimes",
-        "src-lowy-globaltimes",
+        "src-citizenlab-paperwall",
+        "src-doublethink-lab-96d2c0",
+        "src-doublethink-lab-aaba8c",
+        "src-dtl-2022election",
+        "src-factlink-a7a795",
+        "src-factlink-japan",
+        "src-factlink-satellite",
         "src-globaltimes-pelosi",
-        "src-factlink-japan"
+        "src-google-glassbridge",
+        "src-iorg-11",
+        "src-iorg-118",
+        "src-iorg-131",
+        "src-iorg-41",
+        "src-lowy-globaltimes",
+        "src-wiki-globaltimes"
       ],
       "confidence": "high",
       "claims": [
@@ -2869,7 +2913,8 @@ window.NETWEAVER_DB = {
         "april-2025-exercise-ptt-hijack"
       ],
       "source_ids": [
-        "src-nsb-2026"
+        "src-nsb-2026",
+        "src-storm-nsb-2026"
       ],
       "confidence": "high",
       "claims": [
@@ -2913,7 +2958,8 @@ window.NETWEAVER_DB = {
         "election-op-2024"
       ],
       "source_ids": [
-        "src-nsb-2026"
+        "src-nsb-2026",
+        "src-storm-nsb-2026"
       ],
       "confidence": "medium",
       "claims": [
@@ -2954,7 +3000,8 @@ window.NETWEAVER_DB = {
       ],
       "event_ids": [],
       "source_ids": [
-        "src-nsb-2026"
+        "src-nsb-2026",
+        "src-storm-nsb-2026"
       ],
       "confidence": "medium",
       "claims": [
@@ -2988,7 +3035,8 @@ window.NETWEAVER_DB = {
       ],
       "event_ids": [],
       "source_ids": [
-        "src-nsb-2026"
+        "src-nsb-2026",
+        "src-storm-nsb-2026"
       ],
       "confidence": "medium",
       "claims": [
@@ -3045,10 +3093,11 @@ window.NETWEAVER_DB = {
         "nsb-cognitive-2025"
       ],
       "source_ids": [
-        "src-nsb-2026",
-        "src-nsb-2025",
         "src-citizenlab-paperwall",
-        "src-google-glassbridge"
+        "src-google-glassbridge",
+        "src-nsb-2025",
+        "src-nsb-2026",
+        "src-storm-nsb-2026"
       ],
       "confidence": "medium",
       "claims": [
@@ -3163,7 +3212,8 @@ window.NETWEAVER_DB = {
         "nsb-cognitive-2025"
       ],
       "source_ids": [
-        "src-nsb-2026"
+        "src-nsb-2026",
+        "src-storm-nsb-2026"
       ],
       "confidence": "low",
       "claims": [
@@ -3197,7 +3247,8 @@ window.NETWEAVER_DB = {
       "related": [],
       "event_ids": [],
       "source_ids": [
-        "src-nsb-2026"
+        "src-nsb-2026",
+        "src-storm-nsb-2026"
       ],
       "confidence": "medium",
       "claims": [
@@ -3234,7 +3285,8 @@ window.NETWEAVER_DB = {
       "related": [],
       "event_ids": [],
       "source_ids": [
-        "src-nsb-2026"
+        "src-nsb-2026",
+        "src-storm-nsb-2026"
       ],
       "confidence": "medium",
       "claims": [
@@ -3320,10 +3372,14 @@ window.NETWEAVER_DB = {
         "democracy-failure-report-118"
       ],
       "source_ids": [
-        "src-nsb-2025",
+        "src-factlink-japan",
         "src-iorg-101",
         "src-iorg-118",
-        "src-iorg-136"
+        "src-iorg-131",
+        "src-iorg-136",
+        "src-iorg-38",
+        "src-iorg-41",
+        "src-nsb-2025"
       ],
       "confidence": "low",
       "claims": [
@@ -3441,8 +3497,13 @@ window.NETWEAVER_DB = {
         "us-skepticism-report-2023"
       ],
       "source_ids": [
-        "src-iorg-usskep1",
-        "src-iorg-101"
+        "src-aspi-2024",
+        "src-dtl-2022election",
+        "src-iorg-101",
+        "src-iorg-118",
+        "src-iorg-38",
+        "src-iorg-41",
+        "src-iorg-usskep1"
       ],
       "confidence": "high",
       "claims": [
@@ -3661,8 +3722,13 @@ window.NETWEAVER_DB = {
         "defense-futility-report-2025"
       ],
       "source_ids": [
+        "src-doublethink-lab-aaba8c",
+        "src-dtl-2022election",
         "src-iorg-101",
-        "src-iorg-131"
+        "src-iorg-11",
+        "src-iorg-131",
+        "src-iorg-38",
+        "src-iorg-41"
       ],
       "confidence": "high",
       "claims": [
@@ -3759,7 +3825,10 @@ window.NETWEAVER_DB = {
         "defense-futility-report-2025"
       ],
       "source_ids": [
-        "src-iorg-101"
+        "src-dtl-2022election",
+        "src-iorg-101",
+        "src-iorg-38",
+        "src-iorg-41"
       ],
       "confidence": "high",
       "claims": [
@@ -3815,6 +3884,9 @@ window.NETWEAVER_DB = {
         "us-skepticism-report-2023"
       ],
       "source_ids": [
+        "src-iorg-11",
+        "src-iorg-38",
+        "src-iorg-41",
         "src-iorg-usskep1"
       ],
       "confidence": "medium",
@@ -3954,7 +4026,9 @@ window.NETWEAVER_DB = {
       ],
       "source_ids": [
         "src-iorg-101",
-        "src-iorg-136"
+        "src-iorg-131",
+        "src-iorg-136",
+        "src-iorg-38"
       ],
       "confidence": "high",
       "claims": [
@@ -4091,8 +4165,10 @@ window.NETWEAVER_DB = {
         "ccp-taiwan-reps-2025"
       ],
       "source_ids": [
+        "src-iorg-131",
         "src-iorg-136",
-        "src-iorg-131"
+        "src-iorg-38",
+        "src-iorg-41"
       ],
       "confidence": "high",
       "claims": [
@@ -4293,6 +4369,7 @@ window.NETWEAVER_DB = {
       ],
       "source_ids": [
         "src-iorg-101",
+        "src-iorg-118",
         "src-iorg-136"
       ],
       "confidence": "high",
@@ -4329,7 +4406,9 @@ window.NETWEAVER_DB = {
       ],
       "source_ids": [
         "src-iorg-101",
-        "src-iorg-136"
+        "src-iorg-136",
+        "src-iorg-38",
+        "src-iorg-41"
       ],
       "confidence": "high",
       "claims": [
@@ -4418,7 +4497,9 @@ window.NETWEAVER_DB = {
       ],
       "source_ids": [
         "src-iorg-101",
-        "src-iorg-136"
+        "src-iorg-131",
+        "src-iorg-136",
+        "src-iorg-41"
       ],
       "confidence": "high",
       "claims": [
@@ -4458,7 +4539,9 @@ window.NETWEAVER_DB = {
         "ccp-taiwan-reps-2025"
       ],
       "source_ids": [
+        "src-dtl-multiverse",
         "src-iorg-101",
+        "src-iorg-131",
         "src-iorg-136"
       ],
       "confidence": "high",
@@ -4565,11 +4648,22 @@ window.NETWEAVER_DB = {
         "japan-narrative-2025"
       ],
       "source_ids": [
+        "src-aspi-strait",
+        "src-citizenlab-paperwall",
+        "src-cna-yuyuan",
+        "src-doublethink-lab-b7212b",
+        "src-dtl-2022election",
+        "src-factlink-a7a795",
+        "src-factlink-butterfly",
+        "src-factlink-japan",
+        "src-factlink-satellite",
         "src-iorg-101",
         "src-iorg-118",
+        "src-iorg-131",
         "src-iorg-136",
-        "src-factlink-satellite",
-        "src-factlink-japan"
+        "src-iorg-38",
+        "src-iorg-41",
+        "src-jamestown-js2024b"
       ],
       "confidence": "high",
       "claims": [
@@ -4882,8 +4976,9 @@ window.NETWEAVER_DB = {
         "ccp-taiwan-reps-2025"
       ],
       "source_ids": [
+        "src-iorg-131",
         "src-iorg-136",
-        "src-iorg-131"
+        "src-iorg-41"
       ],
       "confidence": "medium",
       "claims": [
@@ -4943,8 +5038,12 @@ window.NETWEAVER_DB = {
       ],
       "source_ids": [
         "src-iorg-101",
+        "src-iorg-11",
         "src-iorg-118",
-        "src-iorg-136"
+        "src-iorg-131",
+        "src-iorg-136",
+        "src-iorg-38",
+        "src-iorg-41"
       ],
       "confidence": "high",
       "claims": [
@@ -5183,7 +5282,9 @@ window.NETWEAVER_DB = {
         "just-mission-2025"
       ],
       "source_ids": [
-        "src-factlink-pla"
+        "src-factlink-a7a795",
+        "src-factlink-pla",
+        "src-iorg-41"
       ],
       "confidence": "high",
       "claims": [
@@ -5499,8 +5600,11 @@ window.NETWEAVER_DB = {
         "japan-narrative-2025"
       ],
       "source_ids": [
+        "src-factlink-a7a795",
+        "src-factlink-japan",
         "src-factlink-satellite",
-        "src-factlink-japan"
+        "src-iorg-118",
+        "src-iorg-38"
       ],
       "confidence": "medium",
       "claims": [
@@ -5578,7 +5682,8 @@ window.NETWEAVER_DB = {
         "japan-narrative-2025"
       ],
       "source_ids": [
-        "src-factlink-japan"
+        "src-factlink-japan",
+        "src-iorg-11"
       ],
       "confidence": "high",
       "claims": [
@@ -5728,7 +5833,19 @@ window.NETWEAVER_DB = {
       "origin": "PRC",
       "summary_zh": "中國國家通訊社。FactLink 對 2025「正義使命」軍演的宣傳網絡分析中，將其列為受權發布演訓公告與示意圖的中央官媒。",
       "source_ids": [
-        "src-factlink-a7a795"
+        "src-aspi-the-strategist-934197",
+        "src-doublethink-lab-96d2c0",
+        "src-doublethink-lab-b7212b",
+        "src-dtl-2022election",
+        "src-factlink-a7a795",
+        "src-factlink-japan",
+        "src-factlink-satellite",
+        "src-iorg-11",
+        "src-iorg-118",
+        "src-iorg-131",
+        "src-iorg-38",
+        "src-iorg-41",
+        "src-lowy-globaltimes"
       ],
       "confidence": "high",
       "claims": [
@@ -5950,7 +6067,10 @@ window.NETWEAVER_DB = {
       "origin": "PRC",
       "summary_zh": "上海報業集團旗下新聞網站。FactLink 對 2025「正義使命」軍演的宣傳網絡分析中，將其列為轉分享軍演宣傳素材的媒體之一。",
       "source_ids": [
-        "src-factlink-a7a795"
+        "src-factlink-a7a795",
+        "src-factlink-satellite",
+        "src-iorg-131",
+        "src-iorg-41"
       ],
       "confidence": "medium",
       "claims": [
@@ -6019,7 +6139,11 @@ window.NETWEAVER_DB = {
       "origin": "PRC",
       "summary_zh": "中華人民共和國外交部。FactLink 對 2025「正義使命」軍演的宣傳網絡分析中，將其列為官媒評論所引述的官方消息來源。",
       "source_ids": [
-        "src-factlink-a7a795"
+        "src-doublethink-lab-96d2c0",
+        "src-factlink-a7a795",
+        "src-factlink-japan",
+        "src-factlink-takaichi",
+        "src-iorg-11"
       ],
       "confidence": "medium",
       "claims": [
@@ -6204,10 +6328,11 @@ window.NETWEAVER_DB = {
       "source_ids": [
         "src-doublethink-lab-96d2c0",
         "src-dtl-2022election",
-        "src-jamestown-js2024b",
-        "src-lowy-globaltimes",
+        "src-factlink-satellite",
         "src-iorg-118",
-        "src-iorg-131"
+        "src-iorg-131",
+        "src-jamestown-js2024b",
+        "src-lowy-globaltimes"
       ],
       "confidence": "high",
       "claims": [
@@ -6596,6 +6721,7 @@ window.NETWEAVER_DB = {
       "source_ids": [
         "src-factlink-japan",
         "src-factlink-satellite",
+        "src-iorg-131",
         "src-iorg-38",
         "src-iorg-41"
       ],
@@ -6751,6 +6877,7 @@ window.NETWEAVER_DB = {
       "origin": "PRC",
       "summary_zh": "IORG 標記為中共中央統戰部口徑的通訊社。其網站中國新聞網針對賴清德演講發表文章，YouTube 頻道亦發布對台影片。",
       "source_ids": [
+        "src-factlink-japan",
         "src-iorg-118",
         "src-iorg-131",
         "src-iorg-41"
@@ -6927,6 +7054,7 @@ window.NETWEAVER_DB = {
       "origin": "HK",
       "summary_zh": "FactLink 描述為具中國官方性質的香港報紙，記錄其散播與中國高度相關的不實訊息後快速下架刪文。",
       "source_ids": [
+        "src-dtl-multiverse",
         "src-factlink-hackleak",
         "src-factlink-satellite"
       ],
@@ -7004,6 +7132,7 @@ window.NETWEAVER_DB = {
       "origin": "PRC",
       "summary_zh": "福建廣播影視集團旗下衛視。IORG 記錄其 YouTube 官方頻道發布「推翻民進黨」等對台政治宣傳影片。",
       "source_ids": [
+        "src-iorg-118",
         "src-iorg-131",
         "src-iorg-41"
       ],
@@ -7038,6 +7167,7 @@ window.NETWEAVER_DB = {
       "origin": "PRC",
       "summary_zh": "中共中央機關報之一。Doublethink Lab 的 GoLaxy 文件分析記錄其與出門問問（Mobvoi）深度合作，2020 年起共同推出 AI 虛擬主播「小明」等產品。",
       "source_ids": [
+        "src-aspi-00c2db",
         "src-dtl-golaxy"
       ],
       "confidence": "low",
@@ -7090,7 +7220,8 @@ window.NETWEAVER_DB = {
       "summary_zh": "香港中國評論通訊社。IORG 記錄其中評網發布涉台評論文章，如上海交通大學台灣研究中心主任盛九元的「虛構民主對抗專制敘事可休矣」。",
       "source_ids": [
         "src-iorg-11",
-        "src-iorg-118"
+        "src-iorg-118",
+        "src-iorg-131"
       ],
       "confidence": "medium",
       "claims": [
@@ -7271,6 +7402,7 @@ window.NETWEAVER_DB = {
       "origin": "PRC",
       "summary_zh": "中國生成式 AI 公司。ASPI 記錄 Spamouflage 帳號張貼的影片疑似以其 Weta365 應用生成，並推測其與中國安全或情報機構可能存在更深合作（原文為推測語氣）；Doublethink Lab 另記錄其與光明日報合作推出 AI 虛擬主播。",
       "source_ids": [
+        "src-aspi-00c2db",
         "src-aspi-2024",
         "src-dtl-golaxy"
       ],
@@ -7350,8 +7482,9 @@ window.NETWEAVER_DB = {
       "origin": "TW",
       "summary_zh": "台灣網紅。FactLink 記錄其影片與發言被中共官媒抓取為「島內輿論」的來源之一；IORG 記錄人民日報引用其批評民進黨的發言，並報導其赴中行程。",
       "source_ids": [
-        "src-factlink-satellite",
         "src-factlink-japan",
+        "src-factlink-satellite",
+        "src-iorg-118",
         "src-iorg-131"
       ],
       "confidence": "medium",
@@ -7636,9 +7769,13 @@ window.NETWEAVER_DB = {
       "origin": "TW",
       "summary_zh": "FactLink 描述為香港親中媒體，IORG 記錄其臉書粉專與「兩岸頭條」共同引用《日經亞洲評論》報導。已登錄的「兩岸頭條」記載其相關粉專於 2022 年遭調查局偵辦。",
       "source_ids": [
+        "src-factlink-hackleak",
         "src-factlink-satellite",
+        "src-iorg-11",
         "src-iorg-38",
-        "src-iorg-41"
+        "src-iorg-41",
+        "src-iorg-usskep1",
+        "src-ltn-chinavtv"
       ],
       "confidence": "medium",
       "sensitivity": "domestic-named",
@@ -7683,7 +7820,7 @@ window.NETWEAVER_DB = {
         {
           "target_id": "dalu-vtv",
           "relation": "subsidiary-of",
-          "note": "LTN 2022：大陸微視出資人民幣300萬取得中華微視67%股權"
+          "note": "LTN 2022：大陸微視及香港微視共同出資人民幣300萬元、取得中華微視67%股權"
         },
         {
           "target_id": "hk-chinavtv",
@@ -7704,8 +7841,10 @@ window.NETWEAVER_DB = {
       "origin": "PRC",
       "summary_zh": "IORG 標記為中國的臉書粉專，記錄其貼文傳播疑美論述，如「常規戰美國的總體實力肯定是勝過中國的」。",
       "source_ids": [
+        "src-iorg-11",
         "src-iorg-38",
-        "src-iorg-41"
+        "src-iorg-41",
+        "src-iorg-usskep1"
       ],
       "confidence": "medium",
       "claims": [
@@ -7741,6 +7880,8 @@ window.NETWEAVER_DB = {
       "origin": "TW",
       "summary_zh": "IORG 記錄為新黨人士林正國經營的內容農場，貼文傳播疑美論述，如「自以為世界警察的美國」。",
       "source_ids": [
+        "src-dtl-2022election",
+        "src-iorg-11",
         "src-iorg-38",
         "src-iorg-41"
       ],
@@ -7779,6 +7920,7 @@ window.NETWEAVER_DB = {
       "origin": "PRC",
       "summary_zh": "中共官媒臉書粉專。FactLink 將其與《今日海峽》《CCTV中文》《香港大公報》並列為官媒粉專群；IORG 記錄其持續傳播疑美論述。",
       "source_ids": [
+        "src-dtl-multiverse",
         "src-factlink-satellite",
         "src-iorg-11"
       ],
@@ -8126,13 +8268,19 @@ window.NETWEAVER_DB = {
       "id": "sugon",
       "name_zh": "中科曙光",
       "name_en": "Sugon",
-      "aliases": [],
+      "aliases": [
+        "Sugon",
+        "中科曙光",
+        "曙光",
+        "曙光信息產業"
+      ],
       "category": "tech-vendor",
       "role": "collaborator",
       "origin": "PRC",
       "summary_zh": "北京超級運算公司，美國國防部列為與解放軍有關聯；2021 年起資助並以超級電腦支援中科天璣（GoLaxy）的 AI 影響力平台。",
       "source_ids": [
-        "src-dtl-golaxy"
+        "src-dtl-golaxy",
+        "src-vanderbilt-golaxy-2025"
       ],
       "confidence": "medium",
       "claims": [
@@ -8154,13 +8302,19 @@ window.NETWEAVER_DB = {
       "id": "cas",
       "name_zh": "中國科學院",
       "name_en": "Chinese Academy of Sciences",
-      "aliases": [],
+      "aliases": [
+        "CAS",
+        "Chinese Academy of Sciences",
+        "中國科學院",
+        "中科院"
+      ],
       "category": "state-organ",
       "role": "collaborator",
       "origin": "PRC",
       "summary_zh": "中國國家級研究機構；據范德堡大學取得之文件，中科天璣（GoLaxy）由中國科學院創立。",
       "source_ids": [
-        "src-dtl-golaxy"
+        "src-dtl-golaxy",
+        "src-record-golaxy"
       ],
       "confidence": "medium",
       "claims": [
@@ -8175,7 +8329,13 @@ window.NETWEAVER_DB = {
       "id": "cpd",
       "name_zh": "中宣部",
       "name_en": "Central Propaganda Department",
-      "aliases": [],
+      "aliases": [
+        "CPD",
+        "Central Propaganda Department",
+        "中共中央宣傳部",
+        "中央宣傳部",
+        "中宣部"
+      ],
       "category": "state-organ",
       "role": "attacker",
       "origin": "PRC",
@@ -8201,10 +8361,10 @@ window.NETWEAVER_DB = {
         "大陸微視",
         "大陸微視網絡科技江蘇有限公司"
       ],
-      "category": "content-farm",
+      "category": "pr-firm",
       "role": "attacker",
       "origin": "PRC",
-      "summary_zh": "大陸微視網絡科技江蘇有限公司；董事長具中共解放軍退伍背景，出資取得在台「中華微視」67% 股權、指示其在台散布外宣與不實訊息（調查局資安工作站 2022 偵辦）。",
+      "summary_zh": "大陸微視網絡科技江蘇有限公司；據調查局資安工作站 2022 偵辦，董事長具解放軍退伍背景，與香港中華微視共同出資取得在台「中華微視」67% 股權、涉指示其在台散布外宣與不實訊息。",
       "source_ids": [
         "src-ltn-chinavtv"
       ],
@@ -8226,10 +8386,10 @@ window.NETWEAVER_DB = {
         "香港中華微視有限公司",
         "香港微視"
       ],
-      "category": "content-farm",
+      "category": "pr-firm",
       "role": "attacker",
       "origin": "HK",
-      "summary_zh": "香港中華微視有限公司；與大陸微視共同出資、指示在台「中華微視」推動中方外宣業務（調查局資安工作站 2022 偵辦）。",
+      "summary_zh": "香港中華微視有限公司；據調查局資安工作站 2022 偵辦，與大陸微視共同出資、涉指示在台「中華微視」推動中方外宣業務。",
       "source_ids": [
         "src-ltn-chinavtv"
       ],

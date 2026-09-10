@@ -15,9 +15,10 @@ LADDER = [
     # 被動樣式必須排在主動之前，否則 "hired by" 會先被 "hired" 吃掉。
     (r"operated by|run by|directed by|controlled by|hired by|employed by|"
      r"受[^，。]{0,6}(僱用|雇用|操作|指揮|操控|經營)|受僱於|由[^，。]{0,8}(經營|operated)|"
-     # 官媒子品牌：「X 是/為 Y 打造的自媒體品牌／融媒體品牌」＝被動（X 受 Y 經營）→ operated-by(X,Y)
-     # 錨定被動句式（打造的…品牌 / 是|為…品牌），不吃主動句「Y 打造 X」
-     r"打造的[^，。]{0,8}品牌|[是為][^，。]{0,8}(自媒體|融媒體)品牌", "operated-by"),
+     # 官媒子品牌：「X 是 Y 打造／設立的自媒體品牌」＝被動（X 受 Y 經營）→ operated-by(X,Y)
+     # 必須「創設動詞＋的＋自媒體/融媒體品牌」同時出現，窄到只抓這個構式：
+     # 排除「打造的國際品牌」（非自媒體）、「不是自媒體品牌」（否定）、「為自媒體品牌提供技術」（非控制）等誤判
+     r"(打造|設立|創設)的(自媒體|融媒體)品牌", "operated-by"),
     (r"\bhires?\b|\bhired\b|\boperates?\b|\bruns?\b|\bdirects?\b|\bcontrols?\b|"
      r"僱用|雇用|運用|操控|指揮|經營", "runs"),
     (r"subsidiary|owned by|旗下|隸屬|子公司", "subsidiary-of"),
@@ -122,8 +123,10 @@ def derive(extr, reg):
                            f" → 不建 attributed-to，降為 related-to")
                 r["type"] = "related-to"
                 continue
-            if ctrl["kind"] == "identity": ctrl["kind"] = "threat-actor"
-            log.append(f"控制述詞＋信心{r['confidence']} → 建 attributed-to（{sub['name']}→{ctrl.get('name')}，需人工閘）；{ctrl.get('name')} 升 threat-actor")
+            promoted = ctrl["kind"] == "identity"
+            if promoted: ctrl["kind"] = "threat-actor"
+            log.append(f"控制述詞＋信心{r['confidence']} → 建 attributed-to（{sub['name']}→{ctrl.get('name')}，需人工閘）"
+                       + (f"；{ctrl.get('name')} 升 threat-actor" if promoted else "（控制方為頻道型，分類不變）"))
             extra.append({"source": sub_ref, "type": "attributed-to", "target": ctrl_ref,
                           "confidence": r["confidence"], "evidence": r.get("evidence")})
             r["type"] = "related-to"       # 原控制關係降為結構分組；正式歸因走 attributed-to（保守）

@@ -64,9 +64,13 @@ if len(att) != 1: fails.append(f"④ 子品牌應產生 1 條 attributed-to，�
 elif (att[0]["source"], att[0]["target"]) != ("m1", "m2"):
     fails.append(f"④ 子品牌被動應為 m1→m2，得 {att[0]['source']}→{att[0]['target']}")
 
-# ④b 分桶：被動子品牌樣式 → operated-by；但主動「打造」（無『的…品牌』）不得誤吃
-for pred, want in (("是該台打造的自媒體品牌", "operated-by"), ("為央視融媒體品牌", "operated-by"),
-                   ("打造的自媒體品牌", "operated-by"), ("打造了一個網絡", "related-to")):
+# ④b 分桶：窄構式「創設動詞＋的＋自媒體/融媒體品牌」→ operated-by；其餘一律不誤吃
+for pred, want in (("是該台打造的自媒體品牌", "operated-by"), ("設立的融媒體品牌", "operated-by"),
+                   ("打造的自媒體品牌", "operated-by"),
+                   ("打造的國際品牌", "related-to"),       # 非自媒體品牌 → 不誤判
+                   ("不是自媒體品牌", "related-to"),         # 否定句 → 不誤判
+                   ("為自媒體品牌提供技術", "related-to"),   # 非控制（提供技術）→ 不誤判
+                   ("打造了一個網絡", "related-to")):
     got = D.rel_of(pred)
     if got != want: fails.append(f"④b 述詞「{pred}」應為 {want}，得 {got}")
 

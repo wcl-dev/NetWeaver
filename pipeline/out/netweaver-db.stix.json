@@ -6486,7 +6486,11 @@
         "marking-definition--30837352-4bcb-536d-ab32-86f489a09985"
       ],
       "aliases": [
-        "Sugon"
+        "Sugon",
+        "Sugon",
+        "中科曙光",
+        "曙光",
+        "曙光信息產業"
       ],
       "description": "北京超級運算公司，美國國防部列為與解放軍有關聯；2021 年起資助並以超級電腦支援中科天璣（GoLaxy）的 AI 影響力平台。",
       "confidence": 60,
@@ -6509,7 +6513,11 @@
         "marking-definition--30837352-4bcb-536d-ab32-86f489a09985"
       ],
       "aliases": [
-        "Chinese Academy of Sciences"
+        "Chinese Academy of Sciences",
+        "CAS",
+        "Chinese Academy of Sciences",
+        "中國科學院",
+        "中科院"
       ],
       "description": "中國國家級研究機構；據范德堡大學取得之文件，中科天璣（GoLaxy）由中國科學院創立。",
       "confidence": 60,
@@ -6532,7 +6540,12 @@
         "marking-definition--30837352-4bcb-536d-ab32-86f489a09985"
       ],
       "aliases": [
-        "Central Propaganda Department"
+        "Central Propaganda Department",
+        "CPD",
+        "Central Propaganda Department",
+        "中共中央宣傳部",
+        "中央宣傳部",
+        "中宣部"
       ],
       "description": "中共中央宣傳部；據國安局 2025 報告，與公安部共同透由海訊社、海賣、虎牙等公關公司投放爭訊、偽冒國際媒體。",
       "confidence": 60,
@@ -6545,9 +6558,9 @@
       ]
     },
     {
-      "type": "intrusion-set",
+      "type": "identity",
       "spec_version": "2.1",
-      "id": "intrusion-set--5cf28e31-36b0-5a3e-b702-be0bc31d0c95",
+      "id": "identity--b1522f3e-dbb4-5b06-9d0b-285e7645ec2a",
       "created": "2026-01-01T00:00:00.000Z",
       "modified": "2026-01-01T00:00:00.000Z",
       "name": "大陸微視網絡科技",
@@ -6560,8 +6573,9 @@
         "大陸微視",
         "大陸微視網絡科技江蘇有限公司"
       ],
-      "description": "大陸微視網絡科技江蘇有限公司；董事長具中共解放軍退伍背景，出資取得在台「中華微視」67% 股權、指示其在台散布外宣與不實訊息（調查局資安工作站 2022 偵辦）。",
+      "description": "大陸微視網絡科技江蘇有限公司；據調查局資安工作站 2022 偵辦，董事長具解放軍退伍背景，與香港中華微視共同出資取得在台「中華微視」67% 股權、涉指示其在台散布外宣與不實訊息。",
       "confidence": 60,
+      "identity_class": "organization",
       "x_netweaver_evidence": [
         {
           "quote": "檢調另查獲，中華微視負責人蔡男未經主管機關「經濟部投資審議委員會」許可，涉嫌與具有中共解放軍退伍背景的大陸微視及香港微視的董事長簽訂簽訂「戰略合作協議」，約定由大陸微視及香港微視出資人民幣300萬元，以取得中華微視的67%股權，藉此推動中方指示的業務，中華微視目前已收受中方提供的人民幣50萬元資金，涉嫌違反「臺灣地區與大陸地區人民關係條例」相關規定。",
@@ -6570,9 +6584,9 @@
       ]
     },
     {
-      "type": "intrusion-set",
+      "type": "identity",
       "spec_version": "2.1",
-      "id": "intrusion-set--27992e27-13b8-58de-b832-5b6ee3fb58b0",
+      "id": "identity--3d033912-bbaa-5bcc-a4b3-febcaf47f678",
       "created": "2026-01-01T00:00:00.000Z",
       "modified": "2026-01-01T00:00:00.000Z",
       "name": "香港中華微視",
@@ -6585,8 +6599,9 @@
         "香港中華微視有限公司",
         "香港微視"
       ],
-      "description": "香港中華微視有限公司；與大陸微視共同出資、指示在台「中華微視」推動中方外宣業務（調查局資安工作站 2022 偵辦）。",
-      "confidence": 60
+      "description": "香港中華微視有限公司；據調查局資安工作站 2022 偵辦，與大陸微視共同出資、涉指示在台「中華微視」推動中方外宣業務。",
+      "confidence": 60,
+      "identity_class": "organization"
     },
     {
       "type": "x-dad-narrative",
@@ -8279,10 +8294,10 @@
     {
       "type": "relationship",
       "spec_version": "2.1",
-      "id": "relationship--b6a62e2a-6f05-5eb4-809a-6aa76e33c068",
+      "id": "relationship--aafbdb58-ea88-5851-aa19-7f7f0c717b51",
       "created": "2026-01-01T00:00:00.000Z",
       "modified": "2026-01-01T00:00:00.000Z",
-      "relationship_type": "subsidiary-of",
+      "relationship_type": "affiliated-with",
       "source_ref": "identity--c4b9c9c9-b127-5702-8dee-54f028e6a8ea",
       "target_ref": "identity--e5726e7d-fc66-5772-ab39-c9b3446367bc",
       "object_marking_refs": [
@@ -8482,7 +8497,9 @@
       "target_ref": "identity--2c620a9f-e1ec-5283-8efa-1e78d476d0bb",
       "object_marking_refs": [
         "marking-definition--30837352-4bcb-536d-ab32-86f489a09985"
-      ]
+      ],
+      "x_netweaver_review": "approved",
+      "x_netweaver_reviewed": "2026-08-30"
     },
     {
       "type": "relationship",
@@ -8534,7 +8551,9 @@
       "target_ref": "x-dad-channel--8d56e9bd-1733-53f0-9084-0c177411434b",
       "object_marking_refs": [
         "marking-definition--30837352-4bcb-536d-ab32-86f489a09985"
-      ]
+      ],
+      "x_netweaver_review": "approved",
+      "x_netweaver_reviewed": "2026-09-10"
     },
     {
       "type": "relationship",
@@ -8859,7 +8878,9 @@
       "target_ref": "identity--d48c2385-046e-581f-8e0f-cfc178d2444e",
       "object_marking_refs": [
         "marking-definition--30837352-4bcb-536d-ab32-86f489a09985"
-      ]
+      ],
+      "x_netweaver_review": "approved",
+      "x_netweaver_reviewed": "2026-08-30"
     },
     {
       "type": "relationship",
@@ -8916,12 +8937,12 @@
     {
       "type": "relationship",
       "spec_version": "2.1",
-      "id": "relationship--a2d8ca1d-908f-5ce9-b243-7b11f665e496",
+      "id": "relationship--ff209b16-b477-59d4-995b-7eb9d68ae945",
       "created": "2026-01-01T00:00:00.000Z",
       "modified": "2026-01-01T00:00:00.000Z",
       "relationship_type": "subsidiary-of",
       "source_ref": "x-dad-channel--66294ada-7bb7-5947-a4c1-39acd3cbd017",
-      "target_ref": "intrusion-set--5cf28e31-36b0-5a3e-b702-be0bc31d0c95",
+      "target_ref": "identity--b1522f3e-dbb4-5b06-9d0b-285e7645ec2a",
       "object_marking_refs": [
         "marking-definition--30837352-4bcb-536d-ab32-86f489a09985"
       ]
@@ -8929,12 +8950,12 @@
     {
       "type": "relationship",
       "spec_version": "2.1",
-      "id": "relationship--c3993130-c009-549b-ac20-7a31162e1170",
+      "id": "relationship--d8d259f0-c954-5e12-9560-90af7685f0bf",
       "created": "2026-01-01T00:00:00.000Z",
       "modified": "2026-01-01T00:00:00.000Z",
       "relationship_type": "affiliated-with",
       "source_ref": "x-dad-channel--66294ada-7bb7-5947-a4c1-39acd3cbd017",
-      "target_ref": "intrusion-set--27992e27-13b8-58de-b832-5b6ee3fb58b0",
+      "target_ref": "identity--3d033912-bbaa-5bcc-a4b3-febcaf47f678",
       "object_marking_refs": [
         "marking-definition--30837352-4bcb-536d-ab32-86f489a09985"
       ]
@@ -8950,7 +8971,9 @@
       "target_ref": "intrusion-set--8b4647b7-a0b9-5c7c-93b5-5d0f70f5745c",
       "object_marking_refs": [
         "marking-definition--30837352-4bcb-536d-ab32-86f489a09985"
-      ]
+      ],
+      "x_netweaver_review": "approved",
+      "x_netweaver_reviewed": "2026-08-30"
     },
     {
       "type": "relationship",
@@ -11409,7 +11432,8 @@
         "campaign--e577e0a3-2f26-5fce-aa1e-80a2c695ebd0",
         "identity--033d3c58-85fb-54c8-8685-2f6830a6248a",
         "identity--6e707f15-56d1-529a-bbb1-468666211e10",
-        "identity--c4b9c9c9-b127-5702-8dee-54f028e6a8ea"
+        "identity--c4b9c9c9-b127-5702-8dee-54f028e6a8ea",
+        "identity--e5726e7d-fc66-5772-ab39-c9b3446367bc"
       ],
       "external_references": [
         {
@@ -11508,7 +11532,8 @@
       "object_refs": [
         "identity--29388f4c-ea85-51c2-ad04-21daf561e6e7",
         "identity--5c4ab834-f222-5b1b-b57b-49611c8df6ae",
-        "x-dad-channel--88e6f143-b913-5b58-b9de-4d898be402bc"
+        "x-dad-channel--88e6f143-b913-5b58-b9de-4d898be402bc",
+        "x-dad-channel--8d56e9bd-1733-53f0-9084-0c177411434b"
       ],
       "external_references": [
         {
@@ -11581,16 +11606,24 @@
         "campaign--3deeab75-ae6b-5703-8342-cf948d6b1a32",
         "campaign--9ce36bac-55cb-5a90-a372-0e1b822a9d22",
         "identity--315c831b-d055-5a98-ac96-a89ab05c42ec",
+        "identity--34ea4193-255a-536d-b641-ac48ff97e213",
         "identity--5c4ab834-f222-5b1b-b57b-49611c8df6ae",
         "identity--7bf16a20-2e0d-5ca0-9e96-9ee6e9feeca4",
+        "identity--a7f2473e-5722-59e7-a052-601525aefebd",
         "x-dad-channel--57e84399-8d0a-5a33-8655-e4d8587326fd",
         "x-dad-channel--6195fcc7-6017-5ec3-8f02-865316ce2aed",
+        "x-dad-channel--6e611bbc-fd09-53bf-8af3-6a548e3f90be",
         "x-dad-channel--77847717-5359-598f-9bab-30dcffeae821",
         "x-dad-channel--8d56e9bd-1733-53f0-9084-0c177411434b",
         "x-dad-channel--9b22e2c6-0f48-5c28-af82-52e6f0bc2707",
         "x-dad-channel--a3b468fe-b12d-5f34-811f-6f145462dd16",
+        "x-dad-channel--a89fe2c1-41dd-5477-bf23-77b8e22d60b7",
+        "x-dad-channel--bb476641-af25-5a77-a88f-b937fcfd58d3",
+        "x-dad-channel--c192a331-903f-5edf-b61a-d00e82b53195",
         "x-dad-channel--c69bbf3b-858c-50c9-815e-6af71cf28fdc",
+        "x-dad-channel--daa27372-69ac-5f49-be6c-b0071011ae8b",
         "x-dad-channel--e68bd419-6609-5c52-b532-91c4f56f047c",
+        "x-dad-channel--fd617200-745b-570a-9bfd-f57d0a8358e3",
         "x-dad-narrative--74945cee-4607-5a8f-8b16-52c614fb74f6",
         "x-dad-narrative--7b19ee58-9e36-5c51-bba6-dbe101ec93e6",
         "x-dad-narrative--a00ca1fa-1c62-5cfc-8560-f132be4c743d",
@@ -11708,6 +11741,7 @@
       "object_refs": [
         "campaign--267c4d94-d209-5762-ad82-384678e3e835",
         "identity--0bb54359-576f-5fd9-91a0-fe8eb6294fe4",
+        "intrusion-set--e2b77b7d-320c-511b-b836-069be233aab5",
         "x-dad-channel--88e6f143-b913-5b58-b9de-4d898be402bc"
       ],
       "external_references": [
@@ -11762,6 +11796,8 @@
         "identity--476c60b1-f96b-5b70-a368-e8197562e936",
         "identity--d48c2385-046e-581f-8e0f-cfc178d2444e",
         "intrusion-set--1a0c6010-5df8-5ef7-9ea3-63fabb1e512f",
+        "intrusion-set--e2b77b7d-320c-511b-b836-069be233aab5",
+        "x-dad-channel--daa27372-69ac-5f49-be6c-b0071011ae8b",
         "x-dad-narrative--ec15e327-4465-597e-a22e-1f135e3f1146"
       ],
       "external_references": [
@@ -11852,9 +11888,10 @@
       "published": "2022-11-01T00:00:00.000Z",
       "object_refs": [
         "campaign--5c27a79b-fa24-5ef7-bb37-f8efe9f36af9",
-        "intrusion-set--27992e27-13b8-58de-b832-5b6ee3fb58b0",
-        "intrusion-set--5cf28e31-36b0-5a3e-b702-be0bc31d0c95",
-        "intrusion-set--a7ae7366-e49b-5e6d-98cd-d84710169956"
+        "identity--3d033912-bbaa-5bcc-a4b3-febcaf47f678",
+        "identity--b1522f3e-dbb4-5b06-9d0b-285e7645ec2a",
+        "intrusion-set--a7ae7366-e49b-5e6d-98cd-d84710169956",
+        "x-dad-channel--66294ada-7bb7-5947-a4c1-39acd3cbd017"
       ],
       "external_references": [
         {
@@ -11900,7 +11937,16 @@
       "published": "2023-06-01T00:00:00.000Z",
       "object_refs": [
         "campaign--5c27a79b-fa24-5ef7-bb37-f8efe9f36af9",
+        "identity--29388f4c-ea85-51c2-ad04-21daf561e6e7",
+        "identity--5c4ab834-f222-5b1b-b57b-49611c8df6ae",
+        "intrusion-set--8bf11284-1d5d-5e94-808e-4ebb1ea8c352",
         "intrusion-set--a7ae7366-e49b-5e6d-98cd-d84710169956",
+        "x-dad-channel--1da917e4-88e4-55ef-9e6e-94c434f4ebfc",
+        "x-dad-channel--6e611bbc-fd09-53bf-8af3-6a548e3f90be",
+        "x-dad-channel--8d56e9bd-1733-53f0-9084-0c177411434b",
+        "x-dad-channel--bb476641-af25-5a77-a88f-b937fcfd58d3",
+        "x-dad-channel--cedf1e22-2d67-5c66-9173-21fce73cac83",
+        "x-dad-channel--daa27372-69ac-5f49-be6c-b0071011ae8b",
         "x-dad-channel--e68bd419-6609-5c52-b532-91c4f56f047c"
       ],
       "external_references": [
@@ -11992,7 +12038,8 @@
       "name": "中央廣播電視總台證實「玉淵譚天」為其自媒體品牌",
       "published": "2019-08-01T00:00:00.000Z",
       "object_refs": [
-        "x-dad-channel--658ab5e9-2e8e-5cfd-9220-ad84f8ce7100"
+        "x-dad-channel--658ab5e9-2e8e-5cfd-9220-ad84f8ce7100",
+        "x-dad-channel--8d56e9bd-1733-53f0-9084-0c177411434b"
       ],
       "external_references": [
         {
@@ -12080,6 +12127,7 @@
       "name": "The Global Times and Beijing: A nuanced relationship",
       "published": "2016-01-01T00:00:00.000Z",
       "object_refs": [
+        "x-dad-channel--6e611bbc-fd09-53bf-8af3-6a548e3f90be",
         "x-dad-channel--daa27372-69ac-5f49-be6c-b0071011ae8b",
         "x-dad-channel--e68bd419-6609-5c52-b532-91c4f56f047c"
       ],
@@ -12192,20 +12240,36 @@
       "published": "2023-03-01T00:00:00.000Z",
       "object_refs": [
         "campaign--79a29cca-c3f2-5032-abd5-93bec696f178",
+        "identity--740d6c81-76e6-5f22-89d9-9eb4678422a8",
+        "identity--817b836b-e4e1-5346-9529-79c6ee75dbb1",
+        "identity--8a2b86a0-25ab-5c18-9f5a-e2347b8bfcd1",
         "intrusion-set--2e154d40-af41-5900-9d33-55d1808cde29",
+        "intrusion-set--6dbb03b6-e94f-55e6-a111-ae29de093a66",
         "intrusion-set--8bf11284-1d5d-5e94-808e-4ebb1ea8c352",
+        "intrusion-set--a7ae7366-e49b-5e6d-98cd-d84710169956",
         "x-dad-channel--1035b28e-3a32-542d-9436-a85da97c0a27",
         "x-dad-channel--13f7fdf0-1e51-5986-953b-8c0bcf7c2015",
+        "x-dad-channel--1da917e4-88e4-55ef-9e6e-94c434f4ebfc",
         "x-dad-channel--244a5ce2-02a5-5a22-b83c-e52b482b1d0b",
         "x-dad-channel--2c2a8b72-11e2-5e0d-b141-f2a23e29cd47",
         "x-dad-channel--38b1618b-e172-5a95-9b96-bcda23503c68",
+        "x-dad-channel--6195fcc7-6017-5ec3-8f02-865316ce2aed",
+        "x-dad-channel--658ab5e9-2e8e-5cfd-9220-ad84f8ce7100",
         "x-dad-channel--66294ada-7bb7-5947-a4c1-39acd3cbd017",
+        "x-dad-channel--6e611bbc-fd09-53bf-8af3-6a548e3f90be",
         "x-dad-channel--77847717-5359-598f-9bab-30dcffeae821",
         "x-dad-channel--88105050-4115-5538-93e6-b073c9b44246",
+        "x-dad-channel--8d56e9bd-1733-53f0-9084-0c177411434b",
+        "x-dad-channel--a89fe2c1-41dd-5477-bf23-77b8e22d60b7",
+        "x-dad-channel--bb476641-af25-5a77-a88f-b937fcfd58d3",
+        "x-dad-channel--c6322631-0e52-51d4-888b-64d15907f38b",
+        "x-dad-channel--c69bbf3b-858c-50c9-815e-6af71cf28fdc",
         "x-dad-channel--ce16bc78-db86-5132-a50c-b540032b1ff7",
+        "x-dad-channel--cedf1e22-2d67-5c66-9173-21fce73cac83",
         "x-dad-channel--cf3ba762-bc5f-5cb2-bcd3-0fa732d1e198",
         "x-dad-channel--e9990014-18b0-54f2-bac6-20d8540a352b",
-        "x-dad-channel--edb33f01-f9a1-588b-b6ec-7437b5efeb77"
+        "x-dad-channel--edb33f01-f9a1-588b-b6ec-7437b5efeb77",
+        "x-dad-channel--fd617200-745b-570a-9bfd-f57d0a8358e3"
       ],
       "external_references": [
         {
@@ -12228,21 +12292,37 @@
       "published": "2023-05-01T00:00:00.000Z",
       "object_refs": [
         "campaign--79a29cca-c3f2-5032-abd5-93bec696f178",
+        "identity--740d6c81-76e6-5f22-89d9-9eb4678422a8",
+        "identity--8a2b86a0-25ab-5c18-9f5a-e2347b8bfcd1",
+        "identity--ebc72bf9-1e38-5cba-a4e9-4c04a585ea2a",
         "intrusion-set--2e154d40-af41-5900-9d33-55d1808cde29",
         "intrusion-set--8bf11284-1d5d-5e94-808e-4ebb1ea8c352",
+        "x-dad-channel--0d494844-c888-5248-9c19-590e9e43aaa3",
         "x-dad-channel--1035b28e-3a32-542d-9436-a85da97c0a27",
         "x-dad-channel--13f7fdf0-1e51-5986-953b-8c0bcf7c2015",
+        "x-dad-channel--1da917e4-88e4-55ef-9e6e-94c434f4ebfc",
         "x-dad-channel--244a5ce2-02a5-5a22-b83c-e52b482b1d0b",
         "x-dad-channel--2c2a8b72-11e2-5e0d-b141-f2a23e29cd47",
+        "x-dad-channel--2f16ce4d-a970-5192-9340-1780f765da80",
         "x-dad-channel--38b1618b-e172-5a95-9b96-bcda23503c68",
         "x-dad-channel--5543a984-36db-5135-9489-c0a1071c3f75",
         "x-dad-channel--57e84399-8d0a-5a33-8655-e4d8587326fd",
+        "x-dad-channel--6195fcc7-6017-5ec3-8f02-865316ce2aed",
         "x-dad-channel--66294ada-7bb7-5947-a4c1-39acd3cbd017",
+        "x-dad-channel--6e611bbc-fd09-53bf-8af3-6a548e3f90be",
         "x-dad-channel--77847717-5359-598f-9bab-30dcffeae821",
         "x-dad-channel--88105050-4115-5538-93e6-b073c9b44246",
+        "x-dad-channel--8d56e9bd-1733-53f0-9084-0c177411434b",
+        "x-dad-channel--95bc64eb-22b3-59b2-8efa-e85eaeb4d236",
+        "x-dad-channel--a89fe2c1-41dd-5477-bf23-77b8e22d60b7",
+        "x-dad-channel--bb476641-af25-5a77-a88f-b937fcfd58d3",
         "x-dad-channel--c192a331-903f-5edf-b61a-d00e82b53195",
+        "x-dad-channel--c6322631-0e52-51d4-888b-64d15907f38b",
+        "x-dad-channel--c69bbf3b-858c-50c9-815e-6af71cf28fdc",
         "x-dad-channel--ce16bc78-db86-5132-a50c-b540032b1ff7",
+        "x-dad-channel--cedf1e22-2d67-5c66-9173-21fce73cac83",
         "x-dad-channel--cf3ba762-bc5f-5cb2-bcd3-0fa732d1e198",
+        "x-dad-channel--daa27372-69ac-5f49-be6c-b0071011ae8b",
         "x-dad-channel--e9990014-18b0-54f2-bac6-20d8540a352b",
         "x-dad-channel--edb33f01-f9a1-588b-b6ec-7437b5efeb77"
       ],
@@ -12267,9 +12347,12 @@
       "published": "2024-08-01T00:00:00.000Z",
       "object_refs": [
         "campaign--f29178c6-9339-5cd1-9546-53bacea08b59",
+        "identity--acdc808c-e4f7-5d0c-b8e5-e7d90c117738",
         "intrusion-set--e2b77b7d-320c-511b-b836-069be233aab5",
+        "x-dad-channel--4aa2e851-4b87-576e-9f66-57357a5639dc",
         "x-dad-channel--5543a984-36db-5135-9489-c0a1071c3f75",
         "x-dad-channel--6c406458-9ddb-5e0a-9a22-da026543af64",
+        "x-dad-channel--e7b51b9e-fea6-5df6-87aa-357aff403851",
         "x-dad-narrative--22091b3b-563a-5f52-a304-1037f72449b9",
         "x-dad-narrative--b97d80f4-c224-59a0-a2ee-a9d797fefd50",
         "x-dad-narrative--ec15e327-4465-597e-a22e-1f135e3f1146"
@@ -12321,6 +12404,8 @@
       "object_refs": [
         "campaign--d389671d-2bdf-5ef9-b4f5-0ebebb3e922b",
         "campaign--f29178c6-9339-5cd1-9546-53bacea08b59",
+        "intrusion-set--2e154d40-af41-5900-9d33-55d1808cde29",
+        "x-dad-channel--66294ada-7bb7-5947-a4c1-39acd3cbd017",
         "x-dad-channel--bb476641-af25-5a77-a88f-b937fcfd58d3",
         "x-dad-channel--c6322631-0e52-51d4-888b-64d15907f38b",
         "x-dad-narrative--4ab6c335-1e75-5a81-b6a2-0b2634ee727a",
@@ -12376,7 +12461,9 @@
       "published": "2024-11-01T00:00:00.000Z",
       "object_refs": [
         "campaign--7751cb56-b770-5614-ac82-1f050a276602",
+        "identity--5c4ab834-f222-5b1b-b57b-49611c8df6ae",
         "x-dad-channel--88e6f143-b913-5b58-b9de-4d898be402bc",
+        "x-dad-channel--8d56e9bd-1733-53f0-9084-0c177411434b",
         "x-dad-channel--e68bd419-6609-5c52-b532-91c4f56f047c"
       ],
       "external_references": [
@@ -12454,6 +12541,7 @@
       "published": "2025-08-06T00:00:00.000Z",
       "object_refs": [
         "campaign--f29178c6-9339-5cd1-9546-53bacea08b59",
+        "identity--b934a1f7-1e61-5d99-8cc7-6980dff21040",
         "identity--c4b9c9c9-b127-5702-8dee-54f028e6a8ea"
       ],
       "external_references": [
@@ -12499,7 +12587,26 @@
       "published": "2026-01-12T00:00:00.000Z",
       "object_refs": [
         "campaign--78c0f43f-bbb0-5db4-8314-dc5d69d155ac",
-        "identity--72b5abb9-7053-5933-8da7-f4c4194a138a"
+        "identity--033d3c58-85fb-54c8-8685-2f6830a6248a",
+        "identity--0bb54359-576f-5fd9-91a0-fe8eb6294fe4",
+        "identity--289f872d-ccb9-5065-bf8f-e2ad17d573f4",
+        "identity--29388f4c-ea85-51c2-ad04-21daf561e6e7",
+        "identity--2c620a9f-e1ec-5283-8efa-1e78d476d0bb",
+        "identity--42b47408-2ad2-5ed7-890e-2056f945ce28",
+        "identity--56ac0d98-b858-5623-8c27-fea2e94a1b5f",
+        "identity--58393605-4e3e-590e-8eeb-ee919ef32cf3",
+        "identity--6e707f15-56d1-529a-bbb1-468666211e10",
+        "identity--72b5abb9-7053-5933-8da7-f4c4194a138a",
+        "identity--8830a540-0da8-5479-9368-e835a7b8a7a5",
+        "identity--b3bb40f1-3c64-5c81-8e67-d5b9506992af",
+        "identity--c876f115-c569-565f-8159-b5ee6229be14",
+        "identity--d48c2385-046e-581f-8e0f-cfc178d2444e",
+        "identity--d5762685-0ffa-5124-a092-4716e525f52f",
+        "identity--d9ff5ba1-2f91-57ac-b510-ccdb9fe0bce4",
+        "identity--db1e2b44-3747-5611-9966-fdcd48df303a",
+        "identity--e1473e52-3565-5d64-bd5c-43909252578b",
+        "intrusion-set--8b4647b7-a0b9-5c7c-93b5-5d0f70f5745c",
+        "intrusion-set--e2b77b7d-320c-511b-b836-069be233aab5"
       ],
       "external_references": [
         {
@@ -12629,9 +12736,21 @@
       "name": "疑美論源於台灣、中共介入放大（美軍撤離阿富汗）",
       "published": "2021-09-16T00:00:00.000Z",
       "object_refs": [
+        "identity--0def8c5c-bf8d-5a7d-a078-55ea5afe5358",
         "identity--315c831b-d055-5a98-ac96-a89ab05c42ec",
+        "identity--5c4ab834-f222-5b1b-b57b-49611c8df6ae",
+        "identity--ccc946b9-5f01-5e3f-8fbf-70d80199bb1b",
+        "intrusion-set--2e154d40-af41-5900-9d33-55d1808cde29",
+        "intrusion-set--8bf11284-1d5d-5e94-808e-4ebb1ea8c352",
+        "intrusion-set--a7ae7366-e49b-5e6d-98cd-d84710169956",
+        "x-dad-channel--1da917e4-88e4-55ef-9e6e-94c434f4ebfc",
+        "x-dad-channel--66294ada-7bb7-5947-a4c1-39acd3cbd017",
         "x-dad-channel--6c406458-9ddb-5e0a-9a22-da026543af64",
+        "x-dad-channel--6e611bbc-fd09-53bf-8af3-6a548e3f90be",
         "x-dad-channel--a3b468fe-b12d-5f34-811f-6f145462dd16",
+        "x-dad-channel--c6322631-0e52-51d4-888b-64d15907f38b",
+        "x-dad-channel--c69bbf3b-858c-50c9-815e-6af71cf28fdc",
+        "x-dad-channel--daa27372-69ac-5f49-be6c-b0071011ae8b",
         "x-dad-channel--e7b51b9e-fea6-5df6-87aa-357aff403851",
         "x-dad-narrative--4ab6c335-1e75-5a81-b6a2-0b2634ee727a",
         "x-dad-narrative--b0128ff3-8ed3-5ea4-bc09-7f75b70f988b",
@@ -12658,16 +12777,28 @@
       "name": "中共月報：2026 年 1 月（IORG 週報第131期）",
       "published": "2026-02-11T00:00:00.000Z",
       "object_refs": [
+        "identity--5c4ab834-f222-5b1b-b57b-49611c8df6ae",
         "identity--7bf16a20-2e0d-5ca0-9e96-9ee6e9feeca4",
+        "identity--817b836b-e4e1-5346-9529-79c6ee75dbb1",
         "identity--8a2b86a0-25ab-5c18-9f5a-e2347b8bfcd1",
         "identity--a7f2473e-5722-59e7-a052-601525aefebd",
+        "identity--acdc808c-e4f7-5d0c-b8e5-e7d90c117738",
+        "identity--ebc72bf9-1e38-5cba-a4e9-4c04a585ea2a",
         "x-dad-channel--0d494844-c888-5248-9c19-590e9e43aaa3",
+        "x-dad-channel--13f7fdf0-1e51-5986-953b-8c0bcf7c2015",
         "x-dad-channel--1da917e4-88e4-55ef-9e6e-94c434f4ebfc",
+        "x-dad-channel--2f16ce4d-a970-5192-9340-1780f765da80",
         "x-dad-channel--57e84399-8d0a-5a33-8655-e4d8587326fd",
+        "x-dad-channel--6195fcc7-6017-5ec3-8f02-865316ce2aed",
         "x-dad-channel--6c406458-9ddb-5e0a-9a22-da026543af64",
+        "x-dad-channel--6e611bbc-fd09-53bf-8af3-6a548e3f90be",
         "x-dad-channel--77847717-5359-598f-9bab-30dcffeae821",
+        "x-dad-channel--8d56e9bd-1733-53f0-9084-0c177411434b",
         "x-dad-channel--9b22e2c6-0f48-5c28-af82-52e6f0bc2707",
+        "x-dad-channel--a3b468fe-b12d-5f34-811f-6f145462dd16",
         "x-dad-channel--c192a331-903f-5edf-b61a-d00e82b53195",
+        "x-dad-channel--c69bbf3b-858c-50c9-815e-6af71cf28fdc",
+        "x-dad-channel--daa27372-69ac-5f49-be6c-b0071011ae8b",
         "x-dad-channel--e68bd419-6609-5c52-b532-91c4f56f047c"
       ],
       "external_references": [
@@ -12712,7 +12843,8 @@
       "name": "Pro-CCP Spamouflage campaign experiments with new tactics targeting the US",
       "published": "2024-04-01T00:00:00.000Z",
       "object_refs": [
-        "intrusion-set--82238e5a-14f7-51ef-9704-e7e003c294ce"
+        "intrusion-set--82238e5a-14f7-51ef-9704-e7e003c294ce",
+        "intrusion-set--e2b77b7d-320c-511b-b836-069be233aab5"
       ],
       "external_references": [
         {
@@ -12807,7 +12939,9 @@
         "campaign--bd368e80-bf0e-5680-a0ed-59631c70ff89",
         "campaign--f29178c6-9339-5cd1-9546-53bacea08b59",
         "identity--168f683e-9557-5435-bd6c-c1bb6cd1f009",
+        "identity--5c4ab834-f222-5b1b-b57b-49611c8df6ae",
         "intrusion-set--e2b77b7d-320c-511b-b836-069be233aab5",
+        "x-dad-channel--bb476641-af25-5a77-a88f-b937fcfd58d3",
         "x-dad-narrative--b97d80f4-c224-59a0-a2ee-a9d797fefd50",
         "x-dad-narrative--ec15e327-4465-597e-a22e-1f135e3f1146"
       ],
@@ -12904,7 +13038,9 @@
       "object_refs": [
         "campaign--3ea71717-2e4e-5a8a-afcf-1711c7e3d415",
         "identity--20dea7bf-6d79-5641-be4d-f85ec2af3ee7",
-        "identity--d48c2385-046e-581f-8e0f-cfc178d2444e"
+        "identity--d48c2385-046e-581f-8e0f-cfc178d2444e",
+        "x-dad-channel--8d56e9bd-1733-53f0-9084-0c177411434b",
+        "x-dad-channel--daa27372-69ac-5f49-be6c-b0071011ae8b"
       ],
       "external_references": [
         {
@@ -12971,7 +13107,9 @@
       "name": "中國「網路特戰」如何鎖定高市早苗？",
       "published": "2026-04-01T00:00:00.000Z",
       "object_refs": [
-        "campaign--cb678c39-9709-57e3-bc65-f70ada14770e"
+        "campaign--cb678c39-9709-57e3-bc65-f70ada14770e",
+        "identity--ccc946b9-5f01-5e3f-8fbf-70d80199bb1b",
+        "intrusion-set--e2b77b7d-320c-511b-b836-069be233aab5"
       ],
       "external_references": [
         {
@@ -12997,12 +13135,16 @@
         "identity--57ae39c5-1098-529e-9cc7-2c555d1fdec1",
         "identity--a7f2473e-5722-59e7-a052-601525aefebd",
         "x-dad-channel--13f7fdf0-1e51-5986-953b-8c0bcf7c2015",
+        "x-dad-channel--2f16ce4d-a970-5192-9340-1780f765da80",
         "x-dad-channel--4aa2e851-4b87-576e-9f66-57357a5639dc",
         "x-dad-channel--658ab5e9-2e8e-5cfd-9220-ad84f8ce7100",
         "x-dad-channel--66294ada-7bb7-5947-a4c1-39acd3cbd017",
         "x-dad-channel--6c406458-9ddb-5e0a-9a22-da026543af64",
+        "x-dad-channel--6e611bbc-fd09-53bf-8af3-6a548e3f90be",
         "x-dad-channel--8d56e9bd-1733-53f0-9084-0c177411434b",
         "x-dad-channel--a89fe2c1-41dd-5477-bf23-77b8e22d60b7",
+        "x-dad-channel--daa27372-69ac-5f49-be6c-b0071011ae8b",
+        "x-dad-channel--e68bd419-6609-5c52-b532-91c4f56f047c",
         "x-dad-channel--e7b51b9e-fea6-5df6-87aa-357aff403851",
         "x-dad-channel--fd617200-745b-570a-9bfd-f57d0a8358e3"
       ],
@@ -13029,6 +13171,7 @@
         "campaign--9ac4f011-bda5-5193-8b03-eb9a8d75f5a8",
         "intrusion-set--8b4647b7-a0b9-5c7c-93b5-5d0f70f5745c",
         "intrusion-set--ffad810f-1846-5180-8afb-5aa6779c7ea8",
+        "x-dad-channel--8d56e9bd-1733-53f0-9084-0c177411434b",
         "x-dad-narrative--208448c2-ef72-5148-beda-165e2b8d75b4"
       ],
       "external_references": [
@@ -13054,8 +13197,12 @@
         "campaign--a6446f5d-8dba-5390-a7d5-09b147e1fbf5",
         "identity--0def8c5c-bf8d-5a7d-a078-55ea5afe5358",
         "identity--a7f2473e-5722-59e7-a052-601525aefebd",
+        "identity--ccc946b9-5f01-5e3f-8fbf-70d80199bb1b",
         "x-dad-channel--13f7fdf0-1e51-5986-953b-8c0bcf7c2015",
+        "x-dad-channel--57e84399-8d0a-5a33-8655-e4d8587326fd",
+        "x-dad-channel--6195fcc7-6017-5ec3-8f02-865316ce2aed",
         "x-dad-channel--658ab5e9-2e8e-5cfd-9220-ad84f8ce7100",
+        "x-dad-channel--6e611bbc-fd09-53bf-8af3-6a548e3f90be",
         "x-dad-channel--8d56e9bd-1733-53f0-9084-0c177411434b",
         "x-dad-channel--daa27372-69ac-5f49-be6c-b0071011ae8b",
         "x-dad-channel--fd617200-745b-570a-9bfd-f57d0a8358e3",
@@ -13086,6 +13233,7 @@
         "intrusion-set--15e3f866-c151-5502-969e-af49a799dd00",
         "intrusion-set--a7ae7366-e49b-5e6d-98cd-d84710169956",
         "x-dad-channel--4aa2e851-4b87-576e-9f66-57357a5639dc",
+        "x-dad-channel--66294ada-7bb7-5947-a4c1-39acd3cbd017",
         "x-dad-narrative--99f8e0f6-b22e-5b48-81f3-6f2ba953fe18"
       ],
       "external_references": [
@@ -13110,19 +13258,69 @@
       "object_refs": [
         "identity--afe9c50d-ad77-5668-b47d-345915c97c46",
         "identity--ccc946b9-5f01-5e3f-8fbf-70d80199bb1b",
+        "identity--d5762685-0ffa-5124-a092-4716e525f52f",
         "x-dad-channel--2b76a29b-a058-5ca5-bac4-21221b8d97a9",
         "x-dad-channel--2f16ce4d-a970-5192-9340-1780f765da80",
         "x-dad-channel--3ed4e6ff-1075-5411-9b7b-394271aca370",
         "x-dad-channel--5e1b83e3-d642-5ffb-aa1f-a3c4bf237b68",
+        "x-dad-channel--658ab5e9-2e8e-5cfd-9220-ad84f8ce7100",
         "x-dad-channel--6e611bbc-fd09-53bf-8af3-6a548e3f90be",
         "x-dad-channel--8094e9d6-4b97-5142-b03a-d3ede0d09bad",
+        "x-dad-channel--8d56e9bd-1733-53f0-9084-0c177411434b",
+        "x-dad-channel--95bc64eb-22b3-59b2-8efa-e85eaeb4d236",
         "x-dad-channel--aab8c301-5282-5aa9-b5f3-213e76ab39ab",
-        "x-dad-channel--d962b5ab-77a0-543a-9a4a-e91469c53d38"
+        "x-dad-channel--d962b5ab-77a0-543a-9a4a-e91469c53d38",
+        "x-dad-channel--daa27372-69ac-5f49-be6c-b0071011ae8b",
+        "x-dad-channel--fd617200-745b-570a-9bfd-f57d0a8358e3"
       ],
       "external_references": [
         {
           "source_name": "FactLink 數位素養實驗室",
           "url": "https://www.factlink.tw/p/pla-weibo-analysis"
+        }
+      ],
+      "object_marking_refs": [
+        "marking-definition--30837352-4bcb-536d-ab32-86f489a09985"
+      ],
+      "x_netweaver_license": "cite-with-attribution"
+    },
+    {
+      "type": "report",
+      "spec_version": "2.1",
+      "id": "report--66833efb-233e-5721-b431-0b2cd5f08ea6",
+      "created": "2026-01-01T00:00:00.000Z",
+      "modified": "2026-01-01T00:00:00.000Z",
+      "name": "With the promotion of new generals, Xi prioritises internal control",
+      "published": "2026-07-16T00:00:00.000Z",
+      "object_refs": [
+        "x-dad-channel--6e611bbc-fd09-53bf-8af3-6a548e3f90be"
+      ],
+      "external_references": [
+        {
+          "source_name": "ASPI The Strategist",
+          "url": "https://www.aspistrategist.org.au/with-the-promotion-of-new-generals-xi-prioritises-internal-control/"
+        }
+      ],
+      "object_marking_refs": [
+        "marking-definition--30837352-4bcb-536d-ab32-86f489a09985"
+      ],
+      "x_netweaver_license": "cite-with-attribution"
+    },
+    {
+      "type": "report",
+      "spec_version": "2.1",
+      "id": "report--4216c726-606b-5b04-b79d-9e353595dab7",
+      "created": "2026-01-01T00:00:00.000Z",
+      "modified": "2026-01-01T00:00:00.000Z",
+      "name": "【FactNote｜數位素養誌】伊朗戰火下的AI宣傳戰＋網攻近期鎖定記者和資安研究者",
+      "published": "2026-05-13T00:00:00.000Z",
+      "object_refs": [
+        "identity--c4b9c9c9-b127-5702-8dee-54f028e6a8ea"
+      ],
+      "external_references": [
+        {
+          "source_name": "FactLink 數位素養實驗室",
+          "url": "https://www.factlink.tw/p/factnoteai"
         }
       ],
       "object_marking_refs": [
@@ -13139,7 +13337,11 @@
       "name": "PRC Influence in South Asia: A Case Study of India, Nepal, Sri Lanka, and Pakistan",
       "published": "2026-02-03T00:00:00.000Z",
       "object_refs": [
+        "identity--29388f4c-ea85-51c2-ad04-21daf561e6e7",
+        "identity--ccc946b9-5f01-5e3f-8fbf-70d80199bb1b",
+        "x-dad-channel--6e611bbc-fd09-53bf-8af3-6a548e3f90be",
         "x-dad-channel--88e6f143-b913-5b58-b9de-4d898be402bc",
+        "x-dad-channel--daa27372-69ac-5f49-be6c-b0071011ae8b",
         "x-dad-channel--e68bd419-6609-5c52-b532-91c4f56f047c"
       ],
       "external_references": [
@@ -13162,14 +13364,39 @@
       "name": "Persuasive technologies in China: implications for the future of national security",
       "published": "2025-03-11T00:00:00.000Z",
       "object_refs": [
+        "identity--168f683e-9557-5435-bd6c-c1bb6cd1f009",
         "identity--4e4558ae-0168-539a-8eb6-aae261c090b1",
         "identity--d74b755a-8983-539a-a4d0-8a309516666f",
-        "identity--d80442e5-553a-52d0-910e-584b09e87c25"
+        "identity--d80442e5-553a-52d0-910e-584b09e87c25",
+        "x-dad-channel--dcff989e-1e2a-5d38-aa11-7e9dddf8643b"
       ],
       "external_references": [
         {
           "source_name": "ASPI",
           "url": "https://aspi.s3.ap-southeast-2.amazonaws.com/wp-content/uploads/2025/03/11125258/Persuasive-technologies-in-China_0.pdf"
+        }
+      ],
+      "object_marking_refs": [
+        "marking-definition--30837352-4bcb-536d-ab32-86f489a09985"
+      ],
+      "x_netweaver_license": "cite-with-attribution"
+    },
+    {
+      "type": "report",
+      "spec_version": "2.1",
+      "id": "report--bf34c8b1-c4c6-5070-85ac-9586ef0fb764",
+      "created": "2026-01-01T00:00:00.000Z",
+      "modified": "2026-01-01T00:00:00.000Z",
+      "name": "A #Bayanihan Initiative: Countering FIMI in the Philippines",
+      "published": "2026-03-20T00:00:00.000Z",
+      "object_refs": [
+        "x-dad-channel--1da917e4-88e4-55ef-9e6e-94c434f4ebfc",
+        "x-dad-channel--daa27372-69ac-5f49-be6c-b0071011ae8b"
+      ],
+      "external_references": [
+        {
+          "source_name": "Doublethink Lab",
+          "url": "https://medium.com/doublethinklab/a-bayanihan-initiative-countering-fimi-in-the-philippines-15d14c4e2356?source=rss----9106617863e3---4"
         }
       ],
       "object_marking_refs": [
@@ -13193,6 +13420,8 @@
         "intrusion-set--51e37057-8367-5137-9d32-a7642a3c54c5",
         "x-dad-channel--1802a261-e3ae-53d8-a115-5fc1a2b2d9eb",
         "x-dad-channel--1cd9d328-bd01-53d7-aabb-fb2144334813",
+        "x-dad-channel--6e611bbc-fd09-53bf-8af3-6a548e3f90be",
+        "x-dad-channel--8d56e9bd-1733-53f0-9084-0c177411434b",
         "x-dad-channel--c2a2e9d2-05e7-5b8a-bf6b-12c542fd1d2d",
         "x-dad-channel--efc06b20-8610-5edc-8b49-85fcf3a4ff36"
       ],
@@ -13218,7 +13447,8 @@
       "object_refs": [
         "intrusion-set--5f4c9e0d-463a-575a-8d97-1d5a1a0802b4",
         "intrusion-set--71ee80d0-9136-55bb-8ae1-c2b53b2f7b3c",
-        "intrusion-set--b8908e19-82c6-58b4-88e3-a5e700c47773"
+        "intrusion-set--b8908e19-82c6-58b4-88e3-a5e700c47773",
+        "intrusion-set--e2b77b7d-320c-511b-b836-069be233aab5"
       ],
       "external_references": [
         {

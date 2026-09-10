@@ -58,8 +58,20 @@ for pred, want in (("operated by", "operated-by"), ("run by", "operated-by"),
     got = D.rel_of(pred)
     if got != want: fails.append(f"③ 述詞「{pred}」應為 {want}，得 {got}")
 
+# ④ 官媒子品牌（被動）：甲 是 乙 打造的自媒體品牌 → 甲 歸因於 乙（與 ① 同向）
+att, objs = run("打造的自媒體品牌", "甲機關是乙網絡打造的自媒體品牌。")
+if len(att) != 1: fails.append(f"④ 子品牌應產生 1 條 attributed-to，得 {len(att)}")
+elif (att[0]["source"], att[0]["target"]) != ("m1", "m2"):
+    fails.append(f"④ 子品牌被動應為 m1→m2，得 {att[0]['source']}→{att[0]['target']}")
+
+# ④b 分桶：被動子品牌樣式 → operated-by；但主動「打造」（無『的…品牌』）不得誤吃
+for pred, want in (("是該台打造的自媒體品牌", "operated-by"), ("為央視融媒體品牌", "operated-by"),
+                   ("打造的自媒體品牌", "operated-by"), ("打造了一個網絡", "related-to")):
+    got = D.rel_of(pred)
+    if got != want: fails.append(f"④b 述詞「{pred}」應為 {want}，得 {got}")
+
 print("紅線回歸（控制述詞的語態決定歸因方向）")
-print(f"  ① 被動 A→B｜② 主動 B→A｜③ 述詞分桶 → {'全數符合' if not fails else '有問題'}")
+print(f"  ① 被動 A→B｜② 主動 B→A｜③ 述詞分桶｜④ 官媒子品牌被動歸因 → {'全數符合' if not fails else '有問題'}")
 if fails:
     print("✗ 失敗："); [print("   -", f) for f in fails]; raise SystemExit(1)
 print("✓ 通過")

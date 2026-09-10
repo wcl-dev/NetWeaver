@@ -14,7 +14,10 @@ LADDER = [
     # 產生 attributed-to(中共公安部 → 龍橋)，讀成「公安部歸屬於網軍集團」。
     # 被動樣式必須排在主動之前，否則 "hired by" 會先被 "hired" 吃掉。
     (r"operated by|run by|directed by|controlled by|hired by|employed by|"
-     r"受[^，。]{0,6}(僱用|雇用|操作|指揮|操控|經營)|受僱於|由[^，。]{0,8}(經營|operated)", "operated-by"),
+     r"受[^，。]{0,6}(僱用|雇用|操作|指揮|操控|經營)|受僱於|由[^，。]{0,8}(經營|operated)|"
+     # 官媒子品牌：「X 是/為 Y 打造的自媒體品牌／融媒體品牌」＝被動（X 受 Y 經營）→ operated-by(X,Y)
+     # 錨定被動句式（打造的…品牌 / 是|為…品牌），不吃主動句「Y 打造 X」
+     r"打造的[^，。]{0,8}品牌|[是為][^，。]{0,8}(自媒體|融媒體)品牌", "operated-by"),
     (r"\bhires?\b|\bhired\b|\boperates?\b|\bruns?\b|\bdirects?\b|\bcontrols?\b|"
      r"僱用|雇用|運用|操控|指揮|經營", "runs"),
     (r"subsidiary|owned by|旗下|隸屬|子公司", "subsidiary-of"),

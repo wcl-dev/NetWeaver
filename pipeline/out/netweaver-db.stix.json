@@ -353,6 +353,30 @@
         {
           "quote": "《中科天璣內部文件研究》",
           "source_url": "https://www.nsb.gov.tw/zh/assets/documents/%E6%96%B0%E8%81%9E%E7%A8%BF/023b202c-8bc9-4b19-a8eb-c0d0b5809f99.pdf"
+        },
+        {
+          "quote": "Benson）在「紐約時報」客座評論共同撰文指出，根據范德比大學國家安全研究所（Institute of National Security）最新發現的大量文件，一家名為中科天璣（GoLaxy）的中國公司在2024年台灣選舉前夕出手，當時親中團體散布不實的貪腐指控，並在社群媒體發布深偽（deepfakes）影片。",
+          "source_url": "https://www.cna.com.tw/news/aopl/202508060159.aspx"
+        },
+        {
+          "quote": "根據范德比大學取得的文件，中科天璣曾運用其技術，壓制外界對2020年港區國安法的反對聲浪，並從18萬個香港推特（Twitter）帳號中辨識出數千名參與者與意見領袖，接著透過旗下的假帳號大軍，針對它認定為謊言與錯誤觀念的內容進行「修正」。",
+          "source_url": "https://www.cna.com.tw/news/aopl/202508060159.aspx"
+        },
+        {
+          "quote": "2021年，中科天璣獲得中科曙光（Sugon）的資助後，使其戰略立場變得更加明確。",
+          "source_url": "https://www.cna.com.tw/news/aopl/202508060159.aspx"
+        },
+        {
+          "quote": "The cache appeared to be internal documents from a little-known Beijing-based company called GoLaxy, and they seemed to lay out a chilling new approach to information warfare: an army of AI personas, engineered to look like us, think like us, and win our trust.",
+          "source_url": "https://therecord.media/golaxy-china-artificial-intelligence-papers"
+        },
+        {
+          "quote": "In the leaked documents, GoLaxy described itself as a private enterprise. But as Benson dug deeper there was more to it than that: the company had been founded by the Chinese Academy of Sciences, it employed nearly 1,000 people, and, according to the documents, maintained ties to both military and civilian intelligence.",
+          "source_url": "https://therecord.media/golaxy-china-artificial-intelligence-papers"
+        },
+        {
+          "quote": "And according to the 399 GoLaxy pages, they were already at work in Hong Kong, in Taiwan, and possibly in the United States.",
+          "source_url": "https://therecord.media/golaxy-china-artificial-intelligence-papers"
         }
       ]
     },
@@ -1415,6 +1439,10 @@
         {
           "quote": "關於裴洛西訪台，中共官媒發起並參與多項論述傳播，央視更公開報導宣揚其旗下品牌「玉渊谭天」「協同」中央廣電總台「影響中國國內海外輿論」 DA.28；關於麥卡錫訪台的 10 項論述則多出自台灣，中共官媒多引用台灣新聞媒體社論、特定名嘴（如郭正亮、蔡正元、介文汲）、政治人物（如楊永明）及其他可信度不一的評論，擴大傳播。",
           "source_url": "https://iorg.tw/_en/da/38"
+        },
+        {
+          "quote": "不過，在官媒「中國新聞出版廣電報」18日的文章裡，中央廣播電視總台副台長孫玉勝首次證實，「玉淵譚天」是該台打造的自媒體品牌。",
+          "source_url": "https://www.cna.com.tw/news/firstnews/201908210225.aspx"
         }
       ],
       "extensions": {
@@ -3313,6 +3341,10 @@
         {
           "quote": "PRC state-controlled outlets: PRC state-controlled media covered this event: Xinhua and the Facebook pages of CGTN and the China Civil Engineering Construction Corporation (CCECC).",
           "source_url": "https://medium.com/doublethinklab/prc-influence-and-alignment-in-the-2026-zambian-election-31c113a3f435"
+        },
+        {
+          "quote": "不過，在官媒「中國新聞出版廣電報」18日的文章裡，中央廣播電視總台副台長孫玉勝首次證實，「玉淵譚天」是該台打造的自媒體品牌。",
+          "source_url": "https://www.cna.com.tw/news/firstnews/201908210225.aspx"
         }
       ],
       "extensions": {
@@ -6318,6 +6350,52 @@
       ]
     },
     {
+      "type": "identity",
+      "spec_version": "2.1",
+      "id": "identity--b934a1f7-1e61-5d99-8cc7-6980dff21040",
+      "created": "2026-01-01T00:00:00.000Z",
+      "modified": "2026-01-01T00:00:00.000Z",
+      "name": "中科曙光",
+      "object_marking_refs": [
+        "marking-definition--30837352-4bcb-536d-ab32-86f489a09985"
+      ],
+      "aliases": [
+        "Sugon"
+      ],
+      "description": "北京超級運算公司，美國國防部列為與解放軍有關聯；2021 年起資助並以超級電腦支援中科天璣（GoLaxy）的 AI 影響力平台。",
+      "confidence": 60,
+      "identity_class": "organization",
+      "x_netweaver_evidence": [
+        {
+          "quote": "2021年，中科天璣獲得中科曙光（Sugon）的資助後，使其戰略立場變得更加明確。",
+          "source_url": "https://www.cna.com.tw/news/aopl/202508060159.aspx"
+        }
+      ]
+    },
+    {
+      "type": "identity",
+      "spec_version": "2.1",
+      "id": "identity--e5726e7d-fc66-5772-ab39-c9b3446367bc",
+      "created": "2026-01-01T00:00:00.000Z",
+      "modified": "2026-01-01T00:00:00.000Z",
+      "name": "中國科學院",
+      "object_marking_refs": [
+        "marking-definition--30837352-4bcb-536d-ab32-86f489a09985"
+      ],
+      "aliases": [
+        "Chinese Academy of Sciences"
+      ],
+      "description": "中國國家級研究機構；據范德堡大學取得之文件，中科天璣（GoLaxy）由中國科學院創立。",
+      "confidence": 60,
+      "identity_class": "organization",
+      "x_netweaver_evidence": [
+        {
+          "quote": "In the leaked documents, GoLaxy described itself as a private enterprise. But as Benson dug deeper there was more to it than that: the company had been founded by the Chinese Academy of Sciences, it employed nearly 1,000 people, and, according to the documents, maintained ties to both military and civilian intelligence.",
+          "source_url": "https://therecord.media/golaxy-china-artificial-intelligence-papers"
+        }
+      ]
+    },
+    {
       "type": "x-dad-narrative",
       "spec_version": "2.1",
       "id": "x-dad-narrative--f127b08a-9696-5d6e-902f-cad8684f242c",
@@ -8008,6 +8086,19 @@
     {
       "type": "relationship",
       "spec_version": "2.1",
+      "id": "relationship--b6a62e2a-6f05-5eb4-809a-6aa76e33c068",
+      "created": "2026-01-01T00:00:00.000Z",
+      "modified": "2026-01-01T00:00:00.000Z",
+      "relationship_type": "subsidiary-of",
+      "source_ref": "identity--c4b9c9c9-b127-5702-8dee-54f028e6a8ea",
+      "target_ref": "identity--e5726e7d-fc66-5772-ab39-c9b3446367bc",
+      "object_marking_refs": [
+        "marking-definition--30837352-4bcb-536d-ab32-86f489a09985"
+      ]
+    },
+    {
+      "type": "relationship",
+      "spec_version": "2.1",
       "id": "relationship--0dae725f-b950-5edf-b8cf-b460c5c21af5",
       "created": "2026-01-01T00:00:00.000Z",
       "modified": "2026-01-01T00:00:00.000Z",
@@ -8235,6 +8326,19 @@
       "relationship_type": "affiliated-with",
       "source_ref": "x-dad-channel--658ab5e9-2e8e-5cfd-9220-ad84f8ce7100",
       "target_ref": "x-dad-channel--daa27372-69ac-5f49-be6c-b0071011ae8b",
+      "object_marking_refs": [
+        "marking-definition--30837352-4bcb-536d-ab32-86f489a09985"
+      ]
+    },
+    {
+      "type": "relationship",
+      "spec_version": "2.1",
+      "id": "relationship--fcbc0429-94c5-5e09-876a-8069c56de7e7",
+      "created": "2026-01-01T00:00:00.000Z",
+      "modified": "2026-01-01T00:00:00.000Z",
+      "relationship_type": "attributed-to",
+      "source_ref": "x-dad-channel--658ab5e9-2e8e-5cfd-9220-ad84f8ce7100",
+      "target_ref": "x-dad-channel--8d56e9bd-1733-53f0-9084-0c177411434b",
       "object_marking_refs": [
         "marking-definition--30837352-4bcb-536d-ab32-86f489a09985"
       ]
@@ -8625,6 +8729,19 @@
       "relationship_type": "attributed-to",
       "source_ref": "intrusion-set--ffad810f-1846-5180-8afb-5aa6779c7ea8",
       "target_ref": "intrusion-set--8b4647b7-a0b9-5c7c-93b5-5d0f70f5745c",
+      "object_marking_refs": [
+        "marking-definition--30837352-4bcb-536d-ab32-86f489a09985"
+      ]
+    },
+    {
+      "type": "relationship",
+      "spec_version": "2.1",
+      "id": "relationship--14b62b92-844d-5c75-b834-8aa683c411f7",
+      "created": "2026-01-01T00:00:00.000Z",
+      "modified": "2026-01-01T00:00:00.000Z",
+      "relationship_type": "supplies-tech-to",
+      "source_ref": "identity--b934a1f7-1e61-5d99-8cc7-6980dff21040",
+      "target_ref": "identity--c4b9c9c9-b127-5702-8dee-54f028e6a8ea",
       "object_marking_refs": [
         "marking-definition--30837352-4bcb-536d-ab32-86f489a09985"
       ]
@@ -11098,8 +11215,10 @@
         "campaign--e577e0a3-2f26-5fce-aa1e-80a2c695ebd0",
         "identity--168f683e-9557-5435-bd6c-c1bb6cd1f009",
         "identity--289f872d-ccb9-5065-bf8f-e2ad17d573f4",
+        "identity--b934a1f7-1e61-5d99-8cc7-6980dff21040",
         "identity--c4b9c9c9-b127-5702-8dee-54f028e6a8ea",
         "identity--db1e2b44-3747-5611-9966-fdcd48df303a",
+        "identity--e5726e7d-fc66-5772-ab39-c9b3446367bc",
         "x-dad-channel--dcff989e-1e2a-5d38-aa11-7e9dddf8643b"
       ],
       "external_references": [

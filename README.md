@@ -70,7 +70,7 @@ NetWeaver/
 
 ## 資料來源
 
-每筆行為者、事件、關係的關鍵宣稱都掛 `source_ids`，前端會顯示來源連結供查證（目前 <!-- STATS-A:BEGIN -->**45 個來源機構**、**78 筆報告記錄**、**897 條逐來源宣稱**<!-- STATS-A:END -->——機構是 allowlist 單位，一個機構可產出多份報告）。主要類別如下（完整機構清單見本節末，由 `data/registry.yaml` 自動生成）：
+每筆行為者、事件、關係的關鍵宣稱都掛 `source_ids`，前端會顯示來源連結供查證（目前 <!-- STATS-A:BEGIN -->**45 個來源機構**、**78 筆報告記錄**、**907 條逐來源宣稱**<!-- STATS-A:END -->——機構是 allowlist 單位，一個機構可產出多份報告）。主要類別如下（完整機構清單見本節末，由 `data/registry.yaml` 自動生成）：
 
 - **政府公開報告**：國家安全局 (NSB)、美國司法部 (DOJ)
 - **台灣公民社會研究／數位調查**：
@@ -230,7 +230,7 @@ https://wcl-dev.github.io/NetWeaver/pipeline/out/netweaver-db.stix.json
 
 ## 狀態
 
-概念驗證階段。資料規模：<!-- STATS-B:BEGIN -->**113 行為者 / 33 事件 / 78 來源 / 35 敘事 / 897 條逐來源宣稱**<!-- STATS-B:END -->（含子敘事樹），整理自 NSB、IORG、Doublethink Lab、FactLink 數位素養實驗室、Mandiant/Google、Meta、Graphika、ASPI、Citizen Lab、Microsoft MTAC、Recorded Future、Jamestown、ISD、Vanderbilt、OpenAI、US DOJ 等公開報告與數位調查。
+概念驗證階段。資料規模：<!-- STATS-B:BEGIN -->**115 行為者 / 33 事件 / 78 來源 / 35 敘事 / 907 條逐來源宣稱**<!-- STATS-B:END -->（含子敘事樹），整理自 NSB、IORG、Doublethink Lab、FactLink 數位素養實驗室、Mandiant/Google、Meta、Graphika、ASPI、Citizen Lab、Microsoft MTAC、Recorded Future、Jamestown、ISD、Vanderbilt、OpenAI、US DOJ 等公開報告與數位調查。
 
 涵蓋層次（依 `category`）：
 - **PRC 攻擊機關**（state-organ）：網信辦、國安部、政工部、網路空間部隊、信息支援部、統戰部、公安部、國台辦、外交部

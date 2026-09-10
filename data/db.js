@@ -9,7 +9,7 @@ window.NETWEAVER_DB = {
   "meta": {
     "version": "0.4.0",
     "updated": "2026-09",
-    "note": "113 行為者 / 33 事件 / 78 來源 / 35 敘事。本版新增：抽取→審核→發布產線、歸因人工核可工作流（3 則 attributed-to）、簡繁對應、來源與宣稱合併＋引文共現介面；並收錄尚比亞案與 OpenAI June 2026 報告的 PRC 影響力行動。"
+    "note": "115 行為者 / 33 事件 / 78 來源 / 35 敘事。本版新增：抽取→審核→發布產線、歸因人工核可工作流（4 則 attributed-to）、簡繁對應、來源與宣稱合併＋引文共現介面；並收錄尚比亞案與 OpenAI June 2026 報告的 PRC 影響力行動。"
   },
   "entities": [
     {
@@ -595,6 +595,11 @@ window.NETWEAVER_DB = {
           "target_id": "mss",
           "relation": "affiliated-with",
           "note": "DTL 文件提及與國家安全部的合作"
+        },
+        {
+          "target_id": "cas",
+          "relation": "subsidiary-of",
+          "note": "范德堡大學取得之文件：GoLaxy（中科天璣）由中國科學院創立"
         }
       ],
       "event_ids": [
@@ -650,6 +655,36 @@ window.NETWEAVER_DB = {
           "text": "《中科天璣內部文件研究》",
           "source_id": "src-nsb-2026",
           "about": "中科天璣"
+        },
+        {
+          "text": "Benson）在「紐約時報」客座評論共同撰文指出，根據范德比大學國家安全研究所（Institute of National Security）最新發現的大量文件，一家名為中科天璣（GoLaxy）的中國公司在2024年台灣選舉前夕出手，當時親中團體散布不實的貪腐指控，並在社群媒體發布深偽（deepfakes）影片。",
+          "source_id": "src-vanderbilt-golaxy-2025",
+          "about": "中科天璣"
+        },
+        {
+          "text": "根據范德比大學取得的文件，中科天璣曾運用其技術，壓制外界對2020年港區國安法的反對聲浪，並從18萬個香港推特（Twitter）帳號中辨識出數千名參與者與意見領袖，接著透過旗下的假帳號大軍，針對它認定為謊言與錯誤觀念的內容進行「修正」。",
+          "source_id": "src-vanderbilt-golaxy-2025",
+          "about": "中科天璣"
+        },
+        {
+          "text": "2021年，中科天璣獲得中科曙光（Sugon）的資助後，使其戰略立場變得更加明確。",
+          "source_id": "src-vanderbilt-golaxy-2025",
+          "about": "中科天璣"
+        },
+        {
+          "text": "The cache appeared to be internal documents from a little-known Beijing-based company called GoLaxy, and they seemed to lay out a chilling new approach to information warfare: an army of AI personas, engineered to look like us, think like us, and win our trust.",
+          "source_id": "src-record-golaxy",
+          "about": "GoLaxy"
+        },
+        {
+          "text": "In the leaked documents, GoLaxy described itself as a private enterprise. But as Benson dug deeper there was more to it than that: the company had been founded by the Chinese Academy of Sciences, it employed nearly 1,000 people, and, according to the documents, maintained ties to both military and civilian intelligence.",
+          "source_id": "src-record-golaxy",
+          "about": "GoLaxy"
+        },
+        {
+          "text": "And according to the 399 GoLaxy pages, they were already at work in Hong Kong, in Taiwan, and possibly in the United States.",
+          "source_id": "src-record-golaxy",
+          "about": "GoLaxy"
         }
       ]
     },
@@ -2124,6 +2159,11 @@ window.NETWEAVER_DB = {
           "target_id": "global-times",
           "relation": "affiliated-with",
           "note": "NSB 2024：朝陽少俠、補壹刀為《環球時報》設立之分身帳號"
+        },
+        {
+          "target_id": "cmg-cctv",
+          "relation": "attributed-to",
+          "note": "中央社 CNA 報告記錄；2026-09-10 人工核可"
         }
       ],
       "event_ids": [
@@ -2169,6 +2209,11 @@ window.NETWEAVER_DB = {
           "text": "關於裴洛西訪台，中共官媒發起並參與多項論述傳播，央視更公開報導宣揚其旗下品牌「玉渊谭天」「協同」中央廣電總台「影響中國國內海外輿論」 DA.28；關於麥卡錫訪台的 10 項論述則多出自台灣，中共官媒多引用台灣新聞媒體社論、特定名嘴（如郭正亮、蔡正元、介文汲）、政治人物（如楊永明）及其他可信度不一的評論，擴大傳播。",
           "source_id": "src-iorg-38",
           "about": "玉渊谭天"
+        },
+        {
+          "text": "不過，在官媒「中國新聞出版廣電報」18日的文章裡，中央廣播電視總台副台長孫玉勝首次證實，「玉淵譚天」是該台打造的自媒體品牌。",
+          "source_id": "src-cna-yuyuan",
+          "about": "玉淵譚天"
         }
       ]
     },
@@ -4665,6 +4710,11 @@ window.NETWEAVER_DB = {
           "text": "PRC state-controlled outlets: PRC state-controlled media covered this event: Xinhua and the Facebook pages of CGTN and the China Civil Engineering Construction Corporation (CCECC).",
           "source_id": "src-doublethink-lab-b7212b",
           "about": "CGTN"
+        },
+        {
+          "text": "不過，在官媒「中國新聞出版廣電報」18日的文章裡，中央廣播電視總台副台長孫玉勝首次證實，「玉淵譚天」是該台打造的自媒體品牌。",
+          "source_id": "src-cna-yuyuan",
+          "about": "中央廣播電視總台"
         }
       ]
     },
@@ -7900,6 +7950,55 @@ window.NETWEAVER_DB = {
           "text": "accounts associated with Operation “Nine-emdash Line,” which we discussed in",
           "source_id": "src-openai-threat-intelligence-1b31cc",
           "about": "Nine-emdash Line"
+        }
+      ]
+    },
+    {
+      "id": "sugon",
+      "name_zh": "中科曙光",
+      "name_en": "Sugon",
+      "aliases": [],
+      "category": "tech-vendor",
+      "role": "collaborator",
+      "origin": "PRC",
+      "summary_zh": "北京超級運算公司，美國國防部列為與解放軍有關聯；2021 年起資助並以超級電腦支援中科天璣（GoLaxy）的 AI 影響力平台。",
+      "source_ids": [
+        "src-dtl-golaxy"
+      ],
+      "confidence": "medium",
+      "claims": [
+        {
+          "text": "2021年，中科天璣獲得中科曙光（Sugon）的資助後，使其戰略立場變得更加明確。",
+          "source_id": "src-vanderbilt-golaxy-2025",
+          "about": "中科曙光"
+        }
+      ],
+      "related": [
+        {
+          "target_id": "golaxy",
+          "relation": "supplies-tech-to",
+          "note": "2021 年起資助並以超級電腦支援 GoLaxy 的 AI 影響力平台；美國防部列 Sugon 與解放軍有關聯"
+        }
+      ]
+    },
+    {
+      "id": "cas",
+      "name_zh": "中國科學院",
+      "name_en": "Chinese Academy of Sciences",
+      "aliases": [],
+      "category": "state-organ",
+      "role": "collaborator",
+      "origin": "PRC",
+      "summary_zh": "中國國家級研究機構；據范德堡大學取得之文件，中科天璣（GoLaxy）由中國科學院創立。",
+      "source_ids": [
+        "src-dtl-golaxy"
+      ],
+      "confidence": "medium",
+      "claims": [
+        {
+          "text": "In the leaked documents, GoLaxy described itself as a private enterprise. But as Benson dug deeper there was more to it than that: the company had been founded by the Chinese Academy of Sciences, it employed nearly 1,000 people, and, according to the documents, maintained ties to both military and civilian intelligence.",
+          "source_id": "src-record-golaxy",
+          "about": "Chinese Academy of Sciences"
         }
       ]
     }

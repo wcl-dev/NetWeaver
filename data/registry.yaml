@@ -250,7 +250,7 @@ existing:
       from: "Recorded Future (News / Insikt Group)"
     - id: gti
       org: "Global Taiwan Institute"
-      mode: manual        # 無 RSS，需 ingest.py --url 觸發
+      mode: feed          # RSS：見 pipeline/feeds.json（2026-09 manual→feed）
       tier: B
       aliases: "Global Taiwan Institute, GTI"
       from: "Global Taiwan Institute (GTI)"
@@ -267,13 +267,13 @@ existing:
       from: "CyberCX"
     - id: chinapower
       org: "ChinaPower (CSIS)"
-      mode: manual        # 無 RSS，需 ingest.py --url 觸發
+      mode: feed          # RSS：見 pipeline/feeds.json（2026-09 manual→feed）
       tier: B
       aliases: "ChinaPower, CSIS"
       from: "ChinaPower (CSIS) / Jamestown Foundation / Lowy Institute / HRW / ProPublica"
     - id: jamestown
       org: "Jamestown Foundation"
-      mode: manual        # 無 RSS，需 ingest.py --url 觸發
+      mode: feed          # RSS：見 pipeline/feeds.json（2026-09 manual→feed）
       tier: B
       from: "（同上行）"
     - id: lowy

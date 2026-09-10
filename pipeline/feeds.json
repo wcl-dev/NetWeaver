@@ -10,6 +10,9 @@
     { "id": "newsguard-rc", "org": "NewsGuard Reality Check", "tier": "B", "feed_url": "https://www.newsguardrealitycheck.com/feed", "license": "all-rights-reserved" },
     { "id": "dfrlab", "org": "DFRLab (Atlantic Council)", "tier": "A", "feed_url": "https://dfrlab.org/feed/", "license": "cite-with-attribution" },
     { "id": "tfc-taiwan", "org": "台灣事實查核中心 Taiwan FactCheck Center", "tier": "A", "feed_url": "https://tfc-taiwan.org.tw/feed", "license": "cite-with-attribution" },
-    { "id": "jfc-japan", "org": "Japan Fact-check Center (JFC)", "tier": "B", "feed_url": "https://factcheckcenter.jp/feed/", "license": "cite-with-attribution" }
+    { "id": "jfc-japan", "org": "Japan Fact-check Center (JFC)", "tier": "B", "feed_url": "https://factcheckcenter.jp/feed/", "license": "cite-with-attribution" },
+    { "id": "jamestown", "org": "Jamestown Foundation", "tier": "B", "feed_url": "https://jamestown.org/feed/", "license": "cite-with-attribution" },
+    { "id": "gti", "org": "Global Taiwan Institute", "tier": "B", "feed_url": "https://globaltaiwan.org/feed/", "license": "cite-with-attribution" },
+    { "id": "chinapower", "org": "ChinaPower (CSIS)", "tier": "B", "feed_url": "https://chinapower.csis.org/feed/", "license": "cite-with-attribution" }
   ]
 }

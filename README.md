@@ -70,7 +70,7 @@ NetWeaver/
 
 ## 資料來源
 
-每筆行為者、事件、關係的關鍵宣稱都掛 `source_ids`，前端會顯示來源連結供查證（目前共 78 筆來源、897 條逐來源宣稱）。主要取自：
+每筆行為者、事件、關係的關鍵宣稱都掛 `source_ids`，前端會顯示來源連結供查證（目前 **45 個來源機構**、**78 筆報告記錄**、897 條逐來源宣稱——機構是 allowlist 單位，一個機構可產出多份報告）。主要類別如下（**完整 45 機構清單見本節末，由 `data/registry.yaml` 自動生成**）：
 
 - **政府公開報告**：國家安全局 (NSB)、美國司法部 (DOJ)
 - **台灣公民社會研究／數位調查**：
@@ -80,6 +80,105 @@ NetWeaver/
 - **國際平台威脅報告**：Meta、Google／Mandiant（GLASSBRIDGE / HaiEnergy / DRAGONBRIDGE）、Microsoft MTAC
 - **國際研究機構**：Graphika、ASPI、Citizen Lab（PAPERWALL）、Recorded Future、Global Taiwan Institute、Vanderbilt（GoLaxy 文件）、Jamestown Foundation、Institute for Strategic Dialogue (ISD)、Lowy Institute、ChinaPower (CSIS)、CyberCX
 - **新聞媒體佐證**：報導者、自由時報、中央社、CNBC、紐約時報、ProPublica 等
+
+<!-- SOURCES:BEGIN（此區塊由 scripts/gen_source_appendix.py 從 data/registry.yaml 生成，勿手改） -->
+<details>
+<summary><b>完整來源清單</b>（45 個機構；自動輪詢 (RSS) 13／人工觸發 31／存檔匯入 1）——點開</summary>
+
+> 這是全部**機構**層級的 allowlist（`data/registry.yaml`）。實際掛上宣稱的是**報告記錄**（`data/db.js` 的 `sources[]`）——一個機構可產出多份報告，故報告數多於機構數。逐源授權見 `db.js` 的 `sources[].license` 與 STIX 的 `x_netweaver_license`。
+
+**政府／官方報告**（3）
+
+| 機構 | 層級 | 取得 |
+|---|:--:|---|
+| [國家安全局 NSB](<https://www.nsb.gov.tw>) | A | 人工觸發 |
+| [US ODNI — Annual Threat Assessment](<https://www.odni.gov/>) | A | 人工觸發 |
+| US DOJ | A | 人工觸發 |
+
+**平台威脅情資**（5）
+
+| 機構 | 層級 | 取得 |
+|---|:--:|---|
+| [Anthropic — Threat Intelligence](<https://www.anthropic.com/news>) | A | 人工觸發 |
+| Google TAG / Mandiant | A | 人工觸發 |
+| Meta — Adversarial Threat Reports | A | 人工觸發 |
+| Microsoft Threat Analysis Center (MTAC) | A | 人工觸發 |
+| [OpenAI — Threat Intelligence](<https://openai.com/index/disrupting-malicious-ai-uses/>) | A | 人工觸發 |
+
+**研究機構／智庫／NGO**（17）
+
+| 機構 | 層級 | 取得 |
+|---|:--:|---|
+| ASPI | A | 自動輪詢 (RSS) |
+| [DFRLab (Atlantic Council)](<https://dfrlab.org/>) | A | 自動輪詢 (RSS) |
+| [EU DisinfoLab](<https://www.disinfo.eu/>) | A | 自動輪詢 (RSS) |
+| [Doublethink Lab](<https://medium.com/doublethinklab>) | A | 自動輪詢 (RSS) |
+| [FactLink 數位素養實驗室](<https://factlink.tw>) | A | 自動輪詢 (RSS) |
+| Graphika | A | 人工觸發 |
+| [IORG 台灣資訊環境研究中心](<https://iorg.tw>) | A | 人工觸發 |
+| [Alliance for Securing Democracy / Hamilton 2.0 (GMF)](<https://securingdemocracy.gmfus.org/>) | B | 人工觸發 |
+| ChinaPower (CSIS) | B | 自動輪詢 (RSS) |
+| CyberCX | B | 人工觸發 |
+| Global Taiwan Institute | B | 自動輪詢 (RSS) |
+| HRW | B | 人工觸發 |
+| Institute for Strategic Dialogue | B | 人工觸發 |
+| Jamestown Foundation | B | 自動輪詢 (RSS) |
+| Lowy Institute | B | 人工觸發 |
+| [NewsGuard](<https://www.newsguardtech.com/>) | B | 自動輪詢 (RSS) |
+| Recorded Future | B | 自動輪詢 (RSS) |
+
+**事實查核**（2）
+
+| 機構 | 層級 | 取得 |
+|---|:--:|---|
+| [台灣事實查核中心 Taiwan FactCheck Center](<https://tfc-taiwan.org.tw/>) | A | 自動輪詢 (RSS) |
+| [Japan Fact-check Center (JFC)](<https://factcheckcenter.jp/>) | B | 自動輪詢 (RSS) |
+
+**學術**（4）
+
+| 機構 | 層級 | 取得 |
+|---|:--:|---|
+| Citizen Lab | A | 自動輪詢 (RSS) |
+| Vanderbilt Institute of National Security | A | 人工觸發 |
+| [Clemson Media Forensics Hub](<https://www.clemson.edu/centers-institutes/watt/hub/>) | B | 人工觸發 |
+| [Stanford Internet Observatory (archived)](<https://github.com/stanfordio/publications>) | B | 人工觸發 |
+
+**下架資料集（帳號證據層）**（1）
+
+| 機構 | 層級 | 取得 |
+|---|:--:|---|
+| [X/Twitter — State-Backed Information Operations Archive](<https://archive.org/details/X_Twitter_Information_Operations>) | A | 存檔匯入 |
+
+**媒體／通訊社（事件佐證）**（11）
+
+| 機構 | 層級 | 取得 |
+|---|:--:|---|
+| 中央社 CNA | B | 人工觸發 |
+| CNBC | B | 人工觸發 |
+| Focus Taiwan | B | 人工觸發 |
+| 自由時報 | B | 人工觸發 |
+| NYT | B | 人工觸發 |
+| ProPublica | B | 人工觸發 |
+| 風傳媒 Storm | B | 人工觸發 |
+| Taipei Times | B | 人工觸發 |
+| Taiwan Gazette | B | 人工觸發 |
+| TVBS | B | 人工觸發 |
+| 報導者 The Reporter | B | 人工觸發 |
+
+**對手方官媒（對照，不當事實）**（1）
+
+| 機構 | 層級 | 取得 |
+|---|:--:|---|
+| 環球時報 Global Times | C | 人工觸發 |
+
+**背景查證**（1）
+
+| 機構 | 層級 | 取得 |
+|---|:--:|---|
+| Wikipedia | C | 人工觸發 |
+
+</details>
+<!-- SOURCES:END -->
 
 ## 授權
 

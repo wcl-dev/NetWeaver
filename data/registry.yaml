@@ -84,7 +84,7 @@ sources:
     type: research
     url: "https://www.newsguardtech.com/"
     license: ngo-restricted         # 部分 gated／商用
-    mode: manual
+    mode: feed                      # 經 Reality Check feed 輪詢（feeds.json: newsguard-rc）
     cadence: on-alert
     added: "2026-07"
     note: "追蹤 AI 造假新聞網站與親中網絡（GLASSBRIDGE／PAPERWALL 類）。"
@@ -96,7 +96,7 @@ sources:
     type: research
     url: "https://securingdemocracy.gmfus.org/"
     license: cite-with-attribution
-    mode: feed
+    mode: manual         # Hamilton dashboard 無程式 feed；整個 GMF 的 rss 太雜，改人工觸發
     cadence: weekly
     added: "2026-07"
     note: "追蹤國家媒體、外交官敘事（含中國）的 dashboard；敘事層佐證。"
@@ -179,6 +179,15 @@ existing:
       url: "https://medium.com/doublethinklab"
       aliases: "Doublethink Lab, 台灣民主實驗室"
       from: "Doublethink Lab 台灣民主實驗室 (medium.com/doublethinklab) — research"
+    - id: disinfolab
+      org: "EU DisinfoLab"
+      mode: feed
+      tier: A
+      type: research
+      url: "https://www.disinfo.eu/"
+      aliases: "EU DisinfoLab, DisinfoLab"
+      license: cite-with-attribution
+      note: "歐洲反訊息操弄研究 NGO；電子報 feed 早已在 pipeline/feeds.json 收錄，2026-09 補登 registry 正規化（原先是只在 feeds.json、未過 allowlist 的缺口）。"
     - id: factlink
       org: "FactLink 數位素養實驗室"
       mode: feed
@@ -246,50 +255,59 @@ existing:
       org: "Recorded Future"
       mode: feed
       tier: B
+      type: research
       aliases: "Recorded Future, Recorded Future News, Insikt Group"
       from: "Recorded Future (News / Insikt Group)"
     - id: gti
       org: "Global Taiwan Institute"
       mode: feed          # RSS：見 pipeline/feeds.json（2026-09 manual→feed）
       tier: B
+      type: research
       aliases: "Global Taiwan Institute, GTI"
       from: "Global Taiwan Institute (GTI)"
     - id: isd
       org: "Institute for Strategic Dialogue"
       mode: manual        # 無 RSS，需 ingest.py --url 觸發
       tier: B
+      type: research
       aliases: "Institute for Strategic Dialogue, ISD"
       from: "Institute for Strategic Dialogue (ISD)"
     - id: cybercx
       org: "CyberCX"
       mode: manual        # 無 RSS，需 ingest.py --url 觸發
       tier: B
+      type: research
       from: "CyberCX"
     - id: chinapower
       org: "ChinaPower (CSIS)"
       mode: feed          # RSS：見 pipeline/feeds.json（2026-09 manual→feed）
       tier: B
+      type: research
       aliases: "ChinaPower, CSIS"
       from: "ChinaPower (CSIS) / Jamestown Foundation / Lowy Institute / HRW / ProPublica"
     - id: jamestown
       org: "Jamestown Foundation"
       mode: feed          # RSS：見 pipeline/feeds.json（2026-09 manual→feed）
       tier: B
+      type: research
       from: "（同上行）"
     - id: lowy
       org: "Lowy Institute"
       mode: manual        # 無 RSS，需 ingest.py --url 觸發
       tier: B
+      type: research
       from: "（同上行）"
     - id: hrw
       org: "HRW"
       mode: manual        # 無 RSS，需 ingest.py --url 觸發
       tier: B
+      type: research
       from: "（同上行）"
     - id: propublica
       org: "ProPublica"
       mode: manual        # 無 RSS，需 ingest.py --url 觸發
       tier: B
+      type: news
       from: "（同上行）"
     - id: twreporter
       org: "報導者 The Reporter"

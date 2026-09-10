@@ -89,6 +89,11 @@ window.NETWEAVER_DB = {
           "text": "此外，中共網信辦、統戰部及解放軍網路空間部隊等單",
           "source_id": "src-nsb-2026",
           "about": "網信辦"
+        },
+        {
+          "text": "中共網信辦、國安部、解放軍政治工作部運用「中科天機」、「美亞柏科」、「沃民高新」等科技公司",
+          "source_id": "src-storm-nsb-2026",
+          "about": "網信辦"
         }
       ]
     },
@@ -145,6 +150,11 @@ window.NETWEAVER_DB = {
         {
           "text": "中共網信辦、國安部及解放軍政治工作部等單位，指導",
           "source_id": "src-nsb-2026",
+          "about": "國安部"
+        },
+        {
+          "text": "中共網信辦、國安部、解放軍政治工作部運用「中科天機」、「美亞柏科」、「沃民高新」等科技公司",
+          "source_id": "src-storm-nsb-2026",
           "about": "國安部"
         }
       ]
@@ -209,6 +219,11 @@ window.NETWEAVER_DB = {
         {
           "text": "中共網信辦、國安部及解放軍政治工作部等單位，指導",
           "source_id": "src-nsb-2026",
+          "about": "解放軍政治工作部"
+        },
+        {
+          "text": "中共網信辦、國安部、解放軍政治工作部運用「中科天機」、「美亞柏科」、「沃民高新」等科技公司",
+          "source_id": "src-storm-nsb-2026",
           "about": "解放軍政治工作部"
         }
       ]
@@ -278,6 +293,11 @@ window.NETWEAVER_DB = {
           "text": "此外，中共網信辦、統戰部及解放軍網路空間部隊等單",
           "source_id": "src-nsb-2026",
           "about": "統戰部"
+        },
+        {
+          "text": "國安局提到，在「利用異常帳號滲透輿論」方面，中共公安部運用「龍橋」網路水軍集團，透過逾20種語言，在全球超過180種網路社群平台進行影響力活動；另中共網信辦、統戰部、解放軍網路空間部隊指導「中科點擊」、「北京星光」及「一網互通」等科技公司，建立網民資料庫，並開發帳號自動化群控程式，控制逾萬組假帳號，協同性投放爭訊，並針對目標受眾塑造輿論。",
+          "source_id": "src-storm-nsb-2026",
+          "about": "統戰部"
         }
       ]
     },
@@ -346,6 +366,11 @@ window.NETWEAVER_DB = {
         {
           "text": "中共公安部運用「龍橋」網路水軍集團，透過逾 20 種",
           "source_id": "src-nsb-2026",
+          "about": "公安部"
+        },
+        {
+          "text": "國安局指出，在「建置多元管道投放爭訊」方面，中共中宣部、公安部透由「海訊社」、「海賣」及「虎牙」等公關公司，創建網站偽冒國際媒體例如：Aisa Korea、Austria Weekly，協力傳散中共官方論述；另扶植「無邊界集團」公關公司，創設「臉書」粉專內容農場，張貼煽動性文章吸引點閱，並在Threads及X等平台，設立軟性議題發文帳號，伺機發布政治類貼文，意圖影響國人認知。",
+          "source_id": "src-storm-nsb-2026",
           "about": "公安部"
         }
       ]
@@ -744,6 +769,11 @@ window.NETWEAVER_DB = {
           "text": "「美亞柏科」等科技公司，利用「爬蟲技術」",
           "source_id": "src-nsb-2026",
           "about": "美亞柏科"
+        },
+        {
+          "text": "中共網信辦、國安部、解放軍政治工作部運用「中科天機」、「美亞柏科」、「沃民高新」等科技公司",
+          "source_id": "src-storm-nsb-2026",
+          "about": "美亞柏科"
         }
       ]
     },
@@ -795,6 +825,11 @@ window.NETWEAVER_DB = {
           "text": "「科大訊飛」等科技公司，",
           "source_id": "src-nsb-2026",
           "about": "科大訊飛"
+        },
+        {
+          "text": "中共委託「晴數智慧科技」、「科大訊飛」等公司，開發智能語音系統，於我國網站刊登廣告，誘吸不知情台灣民眾進行錄音",
+          "source_id": "src-storm-nsb-2026",
+          "about": "科大訊飛"
         }
       ]
     },
@@ -840,6 +875,11 @@ window.NETWEAVER_DB = {
         {
           "text": "「北京星光」及「一網互通」等科技",
           "source_id": "src-nsb-2026",
+          "about": "一網互通"
+        },
+        {
+          "text": "國安局提到，在「利用異常帳號滲透輿論」方面，中共公安部運用「龍橋」網路水軍集團，透過逾20種語言，在全球超過180種網路社群平台進行影響力活動；另中共網信辦、統戰部、解放軍網路空間部隊指導「中科點擊」、「北京星光」及「一網互通」等科技公司，建立網民資料庫，並開發帳號自動化群控程式，控制逾萬組假帳號，協同性投放爭訊，並針對目標受眾塑造輿論。",
+          "source_id": "src-storm-nsb-2026",
           "about": "一網互通"
         }
       ]
@@ -1105,6 +1145,11 @@ window.NETWEAVER_DB = {
           "text": "Shanghai Haixun Technology",
           "source_id": "src-google-glassbridge",
           "about": "Haixun"
+        },
+        {
+          "text": "國安局指出，在「建置多元管道投放爭訊」方面，中共中宣部、公安部透由「海訊社」、「海賣」及「虎牙」等公關公司，創建網站偽冒國際媒體例如：Aisa Korea、Austria Weekly，協力傳散中共官方論述；另扶植「無邊界集團」公關公司，創設「臉書」粉專內容農場，張貼煽動性文章吸引點閱，並在Threads及X等平台，設立軟性議題發文帳號，伺機發布政治類貼文，意圖影響國人認知。",
+          "source_id": "src-storm-nsb-2026",
+          "about": "海訊社"
         }
       ]
     },
@@ -1303,6 +1348,11 @@ window.NETWEAVER_DB = {
         {
           "text": "（二）內容農場及異常頻道：中共扶植中企「無邊界集團」",
           "source_id": "src-nsb-2026",
+          "about": "無邊界集團"
+        },
+        {
+          "text": "國安局指出，在「建置多元管道投放爭訊」方面，中共中宣部、公安部透由「海訊社」、「海賣」及「虎牙」等公關公司，創建網站偽冒國際媒體例如：Aisa Korea、Austria Weekly，協力傳散中共官方論述；另扶植「無邊界集團」公關公司，創設「臉書」粉專內容農場，張貼煽動性文章吸引點閱，並在Threads及X等平台，設立軟性議題發文帳號，伺機發布政治類貼文，意圖影響國人認知。",
+          "source_id": "src-storm-nsb-2026",
           "about": "無邊界集團"
         }
       ]
@@ -2012,6 +2062,11 @@ window.NETWEAVER_DB = {
           "text": "Spamouflage/DRAGONBRIDGE network used",
           "source_id": "src-openai-threat-intelligence-1b31cc",
           "about": "Spamouflage"
+        },
+        {
+          "text": "國安局提到，在「利用異常帳號滲透輿論」方面，中共公安部運用「龍橋」網路水軍集團，透過逾20種語言，在全球超過180種網路社群平台進行影響力活動；另中共網信辦、統戰部、解放軍網路空間部隊指導「中科點擊」、「北京星光」及「一網互通」等科技公司，建立網民資料庫，並開發帳號自動化群控程式，控制逾萬組假帳號，協同性投放爭訊，並針對目標受眾塑造輿論。",
+          "source_id": "src-storm-nsb-2026",
+          "about": "龍橋"
         }
       ]
     },
@@ -2782,6 +2837,11 @@ window.NETWEAVER_DB = {
           "text": "此外，中共網信辦、統戰部及解放軍網路空間部隊等單",
           "source_id": "src-nsb-2026",
           "about": "解放軍網路空間部隊"
+        },
+        {
+          "text": "國安局提到，在「利用異常帳號滲透輿論」方面，中共公安部運用「龍橋」網路水軍集團，透過逾20種語言，在全球超過180種網路社群平台進行影響力活動；另中共網信辦、統戰部、解放軍網路空間部隊指導「中科點擊」、「北京星光」及「一網互通」等科技公司，建立網民資料庫，並開發帳號自動化群控程式，控制逾萬組假帳號，協同性投放爭訊，並針對目標受眾塑造輿論。",
+          "source_id": "src-storm-nsb-2026",
+          "about": "解放軍網路空間部隊"
         }
       ]
     },
@@ -2821,6 +2881,11 @@ window.NETWEAVER_DB = {
           "text": "「沃民高新」等企業，則彙整我國選舉期間候選",
           "source_id": "src-nsb-2026",
           "about": "沃民高新"
+        },
+        {
+          "text": "中共網信辦、國安部、解放軍政治工作部運用「中科天機」、「美亞柏科」、「沃民高新」等科技公司",
+          "source_id": "src-storm-nsb-2026",
+          "about": "沃民高新"
         }
       ]
     },
@@ -2851,7 +2916,14 @@ window.NETWEAVER_DB = {
       "source_ids": [
         "src-nsb-2026"
       ],
-      "confidence": "medium"
+      "confidence": "medium",
+      "claims": [
+        {
+          "text": "國安局提到，在「利用異常帳號滲透輿論」方面，中共公安部運用「龍橋」網路水軍集團，透過逾20種語言，在全球超過180種網路社群平台進行影響力活動；另中共網信辦、統戰部、解放軍網路空間部隊指導「中科點擊」、「北京星光」及「一網互通」等科技公司，建立網民資料庫，並開發帳號自動化群控程式，控制逾萬組假帳號，協同性投放爭訊，並針對目標受眾塑造輿論。",
+          "source_id": "src-storm-nsb-2026",
+          "about": "中科點擊"
+        }
+      ]
     },
     {
       "id": "beijing-xingguang",
@@ -2883,6 +2955,11 @@ window.NETWEAVER_DB = {
         {
           "text": "「北京星光」及「一網互通」等科技",
           "source_id": "src-nsb-2026",
+          "about": "北京星光"
+        },
+        {
+          "text": "國安局提到，在「利用異常帳號滲透輿論」方面，中共公安部運用「龍橋」網路水軍集團，透過逾20種語言，在全球超過180種網路社群平台進行影響力活動；另中共網信辦、統戰部、解放軍網路空間部隊指導「中科點擊」、「北京星光」及「一網互通」等科技公司，建立網民資料庫，並開發帳號自動化群控程式，控制逾萬組假帳號，協同性投放爭訊，並針對目標受眾塑造輿論。",
+          "source_id": "src-storm-nsb-2026",
           "about": "北京星光"
         }
       ]
@@ -3004,6 +3081,11 @@ window.NETWEAVER_DB = {
           "text": "Shenzhen Haimai Yunxiang Media",
           "source_id": "src-google-glassbridge",
           "about": "Haimai"
+        },
+        {
+          "text": "國安局指出，在「建置多元管道投放爭訊」方面，中共中宣部、公安部透由「海訊社」、「海賣」及「虎牙」等公關公司，創建網站偽冒國際媒體例如：Aisa Korea、Austria Weekly，協力傳散中共官方論述；另扶植「無邊界集團」公關公司，創設「臉書」粉專內容農場，張貼煽動性文章吸引點閱，並在Threads及X等平台，設立軟性議題發文帳號，伺機發布政治類貼文，意圖影響國人認知。",
+          "source_id": "src-storm-nsb-2026",
+          "about": "海賣"
         }
       ]
     },
@@ -3049,6 +3131,11 @@ window.NETWEAVER_DB = {
           "text": "及「虎牙」等公關公司，創建虛假網站，並以中立性",
           "source_id": "src-nsb-2026",
           "about": "虎牙"
+        },
+        {
+          "text": "國安局指出，在「建置多元管道投放爭訊」方面，中共中宣部、公安部透由「海訊社」、「海賣」及「虎牙」等公關公司，創建網站偽冒國際媒體例如：Aisa Korea、Austria Weekly，協力傳散中共官方論述；另扶植「無邊界集團」公關公司，創設「臉書」粉專內容農場，張貼煽動性文章吸引點閱，並在Threads及X等平台，設立軟性議題發文帳號，伺機發布政治類貼文，意圖影響國人認知。",
+          "source_id": "src-storm-nsb-2026",
+          "about": "虎牙"
         }
       ]
     },
@@ -3077,6 +3164,11 @@ window.NETWEAVER_DB = {
         {
           "text": "中共另委託「晴數智慧科技」",
           "source_id": "src-nsb-2026",
+          "about": "晴數智慧科技"
+        },
+        {
+          "text": "中共委託「晴數智慧科技」、「科大訊飛」等公司，開發智能語音系統，於我國網站刊登廣告，誘吸不知情台灣民眾進行錄音",
+          "source_id": "src-storm-nsb-2026",
           "about": "晴數智慧科技"
         }
       ]
@@ -3109,6 +3201,11 @@ window.NETWEAVER_DB = {
         {
           "text": "「中國兵器工業集團」等企業積極開發 AI 模型及智能",
           "source_id": "src-nsb-2026",
+          "about": "中國兵器工業集團"
+        },
+        {
+          "text": "國安局指出，在「運用AI生成擬真影音」方面，「中國兵器工業集團」等企業積極開發AI模型及智能引導系統，試圖同步執行輿情數據蒐集、影音自動生成、目標受眾精準投放等功能，以產製傳散各類型爭訊。",
+          "source_id": "src-storm-nsb-2026",
           "about": "中國兵器工業集團"
         }
       ]
@@ -7999,6 +8096,27 @@ window.NETWEAVER_DB = {
           "text": "In the leaked documents, GoLaxy described itself as a private enterprise. But as Benson dug deeper there was more to it than that: the company had been founded by the Chinese Academy of Sciences, it employed nearly 1,000 people, and, according to the documents, maintained ties to both military and civilian intelligence.",
           "source_id": "src-record-golaxy",
           "about": "Chinese Academy of Sciences"
+        }
+      ]
+    },
+    {
+      "id": "cpd",
+      "name_zh": "中宣部",
+      "name_en": "Central Propaganda Department",
+      "aliases": [],
+      "category": "state-organ",
+      "role": "attacker",
+      "origin": "PRC",
+      "summary_zh": "中共中央宣傳部；據國安局 2025 報告，與公安部共同透由海訊社、海賣、虎牙等公關公司投放爭訊、偽冒國際媒體。",
+      "source_ids": [
+        "src-storm-nsb-2026"
+      ],
+      "confidence": "medium",
+      "claims": [
+        {
+          "text": "國安局指出，在「建置多元管道投放爭訊」方面，中共中宣部、公安部透由「海訊社」、「海賣」及「虎牙」等公關公司，創建網站偽冒國際媒體例如：Aisa Korea、Austria Weekly，協力傳散中共官方論述；另扶植「無邊界集團」公關公司，創設「臉書」粉專內容農場，張貼煽動性文章吸引點閱，並在Threads及X等平台，設立軟性議題發文帳號，伺機發布政治類貼文，意圖影響國人認知。",
+          "source_id": "src-storm-nsb-2026",
+          "about": "中宣部"
         }
       ]
     }

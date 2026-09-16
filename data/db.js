@@ -1448,6 +1448,16 @@ window.NETWEAVER_DB = {
           "text": "《報導者》根據事實查核平台「Cofacts」的資料庫來進行比對，發現所有檢舉內容中，光是針對「密訊」，就提出過39篇待查證要求，而其中正確訊息僅有4篇（註）",
           "source_id": "src-reporter-mission",
           "about": "密訊"
+        },
+        {
+          "text": "While The New Party is calling for legal reforms, the cooperative network between Mission, The Reacher and Taihai.net remains unimpeded.",
+          "source_id": "src-gazette-mission",
+          "about": "Mission"
+        },
+        {
+          "text": "Cheng found that fan pages supportive of the Chinese Nationalist Party (KMT) were most likely to only share articles from the United Daily News (聯合報), Mission and the China Times (中國時報)",
+          "source_id": "src-gazette-mission",
+          "about": "Mission"
         }
       ]
     },
@@ -2135,6 +2145,36 @@ window.NETWEAVER_DB = {
           "text": "國安局提到，在「利用異常帳號滲透輿論」方面，中共公安部運用「龍橋」網路水軍集團，透過逾20種語言，在全球超過180種網路社群平台進行影響力活動；另中共網信辦、統戰部、解放軍網路空間部隊指導「中科點擊」、「北京星光」及「一網互通」等科技公司，建立網民資料庫，並開發帳號自動化群控程式，控制逾萬組假帳號，協同性投放爭訊，並針對目標受眾塑造輿論。",
           "source_id": "src-storm-nsb-2026",
           "about": "龍橋"
+        },
+        {
+          "text": "The network was uncovered by linking separate clusters of fake posts and propaganda that had been tracked since 2019, including an operation named Spamouflage by researchers at the social media analytics business Graphika.",
+          "source_id": "src-record-spamouflage",
+          "about": "Spamouflage"
+        },
+        {
+          "text": "Experts at Graphika — including Ben Nimmo, the company’s director of investigations who has since become Meta’s global threat intelligence lead — first exposed Spamouflage in 2019.",
+          "source_id": "src-record-spamouflage",
+          "about": "Spamouflage"
+        },
+        {
+          "text": "In 2024, the Australian Strategic Policy Institute found the Spamouflage network posting a deepfake video on X and YouTube of President Marcos taking illicit drugs, a narrative that originated with domestic actors and that the campaign amplified.",
+          "source_id": "src-dfrlab-philippines",
+          "about": "Spamouflage"
+        },
+        {
+          "text": "In February 2026, the Foundation for Defense of Democracies (FDD) identified a broader Spamouflage campaign of more than 330 inauthentic accounts across X and other platforms active between December 2025 and February 2026",
+          "source_id": "src-dfrlab-philippines",
+          "about": "Spamouflage"
+        },
+        {
+          "text": "In total, the DFRLab identified fifty Spamouflage Facebook profiles that commented on these posts.",
+          "source_id": "src-dfrlab-philippines",
+          "about": "Spamouflage"
+        },
+        {
+          "text": "In another case of extremism, a Spamouflage profile posted content in September 2025 calling for more Molotov cocktails, apparently hoping to ignite political violence.",
+          "source_id": "src-dfrlab-philippines",
+          "about": "Spamouflage"
         }
       ]
     },
@@ -9854,6 +9894,15 @@ window.NETWEAVER_DB = {
       "date": "2026-06-01",
       "type": "platform-report",
       "license": "all-rights-reserved"
+    },
+    {
+      "id": "src-dfrlab-philippines",
+      "title": "Two coordinated networks, one domestic, one foreign, target the same Philippine Facebook pages",
+      "org": "DFRLab (Atlantic Council)",
+      "url": "https://dfrlab.org/2026/06/30/two-coordinated-networks-one-domestic-one-foreign-target-the-same-philippine-facebook-pages/",
+      "date": "2026-06-30",
+      "type": "ngo-report",
+      "license": "cite-with-attribution"
     }
   ],
   "narratives": [

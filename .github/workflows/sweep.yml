@@ -1,0 +1,75 @@
+name: Daily source sweep
+
+# 雲端版的每日來源巡查：ingest（抓 feed 新項目）+ filter（相關性篩選），
+# 撈到新的相關報告就開一張 GitHub Issue 通知（GitHub 會寄信——取代本機不可靠的 macOS 通知）。
+# **刻意只做發現＋通知**：不抽取、不發布、不 commit——抽取是唯一的 AI 步驟，
+# 永遠留給人用 Opus session 做（見 docs/ENGINEERING.md、記憶 hand-extraction-workflow）。
+#
+# 可攜性：textextract 的 HTML 抽取是純 Python；只有 PDF 需 pdftotext（poppler，下方 apt 裝）。
+# 游標 pipeline/ingest_state.json 用 actions/cache 持久化；raw/ 不進 repo、runner 每次全新，
+# 故 ingest 靠游標只落「上次之後的新項目」，跑完 raw/ 裡即本次新發現。
+# 註：首次跑（cache 尚空）會把目前各 feed 的相關項目當新發現、開一張較大的 catch-up issue；之後即增量。
+
+on:
+  schedule:
+    - cron: '0 23 * * *'          # 07:00 台北（UTC+8）= 前一日 23:00 UTC
+  workflow_dispatch: {}            # 手動「立即巡一次」
+
+permissions:
+  contents: read                   # checkout
+  issues: write                    # 開通知 issue
+
+concurrency:
+  group: daily-sweep
+  cancel-in-progress: false
+
+jobs:
+  sweep:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+      - name: 安裝 pdftotext（PDF 來源用；HTML 為純 Python 不需）
+        run: sudo apt-get update && sudo apt-get install -y poppler-utils
+      - name: 還原 ingest 游標（cursor；滾動快取）
+        uses: actions/cache@v4
+        with:
+          path: pipeline/ingest_state.json
+          key: ingest-cursor-${{ github.run_id }}
+          restore-keys: |
+            ingest-cursor-
+      - name: ingest + filter（只巡 feed、篩相關；不抽取、不發布）
+        run: |
+          mkdir -p pipeline/raw
+          # cache 空（首次／被清）→ 用提交的種子墊底，避免把舊項目當新發現
+          [ -f pipeline/ingest_state.json ] || cp pipeline/ingest_state.seed.json pipeline/ingest_state.json
+          python3 pipeline/ingest.py --limit 5
+          python3 pipeline/filter.py
+      - name: 收集本次新 ready
+        id: collect
+        run: |
+          python3 - <<'PY' > /tmp/body.md
+          import pathlib, json
+          rows = []
+          for p in sorted(pathlib.Path("pipeline/raw").glob("*/*.json")):
+              m = json.loads(p.read_text(encoding="utf-8"))
+              if m.get("extraction_status") == "ready":
+                  rows.append(m)
+          for m in rows:
+              print(f"- **{m.get('title') or '(無標題)'}**")
+              print(f"  `{m.get('source_id')}` · {m.get('url') or ''}")
+          pathlib.Path("/tmp/count").write_text(str(len(rows)))
+          PY
+          echo "count=$(cat /tmp/count)" >> "$GITHUB_OUTPUT"
+          echo "本次新 ready：$(cat /tmp/count) 篇"
+      - name: 有新 ready 就開 Issue 通知
+        if: steps.collect.outputs.count != '0'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          header=$'每日 sweep 巡到以下**新的相關報告**（ingest+filter；**尚未抽取**）。\n抽取請在 Opus session 進行：挑想收的對其 URL 跑 `ingest.py --url`，再手抽（走 span_check＋名冊閘＋歸因人工核可）。\n\n---\n\n'
+          gh issue create \
+            --title "🔎 NetWeaver 新相關報告 $(date -u +%Y-%m-%d)（${{ steps.collect.outputs.count }} 篇待抽）" \
+            --body "${header}$(cat /tmp/body.md)"

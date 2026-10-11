@@ -8434,6 +8434,42 @@ window.NETWEAVER_DB = {
         "src-ltn-chinavtv"
       ],
       "confidence": "medium"
+    },
+    {
+      "id": "huanyu-zhiying",
+      "name_zh": "寰舆智应",
+      "name_en": "Huanyu Zhiying",
+      "aliases": [],
+      "category": "tech-vendor",
+      "role": "attacker",
+      "origin": "PRC",
+      "summary_zh": "中山大學新聞傳播學院 AI 與計算傳播實驗室 2026 年 4 月發表的 AI 輿情系統「寰舆智应 1.0」；以逾萬筆模擬用戶側寫(宣稱涵蓋 18 國、部分取自真實民調)模擬外國受眾反應，用以精修中國對外宣傳話術，對接十五五規劃『提升國際傳播效能』。",
+      "source_ids": [
+        "src-aspi-huanyu"
+      ],
+      "confidence": "medium",
+      "claims": [
+        {
+          "text": "Huanyu Zhiying attempts something analogous with political narratives: expose them to simulated audiences, observe where hostility or resistance emerges and adjust the response accordingly.",
+          "source_id": "src-aspi-huanyu",
+          "about": "Huanyu Zhiying"
+        },
+        {
+          "text": "According to the school’s own announcement of the launch, Huanyu Zhiying ‘possesses the dual capability of simulating foreign-media reporting and generating Chinese-side response-discourse text, and can introduce a specified guiding perspective to generate customised content.’",
+          "source_id": "src-aspi-huanyu",
+          "about": "Huanyu Zhiying"
+        },
+        {
+          "text": "The survey that feeds Huanyu Zhiying says in its own launch material that the system exists to implement the Central Committee’s recommendations for the 15th Five-Year Plan, recommendations that call for stronger area and country studies and improved international communication effectiveness.",
+          "source_id": "src-aspi-huanyu",
+          "about": "Huanyu Zhiying"
+        },
+        {
+          "text": "Nothing published shows that Huanyu Zhiying works as advertised.",
+          "source_id": "src-aspi-huanyu",
+          "about": "Huanyu Zhiying"
+        }
+      ]
     }
   ],
   "events": [
@@ -9901,6 +9937,15 @@ window.NETWEAVER_DB = {
       "org": "DFRLab (Atlantic Council)",
       "url": "https://dfrlab.org/2026/06/30/two-coordinated-networks-one-domestic-one-foreign-target-the-same-philippine-facebook-pages/",
       "date": "2026-06-30",
+      "type": "ngo-report",
+      "license": "cite-with-attribution"
+    },
+    {
+      "id": "src-aspi-huanyu",
+      "title": "China is building an AI system for tailoring its foreign propaganda",
+      "org": "ASPI The Strategist",
+      "url": "https://www.aspistrategist.org.au/china-is-building-an-ai-system-for-tailoring-its-foreign-propaganda/",
+      "date": "2026-09-18",
       "type": "ngo-report",
       "license": "cite-with-attribution"
     }

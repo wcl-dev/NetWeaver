@@ -6636,6 +6636,41 @@
       "identity_class": "organization"
     },
     {
+      "type": "identity",
+      "spec_version": "2.1",
+      "id": "identity--ad07da5d-46b8-5f20-afba-20e71fb7c2c8",
+      "created": "2026-01-01T00:00:00.000Z",
+      "modified": "2026-01-01T00:00:00.000Z",
+      "name": "寰舆智应",
+      "object_marking_refs": [
+        "marking-definition--30837352-4bcb-536d-ab32-86f489a09985"
+      ],
+      "aliases": [
+        "Huanyu Zhiying"
+      ],
+      "description": "中山大學新聞傳播學院 AI 與計算傳播實驗室 2026 年 4 月發表的 AI 輿情系統「寰舆智应 1.0」；以逾萬筆模擬用戶側寫(宣稱涵蓋 18 國、部分取自真實民調)模擬外國受眾反應，用以精修中國對外宣傳話術，對接十五五規劃『提升國際傳播效能』。",
+      "confidence": 60,
+      "identity_class": "organization",
+      "x_netweaver_evidence": [
+        {
+          "quote": "Huanyu Zhiying attempts something analogous with political narratives: expose them to simulated audiences, observe where hostility or resistance emerges and adjust the response accordingly.",
+          "source_url": "https://www.aspistrategist.org.au/china-is-building-an-ai-system-for-tailoring-its-foreign-propaganda/"
+        },
+        {
+          "quote": "According to the school’s own announcement of the launch, Huanyu Zhiying ‘possesses the dual capability of simulating foreign-media reporting and generating Chinese-side response-discourse text, and can introduce a specified guiding perspective to generate customised content.’",
+          "source_url": "https://www.aspistrategist.org.au/china-is-building-an-ai-system-for-tailoring-its-foreign-propaganda/"
+        },
+        {
+          "quote": "The survey that feeds Huanyu Zhiying says in its own launch material that the system exists to implement the Central Committee’s recommendations for the 15th Five-Year Plan, recommendations that call for stronger area and country studies and improved international communication effectiveness.",
+          "source_url": "https://www.aspistrategist.org.au/china-is-building-an-ai-system-for-tailoring-its-foreign-propaganda/"
+        },
+        {
+          "quote": "Nothing published shows that Huanyu Zhiying works as advertised.",
+          "source_url": "https://www.aspistrategist.org.au/china-is-building-an-ai-system-for-tailoring-its-foreign-propaganda/"
+        }
+      ]
+    },
+    {
       "type": "x-dad-narrative",
       "spec_version": "2.1",
       "id": "x-dad-narrative--f127b08a-9696-5d6e-902f-cad8684f242c",
@@ -13492,6 +13527,28 @@
         "marking-definition--30837352-4bcb-536d-ab32-86f489a09985"
       ],
       "x_netweaver_license": "all-rights-reserved"
+    },
+    {
+      "type": "report",
+      "spec_version": "2.1",
+      "id": "report--fe8690f5-7c26-5c11-be5d-22b7b509a696",
+      "created": "2026-01-01T00:00:00.000Z",
+      "modified": "2026-01-01T00:00:00.000Z",
+      "name": "China is building an AI system for tailoring its foreign propaganda",
+      "published": "2026-09-18T00:00:00.000Z",
+      "object_refs": [
+        "identity--ad07da5d-46b8-5f20-afba-20e71fb7c2c8"
+      ],
+      "external_references": [
+        {
+          "source_name": "ASPI The Strategist",
+          "url": "https://www.aspistrategist.org.au/china-is-building-an-ai-system-for-tailoring-its-foreign-propaganda/"
+        }
+      ],
+      "object_marking_refs": [
+        "marking-definition--30837352-4bcb-536d-ab32-86f489a09985"
+      ],
+      "x_netweaver_license": "cite-with-attribution"
     },
     {
       "type": "extension-definition",

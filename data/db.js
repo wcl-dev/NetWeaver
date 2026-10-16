@@ -90,11 +90,6 @@ window.NETWEAVER_DB = {
           "text": "此外，中共網信辦、統戰部及解放軍網路空間部隊等單",
           "source_id": "src-nsb-2026",
           "about": "網信辦"
-        },
-        {
-          "text": "中共網信辦、國安部、解放軍政治工作部運用「中科天機」、「美亞柏科」、「沃民高新」等科技公司",
-          "source_id": "src-storm-nsb-2026",
-          "about": "網信辦"
         }
       ]
     },
@@ -152,11 +147,6 @@ window.NETWEAVER_DB = {
         {
           "text": "中共網信辦、國安部及解放軍政治工作部等單位，指導",
           "source_id": "src-nsb-2026",
-          "about": "國安部"
-        },
-        {
-          "text": "中共網信辦、國安部、解放軍政治工作部運用「中科天機」、「美亞柏科」、「沃民高新」等科技公司",
-          "source_id": "src-storm-nsb-2026",
           "about": "國安部"
         }
       ]
@@ -223,11 +213,6 @@ window.NETWEAVER_DB = {
         {
           "text": "中共網信辦、國安部及解放軍政治工作部等單位，指導",
           "source_id": "src-nsb-2026",
-          "about": "解放軍政治工作部"
-        },
-        {
-          "text": "中共網信辦、國安部、解放軍政治工作部運用「中科天機」、「美亞柏科」、「沃民高新」等科技公司",
-          "source_id": "src-storm-nsb-2026",
           "about": "解放軍政治工作部"
         }
       ]
@@ -374,11 +359,6 @@ window.NETWEAVER_DB = {
         {
           "text": "中共公安部運用「龍橋」網路水軍集團，透過逾 20 種",
           "source_id": "src-nsb-2026",
-          "about": "公安部"
-        },
-        {
-          "text": "國安局指出，在「建置多元管道投放爭訊」方面，中共中宣部、公安部透由「海訊社」、「海賣」及「虎牙」等公關公司，創建網站偽冒國際媒體例如：Aisa Korea、Austria Weekly，協力傳散中共官方論述；另扶植「無邊界集團」公關公司，創設「臉書」粉專內容農場，張貼煽動性文章吸引點閱，並在Threads及X等平台，設立軟性議題發文帳號，伺機發布政治類貼文，意圖影響國人認知。",
-          "source_id": "src-storm-nsb-2026",
           "about": "公安部"
         }
       ]
@@ -784,11 +764,6 @@ window.NETWEAVER_DB = {
           "text": "「美亞柏科」等科技公司，利用「爬蟲技術」",
           "source_id": "src-nsb-2026",
           "about": "美亞柏科"
-        },
-        {
-          "text": "中共網信辦、國安部、解放軍政治工作部運用「中科天機」、「美亞柏科」、「沃民高新」等科技公司",
-          "source_id": "src-storm-nsb-2026",
-          "about": "美亞柏科"
         }
       ]
     },
@@ -1100,32 +1075,12 @@ window.NETWEAVER_DB = {
           "about": "GLASSBRIDGE"
         },
         {
-          "text": "This blog post details GLASSBRIDGE—an umbrella group of four different companies that operate networks of inauthentic news sites and newswire services tracked by the Google Threat Intelligence Group (consisting of Google’s Threat Analysis Group (TAG) and Mandiant).",
-          "source_id": "src-google-glassbridge",
-          "about": "GLASSBRIDGE"
-        },
-        {
-          "text": "Google has blocked more than a thousand GLASSBRIDGE-operated websites from eligibility to appear in Google News features and Google Discover because these sites violated our policies that prohibit deceptive behavior and require editorial transparency.",
-          "source_id": "src-google-glassbridge",
-          "about": "GLASSBRIDGE"
-        },
-        {
           "text": "Figure 1: GLASSBRIDGE is an ecosystem of companies and newswire services that publish inauthentic news content",
           "source_id": "src-google-glassbridge",
           "about": "GLASSBRIDGE"
         },
         {
-          "text": "The inauthentic news sites operated by GLASSBRIDGE illustrate how information operations actors have embraced methods beyond social media in an attempt to spread their narratives.",
-          "source_id": "src-google-glassbridge",
-          "about": "GLASSBRIDGE"
-        },
-        {
           "text": "In the case of GLASSBRIDGE",
-          "source_id": "src-google-glassbridge",
-          "about": "GLASSBRIDGE"
-        },
-        {
-          "text": "Google is committed to information transparency, and we will continue tracking GLASSBRIDGE and blocking their inauthentic content on Google’s platforms.",
           "source_id": "src-google-glassbridge",
           "about": "GLASSBRIDGE"
         },
@@ -1136,11 +1091,6 @@ window.NETWEAVER_DB = {
         },
         {
           "text": "Of the PR and marketing firms we have observed supporting pro-China IO campaigns, the most prolific is Shanghai Haixun Technology Co., Ltd or “Haixun”.",
-          "source_id": "src-google-glassbridge",
-          "about": "Haixun"
-        },
-        {
-          "text": "Since TAG first began tracking Haixun, Google has removed more than 600 policy-violating domains linked to the firm from the ability to appear in Google News features.",
           "source_id": "src-google-glassbridge",
           "about": "Haixun"
         },
@@ -1183,11 +1133,6 @@ window.NETWEAVER_DB = {
           "text": "Shanghai Haixun Technology",
           "source_id": "src-google-glassbridge",
           "about": "Haixun"
-        },
-        {
-          "text": "國安局指出，在「建置多元管道投放爭訊」方面，中共中宣部、公安部透由「海訊社」、「海賣」及「虎牙」等公關公司，創建網站偽冒國際媒體例如：Aisa Korea、Austria Weekly，協力傳散中共官方論述；另扶植「無邊界集團」公關公司，創設「臉書」粉專內容農場，張貼煽動性文章吸引點閱，並在Threads及X等平台，設立軟性議題發文帳號，伺機發布政治類貼文，意圖影響國人認知。",
-          "source_id": "src-storm-nsb-2026",
-          "about": "海訊社"
         }
       ]
     },
@@ -1387,11 +1332,6 @@ window.NETWEAVER_DB = {
         {
           "text": "（二）內容農場及異常頻道：中共扶植中企「無邊界集團」",
           "source_id": "src-nsb-2026",
-          "about": "無邊界集團"
-        },
-        {
-          "text": "國安局指出，在「建置多元管道投放爭訊」方面，中共中宣部、公安部透由「海訊社」、「海賣」及「虎牙」等公關公司，創建網站偽冒國際媒體例如：Aisa Korea、Austria Weekly，協力傳散中共官方論述；另扶植「無邊界集團」公關公司，創設「臉書」粉專內容農場，張貼煽動性文章吸引點閱，並在Threads及X等平台，設立軟性議題發文帳號，伺機發布政治類貼文，意圖影響國人認知。",
-          "source_id": "src-storm-nsb-2026",
           "about": "無邊界集團"
         }
       ]
@@ -1667,11 +1607,6 @@ window.NETWEAVER_DB = {
           "about": "DRAGONBRIDGE"
         },
         {
-          "text": "Despite producing a high amount of content, DRAGONBRIDGE still does not get high engagement from users on YouTube or Blogger.",
-          "source_id": "src-google-dragonbridge-2024",
-          "about": "DRAGONBRIDGE"
-        },
-        {
           "text": "As described in our previous blog, the majority of DRAGONBRIDGE activity remains low quality content without a political message.",
           "source_id": "src-google-dragonbridge-2024",
           "about": "DRAGONBRIDGE"
@@ -1692,27 +1627,12 @@ window.NETWEAVER_DB = {
           "about": "DRAGONBRIDGE"
         },
         {
-          "text": "Despite their continued profuse content production and the scale of their operations, DRAGONBRIDGE achieves practically no organic engagement from real viewers.",
-          "source_id": "src-google-dragonbridge-2024",
-          "about": "DRAGONBRIDGE"
-        },
-        {
           "text": "Despite experimenting with content and producing large amounts of content, DRAGONBRIDGE still does not receive high engagement.",
           "source_id": "src-google-dragonbridge-2024",
           "about": "DRAGONBRIDGE"
         },
         {
-          "text": "In the cases where DRAGONBRIDGE content did receive engagement, it was almost entirely inauthentic, coming from other DRAGONBRIDGE accounts and not from authentic users.",
-          "source_id": "src-google-dragonbridge-2024",
-          "about": "DRAGONBRIDGE"
-        },
-        {
           "text": "Comment activity was also mostly from other DRAGONBRIDGE accounts.",
-          "source_id": "src-google-dragonbridge-2024",
-          "about": "DRAGONBRIDGE"
-        },
-        {
-          "text": "The majority of DRAGONBRIDGE activity is low quality content without a political message, populated across many channels and blogs.",
           "source_id": "src-google-dragonbridge-2024",
           "about": "DRAGONBRIDGE"
         },
@@ -1742,17 +1662,7 @@ window.NETWEAVER_DB = {
           "about": "DRAGONBRIDGE"
         },
         {
-          "text": "The videos were typical of DRAGONBRIDGE’s style featuring robotic voiceovers, stock footage and publicly available images.",
-          "source_id": "src-google-dragonbridge-2024",
-          "about": "DRAGONBRIDGE"
-        },
-        {
           "text": "DRAGONBRIDGE posted thousands of videos and comments on YouTube using synthetic audio and avatars promoting a false “secret history” document critical of the outgoing President Tsai Ing-wen.",
-          "source_id": "src-google-dragonbridge-2024",
-          "about": "DRAGONBRIDGE"
-        },
-        {
-          "text": "DRAGONBRIDGE also posted comments to videos belonging to legitimate users, likely an attempt to spread their narrative.",
           "source_id": "src-google-dragonbridge-2024",
           "about": "DRAGONBRIDGE"
         },
@@ -1787,37 +1697,12 @@ window.NETWEAVER_DB = {
           "about": "DRAGONBRIDGE"
         },
         {
-          "text": "The DRAGONBRIDGE content appeared in English, was generally pro-Palestine in its narrative themes, and used the student protests to frame the US and Western media as hypocritical.",
-          "source_id": "src-google-dragonbridge-2024",
-          "about": "DRAGONBRIDGE"
-        },
-        {
           "text": "This fits in a larger context of DRAGONBRIDGE portraying the US government and society as hypocritical.",
           "source_id": "src-google-dragonbridge-2024",
           "about": "DRAGONBRIDGE"
         },
         {
-          "text": "We have seen DRAGONBRIDGE respond to significant events with pre-produced content and consider it highly likely that they will continue to do so, including with the 2024 US general election.",
-          "source_id": "src-google-dragonbridge-2024",
-          "about": "DRAGONBRIDGE"
-        },
-        {
-          "text": "DRAGONBRIDGE content has regularly included US political issues and political figures, particularly in the leadup to elections and generally presented in the format of short news clips.",
-          "source_id": "src-google-dragonbridge-2024",
-          "about": "DRAGONBRIDGE"
-        },
-        {
-          "text": "In previous US elections, DRAGONBRIDGE content has not explicitly advocated for specific candidates or any specific political outcome in the US.",
-          "source_id": "src-google-dragonbridge-2024",
-          "about": "DRAGONBRIDGE"
-        },
-        {
           "text": "In 2020 DRAGONBRIDGE content was critical of both presidential candidates.",
-          "source_id": "src-google-dragonbridge-2024",
-          "about": "DRAGONBRIDGE"
-        },
-        {
-          "text": "The activity extended cross-platform, with DRAGONBRIDGE posting similar messages via tweets and identical video content on X, formerly known as Twitter.",
           "source_id": "src-google-dragonbridge-2024",
           "about": "DRAGONBRIDGE"
         },
@@ -1833,16 +1718,6 @@ window.NETWEAVER_DB = {
         },
         {
           "text": "In 2023, Mandiant also observed DRAGONBRIDGE accounts operating across multiple, non-Google platforms promoting narratives similar to those observed by TAG.",
-          "source_id": "src-google-dragonbridge-2024",
-          "about": "DRAGONBRIDGE"
-        },
-        {
-          "text": "That is why Google has scaled our efforts in recent years to disrupt DRAGONBRIDGE coordinated inauthentic activity on our platforms.",
-          "source_id": "src-google-dragonbridge-2024",
-          "about": "DRAGONBRIDGE"
-        },
-        {
-          "text": "We encourage others in the community to continue tracking this actor and shedding light on their operations and would like to thank Mandiant and other researchers for their partnership in countering DRAGONBRIDGE activity.",
           "source_id": "src-google-dragonbridge-2024",
           "about": "DRAGONBRIDGE"
         },
@@ -2067,11 +1942,6 @@ window.NETWEAVER_DB = {
           "about": "DRAGONBRIDGE"
         },
         {
-          "text": "this small subset of DRAGONBRIDGE operations garnered higher levels of engagement from seemingly authentic users compared to the limited-to-no authentic engagement typically received by campaign activity.",
-          "source_id": "src-google-dragonbridge-2024",
-          "about": "DRAGONBRIDGE"
-        },
-        {
           "text": "there is at least some evidence to suggest that HaiEnergy failed to generate substantial engagement outside of the inauthentic amplification that we have identified—a limitation we also noted in our recent public reporting on DRAGONBRIDGE.",
           "source_id": "src-mandiant-haienergy-2022",
           "about": "DRAGONBRIDGE"
@@ -2222,32 +2092,32 @@ window.NETWEAVER_DB = {
       "confidence": "high",
       "claims": [
         {
-          "text": "51 inauthentic accounts impersonating Taiwanese posted content attacking the DPP",
+          "text": "51 inauthentic accounts that pretended to be Taiwanese citizens and participated in political narratives that mainly criticized Taiwan’s Democratic Progressive Party (DPP) on Threads",
           "source_id": "src-dtl-impersonation",
           "about": "假冒台灣人反民進黨 Threads 行動"
         },
         {
-          "text": "DTL assesses the network can likely be linked to the PRC",
+          "text": "Based on these accounts’ forensic indicators, we believe it is likely that they can be linked to the PRC",
           "source_id": "src-dtl-impersonation",
           "about": "假冒台灣人反民進黨帳號網絡"
         },
         {
-          "text": "275 near-identical posts of the 我是台灣人我反綠 type",
+          "text": "Virtually all of these posts (275) were identical posts that opposed the DPP",
           "source_id": "src-dtl-impersonation",
           "about": "我是台灣人我反綠"
         },
         {
-          "text": "44 of 51 accounts reused photos of Taiwanese influencers",
+          "text": "Campaign stole photos from female influencers. We were able to identify the picture origins of 44 out of 51 accounts",
           "source_id": "src-dtl-impersonation",
           "about": "Threads 假冒帳號群"
         },
         {
-          "text": "posts pushed the 我是台灣人我反綠 narrative",
+          "text": "Doublethink Lab observed significant traffic around the phrase “I am Taiwanese and I oppose pan-green 「我是台灣人我反綠」”",
           "source_id": "src-dtl-impersonation",
           "about": "uses"
         },
         {
-          "text": "operated via 51 inauthentic Threads accounts",
+          "text": "Among this data, we identified 91 posts by 51 inauthentic accounts that can likely be connected to the PRC",
           "source_id": "src-dtl-impersonation",
           "about": "uses"
         }
@@ -2593,17 +2463,7 @@ window.NETWEAVER_DB = {
           "about": "環球時報"
         },
         {
-          "text": "透過網絡分析可大致看出宣傳管道順序，第一層由東部戰區發動，並由第二層央視新聞、環球時報、央廣軍事等官媒宣傳，再由第三或第四層的地方公安、地方融媒體、媒體新媒體品牌、高影響力帳號接續放大官方敘事。",
-          "source_id": "src-factlink-a7a795",
-          "about": "環球時報"
-        },
-        {
           "text": "檢視392組文本資料所顯示的指向網絡時可發現，東部戰區發布的貼文，有13個媒體和大V共同轉分享，包括央視新聞、央廣軍事、鎮江民生頻道、央廣軍事、環球時報、浙江日報、澎湃新聞、宣漢融媒、新浪軍事、動静新聞、南湖發布、看看新聞Knews和星話大白等。",
-          "source_id": "src-factlink-a7a795",
-          "about": "環球時報"
-        },
-        {
-          "text": "央視新聞發布的13則報導文本，有26個帳號轉發，官方單位有屏山公安、銅陵經開公安在線、山東高法、沐川公安、青春龍泉驛和平安金陽；媒體有動靜新聞、新浪軍事、南寧晚報、錢江晚報、南方週末、頭條新聞、第一現場、馬上資訊、看台海、福建日報、環球時報和新京報；大V有星話大白、包容萬物恆河水、台灣那點事兒、扎西德勒·天珠收藏、椒哥微記錄、航天面面觀、長春-小風、白鶴-老鄧。",
           "source_id": "src-factlink-a7a795",
           "about": "環球時報"
         },
@@ -2848,11 +2708,6 @@ window.NETWEAVER_DB = {
           "about": "Global Times"
         },
         {
-          "text": "It does appear, however, that the Global Times has a special license to push positions and voice sentiments that other state media operations are reluctant to air openly.",
-          "source_id": "src-lowy-globaltimes",
-          "about": "Global Times"
-        },
-        {
           "text": "And it was noteworthy that when the Chinese president Xi Jinping visited the People’s Daily in February, he said his office subscribes to the Global Times.",
           "source_id": "src-lowy-globaltimes",
           "about": "Global Times"
@@ -2869,21 +2724,6 @@ window.NETWEAVER_DB = {
         },
         {
           "text": "The Interpreter spoke to several senior Chinese editors and reporters about the influence of Global Times.",
-          "source_id": "src-lowy-globaltimes",
-          "about": "Global Times"
-        },
-        {
-          "text": "The reporter says one of the KPIs for Global Times is how many times it gets cited in foreign press, so editors often use colourful and outrageous language to attract foreign media’s attention.",
-          "source_id": "src-lowy-globaltimes",
-          "about": "Global Times"
-        },
-        {
-          "text": "In contrast, while Global Times is in line with more hawkish elements within the party, its boisterous editorials don’t necessarily represent Beijing’s official line.",
-          "source_id": "src-lowy-globaltimes",
-          "about": "Global Times"
-        },
-        {
-          "text": "It is understood that the Chinese Foreign Ministry representatives made a similar point to their Korean counterparts in Seoul after the Global Times launched a series of tirade against South Koreans.",
           "source_id": "src-lowy-globaltimes",
           "about": "Global Times"
         },
@@ -3006,11 +2846,6 @@ window.NETWEAVER_DB = {
         {
           "text": "「沃民高新」等企業，則彙整我國選舉期間候選",
           "source_id": "src-nsb-2026",
-          "about": "沃民高新"
-        },
-        {
-          "text": "中共網信辦、國安部、解放軍政治工作部運用「中科天機」、「美亞柏科」、「沃民高新」等科技公司",
-          "source_id": "src-storm-nsb-2026",
           "about": "沃民高新"
         }
       ]
@@ -3210,11 +3045,6 @@ window.NETWEAVER_DB = {
           "text": "Shenzhen Haimai Yunxiang Media",
           "source_id": "src-google-glassbridge",
           "about": "Haimai"
-        },
-        {
-          "text": "國安局指出，在「建置多元管道投放爭訊」方面，中共中宣部、公安部透由「海訊社」、「海賣」及「虎牙」等公關公司，創建網站偽冒國際媒體例如：Aisa Korea、Austria Weekly，協力傳散中共官方論述；另扶植「無邊界集團」公關公司，創設「臉書」粉專內容農場，張貼煽動性文章吸引點閱，並在Threads及X等平台，設立軟性議題發文帳號，伺機發布政治類貼文，意圖影響國人認知。",
-          "source_id": "src-storm-nsb-2026",
-          "about": "海賣"
         }
       ]
     },
@@ -3260,11 +3090,6 @@ window.NETWEAVER_DB = {
         {
           "text": "及「虎牙」等公關公司，創建虛假網站，並以中立性",
           "source_id": "src-nsb-2026",
-          "about": "虎牙"
-        },
-        {
-          "text": "國安局指出，在「建置多元管道投放爭訊」方面，中共中宣部、公安部透由「海訊社」、「海賣」及「虎牙」等公關公司，創建網站偽冒國際媒體例如：Aisa Korea、Austria Weekly，協力傳散中共官方論述；另扶植「無邊界集團」公關公司，創設「臉書」粉專內容農場，張貼煽動性文章吸引點閱，並在Threads及X等平台，設立軟性議題發文帳號，伺機發布政治類貼文，意圖影響國人認知。",
-          "source_id": "src-storm-nsb-2026",
           "about": "虎牙"
         }
       ]
@@ -3489,11 +3314,6 @@ window.NETWEAVER_DB = {
           "about": "台海網"
         },
         {
-          "text": "2 月 27 日 8:36 中共官媒「台海網」發布報導，內容引用政治大學國際關係研究中心研究員嚴震生教授受訪時的意見，認為「麦卡锡 [...] 窜台在所谓“美台关系”上的政治象征意义非常明显」「中国大陆在被逼迫的情况下“不得不”作出反制」。",
-          "source_id": "src-iorg-38",
-          "about": "台海網"
-        },
-        {
           "text": "隔日，中共官媒「中國台灣網」「鳳凰網」「台海網」「海峽飛虹」及「海峽之聲」以「根据岛内公布的一份最新民调」協力傳播相同內容，以網路投票結果代表台灣民眾全體意見。",
           "source_id": "src-iorg-38",
           "about": "台海網"
@@ -3648,11 +3468,6 @@ window.NETWEAVER_DB = {
           "about": "中時"
         },
         {
-          "text": "🇹🇼 2022 年 11 月 20-21 日 3 則由李路、郁慕明、旺報社評為作者的評論刊登於中時電子報，認為裴洛西訪台已造成「台海危機」，麥卡錫訪台將會是下一次的「台海危機」。",
-          "source_id": "src-iorg-38",
-          "about": "中時"
-        },
-        {
           "text": "（01:12）隔日，聯合新聞網（8:52）、中時新聞網（22:38）直接引用報導內容。",
           "source_id": "src-iorg-38",
           "about": "中時"
@@ -3664,11 +3479,6 @@ window.NETWEAVER_DB = {
         },
         {
           "text": "2022 年 11 月 22 日 16:12 中時新聞網刊載作者陳朝平的評論，宣稱「萬一，此種外交操作失控時，美國必須也必要壯士斷腕，犧牲台灣 [...] 台灣也該做好為星條旗犧牲的準備了」。",
-          "source_id": "src-iorg-38",
-          "about": "中時"
-        },
-        {
-          "text": "2023 年 1 月 24 日 YouTube 頻道「中天新聞」及中時電子報報導（16:04）引用郭正亮的意見，認為美國「就是要誘打」，「因為這符合美國的戰略利益，戰爭越早發生越好，就是美國要營造的局面 [...] 他可以在外交軍事上做出無限加碼不等於挑釁作戰的動作，就是要逼你動手」。",
           "source_id": "src-iorg-38",
           "about": "中時"
         },
@@ -3704,21 +3514,6 @@ window.NETWEAVER_DB = {
         },
         {
           "text": "1 月 31 日 00:00 中時新聞網發表作者為周忠菲的評論，以「牽頭」稱呼台美關係，並認為「美民勾連本是常態，但他們試圖在台海燃起戰火的「欲望與能力」始終受到節制，也正在成為常態」。",
-          "source_id": "src-iorg-38",
-          "about": "中時"
-        },
-        {
-          "text": "1 月 9 日 8:00 中時電子報刊出作者為中国劳动关系学院副教授郭振家的評論，認為 「美國對台灣的軍事化動作，正在高度拷貝當初對烏克蘭的政策」，宣稱「一些美國政客」曾經表態，美國在烏克蘭「賺到了」，呼籲台灣人如「不想陷入衝突，變成今天的烏克蘭戰場」，就應該反對美國「干涉兩岸事務」。",
-          "source_id": "src-iorg-38",
-          "about": "中時"
-        },
-        {
-          "text": "1 月 25 日 18:32 中時新聞網刊出作者為佛光大學公共事務學系副教授柳金財的評論，標題為〈警惕美「以烏制俄」戰略 炮製「以台制中」釀險境〉，認為「從國際戰略選擇及地緣政治權力平衡角度檢視，俄烏戰爭爆發，美國是破壞國際秩序及區域穩定的罪魁禍首」，如果麥卡錫訪台，中國將會「祭出更大規模及力度圍台軍演及封鎖」，美國「試圖將北約拉攏烏克蘭版劇本應用在亞太區域」「聯台制中」「以台耗中」。",
-          "source_id": "src-iorg-38",
-          "about": "中時"
-        },
-        {
-          "text": "2 月 22 日 23:48 中時新聞網刊出黃智賢的評論，認為美國「用俄烏戰爭」「破壞俄羅斯跟歐盟和解和平之勢」「取得戰略利益」「搶奪巨大經濟利益」「威攝中國」「組建圍中聯盟」，更要「用俄烏戰爭做模型」「在東亞要複製另一場俄烏戰爭」。",
           "source_id": "src-iorg-38",
           "about": "中時"
         },
@@ -3824,16 +3619,6 @@ window.NETWEAVER_DB = {
         },
         {
           "text": "另外，中天新聞網引用蔡正元的報導（12:43），也獲得旺中集團旗下節目「大新聞大爆卦」「無色覺醒」「頭條開講」「正常發揮」 的群聚分享（17:30）。",
-          "source_id": "src-iorg-38",
-          "about": "中天"
-        },
-        {
-          "text": "2023 年 1 月 24 日 YouTube 頻道「中天新聞」及中時電子報報導（16:04）引用郭正亮的意見，認為美國「就是要誘打」，「因為這符合美國的戰略利益，戰爭越早發生越好，就是美國要營造的局面 [...] 他可以在外交軍事上做出無限加碼不等於挑釁作戰的動作，就是要逼你動手」。",
-          "source_id": "src-iorg-38",
-          "about": "中天"
-        },
-        {
-          "text": "1 月 25 日 15:30 中天新聞以〈王定宇自爆邀請麥卡錫訪台 網友罵翻：爽了民進黨，苦了台灣百姓〉發布報導，提及「民進黨立委王定宇昨說，去年 9 月他飛到華府送邀請函，邀請麥卡錫訪台」，形容「網友對此罵聲一片」，引用網友留言認為「血汗錢又要填坑了」並將留言詮釋為「遊說公關費」，另引用網友留言認為王定宇委員的邀請是「勾結美國」，認為美國政要訪台「都是有目的」「都是來收保護費」。",
           "source_id": "src-iorg-38",
           "about": "中天"
         }
@@ -4093,27 +3878,12 @@ window.NETWEAVER_DB = {
           "about": "郭正亮"
         },
         {
-          "text": "2023 年 1 月 24 日 YouTube 頻道「中天新聞」及中時電子報報導（16:04）引用郭正亮的意見，認為美國「就是要誘打」，「因為這符合美國的戰略利益，戰爭越早發生越好，就是美國要營造的局面 [...] 他可以在外交軍事上做出無限加碼不等於挑釁作戰的動作，就是要逼你動手」。",
-          "source_id": "src-iorg-38",
-          "about": "郭正亮"
-        },
-        {
           "text": "🇹🇼-🇨🇳-🇹🇼 1 月 27 日中共官媒「香港中評網」引用郭正亮的意見（1:12），隔日，台灣新聞媒體聯合新聞網則引用「香港中評網」引用郭正亮意見的報導內容（8:52）。",
           "source_id": "src-iorg-38",
           "about": "郭正亮"
         },
         {
-          "text": "2022 年 11 月 26 日 8:10 風傳媒報導引用 25 日「Yahoo TV 風向龍鳳配」節目中郭正亮的意見（57:35），認為「麥卡錫訪台並不是最大的衝擊」、「川普一定會想來」「佛州州長德桑提斯也可能會想來台灣」，因為「台灣是最容易造勢的地方」。",
-          "source_id": "src-iorg-38",
-          "about": "郭正亮"
-        },
-        {
           "text": "2023 年 1 月 10 日 0:01 中時新聞網報導引用 9 日「新聞大白話」節目中郭正亮的意見，認為共和黨下屆總統候選人「也有機率同行」、「幫共和黨造勢」。",
-          "source_id": "src-iorg-38",
-          "about": "郭正亮"
-        },
-        {
-          "text": "2 月 23 日 08:20 風傳媒報導引用 22 日「觀點：明亮看世界」節目中郭正亮的意見（57:30），認為「麥卡錫勢必會在今年訪台，因為麥卡錫明年也要選舉，且又不能搶總統候選人的風頭，說不定共和黨的總統候選人有意訪台」。",
           "source_id": "src-iorg-38",
           "about": "郭正亮"
         }
@@ -4263,22 +4033,12 @@ window.NETWEAVER_DB = {
           "about": "蔡正元"
         },
         {
-          "text": "🇹🇼-🇨🇳 群聚發文 2023 年 1 月 24 日 6:50 粉專「蔡正元」貼文，認為「美國透過麥卡錫訪台 [...] 利用台海戰爭徹底犧牲台灣，可以換得圍堵及削弱中國的機會，甚或利用麥卡錫訪台作為談判酬碼，從中台雙方取得重大退讓的利益」。",
-          "source_id": "src-iorg-38",
-          "about": "蔡正元"
-        },
-        {
           "text": "蔡正元的意見於當日獲得中資粉專「兩岸頭條」（9:12）及中共官媒「僑報網」（16:47）分享及引用。",
           "source_id": "src-iorg-38",
           "about": "蔡正元"
         },
         {
           "text": "另外，中天新聞網引用蔡正元的報導（12:43），也獲得旺中集團旗下節目「大新聞大爆卦」「無色覺醒」「頭條開講」「正常發揮」 的群聚分享（17:30）。",
-          "source_id": "src-iorg-38",
-          "about": "蔡正元"
-        },
-        {
-          "text": "1 月 26 日 19:00 粉專「Speak Out HK 港人講地」發布貼文，認為麥卡錫「忽然要匆匆訪台」，是美國「採取主動態勢打台灣牌及台獨牌」「測試觸碰中方紅線的後果」，並認為「徹底犧牲台灣」「可以換來圍堵和削弱中國的機會」，文句和蔡正元 24 日貼文吻合。",
           "source_id": "src-iorg-38",
           "about": "蔡正元"
         },
@@ -4723,27 +4483,12 @@ window.NETWEAVER_DB = {
           "about": "央視"
         },
         {
-          "text": "透過網絡分析可大致看出宣傳管道順序，第一層由東部戰區發動，並由第二層央視新聞、環球時報、央廣軍事等官媒宣傳，再由第三或第四層的地方公安、地方融媒體、媒體新媒體品牌、高影響力帳號接續放大官方敘事。",
-          "source_id": "src-factlink-a7a795",
-          "about": "央視"
-        },
-        {
           "text": "檢視392組文本資料所顯示的指向網絡時可發現，東部戰區發布的貼文，有13個媒體和大V共同轉分享，包括央視新聞、央廣軍事、鎮江民生頻道、央廣軍事、環球時報、浙江日報、澎湃新聞、宣漢融媒、新浪軍事、動静新聞、南湖發布、看看新聞Knews和星話大白等。",
           "source_id": "src-factlink-a7a795",
           "about": "央視"
         },
         {
-          "text": "央視新聞發布的13則報導文本，有26個帳號轉發，官方單位有屏山公安、銅陵經開公安在線、山東高法、沐川公安、青春龍泉驛和平安金陽；媒體有動靜新聞、新浪軍事、南寧晚報、錢江晚報、南方週末、頭條新聞、第一現場、馬上資訊、看台海、福建日報、環球時報和新京報；大V有星話大白、包容萬物恆河水、台灣那點事兒、扎西德勒·天珠收藏、椒哥微記錄、航天面面觀、長春-小風、白鶴-老鄧。",
-          "source_id": "src-factlink-a7a795",
-          "about": "央視"
-        },
-        {
           "text": "玉淵潭天為央視融媒體品牌，在網絡圖中與央視沒有指向關係，顯示兩個品牌之間分工明確，刻意不轉傳，各自扮演不同角色；《觀察者網》除了作為發布者外，也擴散轉發來自玉淵潭天這類被視為與中國官媒關係緊密的大V的內容。",
-          "source_id": "src-factlink-a7a795",
-          "about": "央視"
-        },
-        {
-          "text": "在網絡圖雖可見到俄羅斯官媒《今日俄羅斯》微博帳號，但沒有看到固定的轉發群組，在對台軍演未見扮演凸顯的特定角色，發文主要是轉分享央視新聞、綜整中共官方訊息。",
           "source_id": "src-factlink-a7a795",
           "about": "央視"
         },
@@ -4759,21 +4504,6 @@ window.NETWEAVER_DB = {
         },
         {
           "text": "當晚7-9點之間，中國軍號、央視新聞、東部戰區、多社群平台眾多帳號等也共同發動此主題。",
-          "source_id": "src-factlink-a7a795",
-          "about": "央視"
-        },
-        {
-          "text": "資安院分析師戴毓辰協助比對上述文本的「台北101」影像，這四種文本影像疊合後完全相符，觀測到文本畫面左下的時間秒數，不同文本顯示的秒數略有不同，可推測東部戰區、央視、中國軍號等三個主要行動者，透過早已炮製的「共同素材」，自行加工與發揮為宣傳影像。",
-          "source_id": "src-factlink-a7a795",
-          "about": "央視"
-        },
-        {
-          "text": "東部戰區融媒體所製作的「演習畫面」素材，提供給央視、人民日報、中國軍號、環球日報等媒體使用，素材會同步打上「東部戰區」藍白符號。",
-          "source_id": "src-factlink-a7a795",
-          "about": "央視"
-        },
-        {
-          "text": "央視除了發布東部戰區融媒體的素材，另外以專家專訪點評、新聞聯播等節目，提供宣傳支援，成為被轉發次數最高的引用者。",
           "source_id": "src-factlink-a7a795",
           "about": "央視"
         },
@@ -5329,21 +5059,6 @@ window.NETWEAVER_DB = {
       "confidence": "high",
       "claims": [
         {
-          "text": "在軍演中，除了軍事作戰單位發動演練外，東部戰區融媒體中心更發動「資訊宣傳戰」。",
-          "source_id": "src-factlink-a7a795",
-          "about": "東部戰區融媒體中心"
-        },
-        {
-          "text": "FactLink和Doublethink Lab研究團隊（以下稱研究團隊），透過「正義使命」軍演，掌握解放軍如何發動軍演中的資訊宣傳戰，並試圖解析被外界稱為「中央廚房」素材的東部戰區融媒體中心機制。",
-          "source_id": "src-factlink-a7a795",
-          "about": "東部戰區融媒體中心"
-        },
-        {
-          "text": "觀察1：軍演的宣傳，是東部戰區融媒體中心是透過官媒、地方媒體、社群帳號等不同行動者組成的宣傳網絡發動。",
-          "source_id": "src-factlink-a7a795",
-          "about": "東部戰區融媒體中心"
-        },
-        {
           "text": "從網絡關係圖可見，東部戰區融媒體中心發動，央視等行動者會運用既有網絡來發動宣傳。",
           "source_id": "src-factlink-a7a795",
           "about": "東部戰區融媒體中心"
@@ -5354,57 +5069,12 @@ window.NETWEAVER_DB = {
           "about": "東部戰區融媒體中心"
         },
         {
-          "text": "進入2023年，時任總統蔡英文、副總統賴清德外訪期間時，中共皆發動軍演施壓；2024年後，東部戰區融媒體中心開始主責軍演宣傳工作，並為演習命名，除有一次未命名軍演外，另發動聯合利劍A、聯合利劍B軍演，2025年則有海峽雷霆2025-A以及正義使命。",
-          "source_id": "src-factlink-a7a795",
-          "about": "東部戰區融媒體中心"
-        },
-        {
-          "text": "東部戰區融媒體中心是政治工作單位，任務是結合傳統媒體、自媒體和新媒體來發動宣傳。",
-          "source_id": "src-factlink-a7a795",
-          "about": "東部戰區融媒體中心"
-        },
-        {
-          "text": "東部戰區融媒體中心從2024年聯合利劍A、B軍演以來，明顯主導軍演期間的宣傳與輿論工作。",
-          "source_id": "src-factlink-a7a795",
-          "about": "東部戰區融媒體中心"
-        },
-        {
           "text": "國防大學新聞系教授傅文成觀察，過去一般是由總政治部加上解放軍信息支援部執行宣傳，東部戰區融媒體中心主責宣傳，宣傳工作比過去更能貼近台灣脈絡，操作也更精密、細膩。",
           "source_id": "src-factlink-a7a795",
           "about": "東部戰區融媒體中心"
         },
         {
-          "text": "東部戰區融媒體中心被外界稱為「中央廚房」，本研究透過「正義使命」軍演的宣傳網絡分析與敘事時序分析，以拆解「東部戰區融媒體中心」如何發動正義使命宣傳工作，讓我們來看這個所謂「中央廚房」的上菜機制。",
-          "source_id": "src-factlink-a7a795",
-          "about": "東部戰區融媒體中心"
-        },
-        {
-          "text": "為了解析東部戰區融媒體中心的「中央廚房」宣傳網絡，研究團隊觀察到軍演期間的宣傳文本和主題有高度相似性，首先將收集來的貼文或影片說明資料共6,747筆，做相似性比對，方法是 將文字轉為向量，再設定以相似性0.8為閾值，高於0.8者 便分類成同一組，並排除與軍演無關內容，最後可得到392組文本，再進一步檢視傳播同一組文本的帳號。",
-          "source_id": "src-factlink-a7a795",
-          "about": "東部戰區融媒體中心"
-        },
-        {
-          "text": "東部戰區融媒體中心扮演「中央廚房」，推出正義之箭、正義之盾、正義之錘、正義之馬等主題海報，推出AI短影片、搭配海報主題的歷次演習畫面，在當日演習畫面尚未傳回之前，用以遞補宣傳檔期。",
-          "source_id": "src-factlink-a7a795",
-          "about": "東部戰區融媒體中心"
-        },
-        {
-          "text": "國防大學新聞系教授傅文成觀察，東部戰區融媒體中心發動軍演宣傳時，會挑選特定敘事主題作為宣傳的主力攻擊，主力攻擊敘事可見從中央官媒、地方媒體到社群的不同行動者齊力發動。",
-          "source_id": "src-factlink-a7a795",
-          "about": "東部戰區融媒體中心"
-        },
-        {
-          "text": "從過去經驗也可推測，東部戰區融媒體中心在軍演前已透過協調會議，做好設定攻擊敘事主題來做協同發動。",
-          "source_id": "src-factlink-a7a795",
-          "about": "東部戰區融媒體中心"
-        },
-        {
           "text": "然而，並非東部戰區融媒體中心的每則素材或發文都被全力推播。",
-          "source_id": "src-factlink-a7a795",
-          "about": "東部戰區融媒體中心"
-        },
-        {
-          "text": "研究團隊採訪國防安全研究院研究員沈明室、關注解放軍公開情報圖資的溫約瑟均指出，這段影像不具有軍事情資威脅，但卻顯示出東部戰區融媒體中心在決定「宣傳攻擊」敘事時，看中的是恫嚇威脅民眾的政治宣傳效果。",
           "source_id": "src-factlink-a7a795",
           "about": "東部戰區融媒體中心"
         },
@@ -5525,37 +5195,12 @@ window.NETWEAVER_DB = {
           "about": "長光衛星"
         },
         {
-          "text": "中國媒體近期對長光衛星的關注，並非其技術突破，恰好是該公司遲遲未能打開商業市場，虧損擴大，原申請於上海證交所科創板上市，2024年底宣布停止上市，今年的話題之一就是市場揣測長光衛星擬借中國某家上市公司的殼來上市。",
-          "source_id": "src-factlink-satellite",
-          "about": "長光衛星"
-        },
-        {
           "text": "此外，根據《金融時報》報導，美國國務院4月指控長光衛星協助葉門胡塞武裝份子，把它列為具中共軍方色彩的制裁清單。",
           "source_id": "src-factlink-satellite",
           "about": "長光衛星"
         },
         {
-          "text": "國防安全院中共政軍與作戰概念研究所副研究員舒孝煌說，中共過去在軍演、擾台期間，多半以Google Maps照片等亂湊影像或錯誤資訊，來宣稱解放軍掌握台灣的地理圖資和情報，不過，這次不一樣，是透過民間公司釋出台灣的地理衛星實景照，「長光衛星除了與官方政治宣傳同步應和，當然也有商業行銷目的。」",
-          "source_id": "src-factlink-satellite",
-          "about": "長光衛星"
-        },
-        {
-          "text": "他指出，長光衛星是趕在台灣首個自主遙測衛星福八衛星發射前夕公布台灣地理圖資，以營造「中國商業民間公司都做得到，解放軍軍方也做得到的宣示」，以長光衛星的圖資來證明解放軍掌握衛星拍攝技術的能力。",
-          "source_id": "src-factlink-satellite",
-          "about": "長光衛星"
-        },
-        {
           "text": "長光衛星的動作，自然不單是商業行銷行為，更是代表中共試圖恫嚇台灣的政治宣傳行動，讓台灣民眾和國際社會理解「中國老大哥」正在看著你。",
-          "source_id": "src-factlink-satellite",
-          "about": "長光衛星"
-        },
-        {
-          "text": "不過，長光衛星此次發布的衛星圖資並非機敏資料，舒孝煌說，長光衛星釋出的衛星圖資，全球商業衛星公司也都能拍攝得到；擅長運用衛星、地理開源工具來研究解放軍的溫約瑟說：「長光衛星公布的是照片，實際上Google Earth就能看得到，沒有什麼好驚奇，甚至引不起我的注意。",
-          "source_id": "src-factlink-satellite",
-          "about": "長光衛星"
-        },
-        {
-          "text": "FactLink觀察「長光衛星」敘事的傳播路徑和敘事內容，發現此次「長光衛星釋放台灣衛星圖資」的政治宣傳，除了對台在光復節做政治宣示和恫嚇，同時也面向中國內部進行「大內宣」。",
           "source_id": "src-factlink-satellite",
           "about": "長光衛星"
         },
@@ -5593,26 +5238,6 @@ window.NETWEAVER_DB = {
           "text": "由上述的傳播路徑可見，中國官媒在「長光衛星發布台灣衛星實景照」，較少著墨在「長光衛星」的技術，更不曾揭露解放軍掌握衛星技術與情資的情資能力。",
           "source_id": "src-factlink-satellite",
           "about": "長光衛星"
-        },
-        {
-          "text": "長光衛星的衛星圖資，在11月1日由中國駐美大使館（Chinese Embassy in Us）X帳號轉載，每張照片在寫英文圖說時，將每個台灣景點註記為中國的一部分，呼應同樣敘事，將資訊戰線上升至中美台。",
-          "source_id": "src-factlink-satellite",
-          "about": "長光衛星"
-        },
-        {
-          "text": "經過多輪募資投入研發，是中國最大的民間商業衛星遙測公司，投資的「吉林一號」衛星對外宣稱有117顆衛星，致力開發運用於救災、農業、氣候變遷等商業遙測市場。",
-          "source_id": "src-factlink-satellite",
-          "about": "吉林一號"
-        },
-        {
-          "text": "FactLink運用台灣民主實驗室（Doublethink Lab）微博熱搜分析平台資料庫，顯示從10月26日至10月27日的熱搜主題是「吉林一號放出台灣島高清衛星圖」，從中國官媒的微博帳號到特定軍事微博帳號均轉傳此訊息。",
-          "source_id": "src-factlink-satellite",
-          "about": "吉林一號"
-        },
-        {
-          "text": "媒體的報導角度各不同，部分媒體以陳述事實角度報導「吉林一號」公布台灣多張衛星照，部分媒體分析中國進行政治恫嚇，但也有特定媒體和政論節目引述名嘴指出衛星照「看光光」台灣、中國航太科技進步。",
-          "source_id": "src-factlink-satellite",
-          "about": "吉林一號"
         }
       ]
     },
@@ -5832,27 +5457,7 @@ window.NETWEAVER_DB = {
           "about": "中國軍號"
         },
         {
-          "text": "此影像敘事包含四種文本：央視和央視軍事採用手機直立畫面；中國軍號以無人機起飛影像作為開頭；東部戰區在「這麼近那麼美，隨時到台北」影像中穿插一張台北101照；此外，網路論壇和社群平台流傳所謂「無人機拍攝到的台北地形全景圖」。",
-          "source_id": "src-factlink-a7a795",
-          "about": "中國軍號"
-        },
-        {
-          "text": "資安院分析師戴毓辰協助比對上述文本的「台北101」影像，這四種文本影像疊合後完全相符，觀測到文本畫面左下的時間秒數，不同文本顯示的秒數略有不同，可推測東部戰區、央視、中國軍號等三個主要行動者，透過早已炮製的「共同素材」，自行加工與發揮為宣傳影像。",
-          "source_id": "src-factlink-a7a795",
-          "about": "中國軍號"
-        },
-        {
-          "text": "東部戰區融媒體所製作的「演習畫面」素材，提供給央視、人民日報、中國軍號、環球日報等媒體使用，素材會同步打上「東部戰區」藍白符號。",
-          "source_id": "src-factlink-a7a795",
-          "about": "中國軍號"
-        },
-        {
           "text": "中國軍號和解放軍報，會有起床號、熄燈號，提供解放軍觀點的宣傳素材。",
-          "source_id": "src-factlink-a7a795",
-          "about": "中國軍號"
-        },
-        {
-          "text": "以「無人機」敘事為例，官方未曾提及「雙尾蠍」，但媒體和民間軍事博主透過中國軍號畫面，反搜認定為雙尾蠍，文章延伸介紹「雙尾蠍」功能，甚至虛擬出無人機斬首計畫、繞台路線。",
           "source_id": "src-factlink-a7a795",
           "about": "中國軍號"
         }
@@ -5891,11 +5496,6 @@ window.NETWEAVER_DB = {
       "claims": [
         {
           "text": "正義使命軍演是由中共解放軍東部戰區發言人施毅在2025年12月29日早上7點30分宣布開始，由東部戰區、新華社受權發布演訓公告和示意圖，央視亦發布相關新聞。",
-          "source_id": "src-factlink-a7a795",
-          "about": "新華社"
-        },
-        {
-          "text": "關鍵字包含：正义使命、解放军、东部战区、演习、无人机、正義使命、解放軍、東部戰區、演習和無人機，共收集6,924筆資料，再排除新華社宣佈軍演開始之前的不相關貼文，共得到6,747筆資料，以此資料進行後續分析。",
           "source_id": "src-factlink-a7a795",
           "about": "新華社"
         },
@@ -6062,11 +5662,6 @@ window.NETWEAVER_DB = {
         },
         {
           "text": "檢視392組文本資料所顯示的指向網絡時可發現，東部戰區發布的貼文，有13個媒體和大V共同轉分享，包括央視新聞、央廣軍事、鎮江民生頻道、央廣軍事、環球時報、浙江日報、澎湃新聞、宣漢融媒、新浪軍事、動静新聞、南湖發布、看看新聞Knews和星話大白等。",
-          "source_id": "src-factlink-a7a795",
-          "about": "新浪軍事"
-        },
-        {
-          "text": "央視新聞發布的13則報導文本，有26個帳號轉發，官方單位有屏山公安、銅陵經開公安在線、山東高法、沐川公安、青春龍泉驛和平安金陽；媒體有動靜新聞、新浪軍事、南寧晚報、錢江晚報、南方週末、頭條新聞、第一現場、馬上資訊、看台海、福建日報、環球時報和新京報；大V有星話大白、包容萬物恆河水、台灣那點事兒、扎西德勒·天珠收藏、椒哥微記錄、航天面面觀、長春-小風、白鶴-老鄧。",
           "source_id": "src-factlink-a7a795",
           "about": "新浪軍事"
         }
@@ -7072,11 +6667,6 @@ window.NETWEAVER_DB = {
           "text": "26 日 8:42，中共官媒「大公文匯網」的發表作者為朱穗怡的評論，認為「美國政客不僅把台灣當作刺激和牽制中國大陸的棋子，還把台灣當作為自己累積政治利益的提款機」，麥卡錫「搞風搞雨」「台灣是最大受害者」。",
           "source_id": "src-iorg-38",
           "about": "大公文匯網"
-        },
-        {
-          "text": "1 月 31 日 10:07 中共官媒「大公文匯網」刊出輔仁大學兩岸關係學暨國際關係學教授、海峽兩岸學術文化交流協會副理事長潘錫堂的評論，標題為〈台美勾連是台海不安的根源〉，內容並以「竄台」形容麥卡錫訪台，引用「不少大陸軍事專家分析」，，認為如果麥卡錫訪台，中國將採取「更全面震撼的行動方式」、「更常態化方式」「讓美台都知道台海問題絕對不容挑釁」。",
-          "source_id": "src-iorg-38",
-          "about": "大公文匯網"
         }
       ]
     },
@@ -7531,11 +7121,6 @@ window.NETWEAVER_DB = {
       "sensitivity": "domestic-named",
       "claims": [
         {
-          "text": "FactLink研究團隊觀察到，第二波宣傳高峰是10月27日後，中國官媒營造「島內輿論」，報導切入點為「島內如何看大陸發布台高清衛星圖」、「衛星視角瞰中國台灣省，島內反應來了」、「館長談大陸發布台灣省衛星圖」，截取特定台灣媒體、政治網紅、台灣政治名嘴（中國稱為台灣時事評論員）的分析與評論，甚至取材網友留言，營造「島內輿論」，創造話題熱度。",
-          "source_id": "src-factlink-satellite",
-          "about": "館長"
-        },
-        {
           "text": "「島內輿論」的另一個來源是台灣網紅館長。",
           "source_id": "src-factlink-satellite",
           "about": "館長"
@@ -7849,11 +7434,6 @@ window.NETWEAVER_DB = {
           "text": "檢調另查獲，中華微視負責人蔡男未經主管機關「經濟部投資審議委員會」許可，涉嫌與具有中共解放軍退伍背景的大陸微視及香港微視的董事長簽訂簽訂「戰略合作協議」，約定由大陸微視及香港微視出資人民幣300萬元，以取得中華微視的67%股權，藉此推動中方指示的業務，中華微視目前已收受中方提供的人民幣50萬元資金，涉嫌違反「臺灣地區與大陸地區人民關係條例」相關規定。",
           "source_id": "src-ltn-chinavtv",
           "about": "中華微視"
-        },
-        {
-          "text": "「中華微視」及「兩岸頭條」等臉書粉絲專頁，涉嫌散布「日本為『臺海突發狀況』預作撤僑準備，認臺灣將踩踏中共紅線」等不實訊息，調查局資安工作站蒐證後發現，中華微視未經許可即收取中資在台營運，報請新北地檢署指揮搜索中華微視及蔡姓負責人住居所等4處，訊後依違反兩岸條例等罪分別諭令蔡岳廷9萬元交保、蔡的前妻張巧琳5萬元交保。",
-          "source_id": "src-ltn-chinavtv",
-          "about": "中華微視"
         }
       ],
       "related": [
@@ -7936,11 +7516,6 @@ window.NETWEAVER_DB = {
         {
           "text": "此論述的主要內容，如新黨人士林正國經營的內容農場「觸極者」：「自以為世界警察的美國，根本是超級破壞者。」",
           "source_id": "src-iorg-11",
-          "about": "觸極者"
-        },
-        {
-          "text": "1 月 26 日 10:00 粉專「觸極者」發布貼文，認為「世界警察」美國「從一戰、二戰，至冷戰背景下的韓戰、越戰，再到找各國極端分子，到處點燃 “顏色革命”，而最終該地區都陷入絕望深淵」，貼文也認為埃及、烏克蘭都是案例。",
-          "source_id": "src-iorg-38",
           "about": "觸極者"
         },
         {
@@ -8381,13 +7956,14 @@ window.NETWEAVER_DB = {
       "origin": "PRC",
       "summary_zh": "中共中央宣傳部；據國安局 2025 報告，與公安部共同透由海訊社、海賣、虎牙等公關公司投放爭訊、偽冒國際媒體。",
       "source_ids": [
-        "src-storm-nsb-2026"
+        "src-storm-nsb-2026",
+        "src-nsb-2026"
       ],
       "confidence": "medium",
       "claims": [
         {
-          "text": "國安局指出，在「建置多元管道投放爭訊」方面，中共中宣部、公安部透由「海訊社」、「海賣」及「虎牙」等公關公司，創建網站偽冒國際媒體例如：Aisa Korea、Austria Weekly，協力傳散中共官方論述；另扶植「無邊界集團」公關公司，創設「臉書」粉專內容農場，張貼煽動性文章吸引點閱，並在Threads及X等平台，設立軟性議題發文帳號，伺機發布政治類貼文，意圖影響國人認知。",
-          "source_id": "src-storm-nsb-2026",
+          "text": "（一）虛假網站：中宣部、公安部透由「海訊社」、「海賣」",
+          "source_id": "src-nsb-2026",
           "about": "中宣部"
         }
       ]

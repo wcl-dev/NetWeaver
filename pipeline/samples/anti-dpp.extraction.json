@@ -1,5 +1,5 @@
 {
-  "_note": "模型抽取（忠實：mention＋逐字述詞＋引文，無分類/評分）。示範：述詞『likely linked』→碼判 related-to＋停 IMS。",
+  "_note": "示範樣本（示範：述詞『likely linked』→碼判 related-to＋停 IMS）。surface／predicate 為名冊對應用的描述標籤，不經 span_check；quote 一律為原文精確子字串（2026-10 授權稽核修正：原為手寫改寫，已換成逐字句，由 pipeline/check_quote_coverage.py 複查）。",
   "report": {
     "name": "Inauthentic Accounts Impersonate Taiwanese to Attack Political Party",
     "org": "Doublethink Lab",
@@ -7,18 +7,18 @@
     "published": "2025-07", "type": "ngo-report"
   },
   "mentions": [
-    { "tmp_id": "op", "surface": "假冒台灣人反民進黨 Threads 行動", "coarse_type": "operation", "quote": "51 inauthentic accounts impersonating Taiwanese posted content attacking the DPP", "source_url": "https://medium.com/doublethinklab/inauthentic-accounts-impersonate-taiwanese-to-attack-political-party-c7d04d5e1e13" },
-    { "tmp_id": "net", "surface": "假冒台灣人反民進黨帳號網絡", "coarse_type": "network", "quote": "DTL assesses the network can likely be linked to the PRC", "source_url": "https://medium.com/doublethinklab/inauthentic-accounts-impersonate-taiwanese-to-attack-political-party-c7d04d5e1e13" },
+    { "tmp_id": "op", "surface": "假冒台灣人反民進黨 Threads 行動", "coarse_type": "operation", "quote": "51 inauthentic accounts that pretended to be Taiwanese citizens and participated in political narratives that mainly criticized Taiwan’s Democratic Progressive Party (DPP) on Threads", "source_url": "https://medium.com/doublethinklab/inauthentic-accounts-impersonate-taiwanese-to-attack-political-party-c7d04d5e1e13" },
+    { "tmp_id": "net", "surface": "假冒台灣人反民進黨帳號網絡", "coarse_type": "network", "quote": "Based on these accounts’ forensic indicators, we believe it is likely that they can be linked to the PRC", "source_url": "https://medium.com/doublethinklab/inauthentic-accounts-impersonate-taiwanese-to-attack-political-party-c7d04d5e1e13" },
     { "tmp_id": "prc", "surface": "中國 PRC", "coarse_type": "place", "country": "CN", "source_url": "https://medium.com/doublethinklab/inauthentic-accounts-impersonate-taiwanese-to-attack-political-party-c7d04d5e1e13" },
-    { "tmp_id": "narr", "surface": "我是台灣人我反綠", "coarse_type": "narrative", "quote": "275 near-identical posts of the 我是台灣人我反綠 type", "source_url": "https://medium.com/doublethinklab/inauthentic-accounts-impersonate-taiwanese-to-attack-political-party-c7d04d5e1e13" },
-    { "tmp_id": "chan", "surface": "Threads 假冒帳號群", "coarse_type": "account", "quote": "44 of 51 accounts reused photos of Taiwanese influencers", "source_url": "https://medium.com/doublethinklab/inauthentic-accounts-impersonate-taiwanese-to-attack-political-party-c7d04d5e1e13" },
+    { "tmp_id": "narr", "surface": "我是台灣人我反綠", "coarse_type": "narrative", "quote": "Virtually all of these posts (275) were identical posts that opposed the DPP", "source_url": "https://medium.com/doublethinklab/inauthentic-accounts-impersonate-taiwanese-to-attack-political-party-c7d04d5e1e13" },
+    { "tmp_id": "chan", "surface": "Threads 假冒帳號群", "coarse_type": "account", "quote": "Campaign stole photos from female influencers. We were able to identify the picture origins of 44 out of 51 accounts", "source_url": "https://medium.com/doublethinklab/inauthentic-accounts-impersonate-taiwanese-to-attack-political-party-c7d04d5e1e13" },
     { "tmp_id": "dpp", "surface": "民主進步黨 DPP", "coarse_type": "org", "source_url": "https://medium.com/doublethinklab/inauthentic-accounts-impersonate-taiwanese-to-attack-political-party-c7d04d5e1e13" }
   ],
   "assertions": [
-    { "subject": "net", "predicate": "can likely be linked to the PRC", "object": "prc", "quote": "DTL assesses the network can likely be linked to the PRC", "source_url": "https://medium.com/doublethinklab/inauthentic-accounts-impersonate-taiwanese-to-attack-political-party-c7d04d5e1e13" },
-    { "subject": "op", "predicate": "used the narrative", "object": "narr", "quote": "posts pushed the 我是台灣人我反綠 narrative", "source_url": "https://medium.com/doublethinklab/inauthentic-accounts-impersonate-taiwanese-to-attack-political-party-c7d04d5e1e13" },
-    { "subject": "op", "predicate": "透過假帳號進行", "object": "chan", "quote": "operated via 51 inauthentic Threads accounts", "source_url": "https://medium.com/doublethinklab/inauthentic-accounts-impersonate-taiwanese-to-attack-political-party-c7d04d5e1e13" },
-    { "subject": "op", "predicate": "targeting the DPP", "object": "dpp", "quote": "attacking the Democratic Progressive Party (DPP)", "source_url": "https://medium.com/doublethinklab/inauthentic-accounts-impersonate-taiwanese-to-attack-political-party-c7d04d5e1e13" },
-    { "subject": "op", "predicate": "carried out by the network", "object": "net", "quote": "the operation was run by the network of 51 accounts", "source_url": "https://medium.com/doublethinklab/inauthentic-accounts-impersonate-taiwanese-to-attack-political-party-c7d04d5e1e13" }
+    { "subject": "net", "predicate": "can likely be linked to the PRC", "object": "prc", "quote": "Based on these accounts’ forensic indicators, we believe it is likely that they can be linked to the PRC", "source_url": "https://medium.com/doublethinklab/inauthentic-accounts-impersonate-taiwanese-to-attack-political-party-c7d04d5e1e13" },
+    { "subject": "op", "predicate": "used the narrative", "object": "narr", "quote": "Doublethink Lab observed significant traffic around the phrase “I am Taiwanese and I oppose pan-green 「我是台灣人我反綠」”", "source_url": "https://medium.com/doublethinklab/inauthentic-accounts-impersonate-taiwanese-to-attack-political-party-c7d04d5e1e13" },
+    { "subject": "op", "predicate": "透過假帳號進行", "object": "chan", "quote": "Among this data, we identified 91 posts by 51 inauthentic accounts that can likely be connected to the PRC", "source_url": "https://medium.com/doublethinklab/inauthentic-accounts-impersonate-taiwanese-to-attack-political-party-c7d04d5e1e13" },
+    { "subject": "op", "predicate": "targeting the DPP", "object": "dpp", "quote": "participated in political narratives that mainly criticized Taiwan’s Democratic Progressive Party (DPP)", "source_url": "https://medium.com/doublethinklab/inauthentic-accounts-impersonate-taiwanese-to-attack-political-party-c7d04d5e1e13" },
+    { "subject": "op", "predicate": "carried out by the network", "object": "net", "quote": "51 inauthentic accounts that pretended to be Taiwanese citizens and participated in political narratives that mainly criticized Taiwan’s Democratic Progressive Party (DPP) on Threads", "source_url": "https://medium.com/doublethinklab/inauthentic-accounts-impersonate-taiwanese-to-attack-political-party-c7d04d5e1e13" }
   ]
 }

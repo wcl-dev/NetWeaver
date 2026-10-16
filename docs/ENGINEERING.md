@@ -127,6 +127,7 @@ review 丟給 `claim_judge.judge()`（`claim_judge.py:83`）——**第二個、
 - **`publication_digest(extr, claims)`**（`run_loop.py:167`）— 鎖住「已核可的內容」。重抽後 digest 變了 → 核可作廢、重審；沒變 → 沿用決定。防 TOCTOU。
 - **`auto` 的四道閘**（`curate.py` `auto_gate`）：`valid` / 無 `attributed-to` / 出版方已核可 / 掛得上名冊且非 `domestic-named`。全過才自動發布。
 - **`compile` 的 upsert 以 source_id 為單位**：同來源舊 claims 整批清掉再寫入，其他來源與人工 claims 原樣保留。不做 partial（任一 claim 來源未策展 → 整篇跳過）。→ **發布可逆、以來源為粒度**。
+- **發布後自動體檢（只警告、由人決定）**：`compile` 寫入 db.js 後呼叫 `check_quote_coverage.audit()`，對**本次寫入的來源**出警告——① claim 不是原文的精確子字串（span-check 事後複查，抓得到繞過 span_check 混進來的改寫）；② 單篇「逐字聯集覆蓋率」> 25%（著作權法 §52「必要範圍」的自律線）。發布的是 `project()` 擴張成**整句**後的文字，量體以此為準。claim 佐證的原文不進 repo，故此檢查只在本機跑、不在 CI。超標時的處理原則：**每個實體至少留一則證據**，同一句可掛多個實體（不增加覆蓋），優先留點名台灣、點名中國、資訊不重複的句子。
 - **歸因出口**：`compile --yes` 通過後 `apply_attributions()` 把核可的 `attributed-to` 寫進 source 實體的 `related`（附來源機構＋核可日期），並重寫 bundle 蓋 `approved` 章。端點用 `_resolve_actor()` 解析：精確比對優先，片語型 surface（`the company named "WUBIANJIE" [無邊界公司]`）取括號片段，全部命中須指向同一實體，歧義寧可 held。
 
 ---
@@ -177,6 +178,7 @@ review 丟給 `claim_judge.judge()`（`claim_judge.py:83`）——**第二個、
 | **id 決定性** | `pipeline.py` `sid` | 同實體跨 bundle 同 id，下游不產生分身。 |
 | **domestic-named 從嚴** | `sensitivity` 欄位 ＋ auto_gate | 在地具名個人/媒體一律人工。 |
 | **發布可逆** | curate source-scoped upsert | 撤下/重編一個來源不影響其他來源。 |
+| **引用量上限** | `check_quote_coverage.py` ＋ curate `compile` 警告 | 同一篇原文被逐字公開的聯集 ≤ 25%、且每則 claim 須為原文逐字。守著作權「必要範圍」。 |
 
 ---
 

@@ -185,7 +185,11 @@ NetWeaver/
 這個 repo 是兩種東西，**分開授權**：
 
 - **程式碼**（`pipeline/`、`index.html`、`serve.py` 等本專案自寫的部分）：**MIT**，見 [`LICENSE`](LICENSE)。
-- **資料**（`data/`、匯出的 STIX bundle）：**不適用 MIT，也未被重新授權。** 逐來源宣稱是**公開研究報告的逐字引述**、以加註出處方式呈現；內容版權仍屬各原始來源，且來源條款是混的（`cite-with-attribution`／`all-rights-reserved`／`gov-open`／`cc-by-sa` 等）。**逐源授權現在機器可讀**：`data/db.js` 的 `sources[].license`，以及 STIX bundle 每個 `report` 物件的 `x_netweaver_license`；governance 面另見 [`data/registry.yaml`](data/registry.yaml)。**再利用資料者須自行遵守各原始來源的授權。**
+- **資料**（`data/`、匯出的 STIX bundle）：**不適用 MIT，也未被重新授權。** 逐來源宣稱是**公開研究報告的短段逐字引述**，加註出處並連回原文；內容版權仍屬各原始來源。
+  - **我們據以引用的法律基礎**：多數來源並未授予任何再利用權利（著作權預設、"all rights reserved"）。NetWeaver 的逐字引用依**合理使用／《著作權法》第 52 條（為報導、評論、研究等正當目的得合理引用）＋第 64 條（註明出處）**，以研究與記錄為目的、僅取必要範圍的短段落。`sources[].license` 的 **`cite-with-attribution` 是 NetWeaver 的簡稱**（意為「我們引用並註明出處」），**不是來源授予的授權**。
+  - **真正由來源明寫的授權**只有：`gov-open`（政府文件——《著作權法》§9 公文不受著作權保護／美國聯邦政府文件屬公共領域）、`cc-by-sa`（本庫對應來源僅列為**參考出處、未複製其內文**，故 ShareAlike 不觸發，僅需署名）、`platform-terms`。這幾類我們逐條遵守。
+  - **數量紀律**：只取短證據引用；單篇原文「逐字聯集覆蓋率」上限 25%，由 [`pipeline/check_quote_coverage.py`](pipeline/check_quote_coverage.py) 把關：同時複查每則引文仍為原文逐字子字串；`curate.py compile` 發布後會自動對本次寫入的來源出警告（只警告、由人決定）。因 claim 的佐證原文不進 repo，此檢查只在本機跑、不在 CI。
+  - **逐源授權機器可讀**：`data/db.js` 的 `sources[].license`、STIX bundle 每個 `report` 物件的 `x_netweaver_license`；governance 面另見 [`data/registry.yaml`](data/registry.yaml)。**再利用資料者須自行遵守各原始來源的授權。**
 - 本專案**自己產出**的部分（資料結構、實體的中性 summary 與分類這個「彙整」）以 **CC BY 4.0** 提供，惟不覆蓋上述第三方引文。
 
 授權不改變「記錄非指控」的定位（見上方免責）：收錄不代表法律指控，內容以原始來源為準。

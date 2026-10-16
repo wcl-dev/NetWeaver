@@ -70,6 +70,21 @@ def _upsert(ent, new_claims, source_ids):
     ent["claims"] = kept + fresh
     return len(ent["claims"])
 
+def _quote_gate_warn(db, sids, url2raw=None):
+    """發布後自動體檢（只警告、不擋；人決定）：本次寫入的來源，claim 是否仍為原文逐字、
+    單篇逐字覆蓋是否超過自律線（著作權法 §52「必要範圍」）。發布的是 project() 擴張後的整句，量體以此為準。
+    體檢本身出任何狀況都不得影響 compile 結果。"""
+    try:
+        cq = _load("check_quote_coverage")
+        r = cq.audit(db, cq.DEFAULT_CAP, only_sids=sids, url2raw=url2raw)
+    except Exception:
+        return
+    for cov, sid, hit, tot, n in r["over"]:
+        print(f"  ⚠ 引用量：{sid} 單篇逐字覆蓋 {cov:.0%}（上限 {cq.DEFAULT_CAP:.0%}；{hit}/{tot} 句 / 原文 {n} 字）"
+              f"——請人決定精簡，保留每個實體至少一則證據即可（檢視：python3 pipeline/check_quote_coverage.py）")
+    for sid, bad, tot, ex in r["nonverbatim"]:
+        print(f"  ⚠ 逐字：{sid} 有 {bad}/{tot} 則 claim 不是原文的精確子字串（span_check 紅線），請查明")
+
 def _flags(e):
     return ((" src✓" if e.get("source_curated") else " src✗")
             + (f" actor:{e['actor_registered']}" if e.get("actor_registered") else " actor✗")
@@ -365,7 +380,7 @@ def cmd_compile(args):
     src, i, _j, db = load_db()
     url2sid = _urlnorm.index_by_url(db["sources"])       # 正規化鍵比對：追蹤參數不得被當成新來源
     ent_by_id = {e["id"]: e for e in db["entities"]}; ent_ids = set(ent_by_id)
-    done, skipped = [], []
+    done, skipped, compiled_sids = [], [], set()
     for e in approved:
         rid = e["raw_id"]
         try:                                                 # 一次讀取重新 derive/validate/project（digest 同源，不 TOCTOU）
@@ -422,6 +437,7 @@ def cmd_compile(args):
             if written: att_note += "；歸因寫入 " + "、".join(f"{a}→{b}" for a, b in written)
             if held:    att_note += "；歸因端點未登錄而保留 " + "、".join(f"{a}→{b}" for a, b in held)
         e["compile_status"] = "compiled"
+        compiled_sids |= sids
         try:                                                 # 發布後刷新落盤 bundle，與已發布狀態一致
             _bp = _here.parent / e["extraction"]
             rl.write_bundle(_bp.parent, _bp.name.split(".")[0],
@@ -437,6 +453,8 @@ def cmd_compile(args):
         print(f"  ✓ {rid} → {eid}: +{n} claims｜{note}")
     for rid, why in skipped:
         print(f"  ⟳ {rid} 跳過：{why}")
+    if not args.dry_run and done:
+        _quote_gate_warn(db, compiled_sids)                  # 引用量／逐字自動體檢（只警告）
     if args.dry_run: print("（dry-run：未寫 db.js/queue）")
     if only and not done:                                    # 指名發布卻沒發成 → 呼叫端（後台）要看到失敗
         raise SystemExit(f"{only} 未發布：{skipped[0][1] if skipped else '未知原因'}")

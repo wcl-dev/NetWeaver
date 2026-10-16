@@ -298,7 +298,7 @@ def main():
         print(f"  curation queue 共 {len(queue)} 篇（{QUEUE.relative_to(_here.parent)}）；"
               f"其中 source＋actor 皆已策展、無歸因、valid 者 {ready_to_compile} 篇可人工 compile")
         print(f"  審核 compile：python3 pipeline/curate.py list ｜ show <id> ｜ approve <id> ｜ compile"
-              f"（安全 upsert；勿用 compile_to_db.py，那會整包覆蓋）")
+              f"（安全 upsert，以 source 為單位）")
     return 0
 
 if __name__ == "__main__":

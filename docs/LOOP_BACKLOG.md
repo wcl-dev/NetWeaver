@@ -2,8 +2,7 @@
 
 `pipeline/run_loop.py` 目前是**保守版**：自動化 ingest→filter→extract→derive→validate→project，產出待人工審的
 curation queue（`pipeline/extractions/curation_queue.json`），**預設不自動 compile 進 db.js**。人審與 compile 走
-`pipeline/curate.py`（list/show/approve/compile）——**安全 source-scoped upsert、狀態機、歸因閘、歸屬重算比對**；
-**勿用** `compile_to_db.py`（那會整包覆蓋，僅供樣本）。
+`pipeline/curate.py`（list/show/approve/compile）——**安全 source-scoped upsert、狀態機、歸因閘、歸屬重算比對**。
 
 以下是 Codex review（2026-07）指出、要「**自動** compile 進 db.js」變 production-safe 才需處理的項目。
 現階段抽取品質 edge F1 ~0.2、且 sources/registry 是人工策展骨幹，自動 compile 尚早，故列 backlog。
@@ -16,7 +15,7 @@ curation queue（`pipeline/extractions/curation_queue.json`），**預設不自�
 ## 必修（開啟自動 compile 前）
 
 1. **source-scoped upsert 沿用到自動路徑**（✅ 人工路徑已於 `curate._upsert` 完成）
-   若日後開自動 compile，需沿用同一 upsert（勿回到 `compile_to_db.py` 的整包覆蓋）。
+   若日後開自動 compile，需沿用同一 upsert（不得整包覆蓋他來源的 claims）。
 
 2. **operator 綁定的邊界**（✅ 人工路徑已用 `operator_ref`＋人工把關）🚩 設計決定
    `operator_ref` 取「行動方＋已登錄」，找不到 → None → curation。自動路徑要定調：多 actor / operator 不唯一時的策略

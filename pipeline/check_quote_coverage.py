@@ -3,7 +3,7 @@
 
   1. 逐字完整性：已發布的每則 claim.text 是否仍是其來源原文的「逐字子字串」
      （比照 extract.py:span_check 的精確比對；fail-closed 的事後複查）。
-     抓得到「繞過 span_check 混進 db.js 的改寫」（例如手寫樣本經 compile_to_db.py 併入）。
+     抓得到「繞過 span_check 混進 db.js 的改寫」（例如手寫樣本經已退役的 compile_to_db.py 併入）。
 
   2. 單篇覆蓋率：同一份原文，被我們發布成 claim 的「唯一逐字」聯集佔原文多少比例。
      著作權法 §52（合理引用須在必要範圍）／§65 合理使用四因素裡的「質與量」，看的是占原作多少；

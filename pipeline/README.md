@@ -21,8 +21,8 @@
 - **extract**（`extract.py`）：landed 報告文字 → LLM（JSON schema；可切 JSON fallback）→ `mentions＋逐字 predicate＋引文`。**碼端 schema validation＋span-check**：外層／JSON 錯誤仍整份 fail-closed；mention array 逐 item 驗證，非法 item 精確記錄／丟棄而保留合法 items；引文不合約同樣丟棄（擋格式漂移／幻覺）。**provider-agnostic**（見下）。
 - **derive**（`derive.py`）：碼的判斷層——`coarse_type→kind`（詞庫＋registry 查表）、`predicate→relation`（反升級 ladder）、`confidence`（rubric）、`歸因`（控制述詞＋信心→attributed-to，人工閘）、`role`。
 - **serialize / validate / project**（`pipeline.py`）：STIX-lite → 合法 STIX 2.1（UUIDv5、`x-dad-*` 擴充、marking）→ 驗證 profile 不變量 → 投影成 operator 三層。
-- **compile**（`compile_to_db.py`）：把投影 claims 併入 `../data/db.js`（B-lite→真 B 逐筆升級）。**樣本用**；整包覆蓋。
-- **loop / curate**（`run_loop.py` / `curate.py`）：`run_loop.py` 冪等編排 ingest→…→project，產出待人工審的 curation queue（預設不自動 compile）；`curate.py`（list/show/approve/compile）是**安全 compile 路徑**——source-scoped upsert（不覆蓋他來源）、狀態機、歸因閘、歸屬（`operator_ref`）重算比對。走迴圈時用 `curate.py`，勿用 `compile_to_db.py`。curate `defer`（新來源/新 actor）→ `register.py`（add-source/add-actor；有 `suggest` 印預填指令）補進骨幹 → 回 `curate approve/compile` 閉環。細節見 `../docs/LOOP_BACKLOG.md`。
+- **compile**（`curate.py compile`）：把投影 claims 併入 `../data/db.js`（B-lite→真 B 逐筆升級）；見下一條。
+- **loop / curate**（`run_loop.py` / `curate.py`）：`run_loop.py` 冪等編排 ingest→…→project，產出待人工審的 curation queue（預設不自動 compile）；`curate.py`（list/show/approve/compile）是**安全 compile 路徑**——source-scoped upsert（不覆蓋他來源）、狀態機、歸因閘、歸屬（`operator_ref`）重算比對。寫入 `entity.claims` 的程式路徑只有它一條；發布後自動體檢逐字性／引用量（`check_quote_coverage.py`，只警告、不擋）。curate `defer`（新來源/新 actor）→ `register.py`（add-source/add-actor；有 `suggest` 印預填指令）補進骨幹 → 回 `curate approve/compile` 閉環。細節見 `../docs/LOOP_BACKLOG.md`。
 
 ## 跑
 
@@ -49,9 +49,6 @@ python3 pipeline/eval_extract.py
 
 # 單一 extraction 樣本 → STIX＋投影（看碼的決策記錄）
 python3 pipeline/pipeline.py pipeline/samples/spamouflage.extraction.json
-
-# 把樣本投影 claims 併入 db.js
-python3 pipeline/compile_to_db.py pipeline/samples/*.extraction.json
 
 # 整本記錄簿匯出成單一 STIX 2.1 bundle（行為者／事件／敘事／來源，非只有宣稱那一層）
 python3 pipeline/export_stix.py -o pipeline/out/netweaver-db.stix.json
@@ -118,7 +115,6 @@ pipeline/
 ├── derive.py                # 碼的判斷層（ladder/rubric/registry）
 ├── stixlite.schema.json     # derive 產出的中介 schema
 ├── pipeline.py              # serialize / validate / project（＋stix_from_extraction）
-├── compile_to_db.py         # 投影 claims → data/db.js（樣本用；整包覆蓋。迴圈請用 curate.py）
 ├── run_loop.py              # 冪等編排 ingest→…→project；產出待審 curation queue（預設不自動 compile）
 ├── urlnorm.py               # 來源 URL 比對鍵（追蹤參數／scheme／www 不算新來源；id 雜湊同源）
 ├── export_stix.py           # 整本記錄簿 → 單一 STIX 2.1 bundle（骨幹也可交換；id 與逐篇一致）

@@ -1,5 +1,5 @@
 {
-  "_note": "示範（逐字版；2026-10 改寫：原為手寫近似句，已換成原文逐字句）：供應商／公司 GoLaxy coarse=org→碼判 identity（不亂扣 threat-actor）；述詞『maintains』非控制述詞→停在 related-to，operator＝該 identity。quote 皆為原文精確子字串。",
+  "_note": "示範（逐字版；2026-10 改寫：原為手寫近似句，已換成原文逐字句）：供應商／公司 GoLaxy coarse=org→碼判 identity（不亂扣 threat-actor）；述詞『maintains』非控制述詞→停在 related-to；因關係目標是 tool（非已登錄 identity），project 投影不選 operator（未歸因），名冊歸屬（operator_ref）仍為 golaxy。quote 皆為原文精確子字串。",
   "report": {
     "name": "The Rise of AI in PRC Influence Operations: Nine Takeaways from the GoLaxy Documents",
     "org": "Doublethink Lab",

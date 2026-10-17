@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
-"""引用量體檢：逐字完整性（精確子字串）＋單篇逐字聯集覆蓋率；curate.compile 發布後的自動警告只警告、不擋。
+"""引用量體檢：逐字完整性（精確子字串）＋單篇逐字聯集覆蓋率＋「查不到要明講」；
+curate.compile 發布後的自動警告只警告、不擋，且整段（取結果／組訊息／印出）都在保護範圍內。
 純離線（原文以參數注入，不讀 pipeline/raw）。用法：python3 pipeline/test_check_quote_coverage.py"""
 import contextlib, importlib.util, io, pathlib
 import check_quote_coverage as Q
@@ -21,8 +22,8 @@ def mkdb(*claim_lists):
                          for i, cl in enumerate(claim_lists)]}
 
 
-def audit(db, cap=0.25, **kw):
-    return Q.audit(db, cap, url2raw={URL: RAW}, **kw)
+def audit(db, cap=0.25, raw=None, **kw):
+    return Q.audit(db, cap, url2raw={URL: RAW} if raw is None else raw, **kw)
 
 
 # ① 覆蓋率 = 引用字數 ÷ 原文字數
@@ -54,22 +55,69 @@ assert audit(mkdb([("s1", S[1])]))["nonverbatim"] == [], "逐字句不該被誤�
 db2 = mkdb([("s1", S[0]), ("s2", "whatever")])
 assert [x[1] for x in audit(db2, only_sids={"s1"})["rows"]] == ["s1"]
 
-# ⑦ 沒有本機原文的來源：列入 no_raw，不當作通過也不當作超標（誠實標「查不到」）
+# ⑦ 沒有本機原文的來源：列入 no_raw（連 claim 數），不當作通過也不當作超標（誠實標「查不到」）
 r = audit(db2)
 assert r["no_raw"] == ["s2"] and "s2" not in [x[1] for x in r["rows"]]
+assert r["no_raw_claims"] == {"s2": 1}, r["no_raw_claims"]
 
-# ⑧ curate 發布後警告：超標與非逐字都出聲；乾淨不出聲；體檢出狀況不得外洩例外（不影響 compile）
-def warn(db, sids, raw=None):
+# ⑧ claim 指向 db.sources 沒有的來源 → 單獨列為 unknown_source（資料不一致），不混進 no_raw
+r = audit(mkdb([("ghost", "anything"), ("s1", S[0])]))
+assert r["unknown_source"] == ["ghost"] and r["no_raw"] == [], r
+assert [x[1] for x in r["rows"]] == ["s1"]
+
+# ⑨ --check 判定 exit_code：乾淨→0；超標／非逐字／來源未登錄→1；未驗證預設不擋、--strict 才擋
+clean = audit(mkdb([("s1", S[0])]))
+assert Q.exit_code(clean) == (0, []) and Q.exit_code(clean, strict=True) == (0, [])
+code, why = Q.exit_code(audit(three, 0.5)); assert code == 1 and "超覆蓋率" in why[0], why
+code, why = Q.exit_code(audit(mkdb([("s1", "Alpha sentence one there.")]))); assert code == 1 and "非逐字" in why[0], why
+code, why = Q.exit_code(audit(mkdb([("ghost", "x")]))); assert code == 1 and "未登錄" in why[0], why
+unv = audit(db2)
+assert Q.exit_code(unv) == (0, []), "未驗證預設只明講、不擋"
+code, why = Q.exit_code(unv, strict=True); assert code == 1 and "無本機原文" in why[0], why
+
+# ⑩ 彎引號 vs 直引號：精確比對不容混淆（原文是 ’，claim 用 ' 就不是逐字）
+RAW_Q = "The state said China’s position is firm.\nSecond line here."
+r = audit(mkdb([("s1", "The state said China's position is firm.")]), raw={URL: RAW_Q})
+assert r["nonverbatim"], "直引號 ' 與原文的彎引號 ’ 不同，不得當成逐字"
+assert audit(mkdb([("s1", "The state said China’s position is firm.")]), raw={URL: RAW_Q})["nonverbatim"] == []
+
+# ⑪ 換行 vs 空白、全形 vs 半形：逐字檢查只認精確子字串；正規化「只」用在覆蓋率估算，不得放寬逐字關
+RAW_N = "line one\nline two ABC end"
+for variant in ("line one line two ABC end", "line one\nline two ＡＢＣ end"):
+    r = audit(mkdb([("s1", variant)]), raw={URL: RAW_N})
+    assert r["nonverbatim"], f"正規化後相同也不是逐字：{variant!r}"
+    assert Q.union_coverage([variant], RAW_N)[1] == 1, "覆蓋率估算則吸收空白／全半形差異（僅供估算）"
+assert audit(mkdb([("s1", "line one\nline two")]), raw={URL: RAW_N})["nonverbatim"] == [], "含換行的逐字子字串合法"
+
+# ⑫ 原文對應用正規化網址：尾斜線／www／追蹤參數不得讓原文「找不到」而變成未驗證
+db_u = {"sources": [{"id": "s1", "url": "https://www.example.org/r/?utm_source=x"}],
+        "entities": [{"id": "e0", "claims": [{"text": S[0], "source_id": "s1", "about": "x"}]}]}
+r = Q.audit(db_u, 0.25, url2raw={"http://example.org/r": RAW})
+assert [x[1] for x in r["rows"]] == ["s1"] and r["no_raw"] == [], r
+
+
+# ⑬ curate 發布後警告：超標／非逐字／未驗證／來源未登錄都出聲；乾淨不出聲；任何環節出狀況都不得外洩例外
+def warn(db, sids, raw=None, audit_fn=None):
     buf = io.StringIO()
     with contextlib.redirect_stdout(buf):
-        cur._quote_gate_warn(db, sids, url2raw={URL: RAW} if raw is None else raw)
+        cur._quote_gate_warn(db, sids, url2raw={URL: RAW} if raw is None else raw, _audit=audit_fn)
     return buf.getvalue()
 
-out = warn(mkdb([("s1", S[0])], [("s1", S[1])]), {"s1"})              # 2 句 ≈ 49% > 25%
-assert "⚠ 引用量" in out and "s1" in out, out
+out = warn(mkdb([("s1", S[0])], [("s1", S[1])]), {"s1"})                 # 2 句 ≈ 49% > 25%
+assert "⚠ 引用量" in out and "s1" in out and "內部門檻" in out, out
 out = warn(mkdb([("s1", "Alpha sentence one there.")]), {"s1"})
 assert "⚠ 逐字" in out, out
+out = warn(mkdb([("s2", "whatever")]), {"s2"})                           # s2 沒有本機原文
+assert "⚠ 未驗證" in out and "s2" in out and "不等於通過" in out, out
+out = warn(mkdb([("ghost", "x")]), {"ghost"})
+assert "⚠ 來源未登錄" in out and "ghost" in out, out
 assert warn(mkdb([("s1", S[0])]), {"s1"}) == "", "乾淨且未超標不該有輸出"   # 1 句 ≈ 22%
 warn(None, {"s1"})                                                       # 壞輸入：吞掉，不 raise
 
-print("引用量體檢：通過（覆蓋率／重複不灌水／重疊聯集／超標／逐字精確／only_sids／無原文／curate 警告）")
+def boom(*a, **k): raise RuntimeError("audit 本身壞了")
+assert warn(mkdb([("s1", S[0])]), {"s1"}, audit_fn=boom) == ""           # 取結果階段出狀況
+bad_shape = lambda *a, **k: {"over": [(1,)], "nonverbatim": [], "no_raw": [], "unknown_source": []}
+assert warn(mkdb([("s1", S[0])]), {"s1"}, audit_fn=bad_shape) == "", "組訊息階段出狀況：吞掉，且不留半截輸出"
+
+print("引用量體檢：通過（覆蓋率／重複不灌水／重疊聯集／超標／逐字精確／only_sids／未驗證／來源未登錄／"
+      "exit_code＋--strict／引號與空白不放寬／網址正規化／curate 警告與整段保護）")

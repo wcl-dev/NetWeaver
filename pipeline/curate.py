@@ -70,20 +70,31 @@ def _upsert(ent, new_claims, source_ids):
     ent["claims"] = kept + fresh
     return len(ent["claims"])
 
-def _quote_gate_warn(db, sids, url2raw=None):
+def _quote_gate_warn(db, sids, url2raw=None, _audit=None):
     """發布後自動體檢（只警告、不擋；人決定）：本次寫入的來源，claim 是否仍為原文逐字、
-    單篇逐字覆蓋是否超過自律線（著作權法 §52「必要範圍」）。發布的是 project() 擴張後的整句，量體以此為準。
-    體檢本身出任何狀況都不得影響 compile 結果。"""
+    單篇逐字覆蓋是否超過內部風險門檻（非法律安全線；著作權法 §52 須在合理範圍內、§65 逐案審酌）。
+    發布的是 project() 擴張後的整句，量體以此為準。查不到原文（無法驗證）與來源未登錄也要明講，
+    不能讓「沒檢查」看起來像「沒問題」。
+    **整段（取得結果、組訊息、印出）都在保護範圍內**——體檢本身出任何狀況都不得影響 compile 結果。
+    `_audit` 僅供測試注入。"""
     try:
         cq = _load("check_quote_coverage")
-        r = cq.audit(db, cq.DEFAULT_CAP, only_sids=sids, url2raw=url2raw)
+        r = (_audit or cq.audit)(db, cq.DEFAULT_CAP, only_sids=sids, url2raw=url2raw)
+        lines = []
+        for cov, sid, hit, tot, n in r["over"]:
+            lines.append(f"  ⚠ 引用量：{sid} 單篇逐字覆蓋 {cov:.0%}（內部門檻 {cq.DEFAULT_CAP:.0%}；{hit}/{tot} 句 / 原文 {n} 字）"
+                         f"——請人決定精簡，保留每個實體至少一則證據即可（檢視：python3 pipeline/check_quote_coverage.py）")
+        for sid, bad, tot, ex in r["nonverbatim"]:
+            lines.append(f"  ⚠ 逐字：{sid} 有 {bad}/{tot} 則 claim 不是原文的精確子字串（span_check 紅線），請查明")
+        for sid in r.get("no_raw", []):
+            lines.append(f"  ⚠ 未驗證：{sid} 沒有本機原文（{r.get('no_raw_claims', {}).get(sid, '?')} 則 claim）"
+                         f"——逐字性與引用量都無從檢查，不等於通過；請先 ingest 該篇原文再跑 check_quote_coverage.py")
+        for sid in r.get("unknown_source", []):
+            lines.append(f"  ⚠ 來源未登錄：有 claim 指向 {sid}，但 db.sources 沒有這個來源")
+        for line in lines:
+            print(line)
     except Exception:
         return
-    for cov, sid, hit, tot, n in r["over"]:
-        print(f"  ⚠ 引用量：{sid} 單篇逐字覆蓋 {cov:.0%}（上限 {cq.DEFAULT_CAP:.0%}；{hit}/{tot} 句 / 原文 {n} 字）"
-              f"——請人決定精簡，保留每個實體至少一則證據即可（檢視：python3 pipeline/check_quote_coverage.py）")
-    for sid, bad, tot, ex in r["nonverbatim"]:
-        print(f"  ⚠ 逐字：{sid} 有 {bad}/{tot} 則 claim 不是原文的精確子字串（span_check 紅線），請查明")
 
 def _flags(e):
     return ((" src✓" if e.get("source_curated") else " src✗")

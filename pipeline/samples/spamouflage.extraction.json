@@ -1,5 +1,5 @@
 {
-  "_note": "示範明確歸因（逐字版；2026-10 改寫：原為手寫近似句，已換成國安局原文逐字句，含 PDF 換行的 \\n）：控制述詞『運用』（主動語態）→碼判 runs＋信心 high→建 attributed-to（龍橋→公安部，需人工閘），公安部升 threat-actor。與 anti-dpp 對照。",
+  "_note": "示範明確歸因（逐字版；2026-10 改寫：原為手寫近似句，已換成國安局原文逐字句，含 PDF 換行的 \\n）：控制述詞『運用』（主動語態）→碼判 runs＋信心 high→建 attributed-to（龍橋→公安部，需人工閘），公安部升 threat-actor。與 anti-dpp 對照。內容對應國安局該文件中已核可的歸因（龍橋→公安部），但這只是 per-doc 示範產物：surface 用原文用字「龍橋」（derive 以 surface 命名，故 intrusion-set id 與整本 bundle 的 Spamouflage 不同）、report.type 為 gov-report（信心 high，實際入庫 extraction 為 ngo-report）——**勿與整本 bundle 合併**。",
   "report": {
     "name": "2025 年中共對臺認知作戰操作手法分析",
     "org": "國家安全局 National Security Bureau (NSB), Taiwan",

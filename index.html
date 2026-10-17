@@ -396,6 +396,10 @@ function bootNetWeaver() {
     desc:   { label: "描述其行為",   hint: "報告直接描述此行為者的作為" },
   };
   const KIND_ORDER = ["desc", "member", "cite", "method"];
+  // 顯示層：PDF 原文的換行會被瀏覽器折成一個空格，把中文字拆開（「協作關 係」「混淆 視聽」）。
+  // 只移除「兩個中日韓字元（含全形標點）之間」的換行；拉丁字之間的換行仍折成空格。資料本身維持逐字，這裡只改呈現。
+  const _CJK_NL = /([　-〿㐀-䶿一-鿿豈-﫿＀-￯])\s*\n\s*(?=[　-〿㐀-䶿一-鿿豈-﫿＀-￯])/g;
+  function cjkJoin(s) { return String(s == null ? "" : s).replace(_CJK_NL, "$1"); }
   function reEsc(s) { return (s || "").replace(/[.*+?^${}()|[\]\\]/g, "\\$&"); }
   function claimKind(text, about) {
     const n = reEsc(about || ""); if (!n) return "desc";
@@ -446,7 +450,7 @@ function bootNetWeaver() {
     const s = b.s, n = b.cs.length;
     const rows = b.cs.map(c => ({ c, k: claimKind(c.text, c.about) }))
                      .sort((x, y) => KIND_ORDER.indexOf(x.k) - KIND_ORDER.indexOf(y.k));
-    const card = r => `<div class="claim k-${r.k}"><span class="claim-kind" title="${esc(CLAIM_KIND[r.k].hint)}">${esc(CLAIM_KIND[r.k].label)}</span>${esc(r.c.text)}</div>`;
+    const card = r => `<div class="claim k-${r.k}"><span class="claim-kind" title="${esc(CLAIM_KIND[r.k].hint)}">${esc(CLAIM_KIND[r.k].label)}</span>${esc(cjkJoin(r.c.text))}</div>`;
     const u = safeUrl(s.url);
     const link = u ? `<div class="src-link"><a href="${esc(u)}" target="_blank" rel="noopener">看原始報告 \u2197</a></div>` : "";
     return `<details class="src-block"${n?" open":""}>
@@ -661,7 +665,7 @@ function bootNetWeaver() {
           <summary><span class="qco-name">${esc(E[oid].name_zh)}</span>
             <span class="qco-n">${hits.length} 段原文</span></summary>
           <div class="qco-body">
-            ${hits.map(h=>`<div class="qco-quote">\u300c${esc(h.q)}\u300d<div class="qco-src">${SRC[h.s]?esc(shortOrg(SRC[h.s].org))+" \u00b7 "+esc(String(SRC[h.s].title).slice(0,40)):esc(h.s)}</div></div>`).join("")}
+            ${hits.map(h=>`<div class="qco-quote">\u300c${esc(cjkJoin(h.q))}\u300d<div class="qco-src">${SRC[h.s]?esc(shortOrg(SRC[h.s].org))+" \u00b7 "+esc(String(SRC[h.s].title).slice(0,40)):esc(h.s)}</div></div>`).join("")}
             <div class="src-link"><a href="#/entity/${esc(oid)}">前往 ${esc(E[oid].name_zh)} 的檔案 \u2192</a></div>
           </div></details>`).join("")}
       </div>`:""}
@@ -838,7 +842,7 @@ function bootNetWeaver() {
       const l = mk("line", { class: "net-edge" + (e.quote ? " q" : e.co ? " co" : "") });
       if (e.quote && CO_EV[e.pair]) {
         const t = mk("title", {});
-        t.textContent = "引文共現（" + CO_EV[e.pair].length + " 句）：\u300c" + CO_EV[e.pair][0].q.slice(0, 70) + "\u300d";
+        t.textContent = "引文共現（" + CO_EV[e.pair].length + " 句）：\u300c" + cjkJoin(CO_EV[e.pair][0].q).slice(0, 70) + "\u300d";
         l.appendChild(t);
       }
       gEdges.appendChild(l); return l;

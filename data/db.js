@@ -360,11 +360,6 @@ window.NETWEAVER_DB = {
           "text": "中共公安部運用「龍橋」網路水軍集團，透過逾 20 種\n語言，在全球超過 180 種網路社群平臺（ 如：Reddit、\nBlogSpot）進行影響力活動，並與其他公關公司建立協作關\n\n係。",
           "source_id": "src-nsb-2026",
           "about": "公安部"
-        },
-        {
-          "text": "中共公安部運用「龍橋」網路水軍集團，透過逾 20 種",
-          "source_id": "src-nsb-2026",
-          "about": "中共公安部"
         }
       ]
     },
@@ -2021,11 +2016,6 @@ window.NETWEAVER_DB = {
           "text": "中共公安部運用「龍橋」網路水軍集團，透過逾 20 種\n語言，在全球超過 180 種網路社群平臺（ 如：Reddit、\nBlogSpot）進行影響力活動，並與其他公關公司建立協作關\n\n係。",
           "source_id": "src-nsb-2026",
           "about": "龍橋"
-        },
-        {
-          "text": "中共公安部運用「龍橋」網路水軍集團，透過逾 20 種",
-          "source_id": "src-nsb-2026",
-          "about": "龍橋"
         }
       ]
     },
@@ -3077,11 +3067,6 @@ window.NETWEAVER_DB = {
       "claims": [
         {
           "text": "（一）虛假網站：中宣部、公安部透由「海訊社」、「海賣」\n及「虎牙」等公關公司，創建虛假網站，並以中立性\n新聞網站名稱，偽冒國際媒體例如：Aisa Korea、\nAustria Weekly，協力傳散中共官方論述，意圖混淆\n視聽。",
-          "source_id": "src-nsb-2026",
-          "about": "虎牙"
-        },
-        {
-          "text": "及「虎牙」等公關公司，創建虛假網站，並以中立性",
           "source_id": "src-nsb-2026",
           "about": "虎牙"
         }

@@ -79,6 +79,14 @@
     "reason": "條列式陳述清楚說明貼文推廣特定論述",
     "text": "posts pushed the 我是台灣人我反綠 narrative"
   },
+  "4f6a27ea96986305": {
+    "about": "中共公安部",
+    "judged": "2026-10-17",
+    "model": "claude-sonnet-5-5",
+    "readable": false,
+    "reason": "同實體已有完整句，此為冗餘斷片",
+    "text": "中共公安部運用「龍橋」網路水軍集團，透過逾 20 種"
+  },
   "4f887c27e041635e": {
     "about": "中科天璣",
     "judged": "2026-08-30",
@@ -95,6 +103,14 @@
     "reason": "清楚說明51個假冒帳號攻擊民進黨",
     "text": "51 inauthentic accounts impersonating Taiwanese posted content attacking the DPP"
   },
+  "5568c96a3605073c": {
+    "about": "中科天璣",
+    "judged": "2026-10-17",
+    "model": "claude-sonnet-5-5",
+    "readable": false,
+    "reason": "表格版面殘片，語意不完整",
+    "text": "「中科天璣」利用 AI"
+  },
   "58ad55a666b13234": {
     "about": "Spamouflage",
     "judged": "2026-08-30",
@@ -110,6 +126,22 @@
     "readable": true,
     "reason": "清楚描述DRAGONBRIDGE常使用的內容形式",
     "text": "the content consisted of DRAGONBRIDGE’s usual compilation of stock images and news footage from online sources accompanied by robotic English-language voiceovers."
+  },
+  "6d1f5b9f8ebe458d": {
+    "about": "中科天璣",
+    "judged": "2026-10-17",
+    "model": "claude-sonnet-5-5",
+    "readable": false,
+    "reason": "表格版面殘片，語意不完整",
+    "text": "《中科天璣內部文件研究》"
+  },
+  "85d73446f647b0da": {
+    "about": "龍橋",
+    "judged": "2026-10-17",
+    "model": "claude-sonnet-5-5",
+    "readable": false,
+    "reason": "同實體已有完整句，此為冗餘斷片",
+    "text": "中共公安部運用「龍橋」網路水軍集團，透過逾 20 種"
   },
   "8b804a71189c8c3b": {
     "about": "Spamouflage",
@@ -150,6 +182,14 @@
     "readable": true,
     "reason": "語意清楚，說明研究機構評估網絡關聯中國",
     "text": "DTL assesses the network can likely be linked to the PRC"
+  },
+  "aa86f803ddd318f0": {
+    "about": "龍橋",
+    "judged": "2026-10-17",
+    "model": "claude-sonnet-5-5",
+    "readable": false,
+    "reason": "表格版面殘片，語意不完整",
+    "text": "《第三次外國資訊操弄與干 中共利用「龍橋」水軍及"
   },
   "ad31a9d09c636201": {
     "about": "假冒台灣人反民進黨帳號網絡",
@@ -206,5 +246,13 @@
     "readable": true,
     "reason": "條列陳述清楚，說明具備之虛擬身分規模與跨平台能力",
     "text": "3,692 virtual personas operable across 12 platforms"
+  },
+  "f9a3b16955d81971": {
+    "about": "虎牙",
+    "judged": "2026-10-17",
+    "model": "claude-sonnet-5-5",
+    "readable": false,
+    "reason": "同實體已有完整句，此為冗餘斷片",
+    "text": "及「虎牙」等公關公司，創建虛假網站，並以中立性"
   }
 }

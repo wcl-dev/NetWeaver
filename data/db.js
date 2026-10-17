@@ -2754,7 +2754,7 @@ window.NETWEAVER_DB = {
           "about": "Global Times"
         },
         {
-          "text": "PRC media responded indignantly. The People’s Daily-owned tabloid Global Times accused Takaichi of putting on a “diplomatic performance” (外交表演) and “openly challenging the post-war international order” (公然挑战了战后国际秩序)",
+          "text": "The People’s Daily-owned tabloid Global Times accused Takaichi of putting on a “diplomatic performance” (外交表演) and “openly challenging the post-war international order” (公然挑战了战后国际秩序) (Global Times, September 23)",
           "source_id": "src-jamestown-isolate-japan",
           "about": "Global Times"
         }
@@ -5607,7 +5607,7 @@ window.NETWEAVER_DB = {
           "about": "Xinhua"
         },
         {
-          "text": "Though the readout did not name Japan, the PRC still seized the propaganda opportunity, including for international audiences. In an English translation of the readout, state run-Xinhua News Agency said that the two leaders honored the history of a “China-U.S. joint fight against Japanese aggression in WWII”",
+          "text": "In an English translation of the readout, state run-Xinhua News Agency said that the two leaders honored the history of a “China-U.S. joint fight against Japanese aggression in WWII” (Xinhua, September 25)",
           "source_id": "src-jamestown-isolate-japan",
           "about": "Xinhua News Agency"
         }
@@ -9548,7 +9548,7 @@ window.NETWEAVER_DB = {
       "title": "PRC Launches Campaign to Isolate Japan",
       "org": "Jamestown Foundation",
       "url": "https://jamestown.org/prc-launches-campaign-to-isolate-japan/",
-      "date": "2026-10",
+      "date": "2026-10-14",
       "type": "ngo-report",
       "license": "cite-with-attribution"
     }

@@ -25,11 +25,11 @@
       "identity_class": "organization",
       "x_netweaver_evidence": [
         {
-          "quote": "中共網信辦、國安部及解放軍政治工作部等單位，指導",
+          "quote": "中共網信辦、國安部及解放軍政治工作部等單位，指導\n「中科天璣」\n、\n「美亞柏科」等科技公司，利用「爬蟲技術」\n（web crawler）及自動化擷取程式，大量蒐集網路資料，針\n\n對我國政治人物、民意代表與意見領袖，建立基本個資、人\n際網絡，以及對中共立場等資料庫，以利「精準」對臺宣傳\n及攻擊特定人士。",
           "source_url": "https://www.nsb.gov.tw/zh/assets/documents/%E6%96%B0%E8%81%9E%E7%A8%BF/023b202c-8bc9-4b19-a8eb-c0d0b5809f99.pdf"
         },
         {
-          "quote": "此外，中共網信辦、統戰部及解放軍網路空間部隊等單",
+          "quote": "此外，中共網信辦、統戰部及解放軍網路空間部隊等單\n位，指導「中科點擊」\n、\n「北京星光」及「一網互通」等科技\n公司，建立網民資料庫，並運用生成式 AI 技術，以自動化\n程式群控逾萬組假帳號，協同性投放爭訊，並針對目標受眾\n塑造輿論。",
           "source_url": "https://www.nsb.gov.tw/zh/assets/documents/%E6%96%B0%E8%81%9E%E7%A8%BF/023b202c-8bc9-4b19-a8eb-c0d0b5809f99.pdf"
         }
       ]
@@ -56,7 +56,7 @@
       "identity_class": "organization",
       "x_netweaver_evidence": [
         {
-          "quote": "中共網信辦、國安部及解放軍政治工作部等單位，指導",
+          "quote": "中共網信辦、國安部及解放軍政治工作部等單位，指導\n「中科天璣」\n、\n「美亞柏科」等科技公司，利用「爬蟲技術」\n（web crawler）及自動化擷取程式，大量蒐集網路資料，針\n\n對我國政治人物、民意代表與意見領袖，建立基本個資、人\n際網絡，以及對中共立場等資料庫，以利「精準」對臺宣傳\n及攻擊特定人士。",
           "source_url": "https://www.nsb.gov.tw/zh/assets/documents/%E6%96%B0%E8%81%9E%E7%A8%BF/023b202c-8bc9-4b19-a8eb-c0d0b5809f99.pdf"
         }
       ]
@@ -92,7 +92,7 @@
           "source_url": "https://www.factlink.tw/p/pla-weibo-analysis"
         },
         {
-          "quote": "中共網信辦、國安部及解放軍政治工作部等單位，指導",
+          "quote": "中共網信辦、國安部及解放軍政治工作部等單位，指導\n「中科天璣」\n、\n「美亞柏科」等科技公司，利用「爬蟲技術」\n（web crawler）及自動化擷取程式，大量蒐集網路資料，針\n\n對我國政治人物、民意代表與意見領袖，建立基本個資、人\n際網絡，以及對中共立場等資料庫，以利「精準」對臺宣傳\n及攻擊特定人士。",
           "source_url": "https://www.nsb.gov.tw/zh/assets/documents/%E6%96%B0%E8%81%9E%E7%A8%BF/023b202c-8bc9-4b19-a8eb-c0d0b5809f99.pdf"
         }
       ]
@@ -127,12 +127,12 @@
           "source_url": "https://medium.com/doublethinklab/prc-influence-in-south-asia-a-case-study-of-india-nepal-sri-lanka-and-pakistan-a405059731be?source=rss----9106617863e3---4"
         },
         {
-          "quote": "此外，中共網信辦、統戰部及解放軍網路空間部隊等單",
-          "source_url": "https://www.nsb.gov.tw/zh/assets/documents/%E6%96%B0%E8%81%9E%E7%A8%BF/023b202c-8bc9-4b19-a8eb-c0d0b5809f99.pdf"
-        },
-        {
           "quote": "國安局提到，在「利用異常帳號滲透輿論」方面，中共公安部運用「龍橋」網路水軍集團，透過逾20種語言，在全球超過180種網路社群平台進行影響力活動；另中共網信辦、統戰部、解放軍網路空間部隊指導「中科點擊」、「北京星光」及「一網互通」等科技公司，建立網民資料庫，並開發帳號自動化群控程式，控制逾萬組假帳號，協同性投放爭訊，並針對目標受眾塑造輿論。",
           "source_url": "https://www.storm.mg/article/11094106"
+        },
+        {
+          "quote": "此外，中共網信辦、統戰部及解放軍網路空間部隊等單\n位，指導「中科點擊」\n、\n「北京星光」及「一網互通」等科技\n公司，建立網民資料庫，並運用生成式 AI 技術，以自動化\n程式群控逾萬組假帳號，協同性投放爭訊，並針對目標受眾\n塑造輿論。",
+          "source_url": "https://www.nsb.gov.tw/zh/assets/documents/%E6%96%B0%E8%81%9E%E7%A8%BF/023b202c-8bc9-4b19-a8eb-c0d0b5809f99.pdf"
         }
       ]
     },
@@ -159,6 +159,10 @@
       "x_netweaver_evidence": [
         {
           "quote": "（一）虛假網站：中宣部、公安部透由「海訊社」、「海賣」\n及「虎牙」等公關公司，創建虛假網站，並以中立性\n新聞網站名稱，偽冒國際媒體例如：Aisa Korea、\nAustria Weekly，協力傳散中共官方論述，意圖混淆\n視聽。",
+          "source_url": "https://www.nsb.gov.tw/zh/assets/documents/%E6%96%B0%E8%81%9E%E7%A8%BF/023b202c-8bc9-4b19-a8eb-c0d0b5809f99.pdf"
+        },
+        {
+          "quote": "中共公安部運用「龍橋」網路水軍集團，透過逾 20 種\n語言，在全球超過 180 種網路社群平臺（ 如：Reddit、\nBlogSpot）進行影響力活動，並與其他公關公司建立協作關\n\n係。",
           "source_url": "https://www.nsb.gov.tw/zh/assets/documents/%E6%96%B0%E8%81%9E%E7%A8%BF/023b202c-8bc9-4b19-a8eb-c0d0b5809f99.pdf"
         },
         {
@@ -339,14 +343,6 @@
           "source_url": "https://www.factlink.tw/p/factnoteai"
         },
         {
-          "quote": "「中科天璣」利用 AI",
-          "source_url": "https://www.nsb.gov.tw/zh/assets/documents/%E6%96%B0%E8%81%9E%E7%A8%BF/023b202c-8bc9-4b19-a8eb-c0d0b5809f99.pdf"
-        },
-        {
-          "quote": "《中科天璣內部文件研究》",
-          "source_url": "https://www.nsb.gov.tw/zh/assets/documents/%E6%96%B0%E8%81%9E%E7%A8%BF/023b202c-8bc9-4b19-a8eb-c0d0b5809f99.pdf"
-        },
-        {
           "quote": "Benson）在「紐約時報」客座評論共同撰文指出，根據范德比大學國家安全研究所（Institute of National Security）最新發現的大量文件，一家名為中科天璣（GoLaxy）的中國公司在2024年台灣選舉前夕出手，當時親中團體散布不實的貪腐指控，並在社群媒體發布深偽（deepfakes）影片。",
           "source_url": "https://www.cna.com.tw/news/aopl/202508060159.aspx"
         },
@@ -397,7 +393,7 @@
       "identity_class": "organization",
       "x_netweaver_evidence": [
         {
-          "quote": "「美亞柏科」等科技公司，利用「爬蟲技術」",
+          "quote": "中共網信辦、國安部及解放軍政治工作部等單位，指導\n「中科天璣」\n、\n「美亞柏科」等科技公司，利用「爬蟲技術」\n（web crawler）及自動化擷取程式，大量蒐集網路資料，針\n\n對我國政治人物、民意代表與意見領袖，建立基本個資、人\n際網絡，以及對中共立場等資料庫，以利「精準」對臺宣傳\n及攻擊特定人士。",
           "source_url": "https://www.nsb.gov.tw/zh/assets/documents/%E6%96%B0%E8%81%9E%E7%A8%BF/023b202c-8bc9-4b19-a8eb-c0d0b5809f99.pdf"
         }
       ]
@@ -426,12 +422,12 @@
       "identity_class": "organization",
       "x_netweaver_evidence": [
         {
-          "quote": "「科大訊飛」等科技公司，",
-          "source_url": "https://www.nsb.gov.tw/zh/assets/documents/%E6%96%B0%E8%81%9E%E7%A8%BF/023b202c-8bc9-4b19-a8eb-c0d0b5809f99.pdf"
-        },
-        {
           "quote": "中共委託「晴數智慧科技」、「科大訊飛」等公司，開發智能語音系統，於我國網站刊登廣告，誘吸不知情台灣民眾進行錄音",
           "source_url": "https://www.storm.mg/article/11094106"
+        },
+        {
+          "quote": "中共另委託「晴數智慧科技」\n、\n「科大訊飛」等科技公司，\n開發智能語音系統，並於我國徵才網站刊登廣告，誘吸不知\n情臺灣民眾，以國、臺、客語進行線上錄音，建立臺灣口音\n資料庫，不排除中共擬利用該系統，合成偽冒國人聲線語\n調，提升後續 AI 生成影音爭訊之真實度。",
+          "source_url": "https://www.nsb.gov.tw/zh/assets/documents/%E6%96%B0%E8%81%9E%E7%A8%BF/023b202c-8bc9-4b19-a8eb-c0d0b5809f99.pdf"
         }
       ]
     },
@@ -457,10 +453,6 @@
       "identity_class": "organization",
       "x_netweaver_evidence": [
         {
-          "quote": "「北京星光」及「一網互通」等科技",
-          "source_url": "https://www.nsb.gov.tw/zh/assets/documents/%E6%96%B0%E8%81%9E%E7%A8%BF/023b202c-8bc9-4b19-a8eb-c0d0b5809f99.pdf"
-        },
-        {
           "quote": "國安局提到，在「利用異常帳號滲透輿論」方面，中共公安部運用「龍橋」網路水軍集團，透過逾20種語言，在全球超過180種網路社群平台進行影響力活動；另中共網信辦、統戰部、解放軍網路空間部隊指導「中科點擊」、「北京星光」及「一網互通」等科技公司，建立網民資料庫，並開發帳號自動化群控程式，控制逾萬組假帳號，協同性投放爭訊，並針對目標受眾塑造輿論。",
           "source_url": "https://www.storm.mg/article/11094106"
         },
@@ -479,6 +471,10 @@
         {
           "quote": "OneSight bills itself as the top overseas social marketing company in China.",
           "source_url": "https://www.propublica.org/article/how-china-built-a-twitter-propaganda-machine-then-let-it-loose-on-coronavirus"
+        },
+        {
+          "quote": "此外，中共網信辦、統戰部及解放軍網路空間部隊等單\n位，指導「中科點擊」\n、\n「北京星光」及「一網互通」等科技\n公司，建立網民資料庫，並運用生成式 AI 技術，以自動化\n程式群控逾萬組假帳號，協同性投放爭訊，並針對目標受眾\n塑造輿論。",
+          "source_url": "https://www.nsb.gov.tw/zh/assets/documents/%E6%96%B0%E8%81%9E%E7%A8%BF/023b202c-8bc9-4b19-a8eb-c0d0b5809f99.pdf"
         }
       ]
     },
@@ -597,10 +593,6 @@
           "source_url": "https://cloud.google.com/blog/topics/threat-intelligence/pro-prc-haienergy-us-news/"
         },
         {
-          "quote": "（一）虛假網站：中宣部、公安部透由「海訊社」、「海賣」\n及「虎牙」等公關公司，創建虛假網站，並以中立性\n新聞網站名稱，偽冒國際媒體例如：Aisa Korea、\nAustria Weekly，協力傳散中共官方論述，意圖混淆\n視聽。",
-          "source_url": "https://www.nsb.gov.tw/zh/assets/documents/%E6%96%B0%E8%81%9E%E7%A8%BF/023b202c-8bc9-4b19-a8eb-c0d0b5809f99.pdf"
-        },
-        {
           "quote": "Seeing Through a GLASSBRIDGE: Understanding the Digital Marketing Ecosystem Spreading Pro-PRC Influence Operations",
           "source_url": "https://cloud.google.com/blog/topics/threat-intelligence/glassbridge-pro-prc-influence-operations"
         },
@@ -655,6 +647,10 @@
         {
           "quote": "Shanghai Haixun Technology",
           "source_url": "https://cloud.google.com/blog/topics/threat-intelligence/glassbridge-pro-prc-influence-operations"
+        },
+        {
+          "quote": "（一）虛假網站：中宣部、公安部透由「海訊社」、「海賣」\n及「虎牙」等公關公司，創建虛假網站，並以中立性\n新聞網站名稱，偽冒國際媒體例如：Aisa Korea、\nAustria Weekly，協力傳散中共官方論述，意圖混淆\n視聽。",
+          "source_url": "https://www.nsb.gov.tw/zh/assets/documents/%E6%96%B0%E8%81%9E%E7%A8%BF/023b202c-8bc9-4b19-a8eb-c0d0b5809f99.pdf"
         }
       ]
     },
@@ -799,7 +795,7 @@
           "source_url": "https://www.factlink.tw/p/are-they-one-of-us-butterfly-attacks"
         },
         {
-          "quote": "（二）內容農場及異常頻道：中共扶植中企「無邊界集團」",
+          "quote": "（二）內容農場及異常頻道：中共扶植中企「無邊界集團」\n公關公司，以「臉書」粉專創設內容農場，其管理者\n帳號多定位於香港，藉張貼煽動性文章吸引點閱及\n流量；另在 Threads 及 X 等平臺，設立軟性議題發\n文帳號，透由生活娛樂類型文章增加追蹤人數，並伺\n機傳散政治類貼文，試圖影響國人認知。",
           "source_url": "https://www.nsb.gov.tw/zh/assets/documents/%E6%96%B0%E8%81%9E%E7%A8%BF/023b202c-8bc9-4b19-a8eb-c0d0b5809f99.pdf"
         }
       ]
@@ -1237,14 +1233,6 @@
           "source_url": "https://about.fb.com/news/2023/08/raising-online-defenses/"
         },
         {
-          "quote": "中共公安部運用「龍橋」網路水軍集團，透過逾 20 種",
-          "source_url": "https://www.nsb.gov.tw/zh/assets/documents/%E6%96%B0%E8%81%9E%E7%A8%BF/023b202c-8bc9-4b19-a8eb-c0d0b5809f99.pdf"
-        },
-        {
-          "quote": "《第三次外國資訊操弄與干 中共利用「龍橋」水軍及",
-          "source_url": "https://www.nsb.gov.tw/zh/assets/documents/%E6%96%B0%E8%81%9E%E7%A8%BF/023b202c-8bc9-4b19-a8eb-c0d0b5809f99.pdf"
-        },
-        {
           "quote": "We have also observed content from DRAGONBRIDGE, the most prolific IO actor TAG tracks, disseminated in these campaigns.",
           "source_url": "https://cloud.google.com/blog/topics/threat-intelligence/glassbridge-pro-prc-influence-operations"
         },
@@ -1311,6 +1299,14 @@
         {
           "quote": "In another case of extremism, a Spamouflage profile posted content in September 2025 calling for more Molotov cocktails, apparently hoping to ignite political violence.",
           "source_url": "https://dfrlab.org/2026/06/30/two-coordinated-networks-one-domestic-one-foreign-target-the-same-philippine-facebook-pages/"
+        },
+        {
+          "quote": "中共公安部運用「龍橋」網路水軍集團，透過逾 20 種\n語言，在全球超過 180 種網路社群平臺（ 如：Reddit、\nBlogSpot）進行影響力活動，並與其他公關公司建立協作關\n\n係。",
+          "source_url": "https://www.nsb.gov.tw/zh/assets/documents/%E6%96%B0%E8%81%9E%E7%A8%BF/023b202c-8bc9-4b19-a8eb-c0d0b5809f99.pdf"
+        },
+        {
+          "quote": "中共公安部運用「龍橋」網路水軍集團，透過逾 20 種",
+          "source_url": "https://www.nsb.gov.tw/zh/assets/documents/%E6%96%B0%E8%81%9E%E7%A8%BF/023b202c-8bc9-4b19-a8eb-c0d0b5809f99.pdf"
         }
       ]
     },
@@ -1330,7 +1326,8 @@
         "Inauthentic Accounts Impersonating Taiwanese (DTL)",
         "我是台灣人我反綠",
         "Inauthentic Accounts Impersonating Taiwanese",
-        "Anti-DPP Taiwanese-Impersonation Network"
+        "Anti-DPP Taiwanese-Impersonation Network",
+        "我是台灣人，我反綠"
       ],
       "description": "Doublethink Lab記錄的Threads假冒台灣人、攻擊民進黨帳號網絡。",
       "confidence": 85,
@@ -1852,12 +1849,12 @@
       "identity_class": "organization",
       "x_netweaver_evidence": [
         {
-          "quote": "此外，中共網信辦、統戰部及解放軍網路空間部隊等單",
-          "source_url": "https://www.nsb.gov.tw/zh/assets/documents/%E6%96%B0%E8%81%9E%E7%A8%BF/023b202c-8bc9-4b19-a8eb-c0d0b5809f99.pdf"
-        },
-        {
           "quote": "國安局提到，在「利用異常帳號滲透輿論」方面，中共公安部運用「龍橋」網路水軍集團，透過逾20種語言，在全球超過180種網路社群平台進行影響力活動；另中共網信辦、統戰部、解放軍網路空間部隊指導「中科點擊」、「北京星光」及「一網互通」等科技公司，建立網民資料庫，並開發帳號自動化群控程式，控制逾萬組假帳號，協同性投放爭訊，並針對目標受眾塑造輿論。",
           "source_url": "https://www.storm.mg/article/11094106"
+        },
+        {
+          "quote": "此外，中共網信辦、統戰部及解放軍網路空間部隊等單\n位，指導「中科點擊」\n、\n「北京星光」及「一網互通」等科技\n公司，建立網民資料庫，並運用生成式 AI 技術，以自動化\n程式群控逾萬組假帳號，協同性投放爭訊，並針對目標受眾\n塑造輿論。",
+          "source_url": "https://www.nsb.gov.tw/zh/assets/documents/%E6%96%B0%E8%81%9E%E7%A8%BF/023b202c-8bc9-4b19-a8eb-c0d0b5809f99.pdf"
         }
       ]
     },
@@ -1909,6 +1906,10 @@
         {
           "quote": "國安局提到，在「利用異常帳號滲透輿論」方面，中共公安部運用「龍橋」網路水軍集團，透過逾20種語言，在全球超過180種網路社群平台進行影響力活動；另中共網信辦、統戰部、解放軍網路空間部隊指導「中科點擊」、「北京星光」及「一網互通」等科技公司，建立網民資料庫，並開發帳號自動化群控程式，控制逾萬組假帳號，協同性投放爭訊，並針對目標受眾塑造輿論。",
           "source_url": "https://www.storm.mg/article/11094106"
+        },
+        {
+          "quote": "此外，中共網信辦、統戰部及解放軍網路空間部隊等單\n位，指導「中科點擊」\n、\n「北京星光」及「一網互通」等科技\n公司，建立網民資料庫，並運用生成式 AI 技術，以自動化\n程式群控逾萬組假帳號，協同性投放爭訊，並針對目標受眾\n塑造輿論。",
+          "source_url": "https://www.nsb.gov.tw/zh/assets/documents/%E6%96%B0%E8%81%9E%E7%A8%BF/023b202c-8bc9-4b19-a8eb-c0d0b5809f99.pdf"
         }
       ]
     },
@@ -1931,12 +1932,12 @@
       "identity_class": "organization",
       "x_netweaver_evidence": [
         {
-          "quote": "「北京星光」及「一網互通」等科技",
-          "source_url": "https://www.nsb.gov.tw/zh/assets/documents/%E6%96%B0%E8%81%9E%E7%A8%BF/023b202c-8bc9-4b19-a8eb-c0d0b5809f99.pdf"
-        },
-        {
           "quote": "國安局提到，在「利用異常帳號滲透輿論」方面，中共公安部運用「龍橋」網路水軍集團，透過逾20種語言，在全球超過180種網路社群平台進行影響力活動；另中共網信辦、統戰部、解放軍網路空間部隊指導「中科點擊」、「北京星光」及「一網互通」等科技公司，建立網民資料庫，並開發帳號自動化群控程式，控制逾萬組假帳號，協同性投放爭訊，並針對目標受眾塑造輿論。",
           "source_url": "https://www.storm.mg/article/11094106"
+        },
+        {
+          "quote": "此外，中共網信辦、統戰部及解放軍網路空間部隊等單\n位，指導「中科點擊」\n、\n「北京星光」及「一網互通」等科技\n公司，建立網民資料庫，並運用生成式 AI 技術，以自動化\n程式群控逾萬組假帳號，協同性投放爭訊，並針對目標受眾\n塑造輿論。",
+          "source_url": "https://www.nsb.gov.tw/zh/assets/documents/%E6%96%B0%E8%81%9E%E7%A8%BF/023b202c-8bc9-4b19-a8eb-c0d0b5809f99.pdf"
         }
       ]
     },
@@ -1996,10 +1997,6 @@
           "source_url": "https://citizenlab.ca/2024/02/paperwall-chinese-websites-posing-as-local-news-outlets-with-pro-beijing-content/"
         },
         {
-          "quote": "（一）虛假網站：中宣部、公安部透由「海訊社」、「海賣」\n及「虎牙」等公關公司，創建虛假網站，並以中立性\n新聞網站名稱，偽冒國際媒體例如：Aisa Korea、\nAustria Weekly，協力傳散中共官方論述，意圖混淆\n視聽。",
-          "source_url": "https://www.nsb.gov.tw/zh/assets/documents/%E6%96%B0%E8%81%9E%E7%A8%BF/023b202c-8bc9-4b19-a8eb-c0d0b5809f99.pdf"
-        },
-        {
           "quote": "Times Newswire and Shenzhen Haimai Yunxiang Media",
           "source_url": "https://cloud.google.com/blog/topics/threat-intelligence/glassbridge-pro-prc-influence-operations"
         },
@@ -2018,6 +2015,10 @@
         {
           "quote": "Shenzhen Haimai Yunxiang Media",
           "source_url": "https://cloud.google.com/blog/topics/threat-intelligence/glassbridge-pro-prc-influence-operations"
+        },
+        {
+          "quote": "（一）虛假網站：中宣部、公安部透由「海訊社」、「海賣」\n及「虎牙」等公關公司，創建虛假網站，並以中立性\n新聞網站名稱，偽冒國際媒體例如：Aisa Korea、\nAustria Weekly，協力傳散中共官方論述，意圖混淆\n視聽。",
+          "source_url": "https://www.nsb.gov.tw/zh/assets/documents/%E6%96%B0%E8%81%9E%E7%A8%BF/023b202c-8bc9-4b19-a8eb-c0d0b5809f99.pdf"
         }
       ]
     },
@@ -2044,6 +2045,10 @@
         {
           "quote": "（一）虛假網站：中宣部、公安部透由「海訊社」、「海賣」\n及「虎牙」等公關公司，創建虛假網站，並以中立性\n新聞網站名稱，偽冒國際媒體例如：Aisa Korea、\nAustria Weekly，協力傳散中共官方論述，意圖混淆\n視聽。",
           "source_url": "https://www.nsb.gov.tw/zh/assets/documents/%E6%96%B0%E8%81%9E%E7%A8%BF/023b202c-8bc9-4b19-a8eb-c0d0b5809f99.pdf"
+        },
+        {
+          "quote": "及「虎牙」等公關公司，創建虛假網站，並以中立性",
+          "source_url": "https://www.nsb.gov.tw/zh/assets/documents/%E6%96%B0%E8%81%9E%E7%A8%BF/023b202c-8bc9-4b19-a8eb-c0d0b5809f99.pdf"
         }
       ]
     },
@@ -2067,12 +2072,12 @@
       "identity_class": "organization",
       "x_netweaver_evidence": [
         {
-          "quote": "中共另委託「晴數智慧科技」",
-          "source_url": "https://www.nsb.gov.tw/zh/assets/documents/%E6%96%B0%E8%81%9E%E7%A8%BF/023b202c-8bc9-4b19-a8eb-c0d0b5809f99.pdf"
-        },
-        {
           "quote": "中共委託「晴數智慧科技」、「科大訊飛」等公司，開發智能語音系統，於我國網站刊登廣告，誘吸不知情台灣民眾進行錄音",
           "source_url": "https://www.storm.mg/article/11094106"
+        },
+        {
+          "quote": "中共另委託「晴數智慧科技」\n、\n「科大訊飛」等科技公司，\n開發智能語音系統，並於我國徵才網站刊登廣告，誘吸不知\n情臺灣民眾，以國、臺、客語進行線上錄音，建立臺灣口音\n資料庫，不排除中共擬利用該系統，合成偽冒國人聲線語\n調，提升後續 AI 生成影音爭訊之真實度。",
+          "source_url": "https://www.nsb.gov.tw/zh/assets/documents/%E6%96%B0%E8%81%9E%E7%A8%BF/023b202c-8bc9-4b19-a8eb-c0d0b5809f99.pdf"
         }
       ]
     },
@@ -2099,12 +2104,12 @@
       "identity_class": "organization",
       "x_netweaver_evidence": [
         {
-          "quote": "「中國兵器工業集團」等企業積極開發 AI 模型及智能",
-          "source_url": "https://www.nsb.gov.tw/zh/assets/documents/%E6%96%B0%E8%81%9E%E7%A8%BF/023b202c-8bc9-4b19-a8eb-c0d0b5809f99.pdf"
-        },
-        {
           "quote": "國安局指出，在「運用AI生成擬真影音」方面，「中國兵器工業集團」等企業積極開發AI模型及智能引導系統，試圖同步執行輿情數據蒐集、影音自動生成、目標受眾精準投放等功能，以產製傳散各類型爭訊。",
           "source_url": "https://www.storm.mg/article/11094106"
+        },
+        {
+          "quote": "「中國兵器工業集團」等企業積極開發 AI 模型及智能\n引導系統，試圖同步執行輿情數據蒐集、影音自動生成、目\n標受眾精準投放等功能，期快速產製並傳散不同類型之文\n字及影音爭訊。",
+          "source_url": "https://www.nsb.gov.tw/zh/assets/documents/%E6%96%B0%E8%81%9E%E7%A8%BF/023b202c-8bc9-4b19-a8eb-c0d0b5809f99.pdf"
         }
       ]
     },
@@ -11177,7 +11182,7 @@
       "created": "2026-01-01T00:00:00.000Z",
       "modified": "2026-01-01T00:00:00.000Z",
       "name": "The Rise of AI in PRC Influence Operations: Nine Takeaways from the GoLaxy Documents",
-      "published": "2026-03-01T00:00:00.000Z",
+      "published": "2026-03-04T00:00:00.000Z",
       "object_refs": [
         "campaign--e577e0a3-2f26-5fce-aa1e-80a2c695ebd0",
         "identity--168f683e-9557-5435-bd6c-c1bb6cd1f009",

@@ -20,7 +20,7 @@ DB = {
     # dict 用的是 target_id——匯出曾讀錯成 r.get("id")，人工關係整批被靜默丟掉。
     "related": ["gt",
                 {"target_id": "cac", "relation": "runs", "note": "人工登錄"},
-                {"target_id": "cti", "relation": "attributed-to", "note": "報告記錄；人工核可"}]},
+                {"target_id": "cti", "relation": "attributed-to", "note": "報告記錄；2026-08-30 人工核可"}]},
    {"id": "orphan", "name_zh": "無來源實體", "category": "state-organ", "role": "attacker",
     "origin": "PRC", "source_ids": []},
  ],
@@ -65,6 +65,11 @@ runs = [r for r in rels if r["relationship_type"] == "runs"]
 assert len(runs) == 1 and byid[runs[0]["source_ref"]]["name"] == "某網絡"        and byid[runs[0]["target_ref"]]["name"] == "中央網信辦", "runs 應通透且方向正確"
 att = [r for r in rels if r["relationship_type"] == "attributed-to"]
 assert len(att) == 1 and byid[att[0]["source_ref"]]["name"] == "某網絡"        and byid[att[0]["target_ref"]]["name"] == "中天電視", "db 的 attributed-to 應忠實匯出"
+# 核可章的欄位名：整本與逐篇 bundle 必須同名（曾經一邊 x_netweaver_review_date、一邊 x_netweaver_reviewed，
+# 下游得兩個都認）。逐篇那邊由 test_attribution_publish 鎖住 x_netweaver_review_date，這裡鎖整本。
+assert att[0].get("x_netweaver_review") == "approved"
+assert att[0].get("x_netweaver_review_date") == "2026-08-30", "核可日期取自 db note，欄位名須與逐篇 bundle 一致"
+assert "x_netweaver_reviewed" not in att[0], "舊欄位名不得再出現"
 for v_ev in [r for r in rels if byid.get(r["source_ref"], {}).get("type") == "campaign"]:
     assert v_ev["relationship_type"] in ("related-to", "uses"), "事件邊不得自行升級為歸因"
 

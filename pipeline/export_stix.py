@@ -95,7 +95,7 @@ def build(db, ts="2026-01-01T00:00:00.000Z"):
             import re as _re
             obj["x_netweaver_review"] = "approved"
             m = _re.search(r"(\d{4}-\d{2}-\d{2})", note or "")   # note：「…；YYYY-MM-DD 人工核可」
-            if m: obj["x_netweaver_reviewed"] = m.group(1)
+            if m: obj["x_netweaver_review_date"] = m.group(1)   # 與逐篇 bundle（pipeline.serialize）同名；test_export_stix 鎖住
         rels.append(obj)
     for e in db.get("entities", []):                  # 實體↔實體：關係皆人工登錄（add-relation／歸因核可）
         for r in (e.get("related") or []):

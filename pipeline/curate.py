@@ -89,6 +89,9 @@ def _quote_gate_warn(db, sids, url2raw=None, _audit=None):
         for sid in r.get("no_raw", []):
             lines.append(f"  ⚠ 未驗證：{sid} 沒有本機原文（{r.get('no_raw_claims', {}).get(sid, '?')} 則 claim）"
                          f"——逐字性與引用量都無從檢查，不等於通過；請先 ingest 該篇原文再跑 check_quote_coverage.py")
+        for sid in r.get("ambiguous_raw", []):
+            lines.append(f"  ⚠ 原文不明確：{sid} 的來源網址對到多份不同原文，無法確定該驗證哪一份"
+                         f"——請查明 pipeline/raw 是否有重複落地的不同版本")
         for sid in r.get("unknown_source", []):
             lines.append(f"  ⚠ 來源未登錄：有 claim 指向 {sid}，但 db.sources 沒有這個來源")
         for line in lines:

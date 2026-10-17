@@ -14,17 +14,17 @@
         "fimi"
       ],
       "object_refs": [
-        "campaign--4736221c-85d2-593e-ae44-7f5c3b68c3dd",
+        "identity--1ffa143f-aaf8-5f6d-a6f8-1793a22a9a83",
         "intrusion-set--3fba1902-5126-5e2c-8ba7-2f3995d66c70",
         "location--bdbc105e-ba8c-5bf4-99cf-7d7edca00022",
-        "x-dad-narrative--c9be39bc-251b-592e-b684-51e25303f311",
+        "intrusion-set--f3d46339-3a7a-5fdb-a84f-cbf2658b5697",
         "x-dad-channel--69d4c18c-d7fe-526d-9de4-674116dd73af",
         "identity--ccfa3e8b-ba4d-59f8-b48b-20838b481362",
         "relationship--d658a570-c3a5-56a8-a957-f31c05f19795",
-        "relationship--94fa047d-fb09-5c22-989b-bf7e87d939f5",
-        "relationship--969a5997-49f5-5284-8139-a474d1e06b2f",
-        "relationship--dfcb55e8-d9d2-57fd-bf61-7dfc3ba0d789",
-        "relationship--4b230b01-c4e8-5bbc-aaba-c567b71d7d68"
+        "relationship--02d1d7d5-62dc-555d-9977-575e4ff05c12",
+        "relationship--b2f53bed-d874-5664-9e54-1b5b3b96ac78",
+        "relationship--33f295a6-d319-5cad-b4da-1067f7425d3d",
+        "relationship--d8d0ef9e-0868-54a2-8ada-8521975b1b04"
       ],
       "external_references": [
         {
@@ -34,19 +34,20 @@
       ]
     },
     {
-      "type": "campaign",
+      "type": "identity",
       "spec_version": "2.1",
-      "id": "campaign--4736221c-85d2-593e-ae44-7f5c3b68c3dd",
+      "id": "identity--1ffa143f-aaf8-5f6d-a6f8-1793a22a9a83",
       "created": "2025-07-01T00:00:00.000Z",
       "modified": "2025-07-01T00:00:00.000Z",
       "name": "假冒台灣人反民進黨 Threads 行動",
+      "identity_class": "organization",
       "confidence": 60,
       "object_marking_refs": [
         "marking-definition--30837352-4bcb-536d-ab32-86f489a09985"
       ],
       "x_netweaver_evidence": [
         {
-          "quote": "51 inauthentic accounts impersonating Taiwanese posted content attacking the DPP",
+          "quote": "51 inauthentic accounts that pretended to be Taiwanese citizens and participated in political narratives that mainly criticized Taiwan’s Democratic Progressive Party (DPP) on Threads",
           "source_url": "https://medium.com/doublethinklab/inauthentic-accounts-impersonate-taiwanese-to-attack-political-party-c7d04d5e1e13"
         }
       ]
@@ -64,7 +65,7 @@
       ],
       "x_netweaver_evidence": [
         {
-          "quote": "DTL assesses the network can likely be linked to the PRC",
+          "quote": "Based on these accounts’ forensic indicators, we believe it is likely that they can be linked to the PRC",
           "source_url": "https://medium.com/doublethinklab/inauthentic-accounts-impersonate-taiwanese-to-attack-political-party-c7d04d5e1e13"
         }
       ]
@@ -81,9 +82,9 @@
       ]
     },
     {
-      "type": "x-dad-narrative",
+      "type": "intrusion-set",
       "spec_version": "2.1",
-      "id": "x-dad-narrative--c9be39bc-251b-592e-b684-51e25303f311",
+      "id": "intrusion-set--f3d46339-3a7a-5fdb-a84f-cbf2658b5697",
       "created": "2025-07-01T00:00:00.000Z",
       "modified": "2025-07-01T00:00:00.000Z",
       "name": "我是台灣人我反綠",
@@ -91,14 +92,9 @@
       "object_marking_refs": [
         "marking-definition--30837352-4bcb-536d-ab32-86f489a09985"
       ],
-      "extensions": {
-        "extension-definition--dbc0ff8b-b13f-5750-bd5c-2e4aaa1c43a0": {
-          "extension_type": "new-sdo"
-        }
-      },
       "x_netweaver_evidence": [
         {
-          "quote": "275 near-identical posts of the 我是台灣人我反綠 type",
+          "quote": "Our targeted keyword searches of the 7,032 posts revealed roughly 290 posts related to politics. Virtually all of these posts (275) were identical posts that opposed the DPP: “I’m not afraid of online bullies or doxxers. I’ll post what I want! I’m Taiwanese and I oppose pan-green.「霸凌肉搜什麼的我通通都沒在怕啦我就是要po！我是台灣人，我反綠」”",
           "source_url": "https://medium.com/doublethinklab/inauthentic-accounts-impersonate-taiwanese-to-attack-political-party-c7d04d5e1e13"
         }
       ]
@@ -121,7 +117,7 @@
       },
       "x_netweaver_evidence": [
         {
-          "quote": "44 of 51 accounts reused photos of Taiwanese influencers",
+          "quote": "Campaign stole photos from female influencers. We were able to identify the picture origins of 44 out of 51 accounts",
           "source_url": "https://medium.com/doublethinklab/inauthentic-accounts-impersonate-taiwanese-to-attack-political-party-c7d04d5e1e13"
         }
       ]
@@ -133,6 +129,7 @@
       "created": "2025-07-01T00:00:00.000Z",
       "modified": "2025-07-01T00:00:00.000Z",
       "name": "民主進步黨 DPP",
+      "identity_class": "organization",
       "object_marking_refs": [
         "marking-definition--30837352-4bcb-536d-ab32-86f489a09985"
       ]
@@ -152,7 +149,7 @@
       "confidence": 60,
       "x_netweaver_evidence": [
         {
-          "quote": "DTL assesses the network can likely be linked to the PRC",
+          "quote": "Based on these accounts’ forensic indicators, we believe it is likely that they can be linked to the PRC",
           "source_url": "https://medium.com/doublethinklab/inauthentic-accounts-impersonate-taiwanese-to-attack-political-party-c7d04d5e1e13"
         }
       ]
@@ -160,19 +157,19 @@
     {
       "type": "relationship",
       "spec_version": "2.1",
-      "id": "relationship--94fa047d-fb09-5c22-989b-bf7e87d939f5",
+      "id": "relationship--02d1d7d5-62dc-555d-9977-575e4ff05c12",
       "created": "2025-07-01T00:00:00.000Z",
       "modified": "2025-07-01T00:00:00.000Z",
       "relationship_type": "uses",
-      "source_ref": "campaign--4736221c-85d2-593e-ae44-7f5c3b68c3dd",
-      "target_ref": "x-dad-narrative--c9be39bc-251b-592e-b684-51e25303f311",
+      "source_ref": "identity--1ffa143f-aaf8-5f6d-a6f8-1793a22a9a83",
+      "target_ref": "intrusion-set--f3d46339-3a7a-5fdb-a84f-cbf2658b5697",
       "object_marking_refs": [
         "marking-definition--30837352-4bcb-536d-ab32-86f489a09985"
       ],
       "confidence": 60,
       "x_netweaver_evidence": [
         {
-          "quote": "posts pushed the 我是台灣人我反綠 narrative",
+          "quote": "Between March 21, 2025 and April 15, 2025, Doublethink Lab observed significant traffic around the phrase “I am Taiwanese and I oppose pan-green 「我是台灣人我反綠」”. We analyzed 1006 posts that contained this phrase in the above-mentioned time period. Among this data, we identified 91 posts by 51 inauthentic accounts that can likely be connected to the PRC.",
           "source_url": "https://medium.com/doublethinklab/inauthentic-accounts-impersonate-taiwanese-to-attack-political-party-c7d04d5e1e13"
         }
       ]
@@ -180,11 +177,11 @@
     {
       "type": "relationship",
       "spec_version": "2.1",
-      "id": "relationship--969a5997-49f5-5284-8139-a474d1e06b2f",
+      "id": "relationship--b2f53bed-d874-5664-9e54-1b5b3b96ac78",
       "created": "2025-07-01T00:00:00.000Z",
       "modified": "2025-07-01T00:00:00.000Z",
       "relationship_type": "uses",
-      "source_ref": "campaign--4736221c-85d2-593e-ae44-7f5c3b68c3dd",
+      "source_ref": "identity--1ffa143f-aaf8-5f6d-a6f8-1793a22a9a83",
       "target_ref": "x-dad-channel--69d4c18c-d7fe-526d-9de4-674116dd73af",
       "object_marking_refs": [
         "marking-definition--30837352-4bcb-536d-ab32-86f489a09985"
@@ -192,7 +189,7 @@
       "confidence": 60,
       "x_netweaver_evidence": [
         {
-          "quote": "operated via 51 inauthentic Threads accounts",
+          "quote": "Between March 21, 2025 and April 15, 2025, Doublethink Lab observed significant traffic around the phrase “I am Taiwanese and I oppose pan-green 「我是台灣人我反綠」”. We analyzed 1006 posts that contained this phrase in the above-mentioned time period. Among this data, we identified 91 posts by 51 inauthentic accounts that can likely be connected to the PRC.",
           "source_url": "https://medium.com/doublethinklab/inauthentic-accounts-impersonate-taiwanese-to-attack-political-party-c7d04d5e1e13"
         }
       ]
@@ -200,11 +197,11 @@
     {
       "type": "relationship",
       "spec_version": "2.1",
-      "id": "relationship--dfcb55e8-d9d2-57fd-bf61-7dfc3ba0d789",
+      "id": "relationship--33f295a6-d319-5cad-b4da-1067f7425d3d",
       "created": "2025-07-01T00:00:00.000Z",
       "modified": "2025-07-01T00:00:00.000Z",
       "relationship_type": "targets",
-      "source_ref": "campaign--4736221c-85d2-593e-ae44-7f5c3b68c3dd",
+      "source_ref": "identity--1ffa143f-aaf8-5f6d-a6f8-1793a22a9a83",
       "target_ref": "identity--ccfa3e8b-ba4d-59f8-b48b-20838b481362",
       "object_marking_refs": [
         "marking-definition--30837352-4bcb-536d-ab32-86f489a09985"
@@ -212,7 +209,7 @@
       "confidence": 60,
       "x_netweaver_evidence": [
         {
-          "quote": "attacking the Democratic Progressive Party (DPP)",
+          "quote": "participated in political narratives that mainly criticized Taiwan’s Democratic Progressive Party (DPP)",
           "source_url": "https://medium.com/doublethinklab/inauthentic-accounts-impersonate-taiwanese-to-attack-political-party-c7d04d5e1e13"
         }
       ]
@@ -220,11 +217,11 @@
     {
       "type": "relationship",
       "spec_version": "2.1",
-      "id": "relationship--4b230b01-c4e8-5bbc-aaba-c567b71d7d68",
+      "id": "relationship--d8d0ef9e-0868-54a2-8ada-8521975b1b04",
       "created": "2025-07-01T00:00:00.000Z",
       "modified": "2025-07-01T00:00:00.000Z",
       "relationship_type": "related-to",
-      "source_ref": "campaign--4736221c-85d2-593e-ae44-7f5c3b68c3dd",
+      "source_ref": "identity--1ffa143f-aaf8-5f6d-a6f8-1793a22a9a83",
       "target_ref": "intrusion-set--3fba1902-5126-5e2c-8ba7-2f3995d66c70",
       "object_marking_refs": [
         "marking-definition--30837352-4bcb-536d-ab32-86f489a09985"
@@ -232,7 +229,7 @@
       "confidence": 60,
       "x_netweaver_evidence": [
         {
-          "quote": "the operation was run by the network of 51 accounts",
+          "quote": "51 inauthentic accounts that pretended to be Taiwanese citizens and participated in political narratives that mainly criticized Taiwan’s Democratic Progressive Party (DPP) on Threads",
           "source_url": "https://medium.com/doublethinklab/inauthentic-accounts-impersonate-taiwanese-to-attack-political-party-c7d04d5e1e13"
         }
       ]
@@ -244,19 +241,6 @@
       "created": "2025-07-01T00:00:00.000Z",
       "modified": "2025-07-01T00:00:00.000Z",
       "name": "NetWeaver x-dad-channel",
-      "schema": "local; pending OASIS DAD-CDM",
-      "version": "0.1",
-      "extension_types": [
-        "new-sdo"
-      ]
-    },
-    {
-      "type": "extension-definition",
-      "spec_version": "2.1",
-      "id": "extension-definition--dbc0ff8b-b13f-5750-bd5c-2e4aaa1c43a0",
-      "created": "2025-07-01T00:00:00.000Z",
-      "modified": "2025-07-01T00:00:00.000Z",
-      "name": "NetWeaver x-dad-narrative",
       "schema": "local; pending OASIS DAD-CDM",
       "version": "0.1",
       "extension_types": [

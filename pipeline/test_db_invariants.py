@@ -6,7 +6,9 @@
      「來源報告→實體」連結少一條（2026-10 Codex 抓過 Spamouflage 漏 DFRLab）
   ③ entity／event／narrative 的 source_ids 每個都在 sources[]
   ④ claim.text 非空
-  ⑤ related.target_id、event.participant_ids 必在 entities[]
+  ⑤ 參照不懸空：related.target_id、event.participant_ids ∈ entities；entity.event_ids ∈ events；
+     event.narratives、narrative.parent ∈ narratives
+  ⑥ entities／events／sources／narratives 內 id 不重複
 另含負向自測：對刻意弄壞的合成 db，每一類違規都必須被抓到（避免檢查本身形同虛設）。
 用法：python3 pipeline/test_db_invariants.py"""
 import json, pathlib
@@ -22,8 +24,16 @@ def load_db():
 def violations(db):
     sids = {s["id"] for s in db["sources"]}
     eids = {e["id"] for e in db["entities"]}
+    evids = {v["id"] for v in db.get("events") or []}
+    nids = {n["id"] for n in db.get("narratives") or []}
     v = {k: [] for k in ("claim_source_unregistered", "claim_source_not_in_entity", "source_ids_unregistered",
-                         "empty_claim", "dangling_ref")}
+                         "empty_claim", "dangling_ref", "duplicate_id")}
+    for kind in ("entities", "events", "sources", "narratives"):
+        seen = set()
+        for o in db.get(kind) or []:
+            if o["id"] in seen:
+                v["duplicate_id"].append((kind, o["id"]))
+            seen.add(o["id"])
     for e in db["entities"]:
         have = set(e.get("source_ids") or [])
         for c in e.get("claims") or []:
@@ -38,6 +48,9 @@ def violations(db):
         for r in e.get("related") or []:
             if r["target_id"] not in eids:
                 v["dangling_ref"].append((e["id"], r["target_id"]))
+        for x in e.get("event_ids") or []:
+            if x not in evids:
+                v["dangling_ref"].append((e["id"], x))
     for kind in ("events", "narratives"):
         for o in db.get(kind) or []:
             for s in set(o.get("source_ids") or []) - sids:
@@ -46,6 +59,12 @@ def violations(db):
         for p in ev.get("participant_ids") or []:
             if p not in eids:
                 v["dangling_ref"].append((ev["id"], p))
+        for n in ev.get("narratives") or []:
+            if n not in nids:
+                v["dangling_ref"].append((ev["id"], n))
+    for n in db.get("narratives") or []:
+        if n.get("parent") and n["parent"] not in nids:
+            v["dangling_ref"].append((n["id"], n["parent"]))
     return v
 
 
@@ -56,14 +75,15 @@ for name, items in real.items():
 
 # ② 負向自測：刻意弄壞的合成 db，每一類都必須被抓到
 broken = {
-    "sources": [{"id": "s1"}],
-    "entities": [{"id": "e1", "source_ids": ["s1", "ghost-ent"],
+    "sources": [{"id": "s1"}, {"id": "s1"}],                                          # 重複 id
+    "entities": [{"id": "e1", "source_ids": ["s1", "ghost-ent"], "event_ids": ["v1", "ghost-event"],
                   "claims": [{"text": "ok", "source_id": "s1", "about": "x"},
                              {"text": "來源沒登錄也不在實體清單", "source_id": "s-missing", "about": "x"},
                              {"text": "   ", "source_id": "s1", "about": "x"}],
                   "related": [{"target_id": "nobody", "relation": "linked-to", "note": ""}]}],
-    "events": [{"id": "v1", "source_ids": ["ghost-ev"], "participant_ids": ["e1", "ghost-person"]}],
-    "narratives": [{"id": "n1", "source_ids": ["ghost-nar"]}],
+    "events": [{"id": "v1", "source_ids": ["ghost-ev"], "participant_ids": ["e1", "ghost-person"],
+                "narratives": ["n1", "ghost-narr"]}],
+    "narratives": [{"id": "n1", "source_ids": ["ghost-nar"], "parent": "ghost-parent"}],
 }
 b = violations(broken)
 assert ("e1", "s-missing") in b["claim_source_unregistered"], b
@@ -71,6 +91,10 @@ assert ("e1", "s-missing") in b["claim_source_not_in_entity"], b
 assert ("e1", "s1") not in b["claim_source_not_in_entity"], "s1 在實體清單內，不該誤報"
 assert {("e1", "ghost-ent"), ("v1", "ghost-ev"), ("n1", "ghost-nar")} <= set(b["source_ids_unregistered"]), b
 assert b["empty_claim"] == [("e1", "s1")], b
-assert {("e1", "nobody"), ("v1", "ghost-person")} <= set(b["dangling_ref"]), b
+assert {("e1", "nobody"), ("v1", "ghost-person"), ("e1", "ghost-event"), ("v1", "ghost-narr"),
+        ("n1", "ghost-parent")} <= set(b["dangling_ref"]), b
+assert ("e1", "v1") not in b["dangling_ref"] and ("v1", "n1") not in b["dangling_ref"], "存在的參照不該誤報"
+assert b["duplicate_id"] == [("sources", "s1")], b
 
-print("db.js 不變量：通過（claim 來源已登錄且在實體清單內／各 source_ids 皆登錄／claim 非空／參照不懸空；含負向自測）")
+print("db.js 不變量：通過（claim 來源已登錄且在實體清單內／各 source_ids 皆登錄／claim 非空／"
+      "參照不懸空／id 不重複；含負向自測）")

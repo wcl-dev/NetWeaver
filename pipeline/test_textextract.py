@@ -46,6 +46,41 @@ def test_html_mismatched_skip_recovers():
     assert "real article body" in t and "Menu" not in t
 
 @case
+def test_html_class_skip_sidebar_inside_article():
+    # Jamestown 的形狀：熱門文章側欄是普通 div，且**包在 <article> 裡面**——標籤跳過與 main 外連結密度閘都管不到，
+    # 它的標題（別篇文章的）進了正文，會讓相關性過濾器誤判。只認 class，且前後正文都要保留（含巢狀 div）。
+    doc = (b"<article><p>First paragraph of the real article body about trade policy.</p>"
+           b"<div class=\"popular_posts\"><h4>Top Stories</h4><ul><li><a href=/a>PRC Influence Operations in the Philippines</a></li></ul>"
+           b"<div class=\"inner\">nested sidebar text</div>text still inside the sidebar block</div>"
+           b"<p>Second paragraph of the real article body after the sidebar block.</p></article>")
+    t = tx.html_to_text(doc)
+    assert "First paragraph" in t and "Second paragraph" in t, "側欄前後的正文都須保留"
+    for junk in ("Top Stories", "PRC Influence Operations", "nested sidebar", "still inside the sidebar"):
+        assert junk not in t, f"側欄應整塊去除（含巢狀子孫）：{junk}"
+
+@case
+def test_html_class_skip_matches_whole_token_only():
+    # class 是以空白分隔的 token：只認完整相等；前綴／後綴相似的名字不得誤殺正文
+    for cls, kept in (("popular_posts_extra other", True), ("my-popular_posts", True), ("a popular_posts b", False)):
+        doc = (b"<article><p>Lead paragraph of the real article for this class test.</p><div class=\"" + cls.encode() +
+               b"\"><p>marker content inside the div</p></div></article>")
+        t = tx.html_to_text(doc)
+        assert ("marker content" in t) == kept, f"class={cls!r}：預期 {'保留' if kept else '去除'}"
+        assert "Lead paragraph" in t
+
+@case
+def test_html_class_skip_unclosed_and_valueless_class():
+    # 跳過區塊沒閉合：外層 </section> 強制關閉它之後，後面的正文要恢復，不能被一路吞到文件結尾
+    doc = (b"<body><section><p>Real paragraph one with sufficient length to keep.</p>"
+           b"<div class=\"popular_posts\"><p>Junk sidebar text</section><p>After section real text long enough to keep.</p></body>")
+    t = tx.html_to_text(doc)
+    assert "Real paragraph one" in t and "After section real text" in t and "Junk sidebar" not in t
+    # class 屬性沒有值（HTMLParser 給 None）不得讓解析器丟例外。直接用 _Reader：html_to_text 會在例外時退回
+    # 「去標籤」的簡易清理，文字照樣出得來，用它測會漏掉崩潰。
+    r = tx._Reader(); r.feed("<div class><p>Valueless class attribute should not crash the parser.</p></div>"); r.close()
+    assert "Valueless class attribute" in r.text()
+
+@case
 def test_html_big5_decode():
     body = "中共網軍散播不實訊息影響台灣輿論這是一段夠長的正文內容供品質閘通過"
     doc = ("<html><head><meta charset=big5></head><body><article><p>" + body * 4 +

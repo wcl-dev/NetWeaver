@@ -2,7 +2,8 @@
 """共用文字抽取：把落地的快照（HTML／PDF）轉成餵給抽取器的正文。純 Python stdlib。
 
 · html_to_text：readability 級（html.parser＋標籤堆疊，容錯錯配/未閉合）——跳過 script/style/nav/header/footer/
-  aside/form 等 boilerplate；有 <article>/<main> 就只取其內；main 外再丟連結密度高的塊（nav/related）。
+  aside/form 等 boilerplate；有 <article>/<main> 就只取其內；main 外再丟連結密度高的塊（nav/related）；
+  另有一張小的 class 黑名單（_SKIP_CLASSES）處理「包在 main 裡面、標籤又是普通 div」的側欄（例：Jamestown popular_posts）。
 · pdf_to_text：shell out `pdftotext`（poppler CLI，非 Python 依賴）；return code 非零/掃描版/失敗→空（fail-closed）。
 · extract_text：依副檔名分派 .txt/.pdf/.html。charset 偵測 BOM／meta／utf-8→big5/cp950/gb18030。
 不追 lxml 級完美；決定性。掃描 PDF 不 OCR。
@@ -15,6 +16,9 @@ _SKIP_TAGS = {"script", "style", "noscript", "template", "svg", "nav", "header",
 _BLOCK_TAGS = {"p", "div", "section", "article", "li", "ul", "ol", "table", "tr", "td", "th",
                "h1", "h2", "h3", "h4", "h5", "h6", "blockquote", "pre", "main"}
 _VOID = {"br", "img", "hr", "input", "meta", "link", "source", "track", "wbr", "area", "base", "col", "embed", "param"}
+# 包在 <article>/<main> 裡面的 boilerplate 區塊：標籤本身是普通 div，只能靠 class 認。保守：只收有實測證據的。
+#   popular_posts＝Jamestown 每頁的「Top Stories」熱門文章側欄（標題會是別篇文章的，混進正文會讓過濾器誤判相關）
+_SKIP_CLASSES = {"popular_posts"}
 _MIN_TEXT = 200                                            # 品質閘：低於此視為抽不到有效正文
 _MAX_PDF_OUT = 8_000_000                                   # pdftotext 輸出上限（防 DoS）
 
@@ -24,8 +28,9 @@ class _Reader(HTMLParser):
         self.stack = []                                    # 開啟中的標籤（容錯錯配/未閉合）
         self.blocks = []                                   # [(text, link_chars, in_main)]
         self._buf, self._link = [], 0
+        self._skip_depth = None                            # 以 class 判定的跳過區塊：其根元素開啟前的堆疊深度（None＝不在區塊內）
 
-    def _skipping(self): return any(t in _SKIP_TAGS for t in self.stack)
+    def _skipping(self): return self._skip_depth is not None or any(t in _SKIP_TAGS for t in self.stack)
     def _in_main(self): return any(t in ("article", "main") for t in self.stack)
 
     def _flush(self):
@@ -38,6 +43,8 @@ class _Reader(HTMLParser):
             if tag == "br" and not self._skipping(): self._buf.append(" ")
             return
         if not self._skipping() and tag in _BLOCK_TAGS: self._flush()
+        if self._skip_depth is None and _SKIP_CLASSES & set((dict(attrs).get("class") or "").split()):
+            self._skip_depth = len(self.stack)             # 此元素（含其子孫）整塊不收；上面已 flush，前文不受影響
         self.stack.append(tag)
 
     def handle_startendtag(self, tag, attrs):
@@ -50,6 +57,8 @@ class _Reader(HTMLParser):
         if not was_skip and tag in _BLOCK_TAGS: self._flush()   # 先 flush（歸屬正確 in_main），再 pop
         while self.stack:                                  # pop 到匹配（強制關閉未閉合的中間標籤）
             if self.stack.pop() == tag: break
+        if self._skip_depth is not None and len(self.stack) <= self._skip_depth:
+            self._skip_depth = None                        # 跳過區塊的根元素已關閉（或被外層的 close 強制關閉）
 
     def handle_data(self, data):
         if self._skipping(): return

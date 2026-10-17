@@ -679,6 +679,11 @@ window.NETWEAVER_DB = {
           "text": "And according to the 399 GoLaxy pages, they were already at work in Hong Kong, in Taiwan, and possibly in the United States.",
           "source_id": "src-record-golaxy",
           "about": "GoLaxy"
+        },
+        {
+          "text": "中共網信辦、國安部及解放軍政治工作部等單位，指導\n「中科天璣」\n、\n「美亞柏科」等科技公司，利用「爬蟲技術」\n（web crawler）及自動化擷取程式，大量蒐集網路資料，針\n\n對我國政治人物、民意代表與意見領袖，建立基本個資、人\n際網絡，以及對中共立場等資料庫，以利「精準」對臺宣傳\n及攻擊特定人士。",
+          "source_id": "src-nsb-2026",
+          "about": "中科天璣"
         }
       ]
     },

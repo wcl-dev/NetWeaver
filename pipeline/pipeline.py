@@ -37,11 +37,17 @@ def extdef_id(typ):
 def serialize(lite, attribution_approved=None):
     """STIX-lite → 合法 STIX 2.1。
 
-    attribution_approved：attributed-to 的人工核可日期（如 "2026-08-30"）。
+    attribution_approved：attributed-to 的人工核可狀態。三種形態：
+      · None（預設）：全部蓋 pending-human-approval。
+      · 日期字串（如 "2026-08-30"）：**全部**歸因蓋 approved＋該日期（舊行為，向下相容；
+        呼叫端須自己確定「這篇的每一條歸因都核可過」）。
+      · dict {(來源 tmp_id, 目標 tmp_id): 日期或 None}：**逐條**——在 dict 內的邊蓋 approved
+        （日期為 None 則不帶日期欄），不在 dict 內的邊蓋 pending-human-approval。curate compile --yes
+        用這個形態：只有 db.js 內確實存在的核可歸因才蓋章，沿用原核可日期；被保留（端點未登錄、
+        從未落地）的邊不蓋——否則可直接交換的 bundle 會把從未核可的歸因標成已核可。
     逐篇 bundle 在抽取完成時就落盤、可直接交換（OpenCTI 等），但歸因的人工閘
     在那之後才發生——bundle 裡的 attributed-to 若無狀態標記，接手的人看不出
-    這則歸因還沒過紅線。預設蓋 pending-human-approval；curate compile --yes
-    通過後重寫 bundle 時傳入核可日期，改蓋 approved。"""
+    這則歸因還沒過紅線。預設蓋 pending-human-approval。"""
     rep = lite["report"]; ts = iso(rep.get("published"))
     mark_id = f"marking-definition--{uuid.uuid5(NS, 'mark:statement')}"
     idmap, objs, used = {}, [], set()
@@ -82,7 +88,15 @@ def serialize(lite, attribution_approved=None):
         if r.get("confidence"): so["confidence"] = CONF[r["confidence"]]
         if r.get("evidence"): so["x_netweaver_evidence"] = r["evidence"]
         if rt == "attributed-to":                 # 歸因紅線的狀態要跟著物件走，不能只存在佇列裡
-            if attribution_approved:
+            if isinstance(attribution_approved, dict):          # 逐條：先判 dict（空 dict 為假，不能走下面的真值判斷）
+                key = (r["source"], r["target"])
+                if key in attribution_approved:
+                    so["x_netweaver_review"] = "approved"
+                    if attribution_approved[key]:
+                        so["x_netweaver_review_date"] = attribution_approved[key]
+                else:
+                    so["x_netweaver_review"] = "pending-human-approval"
+            elif attribution_approved:
                 so["x_netweaver_review"] = "approved"
                 so["x_netweaver_review_date"] = attribution_approved
             else:

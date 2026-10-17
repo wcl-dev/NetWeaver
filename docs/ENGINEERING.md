@@ -91,7 +91,7 @@ ingest → filter → ex.extract() → pipe.stix_from_extraction() → pipe.vali
 
 - **`serialize(lite, attribution_approved=None)`**（`pipeline.py:37`）— STIX-lite → 合法 STIX 2.1。
   - id 走 `sid(typ, key) = f"{typ}--{uuid5(NS, typ+':'+key)}"`（`pipeline.py:30`），**決定性**：同一名字永遠同 id，跨「逐篇」與「整本」兩種 bundle 不產生分身。這是下游合併（OpenCTI）不重複的前提。
-  - `attributed-to` 蓋 `x_netweaver_review` 狀態章：預設 `pending-human-approval`，`compile --yes` 通過後重寫成 `approved` ＋日期。未核可的歸因即使流出去也帶著狀態。
+  - `attributed-to` 蓋 `x_netweaver_review` 狀態章：預設 `pending-human-approval`。`compile --yes` 通過後重寫逐篇 bundle 時**逐邊**判斷：只有 db.js 內確實存在的核可歸因（`curate.attribution_stamps`，須在 `apply_attributions` 之後算）才蓋 `approved`＋**原核可日期**（取自 db 的 note，早已核可的邊不被改成今天）；被保留（端點未登錄、從未落地）的邊維持 `pending-human-approval`。`attribution_approved` 參數可傳 `None`（全 pending）、日期字串（全蓋，舊行為）或逐邊 dict `{(來源 tmp_id, 目標 tmp_id): 日期|None}`。逐篇 bundle 設計上可直接交換，蓋錯章等於對外謊報核可狀態。未核可的歸因即使流出去也帶著狀態。（既有不一致：逐篇 bundle 的日期欄是 `x_netweaver_review_date`，整本匯出是 `x_netweaver_reviewed`，下游兩者都要認。）
 - **`validate(bundle, require_evidence=True)`**（`pipeline.py:112`）— profile 不變量：id 必須 UUIDv5、SRO 無懸空 ref、抽取物件必須掛 evidence（grounding）。回傳 `(fails, attributed_to_list)`。
 - **`project(bundle, text)`**（`pipeline.py:154`）— STIX → operator 三層視圖，**只在呈現層**：`snap_quote` 把模型的子句沿句界擴張成完整句、宣稱閘濾非宣稱、`_claim_about` 決定 claim 掛誰。
   - 刻意排在 derive **之後**，才不會讓句子擴張回頭改動 hedge 判斷 → 信心 → 歸因。

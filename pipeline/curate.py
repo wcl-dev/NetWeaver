@@ -349,6 +349,18 @@ def _resolve_actor(name, name2ent):
     ids = {name2ent[_norm(x)]["id"]: name2ent[_norm(x)] for x in parts if _norm(x) in name2ent}
     return next(iter(ids.values())) if len(ids) == 1 else None
 
+def _attributed_edges(sl, name2ent):
+    """逐條歸因邊 → (關係, 起點名, 終點名, 起點實體|None, 終點實體|None)。
+
+    「寫入 db.js」與「幫逐篇 bundle 蓋核可章」必須用**同一套端點解析**：兩邊解析不一致，就會出現
+    「bundle 蓋了章、db.js 卻沒有這條邊」或反過來。"""
+    obj_by_tmp = {o["tmp_id"]: o for o in sl.get("objects", [])}
+    for r in sl.get("relationships", []):
+        if r.get("type") != "attributed-to": continue
+        s_name = (obj_by_tmp.get(r.get("source")) or {}).get("name", "")
+        t_name = (obj_by_tmp.get(r.get("target")) or {}).get("name", "")
+        yield r, s_name, t_name, _resolve_actor(s_name, name2ent), _resolve_actor(t_name, name2ent)
+
 def apply_attributions(sl, name2ent, ent_by_id, org, today):
     """把 `--yes` 核可的 attributed-to 寫進 db.js（source 實體的 related）。
 
@@ -356,13 +368,8 @@ def apply_attributions(sl, name2ent, ent_by_id, org, today):
     等於空轉（歸因只存在逐篇 bundle 裡，db.js 與整本 STIX 都是 0）。回傳
     (written, held)——端點解析不到已登錄實體的一律 held 並報告，由人補別名或
     登錄後重跑，不自動猜。"""
-    obj_by_tmp = {o["tmp_id"]: o for o in sl.get("objects", [])}
     written, held = [], []
-    for r in sl.get("relationships", []):
-        if r.get("type") != "attributed-to": continue
-        s_name = (obj_by_tmp.get(r.get("source")) or {}).get("name", "")
-        t_name = (obj_by_tmp.get(r.get("target")) or {}).get("name", "")
-        se, te = _resolve_actor(s_name, name2ent), _resolve_actor(t_name, name2ent)
+    for r, s_name, t_name, se, te in _attributed_edges(sl, name2ent):
         if not (se and te):
             held.append((s_name or "?", t_name or "?")); continue
         ent = ent_by_id[se["id"]]
@@ -374,6 +381,27 @@ def apply_attributions(sl, name2ent, ent_by_id, org, today):
              "note": f"{org} 報告記錄；{today} 人工核可"})
         written.append((se["id"], te["id"]))
     return written, held
+
+_APPROVED_DATE = re.compile(r"(\d{4}-\d{2}-\d{2})")        # 與 export_stix.rel() 同一個抓法：note「…；YYYY-MM-DD 人工核可」
+
+def attribution_stamps(sl, name2ent, ent_by_id):
+    """逐篇 bundle 的歸因核可章：{(來源 tmp_id, 目標 tmp_id): 核可日期或 None}，餵給 serialize(attribution_approved=…)。
+
+    **須在 apply_attributions 之後呼叫。**只有「db.js 裡確實存在」的歸因邊才算核可過、才進這張表；
+    日期取自該邊的 note——早已核可的邊沿用原核可日期，不被改成今天。端點解析不到的邊（held，從未落地）
+    不在表內，serialize 會蓋 pending-human-approval。
+    先前的缺陷：compile 重寫 bundle 時只丟一個「今天」，把這篇的**每一條**歸因都蓋成已核可，
+    包括被保留、從未核可的邊。逐篇 bundle 設計上可直接交換（OpenCTI），蓋錯章等於對外謊報核可狀態。
+    對齊整本匯出（export_stix.rel）：db.js 只存已核可者，核可章與日期都取自 db 的 note。"""
+    stamps = {}
+    for r, _s, _t, se, te in _attributed_edges(sl, name2ent):
+        if not (se and te): continue
+        edge = next((x for x in ent_by_id[se["id"]].get("related") or []
+                     if x.get("target_id") == te["id"] and x.get("relation") == "attributed-to"), None)
+        if edge is None: continue
+        m = _APPROVED_DATE.search(edge.get("note") or "")
+        stamps[(r["source"], r["target"])] = m.group(1) if m else None
+    return stamps
 
 def cmd_compile(args):
     """compile approved 項目。給 raw_id 就**只**處理該篇。
@@ -445,17 +473,19 @@ def cmd_compile(args):
             _upsert(ent_by_id[eid], claims, sids)
         att_note = ""
         today = _dt.date.today().isoformat()
+        stamps = None                                        # 逐篇 bundle 的核可章；None＝歸因全蓋 pending-human-approval
         if att and args.yes:                                 # 紅線出口：核可的歸因落進 db.js
             org = next((s_.get("org", "") for s_ in db["sources"] if s_["id"] in sids), "")
             written, held = apply_attributions(sl, name2ent, ent_by_id, org, today)
             if written: att_note += "；歸因寫入 " + "、".join(f"{a}→{b}" for a, b in written)
             if held:    att_note += "；歸因端點未登錄而保留 " + "、".join(f"{a}→{b}" for a, b in held)
+            stamps = attribution_stamps(sl, name2ent, ent_by_id)   # 必須在 apply 之後：只有真的落進 db.js 的邊才蓋章
         e["compile_status"] = "compiled"
         compiled_sids |= sids
         try:                                                 # 發布後刷新落盤 bundle，與已發布狀態一致
             _bp = _here.parent / e["extraction"]
             rl.write_bundle(_bp.parent, _bp.name.split(".")[0],
-                            sl and pipe.serialize(sl, attribution_approved=(today if att and args.yes else None)))
+                            sl and pipe.serialize(sl, attribution_approved=stamps))
         except Exception: pass
         done.append((rid, ents_str, nclaims, f"分掛 {len(by_ent)} 個實體，{dropped} 條 about 未登錄略過"
                                              + (f"，清除 {len(stale)} 個實體的同來源舊 claims" if stale else "")

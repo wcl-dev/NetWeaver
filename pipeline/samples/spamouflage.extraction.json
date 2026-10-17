@@ -1,20 +1,35 @@
 {
-  "_note": "模型抽取。示範明確歸因：述詞含『僱用/operated by』→碼判 operated-by＋信心 high →建 attributed-to（需人工閘），公安部升 threat-actor。與 anti-dpp 對照。",
+  "_note": "示範明確歸因（逐字版；2026-10 改寫：原為手寫近似句，已換成國安局原文逐字句，含 PDF 換行的 \\n）：控制述詞『運用』（主動語態）→碼判 runs＋信心 high→建 attributed-to（龍橋→公安部，需人工閘），公安部升 threat-actor。與 anti-dpp 對照。",
   "report": {
     "name": "2025 年中共對臺認知作戰操作手法分析",
     "org": "國家安全局 National Security Bureau (NSB), Taiwan",
     "url": "https://www.nsb.gov.tw/zh/assets/documents/%E6%96%B0%E8%81%9E%E7%A8%BF/023b202c-8bc9-4b19-a8eb-c0d0b5809f99.pdf",
-    "published": "2026-01", "type": "gov-report"
+    "published": "2026-01-10",
+    "type": "gov-report"
   },
   "mentions": [
-    { "tmp_id": "op", "surface": "Dragonbridge 對台認知作戰", "coarse_type": "operation", "quote": "於全球逾180個社群平臺、以逾20種語言進行影響力操作", "source_url": "https://www.nsb.gov.tw/zh/assets/documents/%E6%96%B0%E8%81%9E%E7%A8%BF/023b202c-8bc9-4b19-a8eb-c0d0b5809f99.pdf" },
-    { "tmp_id": "net", "surface": "Spamouflage", "coarse_type": "network", "quote": "龍橋（Dragonbridge）為公安部僱用的網路水軍", "source_url": "https://www.nsb.gov.tw/zh/assets/documents/%E6%96%B0%E8%81%9E%E7%A8%BF/023b202c-8bc9-4b19-a8eb-c0d0b5809f99.pdf" },
-    { "tmp_id": "mps", "surface": "公安部", "coarse_type": "org", "source_url": "https://www.nsb.gov.tw/zh/assets/documents/%E6%96%B0%E8%81%9E%E7%A8%BF/023b202c-8bc9-4b19-a8eb-c0d0b5809f99.pdf" },
-    { "tmp_id": "tw", "surface": "台灣", "coarse_type": "place", "country": "TW", "source_url": "https://www.nsb.gov.tw/zh/assets/documents/%E6%96%B0%E8%81%9E%E7%A8%BF/023b202c-8bc9-4b19-a8eb-c0d0b5809f99.pdf" }
+    {
+      "tmp_id": "net",
+      "surface": "龍橋",
+      "coarse_type": "network",
+      "quote": "中共公安部運用「龍橋」網路水軍集團，透過逾 20 種\n語言，在全球超過 180 種網路社群平臺（ 如：Reddit、\nBlogSpot）進行影響力活動",
+      "source_url": "https://www.nsb.gov.tw/zh/assets/documents/%E6%96%B0%E8%81%9E%E7%A8%BF/023b202c-8bc9-4b19-a8eb-c0d0b5809f99.pdf"
+    },
+    {
+      "tmp_id": "mps",
+      "surface": "公安部",
+      "coarse_type": "org",
+      "quote": "中共公安部運用「龍橋」網路水軍集團，透過逾 20 種\n語言，在全球超過 180 種網路社群平臺（ 如：Reddit、\nBlogSpot）進行影響力活動",
+      "source_url": "https://www.nsb.gov.tw/zh/assets/documents/%E6%96%B0%E8%81%9E%E7%A8%BF/023b202c-8bc9-4b19-a8eb-c0d0b5809f99.pdf"
+    }
   ],
   "assertions": [
-    { "subject": "net", "predicate": "為公安部僱用（hired / operated by）", "object": "mps", "quote": "龍橋（Dragonbridge）為公安部僱用的網路水軍", "source_url": "https://www.nsb.gov.tw/zh/assets/documents/%E6%96%B0%E8%81%9E%E7%A8%BF/023b202c-8bc9-4b19-a8eb-c0d0b5809f99.pdf" },
-    { "subject": "op", "predicate": "針對台灣散布", "object": "tw", "quote": "針對台灣議題散布不實訊息", "source_url": "https://www.nsb.gov.tw/zh/assets/documents/%E6%96%B0%E8%81%9E%E7%A8%BF/023b202c-8bc9-4b19-a8eb-c0d0b5809f99.pdf" },
-    { "subject": "op", "predicate": "carried out by", "object": "net", "quote": "Dragonbridge 跨逾180個平台的對台行動", "source_url": "https://www.nsb.gov.tw/zh/assets/documents/%E6%96%B0%E8%81%9E%E7%A8%BF/023b202c-8bc9-4b19-a8eb-c0d0b5809f99.pdf" }
+    {
+      "subject": "mps",
+      "predicate": "運用",
+      "object": "net",
+      "quote": "中共公安部運用「龍橋」網路水軍集團，透過逾 20 種\n語言，在全球超過 180 種網路社群平臺（ 如：Reddit、\nBlogSpot）進行影響力活動",
+      "source_url": "https://www.nsb.gov.tw/zh/assets/documents/%E6%96%B0%E8%81%9E%E7%A8%BF/023b202c-8bc9-4b19-a8eb-c0d0b5809f99.pdf"
+    }
   ]
 }

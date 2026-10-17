@@ -6,22 +6,18 @@
       "type": "report",
       "spec_version": "2.1",
       "id": "report--673876c8-4469-5a34-afca-a9dc901f8e66",
-      "created": "2026-01-01T00:00:00.000Z",
-      "modified": "2026-01-01T00:00:00.000Z",
+      "created": "2026-01-10T00:00:00.000Z",
+      "modified": "2026-01-10T00:00:00.000Z",
       "name": "2025 年中共對臺認知作戰操作手法分析",
-      "published": "2026-01-01T00:00:00.000Z",
+      "published": "2026-01-10T00:00:00.000Z",
       "report_types": [
         "fimi"
       ],
       "object_refs": [
-        "campaign--117583a4-0012-544b-90bd-d7afc7b6f0ab",
-        "intrusion-set--e2b77b7d-320c-511b-b836-069be233aab5",
+        "intrusion-set--4cf75bf0-b137-535b-910d-487a81777487",
         "threat-actor--f45e46cb-c616-53b5-add8-41c25ccd1130",
-        "location--0a4b075b-ef1a-5836-8ff6-c3c42010953e",
-        "relationship--76498fc1-471d-574c-b27b-fc664d051edb",
-        "relationship--da64dd4d-9f32-5c18-a4d7-024dbf2d8ebb",
-        "relationship--26e7c4e9-d8d6-5542-a4f2-8c4d7e8f48f3",
-        "relationship--8767ff91-83a3-590b-a5e5-96b0d778922c"
+        "relationship--b8a05680-fbf9-5148-a086-4c436a4284f4",
+        "relationship--997474a4-0b14-597f-84c5-f04682fa5141"
       ],
       "external_references": [
         {
@@ -31,37 +27,19 @@
       ]
     },
     {
-      "type": "campaign",
-      "spec_version": "2.1",
-      "id": "campaign--117583a4-0012-544b-90bd-d7afc7b6f0ab",
-      "created": "2026-01-01T00:00:00.000Z",
-      "modified": "2026-01-01T00:00:00.000Z",
-      "name": "Dragonbridge 對台認知作戰",
-      "confidence": 85,
-      "object_marking_refs": [
-        "marking-definition--30837352-4bcb-536d-ab32-86f489a09985"
-      ],
-      "x_netweaver_evidence": [
-        {
-          "quote": "於全球逾180個社群平臺、以逾20種語言進行影響力操作",
-          "source_url": "https://www.nsb.gov.tw/zh/assets/documents/%E6%96%B0%E8%81%9E%E7%A8%BF/023b202c-8bc9-4b19-a8eb-c0d0b5809f99.pdf"
-        }
-      ]
-    },
-    {
       "type": "intrusion-set",
       "spec_version": "2.1",
-      "id": "intrusion-set--e2b77b7d-320c-511b-b836-069be233aab5",
-      "created": "2026-01-01T00:00:00.000Z",
-      "modified": "2026-01-01T00:00:00.000Z",
-      "name": "Spamouflage",
+      "id": "intrusion-set--4cf75bf0-b137-535b-910d-487a81777487",
+      "created": "2026-01-10T00:00:00.000Z",
+      "modified": "2026-01-10T00:00:00.000Z",
+      "name": "龍橋",
       "confidence": 85,
       "object_marking_refs": [
         "marking-definition--30837352-4bcb-536d-ab32-86f489a09985"
       ],
       "x_netweaver_evidence": [
         {
-          "quote": "龍橋（Dragonbridge）為公安部僱用的網路水軍",
+          "quote": "中共公安部運用「龍橋」網路水軍集團，透過逾 20 種\n語言，在全球超過 180 種網路社群平臺（ 如：Reddit、\nBlogSpot）進行影響力活動",
           "source_url": "https://www.nsb.gov.tw/zh/assets/documents/%E6%96%B0%E8%81%9E%E7%A8%BF/023b202c-8bc9-4b19-a8eb-c0d0b5809f99.pdf"
         }
       ]
@@ -70,40 +48,37 @@
       "type": "threat-actor",
       "spec_version": "2.1",
       "id": "threat-actor--f45e46cb-c616-53b5-add8-41c25ccd1130",
-      "created": "2026-01-01T00:00:00.000Z",
-      "modified": "2026-01-01T00:00:00.000Z",
+      "created": "2026-01-10T00:00:00.000Z",
+      "modified": "2026-01-10T00:00:00.000Z",
       "name": "公安部",
+      "identity_class": "organization",
+      "confidence": 85,
       "object_marking_refs": [
         "marking-definition--30837352-4bcb-536d-ab32-86f489a09985"
-      ]
-    },
-    {
-      "type": "location",
-      "spec_version": "2.1",
-      "id": "location--0a4b075b-ef1a-5836-8ff6-c3c42010953e",
-      "created": "2026-01-01T00:00:00.000Z",
-      "modified": "2026-01-01T00:00:00.000Z",
-      "country": "TW",
-      "object_marking_refs": [
-        "marking-definition--30837352-4bcb-536d-ab32-86f489a09985"
+      ],
+      "x_netweaver_evidence": [
+        {
+          "quote": "中共公安部運用「龍橋」網路水軍集團，透過逾 20 種\n語言，在全球超過 180 種網路社群平臺（ 如：Reddit、\nBlogSpot）進行影響力活動",
+          "source_url": "https://www.nsb.gov.tw/zh/assets/documents/%E6%96%B0%E8%81%9E%E7%A8%BF/023b202c-8bc9-4b19-a8eb-c0d0b5809f99.pdf"
+        }
       ]
     },
     {
       "type": "relationship",
       "spec_version": "2.1",
-      "id": "relationship--76498fc1-471d-574c-b27b-fc664d051edb",
-      "created": "2026-01-01T00:00:00.000Z",
-      "modified": "2026-01-01T00:00:00.000Z",
+      "id": "relationship--b8a05680-fbf9-5148-a086-4c436a4284f4",
+      "created": "2026-01-10T00:00:00.000Z",
+      "modified": "2026-01-10T00:00:00.000Z",
       "relationship_type": "related-to",
-      "source_ref": "intrusion-set--e2b77b7d-320c-511b-b836-069be233aab5",
-      "target_ref": "threat-actor--f45e46cb-c616-53b5-add8-41c25ccd1130",
+      "source_ref": "threat-actor--f45e46cb-c616-53b5-add8-41c25ccd1130",
+      "target_ref": "intrusion-set--4cf75bf0-b137-535b-910d-487a81777487",
       "object_marking_refs": [
         "marking-definition--30837352-4bcb-536d-ab32-86f489a09985"
       ],
       "confidence": 85,
       "x_netweaver_evidence": [
         {
-          "quote": "龍橋（Dragonbridge）為公安部僱用的網路水軍",
+          "quote": "中共公安部運用「龍橋」網路水軍集團，透過逾 20 種\n語言，在全球超過 180 種網路社群平臺（ 如：Reddit、\nBlogSpot）進行影響力活動",
           "source_url": "https://www.nsb.gov.tw/zh/assets/documents/%E6%96%B0%E8%81%9E%E7%A8%BF/023b202c-8bc9-4b19-a8eb-c0d0b5809f99.pdf"
         }
       ]
@@ -111,51 +86,11 @@
     {
       "type": "relationship",
       "spec_version": "2.1",
-      "id": "relationship--da64dd4d-9f32-5c18-a4d7-024dbf2d8ebb",
-      "created": "2026-01-01T00:00:00.000Z",
-      "modified": "2026-01-01T00:00:00.000Z",
-      "relationship_type": "targets",
-      "source_ref": "campaign--117583a4-0012-544b-90bd-d7afc7b6f0ab",
-      "target_ref": "location--0a4b075b-ef1a-5836-8ff6-c3c42010953e",
-      "object_marking_refs": [
-        "marking-definition--30837352-4bcb-536d-ab32-86f489a09985"
-      ],
-      "confidence": 85,
-      "x_netweaver_evidence": [
-        {
-          "quote": "針對台灣議題散布不實訊息",
-          "source_url": "https://www.nsb.gov.tw/zh/assets/documents/%E6%96%B0%E8%81%9E%E7%A8%BF/023b202c-8bc9-4b19-a8eb-c0d0b5809f99.pdf"
-        }
-      ]
-    },
-    {
-      "type": "relationship",
-      "spec_version": "2.1",
-      "id": "relationship--26e7c4e9-d8d6-5542-a4f2-8c4d7e8f48f3",
-      "created": "2026-01-01T00:00:00.000Z",
-      "modified": "2026-01-01T00:00:00.000Z",
-      "relationship_type": "related-to",
-      "source_ref": "campaign--117583a4-0012-544b-90bd-d7afc7b6f0ab",
-      "target_ref": "intrusion-set--e2b77b7d-320c-511b-b836-069be233aab5",
-      "object_marking_refs": [
-        "marking-definition--30837352-4bcb-536d-ab32-86f489a09985"
-      ],
-      "confidence": 85,
-      "x_netweaver_evidence": [
-        {
-          "quote": "Dragonbridge 跨逾180個平台的對台行動",
-          "source_url": "https://www.nsb.gov.tw/zh/assets/documents/%E6%96%B0%E8%81%9E%E7%A8%BF/023b202c-8bc9-4b19-a8eb-c0d0b5809f99.pdf"
-        }
-      ]
-    },
-    {
-      "type": "relationship",
-      "spec_version": "2.1",
-      "id": "relationship--8767ff91-83a3-590b-a5e5-96b0d778922c",
-      "created": "2026-01-01T00:00:00.000Z",
-      "modified": "2026-01-01T00:00:00.000Z",
+      "id": "relationship--997474a4-0b14-597f-84c5-f04682fa5141",
+      "created": "2026-01-10T00:00:00.000Z",
+      "modified": "2026-01-10T00:00:00.000Z",
       "relationship_type": "attributed-to",
-      "source_ref": "intrusion-set--e2b77b7d-320c-511b-b836-069be233aab5",
+      "source_ref": "intrusion-set--4cf75bf0-b137-535b-910d-487a81777487",
       "target_ref": "threat-actor--f45e46cb-c616-53b5-add8-41c25ccd1130",
       "object_marking_refs": [
         "marking-definition--30837352-4bcb-536d-ab32-86f489a09985"
@@ -163,16 +98,17 @@
       "confidence": 85,
       "x_netweaver_evidence": [
         {
-          "quote": "龍橋（Dragonbridge）為公安部僱用的網路水軍",
+          "quote": "中共公安部運用「龍橋」網路水軍集團，透過逾 20 種\n語言，在全球超過 180 種網路社群平臺（ 如：Reddit、\nBlogSpot）進行影響力活動",
           "source_url": "https://www.nsb.gov.tw/zh/assets/documents/%E6%96%B0%E8%81%9E%E7%A8%BF/023b202c-8bc9-4b19-a8eb-c0d0b5809f99.pdf"
         }
-      ]
+      ],
+      "x_netweaver_review": "pending-human-approval"
     },
     {
       "type": "marking-definition",
       "spec_version": "2.1",
       "id": "marking-definition--30837352-4bcb-536d-ab32-86f489a09985",
-      "created": "2026-01-01T00:00:00.000Z",
+      "created": "2026-01-10T00:00:00.000Z",
       "definition_type": "statement",
       "definition": {
         "statement": "記錄公開研究中被點名者，非法律指控。Documents public research; not a legal accusation."

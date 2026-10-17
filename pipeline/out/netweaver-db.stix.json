@@ -1833,6 +1833,10 @@
         {
           "quote": "Figure 2: Haixun inauthentic news featuring a mix of content, including PRC government talking points, Global Times articles, and content on the metaverse",
           "source_url": "https://cloud.google.com/blog/topics/threat-intelligence/glassbridge-pro-prc-influence-operations"
+        },
+        {
+          "quote": "PRC media responded indignantly. The People’s Daily-owned tabloid Global Times accused Takaichi of putting on a “diplomatic performance” (外交表演) and “openly challenging the post-war international order” (公然挑战了战后国际秩序)",
+          "source_url": "https://jamestown.org/prc-launches-campaign-to-isolate-japan/"
         }
       ],
       "extensions": {
@@ -3945,6 +3949,10 @@
         {
           "quote": "In 2023, Xinhua, ZNBC, and ZANIS signed a news-exchange agreement covering content sharing, broader media cooperation, and journalism training.",
           "source_url": "https://medium.com/doublethinklab/prc-influence-and-alignment-in-the-2026-zambian-election-31c113a3f435"
+        },
+        {
+          "quote": "Though the readout did not name Japan, the PRC still seized the propaganda opportunity, including for international audiences. In an English translation of the readout, state run-Xinhua News Agency said that the two leaders honored the history of a “China-U.S. joint fight against Japanese aggression in WWII”",
+          "source_url": "https://jamestown.org/prc-launches-campaign-to-isolate-japan/"
         }
       ],
       "extensions": {
@@ -4213,6 +4221,10 @@
         {
           "quote": "24 日，中國外交部汪文斌：「美国可以肆意对一个主权国家进行军事干涉，而不必为这个国家的人民所遭受的苦难负责。」",
           "source_url": "https://iorg.tw/da/11"
+        },
+        {
+          "quote": "The PRC Ministry of Foreign Affairs (MFA) said on September 29 that Takaichi had “gravely undermined” the political foundation of bilateral relations with a “blatant challenge to China’s national sovereignty”",
+          "source_url": "https://jamestown.org/prc-launches-campaign-to-isolate-japan/"
         }
       ]
     },
@@ -13204,6 +13216,30 @@
         {
           "source_name": "ASPI The Strategist",
           "url": "https://www.aspistrategist.org.au/china-is-building-an-ai-system-for-tailoring-its-foreign-propaganda/"
+        }
+      ],
+      "object_marking_refs": [
+        "marking-definition--30837352-4bcb-536d-ab32-86f489a09985"
+      ],
+      "x_netweaver_license": "cite-with-attribution"
+    },
+    {
+      "type": "report",
+      "spec_version": "2.1",
+      "id": "report--d3a578f6-eb83-5b4e-a9ce-8edae55a84f5",
+      "created": "2026-01-01T00:00:00.000Z",
+      "modified": "2026-01-01T00:00:00.000Z",
+      "name": "PRC Launches Campaign to Isolate Japan",
+      "published": "2026-10-01T00:00:00.000Z",
+      "object_refs": [
+        "identity--ccc946b9-5f01-5e3f-8fbf-70d80199bb1b",
+        "x-dad-channel--6e611bbc-fd09-53bf-8af3-6a548e3f90be",
+        "x-dad-channel--daa27372-69ac-5f49-be6c-b0071011ae8b"
+      ],
+      "external_references": [
+        {
+          "source_name": "Jamestown Foundation",
+          "url": "https://jamestown.org/prc-launches-campaign-to-isolate-japan/"
         }
       ],
       "object_marking_refs": [

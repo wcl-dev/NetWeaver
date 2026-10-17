@@ -2453,7 +2453,8 @@ window.NETWEAVER_DB = {
         "src-iorg-131",
         "src-iorg-41",
         "src-lowy-globaltimes",
-        "src-wiki-globaltimes"
+        "src-wiki-globaltimes",
+        "src-jamestown-isolate-japan"
       ],
       "confidence": "high",
       "claims": [
@@ -2750,6 +2751,11 @@ window.NETWEAVER_DB = {
         {
           "text": "Figure 2: Haixun inauthentic news featuring a mix of content, including PRC government talking points, Global Times articles, and content on the metaverse",
           "source_id": "src-google-glassbridge",
+          "about": "Global Times"
+        },
+        {
+          "text": "PRC media responded indignantly. The People’s Daily-owned tabloid Global Times accused Takaichi of putting on a “diplomatic performance” (外交表演) and “openly challenging the post-war international order” (公然挑战了战后国际秩序)",
+          "source_id": "src-jamestown-isolate-japan",
           "about": "Global Times"
         }
       ]
@@ -5490,7 +5496,8 @@ window.NETWEAVER_DB = {
         "src-iorg-131",
         "src-iorg-38",
         "src-iorg-41",
-        "src-lowy-globaltimes"
+        "src-lowy-globaltimes",
+        "src-jamestown-isolate-japan"
       ],
       "confidence": "high",
       "claims": [
@@ -5598,6 +5605,11 @@ window.NETWEAVER_DB = {
           "text": "In 2023, Xinhua, ZNBC, and ZANIS signed a news-exchange agreement covering content sharing, broader media cooperation, and journalism training.",
           "source_id": "src-doublethink-lab-b7212b",
           "about": "Xinhua"
+        },
+        {
+          "text": "Though the readout did not name Japan, the PRC still seized the propaganda opportunity, including for international audiences. In an English translation of the readout, state run-Xinhua News Agency said that the two leaders honored the history of a “China-U.S. joint fight against Japanese aggression in WWII”",
+          "source_id": "src-jamestown-isolate-japan",
+          "about": "Xinhua News Agency"
         }
       ]
     },
@@ -5778,7 +5790,8 @@ window.NETWEAVER_DB = {
         "src-factlink-a7a795",
         "src-factlink-japan",
         "src-factlink-takaichi",
-        "src-iorg-11"
+        "src-iorg-11",
+        "src-jamestown-isolate-japan"
       ],
       "confidence": "medium",
       "claims": [
@@ -5866,6 +5879,11 @@ window.NETWEAVER_DB = {
           "text": "24 日，中國外交部汪文斌：「美国可以肆意对一个主权国家进行军事干涉，而不必为这个国家的人民所遭受的苦难负责。」",
           "source_id": "src-iorg-11",
           "about": "中國外交部"
+        },
+        {
+          "text": "The PRC Ministry of Foreign Affairs (MFA) said on September 29 that Takaichi had “gravely undermined” the political foundation of bilateral relations with a “blatant challenge to China’s national sovereignty”",
+          "source_id": "src-jamestown-isolate-japan",
+          "about": "PRC Ministry of Foreign Affairs"
         }
       ]
     },
@@ -9522,6 +9540,15 @@ window.NETWEAVER_DB = {
       "org": "ASPI The Strategist",
       "url": "https://www.aspistrategist.org.au/china-is-building-an-ai-system-for-tailoring-its-foreign-propaganda/",
       "date": "2026-09-18",
+      "type": "ngo-report",
+      "license": "cite-with-attribution"
+    },
+    {
+      "id": "src-jamestown-isolate-japan",
+      "title": "PRC Launches Campaign to Isolate Japan",
+      "org": "Jamestown Foundation",
+      "url": "https://jamestown.org/prc-launches-campaign-to-isolate-japan/",
+      "date": "2026-10",
       "type": "ngo-report",
       "license": "cite-with-attribution"
     }

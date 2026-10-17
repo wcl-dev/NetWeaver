@@ -158,7 +158,7 @@
       "identity_class": "organization",
       "x_netweaver_evidence": [
         {
-          "quote": "（一）虛假網站：中宣部、公安部透由「海訊社」、「海賣」",
+          "quote": "（一）虛假網站：中宣部、公安部透由「海訊社」、「海賣」\n及「虎牙」等公關公司，創建虛假網站，並以中立性\n新聞網站名稱，偽冒國際媒體例如：Aisa Korea、\nAustria Weekly，協力傳散中共官方論述，意圖混淆\n視聽。",
           "source_url": "https://www.nsb.gov.tw/zh/assets/documents/%E6%96%B0%E8%81%9E%E7%A8%BF/023b202c-8bc9-4b19-a8eb-c0d0b5809f99.pdf"
         },
         {
@@ -337,18 +337,6 @@
         {
           "quote": "台灣民主實驗室的〈AI 在中國影響力作戰中的崛起：從中科天璣文件中得出的九大要點〉，整理從中國外洩的一份科技公司內部文件，分析中國情報資訊公司「中科天璣」(該公司有中國科學院計算技術研究所的背景)對台灣、美國、一帶一路國家、香港新疆西藏等資訊監控、分析及宣傳策略系統。",
           "source_url": "https://www.factlink.tw/p/factnoteai"
-        },
-        {
-          "quote": "3,692 virtual personas operable across 12 platforms",
-          "source_url": "https://medium.com/doublethinklab/the-rise-of-ai-in-prc-influence-operations-nine-takeaways-from-the-golaxy-documents-2d6617a753e5"
-        },
-        {
-          "quote": "GoLaxy built detailed profiles of 170+ Taiwanese political figures",
-          "source_url": "https://medium.com/doublethinklab/the-rise-of-ai-in-prc-influence-operations-nine-takeaways-from-the-golaxy-documents-2d6617a753e5"
-        },
-        {
-          "quote": "weekly monitoring of 600,000+ Taiwan-related items during the 2024 election",
-          "source_url": "https://medium.com/doublethinklab/the-rise-of-ai-in-prc-influence-operations-nine-takeaways-from-the-golaxy-documents-2d6617a753e5"
         },
         {
           "quote": "「中科天璣」利用 AI",
@@ -609,7 +597,7 @@
           "source_url": "https://cloud.google.com/blog/topics/threat-intelligence/pro-prc-haienergy-us-news/"
         },
         {
-          "quote": "（一）虛假網站：中宣部、公安部透由「海訊社」、「海賣」",
+          "quote": "（一）虛假網站：中宣部、公安部透由「海訊社」、「海賣」\n及「虎牙」等公關公司，創建虛假網站，並以中立性\n新聞網站名稱，偽冒國際媒體例如：Aisa Korea、\nAustria Weekly，協力傳散中共官方論述，意圖混淆\n視聽。",
           "source_url": "https://www.nsb.gov.tw/zh/assets/documents/%E6%96%B0%E8%81%9E%E7%A8%BF/023b202c-8bc9-4b19-a8eb-c0d0b5809f99.pdf"
         },
         {
@@ -1356,7 +1344,7 @@
           "source_url": "https://medium.com/doublethinklab/inauthentic-accounts-impersonate-taiwanese-to-attack-political-party-c7d04d5e1e13"
         },
         {
-          "quote": "Virtually all of these posts (275) were identical posts that opposed the DPP",
+          "quote": "Our targeted keyword searches of the 7,032 posts revealed roughly 290 posts related to politics. Virtually all of these posts (275) were identical posts that opposed the DPP: “I’m not afraid of online bullies or doxxers. I’ll post what I want! I’m Taiwanese and I oppose pan-green.「霸凌肉搜什麼的我通通都沒在怕啦我就是要po！我是台灣人，我反綠」”",
           "source_url": "https://medium.com/doublethinklab/inauthentic-accounts-impersonate-taiwanese-to-attack-political-party-c7d04d5e1e13"
         },
         {
@@ -1364,11 +1352,7 @@
           "source_url": "https://medium.com/doublethinklab/inauthentic-accounts-impersonate-taiwanese-to-attack-political-party-c7d04d5e1e13"
         },
         {
-          "quote": "Doublethink Lab observed significant traffic around the phrase “I am Taiwanese and I oppose pan-green 「我是台灣人我反綠」”",
-          "source_url": "https://medium.com/doublethinklab/inauthentic-accounts-impersonate-taiwanese-to-attack-political-party-c7d04d5e1e13"
-        },
-        {
-          "quote": "Among this data, we identified 91 posts by 51 inauthentic accounts that can likely be connected to the PRC",
+          "quote": "Between March 21, 2025 and April 15, 2025, Doublethink Lab observed significant traffic around the phrase “I am Taiwanese and I oppose pan-green 「我是台灣人我反綠」”. We analyzed 1006 posts that contained this phrase in the above-mentioned time period. Among this data, we identified 91 posts by 51 inauthentic accounts that can likely be connected to the PRC.",
           "source_url": "https://medium.com/doublethinklab/inauthentic-accounts-impersonate-taiwanese-to-attack-political-party-c7d04d5e1e13"
         }
       ]
@@ -2012,7 +1996,7 @@
           "source_url": "https://citizenlab.ca/2024/02/paperwall-chinese-websites-posing-as-local-news-outlets-with-pro-beijing-content/"
         },
         {
-          "quote": "（一）虛假網站：中宣部、公安部透由「海訊社」、「海賣」",
+          "quote": "（一）虛假網站：中宣部、公安部透由「海訊社」、「海賣」\n及「虎牙」等公關公司，創建虛假網站，並以中立性\n新聞網站名稱，偽冒國際媒體例如：Aisa Korea、\nAustria Weekly，協力傳散中共官方論述，意圖混淆\n視聽。",
           "source_url": "https://www.nsb.gov.tw/zh/assets/documents/%E6%96%B0%E8%81%9E%E7%A8%BF/023b202c-8bc9-4b19-a8eb-c0d0b5809f99.pdf"
         },
         {
@@ -2058,7 +2042,7 @@
       "identity_class": "organization",
       "x_netweaver_evidence": [
         {
-          "quote": "及「虎牙」等公關公司，創建虛假網站，並以中立性",
+          "quote": "（一）虛假網站：中宣部、公安部透由「海訊社」、「海賣」\n及「虎牙」等公關公司，創建虛假網站，並以中立性\n新聞網站名稱，偽冒國際媒體例如：Aisa Korea、\nAustria Weekly，協力傳散中共官方論述，意圖混淆\n視聽。",
           "source_url": "https://www.nsb.gov.tw/zh/assets/documents/%E6%96%B0%E8%81%9E%E7%A8%BF/023b202c-8bc9-4b19-a8eb-c0d0b5809f99.pdf"
         }
       ]
@@ -6256,7 +6240,7 @@
       "identity_class": "organization",
       "x_netweaver_evidence": [
         {
-          "quote": "（一）虛假網站：中宣部、公安部透由「海訊社」、「海賣」",
+          "quote": "（一）虛假網站：中宣部、公安部透由「海訊社」、「海賣」\n及「虎牙」等公關公司，創建虛假網站，並以中立性\n新聞網站名稱，偽冒國際媒體例如：Aisa Korea、\nAustria Weekly，協力傳散中共官方論述，意圖混淆\n視聽。",
           "source_url": "https://www.nsb.gov.tw/zh/assets/documents/%E6%96%B0%E8%81%9E%E7%A8%BF/023b202c-8bc9-4b19-a8eb-c0d0b5809f99.pdf"
         }
       ]
@@ -13200,6 +13184,28 @@
         "marking-definition--30837352-4bcb-536d-ab32-86f489a09985"
       ],
       "x_netweaver_license": "all-rights-reserved"
+    },
+    {
+      "type": "report",
+      "spec_version": "2.1",
+      "id": "report--224e978e-cc04-58cc-a954-16d6687ae786",
+      "created": "2026-01-01T00:00:00.000Z",
+      "modified": "2026-01-01T00:00:00.000Z",
+      "name": "Two coordinated networks, one domestic, one foreign, target the same Philippine Facebook pages",
+      "published": "2026-06-30T00:00:00.000Z",
+      "object_refs": [
+        "intrusion-set--e2b77b7d-320c-511b-b836-069be233aab5"
+      ],
+      "external_references": [
+        {
+          "source_name": "DFRLab (Atlantic Council)",
+          "url": "https://dfrlab.org/2026/06/30/two-coordinated-networks-one-domestic-one-foreign-target-the-same-philippine-facebook-pages/"
+        }
+      ],
+      "object_marking_refs": [
+        "marking-definition--30837352-4bcb-536d-ab32-86f489a09985"
+      ],
+      "x_netweaver_license": "cite-with-attribution"
     },
     {
       "type": "report",

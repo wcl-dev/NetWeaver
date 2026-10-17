@@ -70,7 +70,7 @@ NetWeaver/
 
 ## 資料來源
 
-每筆行為者、事件、關係的關鍵宣稱都掛 `source_ids`，前端會顯示來源連結供查證（目前 <!-- STATS-A:BEGIN -->**45 個來源機構**、**81 筆報告記錄**、**870 條逐來源宣稱**<!-- STATS-A:END -->——機構是 allowlist 單位，一個機構可產出多份報告）。主要類別如下（完整機構清單見本節末，由 `data/registry.yaml` 自動生成）：
+每筆行為者、事件、關係的關鍵宣稱都掛 `source_ids`，前端會顯示來源連結供查證（目前 <!-- STATS-A:BEGIN -->**45 個來源機構**、**81 筆報告記錄**、**866 條逐來源宣稱**<!-- STATS-A:END -->——機構是 allowlist 單位，一個機構可產出多份報告）。主要類別如下（完整機構清單見本節末，由 `data/registry.yaml` 自動生成）：
 
 - **政府公開報告**：國家安全局 (NSB)、美國司法部 (DOJ)
 - **台灣公民社會研究／數位調查**：
@@ -186,9 +186,10 @@ NetWeaver/
 
 - **程式碼**（`pipeline/`、`index.html`、`serve.py` 等本專案自寫的部分）：**MIT**，見 [`LICENSE`](LICENSE)。
 - **資料**（`data/`、匯出的 STIX bundle）：**不適用 MIT，也未被重新授權。** 逐來源宣稱是**公開研究報告的短段逐字引述**，加註出處並連回原文；內容版權仍屬各原始來源。
-  - **我們據以引用的法律基礎**：多數來源並未授予任何再利用權利（著作權預設、"all rights reserved"）。NetWeaver 的逐字引用依**合理使用／《著作權法》第 52 條（為報導、評論、研究等正當目的得合理引用）＋第 64 條（註明出處）**，以研究與記錄為目的、僅取必要範圍的短段落。`sources[].license` 的 **`cite-with-attribution` 是 NetWeaver 的簡稱**（意為「我們引用並註明出處」），**不是來源授予的授權**。
-  - **真正由來源明寫的授權**只有：`gov-open`（政府文件——《著作權法》§9 公文不受著作權保護／美國聯邦政府文件屬公共領域）、`cc-by-sa`（本庫對應來源僅列為**參考出處、未複製其內文**，故 ShareAlike 不觸發，僅需署名）、`platform-terms`。這幾類我們逐條遵守。
-  - **數量紀律**：只取短證據引用；單篇原文「逐字聯集覆蓋率」上限 25%，由 [`pipeline/check_quote_coverage.py`](pipeline/check_quote_coverage.py) 把關：同時複查每則引文仍為原文逐字子字串；`curate.py compile` 發布後會自動對本次寫入的來源出警告（只警告、由人決定）。因 claim 的佐證原文不進 repo，此檢查只在本機跑、不在 CI。
+  - **我們主張的是「合理引用」，不是來源授權**：多數來源並未授予任何再利用權利（著作權預設、"all rights reserved"）。NetWeaver 為報導、評論、研究之必要，在合理範圍內引用已公開發表之著作，所據的是《著作權法》**第 52 條**（引用的例外）；依**第 64 條**另負**明示出處**之義務（我們逐則標註並連回原文）。引用是否「合理」，依**第 65 條**須就個案**審酌一切情狀**（利用之目的及性質、著作之性質、所利用之質量及其占整個著作之比例、對著作潛在市場與現在價值之影響），**沒有任何固定百分比可以保證合法**。以上是本專案的立場與作法，**不是法律意見，也不是合法性保證**。`sources[].license` 的 **`cite-with-attribution` 是 NetWeaver 的簡稱**（意為「我們引用並註明出處」），**不是來源授予的授權**。
+  - **來源有明確授權條款者**僅 `cc-by-sa` 與 `platform-terms`：`cc-by-sa`（目前為 3 條維基百科條目）本庫僅列為**參考出處，未複製、翻譯或改寫其內文**，因此不適用 CC BY-SA 的條件；日後若要複製或改作其內容，須依該授權完整遵守（標示作者與授權及連結、註明是否修改、改作成果以相同授權釋出）。`platform-terms` 目前沒有任何 claim。
+  - **`gov-open` 是我們的內部分類，不是來源授予的授權**：指政府機關公開發布的文件，視為「預期可自由引用」。其著作權地位依各法域而異——例如《著作權法》§9 僅涵蓋列舉的類別（公文等），並非所有政府產出的著作都不受保護；美國聯邦政府員工的職務作品在美國屬公共領域——因此我們對這類來源**仍照樣註明出處、只取短引用**。
+  - **數量紀律**：只取短證據引用；單篇原文「逐字聯集覆蓋率」以 **25% 為內部風險門檻**（用來提早發現疑似過量，**不是法律安全線**），由 [`pipeline/check_quote_coverage.py`](pipeline/check_quote_coverage.py) 把關：同時複查每則引文仍為原文逐字子字串，並**把查不到原文的來源明講為「未驗證」**（不當作通過）；`curate.py compile` 發布後會自動對本次寫入的來源出警告（只警告、由人決定）。因 claim 的佐證原文不進 repo，此檢查只在本機跑、不在 CI。
   - **逐源授權機器可讀**：`data/db.js` 的 `sources[].license`、STIX bundle 每個 `report` 物件的 `x_netweaver_license`；governance 面另見 [`data/registry.yaml`](data/registry.yaml)。**再利用資料者須自行遵守各原始來源的授權。**
 - 本專案**自己產出**的部分（資料結構、實體的中性 summary 與分類這個「彙整」）以 **CC BY 4.0** 提供，惟不覆蓋上述第三方引文。
 
@@ -234,7 +235,7 @@ https://wcl-dev.github.io/NetWeaver/pipeline/out/netweaver-db.stix.json
 
 ## 狀態
 
-概念驗證階段。資料規模：<!-- STATS-B:BEGIN -->**119 行為者 / 33 事件 / 81 來源 / 35 敘事 / 870 條逐來源宣稱**<!-- STATS-B:END -->（含子敘事樹），整理自 NSB、IORG、Doublethink Lab、FactLink 數位素養實驗室、Mandiant/Google、Meta、Graphika、ASPI、Citizen Lab、Microsoft MTAC、Recorded Future、Jamestown、ISD、Vanderbilt、OpenAI、US DOJ 等公開報告與數位調查。
+概念驗證階段。資料規模：<!-- STATS-B:BEGIN -->**119 行為者 / 33 事件 / 81 來源 / 35 敘事 / 866 條逐來源宣稱**<!-- STATS-B:END -->（含子敘事樹），整理自 NSB、IORG、Doublethink Lab、FactLink 數位素養實驗室、Mandiant/Google、Meta、Graphika、ASPI、Citizen Lab、Microsoft MTAC、Recorded Future、Jamestown、ISD、Vanderbilt、OpenAI、US DOJ 等公開報告與數位調查。
 
 涵蓋層次（依 `category`）：
 - **PRC 攻擊機關**（state-organ）：網信辦、國安部、政工部、網路空間部隊、信息支援部、統戰部、公安部、國台辦、外交部

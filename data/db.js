@@ -352,7 +352,7 @@ window.NETWEAVER_DB = {
       "confidence": "high",
       "claims": [
         {
-          "text": "（一）虛假網站：中宣部、公安部透由「海訊社」、「海賣」",
+          "text": "（一）虛假網站：中宣部、公安部透由「海訊社」、「海賣」\n及「虎牙」等公關公司，創建虛假網站，並以中立性\n新聞網站名稱，偽冒國際媒體例如：Aisa Korea、\nAustria Weekly，協力傳散中共官方論述，意圖混淆\n視聽。",
           "source_id": "src-nsb-2026",
           "about": "公安部"
         },
@@ -649,21 +649,6 @@ window.NETWEAVER_DB = {
           "text": "台灣民主實驗室的〈AI 在中國影響力作戰中的崛起：從中科天璣文件中得出的九大要點〉，整理從中國外洩的一份科技公司內部文件，分析中國情報資訊公司「中科天璣」(該公司有中國科學院計算技術研究所的背景)對台灣、美國、一帶一路國家、香港新疆西藏等資訊監控、分析及宣傳策略系統。",
           "source_id": "src-factlink-ff3dee",
           "about": "中科天璣"
-        },
-        {
-          "text": "3,692 virtual personas operable across 12 platforms",
-          "source_id": "src-dtl-golaxy",
-          "about": "GoLaxy AI 影響力作業（2024 大選）"
-        },
-        {
-          "text": "GoLaxy built detailed profiles of 170+ Taiwanese political figures",
-          "source_id": "src-dtl-golaxy",
-          "about": "GoLaxy"
-        },
-        {
-          "text": "weekly monitoring of 600,000+ Taiwan-related items during the 2024 election",
-          "source_id": "src-dtl-golaxy",
-          "about": "targets"
         },
         {
           "text": "「中科天璣」利用 AI",
@@ -1060,7 +1045,7 @@ window.NETWEAVER_DB = {
           "about": "Haixun"
         },
         {
-          "text": "（一）虛假網站：中宣部、公安部透由「海訊社」、「海賣」",
+          "text": "（一）虛假網站：中宣部、公安部透由「海訊社」、「海賣」\n及「虎牙」等公關公司，創建虛假網站，並以中立性\n新聞網站名稱，偽冒國際媒體例如：Aisa Korea、\nAustria Weekly，協力傳散中共官方論述，意圖混淆\n視聽。",
           "source_id": "src-nsb-2026",
           "about": "海訊社"
         },
@@ -1562,7 +1547,8 @@ window.NETWEAVER_DB = {
         "src-openai-threat-intelligence-1b31cc",
         "src-record-spamouflage",
         "src-rf-empire-dragon",
-        "src-storm-nsb-2026"
+        "src-storm-nsb-2026",
+        "src-dfrlab-philippines"
       ],
       "confidence": "high",
       "claims": [
@@ -2102,7 +2088,7 @@ window.NETWEAVER_DB = {
           "about": "假冒台灣人反民進黨帳號網絡"
         },
         {
-          "text": "Virtually all of these posts (275) were identical posts that opposed the DPP",
+          "text": "Our targeted keyword searches of the 7,032 posts revealed roughly 290 posts related to politics. Virtually all of these posts (275) were identical posts that opposed the DPP: “I’m not afraid of online bullies or doxxers. I’ll post what I want! I’m Taiwanese and I oppose pan-green.「霸凌肉搜什麼的我通通都沒在怕啦我就是要po！我是台灣人，我反綠」”",
           "source_id": "src-dtl-impersonation",
           "about": "我是台灣人我反綠"
         },
@@ -2112,12 +2098,7 @@ window.NETWEAVER_DB = {
           "about": "Threads 假冒帳號群"
         },
         {
-          "text": "Doublethink Lab observed significant traffic around the phrase “I am Taiwanese and I oppose pan-green 「我是台灣人我反綠」”",
-          "source_id": "src-dtl-impersonation",
-          "about": "uses"
-        },
-        {
-          "text": "Among this data, we identified 91 posts by 51 inauthentic accounts that can likely be connected to the PRC",
+          "text": "Between March 21, 2025 and April 15, 2025, Doublethink Lab observed significant traffic around the phrase “I am Taiwanese and I oppose pan-green 「我是台灣人我反綠」”. We analyzed 1006 posts that contained this phrase in the above-mentioned time period. Among this data, we identified 91 posts by 51 inauthentic accounts that can likely be connected to the PRC.",
           "source_id": "src-dtl-impersonation",
           "about": "uses"
         }
@@ -3023,7 +3004,7 @@ window.NETWEAVER_DB = {
           "about": "Haimai"
         },
         {
-          "text": "（一）虛假網站：中宣部、公安部透由「海訊社」、「海賣」",
+          "text": "（一）虛假網站：中宣部、公安部透由「海訊社」、「海賣」\n及「虎牙」等公關公司，創建虛假網站，並以中立性\n新聞網站名稱，偽冒國際媒體例如：Aisa Korea、\nAustria Weekly，協力傳散中共官方論述，意圖混淆\n視聽。",
           "source_id": "src-nsb-2026",
           "about": "海賣"
         },
@@ -3094,7 +3075,7 @@ window.NETWEAVER_DB = {
       "confidence": "low",
       "claims": [
         {
-          "text": "及「虎牙」等公關公司，創建虛假網站，並以中立性",
+          "text": "（一）虛假網站：中宣部、公安部透由「海訊社」、「海賣」\n及「虎牙」等公關公司，創建虛假網站，並以中立性\n新聞網站名稱，偽冒國際媒體例如：Aisa Korea、\nAustria Weekly，協力傳散中共官方論述，意圖混淆\n視聽。",
           "source_id": "src-nsb-2026",
           "about": "虎牙"
         }
@@ -7980,7 +7961,7 @@ window.NETWEAVER_DB = {
       "confidence": "medium",
       "claims": [
         {
-          "text": "（一）虛假網站：中宣部、公安部透由「海訊社」、「海賣」",
+          "text": "（一）虛假網站：中宣部、公安部透由「海訊社」、「海賣」\n及「虎牙」等公關公司，創建虛假網站，並以中立性\n新聞網站名稱，偽冒國際媒體例如：Aisa Korea、\nAustria Weekly，協力傳散中共官方論述，意圖混淆\n視聽。",
           "source_id": "src-nsb-2026",
           "about": "中宣部"
         }

@@ -8077,63 +8077,6 @@ window.NETWEAVER_DB = {
       ]
     },
     {
-      "id": "spiderweb-thai-wiretap",
-      "name_zh": "泰國監聽站資訊洗白行動",
-      "name_en": "Thailand wiretap-station information laundering operation",
-      "aliases": [
-        "泰國監聽站",
-        "蜘蛛網行動",
-        "Spider-web Operation"
-      ],
-      "category": "cib-network",
-      "role": "attacker",
-      "origin": "other",
-      "summary_zh": "FactLink 追查的跨國「資訊洗白」行動（2026-05-30 至 07-06，歷時 38 天）：以假軍官爆料為源頭，經 22 個東南亞偽新聞網站與粉專、X 平台機器帳號，轉入台灣爆料社群、立委質詢與媒體報導。FactLink 指證據仍不足以確認真正行動者，僅見部分傳播節點與過往親北京資訊行動有關聯。",
-      "source_ids": [
-        "src-factlink-spiderweb"
-      ],
-      "confidence": "low",
-      "claims": [
-        {
-          "text": "「台灣國防部電訊室在泰國曼谷設置秘密監聽站」（以下簡稱為泰國監聽站）的資訊操弄行動，從2026年5月30日至7月6日，歷時38天，「泰國監聽站」訊息的傳遞並非單一假帳號，或個別偽新聞網站製造的孤立訊息，而是一套具有內容製作、假身分包裝、社群協同擴散及跨國假網站洗稿等分工特徵的資訊操弄網絡，採取「資訊洗白」手法。",
-          "source_id": "src-factlink-spiderweb",
-          "about": "泰國監聽站"
-        },
-        {
-          "text": "「泰國監聽站」的資訊操弄行動可拆解為：首先是佈餌虛實混雜的「軍情爆料」社群內容、假在地爆料國軍帳號，接著佈建多達22個東南亞假新聞網站，把資訊洗白為外電新聞，並透過X平台的垃圾變色龍帳號轉分享。",
-          "source_id": "src-factlink-spiderweb",
-          "about": "泰國監聽站"
-        },
-        {
-          "text": "FactLink 目前掌握的證據仍不足以確認「泰國監聽站」的真正行動者，但可見到部分傳播節點為親中國的傳播網絡，然而行動者與相關網絡仍待進一步調查。",
-          "source_id": "src-factlink-spiderweb",
-          "about": "泰國監聽站"
-        },
-        {
-          "text": "泰國監聽站的資訊操弄中，FactLink調查多達22個東南亞多語言假新聞網站、粉絲專頁傳播「泰國監聽站」相關內容，橫跨7個東南亞國家、4種語言。",
-          "source_id": "src-factlink-spiderweb",
-          "about": "泰國監聽站"
-        },
-        {
-          "text": "「泰國監聽站」訊息在台灣能夠「落地傳播」的關鍵，是立委、政治網紅、媒體等具有公共影響力的傳播節點發布此訊息。最關鍵的是一位立委於2026年6月24日於立法院外交及國防委員會質詢，國防部對此回應，主流媒體報導引述雙方說法，新聞入口網站再轉載擴散，而立委質詢發言隨後紀錄於立法院官網。",
-          "source_id": "src-factlink-spiderweb",
-          "about": "泰國監聽站"
-        },
-        {
-          "text": "FactLink查證爆料文件，發現多處為編造亂湊，並非可信資訊，包括，泰國監聽站照片乃是挪用自商家影像，泰媒體和假新聞引用的監聽站街景照實為台北街景，均非偷拍，也不見所謂的監聽設施。",
-          "source_id": "src-factlink-spiderweb",
-          "about": "泰國監聽站"
-        }
-      ],
-      "related": [
-        {
-          "target_id": "world-newswire",
-          "relation": "linked-to",
-          "note": "FactLink：2 家泰國偽新聞網站經 World Newswire 管道發布相關報導；FactLink 另指其證據仍不足以確認行動者"
-        }
-      ]
-    },
-    {
       "id": "prc-embassy-manila",
       "name_zh": "中國駐菲律賓大使館",
       "name_en": "Chinese Embassy in Manila",
@@ -8909,6 +8852,23 @@ window.NETWEAVER_DB = {
       ],
       "source_ids": [
         "src-factlink-hackleak"
+      ],
+      "confidence": "medium"
+    },
+    {
+      "id": "thai-wiretap-laundering-2026",
+      "name_zh": "「泰國監聽站」資訊洗白行動（2026）",
+      "name_en": "Thailand wiretap-station information laundering operation (2026)",
+      "date": "2026-05-30",
+      "period": "2026-05-30 至 2026-07-06，歷時 38 天",
+      "type": "narrative-campaign",
+      "summary_zh": "FactLink 以開源情報追查的跨國「資訊洗白」行動：自稱國軍內部人士的匿名爆料（Threads、痞客邦）宣稱台灣國防部在曼谷設有秘密監聽站，經 22 個東南亞偽新聞網站與粉專（其中 2 家泰國網站經 World Newswire 發布）及 X 平台機器帳號轉成「外電」，再經台灣爆料社群、一位立委 2026-06-24 的質詢與地方／數位媒體轉載進入台灣輿論。FactLink 查證爆料文件多處編造，並指其證據仍不足以確認真正行動者，僅見部分傳播節點與過往親北京資訊行動有關聯。",
+      "narratives": [],
+      "participant_ids": [
+        "world-newswire"
+      ],
+      "source_ids": [
+        "src-factlink-spiderweb"
       ],
       "confidence": "medium"
     }

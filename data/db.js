@@ -1543,7 +1543,8 @@ window.NETWEAVER_DB = {
         "src-record-spamouflage",
         "src-rf-empire-dragon",
         "src-storm-nsb-2026",
-        "src-dfrlab-philippines"
+        "src-dfrlab-philippines",
+        "src-factlink-spiderweb"
       ],
       "confidence": "high",
       "claims": [
@@ -2021,6 +2022,11 @@ window.NETWEAVER_DB = {
           "text": "中共公安部運用「龍橋」網路水軍集團，透過逾 20 種\n語言，在全球超過 180 種網路社群平臺（ 如：Reddit、\nBlogSpot）進行影響力活動，並與其他公關公司建立協作關\n\n係。",
           "source_id": "src-nsb-2026",
           "about": "龍橋"
+        },
+        {
+          "text": "新聞稿發布平台「World Newswire」 曾在 2024 年被 Google 威脅情資團隊（Google Threat Intelligence Group）與Google旗下的威脅情資公司Mandiant 調查為由中國深圳的「深圳博文傳媒資訊科技有限公司」營運。該公司被發現多次與傳播親北京的資訊操弄內容有關，包括與「中國海訊」及「龍橋」（DRAGONBRIDGE）相關的親中敘事，即是透過其新聞網絡發布內容，擴大資訊傳播範圍。",
+          "source_id": "src-factlink-spiderweb",
+          "about": "龍橋"
         }
       ]
     },
@@ -2426,7 +2432,8 @@ window.NETWEAVER_DB = {
         "src-iorg-41",
         "src-lowy-globaltimes",
         "src-wiki-globaltimes",
-        "src-jamestown-isolate-japan"
+        "src-jamestown-isolate-japan",
+        "src-jamestown-philippines-warfare"
       ],
       "confidence": "high",
       "claims": [
@@ -2728,6 +2735,11 @@ window.NETWEAVER_DB = {
         {
           "text": "The People’s Daily-owned tabloid Global Times accused Takaichi of putting on a “diplomatic performance” (外交表演) and “openly challenging the post-war international order” (公然挑战了战后国际秩序) (Global Times, September 23)",
           "source_id": "src-jamestown-isolate-japan",
+          "about": "Global Times"
+        },
+        {
+          "text": "Chinese media has been supportive of Duterte. A Chinese scholar quoted by Global Times said “she holds relatively pragmatic stances,” in contrast to the Marcos administration’s “increasingly radical China policy” (Global Times, October 13).",
+          "source_id": "src-jamestown-philippines-warfare",
           "about": "Global Times"
         }
       ]
@@ -4446,7 +4458,8 @@ window.NETWEAVER_DB = {
         "src-iorg-136",
         "src-iorg-38",
         "src-iorg-41",
-        "src-jamestown-js2024b"
+        "src-jamestown-js2024b",
+        "src-jamestown-mbappe-censorship"
       ],
       "confidence": "high",
       "claims": [
@@ -4699,6 +4712,16 @@ window.NETWEAVER_DB = {
           "text": "不過，在官媒「中國新聞出版廣電報」18日的文章裡，中央廣播電視總台副台長孫玉勝首次證實，「玉淵譚天」是該台打造的自媒體品牌。",
           "source_id": "src-cna-yuyuan",
           "about": "中央廣播電視總台"
+        },
+        {
+          "text": "PRC state media intervened the following morning when CCTV announced the suspension of La Liga broadcasts and demanded public apologies from Mbappé, Real Madrid, and the league.",
+          "source_id": "src-jamestown-mbappe-censorship",
+          "about": "CCTV"
+        },
+        {
+          "text": "CCTV’s most recent stance has been to demand that Mbappé “mend his ways” (痛改前非) and said it would “listen to his [future] words and watch his [future] actions” (听其言更观其行) (CCTV, October 27).",
+          "source_id": "src-jamestown-mbappe-censorship",
+          "about": "CCTV"
         }
       ]
     },
@@ -6295,7 +6318,8 @@ window.NETWEAVER_DB = {
       "summary_zh": "海賣（Shenzhen Haimai）經營的新聞稿發布服務。Mandiant 指出海訊社同時使用 Times Newswire 與 World Newswire，將親北京內容置入正規新聞網站的子網域。",
       "source_ids": [
         "src-google-glassbridge",
-        "src-mandiant-haienergy-2023"
+        "src-mandiant-haienergy-2023",
+        "src-factlink-spiderweb"
       ],
       "confidence": "high",
       "claims": [
@@ -6332,6 +6356,16 @@ window.NETWEAVER_DB = {
         {
           "text": "World Newswire, the same press release service used by Haixun",
           "source_id": "src-google-glassbridge",
+          "about": "World Newswire"
+        },
+        {
+          "text": "FactLink調查發現，22個東南亞偽新聞網絡至少有3組協作行為。其中，2家泰國偽新聞網站是透過新聞內容代發服務商World Newswire管道發布， World Newswire 2024 年已被 Google 威脅情資團隊和Mandiant點名為由中國深圳博文傳媒資訊科技有限公司營運，其經營網絡多次涉及傳播親中的資訊操弄內容。",
+          "source_id": "src-factlink-spiderweb",
+          "about": "World Newswire"
+        },
+        {
+          "text": "其中一組是泰國假新聞網站「bangkokpeop[.]com 與 「thailandexp[.]com」 ，兩篇報導都在5/31發文，且發文時間僅隔一分鐘。調查發現，內文配圖中，有3張圖片的網址完全相同，都指向 「www.wdwire.com/wp-content/uploads/XXXXXX」，可知是來自新聞稿發布平台 「World Newswire」上傳的同一批圖檔。",
+          "source_id": "src-factlink-spiderweb",
           "about": "World Newswire"
         }
       ]
@@ -8041,6 +8075,86 @@ window.NETWEAVER_DB = {
           "about": "Huanyu Zhiying"
         }
       ]
+    },
+    {
+      "id": "spiderweb-thai-wiretap",
+      "name_zh": "泰國監聽站資訊洗白行動",
+      "name_en": "Thailand wiretap-station information laundering operation",
+      "aliases": [
+        "泰國監聽站",
+        "蜘蛛網行動",
+        "Spider-web Operation"
+      ],
+      "category": "cib-network",
+      "role": "attacker",
+      "origin": "other",
+      "summary_zh": "FactLink 追查的跨國「資訊洗白」行動（2026-05-30 至 07-06，歷時 38 天）：以假軍官爆料為源頭，經 22 個東南亞偽新聞網站與粉專、X 平台機器帳號，轉入台灣爆料社群、立委質詢與媒體報導。FactLink 指證據仍不足以確認真正行動者，僅見部分傳播節點與過往親北京資訊行動有關聯。",
+      "source_ids": [
+        "src-factlink-spiderweb"
+      ],
+      "confidence": "low",
+      "claims": [
+        {
+          "text": "「台灣國防部電訊室在泰國曼谷設置秘密監聽站」（以下簡稱為泰國監聽站）的資訊操弄行動，從2026年5月30日至7月6日，歷時38天，「泰國監聽站」訊息的傳遞並非單一假帳號，或個別偽新聞網站製造的孤立訊息，而是一套具有內容製作、假身分包裝、社群協同擴散及跨國假網站洗稿等分工特徵的資訊操弄網絡，採取「資訊洗白」手法。",
+          "source_id": "src-factlink-spiderweb",
+          "about": "泰國監聽站"
+        },
+        {
+          "text": "「泰國監聽站」的資訊操弄行動可拆解為：首先是佈餌虛實混雜的「軍情爆料」社群內容、假在地爆料國軍帳號，接著佈建多達22個東南亞假新聞網站，把資訊洗白為外電新聞，並透過X平台的垃圾變色龍帳號轉分享。",
+          "source_id": "src-factlink-spiderweb",
+          "about": "泰國監聽站"
+        },
+        {
+          "text": "FactLink 目前掌握的證據仍不足以確認「泰國監聽站」的真正行動者，但可見到部分傳播節點為親中國的傳播網絡，然而行動者與相關網絡仍待進一步調查。",
+          "source_id": "src-factlink-spiderweb",
+          "about": "泰國監聽站"
+        },
+        {
+          "text": "泰國監聽站的資訊操弄中，FactLink調查多達22個東南亞多語言假新聞網站、粉絲專頁傳播「泰國監聽站」相關內容，橫跨7個東南亞國家、4種語言。",
+          "source_id": "src-factlink-spiderweb",
+          "about": "泰國監聽站"
+        },
+        {
+          "text": "「泰國監聽站」訊息在台灣能夠「落地傳播」的關鍵，是立委、政治網紅、媒體等具有公共影響力的傳播節點發布此訊息。最關鍵的是一位立委於2026年6月24日於立法院外交及國防委員會質詢，國防部對此回應，主流媒體報導引述雙方說法，新聞入口網站再轉載擴散，而立委質詢發言隨後紀錄於立法院官網。",
+          "source_id": "src-factlink-spiderweb",
+          "about": "泰國監聽站"
+        },
+        {
+          "text": "FactLink查證爆料文件，發現多處為編造亂湊，並非可信資訊，包括，泰國監聽站照片乃是挪用自商家影像，泰媒體和假新聞引用的監聽站街景照實為台北街景，均非偷拍，也不見所謂的監聽設施。",
+          "source_id": "src-factlink-spiderweb",
+          "about": "泰國監聽站"
+        }
+      ],
+      "related": [
+        {
+          "target_id": "world-newswire",
+          "relation": "linked-to",
+          "note": "FactLink：2 家泰國偽新聞網站經 World Newswire 管道發布相關報導；FactLink 另指其證據仍不足以確認行動者"
+        }
+      ]
+    },
+    {
+      "id": "prc-embassy-manila",
+      "name_zh": "中國駐菲律賓大使館",
+      "name_en": "Chinese Embassy in Manila",
+      "aliases": [
+        "中國駐馬尼拉大使館"
+      ],
+      "category": "state-organ",
+      "role": "attacker",
+      "origin": "PRC",
+      "summary_zh": "菲律賓參議員 Tolentino 於 2025 年 4 月參議院聽證會提出證據，指該館與針對菲政府的網路假訊息活動有關；中國外交部發言人否認，並於同年 7 月制裁 Tolentino（Jamestown 引述菲律賓媒體報導）。",
+      "source_ids": [
+        "src-jamestown-philippines-warfare"
+      ],
+      "confidence": "low",
+      "claims": [
+        {
+          "text": "In April 2025, Senator Francis Tolentino presented evidence during a Senate hearing linking the Chinese embassy in Manila to online disinformation campaigns against the Philippine government ahead of midterm elections the following month (Philippine Daily Inquirer, April 24, 2025).",
+          "source_id": "src-jamestown-philippines-warfare",
+          "about": "Chinese embassy in Manila"
+        }
+      ]
     }
   ],
   "events": [
@@ -9526,6 +9640,33 @@ window.NETWEAVER_DB = {
       "org": "Jamestown Foundation",
       "url": "https://jamestown.org/prc-launches-campaign-to-isolate-japan/",
       "date": "2026-10-14",
+      "type": "ngo-report",
+      "license": "cite-with-attribution"
+    },
+    {
+      "id": "src-factlink-spiderweb",
+      "title": "蜘蛛網行動：假新聞跨國洗白成台灣新聞",
+      "org": "FactLink 數位素養實驗室",
+      "url": "https://www.factlink.tw/p/spiderweb-operation",
+      "date": "2026-10-23",
+      "type": "ngo-report",
+      "license": "cite-with-attribution"
+    },
+    {
+      "id": "src-jamestown-philippines-warfare",
+      "title": "PRC Escalates Political Warfare Against Philippines",
+      "org": "Jamestown Foundation",
+      "url": "https://jamestown.org/prc-escalates-political-warfare-against-philippines/",
+      "date": "2026-10-30",
+      "type": "ngo-report",
+      "license": "cite-with-attribution"
+    },
+    {
+      "id": "src-jamestown-mbappe-censorship",
+      "title": "Beijing Uses Mbappé Controversy to Export Censorship",
+      "org": "Jamestown Foundation",
+      "url": "https://jamestown.org/beijing-uses-mbappe-controversy-to-export-censorship/",
+      "date": "2026-11-03",
       "type": "ngo-report",
       "license": "cite-with-attribution"
     }

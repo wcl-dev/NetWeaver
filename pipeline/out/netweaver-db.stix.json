@@ -1820,7 +1820,7 @@
           "source_url": "https://jamestown.org/prc-launches-campaign-to-isolate-japan/"
         },
         {
-          "quote": "Chinese media has been supportive of Duterte. A Chinese scholar quoted by Global Times said “she holds relatively pragmatic stances,” in contrast to the Marcos administration’s “increasingly radical China policy” (Global Times, October 13).",
+          "quote": "A Chinese scholar quoted by Global Times said “she holds relatively pragmatic stances,” in contrast to the Marcos administration’s “increasingly radical China policy” (Global Times, October 13).",
           "source_url": "https://jamestown.org/prc-escalates-political-warfare-against-philippines/"
         }
       ],
@@ -4617,7 +4617,7 @@
       "aliases": [
         "World Newswire"
       ],
-      "description": "海賣（Shenzhen Haimai）經營的新聞稿發布服務。Mandiant 指出海訊社同時使用 Times Newswire 與 World Newswire，將親北京內容置入正規新聞網站的子網域。",
+      "description": "深圳博文傳媒資訊科技有限公司（Shenzhen Bowen Media Information Technology）營運的新聞稿發布服務（Google 威脅情資團隊與 Mandiant 於 2024 年指出）。Mandiant 指出海訊社同時使用 Times Newswire 與 World Newswire，將親北京內容置入正規新聞網站的子網域。",
       "confidence": 85,
       "identity_class": "organization",
       "x_netweaver_evidence": [
@@ -6361,7 +6361,7 @@
         "Chinese Embassy in Manila",
         "中國駐馬尼拉大使館"
       ],
-      "description": "菲律賓參議員 Tolentino 於 2025 年 4 月參議院聽證會提出證據，指該館與針對菲政府的網路假訊息活動有關；中國外交部發言人否認，並於同年 7 月制裁 Tolentino（Jamestown 引述菲律賓媒體報導）。",
+      "description": "菲律賓參議員 Tolentino 於 2025 年 4 月參議院聽證會提出證據，指該館與針對菲政府的網路假訊息活動有關（Jamestown 引自 Philippine Daily Inquirer）；中國外交部發言人否認，並於同年 7 月制裁 Tolentino（Jamestown 引自中國外交部）。",
       "confidence": 30,
       "identity_class": "organization",
       "x_netweaver_evidence": [

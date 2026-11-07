@@ -2738,7 +2738,7 @@ window.NETWEAVER_DB = {
           "about": "Global Times"
         },
         {
-          "text": "Chinese media has been supportive of Duterte. A Chinese scholar quoted by Global Times said “she holds relatively pragmatic stances,” in contrast to the Marcos administration’s “increasingly radical China policy” (Global Times, October 13).",
+          "text": "A Chinese scholar quoted by Global Times said “she holds relatively pragmatic stances,” in contrast to the Marcos administration’s “increasingly radical China policy” (Global Times, October 13).",
           "source_id": "src-jamestown-philippines-warfare",
           "about": "Global Times"
         }
@@ -6315,7 +6315,7 @@ window.NETWEAVER_DB = {
       "category": "pr-firm",
       "role": "collaborator",
       "origin": "PRC",
-      "summary_zh": "海賣（Shenzhen Haimai）經營的新聞稿發布服務。Mandiant 指出海訊社同時使用 Times Newswire 與 World Newswire，將親北京內容置入正規新聞網站的子網域。",
+      "summary_zh": "深圳博文傳媒資訊科技有限公司（Shenzhen Bowen Media Information Technology）營運的新聞稿發布服務（Google 威脅情資團隊與 Mandiant 於 2024 年指出）。Mandiant 指出海訊社同時使用 Times Newswire 與 World Newswire，將親北京內容置入正規新聞網站的子網域。",
       "source_ids": [
         "src-google-glassbridge",
         "src-mandiant-haienergy-2023",
@@ -8086,7 +8086,7 @@ window.NETWEAVER_DB = {
       "category": "state-organ",
       "role": "attacker",
       "origin": "PRC",
-      "summary_zh": "菲律賓參議員 Tolentino 於 2025 年 4 月參議院聽證會提出證據，指該館與針對菲政府的網路假訊息活動有關；中國外交部發言人否認，並於同年 7 月制裁 Tolentino（Jamestown 引述菲律賓媒體報導）。",
+      "summary_zh": "菲律賓參議員 Tolentino 於 2025 年 4 月參議院聽證會提出證據，指該館與針對菲政府的網路假訊息活動有關（Jamestown 引自 Philippine Daily Inquirer）；中國外交部發言人否認，並於同年 7 月制裁 Tolentino（Jamestown 引自中國外交部）。",
       "source_ids": [
         "src-jamestown-philippines-warfare"
       ],

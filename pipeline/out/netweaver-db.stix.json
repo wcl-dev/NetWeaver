@@ -3775,25 +3775,6 @@
       ]
     },
     {
-      "type": "intrusion-set",
-      "spec_version": "2.1",
-      "id": "intrusion-set--15e3f866-c151-5502-969e-af49a799dd00",
-      "created": "2026-01-01T00:00:00.000Z",
-      "modified": "2026-01-01T00:00:00.000Z",
-      "name": "假外交文件 hack-and-leak 操作網絡",
-      "object_marking_refs": [
-        "marking-definition--30837352-4bcb-536d-ab32-86f489a09985"
-      ],
-      "aliases": [
-        "Diplomatic Hack-and-Leak Disinformation Network",
-        "暗網假爆料帳號群",
-        "DarkForums 假文件操作",
-        "Diplomatic Hack-and-Leak Disinformation Network"
-      ],
-      "description": "以偽造文件在偽暗網論壇『假爆料』、再由親中帳號協同放大，抹黑台日外交的資訊操弄網絡。",
-      "confidence": 60
-    },
-    {
       "type": "x-dad-channel",
       "spec_version": "2.1",
       "id": "x-dad-channel--5e1b83e3-d642-5ffb-aa1f-a3c4bf237b68",
@@ -7578,7 +7559,7 @@
       "aliases": [
         "Fabricated Bribery Documents Smearing Takaichi & Hsieh Chang-ting (2025)"
       ],
-      "description": "一組與中國相關的帳號偽造『高市早苗收受台灣駐日代表謝長廷數百萬賄賂』假文件，分兩波經偽暗網論壇 DarkForums 假爆料，再由 X（豫章信使、孤烟暮蟬、平沙落雁）、FB『兩岸頭條』與港陸媒體（文匯報、NetEase）放大，意在離間台日外交。台灣事實查核中心 24 小時內闢謠。",
+      "description": "FactLink 記錄的「珠寶門」假文件事件：匿名論壇 DarkForums（被包裝成「暗網」）的新註冊帳號 Samurai 於 2025-11-23 首度張貼偽造的「高市早苗收受台灣駐日代表謝長廷數百萬賄賂」文件，12-02 另一帳號 tatakai 再貼托運單（經查並非日本宅急便正式單據）。11-24 起，X 帳號「豫章信使」「孤烟暮蟬」「平沙落雁」、臉書粉專「台灣網路視窗」「兩岸頭條」、香港《文匯報》與中國網易等擴散，意在破壞台日外交並削弱高市早苗「台灣有事」說的正當性；台灣事實查核中心 11-25 查證為不實（信件日文措辭錯誤等），部分帳號隨後刪文。FactLink 指傳播鏈中可見多個與中國直接或間接相關的帳號與具官方背景的香港媒體，但文中未指認張貼偽造文件的行為者。",
       "first_seen": "2025-11-01T00:00:00.000Z",
       "confidence": 60
     },
@@ -8612,19 +8593,6 @@
       "relationship_type": "affiliated-with",
       "source_ref": "identity--0def8c5c-bf8d-5a7d-a078-55ea5afe5358",
       "target_ref": "x-dad-channel--daa27372-69ac-5f49-be6c-b0071011ae8b",
-      "object_marking_refs": [
-        "marking-definition--30837352-4bcb-536d-ab32-86f489a09985"
-      ]
-    },
-    {
-      "type": "relationship",
-      "spec_version": "2.1",
-      "id": "relationship--c5f29b73-1604-5b2a-9d31-048799423c98",
-      "created": "2026-01-01T00:00:00.000Z",
-      "modified": "2026-01-01T00:00:00.000Z",
-      "relationship_type": "affiliated-with",
-      "source_ref": "intrusion-set--15e3f866-c151-5502-969e-af49a799dd00",
-      "target_ref": "intrusion-set--a7ae7366-e49b-5e6d-98cd-d84710169956",
       "object_marking_refs": [
         "marking-definition--30837352-4bcb-536d-ab32-86f489a09985"
       ]
@@ -11067,12 +11035,12 @@
     {
       "type": "relationship",
       "spec_version": "2.1",
-      "id": "relationship--55a5b557-4c12-5abe-ab84-da6877c3473b",
+      "id": "relationship--cd1aef6f-7bd1-5337-9bd5-2bb004b56fb0",
       "created": "2026-01-01T00:00:00.000Z",
       "modified": "2026-01-01T00:00:00.000Z",
       "relationship_type": "related-to",
       "source_ref": "campaign--5258110e-dede-5bf0-998c-d62e7ef5849b",
-      "target_ref": "intrusion-set--15e3f866-c151-5502-969e-af49a799dd00",
+      "target_ref": "intrusion-set--a7ae7366-e49b-5e6d-98cd-d84710169956",
       "object_marking_refs": [
         "marking-definition--30837352-4bcb-536d-ab32-86f489a09985"
       ]
@@ -11080,12 +11048,12 @@
     {
       "type": "relationship",
       "spec_version": "2.1",
-      "id": "relationship--cd1aef6f-7bd1-5337-9bd5-2bb004b56fb0",
+      "id": "relationship--f8d12433-da3b-5d94-8120-ba3f0efd4391",
       "created": "2026-01-01T00:00:00.000Z",
       "modified": "2026-01-01T00:00:00.000Z",
       "relationship_type": "related-to",
       "source_ref": "campaign--5258110e-dede-5bf0-998c-d62e7ef5849b",
-      "target_ref": "intrusion-set--a7ae7366-e49b-5e6d-98cd-d84710169956",
+      "target_ref": "x-dad-channel--4aa2e851-4b87-576e-9f66-57357a5639dc",
       "object_marking_refs": [
         "marking-definition--30837352-4bcb-536d-ab32-86f489a09985"
       ]
@@ -13006,7 +12974,6 @@
       "published": "2026-02-01T00:00:00.000Z",
       "object_refs": [
         "campaign--5258110e-dede-5bf0-998c-d62e7ef5849b",
-        "intrusion-set--15e3f866-c151-5502-969e-af49a799dd00",
         "intrusion-set--a7ae7366-e49b-5e6d-98cd-d84710169956",
         "x-dad-channel--4aa2e851-4b87-576e-9f66-57357a5639dc",
         "x-dad-channel--66294ada-7bb7-5947-a4c1-39acd3cbd017",

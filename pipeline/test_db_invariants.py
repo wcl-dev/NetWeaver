@@ -9,6 +9,8 @@
   ⑤ 參照不懸空：related.target_id、event.participant_ids ∈ entities；entity.event_ids ∈ events；
      event.narratives、narrative.parent ∈ narratives
   ⑥ entities／events／sources／narratives 內 id 不重複
+  ⑦ entity.event_ids 必須恰等於「participant_ids 含該實體的事件」——前端實體頁直接讀 event_ids，
+     事件加了參與者卻沒補 event_ids，該實體頁就不列出這個事件（2026-11 世界新聞稿社漏過一次）
 另含負向自測：對刻意弄壞的合成 db，每一類違規都必須被抓到（避免檢查本身形同虛設）。
 用法：python3 pipeline/test_db_invariants.py"""
 import json, pathlib
@@ -27,7 +29,7 @@ def violations(db):
     evids = {v["id"] for v in db.get("events") or []}
     nids = {n["id"] for n in db.get("narratives") or []}
     v = {k: [] for k in ("claim_source_unregistered", "claim_source_not_in_entity", "source_ids_unregistered",
-                         "empty_claim", "dangling_ref", "duplicate_id")}
+                         "empty_claim", "dangling_ref", "duplicate_id", "event_ids_mismatch")}
     for kind in ("entities", "events", "sources", "narratives"):
         seen = set()
         for o in db.get(kind) or []:
@@ -55,6 +57,13 @@ def violations(db):
         for o in db.get(kind) or []:
             for s in set(o.get("source_ids") or []) - sids:
                 v["source_ids_unregistered"].append((o["id"], s))
+    derived = {}
+    for ev in db.get("events") or []:
+        for p in ev.get("participant_ids") or []:
+            derived.setdefault(p, set()).add(ev["id"])
+    for e in db["entities"]:
+        for x in sorted(set(e.get("event_ids") or []) ^ derived.get(e["id"], set())):
+            v["event_ids_mismatch"].append((e["id"], x))
     for ev in db.get("events") or []:
         for p in ev.get("participant_ids") or []:
             if p not in eids:
@@ -80,8 +89,9 @@ broken = {
                   "claims": [{"text": "ok", "source_id": "s1", "about": "x"},
                              {"text": "來源沒登錄也不在實體清單", "source_id": "s-missing", "about": "x"},
                              {"text": "   ", "source_id": "s1", "about": "x"}],
-                  "related": [{"target_id": "nobody", "relation": "linked-to", "note": ""}]}],
-    "events": [{"id": "v1", "source_ids": ["ghost-ev"], "participant_ids": ["e1", "ghost-person"],
+                  "related": [{"target_id": "nobody", "relation": "linked-to", "note": ""}]},
+                 {"id": "e2", "source_ids": [], "claims": []}],                      # e2 是 v1 的參與者卻沒有 event_ids
+    "events": [{"id": "v1", "source_ids": ["ghost-ev"], "participant_ids": ["e1", "e2", "ghost-person"],
                 "narratives": ["n1", "ghost-narr"]}],
     "narratives": [{"id": "n1", "source_ids": ["ghost-nar"], "parent": "ghost-parent"}],
 }
@@ -95,6 +105,8 @@ assert {("e1", "nobody"), ("v1", "ghost-person"), ("e1", "ghost-event"), ("v1", 
         ("n1", "ghost-parent")} <= set(b["dangling_ref"]), b
 assert ("e1", "v1") not in b["dangling_ref"] and ("v1", "n1") not in b["dangling_ref"], "存在的參照不該誤報"
 assert b["duplicate_id"] == [("sources", "s1")], b
+assert ("e2", "v1") in b["event_ids_mismatch"] and ("e1", "ghost-event") in b["event_ids_mismatch"], b
+assert ("e1", "v1") not in b["event_ids_mismatch"], "e1 的 event_ids 含 v1 且 v1 參與者含 e1，不該誤報"
 
 print("db.js 不變量：通過（claim 來源已登錄且在實體清單內／各 source_ids 皆登錄／claim 非空／"
-      "參照不懸空／id 不重複；含負向自測）")
+      "參照不懸空／id 不重複／event_ids 與事件參與者一致；含負向自測）")

@@ -5386,42 +5386,6 @@ window.NETWEAVER_DB = {
       ]
     },
     {
-      "id": "hack-leak-network",
-      "name_zh": "假外交文件 hack-and-leak 操作網絡",
-      "name_en": "Diplomatic Hack-and-Leak Disinformation Network",
-      "aliases": [
-        "暗網假爆料帳號群",
-        "DarkForums 假文件操作",
-        "Diplomatic Hack-and-Leak Disinformation Network"
-      ],
-      "category": "cib-network",
-      "role": "attacker",
-      "origin": "PRC",
-      "summary_zh": "以偽造文件在偽暗網論壇『假爆料』、再由親中帳號協同放大，抹黑台日外交的資訊操弄網絡。",
-      "description_zh": "FactLink 調查記錄，2025/11–12 一組與中國直接或間接相關的帳號偽造『高市早苗收受台灣駐日代表謝長廷數百萬賄賂』假文件，分兩波（11/24–25、12/2）先於偽暗網論壇 DarkForums 假爆料，再由 X、Facebook 與港陸媒體放大；台灣事實查核中心於 24 小時內以日文文法錯誤等證據闢謠。",
-      "indicators": [
-        "DarkForums 假爆料帳號：Samurai、tatakai（新註冊）",
-        "X 放大帳號：豫章信使、孤烟暮蟬、平沙落雁",
-        "兩波操作：2025/11/24–25、2025/12/2",
-        "TFC 24 小時內闢謠（偽造日文書信文法錯誤）"
-      ],
-      "active_since": "2025",
-      "related": [
-        {
-          "target_id": "taiwan-headlines",
-          "relation": "affiliated-with",
-          "note": "FB『兩岸頭條』參與轉傳放大"
-        }
-      ],
-      "event_ids": [
-        "hack-leak-takaichi-2025"
-      ],
-      "source_ids": [
-        "src-factlink-hackleak"
-      ],
-      "confidence": "medium"
-    },
-    {
       "id": "china-military-bugle",
       "name_zh": "中國軍號",
       "name_en": "China Military Bugle",
@@ -6368,6 +6332,9 @@ window.NETWEAVER_DB = {
           "source_id": "src-factlink-spiderweb",
           "about": "World Newswire"
         }
+      ],
+      "event_ids": [
+        "thai-wiretap-laundering-2026"
       ]
     },
     {
@@ -6739,6 +6706,9 @@ window.NETWEAVER_DB = {
           "source_id": "src-factlink-hackleak",
           "about": "文匯報"
         }
+      ],
+      "event_ids": [
+        "hack-leak-takaichi-2025"
       ]
     },
     {
@@ -8769,13 +8739,13 @@ window.NETWEAVER_DB = {
       "date": "2025-11",
       "period": "2025-11-24 至 2025-12-02",
       "type": "incident",
-      "summary_zh": "一組與中國相關的帳號偽造『高市早苗收受台灣駐日代表謝長廷數百萬賄賂』假文件，分兩波經偽暗網論壇 DarkForums 假爆料，再由 X（豫章信使、孤烟暮蟬、平沙落雁）、FB『兩岸頭條』與港陸媒體（文匯報、NetEase）放大，意在離間台日外交。台灣事實查核中心 24 小時內闢謠。",
+      "summary_zh": "FactLink 記錄的「珠寶門」假文件事件：匿名論壇 DarkForums（被包裝成「暗網」）的新註冊帳號 Samurai 於 2025-11-23 首度張貼偽造的「高市早苗收受台灣駐日代表謝長廷數百萬賄賂」文件，12-02 另一帳號 tatakai 再貼托運單（經查並非日本宅急便正式單據）。11-24 起，X 帳號「豫章信使」「孤烟暮蟬」「平沙落雁」、臉書粉專「台灣網路視窗」「兩岸頭條」、香港《文匯報》與中國網易等擴散，意在破壞台日外交並削弱高市早苗「台灣有事」說的正當性；台灣事實查核中心 11-25 查證為不實（信件日文措辭錯誤等），部分帳號隨後刪文。FactLink 指傳播鏈中可見多個與中國直接或間接相關的帳號與具官方背景的香港媒體，但文中未指認張貼偽造文件的行為者。",
       "narratives": [
         "nar-diplomatic-smear"
       ],
       "participant_ids": [
-        "hack-leak-network",
-        "taiwan-headlines"
+        "taiwan-headlines",
+        "hk-wenweipo"
       ],
       "source_ids": [
         "src-factlink-hackleak"

@@ -235,7 +235,7 @@ https://wcl-dev.github.io/NetWeaver/pipeline/out/netweaver-db.stix.json
 
 ## 狀態
 
-概念驗證階段。資料規模：<!-- STATS-B:BEGIN -->**117 行為者 / 37 事件 / 85 來源 / 35 敘事 / 868 條逐來源宣稱**<!-- STATS-B:END -->（含子敘事樹），整理自 NSB、IORG、Doublethink Lab、FactLink 數位素養實驗室、Mandiant/Google、Meta、Graphika、ASPI、Citizen Lab、Microsoft MTAC、Recorded Future、Jamestown、ISD、Vanderbilt、OpenAI、US DOJ 等公開報告與數位調查。
+概念驗證階段。資料規模：<!-- STATS-B:BEGIN -->**116 行為者 / 37 事件 / 85 來源 / 35 敘事 / 868 條逐來源宣稱**<!-- STATS-B:END -->（含子敘事樹），整理自 NSB、IORG、Doublethink Lab、FactLink 數位素養實驗室、Mandiant/Google、Meta、Graphika、ASPI、Citizen Lab、Microsoft MTAC、Recorded Future、Jamestown、ISD、Vanderbilt、OpenAI、US DOJ 等公開報告與數位調查。
 
 涵蓋層次（依 `category`）：
 - **PRC 攻擊機關**（state-organ）：網信辦、國安部、政工部、網路空間部隊、信息支援部、統戰部、公安部、國台辦、外交部

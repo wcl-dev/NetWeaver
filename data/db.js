@@ -7836,79 +7836,6 @@ window.NETWEAVER_DB = {
       ]
     },
     {
-      "id": "data-center-bandwagon",
-      "name_zh": "資料中心跟風行動",
-      "name_en": "Data Center Bandwagon",
-      "aliases": [],
-      "category": "cib-network",
-      "role": "attacker",
-      "origin": "PRC",
-      "summary_zh": "OpenAI June 2026 威脅報告命名的 PRC 來源祕密影響力網絡。以簡體中文 prompt 生成冒充美國人的社群內容、經 VPN 存取，宣稱 AI 資料中心推高電價煽動民怨，並針對海外中國異議人士（如「李老師」李穎）進行騷擾。OpenAI 研判操作者疑為替中國省級政府客戶工作的民間科技公司輿情團隊。",
-      "source_ids": [
-        "src-openai-threat-intelligence-1b31cc"
-      ],
-      "confidence": "medium",
-      "claims": [
-        {
-          "text": "While neither the “Data Center Bandwagon” nor “Tech and Tariffs\" campaigns",
-          "source_id": "src-openai-threat-intelligence-1b31cc",
-          "about": "Data Center Bandwagon"
-        }
-      ]
-    },
-    {
-      "id": "tech-and-tariffs",
-      "name_zh": "科技與關稅行動",
-      "name_en": "Tech and Tariffs",
-      "aliases": [],
-      "category": "cib-network",
-      "role": "attacker",
-      "origin": "PRC",
-      "summary_zh": "OpenAI June 2026 威脅報告命名的 PRC 來源祕密影響力網絡。生成批評美國科技政策與關稅的短評與政治漫畫、抹黑 OpenAI，操作者自稱「水軍」。除英文外並生成義大利文、日文與繁體中文內容，其中繁中內容針對台灣受眾。OpenAI 研判其活動與中共利益一致。",
-      "source_ids": [
-        "src-openai-threat-intelligence-1b31cc"
-      ],
-      "confidence": "medium",
-      "claims": [
-        {
-          "text": "While neither the “Data Center Bandwagon” nor “Tech and Tariffs\" campaigns",
-          "source_id": "src-openai-threat-intelligence-1b31cc",
-          "about": "Tech and Tariffs"
-        },
-        {
-          "text": "accounts associated with Operation “Nine-emdash Line,” which we discussed in",
-          "source_id": "src-openai-threat-intelligence-1b31cc",
-          "about": "Tech and Tariffs"
-        }
-      ]
-    },
-    {
-      "id": "nine-emdash-line",
-      "name_zh": "九段線行動",
-      "name_en": "Nine-emdash Line",
-      "aliases": [
-        "Operation Nine-emdash Line",
-        "九段線",
-        "Nine-dash Line",
-        "Nine-Dash Line"
-      ],
-      "category": "cib-network",
-      "role": "attacker",
-      "origin": "PRC",
-      "summary_zh": "OpenAI 對一項南海「九段線」敘事影響力行動的命名（Nine-emdash Line 為其風格化寫法），於 2025 年 10 月報告揭露、屬 PRC 來源。June 2026 報告記錄「科技與關稅行動」的 X 帳號轉發過與本行動關聯帳號先前散布的菲律賓總統 Marcos 影像（南海爭端脈絡）——OpenAI 明言此不足以確立兩行動的直接關聯，僅強化「X 上放大中國影響力活動的網絡」印象。",
-      "source_ids": [
-        "src-openai-threat-intelligence-1b31cc"
-      ],
-      "confidence": "low",
-      "claims": [
-        {
-          "text": "accounts associated with Operation “Nine-emdash Line,” which we discussed in",
-          "source_id": "src-openai-threat-intelligence-1b31cc",
-          "about": "Nine-emdash Line"
-        }
-      ]
-    },
-    {
       "id": "sugon",
       "name_zh": "中科曙光",
       "name_en": "Sugon",
@@ -8871,6 +8798,51 @@ window.NETWEAVER_DB = {
         "src-factlink-spiderweb"
       ],
       "confidence": "medium"
+    },
+    {
+      "id": "data-center-bandwagon-2026",
+      "name_zh": "資料中心跟風行動（OpenAI 2026-06 揭露）",
+      "name_en": "“Data Center Bandwagon” campaign (OpenAI, June 2026)",
+      "date": "2026-06",
+      "period": "OpenAI 2026-06 報告揭露並封鎖帳號",
+      "type": "platform-takedown",
+      "summary_zh": "OpenAI 封鎖了一組可能源自中國的 ChatGPT 帳號並命名為「Data Center Bandwagon」campaign，稱其為 PRC-origin 的隱蔽影響力網絡。該組以簡體中文提示、經 VPN 使用 ChatGPT，假冒各種背景的美國人，在 X 平台發布英文短評與圖片，主張資料中心與 AI 應用推高一般美國家庭的電費；另一目標對象是海外華人，要求模型生成辱罵異議人士「李老師」李穎等人的留言（模型拒絕產出攻擊性內容）。OpenAI 判斷操作者「可能」是替中國省級政府客戶工作的私人科技公司社群營運團隊；未發現實質外溢。",
+      "narratives": [],
+      "participant_ids": [],
+      "source_ids": [
+        "src-openai-threat-intelligence-1b31cc"
+      ],
+      "confidence": "medium"
+    },
+    {
+      "id": "tech-and-tariffs-2026",
+      "name_zh": "科技與關稅行動（OpenAI 2026-06 揭露）",
+      "name_en": "“Tech and Tariffs” campaign (OpenAI, June 2026)",
+      "date": "2026-06",
+      "period": "OpenAI 2026-06 報告揭露並封鎖帳號",
+      "type": "platform-takedown",
+      "summary_zh": "OpenAI 封鎖了另一組可能源自中國的 ChatGPT 帳號並命名為「Tech and Tariffs」campaign，稱其為 PRC-origin 網絡。該組以簡體中文提示、經 VPN 使用 ChatGPT，產出批評美國科技政策與關稅的短評和政治漫畫（要求漫畫只出現川普、不出現習近平），由疑似不實的 X 帳號發布；除英文外也生成義大利文、日文與針對台灣受眾的繁體中文內容。其 X 帳號與另一組散布「ChatGPT 用戶資料外洩」不實說法、意圖抹黑 OpenAI 的帳號互相轉發。OpenAI 認為跡象顯示其活動可能與中共利益一致，但無法確認操作者的具體機構歸屬；互動極低（Breakout Scale 第一級）。",
+      "narratives": [],
+      "participant_ids": [],
+      "source_ids": [
+        "src-openai-threat-intelligence-1b31cc"
+      ],
+      "confidence": "medium"
+    },
+    {
+      "id": "nine-emdash-line-2025",
+      "name_zh": "九段線行動（OpenAI 2025-10 報告提及）",
+      "name_en": "Operation “Nine-emdash Line” (OpenAI, October 2025 report)",
+      "date": "2025-10",
+      "period": "OpenAI 2025-10 報告提及；本檔僅據 2026-06 報告的順帶提及",
+      "type": "exposure",
+      "summary_zh": "OpenAI 在 2025 年 10 月「Disrupting malicious uses of AI」報告中討論過的 PRC-origin 隱蔽影響力行動（Operation “Nine-emdash Line”）。本檔僅據 OpenAI 2026-06 報告的順帶提及：與該行動相關的 X 不實帳號曾散布關於菲律賓總統 Marcos 的圖像與影片，「科技與關稅行動」的一個 X 帳號後來也發布過這些圖像；OpenAI 明言這不足以確立兩個行動的直接關聯，僅強化「X 上放大中國影響力活動的網絡」的印象。2025-10 報告本身尚未收錄。",
+      "narratives": [],
+      "participant_ids": [],
+      "source_ids": [
+        "src-openai-threat-intelligence-1b31cc"
+      ],
+      "confidence": "low"
     }
   ],
   "sources": [

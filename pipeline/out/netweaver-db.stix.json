@@ -7636,19 +7636,19 @@
     {
       "type": "campaign",
       "spec_version": "2.1",
-      "id": "campaign--6995c8c9-dda8-50f0-9af2-5c0ef4737809",
+      "id": "campaign--d4c738eb-3aff-5884-8498-6ad17fd29560",
       "created": "2026-01-01T00:00:00.000Z",
       "modified": "2026-01-01T00:00:00.000Z",
-      "name": "九段線行動（OpenAI 2025-10 報告提及）",
+      "name": "九段線行動（OpenAI 2025-10 揭露）",
       "object_marking_refs": [
         "marking-definition--30837352-4bcb-536d-ab32-86f489a09985"
       ],
       "aliases": [
-        "Operation “Nine-emdash Line” (OpenAI, October 2025 report)"
+        "Operation “Nine—emdash Line” (OpenAI, October 2025)"
       ],
-      "description": "OpenAI 在 2025 年 10 月「Disrupting malicious uses of AI」報告中討論過的 PRC-origin 隱蔽影響力行動（Operation “Nine-emdash Line”）。本檔僅據 OpenAI 2026-06 報告的順帶提及：與該行動相關的 X 不實帳號曾散布關於菲律賓總統 Marcos 的圖像與影片，「科技與關稅行動」的一個 X 帳號後來也發布過這些圖像；OpenAI 明言這不足以確立兩個行動的直接關聯，僅強化「X 上放大中國影響力活動的網絡」的印象。2025-10 報告本身尚未收錄。",
-      "first_seen": "2025-10-01T00:00:00.000Z",
-      "confidence": 30
+      "description": "OpenAI 在 2025 年 10 月報告封鎖了一個小型 ChatGPT 帳號網絡，稱其可能隸屬於源自中國的隱蔽影響力行動，並命名為「Nine—emdash Line」（取自南海『九段線』與 AI 文字常見的長破折號）。該網絡主要在 X 上發布英文貼文，內容含越南在南海的所謂環境影響、批評菲律賓總統 Marcos（指控其吸毒、操弄選舉；所附影片非模型生成，已被菲律賓政府斥為深偽或經竄改），並有針對香港民主派人士的粵語貼文，另有少量美國政治議題。OpenAI 指其帳號與長期運作的 Spamouflage 有些相似，但未找到技術連結；影響評估為 Breakout Scale 第二級（多平台、無外溢或極少互動）。2026-06 報告另指「科技與關稅行動」有帳號發布過與本行動相關帳號先前分享的 Marcos 影像，OpenAI 明言這不足以確立兩個行動的直接關聯。",
+      "first_seen": "2025-10-07T00:00:00.000Z",
+      "confidence": 60
     },
     {
       "type": "relationship",
@@ -13222,7 +13222,7 @@
       "published": "2026-06-01T00:00:00.000Z",
       "object_refs": [
         "campaign--422a0da4-0e37-556d-8a24-55f2ac4bac61",
-        "campaign--6995c8c9-dda8-50f0-9af2-5c0ef4737809",
+        "campaign--d4c738eb-3aff-5884-8498-6ad17fd29560",
         "campaign--e8199164-06eb-51ce-84c2-3b7f7dfe5fc1",
         "intrusion-set--e2b77b7d-320c-511b-b836-069be233aab5"
       ],
@@ -13373,6 +13373,28 @@
         "marking-definition--30837352-4bcb-536d-ab32-86f489a09985"
       ],
       "x_netweaver_license": "cite-with-attribution"
+    },
+    {
+      "type": "report",
+      "spec_version": "2.1",
+      "id": "report--3635d693-7ef9-5de7-845a-8676f3f0ecb7",
+      "created": "2026-01-01T00:00:00.000Z",
+      "modified": "2026-01-01T00:00:00.000Z",
+      "name": "Disrupting malicious uses of AI: October 2025",
+      "published": "2025-10-07T00:00:00.000Z",
+      "object_refs": [
+        "campaign--d4c738eb-3aff-5884-8498-6ad17fd29560"
+      ],
+      "external_references": [
+        {
+          "source_name": "OpenAI — Threat Intelligence",
+          "url": "https://openai.com/global-affairs/disrupting-malicious-uses-of-ai-october-2025/"
+        }
+      ],
+      "object_marking_refs": [
+        "marking-definition--30837352-4bcb-536d-ab32-86f489a09985"
+      ],
+      "x_netweaver_license": "all-rights-reserved"
     },
     {
       "type": "extension-definition",

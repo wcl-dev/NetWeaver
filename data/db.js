@@ -8831,18 +8831,19 @@ window.NETWEAVER_DB = {
     },
     {
       "id": "nine-emdash-line-2025",
-      "name_zh": "九段線行動（OpenAI 2025-10 報告提及）",
-      "name_en": "Operation “Nine-emdash Line” (OpenAI, October 2025 report)",
-      "date": "2025-10",
-      "period": "OpenAI 2025-10 報告提及；本檔僅據 2026-06 報告的順帶提及",
-      "type": "exposure",
-      "summary_zh": "OpenAI 在 2025 年 10 月「Disrupting malicious uses of AI」報告中討論過的 PRC-origin 隱蔽影響力行動（Operation “Nine-emdash Line”）。本檔僅據 OpenAI 2026-06 報告的順帶提及：與該行動相關的 X 不實帳號曾散布關於菲律賓總統 Marcos 的圖像與影片，「科技與關稅行動」的一個 X 帳號後來也發布過這些圖像；OpenAI 明言這不足以確立兩個行動的直接關聯，僅強化「X 上放大中國影響力活動的網絡」的印象。2025-10 報告本身尚未收錄。",
+      "name_zh": "九段線行動（OpenAI 2025-10 揭露）",
+      "name_en": "Operation “Nine—emdash Line” (OpenAI, October 2025)",
+      "date": "2025-10-07",
+      "period": "OpenAI 2025-10-07 報告揭露並封鎖帳號",
+      "type": "platform-takedown",
+      "summary_zh": "OpenAI 在 2025 年 10 月報告封鎖了一個小型 ChatGPT 帳號網絡，稱其可能隸屬於源自中國的隱蔽影響力行動，並命名為「Nine—emdash Line」（取自南海『九段線』與 AI 文字常見的長破折號）。該網絡主要在 X 上發布英文貼文，內容含越南在南海的所謂環境影響、批評菲律賓總統 Marcos（指控其吸毒、操弄選舉；所附影片非模型生成，已被菲律賓政府斥為深偽或經竄改），並有針對香港民主派人士的粵語貼文，另有少量美國政治議題。OpenAI 指其帳號與長期運作的 Spamouflage 有些相似，但未找到技術連結；影響評估為 Breakout Scale 第二級（多平台、無外溢或極少互動）。2026-06 報告另指「科技與關稅行動」有帳號發布過與本行動相關帳號先前分享的 Marcos 影像，OpenAI 明言這不足以確立兩個行動的直接關聯。",
       "narratives": [],
       "participant_ids": [],
       "source_ids": [
+        "src-openai-threat-report-2025-10",
         "src-openai-threat-intelligence-1b31cc"
       ],
-      "confidence": "low"
+      "confidence": "medium"
     }
   ],
   "sources": [
@@ -9601,6 +9602,15 @@ window.NETWEAVER_DB = {
       "date": "2026-11-03",
       "type": "ngo-report",
       "license": "cite-with-attribution"
+    },
+    {
+      "id": "src-openai-threat-report-2025-10",
+      "title": "Disrupting malicious uses of AI: October 2025",
+      "org": "OpenAI — Threat Intelligence",
+      "url": "https://openai.com/global-affairs/disrupting-malicious-uses-of-ai-october-2025/",
+      "date": "2025-10-07",
+      "type": "platform-report",
+      "license": "all-rights-reserved"
     }
   ],
   "narratives": [

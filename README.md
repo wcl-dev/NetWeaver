@@ -235,14 +235,14 @@ https://wcl-dev.github.io/NetWeaver/pipeline/out/netweaver-db.stix.json
 
 ## 狀態
 
-概念驗證階段。資料規模：<!-- STATS-B:BEGIN -->**116 行為者 / 37 事件 / 85 來源 / 35 敘事 / 868 條逐來源宣稱**<!-- STATS-B:END -->（含子敘事樹），整理自 NSB、IORG、Doublethink Lab、FactLink 數位素養實驗室、Mandiant/Google、Meta、Graphika、ASPI、Citizen Lab、Microsoft MTAC、Recorded Future、Jamestown、ISD、Vanderbilt、OpenAI、US DOJ 等公開報告與數位調查。
+概念驗證階段。資料規模：<!-- STATS-B:BEGIN -->**115 行為者 / 38 事件 / 85 來源 / 35 敘事 / 868 條逐來源宣稱**<!-- STATS-B:END -->（含子敘事樹），整理自 NSB、IORG、Doublethink Lab、FactLink 數位素養實驗室、Mandiant/Google、Meta、Graphika、ASPI、Citizen Lab、Microsoft MTAC、Recorded Future、Jamestown、ISD、Vanderbilt、OpenAI、US DOJ 等公開報告與數位調查。
 
 涵蓋層次（依 `category`）：
 - **PRC 攻擊機關**（state-organ）：網信辦、國安部、政工部、網路空間部隊、信息支援部、統戰部、公安部、國台辦、外交部
 - **技術／front 供應商**（tech-vendor）：GoLaxy、美亞柏科、科大訊飛、中科點擊、北京星光、一網互通、晴數智慧、沃民高新、長光衛星、硅基智能、歌爾股份、蜜度、出門問問等
 - **PR 代理／新聞稿發布**（pr-firm）：海訊社、海賣、虎牙、Times Newswire、World Newswire
 - **內容農場**（content-farm）：無邊界集團、密訊、兩岸頭條、觸極者、為你祈福、DURINBRIDGE、假捷克媒體《波希米亞日報》
-- **CIB 網絡／行動**（cib-network）：Spamouflage(龍橋/Dragonbridge)、假冒台灣人反民進黨網絡、綠蟬網絡、假外交文件 hack-and-leak 網絡、和坛，及 OpenAI June 2026 報告點名的資料中心跟風行動、科技與關稅行動、九段線行動
+- **CIB 帳號網絡**（cib-network）：Spamouflage(龍橋/Dragonbridge)、假冒台灣人反民進黨網絡、綠蟬網絡、和坛。來源命名的單次行動或案例（如假外交文件 hack-and-leak、OpenAI 報告點名的各行動、Spamouflage 冒充美國人帳號）登為事件，不列為行為者
 - **官媒管道**（state-media，最大類）：央視/CMG、玉淵譚天、海峽之聲、環球時報、新華社、人民日報、中國日報、中國台灣網、觀察者網、東部戰區融媒體中心，及香港受控媒體（origin=HK：鳳凰網、大公文匯網、香港文匯報、中評社）
 - **在地放大者（28 個標記 `domestic-named`、中性框架、可一鍵篩除）**：媒體與粉專（旺中、中天、TVBS、聯合報、亞洲衛視，及無色覺醒、大新聞大爆卦、頭條開講等旺中系粉專），及郭正亮、趙少康、蔡正元、館長、侯漢廷等被 IORG／FactLink 點名遭官媒引用放大的名嘴
 

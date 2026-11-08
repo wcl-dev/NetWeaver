@@ -1330,7 +1330,7 @@
         "我是台灣人，我反綠"
       ],
       "description": "Doublethink Lab記錄的Threads假冒台灣人、攻擊民進黨帳號網絡。",
-      "confidence": 85,
+      "confidence": 60,
       "x_netweaver_evidence": [
         {
           "quote": "51 inauthentic accounts that pretended to be Taiwanese citizens and participated in political narratives that mainly criticized Taiwan’s Democratic Progressive Party (DPP) on Threads",
@@ -1353,28 +1353,6 @@
           "source_url": "https://medium.com/doublethinklab/inauthentic-accounts-impersonate-taiwanese-to-attack-political-party-c7d04d5e1e13"
         }
       ]
-    },
-    {
-      "type": "intrusion-set",
-      "spec_version": "2.1",
-      "id": "intrusion-set--82238e5a-14f7-51ef-9704-e7e003c294ce",
-      "created": "2026-01-01T00:00:00.000Z",
-      "modified": "2026-01-01T00:00:00.000Z",
-      "name": "Spamouflage 冒充美國人子網絡",
-      "object_marking_refs": [
-        "marking-definition--30837352-4bcb-536d-ab32-86f489a09985"
-      ],
-      "aliases": [
-        "Spamouflage US-persona sub-network (\"MAGAflage\")",
-        "MAGAflage (媒體俗稱)",
-        "The #Americans (Graphika)",
-        "The #Americans",
-        "MAGAflage",
-        "Spamouflage US-persona cluster",
-        "The #Americans / MAGAflage"
-      ],
-      "description": "Spamouflage網路中冒充美國公民／川普支持者的子群，顯示其鎖定範圍擴及美國本土。",
-      "confidence": 60
     },
     {
       "type": "x-dad-channel",
@@ -7457,7 +7435,7 @@
       "aliases": [
         "DTL Exposes Anti-DPP Threads Impersonation Network"
       ],
-      "description": "台灣民主實驗室揭露 51 個假冒台灣人的 Threads 帳號，2024/06–2025/04 間發布 7,032 則貼文（含 275 則相同的『我是台灣人我反綠』型貼文）攻擊民進黨。盜用亞洲女性網紅照片，部分出現簡體字、一帳號連結香港電話號碼。DTL 評估『可能可連結至中國』。",
+      "description": "台灣民主實驗室揭露 51 個假冒台灣人的 Threads 帳號，2024/06–2025/04 間發布 7,032 則貼文（含 275 則相同的『我是台灣人我反綠』型貼文）攻擊民進黨。盜用亞洲女性網紅照片，部分出現簡體字、一帳號連結香港電話號碼、另一帳號連結波蘭電話號碼。DTL 評估『可能可連結至中國』。",
       "first_seen": "2025-07-21T00:00:00.000Z",
       "confidence": 60
     },
@@ -7629,6 +7607,23 @@
       ],
       "description": "OpenAI 在 2025 年 10 月報告封鎖了一個小型 ChatGPT 帳號網絡，稱其可能隸屬於源自中國的隱蔽影響力行動，並命名為「Nine—emdash Line」（取自南海『九段線』與 AI 文字常見的長破折號）。該網絡主要在 X 上發布英文貼文，內容含越南在南海的所謂環境影響、批評菲律賓總統 Marcos（指控其吸毒、操弄選舉；所附影片非模型生成，已被菲律賓政府斥為深偽或經竄改），並有針對香港民主派人士的粵語貼文，另有少量美國政治議題。OpenAI 指其帳號與長期運作的 Spamouflage 有些相似，但未找到技術連結；影響評估為 Breakout Scale 第二級（多平台、無外溢或極少互動）。2026-06 報告另指「科技與關稅行動」有帳號發布過與本行動相關帳號先前分享的 Marcos 影像，OpenAI 明言這不足以確立兩個行動的直接關聯。",
       "first_seen": "2025-10-07T00:00:00.000Z",
+      "confidence": 60
+    },
+    {
+      "type": "campaign",
+      "spec_version": "2.1",
+      "id": "campaign--1bd8a6c7-b6a7-53d0-aa0c-fb1189e392b0",
+      "created": "2026-01-01T00:00:00.000Z",
+      "modified": "2026-01-01T00:00:00.000Z",
+      "name": "Spamouflage 冒充美國人帳號（ISD／Graphika 2024）",
+      "object_marking_refs": [
+        "marking-definition--30837352-4bcb-536d-ab32-86f489a09985"
+      ],
+      "aliases": [
+        "Spamouflage US-Persona Accounts (ISD / Graphika, 2024)"
+      ],
+      "description": "ISD（2024-04-01）指認四個與 Spamouflage 連結、冒充川普與 MAGA 支持者的 X 帳號（ISD 稱此手法為「MAGAflage」），另有第五個冒充希臘人、卻討論美國政治的帳號；ISD 稱這些帳號並未受網絡其他部分人為推升，而是在養出真實的親川普受眾，並指其中一個帳號自 2023-05 起持續獲得兩位數到三位數的互動。Graphika（2024-09-03）在 X 上辨識 15 個、TikTok 上 1 個自稱美國公民或美國議題倡議者的 Spamouflage 帳號，以及一個跨平台、冒充美國媒體的人物，其內容部分「幾乎確定」由 AI 生成；Graphika 認為這批帳號未在真實社群中獲得顯著關注，唯一例外是 TikTok 上的假媒體帳號，7 月的一支影片累計 150 萬次觀看。兩份來源對成效的評估不同，且都未提及台灣；收錄供了解 Spamouflage 冒充在地使用者手法的脈絡。",
+      "first_seen": "2024-09-03T00:00:00.000Z",
       "confidence": 60
     },
     {
@@ -8193,19 +8188,6 @@
     {
       "type": "relationship",
       "spec_version": "2.1",
-      "id": "relationship--6f5249d4-c082-5306-a8e0-5c71ebd95657",
-      "created": "2026-01-01T00:00:00.000Z",
-      "modified": "2026-01-01T00:00:00.000Z",
-      "relationship_type": "affiliated-with",
-      "source_ref": "intrusion-set--e2b77b7d-320c-511b-b836-069be233aab5",
-      "target_ref": "intrusion-set--82238e5a-14f7-51ef-9704-e7e003c294ce",
-      "object_marking_refs": [
-        "marking-definition--30837352-4bcb-536d-ab32-86f489a09985"
-      ]
-    },
-    {
-      "type": "relationship",
-      "spec_version": "2.1",
       "id": "relationship--fad9ad4c-dc62-5016-86ff-443b25aae889",
       "created": "2026-01-01T00:00:00.000Z",
       "modified": "2026-01-01T00:00:00.000Z",
@@ -8243,32 +8225,6 @@
       ],
       "x_netweaver_review": "approved",
       "x_netweaver_review_date": "2026-08-30"
-    },
-    {
-      "type": "relationship",
-      "spec_version": "2.1",
-      "id": "relationship--0a30de1b-9626-5eb6-9abe-47443457e54a",
-      "created": "2026-01-01T00:00:00.000Z",
-      "modified": "2026-01-01T00:00:00.000Z",
-      "relationship_type": "affiliated-with",
-      "source_ref": "intrusion-set--3fba1902-5126-5e2c-8ba7-2f3995d66c70",
-      "target_ref": "intrusion-set--e2b77b7d-320c-511b-b836-069be233aab5",
-      "object_marking_refs": [
-        "marking-definition--30837352-4bcb-536d-ab32-86f489a09985"
-      ]
-    },
-    {
-      "type": "relationship",
-      "spec_version": "2.1",
-      "id": "relationship--ac1c1c40-b946-56ab-9a04-53f836a4d93a",
-      "created": "2026-01-01T00:00:00.000Z",
-      "modified": "2026-01-01T00:00:00.000Z",
-      "relationship_type": "subsidiary-of",
-      "source_ref": "intrusion-set--82238e5a-14f7-51ef-9704-e7e003c294ce",
-      "target_ref": "intrusion-set--e2b77b7d-320c-511b-b836-069be233aab5",
-      "object_marking_refs": [
-        "marking-definition--30837352-4bcb-536d-ab32-86f489a09985"
-      ]
     },
     {
       "type": "relationship",
@@ -8825,19 +8781,6 @@
     {
       "type": "relationship",
       "spec_version": "2.1",
-      "id": "relationship--46102c3a-90ff-591a-a9ce-f8d837ed82b5",
-      "created": "2026-01-01T00:00:00.000Z",
-      "modified": "2026-01-01T00:00:00.000Z",
-      "relationship_type": "related-to",
-      "source_ref": "campaign--dd82bef3-5f48-5c44-8e13-663642f33a7c",
-      "target_ref": "intrusion-set--82238e5a-14f7-51ef-9704-e7e003c294ce",
-      "object_marking_refs": [
-        "marking-definition--30837352-4bcb-536d-ab32-86f489a09985"
-      ]
-    },
-    {
-      "type": "relationship",
-      "spec_version": "2.1",
       "id": "relationship--3b77fcde-38f7-51ee-95c3-324bd3151b37",
       "created": "2026-01-01T00:00:00.000Z",
       "modified": "2026-01-01T00:00:00.000Z",
@@ -8857,19 +8800,6 @@
       "relationship_type": "related-to",
       "source_ref": "campaign--f29178c6-9339-5cd1-9546-53bacea08b59",
       "target_ref": "intrusion-set--e2b77b7d-320c-511b-b836-069be233aab5",
-      "object_marking_refs": [
-        "marking-definition--30837352-4bcb-536d-ab32-86f489a09985"
-      ]
-    },
-    {
-      "type": "relationship",
-      "spec_version": "2.1",
-      "id": "relationship--c2160493-60c9-5e77-8df4-4beaf68f71e0",
-      "created": "2026-01-01T00:00:00.000Z",
-      "modified": "2026-01-01T00:00:00.000Z",
-      "relationship_type": "related-to",
-      "source_ref": "campaign--f29178c6-9339-5cd1-9546-53bacea08b59",
-      "target_ref": "intrusion-set--3fba1902-5126-5e2c-8ba7-2f3995d66c70",
       "object_marking_refs": [
         "marking-definition--30837352-4bcb-536d-ab32-86f489a09985"
       ]
@@ -11085,6 +11015,19 @@
       ]
     },
     {
+      "type": "relationship",
+      "spec_version": "2.1",
+      "id": "relationship--d60010a2-af36-5637-ad6c-1ec090e3133a",
+      "created": "2026-01-01T00:00:00.000Z",
+      "modified": "2026-01-01T00:00:00.000Z",
+      "relationship_type": "related-to",
+      "source_ref": "campaign--1bd8a6c7-b6a7-53d0-aa0c-fb1189e392b0",
+      "target_ref": "intrusion-set--e2b77b7d-320c-511b-b836-069be233aab5",
+      "object_marking_refs": [
+        "marking-definition--30837352-4bcb-536d-ab32-86f489a09985"
+      ]
+    },
+    {
       "type": "report",
       "spec_version": "2.1",
       "id": "report--673876c8-4469-5a34-afca-a9dc901f8e66",
@@ -11759,7 +11702,7 @@
       "name": "The #Americans: Spamouflage Network Poses as U.S. Citizens",
       "published": "2024-09-01T00:00:00.000Z",
       "object_refs": [
-        "intrusion-set--82238e5a-14f7-51ef-9704-e7e003c294ce",
+        "campaign--1bd8a6c7-b6a7-53d0-aa0c-fb1189e392b0",
         "intrusion-set--e2b77b7d-320c-511b-b836-069be233aab5"
       ],
       "external_references": [
@@ -12587,7 +12530,7 @@
       "name": "Pro-CCP Spamouflage campaign experiments with new tactics targeting the US",
       "published": "2024-04-01T00:00:00.000Z",
       "object_refs": [
-        "intrusion-set--82238e5a-14f7-51ef-9704-e7e003c294ce",
+        "campaign--1bd8a6c7-b6a7-53d0-aa0c-fb1189e392b0",
         "intrusion-set--e2b77b7d-320c-511b-b836-069be233aab5"
       ],
       "external_references": [
@@ -12804,7 +12747,7 @@
       "created": "2026-01-01T00:00:00.000Z",
       "modified": "2026-01-01T00:00:00.000Z",
       "name": "CyberCX unmasks China-linked AI disinformation capability on X (Green Cicada)",
-      "published": "2024-08-18T00:00:00.000Z",
+      "published": "2024-08-13T00:00:00.000Z",
       "object_refs": [
         "intrusion-set--1cc419c8-8f9c-501b-8e53-ee47c37b9883"
       ],

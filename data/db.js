@@ -1487,11 +1487,6 @@ window.NETWEAVER_DB = {
           "note": "Meta/DOJ/NSB 連結至公安部相關人員"
         },
         {
-          "target_id": "magaflage",
-          "relation": "affiliated-with",
-          "note": "冒充美國人之子群屬同一網路"
-        },
-        {
           "target_id": "mps",
           "relation": "linked-to",
           "note": "Meta Q2 2023 措辭：『links to individuals associated with Chinese law enforcement』；DOJ 2023/04 起訴 MPS『912 專項工作組』troll farm（DOJ 文件未使用 Spamouflage 或 Taiwan 字眼，連結為 Meta/CNN/研究者所做）"
@@ -1520,7 +1515,8 @@ window.NETWEAVER_DB = {
         "meta-taiwan-2025",
         "joint-sword-2024",
         "takaichi-strait-2025",
-        "glassbridge-takedown-2024"
+        "glassbridge-takedown-2024",
+        "spamouflage-us-persona-2024"
       ],
       "source_ids": [
         "src-aspi-2024",
@@ -2046,33 +2042,26 @@ window.NETWEAVER_DB = {
       "role": "attacker",
       "origin": "PRC",
       "summary_zh": "Doublethink Lab記錄的Threads假冒台灣人、攻擊民進黨帳號網絡。",
-      "description_zh": "Doublethink Lab於2025年7月記錄了一組在Threads平台上假冒台灣人的造假帳號網絡，共51個帳號，多數盜用台灣（部分泰、馬）網紅照片偽裝身分，反覆張貼「我是台灣人我反綠」等攻擊民進黨的內容。基於簡體字使用、帳號回復用香港電話號碼及「影響力外包」模式等鑑識線索，DTL評估這些帳號很可能與中國有關。",
+      "description_zh": "Doublethink Lab於2025年7月記錄了一組在Threads平台上假冒台灣人的造假帳號網絡，共51個帳號，多數盜用台灣（部分泰、馬）網紅照片偽裝身分，反覆張貼「我是台灣人我反綠」等攻擊民進黨的內容。基於簡體字使用、一個帳號連結香港電話號碼（另一個連結波蘭電話號碼）及「影響力外包」模式等鑑識線索，DTL評估這些帳號很可能與中國有關。DTL 推測這些帳號可能由服務不同客戶的放大服務供應商營運，但表示需進一步研究才能證實，也未指認操作者。",
       "indicators": [
         "51個Threads假帳號 (DTL)",
         "44/51帳號盜用網紅照片 (DTL)",
         "275則「我是台灣人我反綠」相同貼文 (DTL)",
-        "23個帳號71則貼文含簡體字、1帳號回復連結香港電話號碼 (DTL)",
+        "23個帳號71則貼文含簡體字；1帳號回復連結香港電話號碼、另1帳號連結波蘭電話號碼 (DTL)",
         "51 個假冒台灣人帳號（平台：Threads）",
         "7,032 則貼文（2024/06/05–2025/04/30）",
-        "23 個帳號出現簡體字；一帳號連結香港電話號碼",
+        "23 個帳號出現簡體字；一帳號連結香港電話號碼、另一帳號連結波蘭電話號碼",
         "1,122 則貼文導流色情/約會網站"
       ],
       "active_since": "2024-06 至 2025-04",
-      "related": [
-        {
-          "target_id": "spamouflage",
-          "relation": "affiliated-with",
-          "note": "DTL 指其『influence-for-hire』模式與美國大選中所見網絡相似；歸因措辭為『can likely be linked to the PRC』"
-        }
-      ],
+      "related": [],
       "event_ids": [
-        "election-op-2024",
         "anti-dpp-threads-2025"
       ],
       "source_ids": [
         "src-dtl-impersonation"
       ],
-      "confidence": "high",
+      "confidence": "medium",
       "claims": [
         {
           "text": "51 inauthentic accounts that pretended to be Taiwanese citizens and participated in political narratives that mainly criticized Taiwan’s Democratic Progressive Party (DPP) on Threads",
@@ -2100,47 +2089,6 @@ window.NETWEAVER_DB = {
           "about": "uses"
         }
       ]
-    },
-    {
-      "id": "magaflage",
-      "name_zh": "Spamouflage 冒充美國人子網絡",
-      "name_en": "Spamouflage US-persona sub-network (\"MAGAflage\")",
-      "aliases": [
-        "MAGAflage (媒體俗稱)",
-        "The #Americans (Graphika)",
-        "The #Americans",
-        "MAGAflage",
-        "Spamouflage US-persona cluster",
-        "The #Americans / MAGAflage"
-      ],
-      "category": "cib-network",
-      "role": "attacker",
-      "origin": "PRC",
-      "summary_zh": "Spamouflage網路中冒充美國公民／川普支持者的子群，顯示其鎖定範圍擴及美國本土。",
-      "description_zh": "Graphika於2024年9月的《The #Americans》報告記錄了Spamouflage網路冒充美國人的子群：在X上有15個、TikTok上有1個帳號自稱美國公民或美國議題倡議者。此前ISD於2024年4月已揭露其中冒充川普與MAGA支持者的四個帳號（媒體俗稱「MAGAflage」，此名非Graphika報告用語）。此子群顯示同一親中網路的鎖定範圍已擴及美國本土受眾。",
-      "indicators": [
-        "X上15個、TikTok上1個冒充美國人帳號 (Graphika)",
-        "ISD 先前揭露4個冒充川普/MAGA支持者帳號",
-        "Graphika：X 上 15 個 + TikTok 上 1 個假冒美國人 Spamouflage 帳號",
-        "ISD：最初記錄 4 個冒充川普/MAGA 支持者的 X 帳號",
-        "冒充美國焦點媒體的跨平台人物"
-      ],
-      "active_since": "2024 (圍繞美國大選)",
-      "related": [
-        {
-          "target_id": "spamouflage",
-          "relation": "subsidiary-of",
-          "note": "屬 Spamouflage/DRAGONBRIDGE 同一網路之子群"
-        }
-      ],
-      "event_ids": [
-        "spamouflage-takedown-2023"
-      ],
-      "source_ids": [
-        "src-graphika-americans",
-        "src-isd-magaflage"
-      ],
-      "confidence": "medium"
     },
     {
       "id": "yuyuantantian",
@@ -8053,8 +8001,7 @@ window.NETWEAVER_DB = {
       ],
       "participant_ids": [
         "spamouflage",
-        "mps",
-        "magaflage"
+        "mps"
       ],
       "source_ids": [
         "src-meta-2023",
@@ -8078,7 +8025,6 @@ window.NETWEAVER_DB = {
       ],
       "participant_ids": [
         "spamouflage",
-        "anti-dpp-impersonation",
         "golaxy",
         "cac",
         "mss",
@@ -8607,7 +8553,7 @@ window.NETWEAVER_DB = {
       "date": "2025-07-21",
       "period": "2025",
       "type": "exposure",
-      "summary_zh": "台灣民主實驗室揭露 51 個假冒台灣人的 Threads 帳號，2024/06–2025/04 間發布 7,032 則貼文（含 275 則相同的『我是台灣人我反綠』型貼文）攻擊民進黨。盜用亞洲女性網紅照片，部分出現簡體字、一帳號連結香港電話號碼。DTL 評估『可能可連結至中國』。",
+      "summary_zh": "台灣民主實驗室揭露 51 個假冒台灣人的 Threads 帳號，2024/06–2025/04 間發布 7,032 則貼文（含 275 則相同的『我是台灣人我反綠』型貼文）攻擊民進黨。盜用亞洲女性網紅照片，部分出現簡體字、一帳號連結香港電話號碼、另一帳號連結波蘭電話號碼。DTL 評估『可能可連結至中國』。",
       "narratives": [
         "nar-anti-dpp"
       ],
@@ -8812,6 +8758,24 @@ window.NETWEAVER_DB = {
       "source_ids": [
         "src-openai-threat-report-2025-10",
         "src-openai-threat-intelligence-1b31cc"
+      ],
+      "confidence": "medium"
+    },
+    {
+      "id": "spamouflage-us-persona-2024",
+      "name_zh": "Spamouflage 冒充美國人帳號（ISD／Graphika 2024）",
+      "name_en": "Spamouflage US-Persona Accounts (ISD / Graphika, 2024)",
+      "date": "2024-09-03",
+      "period": "2024-04 至 2024-09",
+      "type": "exposure",
+      "summary_zh": "ISD（2024-04-01）指認四個與 Spamouflage 連結、冒充川普與 MAGA 支持者的 X 帳號（ISD 稱此手法為「MAGAflage」），另有第五個冒充希臘人、卻討論美國政治的帳號；ISD 稱這些帳號並未受網絡其他部分人為推升，而是在養出真實的親川普受眾，並指其中一個帳號自 2023-05 起持續獲得兩位數到三位數的互動。Graphika（2024-09-03）在 X 上辨識 15 個、TikTok 上 1 個自稱美國公民或美國議題倡議者的 Spamouflage 帳號，以及一個跨平台、冒充美國媒體的人物，其內容部分「幾乎確定」由 AI 生成；Graphika 認為這批帳號未在真實社群中獲得顯著關注，唯一例外是 TikTok 上的假媒體帳號，7 月的一支影片累計 150 萬次觀看。兩份來源對成效的評估不同，且都未提及台灣；收錄供了解 Spamouflage 冒充在地使用者手法的脈絡。",
+      "narratives": [],
+      "participant_ids": [
+        "spamouflage"
+      ],
+      "source_ids": [
+        "src-isd-magaflage",
+        "src-graphika-americans"
       ],
       "confidence": "medium"
     }
@@ -9380,7 +9344,7 @@ window.NETWEAVER_DB = {
       "title": "CyberCX unmasks China-linked AI disinformation capability on X (Green Cicada)",
       "org": "CyberCX",
       "url": "https://cybercx.com/blog/cybercx-unmasks-china-linked-ai-disinformation-capability/",
-      "date": "2024-08-18",
+      "date": "2024-08-13",
       "type": "ngo-report",
       "license": "cite-with-attribution"
     },

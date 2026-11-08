@@ -38,7 +38,7 @@
 - `tech-vendor` — 提供技術的公司（AI 輿情、深偽、爬蟲，如 GoLaxy、科大訊飛）
 - `pr-firm` — 公關／內容代理商（如 海訊社）
 - `content-farm` — 內容農場
-- `cib-network` — 可指認、持續存在的協同造假帳號網絡（如 Spamouflage）。來源替一次「行動／campaign／案例」取名、卻未指認操作者時，登成事件（`events`），不登成此類行為者
+- `cib-network` — 可指認、持續存在的協同造假網絡，單位是一組帳號、專頁或社團（如 Spamouflage、尚比亞的親執政黨臉書社團）。來源替一次「行動／campaign／案例」取名、卻未指認操作者時，登成事件（`events`），不登成此類行為者
 - `state-media` — 官方／國家控制媒體（如 環球時報、玉淵譚天）
 - `domestic-amplifier` — 在地放大者（媒體機構）
 - `commentator` — 具名評論者（最敏感，從嚴）
